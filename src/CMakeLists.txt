@@ -37,13 +37,8 @@ target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ../third_party
+    ${INSTALL_PATH}/include
 )
-
-# target_include_directories(${PROJECT_NAME} PUBLIC
-#     yutovo_editor
-#     YUTOVO::yutovo_editor
-#     #$<BUILD_INTERFACE::yutovo_editor>
-# )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
     yutovo_editor

@@ -3,6 +3,8 @@
 namespace yutovo
 {
 
+using namespace yutovo_service;
+
 //ShortcutsMap
 
 void ShortcutsMap::Init(DocumentPtr _document)
@@ -39,7 +41,7 @@ void ShortcutsMap::Init(DocumentPtr _document)
     Add(QKeySequence("Return"), "", std::function<void ()>(std::bind(&Document::InsertParagraph, document.get(), true, false)));
 
     //edit code
-    Add(QKeySequence("Ctrl+Shift+C"), "\\code", std::function<void ()>(std::bind(&Document::InsertCode, document.get(), true)));
+    Add(QKeySequence("Ctrl+Shift+C"), "\\code", std::function<void ()>(std::bind(&Document::InsertCode, document.get(), false, true)));
     Add(QKeySequence("Ctrl+Shift+D"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true)));
     Add(QKeySequence(""), '+', "\\plus", std::function<void ()>(std::bind(&Document::InsertPlus, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '-', "\\minus", std::function<void ()>(std::bind(&Document::InsertMinus, document.get(), true)), CommandContext::Formula);

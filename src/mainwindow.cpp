@@ -307,7 +307,7 @@ void MainWindow::OnHorizontalValueChanged(int value)
 
 void MainWindow::OnInsertCode()
 {
-    document->InsertCode(true);
+    document->InsertCode(false, true);
 }
 
 void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
