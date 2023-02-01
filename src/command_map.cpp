@@ -60,6 +60,8 @@ void ShortcutsMap::Init(DocumentPtr _document)
         CommandContext::Formula);
     Add(QKeySequence(""), "\\eq_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::COMPLEX, true)), 
         CommandContext::Formula);
+    Add(QKeySequence(""), '(', "\\open_fence", std::function<void ()>(std::bind(&Document::InsertOpenFence, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), ')', "\\close_fence", std::function<void ()>(std::bind(&Document::InsertCloseFence, document.get(), true)), CommandContext::Formula);
 }
 
 bool ShortcutsMap::Call(const QKeySequence& shortcut, QChar symbol, const EditorState& editor_state)

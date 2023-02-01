@@ -112,6 +112,38 @@ void QtWindow::DrawFillPath(const std::list<Point>& path, const Color color)
     p.end();
 }
 
+void QtWindow::DrawBezierPath(const std::list<Point>& path, const Color color)
+{
+    QVector<QPointF> points;
+    for (const Point& p : path)
+    {
+        if (draw_doc)
+            points.push_back(QPointF(p.x - document_point.x, p.y - document_point.y));
+        else
+            points.push_back(QPointF(p.x, p.y));
+    }
+
+    if (points.size() < 4)
+        return;
+
+    QPainter p;
+    if (!p.begin(surface.get()))
+        return;
+    p.setRenderHint(QPainter::Antialiasing);
+    p.setBrush(QColor::fromRgba(color.ToInt()));
+    p.setClipRegion(clip_region);
+    QPainterPath _path;
+    _path.moveTo(points[0]);
+    for (int i = 1; i < points.size(); i += 3)
+    {
+        if (i + 3 > points.size())
+            break;
+        _path.cubicTo(points[i], points[i + 1], points[i + 2]);
+    }
+    p.drawPath(_path);
+    p.end();
+}
+
 void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height)
 {
     DrawFillRect(x1, y1, width, height, Color::White());
