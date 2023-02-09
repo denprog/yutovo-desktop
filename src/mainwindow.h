@@ -46,14 +46,14 @@ private:
     void Undo();
     void Redo();
 
+    void About();
+
     void AlgebraToolbar();
     void TrigonometryToolbar();
     void HyperbolicToolbar();
     void FunctionsToolbar();
 
     void StatusBar();
-
-    void About();
 
 private slots:
     void OnVerticalValueChanged(int value);
@@ -127,6 +127,7 @@ private:
 
 private:
     Ui::MainWindow *ui;
+
     DocumentWidget* document_widget;
     DocumentPtr document;
 

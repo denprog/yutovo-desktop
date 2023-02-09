@@ -14,13 +14,13 @@ set(CMAKE_AUTORCC ON)
 find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/cmake/)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-# if (Qt5Widgets_FOUND)
-#     if (Qt5Widgets_VERSION VERSION_LESS 5.14.0)
-#         message(FATAL_ERROR "Minimum supported Qt5 version is 5.14")
-#     endif()
-# else()
-#     message(SEND_ERROR "The Qt5Widgets library could not be found!")
-# endif(Qt5Widgets_FOUND)
+if (Qt5Widgets_FOUND)
+    if (Qt5Widgets_VERSION VERSION_LESS 5.14.0)
+        message(FATAL_ERROR "Minimum supported Qt5 version is 5.14")
+    endif()
+else()
+    message(SEND_ERROR "The Qt5Widgets library could not be found!")
+endif(Qt5Widgets_FOUND)
 
 add_executable(${PROJECT_NAME}
     main.cpp
@@ -28,9 +28,11 @@ add_executable(${PROJECT_NAME}
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    about.ui
     resources.qrc
     qt_window.cpp
     command_map.cpp
+    about_dialog.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)

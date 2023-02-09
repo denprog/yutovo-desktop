@@ -8,6 +8,7 @@
 #include <QMimeData>
 #include <QScrollBar>
 #include <yutovo_editor/util.h>
+#include "about_dialog.h"
 
 //MainWindow
 
@@ -531,6 +532,12 @@ void MainWindow::Redo()
     document->Redo();
 }
 
+void MainWindow::About()
+{
+    AboutDialog about_dialog;
+    about_dialog.exec();
+}
+
 void MainWindow::AlgebraToolbar()
 {
     algebra_toolbar_action->isChecked() ? algebra_toolbar->show() : algebra_toolbar->hide();
@@ -554,10 +561,6 @@ void MainWindow::FunctionsToolbar()
 void MainWindow::StatusBar()
 {
     status_bar_action->isChecked() ? statusBar()->show() : statusBar()->hide();
-}
-
-void MainWindow::About()
-{
 }
 
 void MainWindow::OnVerticalValueChanged(int value)
