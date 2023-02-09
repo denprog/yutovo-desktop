@@ -12,8 +12,8 @@ void ShortcutsMap::Init(DocumentPtr _document)
     document = _document;
 
     //caret moving
-    Add(QKeySequence("Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretLeft, document.get(), false)));
-    Add(QKeySequence("Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretRight, document.get(), false)));
+    Add(QKeySequence("Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretLeft, document.get(), false, false)));
+    Add(QKeySequence("Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretRight, document.get(), false, false)));
     Add(QKeySequence("Up"), "", std::function<void ()>(std::bind(&Document::MoveCaretUp, document.get(), false)));
     Add(QKeySequence("Down"), "", std::function<void ()>(std::bind(&Document::MoveCaretDown, document.get(), false)));
 
@@ -27,8 +27,8 @@ void ShortcutsMap::Init(DocumentPtr _document)
     Add(QKeySequence("Ctrl+End"), "", std::function<void ()>(std::bind(&Document::MoveCaretToDocumentEnd, document.get(), false)));
 
     //selection
-    Add(QKeySequence("Shift+Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretLeft, document.get(), true)));
-    Add(QKeySequence("Shift+Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretRight, document.get(), true)));
+    Add(QKeySequence("Shift+Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretLeft, document.get(), false, true)));
+    Add(QKeySequence("Shift+Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretRight, document.get(), false, true)));
     Add(QKeySequence("Shift+Up"), "", std::function<void ()>(std::bind(&Document::MoveCaretUp, document.get(), true)));
     Add(QKeySequence("Shift+Down"), "", std::function<void ()>(std::bind(&Document::MoveCaretDown, document.get(), true)));
 
@@ -62,6 +62,7 @@ void ShortcutsMap::Init(DocumentPtr _document)
         CommandContext::Formula);
     Add(QKeySequence(""), '(', "\\open_fence", std::function<void ()>(std::bind(&Document::InsertOpenFence, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ')', "\\close_fence", std::function<void ()>(std::bind(&Document::InsertCloseFence, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), ':', "\\assign", std::function<void ()>(std::bind(&Document::InsertAssignment, document.get(), true)), CommandContext::Formula);
 }
 
 bool ShortcutsMap::Call(const QKeySequence& shortcut, QChar symbol, const EditorState& editor_state)

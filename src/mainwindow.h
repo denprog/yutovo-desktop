@@ -27,6 +27,10 @@ public:
 private:
     void SetupGui();
     void CreateActions();
+    void CreateAlgebraToolbar();
+    void CreateTrigonometryToolbar();
+    void CreateHyperbolicToolbar();
+    void CreateFunctionsToolbar();
     void CreateStatusBar();
 
     void New();
@@ -41,6 +45,13 @@ private:
 
     void Undo();
     void Redo();
+
+    void AlgebraToolbar();
+    void TrigonometryToolbar();
+    void HyperbolicToolbar();
+    void FunctionsToolbar();
+
+    void StatusBar();
 
     void About();
 
@@ -57,6 +68,52 @@ private slots:
     void OnBold();
     void OnItalic();
     void OnUnderline();
+
+    void OnPlus();
+    void OnMinus();
+    void OnMultiply();
+    void OnDivision();
+    void OnSquareRoot();
+    void OnNthRoot();
+    void OnPower();
+    void OnSubscript();
+    void OnFences();
+    void OnAssignment();
+    void OnEquation();
+
+    void OnSin();
+    void OnCos();
+    void OnTg();
+    void OnCtg();
+    void OnSec();
+    void OnCsc();
+    void OnArcsin();
+    void OnArccos();
+    void OnArctg();
+    void OnArcctg();
+    void OnArcsec();
+    void OnArccsc();
+
+    void OnSinh();
+    void OnCosh();
+    void OnTgh();
+    void OnCtgh();
+    void OnSech();
+    void OnCsch();
+    void OnArsinh();
+    void OnArcosh();
+    void OnArtgh();
+    void OnArctgh();
+    void OnArsech();
+    void OnArcsch();
+
+    void OnExp();
+    void OnLn();
+    void OnLg();
+    void OnLog();
+    void OnInt();
+    void OnFract();
+    void OnRound();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnSaveResult(const uint task_id, IOResult result);
@@ -91,6 +148,17 @@ private:
     QAction* bold_action = nullptr;
     QAction* italic_action = nullptr;
     QAction* underline_action = nullptr;
+
+    QAction* algebra_toolbar_action = nullptr;
+    QAction* trigonometry_toolbar_action = nullptr;
+    QAction* hyperbolic_toolbar_action = nullptr;
+    QAction* functions_toolbar_action = nullptr;
+    QAction* status_bar_action = nullptr;
+
+    QToolBar* algebra_toolbar = nullptr;
+    QToolBar* trigonometry_toolbar = nullptr;
+    QToolBar* hyperbolic_toolbar = nullptr;
+    QToolBar* functions_toolbar = nullptr;
 };
 
 #endif

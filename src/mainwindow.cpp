@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QMenu>
 #include <QToolBar>
+#include <QToolButton>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QClipboard>
@@ -60,6 +61,14 @@ void MainWindow::SetupGui()
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &MainWindow::OnDocumentUpdated);
 
     CreateActions();
+    addToolBarBreak();
+    CreateAlgebraToolbar();
+    addToolBarBreak();
+    CreateTrigonometryToolbar();
+    addToolBarBreak();
+    CreateHyperbolicToolbar();
+    addToolBarBreak();
+    CreateFunctionsToolbar();
 
     document->Start();
 }
@@ -68,30 +77,30 @@ void MainWindow::CreateActions()
 {
     //file menu and toolbar
     QMenu *file_menu = menuBar()->addMenu(tr("&File"));
-    QToolBar *file_toolbar = addToolBar(tr("File"));
+    QToolBar *standard_toolbar = addToolBar(tr("Standard"));
 
-    QAction* action = new QAction(QIcon(":/icons/images/new.png"), tr("&New"), this);
+    QAction* action = new QAction(QIcon(":/icons/images/standard/new.png"), tr("&New"), this);
     action->setShortcuts(QKeySequence::New);
     action->setStatusTip(tr("Create a new document"));
     connect(action, &QAction::triggered, this, &MainWindow::New);
     file_menu->addAction(action);
-    file_toolbar->addAction(action);
+    standard_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/open.png"), tr("&Open..."), this);
+    action = new QAction(QIcon(":/icons/images/standard/open.png"), tr("&Open..."), this);
     action->setShortcuts(QKeySequence::Open);
     action->setStatusTip(tr("Open an existing file"));
     connect(action, &QAction::triggered, this, &MainWindow::Open);
     file_menu->addAction(action);
-    file_toolbar->addAction(action);
+    standard_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/save.png"), tr("&Save"), this);
+    action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
     action->setShortcuts(QKeySequence::Save);
     action->setStatusTip(tr("Save the document to disk"));
     connect(action, &QAction::triggered, this, &MainWindow::Save);
     file_menu->addAction(action);
-    file_toolbar->addAction(action);
+    standard_toolbar->addAction(action);
 
-    action = file_menu->addAction(QIcon(":/images/new.png"), tr("Save &As..."), this, &MainWindow::SaveAs);
+    action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveAs);
     action->setShortcuts(QKeySequence::SaveAs);
     action->setStatusTip(tr("Save the document under a new name"));
 
@@ -103,58 +112,58 @@ void MainWindow::CreateActions()
 
     //edit menu and toolbar
     QMenu *edit_menu = menuBar()->addMenu(tr("&Edit"));
-    QToolBar *edit_toolbar = addToolBar(tr("Edit"));
-
-    action = new QAction(QIcon(":/icons/images/formula.png"), tr("&Code"), this);
-    action->setStatusTip(tr("Insert code"));
-    connect(action, &QAction::triggered, this, &MainWindow::OnInsertCode);
-    edit_menu->addAction(action);
-    edit_toolbar->addAction(action);
 
     edit_menu->addSeparator();
-    edit_toolbar->addSeparator();
+    standard_toolbar->addSeparator();
 
-    undo_action = new QAction(QIcon(":/icons/images/undo.png"), tr("U&ndo"), this);
+    undo_action = new QAction(QIcon(":/icons/images/standard/undo.png"), tr("U&ndo"), this);
     undo_action->setShortcuts(QKeySequence::Undo);
     undo_action->setStatusTip(tr("Undo the last operation"));
     connect(undo_action, &QAction::triggered, this, &MainWindow::Undo);
     edit_menu->addAction(undo_action);
-    edit_toolbar->addAction(undo_action);
+    standard_toolbar->addAction(undo_action);
 
-    redo_action = new QAction(QIcon(":/icons/images/redo.png"), tr("&Redo"), this);
+    redo_action = new QAction(QIcon(":/icons/images/standard/redo.png"), tr("&Redo"), this);
     redo_action->setShortcuts(QKeySequence::Redo);
     redo_action->setStatusTip(tr("Redo the last operation"));
     connect(redo_action, &QAction::triggered, this, &MainWindow::Redo);
     edit_menu->addAction(redo_action);
-    edit_toolbar->addAction(redo_action);
+    standard_toolbar->addAction(redo_action);
 
     edit_menu->addSeparator();
-    edit_toolbar->addSeparator();
+    standard_toolbar->addSeparator();
 
-    action = new QAction(QIcon(":/icons/images/cut.png"), tr("Cu&t"), this);
+    action = new QAction(QIcon(":/icons/images/standard/cut.png"), tr("Cu&t"), this);
     action->setShortcuts(QKeySequence::Cut);
     action->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
     connect(action, &QAction::triggered, this, &MainWindow::Cut);
     edit_menu->addAction(action);
-    edit_toolbar->addAction(action);
+    standard_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/copy.png"), tr("&Copy"), this);
+    action = new QAction(QIcon(":/icons/images/standard/copy.png"), tr("&Copy"), this);
     action->setShortcuts(QKeySequence::Copy);
     action->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
     connect(action, &QAction::triggered, this, &MainWindow::Copy);
     edit_menu->addAction(action);
-    edit_toolbar->addAction(action);
+    standard_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/paste.png"), tr("&Paste"), this);
+    action = new QAction(QIcon(":/icons/images/standard/paste.png"), tr("&Paste"), this);
     action->setShortcuts(QKeySequence::Paste);
     action->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
     connect(action, &QAction::triggered, this, &MainWindow::Paste);
     edit_menu->addAction(action);
-    edit_toolbar->addAction(action);
+    standard_toolbar->addAction(action);
 
     //fonts toolbar
     QToolBar *format_toolbat = addToolBar(tr("Format"));
     format_toolbat->setStyleSheet("QToolBar{spacing:4px;}");
+
+    action = new QAction(QIcon(":/icons/images/format/code.png"), tr("&Code"), this);
+    action->setStatusTip(tr("Insert code"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnInsertCode);
+    format_toolbat->addAction(action);
+
+    format_toolbat->addSeparator();
 
     paragraph_format_combo = new QComboBox;
     format_toolbat->addWidget(paragraph_format_combo);
@@ -172,25 +181,258 @@ void MainWindow::CreateActions()
     format_toolbat->addWidget(size_combo);
     FillSizes(family_combo->currentFont());
 
-    bold_action = new QAction(QIcon(":/icons/images/bold.png"), tr("Bold"), this);
+    bold_action = new QAction(QIcon(":/icons/images/format/bold.png"), tr("Bold"), this);
     connect(bold_action, &QAction::triggered, this, &MainWindow::OnBold);
     bold_action->setCheckable(true);
     format_toolbat->addAction(bold_action);
 
-    italic_action = new QAction(QIcon(":/icons/images/italic.png"), tr("Italic"), this);
+    italic_action = new QAction(QIcon(":/icons/images/format/italic.png"), tr("Italic"), this);
     connect(italic_action, &QAction::triggered, this, &MainWindow::OnItalic);
     italic_action->setCheckable(true);
     format_toolbat->addAction(italic_action);
 
-    underline_action = new QAction(QIcon(":/icons/images/underline.png"), tr("Underline"), this);
+    underline_action = new QAction(QIcon(":/icons/images/format/underline.png"), tr("Underline"), this);
     connect(underline_action, &QAction::triggered, this, &MainWindow::OnUnderline);
     underline_action->setCheckable(true);
     format_toolbat->addAction(underline_action);
+
+    //view menu
+    QMenu* view_menu = menuBar()->addMenu(tr("&View"));
+
+    //toolbars submenu
+    QMenu* toolbars_menu = view_menu->addMenu(tr("&Toolbars"));
+
+    algebra_toolbar_action = new QAction(tr("Algebraic operations"), this);
+    algebra_toolbar_action->setCheckable(true);
+    algebra_toolbar_action->setChecked(true);
+    connect(algebra_toolbar_action, &QAction::triggered, this, &MainWindow::AlgebraToolbar);
+    toolbars_menu->addAction(algebra_toolbar_action);
+
+    trigonometry_toolbar_action = new QAction(tr("Trigonometric functions"), this);
+    trigonometry_toolbar_action->setCheckable(true);
+    trigonometry_toolbar_action->setChecked(true);
+    connect(trigonometry_toolbar_action, &QAction::triggered, this, &MainWindow::TrigonometryToolbar);
+    toolbars_menu->addAction(trigonometry_toolbar_action);
+
+    hyperbolic_toolbar_action = new QAction(tr("Hyperbolic functions"), this);
+    hyperbolic_toolbar_action->setCheckable(true);
+    hyperbolic_toolbar_action->setChecked(true);
+    connect(hyperbolic_toolbar_action, &QAction::triggered, this, &MainWindow::HyperbolicToolbar);
+    toolbars_menu->addAction(hyperbolic_toolbar_action);
+
+    functions_toolbar_action = new QAction(tr("Hyperbolic functions"), this);
+    functions_toolbar_action->setCheckable(true);
+    functions_toolbar_action->setChecked(true);
+    connect(functions_toolbar_action, &QAction::triggered, this, &MainWindow::FunctionsToolbar);
+    toolbars_menu->addAction(functions_toolbar_action);
+
+    status_bar_action = new QAction(tr("&Status bar"), this);
+    status_bar_action->setCheckable(true);
+    status_bar_action->setChecked(true);
+    connect(status_bar_action, &QAction::triggered, this, &MainWindow::StatusBar);
+    view_menu->addAction(status_bar_action);
 
     //help menu
     QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
     action = help_menu->addAction(tr("&About"), this, &MainWindow::About);
     help_menu->setStatusTip(tr("Show the application's About box"));
+}
+
+void MainWindow::CreateAlgebraToolbar()
+{
+    //algebra toolbar
+    algebra_toolbar = addToolBar(tr("Algebraic functions"));
+    algebra_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+    //algebra_toolbar->setIconSize(QSize(30, 20));
+
+    QAction* action = new QAction(QIcon(":/icons/images/algebra/plus.png"), tr("Plus"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnPlus);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/minus.png"), tr("Minus"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnMinus);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/multiply.png"), tr("Multiply"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnMultiply);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/division.png"), tr("Division"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnDivision);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/power.png"), tr("Power"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnPower);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/sqrt.png"), tr("Square root"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnDivision);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/nth_root.png"), tr("Nth root"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnNthRoot);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/subscript.png"), tr("Subscript"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSubscript);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/fences.png"), tr("Fences"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnFences);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/assignment.png"), tr("Assignment"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnAssignment);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/equation.png"), tr("Equation"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnEquation);
+    algebra_toolbar->addAction(action);
+}
+
+void MainWindow::CreateTrigonometryToolbar()
+{
+    //trigonometry toolbar
+    trigonometry_toolbar = addToolBar(tr("Trigonometric functions"));
+    trigonometry_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* action = new QAction(QIcon(":/icons/images/trigonometry/sin.png"), tr("Sine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSin);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/cos.png"), tr("Cosine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnCos);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/tg.png"), tr("Tangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnTg);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/ctg.png"), tr("Cotangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnCtg);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/sec.png"), tr("Secans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSec);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/csc.png"), tr("Cosecans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnCsc);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/arcsin.png"), tr("Arcsine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArcsin);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/arccos.png"), tr("Arccosine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArccos);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/arctg.png"), tr("Arctangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArctg);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/arcctg.png"), tr("Arccotangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArcctg);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/arcsec.png"), tr("Arcsecans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArcsec);
+    trigonometry_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/trigonometry/arccsc.png"), tr("Arccosecans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArccsc);
+    trigonometry_toolbar->addAction(action);
+}
+
+void MainWindow::CreateHyperbolicToolbar()
+{
+    //hyperbolic toolbar
+    hyperbolic_toolbar = addToolBar(tr("Hyperbolic functions"));
+    hyperbolic_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* action = new QAction(QIcon(":/icons/images/hyperbolic/sinh.png"), tr("Hyperbolic sine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSinh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/cosh.png"), tr("Hyperbolic cosine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnCosh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/tgh.png"), tr("Hyperbolic tangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnTgh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/ctgh.png"), tr("Hyperbolic cotangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnCtgh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/sech.png"), tr("Hyperbolic secans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSech);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/csch.png"), tr("Hyperbolic cosecans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnCsch);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/arsinh.png"), tr("Hyperbolic arsine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArsinh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/arcosh.png"), tr("Hyperbolic arcosine"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArsinh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/artgh.png"), tr("Hyperbolic artangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArtgh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/arctgh.png"), tr("Hyperbolic arcotangens"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArctgh);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/arsech.png"), tr("Hyperbolic arsecans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArsech);
+    hyperbolic_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/hyperbolic/arcsch.png"), tr("Hyperbolic arcosecans"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArcsch);
+    hyperbolic_toolbar->addAction(action);
+}
+
+void MainWindow::CreateFunctionsToolbar()
+{
+    //functions toolbar
+    functions_toolbar = addToolBar(tr("Hyperbolic functions"));
+    functions_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* action = new QAction(QIcon(":/icons/images/functions/exp.png"), tr("Exponent"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnExp);
+    functions_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/functions/ln.png"), tr("Natural logarithm"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnLn);
+    functions_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/functions/lg.png"), tr("Decimal logarithm"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnLg);
+    functions_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/functions/log.png"), tr("Logarithm"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnLog);
+    functions_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/functions/int.png"), tr("Integer part"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnInt);
+    functions_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/functions/fract.png"), tr("Fraction part"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnFract);
+    functions_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/functions/round.png"), tr("Round"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnRound);
+    functions_toolbar->addAction(action);
 }
 
 void MainWindow::CreateStatusBar()
@@ -289,6 +531,31 @@ void MainWindow::Redo()
     document->Redo();
 }
 
+void MainWindow::AlgebraToolbar()
+{
+    algebra_toolbar_action->isChecked() ? algebra_toolbar->show() : algebra_toolbar->hide();
+}
+
+void MainWindow::TrigonometryToolbar()
+{
+    trigonometry_toolbar_action->isChecked() ? trigonometry_toolbar->show() : trigonometry_toolbar->hide();
+}
+
+void MainWindow::HyperbolicToolbar()
+{
+    hyperbolic_toolbar_action->isChecked() ? hyperbolic_toolbar->show() : hyperbolic_toolbar->hide();
+}
+
+void MainWindow::FunctionsToolbar()
+{
+    functions_toolbar_action->isChecked() ? functions_toolbar->show() : functions_toolbar->hide();
+}
+
+void MainWindow::StatusBar()
+{
+    status_bar_action->isChecked() ? statusBar()->show() : statusBar()->hide();
+}
+
 void MainWindow::About()
 {
 }
@@ -351,6 +618,216 @@ void MainWindow::OnItalic()
 void MainWindow::OnUnderline()
 {
     document->SetUnderline(underline_action->isChecked());
+}
+
+void MainWindow::OnPlus()
+{
+    document->InsertPlus(true);
+}
+
+void MainWindow::OnMinus()
+{
+    document->InsertMinus(true);
+}
+
+void MainWindow::OnMultiply()
+{
+    document->InsertMultiply(true);
+}
+
+void MainWindow::OnDivision()
+{
+    document->InsertDivision(true);
+}
+
+void MainWindow::OnSquareRoot()
+{
+    document->InsertSquareRoot(true);
+}
+
+void MainWindow::OnNthRoot()
+{
+    document->InsertNthRoot(true);
+}
+
+void MainWindow::OnPower()
+{
+    document->InsertPower(true);
+}
+
+void MainWindow::OnSubscript()
+{
+    document->InsertSubscript(true);
+}
+
+void MainWindow::OnExp()
+{
+    document->InsertFunction("exp", true);
+}
+
+void MainWindow::OnLn()
+{
+    document->InsertFunction("ln", true);
+}
+
+void MainWindow::OnLg()
+{
+    document->InsertFunction("lg", true);
+}
+
+void MainWindow::OnFences()
+{
+    document->InsertFences(true);
+}
+
+void MainWindow::OnLog()
+{
+    document->InsertSubscriptFunction("log", true);
+}
+
+void MainWindow::OnInt()
+{
+    document->InsertFunction("int", true);
+}
+
+void MainWindow::OnFract()
+{
+    document->InsertFunction("fract", true);
+}
+
+void MainWindow::OnRound()
+{
+    document->InsertFunction("round", true);
+}
+
+void MainWindow::OnEquation()
+{
+    document->InsertEquation(ResultType::AUTO, true);
+}
+
+void MainWindow::OnAssignment()
+{
+    document->InsertAssignment(true);
+}
+
+void MainWindow::OnSin()
+{
+    document->InsertFunction("sin", true);
+}
+
+void MainWindow::OnCos()
+{
+    document->InsertFunction("cos", true);
+}
+
+void MainWindow::OnTg()
+{
+    document->InsertFunction("tg", true);
+}
+
+void MainWindow::OnCtg()
+{
+    document->InsertFunction("ctg", true);
+}
+
+void MainWindow::OnSec()
+{
+    document->InsertFunction("sec", true);
+}
+
+void MainWindow::OnCsc()
+{
+    document->InsertFunction("csc", true);
+}
+
+void MainWindow::OnArcsin()
+{
+    document->InsertFunction("arcsin", true);
+}
+
+void MainWindow::OnArccos()
+{
+    document->InsertFunction("arccos", true);
+}
+
+void MainWindow::OnArctg()
+{
+    document->InsertFunction("arctg", true);
+}
+
+void MainWindow::OnArcctg()
+{
+    document->InsertFunction("arcctg", true);
+}
+
+void MainWindow::OnArcsec()
+{
+    document->InsertFunction("arcsec", true);
+}
+
+void MainWindow::OnArccsc()
+{
+    document->InsertFunction("arccsc", true);
+}
+
+void MainWindow::OnSinh()
+{
+    document->InsertFunction("sinh", true);
+}
+
+void MainWindow::OnCosh()
+{
+    document->InsertFunction("cosh", true);
+}
+
+void MainWindow::OnTgh()
+{
+    document->InsertFunction("tgh", true);
+}
+
+void MainWindow::OnCtgh()
+{
+    document->InsertFunction("ctgh", true);
+}
+
+void MainWindow::OnSech()
+{
+    document->InsertFunction("sech", true);
+}
+
+void MainWindow::OnCsch()
+{
+    document->InsertFunction("csch", true);
+}
+
+void MainWindow::OnArsinh()
+{
+    document->InsertFunction("arsinh", true);
+}
+
+void MainWindow::OnArcosh()
+{
+    document->InsertFunction("arcosh", true);
+}
+
+void MainWindow::OnArtgh()
+{
+    document->InsertFunction("artgh", true);
+}
+
+void MainWindow::OnArctgh()
+{
+    document->InsertFunction("arctgh", true);
+}
+
+void MainWindow::OnArsech()
+{
+    document->InsertFunction("arsech", true);
+}
+
+void MainWindow::OnArcsch()
+{
+    document->InsertFunction("arcsch", true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)
