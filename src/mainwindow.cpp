@@ -565,13 +565,13 @@ void MainWindow::StatusBar()
 
 void MainWindow::OnVerticalValueChanged(int value)
 {
-    document_widget->window.document_point.y = value;
+    document_widget->window.document_point.y = (value > 0 ? value : 0);
     document->Redraw();
 }
 
 void MainWindow::OnHorizontalValueChanged(int value)
 {
-    document_widget->window.document_point.x = value;
+    document_widget->window.document_point.x = (value > 0 ? value : 0);
     document->Redraw();
 }
 
@@ -933,10 +933,13 @@ void MainWindow::OnDocumentUpdated(const Rect rect)
     Size& s = document_widget->window.document_size;
     Point& p = document_widget->window.document_point;
     
-    vertical_scroll->setMaximum(s.height - r.height);
+    vertical_scroll->setMinimum(0);
+    vertical_scroll->setMaximum(s.height - r.height > 0 ? s.height - r.height : 1);
     vertical_scroll->setPageStep(r.height);
     vertical_scroll->setValue(p.y);
-    horizontal_scroll->setMaximum(s.width - r.width);
+
+    horizontal_scroll->setMinimum(0);
+    horizontal_scroll->setMaximum(s.width - r.width > 0 ? s.width - r.width : 1);
     horizontal_scroll->setPageStep(r.width);
     horizontal_scroll->setValue(p.x);
 }
