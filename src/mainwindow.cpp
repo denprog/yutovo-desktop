@@ -865,11 +865,6 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     {
         for (auto& state : s.state)
         {
-            if (document->IsString(document->GetElement(state.id)))
-            {
-                format.Reset();
-                break;
-            }
             StringFormat f;
             document->GetStringFormat(state.id, f);
             if (format.family != "" && format.family != f.family)
