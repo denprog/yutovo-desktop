@@ -14,7 +14,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    settings("Yutovo", "Yutovo Desktop")
 {
     ui->setupUi(this);
 
@@ -30,10 +31,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     CreateStatusBar();
     SetupGui();
+
+    ReadSettings();
 }
 
 MainWindow::~MainWindow()
 {
+    WriteSettings();
     delete ui;
 }
 
@@ -206,31 +210,31 @@ void MainWindow::CreateActions()
     algebra_toolbar_action = new QAction(tr("Algebraic operations"), this);
     algebra_toolbar_action->setCheckable(true);
     algebra_toolbar_action->setChecked(true);
-    connect(algebra_toolbar_action, &QAction::triggered, this, &MainWindow::AlgebraToolbar);
+    connect(algebra_toolbar_action, &QAction::toggled, this, &MainWindow::AlgebraToolbar);
     toolbars_menu->addAction(algebra_toolbar_action);
 
     trigonometry_toolbar_action = new QAction(tr("Trigonometric functions"), this);
     trigonometry_toolbar_action->setCheckable(true);
     trigonometry_toolbar_action->setChecked(true);
-    connect(trigonometry_toolbar_action, &QAction::triggered, this, &MainWindow::TrigonometryToolbar);
+    connect(trigonometry_toolbar_action, &QAction::toggled, this, &MainWindow::TrigonometryToolbar);
     toolbars_menu->addAction(trigonometry_toolbar_action);
 
     hyperbolic_toolbar_action = new QAction(tr("Hyperbolic functions"), this);
     hyperbolic_toolbar_action->setCheckable(true);
     hyperbolic_toolbar_action->setChecked(true);
-    connect(hyperbolic_toolbar_action, &QAction::triggered, this, &MainWindow::HyperbolicToolbar);
+    connect(hyperbolic_toolbar_action, &QAction::toggled, this, &MainWindow::HyperbolicToolbar);
     toolbars_menu->addAction(hyperbolic_toolbar_action);
 
     functions_toolbar_action = new QAction(tr("Hyperbolic functions"), this);
     functions_toolbar_action->setCheckable(true);
     functions_toolbar_action->setChecked(true);
-    connect(functions_toolbar_action, &QAction::triggered, this, &MainWindow::FunctionsToolbar);
+    connect(functions_toolbar_action, &QAction::toggled, this, &MainWindow::FunctionsToolbar);
     toolbars_menu->addAction(functions_toolbar_action);
 
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
     status_bar_action->setChecked(true);
-    connect(status_bar_action, &QAction::triggered, this, &MainWindow::StatusBar);
+    connect(status_bar_action, &QAction::toggled, this, &MainWindow::StatusBar);
     view_menu->addAction(status_bar_action);
 
     //help menu
@@ -985,4 +989,37 @@ void MainWindow::FillSizes(const QFont& font)
         size_combo->setCurrentIndex(qMax(0, size_combo->count() / 3));
     else
         size_combo->setCurrentIndex(i);
+}
+
+void MainWindow::WriteSettings()
+{
+    settings.beginGroup("MainWindow");
+    settings.setValue("geometry", saveGeometry());
+    settings.setValue("algebra_toolbar", algebra_toolbar_action->isChecked());
+    settings.setValue("trigonometry_toolbar", trigonometry_toolbar_action->isChecked());
+    settings.setValue("hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
+    settings.setValue("functions_toolbar", functions_toolbar_action->isChecked());
+    settings.setValue("status_bar", status_bar_action->isChecked());
+    settings.endGroup();
+}
+
+void MainWindow::ReadSettings()
+{
+    settings.beginGroup("MainWindow");
+    const auto geometry = settings.value("geometry", QByteArray()).toByteArray();
+    if (!geometry.isEmpty())
+        restoreGeometry(geometry);
+    
+    bool b = settings.value("algebra_toolbar", true).toBool();
+    algebra_toolbar_action->setChecked(b);
+    b = settings.value("trigonometry_toolbar", false).toBool();
+    trigonometry_toolbar_action->setChecked(b);
+    b = settings.value("hyperbolic_toolbar", false).toBool();
+    hyperbolic_toolbar_action->setChecked(b);
+    b = settings.value("functions_toolbar", false).toBool();
+    functions_toolbar_action->setChecked(b);
+    b = settings.value("status_bar", true).toBool();
+    status_bar_action->setChecked(b);
+
+    settings.endGroup();
 }

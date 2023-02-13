@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QComboBox>
 #include <QFontComboBox>
+#include <QSettings>
 #include "ui_mainwindow.h"
 #include <cstring>
 #include <sstream>
@@ -125,11 +126,16 @@ private:
     void FillParagraphFormats();
     void FillSizes(const QFont& font);
 
+    void WriteSettings();
+    void ReadSettings();
+
 private:
     Ui::MainWindow *ui;
 
     DocumentWidget* document_widget;
     DocumentPtr document;
+
+    QSettings settings;
 
     QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;
 
