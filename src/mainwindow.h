@@ -117,8 +117,8 @@ private slots:
     void OnRound();
 
     void OnCaretMoved(const EditorState editor_state);
-    void OnSaveResult(const uint task_id, IOResult result);
-    void OnLoadResult(const uint task_id, IOResult result);
+    void OnSaveResult(const uint64_t task_id, IOResult result);
+    void OnLoadResult(const uint64_t task_id, IOResult result);
     void OnClipboardCopyResult(CopyResult result);
     void OnDocumentUpdated(const Rect rect);
 
@@ -148,6 +148,8 @@ private:
     
     QFontComboBox* family_combo = nullptr;
     QComboBox* size_combo = nullptr;
+
+    int last_font_size = 0;
 
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;

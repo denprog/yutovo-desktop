@@ -608,7 +608,12 @@ void MainWindow::OnCurrentSizeChanged(const QString& size)
     {
         return;
     }
-    document->SetFontSize(s);
+
+    if (s != last_font_size)
+    {
+        document->SetFontSize(s);
+        last_font_size = s;
+    }
     document_widget->setFocus();
 }
 
@@ -899,13 +904,13 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     redo_action->setEnabled(document->CanRedo());
 }
 
-void MainWindow::OnSaveResult(const uint task_id, IOResult result)
+void MainWindow::OnSaveResult(const uint64_t task_id, IOResult result)
 {
     if (result != IOResult::Success)
         QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
 }
 
-void MainWindow::OnLoadResult(const uint task_id, IOResult result)
+void MainWindow::OnLoadResult(const uint64_t task_id, IOResult result)
 {
     if (result != IOResult::Success)
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));

@@ -50,8 +50,8 @@ public:
 
     virtual void OnCaretMoved(const EditorState editor_state);
 
-    virtual void OnSaveResult(const uint task_id, IOResult result);
-    virtual void OnLoadResult(const uint task_id, IOResult result);
+    virtual void OnSaveResult(const uint64_t task_id, IOResult result);
+    virtual void OnLoadResult(const uint64_t task_id, IOResult result);
 
     virtual void OnCopyResult(CopyResult result);
     virtual void OnPasteResult(PasteResult result);
@@ -65,8 +65,8 @@ signals:
     void DocumentUpdated(const Rect rect);
     void WindowUpdated();
     void CaretMoved(const EditorState editor_state);
-    void SaveResult(const uint task_id, IOResult result);
-    void LoadResult(const uint task_id, IOResult result);
+    void SaveResult(const uint64_t task_id, IOResult result);
+    void LoadResult(const uint64_t task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
 
