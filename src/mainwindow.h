@@ -135,6 +135,7 @@ private:
     DocumentWidget* document_widget;
     DocumentPtr document;
 
+    yutovo::Config config;
     QSettings settings;
 
     QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;

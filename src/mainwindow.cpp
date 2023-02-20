@@ -29,10 +29,11 @@ MainWindow::MainWindow(QWidget *parent) :
     document_widget = new DocumentWidget(ui->centralwidget);
     document = document_widget->CreateDocument();
 
-    CreateStatusBar();
     SetupGui();
 
     ReadSettings();
+
+    document->Start(config);
 }
 
 MainWindow::~MainWindow()
@@ -75,7 +76,7 @@ void MainWindow::SetupGui()
     addToolBarBreak();
     CreateFunctionsToolbar();
 
-    document->Start();
+    CreateStatusBar();
 }
 
 void MainWindow::CreateActions()
@@ -160,46 +161,46 @@ void MainWindow::CreateActions()
     standard_toolbar->addAction(action);
 
     //fonts toolbar
-    QToolBar *format_toolbat = addToolBar(tr("Format"));
-    format_toolbat->setStyleSheet("QToolBar{spacing:4px;}");
+    QToolBar *format_toolbar = addToolBar(tr("Format"));
+    format_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     action = new QAction(QIcon(":/icons/images/format/code.png"), tr("&Code"), this);
     action->setStatusTip(tr("Insert code"));
     connect(action, &QAction::triggered, this, &MainWindow::OnInsertCode);
-    format_toolbat->addAction(action);
+    format_toolbar->addAction(action);
 
-    format_toolbat->addSeparator();
+    format_toolbar->addSeparator();
 
     paragraph_format_combo = new QComboBox;
-    format_toolbat->addWidget(paragraph_format_combo);
+    format_toolbar->addWidget(paragraph_format_combo);
     FillParagraphFormats();
     connect(paragraph_format_combo, &QComboBox::currentTextChanged, this, &MainWindow::OnCurrentParagraphFormatChanged);
 
-    format_toolbat->addSeparator();
+    format_toolbar->addSeparator();
 
     family_combo = new QFontComboBox;
     connect(family_combo, &QFontComboBox::currentFontChanged, this, &MainWindow::OnCurrentFontChanged);
-    format_toolbat->addWidget(family_combo);
+    format_toolbar->addWidget(family_combo);
 
     size_combo = new QComboBox;
     connect(size_combo, &QComboBox::currentTextChanged, this, &MainWindow::OnCurrentSizeChanged);
-    format_toolbat->addWidget(size_combo);
+    format_toolbar->addWidget(size_combo);
     FillSizes(family_combo->currentFont());
 
     bold_action = new QAction(QIcon(":/icons/images/format/bold.png"), tr("Bold"), this);
     connect(bold_action, &QAction::triggered, this, &MainWindow::OnBold);
     bold_action->setCheckable(true);
-    format_toolbat->addAction(bold_action);
+    format_toolbar->addAction(bold_action);
 
     italic_action = new QAction(QIcon(":/icons/images/format/italic.png"), tr("Italic"), this);
     connect(italic_action, &QAction::triggered, this, &MainWindow::OnItalic);
     italic_action->setCheckable(true);
-    format_toolbat->addAction(italic_action);
+    format_toolbar->addAction(italic_action);
 
     underline_action = new QAction(QIcon(":/icons/images/format/underline.png"), tr("Underline"), this);
     connect(underline_action, &QAction::triggered, this, &MainWindow::OnUnderline);
     underline_action->setCheckable(true);
-    format_toolbat->addAction(underline_action);
+    format_toolbar->addAction(underline_action);
 
     //view menu
     QMenu* view_menu = menuBar()->addMenu(tr("&View"));
@@ -271,7 +272,7 @@ void MainWindow::CreateAlgebraToolbar()
     algebra_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/algebra/sqrt.png"), tr("Square root"), this);
-    connect(action, &QAction::triggered, this, &MainWindow::OnDivision);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSquareRoot);
     algebra_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/algebra/nth_root.png"), tr("Nth root"), this);
@@ -1006,11 +1007,18 @@ void MainWindow::WriteSettings()
     settings.setValue("functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("status_bar", status_bar_action->isChecked());
     settings.endGroup();
+
+    settings.beginGroup("Service");
+    settings.setValue("ip", config.service_ip.c_str());
+    settings.setValue("port", config.service_port);
+    settings.setValue("timeout", config.service_timeout);
+    settings.endGroup();
 }
 
 void MainWindow::ReadSettings()
 {
     settings.beginGroup("MainWindow");
+
     const auto geometry = settings.value("geometry", QByteArray()).toByteArray();
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
@@ -1025,6 +1033,14 @@ void MainWindow::ReadSettings()
     functions_toolbar_action->setChecked(b);
     b = settings.value("status_bar", true).toBool();
     status_bar_action->setChecked(b);
+
+    settings.endGroup();
+
+    settings.beginGroup("Service");
+
+    config.service_ip = settings.value("ip", "localhost").toString().toUtf8().data();
+    config.service_port = settings.value("port", 8010).toInt();
+    config.service_timeout = settings.value("timeout", 20).toInt();
 
     settings.endGroup();
 }
