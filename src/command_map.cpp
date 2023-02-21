@@ -29,6 +29,8 @@ void ShortcutsMap::Init(DocumentPtr _document)
     //selection
     Add(QKeySequence("Shift+Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretLeft, document.get(), true, true)));
     Add(QKeySequence("Shift+Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretRight, document.get(), true, true)));
+    Add(QKeySequence("Shift+Home"), "", std::function<void ()>(std::bind(&Document::MoveCaretHome, document.get(), true)));
+    Add(QKeySequence("Shift+End"), "", std::function<void ()>(std::bind(&Document::MoveCaretEnd, document.get(), true)));
     Add(QKeySequence("Shift+Up"), "", std::function<void ()>(std::bind(&Document::MoveCaretUp, document.get(), true)));
     Add(QKeySequence("Shift+Down"), "", std::function<void ()>(std::bind(&Document::MoveCaretDown, document.get(), true)));
 
