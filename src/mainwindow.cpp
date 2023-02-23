@@ -179,6 +179,7 @@ void MainWindow::CreateActions()
     format_toolbar->addSeparator();
 
     family_combo = new QFontComboBox;
+    family_combo->setFixedWidth(250);
     connect(family_combo, &QFontComboBox::currentFontChanged, this, &MainWindow::OnCurrentFontChanged);
     format_toolbar->addWidget(family_combo);
 
