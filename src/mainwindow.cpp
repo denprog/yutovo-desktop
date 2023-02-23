@@ -7,6 +7,7 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QScrollBar>
+#include <QLineEdit>
 #include <yutovo_editor/util.h>
 #include "about_dialog.h"
 
@@ -184,7 +185,9 @@ void MainWindow::CreateActions()
     format_toolbar->addWidget(family_combo);
 
     size_combo = new QComboBox;
-    connect(size_combo, &QComboBox::currentTextChanged, this, &MainWindow::OnCurrentSizeChanged);
+    size_combo->setEditable(true);
+    connect(size_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnCurrentSizeChanged(int)));
+    connect(size_combo->lineEdit(), &QLineEdit::editingFinished, this, &MainWindow::OnCurrentSizeEditingFinished);
     format_toolbar->addWidget(size_combo);
     FillSizes(family_combo->currentFont());
 
@@ -599,24 +602,14 @@ void MainWindow::OnCurrentFontChanged(const QFont& font)
     document_widget->setFocus();
 }
 
-void MainWindow::OnCurrentSizeChanged(const QString& size)
+void MainWindow::OnCurrentSizeEditingFinished()
 {
-    int s;
-    try
-    {
-        s = std::stoi(size.toUtf8().data());
-    }
-    catch (...)
-    {
-        return;
-    }
+    UpdateFontSize();
+}
 
-    if (s != last_font_size)
-    {
-        document->SetFontSize(s);
-        last_font_size = s;
-    }
-    document_widget->setFocus();
+void MainWindow::OnCurrentSizeChanged(int index)
+{
+    UpdateFontSize();
 }
 
 void MainWindow::OnBold()
@@ -1044,4 +1037,24 @@ void MainWindow::ReadSettings()
     config.service_timeout = settings.value("timeout", 20).toInt();
 
     settings.endGroup();
+}
+
+void MainWindow::UpdateFontSize()
+{
+    int s;
+    try
+    {
+        s = std::stoi(size_combo->currentText().toUtf8().data());
+    }
+    catch (...)
+    {
+        return;
+    }
+
+    if (s != last_font_size)
+    {
+        document->SetFontSize(s);
+        last_font_size = s;
+    }
+    document_widget->setFocus();
 }

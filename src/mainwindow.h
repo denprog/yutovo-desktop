@@ -64,7 +64,8 @@ private slots:
 
     void OnCurrentParagraphFormatChanged(const QString& format);
     void OnCurrentFontChanged(const QFont& font);
-    void OnCurrentSizeChanged(const QString& size);
+    void OnCurrentSizeEditingFinished();
+    void OnCurrentSizeChanged(int index);
 
     void OnBold();
     void OnItalic();
@@ -128,6 +129,8 @@ private:
 
     void WriteSettings();
     void ReadSettings();
+
+    void UpdateFontSize();
 
 private:
     Ui::MainWindow *ui;
