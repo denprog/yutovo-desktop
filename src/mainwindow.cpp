@@ -458,7 +458,7 @@ void MainWindow::New()
 
 void MainWindow::Open()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut)"));
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
     if (file_name == "")
         return;
     document->Load(file_name.toUtf8().data());
@@ -475,7 +475,7 @@ void MainWindow::Save()
 
 void MainWindow::SaveAs()
 {
-    QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut)"));
+    QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
     save_dialog.setDefaultSuffix("yut");
     save_dialog.setAcceptMode(QFileDialog::AcceptSave);
     if (!save_dialog.exec())
