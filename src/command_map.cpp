@@ -23,6 +23,9 @@ void ShortcutsMap::Init(DocumentPtr _document)
     Add(QKeySequence("Home"), "", std::function<void ()>(std::bind(&Document::MoveCaretHome, document.get(), false)));
     Add(QKeySequence("End"), "", std::function<void ()>(std::bind(&Document::MoveCaretEnd, document.get(), false)));
 
+    Add(QKeySequence("PgUp"), "", std::function<void ()>(std::bind(&Document::MoveCaretPageUp, document.get(), false)));
+    Add(QKeySequence("PgDown"), "", std::function<void ()>(std::bind(&Document::MoveCaretPageDown, document.get(), false)));
+
     Add(QKeySequence("Ctrl+Home"), "", std::function<void ()>(std::bind(&Document::MoveCaretToDocumentBegin, document.get(), false)));
     Add(QKeySequence("Ctrl+End"), "", std::function<void ()>(std::bind(&Document::MoveCaretToDocumentEnd, document.get(), false)));
 
