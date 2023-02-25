@@ -34,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ReadSettings();
 
+    UpdateRecentFiles();
+
     document->Start(config);
 }
 
@@ -99,6 +101,8 @@ void MainWindow::CreateActions()
     connect(action, &QAction::triggered, this, &MainWindow::Open);
     file_menu->addAction(action);
     standard_toolbar->addAction(action);
+
+    recent_files_menu = file_menu->addMenu(tr("&Open recent file"));
 
     action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
     action->setShortcuts(QKeySequence::Save);
@@ -461,6 +465,23 @@ void MainWindow::Open()
     QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
     if (file_name == "")
         return;
+    document->Load(file_name.toUtf8().data());
+    current_file_name = file_name;
+
+    if (recent_files.contains(file_name))
+        return;
+    if (recent_files.size() > recent_files_count)
+        recent_files.erase(recent_files.end() - 1);
+    recent_files.push_front(file_name);
+    UpdateRecentFiles();
+}
+
+void MainWindow::OpenRecentFile()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    if (!action)
+        return;
+    QString file_name = action->data().toString();
     document->Load(file_name.toUtf8().data());
     current_file_name = file_name;
 }
@@ -1002,6 +1023,11 @@ void MainWindow::WriteSettings()
     settings.setValue("status_bar", status_bar_action->isChecked());
     settings.endGroup();
 
+    settings.beginGroup("RecentFiles");
+    settings.setValue("max_count", recent_files_count);
+    settings.setValue("files", QVariant(recent_files));
+    settings.endGroup();
+
     settings.beginGroup("Service");
     settings.setValue("ip", config.service_ip.c_str());
     settings.setValue("port", config.service_port);
@@ -1028,6 +1054,15 @@ void MainWindow::ReadSettings()
     b = settings.value("status_bar", true).toBool();
     status_bar_action->setChecked(b);
 
+    settings.endGroup();
+
+    settings.beginGroup("RecentFiles");
+    recent_files_count = settings.value("max_count", 10).toInt();
+    if (recent_files_count > 50)
+        recent_files_count = 10;
+    auto list = settings.value("files").toList();
+    for (auto it = list.begin(); it != list.end(); ++it)
+        recent_files.push_back(it->toString());
     settings.endGroup();
 
     settings.beginGroup("Service");
@@ -1057,4 +1092,16 @@ void MainWindow::UpdateFontSize()
         last_font_size = s;
     }
     document_widget->setFocus();
+}
+
+void MainWindow::UpdateRecentFiles()
+{
+    recent_files_menu->clear();
+    for (auto it = recent_files.begin(); it != recent_files.end(); ++it)
+    {
+        QAction* action = new QAction(*it, this);
+        action->setData(*it);
+        connect(action, &QAction::triggered, this, &MainWindow::OpenRecentFile);
+        recent_files_menu->addAction(action);
+    }
 }

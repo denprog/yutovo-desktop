@@ -6,6 +6,7 @@ project(yutovo_desktop
 )
 
 add_compile_definitions(DEBUG)
+set(CMAKE_DEBUG_POSTFIX d)
 
 set(INSTALL_PATH "$ENV{YUTOVO_DEPLOY}")
 

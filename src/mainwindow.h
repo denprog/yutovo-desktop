@@ -36,6 +36,7 @@ private:
 
     void New();
     void Open();
+    void OpenRecentFile();
     void Save();
     void SaveAs();
     void Exit();
@@ -132,6 +133,8 @@ private:
 
     void UpdateFontSize();
 
+    void UpdateRecentFiles();
+
 private:
     Ui::MainWindow *ui;
 
@@ -147,6 +150,10 @@ private:
 
     std::stringstream clipboard_array;
     std::string clipboard_text;
+
+    QMenu* recent_files_menu = nullptr;
+    int recent_files_count = 10;
+    QList<QString> recent_files;
 
     QComboBox* paragraph_format_combo = nullptr;
     
