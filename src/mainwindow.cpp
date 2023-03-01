@@ -468,11 +468,6 @@ void MainWindow::Open()
     document->Load(file_name.toUtf8().data());
     current_file_name = file_name;
 
-    if (recent_files.contains(file_name))
-        return;
-    if (recent_files.size() > recent_files_count)
-        recent_files.erase(recent_files.end() - 1);
-    recent_files.push_front(file_name);
     UpdateRecentFiles();
 }
 
@@ -486,6 +481,7 @@ void MainWindow::OpenRecentFile()
         return;
     document->Load(file_name.toUtf8().data());
     current_file_name = file_name;
+    UpdateRecentFiles();
 }
 
 void MainWindow::Save()
@@ -493,7 +489,10 @@ void MainWindow::Save()
     if (current_file_name == "")
         SaveAs();
     else
+    {
         document->Save(current_file_name.toUtf8().data());
+        UpdateRecentFiles();
+    }
 }
 
 void MainWindow::SaveAs()
@@ -508,6 +507,7 @@ void MainWindow::SaveAs()
         return;
     document->Save(file_names[0].toUtf8().data());
     current_file_name = file_names[0];
+    UpdateRecentFiles();
 }
 
 void MainWindow::Exit()
@@ -1098,6 +1098,14 @@ void MainWindow::UpdateFontSize()
 
 void MainWindow::UpdateRecentFiles()
 {
+    if (current_file_name != "")
+    {
+        if (recent_files.size() > recent_files_count)
+            recent_files.erase(recent_files.end() - 1);
+        recent_files.removeAll(current_file_name);
+        recent_files.push_front(current_file_name);
+    }
+
     recent_files_menu->clear();
     for (auto it = recent_files.begin(); it != recent_files.end(); ++it)
     {
