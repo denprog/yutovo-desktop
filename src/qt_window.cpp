@@ -181,14 +181,14 @@ void QtWindow::RestoreRect()
     emit DocumentUpdated(store_rect);
 }
 
-Size QtWindow::GetTextSize(const std::string& text, const StringFormatPtr format)
+Size QtWindow::GetTextSize(const std::u32string& text, const StringFormatPtr format)
 {
     QFont font(format->family.c_str(), format->size);
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
     QFontMetrics m(font);
-    QString str(text.c_str());
+    QString str = QString::fromUcs4(text.c_str());
     QSize s = m.size(Qt::TextSingleLine, str);
     int cx = m.horizontalAdvance(str);
     return Size{cx > s.width() ? cx : s.width(), s.height()};

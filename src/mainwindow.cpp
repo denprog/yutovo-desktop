@@ -533,7 +533,7 @@ void MainWindow::Paste()
                 s = mime_data->text();
             if (s == "")
                 return;
-            document->Paste(s.toUtf8().data());
+            document->Paste(ToUtfString(s.toUtf8().data()));
             return;
         }
         std::stringstream str(arr.toStdString());
@@ -543,7 +543,7 @@ void MainWindow::Paste()
     {
         QString s = clipboard->text();
         if (s != "")
-            document->Paste(s.toUtf8().data());
+            document->Paste(ToUtfString(s.toUtf8().data()));
     }
 }
 
@@ -941,10 +941,10 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
     std::string s = clipboard_array.str();
     QByteArray item_data(s.c_str(), s.size());
     mime_data->setData("yutovo/elements", item_data); //custom clipboard type
-    mime_data->setText(clipboard_text.c_str());
+    mime_data->setText(ToBasicString(clipboard_text).c_str());
     clipboard->setMimeData(mime_data);
     clipboard_array.clear();
-    clipboard_text = "";
+    clipboard_text = U"";
 }
 
 void MainWindow::OnDocumentUpdated(const Rect rect)

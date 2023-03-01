@@ -149,7 +149,7 @@ private:
     QString current_file_name;
 
     std::stringstream clipboard_array;
-    std::string clipboard_text;
+    std::u32string clipboard_text;
 
     QMenu* recent_files_menu = nullptr;
     int recent_files_count = 10;
