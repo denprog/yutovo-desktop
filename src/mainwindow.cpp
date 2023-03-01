@@ -463,7 +463,7 @@ void MainWindow::New()
 void MainWindow::Open()
 {
     QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
-    if (file_name == "")
+    if (file_name == "" || current_file_name == file_name)
         return;
     document->Load(file_name.toUtf8().data());
     current_file_name = file_name;
@@ -482,6 +482,8 @@ void MainWindow::OpenRecentFile()
     if (!action)
         return;
     QString file_name = action->data().toString();
+    if (file_name == "" || current_file_name == file_name)
+        return;
     document->Load(file_name.toUtf8().data());
     current_file_name = file_name;
 }
