@@ -119,8 +119,8 @@ private slots:
     void OnRound();
 
     void OnCaretMoved(const EditorState editor_state);
-    void OnSaveResult(const uint64_t task_id, IOResult result);
-    void OnLoadResult(const uint64_t task_id, IOResult result);
+    void OnSaveResult(const uint task_id, IOResult result);
+    void OnLoadResult(const uint task_id, IOResult result);
     void OnClipboardCopyResult(CopyResult result);
     void OnDocumentUpdated(const Rect rect);
 
@@ -146,6 +146,7 @@ private:
 
     QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;
 
+    QString dialog_file_name; //file name to be loaded/saved
     QString current_file_name;
 
     std::stringstream clipboard_array;

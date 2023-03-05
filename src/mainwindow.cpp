@@ -465,10 +465,8 @@ void MainWindow::Open()
     QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
     if (file_name == "" || current_file_name == file_name)
         return;
+    dialog_file_name = file_name;
     document->Load(file_name.toUtf8().data());
-    current_file_name = file_name;
-
-    UpdateRecentFiles();
 }
 
 void MainWindow::OpenRecentFile()
@@ -479,9 +477,8 @@ void MainWindow::OpenRecentFile()
     QString file_name = action->data().toString();
     if (file_name == "" || current_file_name == file_name)
         return;
+    dialog_file_name = file_name;
     document->Load(file_name.toUtf8().data());
-    current_file_name = file_name;
-    UpdateRecentFiles();
 }
 
 void MainWindow::Save()
@@ -490,8 +487,8 @@ void MainWindow::Save()
         SaveAs();
     else
     {
+        dialog_file_name = current_file_name;
         document->Save(current_file_name.toUtf8().data());
-        UpdateRecentFiles();
     }
 }
 
@@ -505,9 +502,8 @@ void MainWindow::SaveAs()
     QStringList file_names = save_dialog.selectedFiles();
     if (file_names.empty())
         return;
+    dialog_file_name = file_names[0];
     document->Save(file_names[0].toUtf8().data());
-    current_file_name = file_names[0];
-    UpdateRecentFiles();
 }
 
 void MainWindow::Exit()
@@ -922,16 +918,30 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     redo_action->setEnabled(document->CanRedo());
 }
 
-void MainWindow::OnSaveResult(const uint64_t task_id, IOResult result)
+void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 {
     if (result != IOResult::Success)
+    {
+        recent_files.removeAll(dialog_file_name);
+        UpdateRecentFiles();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
+        return;
+    }
+    current_file_name = dialog_file_name;
+    UpdateRecentFiles();
 }
 
-void MainWindow::OnLoadResult(const uint64_t task_id, IOResult result)
+void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
     if (result != IOResult::Success)
+    {
+        recent_files.removeAll(dialog_file_name);
+        UpdateRecentFiles();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));
+        return;
+    }
+    current_file_name = dialog_file_name;
+    UpdateRecentFiles();
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)

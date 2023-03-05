@@ -269,12 +269,12 @@ void QtWindow::OnCaretMoved(const EditorState editor_state)
     emit CaretMoved(editor_state);
 }
 
-void QtWindow::OnSaveResult(const uint64_t task_id, IOResult result)
+void QtWindow::OnSaveResult(const uint task_id, IOResult result)
 {
     emit SaveResult(task_id, result);
 }
 
-void QtWindow::OnLoadResult(const uint64_t task_id, IOResult result)
+void QtWindow::OnLoadResult(const uint task_id, IOResult result)
 {
     emit LoadResult(task_id, result);
 }
