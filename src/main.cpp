@@ -1,5 +1,4 @@
 #include <QApplication>
-#include <yutovo_editor/document.h>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])

@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 
 #set(QT_SELECT qt5.14)
 
-find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/cmake/)
+find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 if (Qt5Widgets_FOUND)

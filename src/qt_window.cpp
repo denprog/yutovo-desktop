@@ -11,6 +11,10 @@ QtWindow::QtWindow(DocumentWidget* document_widget) :
 {
 }
 
+void QtWindow::Init()
+{
+}
+
 void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color)
 {
     QPainter p;
@@ -25,7 +29,6 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     p.setFont(font);
     if (draw_doc)
         p.setClipRegion(clip_region);
-    bool b = p.hasClipping();
     p.drawText(QRect(rect.left - document_point.x, rect.top - document_point.y, rect.width, rect.height), text.c_str());
     p.end();
 }
@@ -194,14 +197,14 @@ Size QtWindow::GetTextSize(const std::u32string& text, const StringFormatPtr for
     return Size{cx > s.width() ? cx : s.width(), s.height()};
 }
 
-int QtWindow::GetCharPos(const std::string& text, const StringFormatPtr format, int pos)
+int QtWindow::GetCharPos(const std::u32string& text, const StringFormatPtr format, int pos)
 {
     QFont font(format->family.c_str(), format->size);
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
     QFontMetrics m(font);
-    QString str(text.c_str());
+    QString str = QString::fromUcs4(text.c_str());
     return m.horizontalAdvance(str, pos);
 }
 

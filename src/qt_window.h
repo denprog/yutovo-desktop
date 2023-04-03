@@ -19,6 +19,8 @@ class QtWindow : public QObject, public Window
 public:
     QtWindow(DocumentWidget* document_widget);
 
+    virtual void Init();
+
     virtual void DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color);
     virtual void DrawLine(const int x1, const int y1, const int x2, const int y2, const Color color);
     virtual void DrawRect(const int x1, const int y1, const int width, const int height, const Color color);
@@ -35,7 +37,7 @@ public:
     virtual void RestoreRect();
 
     virtual Size GetTextSize(const std::u32string& text, const StringFormatPtr format);
-    virtual int GetCharPos(const std::string& text, const StringFormatPtr format, int pos);
+    virtual int GetCharPos(const std::u32string& text, const StringFormatPtr format, int pos);
     virtual int GetFontAscent(const StringFormatPtr format);
 
     virtual void Update(const Rect& rect);

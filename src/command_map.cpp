@@ -3,8 +3,6 @@
 namespace yutovo
 {
 
-using namespace yutovo_service;
-
 //ShortcutsMap
 
 void ShortcutsMap::Init(DocumentPtr _document)
