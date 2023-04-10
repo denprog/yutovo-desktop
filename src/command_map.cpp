@@ -25,7 +25,7 @@ void ShortcutsMap::Init(DocumentPtr _document)
     Add(QKeySequence("PgDown"), "", std::function<void ()>(std::bind(&Document::MoveCaretPageDown, document.get(), false)));
 
     Add(QKeySequence("Ctrl+Home"), "", std::function<void ()>(std::bind(&Document::MoveCaretToDocumentBegin, document.get(), false)));
-    Add(QKeySequence("Ctrl+End"), "", std::function<void ()>(std::bind(&Document::MoveCaretToDocumentEnd, document.get(), false)));
+    Add(QKeySequence("Ctrl+End"), "", std::function<void ()>(std::bind(static_cast<uint(Document::*)(bool)>(&Document::MoveCaretToDocumentEnd), document.get(), false)));
 
     //selection
     Add(QKeySequence("Shift+Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretLeft, document.get(), true, true)));
@@ -37,6 +37,8 @@ void ShortcutsMap::Init(DocumentPtr _document)
 
     Add(QKeySequence("Shift+Ctrl+Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretWordLeft, document.get(), true)));
     Add(QKeySequence("Shift+Ctrl+Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretWordRight, document.get(), true)));
+
+    Add(QKeySequence("Ctrl+A"), "", std::function<void ()>(std::bind(&Document::SelectAll, document.get())));
 
     //edit text
     Add(QKeySequence("Delete"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), false, true, false)));
