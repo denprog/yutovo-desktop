@@ -61,6 +61,9 @@ private slots:
     void OnVerticalValueChanged(int value);
     void OnHorizontalValueChanged(int value);
 
+    void OnWheelVertical(const int value);
+    void OnWheelHorizontal(const int value);
+
     void OnInsertCode();
 
     void OnCurrentParagraphFormatChanged(const QString& format);

@@ -62,6 +62,9 @@ void MainWindow::SetupGui()
     horizontal_scroll->setMinimum(0);
     horizontal_scroll->setSingleStep(10);
 
+    connect(document_widget, &DocumentWidget::WheelVertical, this, &MainWindow::OnWheelVertical);
+    connect(document_widget, &DocumentWidget::WheelHorizontal, this, &MainWindow::OnWheelHorizontal);
+
     connect(&document_widget->window, &QtWindow::CaretMoved, this, &MainWindow::OnCaretMoved);
     connect(&document_widget->window, &QtWindow::SaveResult, this, &MainWindow::OnSaveResult);
     connect(&document_widget->window, &QtWindow::LoadResult, this, &MainWindow::OnLoadResult);
@@ -601,6 +604,16 @@ void MainWindow::OnHorizontalValueChanged(int value)
 {
     document_widget->window.document_point.x = (value > 0 ? value : 0);
     document->Redraw();
+}
+
+void MainWindow::OnWheelVertical(const int value)
+{
+    vertical_scroll->setSliderPosition(vertical_scroll->sliderPosition() - value);
+}
+
+void MainWindow::OnWheelHorizontal(const int value)
+{
+    horizontal_scroll->setSliderPosition(horizontal_scroll->sliderPosition() - value);
 }
 
 void MainWindow::OnInsertCode()

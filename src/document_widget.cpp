@@ -104,3 +104,26 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     else
         setCursor(Qt::ArrowCursor);
 }
+
+void DocumentWidget::wheelEvent(QWheelEvent* event)
+{
+    QPoint num_pixels = event->pixelDelta() / 8;
+    QPoint num_degrees = event->angleDelta() / 8;
+
+    if (!num_pixels.isNull())
+    {
+        if (num_pixels.x() != 0)
+            emit WheelHorizontal(num_pixels.x());
+        if (num_pixels.y() != 0)
+            emit WheelVertical(num_pixels.y());
+    }
+    else if (!num_degrees.isNull())
+    {
+        if (num_degrees.x() != 0)
+            emit WheelHorizontal(num_degrees.x());
+        if (num_degrees.y() != 0)
+            emit WheelVertical(num_degrees.y());
+    }
+
+    event->accept();
+}

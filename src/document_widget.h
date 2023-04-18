@@ -10,6 +10,8 @@ using namespace yutovo;
 
 class DocumentWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
     DocumentWidget(QWidget *parent);
 
@@ -24,12 +26,17 @@ public slots:
     void OnWindowUpdated();
     void OnCaretMoved(const EditorState editor_state);
 
+signals:
+    void WheelVertical(const int value);
+    void WheelHorizontal(const int value);
+
 protected:
     virtual void paintEvent(QPaintEvent *event);
     virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void wheelEvent(QWheelEvent* event);
 
 private:
     friend class MainWindow;
