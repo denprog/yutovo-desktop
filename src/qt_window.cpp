@@ -148,6 +148,26 @@ void QtWindow::DrawBezierPath(const std::list<Point>& path, const Color color)
     p.end();
 }
 
+void QtWindow::DrawWavyLine(const int x1, const int y1, const int width, const int radius, const Color color)
+{
+    QPainter p;
+    if (!p.begin(surface.get()))
+        return;
+    p.setRenderHint(QPainter::Antialiasing);
+    p.setPen(QColor::fromRgba(color.ToInt()));
+    int x = x1;
+    while (x <= x1 + width)
+    {
+        p.drawArc(QRect(x, y1, radius * 2, radius * 2), 0, -180 * 16);
+        x += radius * 2;
+        if (x >= x1 + width)
+            break;
+        p.drawArc(QRect(x, y1, radius * 2, radius * 2), 0, 180 * 16);
+        x += radius * 2;
+    }
+    p.end();
+}
+
 void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height)
 {
     DrawFillRect(x1, y1, width, height, Color::White());

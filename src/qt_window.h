@@ -28,6 +28,7 @@ public:
     virtual void DrawFillEllipse(const int x1, const int y1, const int width, const int height, const Color color);
     virtual void DrawFillPath(const std::list<Point>& path, const Color color);
     virtual void DrawBezierPath(const std::list<Point>& path, const Color color);
+    virtual void DrawWavyLine(const int x1, const int y1, const int width, const int radius, const Color color);
 
     virtual void ClearRect(const int x1, const int y1, const int width, const int height);
 
