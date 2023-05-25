@@ -66,6 +66,7 @@ void DocumentWidget::paintEvent(QPaintEvent *event)
 
 void DocumentWidget::resizeEvent(QResizeEvent *event)
 {
+    window.Resize(event->size().width(), event->size().height());
     document->Resize(event->size().width(), event->size().height());
 }
 
@@ -99,7 +100,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         setCursor(Qt::ArrowCursor);
         return;
     }
-    if (document->GetElementType(id) == ElementType::STRING || document->GetElementType(id) == ElementType::CODE_STRING)
+    if (document->IsString(id))
         setCursor(Qt::IBeamCursor);
     else
         setCursor(Qt::ArrowCursor);
