@@ -892,12 +892,15 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     }
 
     //find common string format
-    auto t = document->GetElementType(c.GetElement());
-    if (!document->IsString(document->GetElement(c.GetElement())) && !document->IsRow(document->GetElement(c.GetElement())))
+    if (c.id.empty() || c.id.size() == 1)
+        return;
+    ElementId _id = GetParent(c.id);
+    auto t = document->GetElementType(_id);
+    if (!document->IsString(document->GetElement(_id)) && !document->IsRow(document->GetElement(_id)))
     {
         format.Reset();
     }
-    else if (document->GetStringFormat(c.GetElement(), format))
+    else if (document->GetStringFormat(_id, format))
     {
         for (auto& state : s.state)
         {
