@@ -49,8 +49,6 @@ public:
 
     virtual void Resize(uint width, uint height);
 
-    virtual void MoveDocument(const int left, const int top);
-
     virtual void OnCaretMoved(const EditorState editor_state);
 
     virtual void OnFormatChanged(const EditorState editor_state);

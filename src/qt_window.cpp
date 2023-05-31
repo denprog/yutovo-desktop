@@ -272,13 +272,6 @@ Rect QtWindow::GetViewPort(const int pos)
 void QtWindow::Resize(uint width, uint height)
 {
     surface.reset(new QImage(width, height, QImage::Format_RGB32));
-    ClearSurface();
-}
-
-void QtWindow::MoveDocument(const int left, const int top)
-{
-    Window::MoveDocument(left, top);
-    ClearSurface();
 }
 
 Rect QtWindow::GetRect()

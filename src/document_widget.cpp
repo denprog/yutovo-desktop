@@ -66,7 +66,6 @@ void DocumentWidget::paintEvent(QPaintEvent *event)
 
 void DocumentWidget::resizeEvent(QResizeEvent *event)
 {
-    window.Resize(event->size().width(), event->size().height());
     document->Resize(event->size().width(), event->size().height());
 }
 
