@@ -292,6 +292,11 @@ void QtWindow::OnCaretMoved(const EditorState editor_state)
     emit CaretMoved(editor_state);
 }
 
+void QtWindow::OnFormatChanged(const EditorState editor_state)
+{
+    emit CaretMoved(editor_state);
+}
+
 void QtWindow::OnSaveResult(const uint task_id, IOResult result)
 {
     emit SaveResult(task_id, result);
