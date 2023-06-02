@@ -31,6 +31,7 @@ add_executable(${PROJECT_NAME}
     about.ui
     resources.qrc
     qt_window.cpp
+    document_window.cpp
     command_map.cpp
     about_dialog.cpp
 )

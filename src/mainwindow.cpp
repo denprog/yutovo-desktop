@@ -8,7 +8,9 @@
 #include <QMimeData>
 #include <QScrollBar>
 #include <QLineEdit>
+ #include <QFileInfo> 
 #include <yutovo_editor/util.h>
+#include "document_window.h"
 #include "about_dialog.h"
 
 //MainWindow
@@ -27,16 +29,11 @@ MainWindow::MainWindow(QWidget *parent) :
     qRegisterMetaType<CopyResult>("CopyResult");
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
 
-    document_widget = new DocumentWidget(ui->centralwidget);
-    document = document_widget->CreateDocument();
-
     SetupGui();
 
     ReadSettings();
 
     UpdateRecentFiles();
-
-    document->Start(config);
 }
 
 MainWindow::~MainWindow()
@@ -47,30 +44,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::SetupGui()
 {
-    document_widget->setObjectName(QStringLiteral("document_widget"));
-
-    vertical_scroll = new QScrollBar(Qt::Vertical);
-    horizontal_scroll = new QScrollBar(Qt::Horizontal);
-    ui->gridLayout->addWidget(document_widget, 0, 0);
-    ui->gridLayout->addWidget(vertical_scroll, 0, 1);
-    ui->gridLayout->addWidget(horizontal_scroll, 1, 0);
-
-    connect(vertical_scroll, &QAbstractSlider::valueChanged, this, &MainWindow::OnVerticalValueChanged);
-    connect(horizontal_scroll, &QAbstractSlider::valueChanged, this, &MainWindow::OnHorizontalValueChanged);
-    vertical_scroll->setMinimum(0);
-    vertical_scroll->setSingleStep(10);
-    horizontal_scroll->setMinimum(0);
-    horizontal_scroll->setSingleStep(10);
-
-    connect(document_widget, &DocumentWidget::WheelVertical, this, &MainWindow::OnWheelVertical);
-    connect(document_widget, &DocumentWidget::WheelHorizontal, this, &MainWindow::OnWheelHorizontal);
-
-    connect(&document_widget->window, &QtWindow::CaretMoved, this, &MainWindow::OnCaretMoved);
-    connect(&document_widget->window, &QtWindow::SaveResult, this, &MainWindow::OnSaveResult);
-    connect(&document_widget->window, &QtWindow::LoadResult, this, &MainWindow::OnLoadResult);
-    connect(&document_widget->window, &QtWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
-
-    connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &MainWindow::OnDocumentUpdated);
+    ui->editor_tabs->clear();
+    ui->editor_tabs->setTabsClosable(true);
+    connect(ui->editor_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(OnCloseEditorTab(int)));
+    AddEditorTab("(No name)");
 
     CreateActions();
     addToolBarBreak();
@@ -83,6 +60,29 @@ void MainWindow::SetupGui()
     CreateFunctionsToolbar();
 
     CreateStatusBar();
+}
+
+void MainWindow::AddEditorTab(const QString name)
+{
+    DocumentWindow* wnd = new DocumentWindow(config, this);
+    ui->editor_tabs->addTab(wnd, name);
+
+    connect(wnd, &DocumentWindow::CaretMoved, this, &MainWindow::OnCaretMoved);
+    connect(wnd, &DocumentWindow::SaveResult, this, &MainWindow::OnSaveResult);
+    connect(wnd, &DocumentWindow::LoadResult, this, &MainWindow::OnLoadResult);
+    connect(wnd, &DocumentWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
+    connect(wnd, &DocumentWindow::ClipboardPasteResult, this, &MainWindow::OnClipboardPasteResult);
+
+    ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
+    wnd->setFocus();
+}
+
+DocumentPtr MainWindow::GetCurrentDocument()
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w)
+        w->setFocus();
+    return w->document;
 }
 
 void MainWindow::CreateActions()
@@ -117,6 +117,10 @@ void MainWindow::CreateActions()
     action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveAs);
     action->setShortcuts(QKeySequence::SaveAs);
     action->setStatusTip(tr("Save the document under a new name"));
+
+    action = new QAction(tr("&Close"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::Close);
+    file_menu->addAction(action);
 
     file_menu->addSeparator();
 
@@ -459,17 +463,20 @@ void MainWindow::CreateStatusBar()
 
 void MainWindow::New()
 {
+    AddEditorTab("(No name)");
+
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
     document->New();
-    current_file_name = "";
 }
 
 void MainWindow::Open()
 {
     QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
-    if (file_name == "" || current_file_name == file_name)
+    if (file_name == "")
         return;
-    dialog_file_name = file_name;
-    document->Load(file_name.toUtf8().data());
+    OpenFile(file_name);
 }
 
 void MainWindow::OpenRecentFile()
@@ -478,25 +485,57 @@ void MainWindow::OpenRecentFile()
     if (!action)
         return;
     QString file_name = action->data().toString();
-    if (file_name == "" || current_file_name == file_name)
+    if (file_name == "")
         return;
+    OpenFile(file_name);
+}
+
+void MainWindow::OpenFile(QString file_name)
+{
     dialog_file_name = file_name;
+
+    for (int i = 0; i < ui->editor_tabs->count(); ++i)
+    {
+        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+        if (w->path == file_name)
+        {
+            ui->editor_tabs->setCurrentIndex(i);
+            return;
+        }
+    }
+
+    QFileInfo file_info(file_name);
+    AddEditorTab(file_info.fileName());
+
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
     document->Load(file_name.toUtf8().data());
+
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    w->path = file_name;
 }
 
 void MainWindow::Save()
 {
-    if (current_file_name == "")
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w->path == "")
         SaveAs();
     else
     {
-        dialog_file_name = current_file_name;
-        document->Save(current_file_name.toUtf8().data());
+        dialog_file_name = w->path;
+        document->Save(w->path.toUtf8().data());
     }
 }
 
 void MainWindow::SaveAs()
 {
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
     QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
     save_dialog.setDefaultSuffix("yut");
     save_dialog.setAcceptMode(QFileDialog::AcceptSave);
@@ -507,6 +546,23 @@ void MainWindow::SaveAs()
         return;
     dialog_file_name = file_names[0];
     document->Save(file_names[0].toUtf8().data());
+
+    int p = ui->editor_tabs->currentIndex();
+    if (p == -1)
+        return;
+    QFileInfo file_info(file_names[0]);
+    ui->editor_tabs->setTabText(p, file_info.fileName());
+
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    w->path = file_names[0];
+}
+
+void MainWindow::Close()
+{
+    int p = ui->editor_tabs->currentIndex();
+    if (p == -1)
+        return;
+    OnCloseEditorTab(p);
 }
 
 void MainWindow::Exit()
@@ -516,11 +572,17 @@ void MainWindow::Exit()
 
 void MainWindow::Copy()
 {
-    document->Copy(clipboard_array, clipboard_text);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->Copy(clipboard_array, clipboard_text);
 }
 
 void MainWindow::Paste()
 {
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    
     QClipboard* clipboard = QGuiApplication::clipboard();
     const QMimeData* mime_data = clipboard->mimeData();
     if (mime_data->hasFormat("yutovo/elements"))
@@ -550,17 +612,23 @@ void MainWindow::Paste()
 
 void MainWindow::Cut()
 {
-    document->Cut(clipboard_array, clipboard_text);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->Cut(clipboard_array, clipboard_text);
 }
 
 void MainWindow::Undo()
 {
-    document->Undo();
+    auto document = GetCurrentDocument();
+    if (document)
+        document->Undo();
 }
 
 void MainWindow::Redo()
 {
-    document->Redo();
+    auto document = GetCurrentDocument();
+    if (document)
+        document->Redo();
 }
 
 void MainWindow::About()
@@ -594,44 +662,43 @@ void MainWindow::StatusBar()
     status_bar_action->isChecked() ? statusBar()->show() : statusBar()->hide();
 }
 
-void MainWindow::OnVerticalValueChanged(int value)
+void MainWindow::OnCloseEditorTab(int index)
 {
-    document_widget->window.document_point.y = (value > 0 ? value : 0);
-    document->Redraw();
-}
-
-void MainWindow::OnHorizontalValueChanged(int value)
-{
-    document_widget->window.document_point.x = (value > 0 ? value : 0);
-    document->Redraw();
-}
-
-void MainWindow::OnWheelVertical(const int value)
-{
-    vertical_scroll->setSliderPosition(vertical_scroll->sliderPosition() - value);
-}
-
-void MainWindow::OnWheelHorizontal(const int value)
-{
-    horizontal_scroll->setSliderPosition(horizontal_scroll->sliderPosition() - value);
+    if (index == -1)
+        return;
+    QWidget* tab_item = ui->editor_tabs->widget(index);
+    ui->editor_tabs->removeTab(index); 
+    delete(tab_item);
 }
 
 void MainWindow::OnInsertCode()
 {
-    document->InsertCode(false, true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertCode(false, true);
 }
 
 void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
 {
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
     document->SetCurrentParagraphFormat(format.toUtf8().data());
-    document_widget->setFocus();
+    auto* w = ui->editor_tabs->currentWidget();
+    if (w)
+        w->setFocus();
 }
 
 void MainWindow::OnCurrentFontChanged(const QFont& font)
 {
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
     FillSizes(font);
     document->SetFontFamily(font.family().toUtf8().data());
-    document_widget->setFocus();
+    auto* w = ui->editor_tabs->currentWidget();
+    if (w)
+        w->setFocus();
 }
 
 void MainWindow::OnCurrentSizeEditingFinished()
@@ -646,231 +713,325 @@ void MainWindow::OnCurrentSizeChanged(int index)
 
 void MainWindow::OnBold()
 {
-    document->SetBold(bold_action->isChecked());
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetBold(bold_action->isChecked());
 }
 
 void MainWindow::OnItalic()
 {
-    document->SetItalic(italic_action->isChecked());
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetItalic(italic_action->isChecked());
 }
 
 void MainWindow::OnUnderline()
 {
-    document->SetUnderline(underline_action->isChecked());
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetUnderline(underline_action->isChecked());
 }
 
 void MainWindow::OnPlus()
 {
-    document->InsertPlus(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertPlus(true);
 }
 
 void MainWindow::OnMinus()
 {
-    document->InsertMinus(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertMinus(true);
 }
 
 void MainWindow::OnMultiply()
 {
-    document->InsertMultiply(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertMultiply(true);
 }
 
 void MainWindow::OnDivision()
 {
-    document->InsertDivision(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertDivision(true);
 }
 
 void MainWindow::OnSquareRoot()
 {
-    document->InsertSquareRoot(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertSquareRoot(true);
 }
 
 void MainWindow::OnNthRoot()
 {
-    document->InsertNthRoot(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertNthRoot(true);
 }
 
 void MainWindow::OnPower()
 {
-    document->InsertPower(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertPower(true);
 }
 
 void MainWindow::OnSubscript()
 {
-    document->InsertSubscript(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertSubscript(true);
 }
 
 void MainWindow::OnExp()
 {
-    document->InsertFunction("exp", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("exp", true);
 }
 
 void MainWindow::OnLn()
 {
-    document->InsertFunction("ln", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("ln", true);
 }
 
 void MainWindow::OnLg()
 {
-    document->InsertFunction("lg", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("lg", true);
 }
 
 void MainWindow::OnFences()
 {
-    document->InsertFences(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFences(true);
 }
 
 void MainWindow::OnLog()
 {
-    document->InsertSubscriptFunction("log", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertSubscriptFunction("log", true);
 }
 
 void MainWindow::OnInt()
 {
-    document->InsertFunction("int", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("int", true);
 }
 
 void MainWindow::OnFract()
 {
-    document->InsertFunction("fract", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("fract", true);
 }
 
 void MainWindow::OnRound()
 {
-    document->InsertFunction("round", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("round", true);
 }
 
 void MainWindow::OnEquation()
 {
-    document->InsertEquation(ResultType::AUTO, true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertEquation(ResultType::AUTO, true);
 }
 
 void MainWindow::OnAssignment()
 {
-    document->InsertAssignment(true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertAssignment(true);
 }
 
 void MainWindow::OnSin()
 {
-    document->InsertFunction("sin", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("sin", true);
 }
 
 void MainWindow::OnCos()
 {
-    document->InsertFunction("cos", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("cos", true);
 }
 
 void MainWindow::OnTg()
 {
-    document->InsertFunction("tg", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("tg", true);
 }
 
 void MainWindow::OnCtg()
 {
-    document->InsertFunction("ctg", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("ctg", true);
 }
 
 void MainWindow::OnSec()
 {
-    document->InsertFunction("sec", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("sec", true);
 }
 
 void MainWindow::OnCsc()
 {
-    document->InsertFunction("csc", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("csc", true);
 }
 
 void MainWindow::OnArcsin()
 {
-    document->InsertFunction("arcsin", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arcsin", true);
 }
 
 void MainWindow::OnArccos()
 {
-    document->InsertFunction("arccos", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arccos", true);
 }
 
 void MainWindow::OnArctg()
 {
-    document->InsertFunction("arctg", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arctg", true);
 }
 
 void MainWindow::OnArcctg()
 {
-    document->InsertFunction("arcctg", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arcctg", true);
 }
 
 void MainWindow::OnArcsec()
 {
-    document->InsertFunction("arcsec", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arcsec", true);
 }
 
 void MainWindow::OnArccsc()
 {
-    document->InsertFunction("arccsc", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arccsc", true);
 }
 
 void MainWindow::OnSinh()
 {
-    document->InsertFunction("sinh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("sinh", true);
 }
 
 void MainWindow::OnCosh()
 {
-    document->InsertFunction("cosh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("cosh", true);
 }
 
 void MainWindow::OnTgh()
 {
-    document->InsertFunction("tgh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("tgh", true);
 }
 
 void MainWindow::OnCtgh()
 {
-    document->InsertFunction("ctgh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("ctgh", true);
 }
 
 void MainWindow::OnSech()
 {
-    document->InsertFunction("sech", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("sech", true);
 }
 
 void MainWindow::OnCsch()
 {
-    document->InsertFunction("csch", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("csch", true);
 }
 
 void MainWindow::OnArsinh()
 {
-    document->InsertFunction("arsinh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arsinh", true);
 }
 
 void MainWindow::OnArcosh()
 {
-    document->InsertFunction("arcosh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arcosh", true);
 }
 
 void MainWindow::OnArtgh()
 {
-    document->InsertFunction("artgh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("artgh", true);
 }
 
 void MainWindow::OnArctgh()
 {
-    document->InsertFunction("arctgh", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arctgh", true);
 }
 
 void MainWindow::OnArsech()
 {
-    document->InsertFunction("arsech", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arsech", true);
 }
 
 void MainWindow::OnArcsch()
 {
-    document->InsertFunction("arcsch", true);
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunction("arcsch", true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    
     const CaretState& c = editor_state.caret_state;
     const SelectionState& s = editor_state.selection_state;
     StringFormat format;
@@ -943,8 +1104,7 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
         return;
     }
-    current_file_name = dialog_file_name;
-    UpdateRecentFiles();
+    UpdateRecentFiles(dialog_file_name);
 }
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
@@ -956,8 +1116,7 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));
         return;
     }
-    current_file_name = dialog_file_name;
-    UpdateRecentFiles();
+    UpdateRecentFiles(dialog_file_name);
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)
@@ -975,25 +1134,16 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
     clipboard_text = U"";
 }
 
-void MainWindow::OnDocumentUpdated(const Rect rect)
+void MainWindow::OnClipboardPasteResult(PasteResult result)
 {
-    Rect r = document_widget->window.GetViewPort(0);
-    Size& s = document_widget->window.document_size;
-    Point& p = document_widget->window.document_point;
-    
-    vertical_scroll->setMinimum(0);
-    vertical_scroll->setMaximum(s.height - r.height > 0 ? s.height - r.height : 1);
-    vertical_scroll->setPageStep(r.height);
-    vertical_scroll->setValue(p.y);
-
-    horizontal_scroll->setMinimum(0);
-    horizontal_scroll->setMaximum(s.width - r.width > 0 ? s.width - r.width : 1);
-    horizontal_scroll->setPageStep(r.width);
-    horizontal_scroll->setValue(p.x);
 }
 
 void MainWindow::FillParagraphFormats()
 {
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
     std::vector<ParagraphFormatPtr> formats;
     document->paragraph_formats->GetFormats(formats);
     for (auto& f : formats)
@@ -1116,20 +1266,24 @@ void MainWindow::UpdateFontSize()
 
     if (s != last_font_size)
     {
-        document->SetFontSize(s);
+        auto document = GetCurrentDocument();
+        if (document)
+            document->SetFontSize(s);
         last_font_size = s;
     }
-    document_widget->setFocus();
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w)
+        w->setFocus();
 }
 
-void MainWindow::UpdateRecentFiles()
+void MainWindow::UpdateRecentFiles(const QString add_file_name)
 {
-    if (current_file_name != "")
+    if (add_file_name != "")
     {
         if (recent_files.size() > recent_files_count)
             recent_files.erase(recent_files.end() - 1);
-        recent_files.removeAll(current_file_name);
-        recent_files.push_front(current_file_name);
+        recent_files.removeAll(add_file_name);
+        recent_files.push_front(add_file_name);
     }
 
     recent_files_menu->clear();

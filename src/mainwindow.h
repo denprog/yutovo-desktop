@@ -5,10 +5,10 @@
 #include <QComboBox>
 #include <QFontComboBox>
 #include <QSettings>
+#include <yutovo_editor/document.h>
 #include "ui_mainwindow.h"
 #include <cstring>
 #include <sstream>
-#include "document_widget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -16,6 +16,8 @@ namespace Ui
 class MainWindow;
 }
 QT_END_NAMESPACE
+
+using namespace yutovo;
 
 class MainWindow : public QMainWindow
 {
@@ -27,6 +29,11 @@ public:
 
 private:
     void SetupGui();
+
+    void AddEditorTab(const QString name);
+
+    DocumentPtr GetCurrentDocument();
+
     void CreateActions();
     void CreateAlgebraToolbar();
     void CreateTrigonometryToolbar();
@@ -37,8 +44,10 @@ private:
     void New();
     void Open();
     void OpenRecentFile();
+    void OpenFile(QString file_name);
     void Save();
     void SaveAs();
+    void Close();
     void Exit();
 
     void Copy();
@@ -58,11 +67,7 @@ private:
     void StatusBar();
 
 private slots:
-    void OnVerticalValueChanged(int value);
-    void OnHorizontalValueChanged(int value);
-
-    void OnWheelVertical(const int value);
-    void OnWheelHorizontal(const int value);
+    void OnCloseEditorTab(int index);
 
     void OnInsertCode();
 
@@ -125,7 +130,7 @@ private slots:
     void OnSaveResult(const uint task_id, IOResult result);
     void OnLoadResult(const uint task_id, IOResult result);
     void OnClipboardCopyResult(CopyResult result);
-    void OnDocumentUpdated(const Rect rect);
+    void OnClipboardPasteResult(PasteResult result);
 
 private:
     void FillParagraphFormats();
@@ -136,21 +141,15 @@ private:
 
     void UpdateFontSize();
 
-    void UpdateRecentFiles();
+    void UpdateRecentFiles(const QString add_file_name = "");
 
 private:
     Ui::MainWindow *ui;
 
-    DocumentWidget* document_widget;
-    DocumentPtr document;
-
     yutovo::Config config;
     QSettings settings;
 
-    QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;
-
     QString dialog_file_name; //file name to be loaded/saved
-    QString current_file_name;
 
     std::stringstream clipboard_array;
     std::u32string clipboard_text;

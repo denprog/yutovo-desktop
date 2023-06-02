@@ -39,14 +39,15 @@ protected:
     virtual void wheelEvent(QWheelEvent* event);
 
 private:
+    friend class DocumentWindow;
     friend class MainWindow;
+
     QtWindow window;
 
     ShortcutsMap shortcuts_map;
     
     EditorState current_editor_state;
 
-public:
     DocumentPtr document;
 };
 
