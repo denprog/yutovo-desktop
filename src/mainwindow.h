@@ -41,6 +41,8 @@ private:
     void CreateFunctionsToolbar();
     void CreateStatusBar();
 
+    void SetFocus();
+
     void New();
     void Open();
     void OpenRecentFile();

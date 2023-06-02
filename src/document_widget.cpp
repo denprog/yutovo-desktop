@@ -83,6 +83,7 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
     }
     if (!str.isEmpty())
         document->InsertString(str.toUtf8().data(), true);
+    setFocus();
 }
 
 void DocumentWidget::mousePressEvent(QMouseEvent *event)

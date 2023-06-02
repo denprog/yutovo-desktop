@@ -461,6 +461,13 @@ void MainWindow::CreateStatusBar()
     statusBar()->showMessage(tr("Ready"));
 }
 
+void MainWindow::SetFocus()
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w)
+        w->setFocus();
+}
+
 void MainWindow::New()
 {
     AddEditorTab("(No name)");
@@ -667,8 +674,9 @@ void MainWindow::OnCloseEditorTab(int index)
     if (index == -1)
         return;
     QWidget* tab_item = ui->editor_tabs->widget(index);
-    ui->editor_tabs->removeTab(index); 
+    ui->editor_tabs->removeTab(index);
     delete(tab_item);
+    SetFocus();
 }
 
 void MainWindow::OnInsertCode()
@@ -684,9 +692,7 @@ void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
     if (!document)
         return;
     document->SetCurrentParagraphFormat(format.toUtf8().data());
-    auto* w = ui->editor_tabs->currentWidget();
-    if (w)
-        w->setFocus();
+    SetFocus();
 }
 
 void MainWindow::OnCurrentFontChanged(const QFont& font)
@@ -696,9 +702,7 @@ void MainWindow::OnCurrentFontChanged(const QFont& font)
         return;
     FillSizes(font);
     document->SetFontFamily(font.family().toUtf8().data());
-    auto* w = ui->editor_tabs->currentWidget();
-    if (w)
-        w->setFocus();
+    SetFocus();
 }
 
 void MainWindow::OnCurrentSizeEditingFinished()
@@ -1271,9 +1275,7 @@ void MainWindow::UpdateFontSize()
             document->SetFontSize(s);
         last_font_size = s;
     }
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
-    if (w)
-        w->setFocus();
+    SetFocus();
 }
 
 void MainWindow::UpdateRecentFiles(const QString add_file_name)
