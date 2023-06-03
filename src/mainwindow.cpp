@@ -42,6 +42,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::contextMenuEvent(QContextMenuEvent* event)
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w)
+        w->MakeContextMenu(event);
+}
+
 void MainWindow::SetupGui()
 {
     ui->editor_tabs->clear();
@@ -74,14 +81,14 @@ void MainWindow::AddEditorTab(const QString name)
     connect(wnd, &DocumentWindow::ClipboardPasteResult, this, &MainWindow::OnClipboardPasteResult);
 
     ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
-    wnd->setFocus();
+    wnd->SetFocus();
 }
 
 DocumentPtr MainWindow::GetCurrentDocument()
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (w)
-        w->setFocus();
+        w->SetFocus();
     return w->document;
 }
 
@@ -465,7 +472,7 @@ void MainWindow::SetFocus()
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (w)
-        w->setFocus();
+        w->SetFocus();
 }
 
 void MainWindow::New()

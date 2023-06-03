@@ -27,6 +27,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void contextMenuEvent(QContextMenuEvent* event) override;
+
 private:
     void SetupGui();
 

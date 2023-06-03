@@ -3,6 +3,8 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QGuiApplication>
+#include <QMenu>
+ #include <QContextMenuEvent>
 
 //DocumentWindow
 
@@ -41,9 +43,65 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(&document_widget->window, &QtWindow::ClipboardPasteResult, this, &DocumentWindow::OnClipboardPasteResult);
 
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
+
+    //context menu
+    present_as_auto = new QAction(tr("Present as Auto"), this);
+    connect(present_as_auto, &QAction::triggered, this, &DocumentWindow::OnPresentAsAuto);
+    present_as_real = new QAction(tr("Present as Real"), this);
+    connect(present_as_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsReal);
+    present_as_integer = new QAction(tr("Present as Intger"), this);
+    connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
+    present_as_rational = new QAction(tr("Present as Rational"), this);
+    connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
 }
 
-void DocumentWindow::setFocus()
+void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
+{
+    QMenu menu(this);
+    document->WaitTask(document_widget->caret_moving_task_id, 100);
+    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
+    if (!id.empty())
+    {
+        menu.addAction(present_as_real);
+        menu.addAction(present_as_integer);
+        menu.addAction(present_as_rational);
+    }
+    else
+    {
+        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
+        if (!id.empty())
+        {
+            menu.addAction(present_as_auto);
+            menu.addAction(present_as_integer);
+            menu.addAction(present_as_rational);
+        }
+        else
+        {
+            id = document->FindCurrentParentByType(ElementType::INTEGER_RESULT);
+            if (!id.empty())
+            {
+                menu.addAction(present_as_auto);
+                menu.addAction(present_as_real);
+                menu.addAction(present_as_rational);
+            }
+            else
+            {
+                id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
+                if (!id.empty())
+                {
+                    menu.addAction(present_as_auto);
+                    menu.addAction(present_as_real);
+                    menu.addAction(present_as_integer);
+                }
+            }
+        }
+    }
+    
+    if (!menu.isEmpty())
+        menu.exec(event->globalPos());
+}
+
+void DocumentWindow::SetFocus()
 {
     document_widget->setFocus();
 }
@@ -110,4 +168,24 @@ void DocumentWindow::OnDocumentUpdated(const Rect rect)
     horizontal_scroll->setMaximum(s.width - r.width > 0 ? s.width - r.width : 1);
     horizontal_scroll->setPageStep(r.width);
     horizontal_scroll->setValue(p.x);
+}
+
+void DocumentWindow::OnPresentAsAuto()
+{
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::AUTO);
+}
+
+void DocumentWindow::OnPresentAsReal()
+{
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::REAL);
+}
+
+void DocumentWindow::OnPresentAsInteger()
+{
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::INTEGER);
+}
+
+void DocumentWindow::OnPresentAsRational()
+{
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL);
 }

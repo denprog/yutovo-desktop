@@ -49,6 +49,8 @@ private:
     EditorState current_editor_state;
 
     DocumentPtr document;
+
+    uint caret_moving_task_id = 0;
 };
 
 #endif

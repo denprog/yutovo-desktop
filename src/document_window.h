@@ -11,7 +11,9 @@ class DocumentWindow : public QWidget
 public:
     DocumentWindow(yutovo::Config& _config, QWidget *parent = nullptr);
 
-    void setFocus();
+    void MakeContextMenu(QContextMenuEvent* event);
+
+    void SetFocus();
 
 private slots:
     void OnVerticalValueChanged(int value);
@@ -26,6 +28,11 @@ private slots:
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
     void OnDocumentUpdated(const Rect rect);
+
+    void OnPresentAsAuto();
+    void OnPresentAsReal();
+    void OnPresentAsInteger();
+    void OnPresentAsRational();
 
 signals:
     void CaretMoved(const EditorState editor_state);
@@ -45,6 +52,11 @@ private:
     QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;
 
     QString path;
+
+    QAction* present_as_auto = nullptr;
+    QAction* present_as_real = nullptr;
+    QAction* present_as_integer = nullptr;
+    QAction* present_as_rational = nullptr;
 };
 
 #endif
