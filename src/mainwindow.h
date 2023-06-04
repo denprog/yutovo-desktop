@@ -163,6 +163,8 @@ private:
     int recent_files_count = 10;
     QList<QString> recent_files;
 
+    bool block_format_slots = false;
+    
     QComboBox* paragraph_format_combo = nullptr;
     
     QFontComboBox* family_combo = nullptr;

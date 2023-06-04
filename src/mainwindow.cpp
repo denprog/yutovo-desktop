@@ -695,6 +695,8 @@ void MainWindow::OnInsertCode()
 
 void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
 {
+    if (block_format_slots)
+        return;
     auto document = GetCurrentDocument();
     if (!document)
         return;
@@ -704,6 +706,8 @@ void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
 
 void MainWindow::OnCurrentFontChanged(const QFont& font)
 {
+    if (block_format_slots)
+        return;
     auto document = GetCurrentDocument();
     if (!document)
         return;
@@ -719,11 +723,15 @@ void MainWindow::OnCurrentSizeEditingFinished()
 
 void MainWindow::OnCurrentSizeChanged(int index)
 {
+    if (block_format_slots)
+        return;
     UpdateFontSize();
 }
 
 void MainWindow::OnBold()
 {
+    if (block_format_slots)
+        return;
     auto document = GetCurrentDocument();
     if (document)
         document->SetBold(bold_action->isChecked());
@@ -731,6 +739,8 @@ void MainWindow::OnBold()
 
 void MainWindow::OnItalic()
 {
+    if (block_format_slots)
+        return;
     auto document = GetCurrentDocument();
     if (document)
         document->SetItalic(italic_action->isChecked());
@@ -738,6 +748,8 @@ void MainWindow::OnItalic()
 
 void MainWindow::OnUnderline()
 {
+    if (block_format_slots)
+        return;
     auto document = GetCurrentDocument();
     if (document)
         document->SetUnderline(underline_action->isChecked());
@@ -1092,6 +1104,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     }
 
     //update the interface elements
+    block_format_slots = true;
     paragraph_format_combo->setCurrentText(paragraph_format.name.c_str());
     family_combo->setCurrentText(format.family.c_str());
     if (format.size == 0)
@@ -1101,6 +1114,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     bold_action->setChecked(format.bold);
     italic_action->setChecked(format.italic);
     underline_action->setChecked(format.underline);
+    block_format_slots = false;
 
     undo_action->setEnabled(document->CanUndo());
     redo_action->setEnabled(document->CanRedo());
