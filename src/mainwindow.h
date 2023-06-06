@@ -53,6 +53,7 @@ private:
     void Save();
     void SaveAs();
     void Close();
+    void Settings();
     void Exit();
 
     void Copy();
@@ -64,6 +65,8 @@ private:
 
     void About();
 
+    void StandardToolbar();
+    void FormatToolbar();
     void AlgebraToolbar();
     void TrigonometryToolbar();
     void HyperbolicToolbar();
@@ -179,12 +182,16 @@ private:
     QAction* italic_action = nullptr;
     QAction* underline_action = nullptr;
 
+    QAction* standard_toolbar_action = nullptr;
+    QAction* format_toolbar_action = nullptr;
     QAction* algebra_toolbar_action = nullptr;
     QAction* trigonometry_toolbar_action = nullptr;
     QAction* hyperbolic_toolbar_action = nullptr;
     QAction* functions_toolbar_action = nullptr;
     QAction* status_bar_action = nullptr;
 
+    QToolBar* standard_toolbar = nullptr;
+    QToolBar* format_toolbar = nullptr;
     QToolBar* algebra_toolbar = nullptr;
     QToolBar* trigonometry_toolbar = nullptr;
     QToolBar* hyperbolic_toolbar = nullptr;

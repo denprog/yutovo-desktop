@@ -34,6 +34,12 @@ add_executable(${PROJECT_NAME}
     document_window.cpp
     command_map.cpp
     about_dialog.cpp
+    settings_dialog.ui
+    settings_dialog.cpp
+    system_settings_form.ui
+    system_settings_form.cpp
+    interface_settings_form.ui
+    interface_settings_form.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)

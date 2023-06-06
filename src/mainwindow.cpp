@@ -8,17 +8,18 @@
 #include <QMimeData>
 #include <QScrollBar>
 #include <QLineEdit>
- #include <QFileInfo> 
+#include <QFileInfo> 
 #include <yutovo_editor/util.h>
 #include "document_window.h"
 #include "about_dialog.h"
+#include "settings_dialog.h"
 
 //MainWindow
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    settings("Yutovo", "Yutovo Desktop")
+    settings(new QSettings("Yutovo", "Yutovo Desktop"))
 {
     ui->setupUi(this);
 
@@ -96,7 +97,7 @@ void MainWindow::CreateActions()
 {
     //file menu and toolbar
     QMenu *file_menu = menuBar()->addMenu(tr("&File"));
-    QToolBar *standard_toolbar = addToolBar(tr("Standard"));
+    standard_toolbar = addToolBar(tr("Standard"));
 
     QAction* action = new QAction(QIcon(":/icons/images/standard/new.png"), tr("&New"), this);
     action->setShortcuts(QKeySequence::New);
@@ -127,6 +128,12 @@ void MainWindow::CreateActions()
 
     action = new QAction(tr("&Close"), this);
     connect(action, &QAction::triggered, this, &MainWindow::Close);
+    file_menu->addAction(action);
+
+    file_menu->addSeparator();
+
+    action = new QAction(tr("&Settings"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::Settings);
     file_menu->addAction(action);
 
     file_menu->addSeparator();
@@ -179,8 +186,8 @@ void MainWindow::CreateActions()
     edit_menu->addAction(action);
     standard_toolbar->addAction(action);
 
-    //fonts toolbar
-    QToolBar *format_toolbar = addToolBar(tr("Format"));
+    //format toolbar
+    format_toolbar = addToolBar(tr("Format"));
     format_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     action = new QAction(QIcon(":/icons/images/format/code.png"), tr("&Code"), this);
@@ -230,6 +237,18 @@ void MainWindow::CreateActions()
     //toolbars submenu
     QMenu* toolbars_menu = view_menu->addMenu(tr("&Toolbars"));
 
+    standard_toolbar_action = new QAction(tr("Standard toolbar"), this);
+    standard_toolbar_action->setCheckable(true);
+    standard_toolbar_action->setChecked(true);
+    connect(standard_toolbar_action, &QAction::toggled, this, &MainWindow::StandardToolbar);
+    toolbars_menu->addAction(standard_toolbar_action);
+
+    format_toolbar_action = new QAction(tr("Format toolbar"), this);
+    format_toolbar_action->setCheckable(true);
+    format_toolbar_action->setChecked(true);
+    connect(format_toolbar_action, &QAction::toggled, this, &MainWindow::FormatToolbar);
+    toolbars_menu->addAction(format_toolbar_action);
+
     algebra_toolbar_action = new QAction(tr("Algebraic operations"), this);
     algebra_toolbar_action->setCheckable(true);
     algebra_toolbar_action->setChecked(true);
@@ -248,7 +267,7 @@ void MainWindow::CreateActions()
     connect(hyperbolic_toolbar_action, &QAction::toggled, this, &MainWindow::HyperbolicToolbar);
     toolbars_menu->addAction(hyperbolic_toolbar_action);
 
-    functions_toolbar_action = new QAction(tr("Hyperbolic functions"), this);
+    functions_toolbar_action = new QAction(tr("Math functions"), this);
     functions_toolbar_action->setCheckable(true);
     functions_toolbar_action->setChecked(true);
     connect(functions_toolbar_action, &QAction::toggled, this, &MainWindow::FunctionsToolbar);
@@ -271,7 +290,6 @@ void MainWindow::CreateAlgebraToolbar()
     //algebra toolbar
     algebra_toolbar = addToolBar(tr("Algebraic functions"));
     algebra_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
-    //algebra_toolbar->setIconSize(QSize(30, 20));
 
     QAction* action = new QAction(QIcon(":/icons/images/algebra/plus.png"), tr("Plus"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnPlus);
@@ -579,6 +597,40 @@ void MainWindow::Close()
     OnCloseEditorTab(p);
 }
 
+void MainWindow::Settings()
+{
+    QHash<QString, QVariant> _settings;
+    QStringList keys = settings.allKeys();
+    Q_FOREACH(QString key, keys)
+    {
+        _settings[key] = settings.value(key);
+    }
+
+    int r;
+    {
+        SettingsDialog settings_dialog(config, _settings);
+        r = settings_dialog.exec();
+        if (r == QDialog::Accepted)
+            config = settings_dialog.config;
+    }
+
+    if (r == QDialog::Accepted)
+    {
+        keys = _settings.keys();
+        Q_FOREACH(QString key, keys)
+        {
+            settings.setValue(key, _settings.value(key));
+        }
+
+        standard_toolbar_action->setChecked(settings.value("MainWindow/standard_toolbar", false).toBool());
+        format_toolbar_action->setChecked(settings.value("MainWindow/format_toolbar", false).toBool());
+        algebra_toolbar_action->setChecked(settings.value("MainWindow/algebra_toolbar", false).toBool());
+        trigonometry_toolbar_action->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
+        hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
+        functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
+    }
+}
+
 void MainWindow::Exit()
 {
     close();
@@ -651,24 +703,40 @@ void MainWindow::About()
     about_dialog.exec();
 }
 
+void MainWindow::StandardToolbar()
+{
+    standard_toolbar_action->isChecked() ? standard_toolbar->show() : standard_toolbar->hide();
+    settings.setValue("MainWindow/standard_toolbar", standard_toolbar_action->isChecked());
+}
+
+void MainWindow::FormatToolbar()
+{
+    format_toolbar_action->isChecked() ? format_toolbar->show() : format_toolbar->hide();
+    settings.setValue("MainWindow/format_toolbar", format_toolbar_action->isChecked());
+}
+
 void MainWindow::AlgebraToolbar()
 {
     algebra_toolbar_action->isChecked() ? algebra_toolbar->show() : algebra_toolbar->hide();
+    settings.setValue("MainWindow/algebra_toolbar", algebra_toolbar_action->isChecked());
 }
 
 void MainWindow::TrigonometryToolbar()
 {
     trigonometry_toolbar_action->isChecked() ? trigonometry_toolbar->show() : trigonometry_toolbar->hide();
+    settings.setValue("MainWindow/trigonometry_toolbar", trigonometry_toolbar_action->isChecked());
 }
 
 void MainWindow::HyperbolicToolbar()
 {
     hyperbolic_toolbar_action->isChecked() ? hyperbolic_toolbar->show() : hyperbolic_toolbar->hide();
+    settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
 }
 
 void MainWindow::FunctionsToolbar()
 {
     functions_toolbar_action->isChecked() ? functions_toolbar->show() : functions_toolbar->hide();
+    settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
 }
 
 void MainWindow::StatusBar()
@@ -1219,6 +1287,8 @@ void MainWindow::WriteSettings()
 {
     settings.beginGroup("MainWindow");
     settings.setValue("geometry", saveGeometry());
+    settings.setValue("standard_toolbar", standard_toolbar_action->isChecked());
+    settings.setValue("format_toolbar", format_toolbar_action->isChecked());
     settings.setValue("algebra_toolbar", algebra_toolbar_action->isChecked());
     settings.setValue("trigonometry_toolbar", trigonometry_toolbar_action->isChecked());
     settings.setValue("hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
@@ -1246,7 +1316,11 @@ void MainWindow::ReadSettings()
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
     
-    bool b = settings.value("algebra_toolbar", true).toBool();
+    bool b = settings.value("standard_toolbar", true).toBool();
+    standard_toolbar_action->setChecked(b);
+    b = settings.value("format_toolbar", true).toBool();
+    format_toolbar_action->setChecked(b);
+    b = settings.value("algebra_toolbar", true).toBool();
     algebra_toolbar_action->setChecked(b);
     b = settings.value("trigonometry_toolbar", false).toBool();
     trigonometry_toolbar_action->setChecked(b);
