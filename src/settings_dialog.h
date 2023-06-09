@@ -25,7 +25,7 @@ private:
     Ui::SettingsDialog* form = nullptr;
 
 public:
-    yutovo::Config config; //copy of config
+    yutovo::Config& config; //copy of config
     QHash<QString, QVariant>& settings; //copy of settings
 };
 

@@ -274,6 +274,11 @@ void QtWindow::Resize(uint width, uint height)
     surface.reset(new QImage(width, height, QImage::Format_RGB32));
 }
 
+std::u32string QtWindow::GetString(const std::u32string& str)
+{
+    return tr(QString::fromUcs4(str.c_str()).toUtf8().data()).toStdU32String();
+}
+
 Rect QtWindow::GetRect()
 {
     QRect rect = surface->rect();

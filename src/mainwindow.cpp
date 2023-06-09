@@ -30,9 +30,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qRegisterMetaType<CopyResult>("CopyResult");
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
 
-    SetupGui();
-
     ReadSettings();
+
+    SetupGui();
 
     UpdateRecentFiles();
 }
@@ -68,6 +68,21 @@ void MainWindow::SetupGui()
     CreateFunctionsToolbar();
 
     CreateStatusBar();
+
+    bool b = settings.value("MainWindow/standard_toolbar", true).toBool();
+    standard_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/format_toolbar", true).toBool();
+    format_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/algebra_toolbar", true).toBool();
+    algebra_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/trigonometry_toolbar", false).toBool();
+    trigonometry_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/hyperbolic_toolbar", false).toBool();
+    hyperbolic_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/functions_toolbar", false).toBool();
+    functions_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/status_bar", true).toBool();
+    status_bar_action->setChecked(b);
 }
 
 void MainWindow::AddEditorTab(const QString name)
@@ -606,16 +621,22 @@ void MainWindow::Settings()
         _settings[key] = settings.value(key);
     }
 
+    Config _config = config;
     int r;
     {
-        SettingsDialog settings_dialog(config, _settings);
+        SettingsDialog settings_dialog(_config, _settings);
         r = settings_dialog.exec();
-        if (r == QDialog::Accepted)
-            config = settings_dialog.config;
     }
 
     if (r == QDialog::Accepted)
     {
+        config = _config;
+        for (int i = 0; i < ui->editor_tabs->count(); ++i)
+        {
+            DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+            w->document->SetConfig(config);
+        }
+
         keys = _settings.keys();
         Q_FOREACH(QString key, keys)
         {
@@ -742,6 +763,7 @@ void MainWindow::FunctionsToolbar()
 void MainWindow::StatusBar()
 {
     status_bar_action->isChecked() ? statusBar()->show() : statusBar()->hide();
+    settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
 }
 
 void MainWindow::OnCloseEditorTab(int index)
@@ -1285,16 +1307,14 @@ void MainWindow::FillSizes(const QFont& font)
 
 void MainWindow::WriteSettings()
 {
-    settings.beginGroup("MainWindow");
-    settings.setValue("geometry", saveGeometry());
-    settings.setValue("standard_toolbar", standard_toolbar_action->isChecked());
-    settings.setValue("format_toolbar", format_toolbar_action->isChecked());
-    settings.setValue("algebra_toolbar", algebra_toolbar_action->isChecked());
-    settings.setValue("trigonometry_toolbar", trigonometry_toolbar_action->isChecked());
-    settings.setValue("hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
-    settings.setValue("functions_toolbar", functions_toolbar_action->isChecked());
-    settings.setValue("status_bar", status_bar_action->isChecked());
-    settings.endGroup();
+    settings.setValue("MainWindow/geometry", saveGeometry());
+    settings.setValue("MainWindow/standard_toolbar", standard_toolbar_action->isChecked());
+    settings.setValue("MainWindow/format_toolbar", format_toolbar_action->isChecked());
+    settings.setValue("MainWindow/algebra_toolbar", algebra_toolbar_action->isChecked());
+    settings.setValue("MainWindow/trigonometry_toolbar", trigonometry_toolbar_action->isChecked());
+    settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
+    settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
+    settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
 
     settings.beginGroup("RecentFiles");
     settings.setValue("max_count", recent_files_count);
@@ -1306,33 +1326,39 @@ void MainWindow::WriteSettings()
     settings.setValue("port", config.service_port);
     settings.setValue("timeout", config.service_timeout);
     settings.endGroup();
+
+    settings.beginGroup("Calculator");
+    settings.setValue("result_auto_advance", config.auto_result.result_auto_advance);
+    QList<QVariant> v;
+    for (auto r : config.auto_result.results_order)
+        v.push_back((int)r);
+    settings.setValue("results_order", v);
+
+    settings.setValue("real_precision", config.real_result.precision);
+    settings.setValue("real_exp", config.real_result.exp);
+    settings.setValue("real_result_angle_measure", (int)config.real_result.result_angle_measure);
+    settings.setValue("real_show_angle_measure", config.real_result.show_angle_measure);
+
+    settings.setValue("integer_notation", (int)config.integer_result.result_notation);
+    settings.setValue("integer_show_notation", config.integer_result.show_notation);
+
+    settings.setValue("rational_fraction_form", (int)config.rational_result.fraction_form);
+
+    settings.setValue("complex_precision", config.complex_result.precision);
+    settings.setValue("complex_exp", config.complex_result.exp);
+    settings.setValue("complex_result_angle_measure", (int)config.complex_result.result_angle_measure);
+    settings.setValue("complex_show_angle_measure", config.complex_result.show_angle_measure);
+    settings.setValue("complex_form", (int)config.complex_result.form);
+    settings.setValue("complex_max_count", config.complex_result.max_count);
+    settings.endGroup();
 }
 
 void MainWindow::ReadSettings()
 {
-    settings.beginGroup("MainWindow");
-
-    const auto geometry = settings.value("geometry", QByteArray()).toByteArray();
+    const auto geometry = settings.value("MainWindow/geometry", QByteArray()).toByteArray();
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
     
-    bool b = settings.value("standard_toolbar", true).toBool();
-    standard_toolbar_action->setChecked(b);
-    b = settings.value("format_toolbar", true).toBool();
-    format_toolbar_action->setChecked(b);
-    b = settings.value("algebra_toolbar", true).toBool();
-    algebra_toolbar_action->setChecked(b);
-    b = settings.value("trigonometry_toolbar", false).toBool();
-    trigonometry_toolbar_action->setChecked(b);
-    b = settings.value("hyperbolic_toolbar", false).toBool();
-    hyperbolic_toolbar_action->setChecked(b);
-    b = settings.value("functions_toolbar", false).toBool();
-    functions_toolbar_action->setChecked(b);
-    b = settings.value("status_bar", true).toBool();
-    status_bar_action->setChecked(b);
-
-    settings.endGroup();
-
     settings.beginGroup("RecentFiles");
     recent_files_count = settings.value("max_count", 10).toInt();
     if (recent_files_count > 50)
@@ -1343,11 +1369,65 @@ void MainWindow::ReadSettings()
     settings.endGroup();
 
     settings.beginGroup("Service");
-
     config.service_ip = settings.value("ip", "localhost").toString().toUtf8().data();
     config.service_port = settings.value("port", 8010).toInt();
     config.service_timeout = settings.value("timeout", 20).toInt();
+    settings.endGroup();
 
+    settings.beginGroup("Calculator");
+    config.auto_result.result_auto_advance = settings.value("result_auto_advance", true).toBool();
+    QList<QVariant> v = settings.value("results_order").toList();
+    size_t i = 0;
+    for (auto r : v)
+    {
+        if (i < 4)
+            config.auto_result.results_order[i++] = (ElementType)r.toInt();
+    }
+    auto& results_order = config.auto_result.results_order;
+    for (; i < 4; ++i)
+    {
+        if (std::find(std::begin(results_order), std::end(results_order), ElementType::REAL_RESULT) == std::end(results_order))
+            results_order[i++] = ElementType::REAL_RESULT;
+        if (std::find(std::begin(results_order), std::end(results_order), ElementType::INTEGER_RESULT) == std::end(results_order))
+            results_order[i++] = ElementType::INTEGER_RESULT;
+        if (std::find(std::begin(results_order), std::end(results_order), ElementType::RATIONAL_RESULT) == std::end(results_order))
+            results_order[i++] = ElementType::RATIONAL_RESULT;
+        if (std::find(std::begin(results_order), std::end(results_order), ElementType::COMPLEX_RESULT) == std::end(results_order))
+            results_order[i++] = ElementType::COMPLEX_RESULT;
+    }
+
+    config.real_result.precision = settings.value("real_precision", 3).toInt();
+    if (config.real_result.precision < 1)
+        config.real_result.precision = 3;
+    config.real_result.exp = settings.value("real_exp", 10).toInt();
+    if (config.real_result.exp < 1)
+        config.real_result.exp = 10;
+    config.real_result.result_angle_measure = (AngleMeasure)settings.value("real_result_angle_measure", 0).toInt();
+    if ((int)config.real_result.result_angle_measure < 0 || (int)config.real_result.result_angle_measure > 2)
+        config.real_result.result_angle_measure = AngleMeasure::RADIAN;
+    config.real_result.show_angle_measure = settings.value("real_show_angle_measure", false).toBool();
+
+    config.integer_result.result_notation = (Notation)settings.value("integer_notation", 0).toInt();
+    config.integer_result.show_notation = settings.value("integer_show_notation", true).toBool();
+
+    config.rational_result.fraction_form = (FractionForm)settings.value("rational_fraction_form", 0).toInt();
+
+    config.complex_result.precision = settings.value("complex_precision", 3).toInt();
+    if (config.complex_result.precision < 1)
+        config.complex_result.precision = 3;
+    config.complex_result.exp = settings.value("complex_exp", 10).toInt();
+    if (config.complex_result.exp < 1)
+        config.complex_result.exp = 10;
+    config.complex_result.result_angle_measure = (AngleMeasure)settings.value("complex_result_angle_measure", 0).toInt();
+    if ((int)config.complex_result.result_angle_measure < 0 || (int)config.complex_result.result_angle_measure > 2)
+        config.complex_result.result_angle_measure = AngleMeasure::RADIAN;
+    config.complex_result.show_angle_measure = settings.value("complex_show_angle_measure", false).toBool();
+    config.complex_result.form = (ComplexForm)settings.value("complex_form", 0).toInt();
+    if ((int)config.complex_result.form < 0 || (int)config.complex_result.form > 2)
+        config.complex_result.form = ComplexForm::ARITHMETIC;
+    config.complex_result.max_count = settings.value("complex_max_count", 10).toInt();
+    if (config.complex_result.max_count < 0 || config.complex_result.max_count > 20)
+        config.complex_result.max_count = 10;
     settings.endGroup();
 }
 

@@ -49,6 +49,8 @@ public:
 
     virtual void Resize(uint width, uint height);
 
+    virtual std::u32string GetString(const std::u32string& str);
+
     virtual void OnCaretMoved(const EditorState editor_state);
 
     virtual void OnFormatChanged(const EditorState editor_state);
