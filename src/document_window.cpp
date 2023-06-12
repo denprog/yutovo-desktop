@@ -59,39 +59,41 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
 {
     QMenu menu(this);
     document->WaitTask(document_widget->caret_moving_task_id, 100);
+
+    QMenu* present_as_menu = menu.addMenu(tr("Present as"));
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
     {
-        menu.addAction(present_as_real);
-        menu.addAction(present_as_integer);
-        menu.addAction(present_as_rational);
+        present_as_menu->addAction(present_as_real);
+        present_as_menu->addAction(present_as_integer);
+        present_as_menu->addAction(present_as_rational);
     }
     else
     {
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
         if (!id.empty())
         {
-            menu.addAction(present_as_auto);
-            menu.addAction(present_as_integer);
-            menu.addAction(present_as_rational);
+            present_as_menu->addAction(present_as_auto);
+            present_as_menu->addAction(present_as_integer);
+            present_as_menu->addAction(present_as_rational);
         }
         else
         {
             id = document->FindCurrentParentByType(ElementType::INTEGER_RESULT);
             if (!id.empty())
             {
-                menu.addAction(present_as_auto);
-                menu.addAction(present_as_real);
-                menu.addAction(present_as_rational);
+                present_as_menu->addAction(present_as_auto);
+                present_as_menu->addAction(present_as_real);
+                present_as_menu->addAction(present_as_rational);
             }
             else
             {
                 id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
                 if (!id.empty())
                 {
-                    menu.addAction(present_as_auto);
-                    menu.addAction(present_as_real);
-                    menu.addAction(present_as_integer);
+                    present_as_menu->addAction(present_as_auto);
+                    present_as_menu->addAction(present_as_real);
+                    present_as_menu->addAction(present_as_integer);
                 }
             }
         }
