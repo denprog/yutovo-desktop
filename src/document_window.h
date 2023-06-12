@@ -34,6 +34,9 @@ private slots:
     void OnPresentAsInteger();
     void OnPresentAsRational();
 
+    void OnFractionFormProper();
+    void OnFractionFormImproper();
+
 signals:
     void CaretMoved(const EditorState editor_state);
     void SaveResult(const uint task_id, IOResult result);
@@ -57,6 +60,9 @@ private:
     QAction* present_as_real = nullptr;
     QAction* present_as_integer = nullptr;
     QAction* present_as_rational = nullptr;
+
+    QAction* fraction_form_proper = nullptr;
+    QAction* fraction_form_improper = nullptr;
 };
 
 #endif

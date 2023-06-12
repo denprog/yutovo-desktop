@@ -53,6 +53,13 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
     present_as_rational = new QAction(tr("Present as Rational"), this);
     connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
+
+    fraction_form_proper = new QAction(tr("Proper"), this);
+    fraction_form_proper->setCheckable(true);
+    connect(fraction_form_proper, &QAction::triggered, this, &DocumentWindow::OnFractionFormProper);
+    fraction_form_improper = new QAction(tr("Improper"), this);
+    fraction_form_improper->setCheckable(true);
+    connect(fraction_form_improper, &QAction::triggered, this, &DocumentWindow::OnFractionFormImproper);
 }
 
 void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
@@ -94,6 +101,15 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                     present_as_menu->addAction(present_as_auto);
                     present_as_menu->addAction(present_as_real);
                     present_as_menu->addAction(present_as_integer);
+
+                    auto fraction_form = document->GetFractionForm(id);
+
+                    menu.addSeparator();
+                    QMenu* fraction_type_menu = menu.addMenu(tr("Fraction type"));
+                    fraction_type_menu->addAction(fraction_form_proper);
+                    fraction_form_proper->setChecked(fraction_form == FractionForm::PROPER);
+                    fraction_type_menu->addAction(fraction_form_improper);
+                    fraction_form_improper->setChecked(fraction_form == FractionForm::IMPROPER);
                 }
             }
         }
@@ -190,4 +206,14 @@ void DocumentWindow::OnPresentAsInteger()
 void DocumentWindow::OnPresentAsRational()
 {
     document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL);
+}
+
+void DocumentWindow::OnFractionFormProper()
+{
+    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::PROPER);
+}
+
+void DocumentWindow::OnFractionFormImproper()
+{
+    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::IMPROPER);
 }
