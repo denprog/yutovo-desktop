@@ -46,12 +46,16 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
 
     //context menu
     present_as_auto = new QAction(tr("Present as Auto"), this);
+    present_as_auto->setCheckable(true);
     connect(present_as_auto, &QAction::triggered, this, &DocumentWindow::OnPresentAsAuto);
     present_as_real = new QAction(tr("Present as Real"), this);
+    present_as_real->setCheckable(true);
     connect(present_as_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsReal);
     present_as_integer = new QAction(tr("Present as Intger"), this);
+    present_as_integer->setCheckable(true);
     connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
     present_as_rational = new QAction(tr("Present as Rational"), this);
+    present_as_rational->setCheckable(true);
     connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
 
     fraction_form_proper = new QAction(tr("Proper"), this);
@@ -68,39 +72,40 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     document->WaitTask(document_widget->caret_moving_task_id, 100);
 
     QMenu* present_as_menu = menu.addMenu(tr("Present as"));
+    present_as_menu->addAction(present_as_auto);
+    present_as_menu->addAction(present_as_real);
+    present_as_menu->addAction(present_as_integer);
+    present_as_menu->addAction(present_as_rational);
+    present_as_auto->setChecked(false);
+    present_as_real->setChecked(false);
+    present_as_integer->setChecked(false);
+    present_as_rational->setChecked(false);
+
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
     {
-        present_as_menu->addAction(present_as_real);
-        present_as_menu->addAction(present_as_integer);
-        present_as_menu->addAction(present_as_rational);
+        present_as_auto->setChecked(true);
     }
     else
     {
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
         if (!id.empty())
         {
-            present_as_menu->addAction(present_as_auto);
-            present_as_menu->addAction(present_as_integer);
-            present_as_menu->addAction(present_as_rational);
+            present_as_real->setChecked(true);
         }
         else
         {
             id = document->FindCurrentParentByType(ElementType::INTEGER_RESULT);
             if (!id.empty())
             {
-                present_as_menu->addAction(present_as_auto);
-                present_as_menu->addAction(present_as_real);
-                present_as_menu->addAction(present_as_rational);
+                present_as_integer->setChecked(true);
             }
             else
             {
                 id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
                 if (!id.empty())
                 {
-                    present_as_menu->addAction(present_as_auto);
-                    present_as_menu->addAction(present_as_real);
-                    present_as_menu->addAction(present_as_integer);
+                    present_as_rational->setChecked(true);
 
                     auto fraction_form = document->GetFractionForm(id);
 
