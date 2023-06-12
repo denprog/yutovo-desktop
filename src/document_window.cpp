@@ -51,7 +51,7 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     present_as_real = new QAction(tr("Present as Real"), this);
     present_as_real->setCheckable(true);
     connect(present_as_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsReal);
-    present_as_integer = new QAction(tr("Present as Intger"), this);
+    present_as_integer = new QAction(tr("Present as Integer"), this);
     present_as_integer->setCheckable(true);
     connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
     present_as_rational = new QAction(tr("Present as Rational"), this);
@@ -221,50 +221,50 @@ void DocumentWindow::OnDocumentUpdated(const Rect rect)
 
 void DocumentWindow::OnPresentAsAuto()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::AUTO);
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::AUTO, true);
 }
 
 void DocumentWindow::OnPresentAsReal()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::REAL);
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::REAL, true);
 }
 
 void DocumentWindow::OnPresentAsInteger()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::INTEGER);
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::INTEGER, true);
 }
 
 void DocumentWindow::OnPresentAsRational()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL);
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL, true);
 }
 
 void DocumentWindow::OnBinaryNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::BINARY);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::BINARY, true);
 }
 
 void DocumentWindow::OnOctalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::OCTAL);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::OCTAL, true);
 }
 
 void DocumentWindow::OnDecimalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::DECIMAL);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::DECIMAL, true);
 }
 
 void DocumentWindow::OnHexadecimalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::HEXADECIMAL);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::HEXADECIMAL, true);
 }
 
 void DocumentWindow::OnFractionFormProper()
 {
-    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::PROPER);
+    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::PROPER, true);
 }
 
 void DocumentWindow::OnFractionFormImproper()
 {
-    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::IMPROPER);
+    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::IMPROPER, true);
 }
