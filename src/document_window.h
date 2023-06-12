@@ -34,6 +34,11 @@ private slots:
     void OnPresentAsInteger();
     void OnPresentAsRational();
 
+    void OnBinaryNotation();
+    void OnOctalNotation();
+    void OnDecimalNotation();
+    void OnHexadecimalNotation();
+
     void OnFractionFormProper();
     void OnFractionFormImproper();
 
@@ -60,6 +65,11 @@ private:
     QAction* present_as_real = nullptr;
     QAction* present_as_integer = nullptr;
     QAction* present_as_rational = nullptr;
+
+    QAction* binary_notaion = nullptr;
+    QAction* octal_notaion = nullptr;
+    QAction* decimal_notaion = nullptr;
+    QAction* hexadecimal_notaion = nullptr;
 
     QAction* fraction_form_proper = nullptr;
     QAction* fraction_form_improper = nullptr;

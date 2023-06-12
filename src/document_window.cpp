@@ -58,6 +58,19 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     present_as_rational->setCheckable(true);
     connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
 
+    binary_notaion = new QAction(tr("Binary"), this);
+    binary_notaion->setCheckable(true);
+    connect(binary_notaion, &QAction::triggered, this, &DocumentWindow::OnBinaryNotation);
+    octal_notaion = new QAction(tr("Octal"), this);
+    octal_notaion->setCheckable(true);
+    connect(octal_notaion, &QAction::triggered, this, &DocumentWindow::OnOctalNotation);
+    decimal_notaion = new QAction(tr("Decimal"), this);
+    decimal_notaion->setCheckable(true);
+    connect(decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDecimalNotation);
+    hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
+    hexadecimal_notaion->setCheckable(true);
+    connect(hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnHexadecimalNotation);
+
     fraction_form_proper = new QAction(tr("Proper"), this);
     fraction_form_proper->setCheckable(true);
     connect(fraction_form_proper, &QAction::triggered, this, &DocumentWindow::OnFractionFormProper);
@@ -99,6 +112,19 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (!id.empty())
             {
                 present_as_integer->setChecked(true);
+
+                auto notation = document->GetNotation(id);
+
+                menu.addSeparator();
+                QMenu* notation_menu = menu.addMenu(tr("Notation"));
+                notation_menu->addAction(binary_notaion);
+                binary_notaion->setChecked(notation == Notation::BINARY);
+                notation_menu->addAction(octal_notaion);
+                octal_notaion->setChecked(notation == Notation::OCTAL);
+                notation_menu->addAction(decimal_notaion);
+                decimal_notaion->setChecked(notation == Notation::DECIMAL);
+                notation_menu->addAction(hexadecimal_notaion);
+                hexadecimal_notaion->setChecked(notation == Notation::HEXADECIMAL);
             }
             else
             {
@@ -211,6 +237,26 @@ void DocumentWindow::OnPresentAsInteger()
 void DocumentWindow::OnPresentAsRational()
 {
     document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL);
+}
+
+void DocumentWindow::OnBinaryNotation()
+{
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::BINARY);
+}
+
+void DocumentWindow::OnOctalNotation()
+{
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::OCTAL);
+}
+
+void DocumentWindow::OnDecimalNotation()
+{
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::DECIMAL);
+}
+
+void DocumentWindow::OnHexadecimalNotation()
+{
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::HEXADECIMAL);
 }
 
 void DocumentWindow::OnFractionFormProper()
