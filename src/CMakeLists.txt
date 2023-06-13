@@ -42,6 +42,8 @@ add_executable(${PROJECT_NAME}
     interface_settings_form.cpp
     result_settings_form.ui
     result_settings_form.cpp
+    set_uint_dialog.ui
+    set_uint_dialog.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)

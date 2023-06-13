@@ -34,6 +34,13 @@ private slots:
     void OnPresentAsInteger();
     void OnPresentAsRational();
 
+    void OnSetPrecision();
+    void OnSetExp();
+
+    void OnResultRadian();
+    void OnResultDegree();
+    void OnResultGrad();
+
     void OnBinaryNotation();
     void OnOctalNotation();
     void OnDecimalNotation();
@@ -65,6 +72,13 @@ private:
     QAction* present_as_real = nullptr;
     QAction* present_as_integer = nullptr;
     QAction* present_as_rational = nullptr;
+
+    QAction* set_precision = nullptr;
+    QAction* set_exp = nullptr;
+
+    QAction* result_radian = nullptr;
+    QAction* result_degree = nullptr;
+    QAction* result_grad = nullptr;
 
     QAction* binary_notaion = nullptr;
     QAction* octal_notaion = nullptr;

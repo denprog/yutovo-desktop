@@ -4,7 +4,8 @@
 #include <QMimeData>
 #include <QGuiApplication>
 #include <QMenu>
- #include <QContextMenuEvent>
+#include <QContextMenuEvent>
+#include "set_uint_dialog.h"
 
 //DocumentWindow
 
@@ -45,18 +46,33 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
 
     //context menu
-    present_as_auto = new QAction(tr("Present as Auto"), this);
+    present_as_auto = new QAction(tr("Auto"), this);
     present_as_auto->setCheckable(true);
     connect(present_as_auto, &QAction::triggered, this, &DocumentWindow::OnPresentAsAuto);
-    present_as_real = new QAction(tr("Present as Real"), this);
+    present_as_real = new QAction(tr("Real"), this);
     present_as_real->setCheckable(true);
     connect(present_as_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsReal);
-    present_as_integer = new QAction(tr("Present as Integer"), this);
+    present_as_integer = new QAction(tr("Integer"), this);
     present_as_integer->setCheckable(true);
     connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
-    present_as_rational = new QAction(tr("Present as Rational"), this);
+    present_as_rational = new QAction(tr("Rational"), this);
     present_as_rational->setCheckable(true);
     connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
+
+    set_precision = new QAction(tr("Set precision"), this);
+    connect(set_precision, &QAction::triggered, this, &DocumentWindow::OnSetPrecision);
+    set_exp = new QAction(tr("Set exponential threshold"), this);
+    connect(set_exp, &QAction::triggered, this, &DocumentWindow::OnSetExp);
+
+    result_radian = new QAction(tr("Radian"), this);
+    result_radian->setCheckable(true);
+    connect(result_radian, &QAction::triggered, this, &DocumentWindow::OnResultRadian);
+    result_degree = new QAction(tr("Degree"), this);
+    result_degree->setCheckable(true);
+    connect(result_degree, &QAction::triggered, this, &DocumentWindow::OnResultDegree);
+    result_grad = new QAction(tr("Grad"), this);
+    result_grad->setCheckable(true);
+    connect(result_grad, &QAction::triggered, this, &DocumentWindow::OnResultGrad);
 
     binary_notaion = new QAction(tr("Binary"), this);
     binary_notaion->setCheckable(true);
@@ -94,10 +110,74 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     present_as_integer->setChecked(false);
     present_as_rational->setChecked(false);
 
+    auto add_real_menu = 
+        [&](ElementId id)
+        {
+            int precision = document->GetPrecision(id);
+            int exp = document->GetExp(id);
+            AngleMeasure angle_measure = document->GetResultAngleMeasure(id);
+
+            menu.addSeparator();
+
+            menu.addAction(set_precision);
+            menu.addAction(set_exp);
+
+            QMenu* angle_measure_menu = menu.addMenu(tr("Angle measure"));
+            angle_measure_menu->addAction(result_radian);
+            result_radian->setChecked(angle_measure == AngleMeasure::RADIAN);
+            angle_measure_menu->addAction(result_degree);
+            result_degree->setChecked(angle_measure == AngleMeasure::DEGREE);
+            angle_measure_menu->addAction(result_grad);
+            result_grad->setChecked(angle_measure == AngleMeasure::GRAD);
+        };
+    
+    auto add_integer_menu = 
+        [&](ElementId id)
+        {
+            auto notation = document->GetNotation(id);
+
+            menu.addSeparator();
+            QMenu* notation_menu = menu.addMenu(tr("Notation"));
+            notation_menu->addAction(binary_notaion);
+            binary_notaion->setChecked(notation == Notation::BINARY);
+            notation_menu->addAction(octal_notaion);
+            octal_notaion->setChecked(notation == Notation::OCTAL);
+            notation_menu->addAction(decimal_notaion);
+            decimal_notaion->setChecked(notation == Notation::DECIMAL);
+            notation_menu->addAction(hexadecimal_notaion);
+            hexadecimal_notaion->setChecked(notation == Notation::HEXADECIMAL);
+        };
+    
+    auto add_rational_menu = 
+        [&](ElementId id)
+        {
+            auto fraction_form = document->GetFractionForm(id);
+
+            menu.addSeparator();
+            QMenu* fraction_type_menu = menu.addMenu(tr("Fraction type"));
+            fraction_type_menu->addAction(fraction_form_proper);
+            fraction_form_proper->setChecked(fraction_form == FractionForm::PROPER);
+            fraction_type_menu->addAction(fraction_form_improper);
+            fraction_form_improper->setChecked(fraction_form == FractionForm::IMPROPER);
+        };
+
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
     {
         present_as_auto->setChecked(true);
+
+        switch (document->GetResultType(id))
+        {
+        case ResultType::REAL:
+            add_real_menu(id);
+            break;
+        case ResultType::INTEGER:
+            add_integer_menu(id);
+            break;
+        case ResultType::RATIONAL:
+            add_rational_menu(id);
+            break;
+        }
     }
     else
     {
@@ -105,6 +185,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         if (!id.empty())
         {
             present_as_real->setChecked(true);
+            add_real_menu(id);
         }
         else
         {
@@ -112,19 +193,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (!id.empty())
             {
                 present_as_integer->setChecked(true);
-
-                auto notation = document->GetNotation(id);
-
-                menu.addSeparator();
-                QMenu* notation_menu = menu.addMenu(tr("Notation"));
-                notation_menu->addAction(binary_notaion);
-                binary_notaion->setChecked(notation == Notation::BINARY);
-                notation_menu->addAction(octal_notaion);
-                octal_notaion->setChecked(notation == Notation::OCTAL);
-                notation_menu->addAction(decimal_notaion);
-                decimal_notaion->setChecked(notation == Notation::DECIMAL);
-                notation_menu->addAction(hexadecimal_notaion);
-                hexadecimal_notaion->setChecked(notation == Notation::HEXADECIMAL);
+                add_integer_menu(id);
             }
             else
             {
@@ -132,15 +201,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                 if (!id.empty())
                 {
                     present_as_rational->setChecked(true);
-
-                    auto fraction_form = document->GetFractionForm(id);
-
-                    menu.addSeparator();
-                    QMenu* fraction_type_menu = menu.addMenu(tr("Fraction type"));
-                    fraction_type_menu->addAction(fraction_form_proper);
-                    fraction_form_proper->setChecked(fraction_form == FractionForm::PROPER);
-                    fraction_type_menu->addAction(fraction_form_improper);
-                    fraction_form_improper->setChecked(fraction_form == FractionForm::IMPROPER);
+                    add_rational_menu(id);
                 }
             }
         }
@@ -237,6 +298,51 @@ void DocumentWindow::OnPresentAsInteger()
 void DocumentWindow::OnPresentAsRational()
 {
     document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL, true);
+}
+
+void DocumentWindow::OnSetPrecision()
+{
+    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
+    if (id.empty())
+        return;
+    
+    int precision = document->GetPrecision(id);
+    SetUintDialog dialog(precision, tr("Set precision"), tr("Precision"));
+    if (!dialog.exec())
+        return;
+    document->SetPrecision(document_widget->current_editor_state.caret_state.id, dialog.value, true);
+}
+
+void DocumentWindow::OnSetExp()
+{
+    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
+    if (id.empty())
+        return;
+    
+    int exp = document->GetExp(id);
+    SetUintDialog dialog(exp, tr("Set exponential threshold"), tr("Exponential threshold"));
+    if (!dialog.exec())
+        return;
+    document->SetExp(document_widget->current_editor_state.caret_state.id, dialog.value, true);
+}
+
+void DocumentWindow::OnResultRadian()
+{
+    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::RADIAN, true);
+}
+
+void DocumentWindow::OnResultDegree()
+{
+    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::DEGREE, true);
+}
+
+void DocumentWindow::OnResultGrad()
+{
+    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::GRAD, true);
 }
 
 void DocumentWindow::OnBinaryNotation()
