@@ -1381,19 +1381,19 @@ void MainWindow::ReadSettings()
     for (auto r : v)
     {
         if (i < 4)
-            config.auto_result.results_order[i++] = (ElementType)r.toInt();
+            config.auto_result.results_order[i++] = (ResultType)r.toInt();
     }
     auto& results_order = config.auto_result.results_order;
     for (; i < 4; ++i)
     {
-        if (std::find(std::begin(results_order), std::end(results_order), ElementType::REAL_RESULT) == std::end(results_order))
-            results_order[i++] = ElementType::REAL_RESULT;
-        if (std::find(std::begin(results_order), std::end(results_order), ElementType::INTEGER_RESULT) == std::end(results_order))
-            results_order[i++] = ElementType::INTEGER_RESULT;
-        if (std::find(std::begin(results_order), std::end(results_order), ElementType::RATIONAL_RESULT) == std::end(results_order))
-            results_order[i++] = ElementType::RATIONAL_RESULT;
-        if (std::find(std::begin(results_order), std::end(results_order), ElementType::COMPLEX_RESULT) == std::end(results_order))
-            results_order[i++] = ElementType::COMPLEX_RESULT;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order))
+            results_order[i++] = ResultType::REAL;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::INTEGER) == std::end(results_order))
+            results_order[i++] = ResultType::INTEGER;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::RATIONAL) == std::end(results_order))
+            results_order[i++] = ResultType::RATIONAL;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order))
+            results_order[i++] = ResultType::COMPLEX;
     }
 
     config.real_result.precision = settings.value("real_precision", 3).toInt();

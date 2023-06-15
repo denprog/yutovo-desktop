@@ -94,16 +94,16 @@ void ResultSettingsForm::FillResultsOrder()
     {
         switch (config.auto_result.results_order[i])
         {
-        case ElementType::REAL_RESULT:
+        case ResultType::REAL:
             ui->auto_result_order->addItem(tr("Real"));
             break;
-        case ElementType::INTEGER_RESULT:
+        case ResultType::INTEGER:
             ui->auto_result_order->addItem(tr("Integer"));
             break;
-        case ElementType::RATIONAL_RESULT:
+        case ResultType::RATIONAL:
             ui->auto_result_order->addItem(tr("Rational"));
             break;
-        case ElementType::COMPLEX_RESULT:
+        case ResultType::COMPLEX:
             ui->auto_result_order->addItem(tr("Complex"));
             break;
         default:
