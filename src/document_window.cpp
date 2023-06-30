@@ -6,6 +6,7 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include "set_uint_dialog.h"
+#include "set_unit_dialog.h"
 
 //DocumentWindow
 
@@ -63,6 +64,8 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(set_precision, &QAction::triggered, this, &DocumentWindow::OnSetPrecision);
     set_exp = new QAction(tr("Set exponential threshold"), this);
     connect(set_exp, &QAction::triggered, this, &DocumentWindow::OnSetExp);
+    set_unit = new QAction(tr("Set unit"), this);
+    connect(set_unit, &QAction::triggered, this, &DocumentWindow::OnSetUnit);
 
     result_radian = new QAction(tr("Radian"), this);
     result_radian->setCheckable(true);
@@ -122,6 +125,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             menu.addAction(set_precision);
             menu.addAction(set_exp);
 
+            if (document->HasUnit(id))
+                menu.addAction(set_unit);
+
             QMenu* angle_measure_menu = menu.addMenu(tr("Angle measure"));
             angle_measure_menu->addAction(result_radian);
             result_radian->setChecked(angle_measure == AngleMeasure::RADIAN);
@@ -159,6 +165,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             fraction_form_proper->setChecked(fraction_form == FractionForm::PROPER);
             fraction_type_menu->addAction(fraction_form_improper);
             fraction_form_improper->setChecked(fraction_form == FractionForm::IMPROPER);
+
+            if (document->HasUnit(id))
+                menu.addAction(set_unit);
         };
 
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
@@ -328,6 +337,28 @@ void DocumentWindow::OnSetExp()
     if (!dialog.exec())
         return;
     document->SetExp(document_widget->current_editor_state.caret_state.id, dialog.value, true);
+}
+
+void DocumentWindow::OnSetUnit()
+{
+    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
+    if (id.empty())
+        return;
+    if (!document->HasUnit(id))
+        return;
+    
+    std::vector<yutovo_calculator::Unit> cast_units;
+    document->GetCastUnits(id, cast_units);
+
+    SetUnitDialog dialog(cast_units);
+    if (!dialog.exec())
+        return;
+    
+    document->SetUnit(document_widget->current_editor_state.caret_state.id, dialog.value, true);
 }
 
 void DocumentWindow::OnResultRadian()

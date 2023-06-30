@@ -10,7 +10,7 @@
 
 DocumentWidget::DocumentWidget(QWidget *parent) :
     QWidget(parent),
-    window(this)
+    window(size().width(), size().height())
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
     connect(&window, &QtWindow::WindowUpdated, this, &DocumentWidget::OnWindowUpdated);

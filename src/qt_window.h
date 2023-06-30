@@ -17,7 +17,7 @@ class QtWindow : public QObject, public Window
     Q_OBJECT
 
 public:
-    QtWindow(DocumentWidget* document_widget);
+    QtWindow(const int width, const int height);
 
     virtual void Init();
 
@@ -51,6 +51,12 @@ public:
 
     virtual std::u32string GetString(const std::u32string& str);
 
+    //virtual void OnElementDrawn(const ElementId id);
+
+    virtual Rect GetRect();
+
+    virtual void SetDocumentSize(const Size size);
+
     virtual void OnCaretMoved(const EditorState editor_state);
 
     virtual void OnFormatChanged(const EditorState editor_state);
@@ -60,8 +66,6 @@ public:
 
     virtual void OnCopyResult(CopyResult result);
     virtual void OnPasteResult(PasteResult result);
-
-    virtual Rect GetRect();
 
 public:
     void GetPixmap(QPixmap& out, const QRect& rect);
@@ -74,6 +78,8 @@ signals:
     void LoadResult(const uint task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
+    //void ElementDrawn(const ElementId id);
+    //void DocumentRedrawn();
 
 private:
     std::unique_ptr<QImage> surface;

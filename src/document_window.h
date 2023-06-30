@@ -36,6 +36,7 @@ private slots:
 
     void OnSetPrecision();
     void OnSetExp();
+    void OnSetUnit();
 
     void OnResultRadian();
     void OnResultDegree();
@@ -75,6 +76,7 @@ private:
 
     QAction* set_precision = nullptr;
     QAction* set_exp = nullptr;
+    QAction* set_unit = nullptr;
 
     QAction* result_radian = nullptr;
     QAction* result_degree = nullptr;

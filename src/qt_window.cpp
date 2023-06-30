@@ -2,12 +2,11 @@
 #include <QPainter>
 #include <QFontMetrics>
 #include <QPainterPath>
-#include "document_widget.h"
 
 //QtWindow
 
-QtWindow::QtWindow(DocumentWidget* document_widget) :
-    surface(new QImage(document_widget->size().width(), document_widget->size().height(), QImage::Format_RGB32))
+QtWindow::QtWindow(const int width, const int height) :
+    surface(new QImage(width, height, QImage::Format_RGB32))
 {
 }
 
@@ -279,10 +278,21 @@ std::u32string QtWindow::GetString(const std::u32string& str)
     return tr(QString::fromUcs4(str.c_str()).toUtf8().data()).toStdU32String();
 }
 
+// void QtWindow::OnElementDrawn(const ElementId id)
+// {
+//     emit ElementDrawn(id);
+// }
+
 Rect QtWindow::GetRect()
 {
     QRect rect = surface->rect();
     return Rect{rect.left(), rect.top(), rect.width(), rect.height()};
+}
+
+void QtWindow::SetDocumentSize(const Size size)
+{
+    Window::SetDocumentSize(size);
+    //emit DocumentRedrawn();
 }
 
 void QtWindow::OnCaretMoved(const EditorState editor_state)
