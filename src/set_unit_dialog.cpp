@@ -72,7 +72,7 @@ void SetUnitDialog::FillUnits()
         Unit& unit = units[i];
         document->Resize(0, 0);
         document->MoveCaretToDocumentBegin(false);
-        document->WaitTask(document->DeleteElements(false, false, false));
+        document->WaitTask(document->DeleteElements(false, false));
         document->WaitTask(document->InsertUnit(unit));
         ElementPtr text = document->GetElement({0});
         window.Resize(text->rect.width, text->rect.height);

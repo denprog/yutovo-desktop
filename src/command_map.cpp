@@ -41,9 +41,9 @@ void ShortcutsMap::Init(DocumentPtr _document)
     Add(QKeySequence("Ctrl+A"), "", std::function<void ()>(std::bind(&Document::SelectAll, document.get())));
 
     //edit text
-    Add(QKeySequence("Delete"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), false, true, false)));
-    Add(QKeySequence("Backspace"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), true, true, false)));
-    Add(QKeySequence("Return"), "", std::function<void ()>(std::bind(&Document::InsertParagraph, document.get(), true, false)));
+    Add(QKeySequence("Delete"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), false, true)));
+    Add(QKeySequence("Backspace"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), true, true)));
+    Add(QKeySequence("Return"), "", std::function<void ()>(std::bind(&Document::InsertParagraph, document.get(), true)));
 
     Add(QKeySequence("Ctrl+Z"), "", std::function<void ()>(std::bind(&Document::Undo, document.get())));
     Add(QKeySequence("Ctrl+Y"), "", std::function<void ()>(std::bind(&Document::Redo, document.get())));
