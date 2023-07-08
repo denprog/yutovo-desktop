@@ -278,21 +278,10 @@ std::u32string QtWindow::GetString(const std::u32string& str)
     return tr(QString::fromUcs4(str.c_str()).toUtf8().data()).toStdU32String();
 }
 
-// void QtWindow::OnElementDrawn(const ElementId id)
-// {
-//     emit ElementDrawn(id);
-// }
-
 Rect QtWindow::GetRect()
 {
     QRect rect = surface->rect();
     return Rect{rect.left(), rect.top(), rect.width(), rect.height()};
-}
-
-void QtWindow::SetDocumentSize(const Size size)
-{
-    Window::SetDocumentSize(size);
-    //emit DocumentRedrawn();
 }
 
 void QtWindow::OnCaretMoved(const EditorState editor_state)

@@ -23,7 +23,6 @@ public:
 
 public slots:
     void OnDocumentUpdated(const Rect rect);
-    void OnWindowUpdated();
     void OnCaretMoved(const EditorState editor_state);
 
 signals:

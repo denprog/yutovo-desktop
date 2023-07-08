@@ -51,11 +51,7 @@ public:
 
     virtual std::u32string GetString(const std::u32string& str);
 
-    //virtual void OnElementDrawn(const ElementId id);
-
     virtual Rect GetRect();
-
-    virtual void SetDocumentSize(const Size size);
 
     virtual void OnCaretMoved(const EditorState editor_state);
 
@@ -72,14 +68,11 @@ public:
 
 signals:
     void DocumentUpdated(const Rect rect);
-    void WindowUpdated();
     void CaretMoved(const EditorState editor_state);
     void SaveResult(const uint task_id, IOResult result);
     void LoadResult(const uint task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
-    //void ElementDrawn(const ElementId id);
-    //void DocumentRedrawn();
 
 private:
     std::unique_ptr<QImage> surface;

@@ -13,7 +13,6 @@ DocumentWidget::DocumentWidget(QWidget *parent) :
     window(size().width(), size().height())
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
-    connect(&window, &QtWindow::WindowUpdated, this, &DocumentWidget::OnWindowUpdated);
     connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);
 
     setFocusPolicy(Qt::StrongFocus);
@@ -41,12 +40,6 @@ bool DocumentWidget::GetElementAtCoords(const int x, const int y, ElementId& id)
 void DocumentWidget::OnDocumentUpdated(const Rect rect)
 {
     update(rect.left, rect.top, rect.width, rect.height);
-}
-
-void DocumentWidget::OnWindowUpdated()
-{
-    update(rect());
-    document->Redraw();
 }
 
 void DocumentWidget::OnCaretMoved(const EditorState editor_state)
