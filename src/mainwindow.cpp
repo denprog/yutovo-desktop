@@ -1178,18 +1178,22 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     {
         for (auto& state : s.state)
         {
-            StringFormat f;
-            document->GetStringFormat(state.id, f);
-            if (format.family != "" && format.family != f.family)
-                format.family = "";
-            if (format.size != 0 && format.size != f.size)
-                format.size = 0;
-            if (format.bold != false && format.bold != f.bold)
-                format.bold = false;
-            if (format.italic != false && format.italic != f.italic)
-                format.italic = false;
-            if (format.underline != false && format.underline != f.underline)
-                format.underline = false;
+            for (int i = state.start; i < state.start + state.size; ++i)
+            {
+                ElementId _id = GetChild(state.id, i);
+                StringFormat f;
+                document->GetStringFormat(_id, f);
+                if (format.family != "" && format.family != f.family)
+                    format.family = "";
+                if (format.size != 0 && format.size != f.size)
+                    format.size = 0;
+                if (format.bold != false && format.bold != f.bold)
+                    format.bold = false;
+                if (format.italic != false && format.italic != f.italic)
+                    format.italic = false;
+                if (format.underline != false && format.underline != f.underline)
+                    format.underline = false;
+            }
         }
     }
 
