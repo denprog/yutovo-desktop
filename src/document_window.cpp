@@ -103,15 +103,19 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     QMenu menu(this);
     document->WaitTask(document_widget->caret_moving_task_id, 100);
 
-    QMenu* present_as_menu = menu.addMenu(tr("Present as"));
-    present_as_menu->addAction(present_as_auto);
-    present_as_menu->addAction(present_as_real);
-    present_as_menu->addAction(present_as_integer);
-    present_as_menu->addAction(present_as_rational);
-    present_as_auto->setChecked(false);
-    present_as_real->setChecked(false);
-    present_as_integer->setChecked(false);
-    present_as_rational->setChecked(false);
+    auto add_present_as_menu = 
+        [&]()
+        {
+            QMenu* present_as_menu = menu.addMenu(tr("Present as"));
+            present_as_menu->addAction(present_as_auto);
+            present_as_menu->addAction(present_as_real);
+            present_as_menu->addAction(present_as_integer);
+            present_as_menu->addAction(present_as_rational);
+            present_as_auto->setChecked(false);
+            present_as_real->setChecked(false);
+            present_as_integer->setChecked(false);
+            present_as_rational->setChecked(false);
+        };
 
     auto add_real_menu = 
         [&](ElementId id)
@@ -173,6 +177,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
     {
+        add_present_as_menu();
         present_as_auto->setChecked(true);
 
         switch (document->GetResultType(id))
@@ -193,6 +198,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
         if (!id.empty())
         {
+            add_present_as_menu();
             present_as_real->setChecked(true);
             add_real_menu(id);
         }
@@ -201,6 +207,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             id = document->FindCurrentParentByType(ElementType::INTEGER_RESULT);
             if (!id.empty())
             {
+                add_present_as_menu();
                 present_as_integer->setChecked(true);
                 add_integer_menu(id);
             }
@@ -209,6 +216,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                 id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
                 if (!id.empty())
                 {
+                    add_present_as_menu();
                     present_as_rational->setChecked(true);
                     add_rational_menu(id);
                 }
