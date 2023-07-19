@@ -121,3 +121,13 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
 
     event->accept();
 }
+
+void DocumentWidget::focusInEvent(QFocusEvent *event)
+{
+    document->SetCaretVisible(true);
+}
+
+void DocumentWidget::focusOutEvent(QFocusEvent *event)
+{
+    document->SetCaretVisible(false);
+}
