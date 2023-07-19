@@ -13,6 +13,7 @@ set(CMAKE_AUTORCC ON)
 
 find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(yutovo_logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 
 if (Qt5Widgets_FOUND)
     if (Qt5Widgets_VERSION VERSION_LESS 5.14.0)
@@ -57,6 +58,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
     yutovo_editor
+    yutovo_logger
     Qt5::Widgets
 )
 
