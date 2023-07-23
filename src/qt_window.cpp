@@ -224,7 +224,11 @@ int QtWindow::GetCharPos(const std::u32string& text, const StringFormatPtr forma
     font.setUnderline(format->underline);
     QFontMetrics m(font);
     QString str = QString::fromUcs4(text.c_str());
-    return m.horizontalAdvance(str, pos);
+    if (str.length() == pos)
+        return m.horizontalAdvance(str, pos);
+    int p1 = m.horizontalAdvance(str, pos + 1);
+    int p2 = m.horizontalAdvance(str.mid(pos), 1);
+    return p1 - p2;
 }
 
 int QtWindow::GetFontAscent(const StringFormatPtr format)
