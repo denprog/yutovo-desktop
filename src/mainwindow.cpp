@@ -83,6 +83,9 @@ void MainWindow::SetupGui()
     functions_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
+
+    auto document = GetCurrentDocument();
+    OnCaretMoved(document->GetEditorState());
 }
 
 void MainWindow::AddEditorTab(const QString name)
