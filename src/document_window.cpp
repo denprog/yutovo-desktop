@@ -98,6 +98,11 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(fraction_form_improper, &QAction::triggered, this, &DocumentWindow::OnFractionFormImproper);
 }
 
+DocumentWindow::~DocumentWindow()
+{
+    document.reset();
+}
+
 void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
 {
     QMenu menu(this);

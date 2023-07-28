@@ -107,8 +107,11 @@ DocumentPtr MainWindow::GetCurrentDocument()
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (w)
+    {
         w->SetFocus();
-    return w->document;
+        return w->document;
+    }
+    return nullptr;
 }
 
 void MainWindow::CreateActions()
@@ -554,6 +557,19 @@ void MainWindow::OpenFile(QString file_name)
         }
     }
 
+    {
+        //close the current document if it is empty
+        auto document = GetCurrentDocument();
+        if (document && !document->CanUndo() && !document->CanRedo())
+        {
+            document.reset();
+            DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+            if (w->path == "")
+                OnCloseEditorTab(ui->editor_tabs->currentIndex());
+        }
+    }
+
+    //open new tab with document
     QFileInfo file_info(file_name);
     AddEditorTab(file_info.fileName());
 

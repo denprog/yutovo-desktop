@@ -10,6 +10,7 @@ class DocumentWindow : public QWidget
 
 public:
     DocumentWindow(yutovo::Config& _config, QWidget *parent = nullptr);
+    ~DocumentWindow();
 
     void MakeContextMenu(QContextMenuEvent* event);
 
