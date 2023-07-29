@@ -19,11 +19,6 @@ DocumentWidget::DocumentWidget(QWidget *parent) :
     setMouseTracking(true);
 }
 
-DocumentWidget::~DocumentWidget()
-{
-    document.reset();
-}
-
 DocumentPtr DocumentWidget::CreateDocument()
 {
     document.reset(new Document(&window));

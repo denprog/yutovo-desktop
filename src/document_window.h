@@ -10,7 +10,6 @@ class DocumentWindow : public QWidget
 
 public:
     DocumentWindow(yutovo::Config& _config, QWidget *parent = nullptr);
-    ~DocumentWindow();
 
     void MakeContextMenu(QContextMenuEvent* event);
 
@@ -63,8 +62,8 @@ private:
 
     yutovo::Config& config;
 
-    DocumentPtr document;
     DocumentWidget* document_widget;
+    DocumentPtr document;
 
     QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;
 

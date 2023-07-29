@@ -14,7 +14,6 @@ class DocumentWidget : public QWidget
 
 public:
     DocumentWidget(QWidget *parent);
-    ~DocumentWidget();
 
     DocumentPtr CreateDocument();
 
