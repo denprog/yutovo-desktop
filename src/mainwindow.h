@@ -75,6 +75,8 @@ private:
     void StatusBar();
 
 private slots:
+    void OnNextEditorTab();
+    void OnPrevEditorTab();
     void OnCloseEditorTab(int index);
 
     void OnInsertCode();

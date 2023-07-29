@@ -2,6 +2,7 @@
 #define __COMMAND_MAP_H__
 
 #include <QKeySequence>
+#include <QWidget>
 #include <functional>
 #include <variant>
 #include <yutovo_editor/document.h>
@@ -51,7 +52,7 @@ class ShortcutsMap
 public:
     ShortcutsMap() = default;
 
-    void Init(DocumentPtr _document);
+    void Init(DocumentPtr _document, QWidget* document_widget);
 
     bool Call(const QKeySequence& shortcut, QChar symbol, const EditorState& editor_state);
 
@@ -64,6 +65,8 @@ private:
         CommandContext context = CommandContext::Everywhere);
     void Add(QKeySequence shortcut, QChar symbol, std::string command, std::function<void (const std::string&)> func, 
         CommandContext context = CommandContext::Everywhere);
+
+    void Add(QKeySequence shortcut, std::function<void ()> func);
 
 private:
     DocumentPtr document;

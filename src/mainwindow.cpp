@@ -99,6 +99,9 @@ void MainWindow::AddEditorTab(const QString name)
     connect(wnd, &DocumentWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
     connect(wnd, &DocumentWindow::ClipboardPasteResult, this, &MainWindow::OnClipboardPasteResult);
 
+    connect(wnd->document_widget, &DocumentWidget::NextEditorTab, this, &MainWindow::OnNextEditorTab);
+    connect(wnd->document_widget, &DocumentWidget::PrevEditorTab, this, &MainWindow::OnPrevEditorTab);
+
     ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
     wnd->SetFocus();
 }
@@ -783,6 +786,24 @@ void MainWindow::StatusBar()
 {
     status_bar_action->isChecked() ? statusBar()->show() : statusBar()->hide();
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
+}
+
+void MainWindow::OnNextEditorTab()
+{
+    int c = ui->editor_tabs->currentIndex();
+    if (c == ui->editor_tabs->count() - 1)
+        ui->editor_tabs->setCurrentIndex(0);
+    else
+        ui->editor_tabs->setCurrentIndex(c + 1);
+}
+
+void MainWindow::OnPrevEditorTab()
+{
+    int c = ui->editor_tabs->currentIndex();
+    if (c == 0)
+        ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
+    else
+        ui->editor_tabs->setCurrentIndex(c - 1);
 }
 
 void MainWindow::OnCloseEditorTab(int index)

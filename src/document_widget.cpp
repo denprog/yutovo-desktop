@@ -22,7 +22,7 @@ DocumentWidget::DocumentWidget(QWidget *parent) :
 DocumentPtr DocumentWidget::CreateDocument()
 {
     document.reset(new Document(&window));
-    shortcuts_map.Init(document);
+    shortcuts_map.Init(document, this);
     return document;
 }
 
@@ -35,6 +35,16 @@ bool DocumentWidget::GetElementAtCoords(const int x, const int y, ElementId& id)
 {
     auto p = window.GetDocumentPoint();
     return document->GetElementAtCoords(x + p.x, y + p.y, id);
+}
+
+void DocumentWidget::OnNextEditorTab()
+{
+    emit NextEditorTab();
+}
+
+void DocumentWidget::OnPrevEditorTab()
+{
+    emit PrevEditorTab();
 }
 
 void DocumentWidget::OnDocumentUpdated(const Rect rect)

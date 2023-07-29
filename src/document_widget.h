@@ -21,6 +21,10 @@ public:
 
     bool GetElementAtCoords(const int x, const int y, ElementId& id);
 
+public:
+    void OnNextEditorTab();
+    void OnPrevEditorTab();
+
 public slots:
     void OnDocumentUpdated(const Rect rect);
     void OnCaretMoved(const EditorState editor_state);
@@ -28,6 +32,8 @@ public slots:
 signals:
     void WheelVertical(const int value);
     void WheelHorizontal(const int value);
+    void NextEditorTab();
+    void PrevEditorTab();
 
 protected:
     virtual void paintEvent(QPaintEvent *event);

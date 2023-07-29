@@ -1,11 +1,12 @@
 #include "command_map.h"
+#include "document_widget.h"
 
 namespace yutovo
 {
 
 //ShortcutsMap
 
-void ShortcutsMap::Init(DocumentPtr _document)
+void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
 {
     document = _document;
 
@@ -71,6 +72,12 @@ void ShortcutsMap::Init(DocumentPtr _document)
     Add(QKeySequence(""), '(', "\\open_fence", std::function<void ()>(std::bind(&Document::InsertOpenFence, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ')', "\\close_fence", std::function<void ()>(std::bind(&Document::InsertCloseFence, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ':', "\\assign", std::function<void ()>(std::bind(&Document::InsertAssignment, document.get(), true)), CommandContext::Formula);
+
+    //main window
+    Add(QKeySequence("Ctrl+Tab"), std::function<void ()>(std::bind(&DocumentWidget::OnNextEditorTab, (DocumentWidget*)document_widget)));
+    Add(QKeySequence("Ctrl+]"), std::function<void ()>(std::bind(&DocumentWidget::OnNextEditorTab, (DocumentWidget*)document_widget)));
+    Add(QKeySequence("Ctrl+Shift+Tab"), std::function<void ()>(std::bind(&DocumentWidget::OnPrevEditorTab, (DocumentWidget*)document_widget)));
+    Add(QKeySequence("Ctrl+["), std::function<void ()>(std::bind(&DocumentWidget::OnPrevEditorTab, (DocumentWidget*)document_widget)));
 }
 
 bool ShortcutsMap::Call(const QKeySequence& shortcut, QChar symbol, const EditorState& editor_state)
@@ -146,6 +153,11 @@ void ShortcutsMap::Add(QKeySequence shortcut, std::string command, std::function
 void ShortcutsMap::Add(QKeySequence shortcut, QChar symbol, std::string command, std::function<void (const std::string&)> func, CommandContext context)
 {
     command_maps.push_back(CommandMapString{shortcut, symbol, command, context, func});
+}
+
+void ShortcutsMap::Add(QKeySequence shortcut, std::function<void ()> func)
+{
+    command_maps.push_back(CommandMapVoid{shortcut, QChar(), "", CommandContext::Everywhere, func});
 }
 
 }
