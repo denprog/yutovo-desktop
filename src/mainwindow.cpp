@@ -237,6 +237,7 @@ void MainWindow::CreateActions()
     size_combo->setEditable(true);
     connect(size_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnCurrentSizeChanged(int)));
     connect(size_combo->lineEdit(), &QLineEdit::editingFinished, this, &MainWindow::OnCurrentSizeEditingFinished);
+    size_combo->setInsertPolicy(QComboBox::NoInsert);
     format_toolbar->addWidget(size_combo);
     FillSizes(family_combo->currentFont());
 
@@ -848,7 +849,24 @@ void MainWindow::OnCurrentFontChanged(const QFont& font)
 
 void MainWindow::OnCurrentSizeEditingFinished()
 {
-    UpdateFontSize();
+    int cur_size = size_combo->currentText().toInt();
+    for (int i = 0; i < size_combo->count(); ++i)
+    {
+        int s = size_combo->itemText(i).toInt();
+        if (s == cur_size)
+        {
+            size_combo->setCurrentIndex(i);
+            return;
+        }
+        else if (s > cur_size)
+        {
+            size_combo->insertItem(i, size_combo->currentText());
+            size_combo->setCurrentIndex(i);
+            return;
+        }
+    }
+    size_combo->insertItem(size_combo->count(), size_combo->currentText());
+    size_combo->setCurrentIndex(size_combo->count() - 1);
 }
 
 void MainWindow::OnCurrentSizeChanged(int index)
@@ -1318,7 +1336,7 @@ void MainWindow::FillSizes(const QFont& font)
 
     {
         const QSignalBlocker blocker(size_combo);
-        // sizeCombo signals are now blocked until end of scope
+        //signals are now blocked until end of scope
         size_combo->clear();
 
         if (font_database.isSmoothlyScalable(font.family(), font_database.styleString(font)))
@@ -1342,10 +1360,7 @@ void MainWindow::FillSizes(const QFont& font)
     }
 
     int i = size_combo->findText(current_size);
-
-    if (i == -1)
-        size_combo->setCurrentIndex(qMax(0, size_combo->count() / 3));
-    else
+    if (i != -1)
         size_combo->setCurrentIndex(i);
 }
 

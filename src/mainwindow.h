@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QFontComboBox>
 #include <QSettings>
+#include <QSortFilterProxyModel>
 #include <yutovo_editor/document.h>
 #include "ui_mainwindow.h"
 #include <cstring>
