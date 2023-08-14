@@ -55,6 +55,10 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence(""), '+', "\\plus", std::function<void ()>(std::bind(&Document::InsertPlus, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '-', "\\minus", std::function<void ()>(std::bind(&Document::InsertMinus, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '*', "\\times", std::function<void ()>(std::bind(&Document::InsertMultiply, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), '!', "\\excl", std::function<void ()>(std::bind(&Document::InsertExclamation, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), '&', "\\and", std::function<void ()>(std::bind(&Document::InsertAnd, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), '|', "\\or", std::function<void ()>(std::bind(&Document::InsertOr, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), '^', "\\xor", std::function<void ()>(std::bind(&Document::InsertXor, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence("/"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '^', "\\pow", std::function<void ()>(std::bind(&Document::InsertPower, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence("Ctrl+Shift+N"), "\\nth", std::function<void ()>(std::bind(&Document::InsertNthRoot, document.get(), true)));
