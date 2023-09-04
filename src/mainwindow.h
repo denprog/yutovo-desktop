@@ -162,7 +162,7 @@ private:
 
     QString dialog_file_name; //file name to be loaded/saved
 
-    std::stringstream clipboard_array;
+    std::u32string clipboard_json;
     std::u32string clipboard_text;
 
     QMenu* recent_files_menu = nullptr;

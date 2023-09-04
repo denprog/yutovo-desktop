@@ -684,7 +684,7 @@ void MainWindow::Copy()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->Copy(clipboard_array, clipboard_text);
+        document->Copy(clipboard_json, clipboard_text);
 }
 
 void MainWindow::Paste()
@@ -706,17 +706,18 @@ void MainWindow::Paste()
                 s = mime_data->text();
             if (s == "")
                 return;
-            document->Paste(ToUtfString(s.toUtf8().data()));
+            document->PasteText(ToUtfString(s.toUtf8().data()));
             return;
         }
         std::stringstream str(arr.toStdString());
-        document->Paste(str);
+        auto s = ToUtfString(str.str());
+        document->Paste(s);
     }
     else
     {
         QString s = clipboard->text();
         if (s != "")
-            document->Paste(ToUtfString(s.toUtf8().data()));
+            document->PasteText(ToUtfString(s.toUtf8().data()));
     }
 }
 
@@ -724,7 +725,7 @@ void MainWindow::Cut()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->Cut(clipboard_array, clipboard_text);
+        document->Cut(clipboard_json, clipboard_text);
 }
 
 void MainWindow::Undo()
@@ -1302,12 +1303,12 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
         return;
     QClipboard* clipboard = QGuiApplication::clipboard();
     QMimeData* mime_data = new QMimeData;
-    std::string s = clipboard_array.str();
-    QByteArray item_data(s.c_str(), s.size());
+    auto s = ToBasicString(clipboard_json);
+    QByteArray item_data(s.c_str(), s.length());
     mime_data->setData("yutovo/elements", item_data); //custom clipboard type
     mime_data->setText(ToBasicString(clipboard_text).c_str());
     clipboard->setMimeData(mime_data);
-    clipboard_array.clear();
+    clipboard_json = U"";
     clipboard_text = U"";
 }
 
