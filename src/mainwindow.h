@@ -79,6 +79,7 @@ private slots:
     void OnNextEditorTab();
     void OnPrevEditorTab();
     void OnCloseEditorTab(int index);
+    void OnEditorChanged(int index);
 
     void OnInsertCode();
 

@@ -55,7 +55,7 @@ void MainWindow::SetupGui()
     ui->editor_tabs->clear();
     ui->editor_tabs->setTabsClosable(true);
     connect(ui->editor_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(OnCloseEditorTab(int)));
-    AddEditorTab("(No name)");
+    connect(ui->editor_tabs, SIGNAL(currentChanged(int)), this, SLOT(OnEditorChanged(int)));
 
     CreateActions();
     addToolBarBreak();
@@ -66,6 +66,8 @@ void MainWindow::SetupGui()
     CreateHyperbolicToolbar();
     addToolBarBreak();
     CreateFunctionsToolbar();
+
+    AddEditorTab("(No name)");
 
     CreateStatusBar();
 
@@ -223,7 +225,6 @@ void MainWindow::CreateActions()
 
     paragraph_format_combo = new QComboBox;
     format_toolbar->addWidget(paragraph_format_combo);
-    FillParagraphFormats();
     connect(paragraph_format_combo, &QComboBox::currentTextChanged, this, &MainWindow::OnCurrentParagraphFormatChanged);
 
     format_toolbar->addSeparator();
@@ -818,6 +819,15 @@ void MainWindow::OnCloseEditorTab(int index)
     SetFocus();
 }
 
+void MainWindow::OnEditorChanged(int index)
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    FillParagraphFormats();
+    OnCaretMoved(document->GetEditorState());
+}
+
 void MainWindow::OnInsertCode()
 {
     auto document = GetCurrentDocument();
@@ -1322,12 +1332,13 @@ void MainWindow::FillParagraphFormats()
     if (!document)
         return;
 
+    block_format_slots = true;
+    paragraph_format_combo->clear();
     std::vector<ParagraphFormatPtr> formats;
     document->paragraph_formats->GetFormats(formats);
     for (auto& f : formats)
-    {
         paragraph_format_combo->addItem(f->name.c_str());
-    }
+    block_format_slots = false;
 }
 
 void MainWindow::FillSizes(const QFont& font)
