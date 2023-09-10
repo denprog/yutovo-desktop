@@ -191,26 +191,28 @@ void MainWindow::CreateActions()
     edit_menu->addSeparator();
     standard_toolbar->addSeparator();
 
-    action = new QAction(QIcon(":/icons/images/standard/cut.png"), tr("Cu&t"), this);
-    action->setShortcuts(QKeySequence::Cut);
-    action->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
-    connect(action, &QAction::triggered, this, &MainWindow::Cut);
-    edit_menu->addAction(action);
-    standard_toolbar->addAction(action);
+    cut_action = new QAction(QIcon(":/icons/images/standard/cut.png"), tr("Cu&t"), this);
+    cut_action->setShortcuts(QKeySequence::Cut);
+    cut_action->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
+    connect(cut_action, &QAction::triggered, this, &MainWindow::Cut);
+    edit_menu->addAction(cut_action);
+    standard_toolbar->addAction(cut_action);
 
-    action = new QAction(QIcon(":/icons/images/standard/copy.png"), tr("&Copy"), this);
-    action->setShortcuts(QKeySequence::Copy);
-    action->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
-    connect(action, &QAction::triggered, this, &MainWindow::Copy);
-    edit_menu->addAction(action);
-    standard_toolbar->addAction(action);
+    copy_action = new QAction(QIcon(":/icons/images/standard/copy.png"), tr("&Copy"), this);
+    copy_action->setShortcuts(QKeySequence::Copy);
+    copy_action->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
+    connect(copy_action, &QAction::triggered, this, &MainWindow::Copy);
+    edit_menu->addAction(copy_action);
+    standard_toolbar->addAction(copy_action);
 
-    action = new QAction(QIcon(":/icons/images/standard/paste.png"), tr("&Paste"), this);
-    action->setShortcuts(QKeySequence::Paste);
-    action->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
-    connect(action, &QAction::triggered, this, &MainWindow::Paste);
-    edit_menu->addAction(action);
-    standard_toolbar->addAction(action);
+    paste_action = new QAction(QIcon(":/icons/images/standard/paste.png"), tr("&Paste"), this);
+    paste_action->setShortcuts(QKeySequence::Paste);
+    paste_action->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
+    connect(paste_action, &QAction::triggered, this, &MainWindow::Paste);
+    edit_menu->addAction(paste_action);
+    standard_toolbar->addAction(paste_action);
+
+    UpdateCopyPaste();
 
     //format toolbar
     format_toolbar = addToolBar(tr("Format"));
@@ -1281,6 +1283,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
 
     undo_action->setEnabled(document->CanUndo());
     redo_action->setEnabled(document->CanRedo());
+
+    UpdateCopyPaste();
 }
 
 void MainWindow::OnSaveResult(const uint task_id, IOResult result)
@@ -1522,6 +1526,24 @@ void MainWindow::UpdateFontSize()
         last_font_size = s;
     }
     SetFocus();
+}
+
+void MainWindow::UpdateCopyPaste()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    
+    EditorState s = document->GetEditorState();
+    bool editable = document->IsEditable(s.caret_state.id);
+
+    copy_action->setEnabled(!s.selection_state.IsEmpty());
+
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    const QMimeData* mime_data = clipboard->mimeData();
+    paste_action->setEnabled(editable && (mime_data->hasFormat("yutovo/elements") || mime_data->hasText()));
+
+    cut_action->setEnabled(editable && !s.selection_state.IsEmpty());
 }
 
 void MainWindow::UpdateRecentFiles(const QString add_file_name)

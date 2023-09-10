@@ -152,12 +152,12 @@ private:
     void ReadSettings();
 
     void UpdateFontSize();
-
+    void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
 
 private:
     friend class DocumentWindow;
-    
+
     Ui::MainWindow *ui;
 
     yutovo::Config config;
@@ -183,6 +183,10 @@ private:
 
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;
+
+    QAction* copy_action = nullptr;
+    QAction* paste_action = nullptr;
+    QAction* cut_action = nullptr;
 
     QAction* bold_action = nullptr;
     QAction* italic_action = nullptr;
