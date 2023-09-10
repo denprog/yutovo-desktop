@@ -7,12 +7,14 @@
 #include <QContextMenuEvent>
 #include "set_uint_dialog.h"
 #include "set_unit_dialog.h"
+#include "mainwindow.h"
 
 //DocumentWindow
 
 DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     QWidget(parent),
-    config(_config)
+    config(_config),
+    main_window((MainWindow*)parent)
 {
     document_widget = new DocumentWidget(this);
     document = document_widget->CreateDocument();
@@ -47,6 +49,13 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
 
     //context menu
+    copy = new QAction(tr("Copy"), this);
+    connect(copy, &QAction::triggered, main_window, &MainWindow::Copy);
+    paste = new QAction(tr("Paste"), this);
+    connect(paste, &QAction::triggered, main_window, &MainWindow::Paste);
+    cut = new QAction(tr("Cut"), this);
+    connect(cut, &QAction::triggered, main_window, &MainWindow::Cut);
+
     present_as_auto = new QAction(tr("Auto"), this);
     present_as_auto->setCheckable(true);
     connect(present_as_auto, &QAction::triggered, this, &DocumentWindow::OnPresentAsAuto);
@@ -103,9 +112,29 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     QMenu menu(this);
     document->WaitTask(document_widget->caret_moving_task_id, 100);
 
+    auto add_copy_paste_menu = 
+        [&]()
+        {
+            EditorState s = document->GetEditorState();
+            bool editable = document->IsEditable(s.caret_state.id);
+
+            menu.addAction(copy);
+            copy->setEnabled(!s.selection_state.IsEmpty());
+
+            menu.addAction(paste);
+            QClipboard* clipboard = QGuiApplication::clipboard();
+            const QMimeData* mime_data = clipboard->mimeData();
+            paste->setEnabled(editable && (mime_data->hasFormat("yutovo/elements") || mime_data->hasText()));
+
+            menu.addAction(cut);
+            cut->setEnabled(editable && !s.selection_state.IsEmpty());
+        };
+
     auto add_present_as_menu = 
         [&]()
         {
+            if (!menu.isEmpty())
+                menu.addSeparator();
             QMenu* present_as_menu = menu.addMenu(tr("Present as"));
             present_as_menu->addAction(present_as_auto);
             present_as_menu->addAction(present_as_real);
@@ -173,6 +202,8 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (document->HasUnit(id))
                 menu.addAction(set_unit);
         };
+
+    add_copy_paste_menu();
 
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())

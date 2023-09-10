@@ -714,7 +714,7 @@ void MainWindow::Paste()
         auto s = ToUtfString(str.str());
         document->Paste(s);
     }
-    else
+    else if (mime_data->hasText())
     {
         QString s = clipboard->text();
         if (s != "")

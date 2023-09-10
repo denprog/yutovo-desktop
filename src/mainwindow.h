@@ -156,6 +156,8 @@ private:
     void UpdateRecentFiles(const QString add_file_name = "");
 
 private:
+    friend class DocumentWindow;
+    
     Ui::MainWindow *ui;
 
     yutovo::Config config;

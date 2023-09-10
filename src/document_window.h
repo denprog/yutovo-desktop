@@ -4,12 +4,14 @@
 #include <QScrollBar>
 #include "document_widget.h"
 
+class MainWindow;
+
 class DocumentWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    DocumentWindow(yutovo::Config& _config, QWidget *parent = nullptr);
+    DocumentWindow(yutovo::Config& _config, QWidget* parent);
 
     void MakeContextMenu(QContextMenuEvent* event);
 
@@ -62,12 +64,17 @@ private:
 
     yutovo::Config& config;
 
+    MainWindow* main_window;
     DocumentWidget* document_widget;
     DocumentPtr document;
 
     QScrollBar *vertical_scroll = nullptr, *horizontal_scroll = nullptr;
 
     QString path;
+
+    QAction* copy = nullptr;
+    QAction* paste = nullptr;
+    QAction* cut = nullptr;
 
     QAction* present_as_auto = nullptr;
     QAction* present_as_real = nullptr;
