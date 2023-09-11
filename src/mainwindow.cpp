@@ -1245,27 +1245,74 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     {
         format.Reset();
     }
-    else if (document->GetStringFormat(_id, format))
+    else if (!s.IsEmpty())
     {
+        bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true;
         for (auto& state : s.state)
         {
             for (int i = state.start; i < state.start + state.size; ++i)
             {
                 ElementId _id = GetChild(state.id, i);
                 StringFormat f;
-                document->GetStringFormat(_id, f);
-                if (format.family != "" && format.family != f.family)
-                    format.family = "";
-                if (format.size != 0 && format.size != f.size)
-                    format.size = 0;
-                if (format.bold != false && format.bold != f.bold)
-                    format.bold = false;
-                if (format.italic != false && format.italic != f.italic)
-                    format.italic = false;
-                if (format.underline != false && format.underline != f.underline)
-                    format.underline = false;
+                if (document->GetStringFormat(_id, f))
+                {
+                    if (set_family)
+                    {
+                        if (format.family == "")
+                            format.family = f.family;
+                        else if (format.family != f.family)
+                        {
+                            format.family = "";
+                            set_family = false;
+                        }
+                    }
+                    if (set_size)
+                    {
+                        if (format.size == 0)
+                            format.size = f.size;
+                        else if (format.size != f.size)
+                        {
+                            format.size = 0;
+                            set_size = false;
+                        }
+                    }
+                    if (set_bold)
+                    {
+                        if (format.bold == true && f.bold == false)
+                        {
+                            format.bold = false;
+                            set_bold = false;
+                        }
+                        else
+                            format.bold = f.bold;
+                    }
+                    if (set_italic)
+                    {
+                        if (format.italic == true && f.italic == false)
+                        {
+                            format.italic = false;
+                            set_italic = false;
+                        }
+                        else
+                            format.italic = f.italic;
+                    }
+                    if (set_underline)
+                    {
+                        if (format.underline == true && f.underline == false)
+                        {
+                            format.underline = false;
+                            set_underline = false;
+                        }
+                        else
+                            format.underline = f.underline;
+                    }
+                }
             }
         }
+    }
+    else
+    {
+        document->GetStringFormat(_id, format);
     }
 
     //update the interface elements
