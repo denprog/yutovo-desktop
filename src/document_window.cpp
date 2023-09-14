@@ -124,7 +124,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             menu.addAction(paste);
             QClipboard* clipboard = QGuiApplication::clipboard();
             const QMimeData* mime_data = clipboard->mimeData();
-            paste->setEnabled(editable && (mime_data->hasFormat("yutovo/elements") || mime_data->hasText()));
+            paste->setEnabled(editable && mime_data->hasText());
 
             menu.addAction(cut);
             cut->setEnabled(editable && !s.selection_state.IsEmpty());

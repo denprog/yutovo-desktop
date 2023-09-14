@@ -698,9 +698,32 @@ void MainWindow::Paste()
     
     QClipboard* clipboard = QGuiApplication::clipboard();
     const QMimeData* mime_data = clipboard->mimeData();
-    if (mime_data->hasFormat("yutovo/elements"))
+
+    std::vector<std::string> v;
+    QStringList l = mime_data->formats();
+    for (auto s : l)
+        v.push_back(s.toStdString());
+
+    std::string format;
+    if (mime_data->hasFormat("application/web;type=\"custom/formatmap\"")) //firstly check the own web format
     {
-        QByteArray arr = mime_data->data("yutovo/elements"); //firstly check the own format
+        QByteArray arr = mime_data->data("application/web;type=\"custom/formatmap\""); 
+        if (!arr.isEmpty())
+        {
+            std::stringstream str(arr.toStdString());
+            std::string s(str.str());
+            rapidjson::Document doc;
+            if (!doc.Parse<0>(str.str().c_str()).HasParseError())
+            {
+                if (doc.HasMember("yutovo/elements") && doc["yutovo/elements"].IsString())
+                    format = doc["yutovo/elements"].GetString();
+            }
+        }
+    }
+
+    if (!format.empty() && mime_data->hasFormat(format.c_str()))
+    {
+        QByteArray arr = mime_data->data(format.c_str());
         if (arr.isEmpty())
         {
             //otherwise check if there is a text in the clipboard
@@ -1365,9 +1388,14 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
     QClipboard* clipboard = QGuiApplication::clipboard();
     QMimeData* mime_data = new QMimeData;
     auto s = ToBasicString(clipboard_json);
+
     QByteArray item_data(s.c_str(), s.length());
-    mime_data->setData("yutovo/elements", item_data); //custom clipboard type
-    mime_data->setText(ToBasicString(clipboard_text).c_str());
+    //custom web clipboard type
+    mime_data->setData("application/web;type=\"custom/format0\"", item_data);
+    mime_data->setData("application/web;type=\"custom/formatmap\"", "{\"yutovo/elements\":\"application/web;type=\\\"custom/format0\\\"\"}");
+
+    mime_data->setText(ToBasicString(clipboard_text).c_str()); //text clipboard type
+
     clipboard->setMimeData(mime_data);
     clipboard_json = U"";
     clipboard_text = U"";
@@ -1588,7 +1616,7 @@ void MainWindow::UpdateCopyPaste()
 
     QClipboard* clipboard = QGuiApplication::clipboard();
     const QMimeData* mime_data = clipboard->mimeData();
-    paste_action->setEnabled(editable && (mime_data->hasFormat("yutovo/elements") || mime_data->hasText()));
+    paste_action->setEnabled(editable && mime_data->hasText());
 
     cut_action->setEnabled(editable && !s.selection_state.IsEmpty());
 }
