@@ -417,26 +417,30 @@ void DocumentWindow::OnResultGrad()
 
 void DocumentWindow::OnBinaryNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
-        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::BINARY, true);
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    Notation n = document->GetDefaultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::BINARY, true);
 }
 
 void DocumentWindow::OnOctalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
-        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::OCTAL, true);
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    Notation n = document->GetDefaultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::OCTAL, true);
 }
 
 void DocumentWindow::OnDecimalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
-        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::DECIMAL, true);
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    Notation n = document->GetDefaultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::DECIMAL, true);
 }
 
 void DocumentWindow::OnHexadecimalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
-        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::HEXADECIMAL, true);
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    Notation n = document->GetDefaultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::HEXADECIMAL, true);
 }
 
 void DocumentWindow::OnFractionFormProper()
