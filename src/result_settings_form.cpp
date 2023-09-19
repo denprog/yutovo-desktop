@@ -20,6 +20,7 @@ ResultSettingsForm::ResultSettingsForm(yutovo::Config& _config, QWidget *parent)
     ui->real_result_angle_measure->setCurrentIndex((int)config.real_result.result_angle_measure);
     ui->real_show_angle_measure->setChecked(config.real_result.show_angle_measure);
 
+    ui->integer_default_notation->setCurrentIndex((int)config.integer_result.default_notation);
     ui->integer_result_notation->setCurrentIndex((int)config.integer_result.result_notation);
     ui->integer_show_notation->setChecked(config.integer_result.show_notation);
 
@@ -45,6 +46,7 @@ ResultSettingsForm::~ResultSettingsForm()
     config.real_result.result_angle_measure = (AngleMeasure)ui->real_result_angle_measure->currentIndex();
     config.real_result.show_angle_measure = ui->real_show_angle_measure->isChecked();
 
+    config.integer_result.default_notation = (Notation)ui->integer_default_notation->currentIndex();
     config.integer_result.result_notation = (Notation)ui->integer_result_notation->currentIndex();
     config.integer_result.show_notation = ui->integer_show_notation->isChecked();
 

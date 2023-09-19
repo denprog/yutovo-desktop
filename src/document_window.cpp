@@ -173,10 +173,10 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     auto add_integer_menu = 
         [&](ElementId id)
         {
-            auto notation = document->GetNotation(id);
+            auto notation = document->GetResultNotation(id);
 
             menu.addSeparator();
-            QMenu* notation_menu = menu.addMenu(tr("Notation"));
+            QMenu* notation_menu = menu.addMenu(tr("Result notation"));
             notation_menu->addAction(binary_notaion);
             binary_notaion->setChecked(notation == Notation::BINARY);
             notation_menu->addAction(octal_notaion);
@@ -417,22 +417,26 @@ void DocumentWindow::OnResultGrad()
 
 void DocumentWindow::OnBinaryNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::BINARY, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
+        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::BINARY, true);
 }
 
 void DocumentWindow::OnOctalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::OCTAL, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
+        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::OCTAL, true);
 }
 
 void DocumentWindow::OnDecimalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::DECIMAL, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
+        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::DECIMAL, true);
 }
 
 void DocumentWindow::OnHexadecimalNotation()
 {
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::HEXADECIMAL, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, 
+        document->GetDefaultNotation(document_widget->current_editor_state.caret_state.id), Notation::HEXADECIMAL, true);
 }
 
 void DocumentWindow::OnFractionFormProper()

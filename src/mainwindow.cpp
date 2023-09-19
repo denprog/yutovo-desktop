@@ -1489,7 +1489,8 @@ void MainWindow::WriteSettings()
     settings.setValue("real_result_angle_measure", (int)config.real_result.result_angle_measure);
     settings.setValue("real_show_angle_measure", config.real_result.show_angle_measure);
 
-    settings.setValue("integer_notation", (int)config.integer_result.result_notation);
+    settings.setValue("integer_default_notation", (int)config.integer_result.default_notation);
+    settings.setValue("integer_result_notation", (int)config.integer_result.result_notation);
     settings.setValue("integer_show_notation", config.integer_result.show_notation);
 
     settings.setValue("rational_fraction_form", (int)config.rational_result.fraction_form);
@@ -1557,7 +1558,8 @@ void MainWindow::ReadSettings()
         config.real_result.result_angle_measure = AngleMeasure::RADIAN;
     config.real_result.show_angle_measure = settings.value("real_show_angle_measure", false).toBool();
 
-    config.integer_result.result_notation = (Notation)settings.value("integer_notation", 0).toInt();
+    config.integer_result.default_notation = (Notation)settings.value("integer_default_notation", 2).toInt();
+    config.integer_result.result_notation = (Notation)settings.value("integer_result_notation", 2).toInt();
     config.integer_result.show_notation = settings.value("integer_show_notation", true).toBool();
 
     config.rational_result.fraction_form = (FractionForm)settings.value("rational_fraction_form", 0).toInt();
