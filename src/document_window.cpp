@@ -17,8 +17,6 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     main_window((MainWindow*)parent)
 {
     document_widget = new DocumentWidget(this);
-    document = document_widget->CreateDocument();
-    document->Start(config);
 
     document_widget->setObjectName(QStringLiteral("document_widget"));
 
@@ -105,6 +103,12 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     fraction_form_improper = new QAction(tr("Improper"), this);
     fraction_form_improper->setCheckable(true);
     connect(fraction_form_improper, &QAction::triggered, this, &DocumentWindow::OnFractionFormImproper);
+}
+
+void DocumentWindow::CreateDocument()
+{
+    document = document_widget->CreateDocument();
+    document->Start(config);
 }
 
 void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)

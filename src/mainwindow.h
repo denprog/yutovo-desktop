@@ -7,6 +7,7 @@
 #include <QSettings>
 #include <QSortFilterProxyModel>
 #include <yutovo_editor/document.h>
+#include <yutovo_logger/logger.h>
 #include "ui_mainwindow.h"
 #include <cstring>
 #include <sstream>
@@ -206,6 +207,8 @@ private:
     QToolBar* trigonometry_toolbar = nullptr;
     QToolBar* hyperbolic_toolbar = nullptr;
     QToolBar* functions_toolbar = nullptr;
+
+    Logger* logger;
 };
 
 #endif

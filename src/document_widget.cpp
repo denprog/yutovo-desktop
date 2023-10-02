@@ -69,7 +69,8 @@ void DocumentWidget::paintEvent(QPaintEvent *event)
 
 void DocumentWidget::resizeEvent(QResizeEvent *event)
 {
-    document->Resize(event->size().width(), event->size().height());
+    if (document)
+        document->Resize(event->size().width(), event->size().height());
 }
 
 void DocumentWidget::keyPressEvent(QKeyEvent *event)
@@ -135,10 +136,12 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
 
 void DocumentWidget::focusInEvent(QFocusEvent *event)
 {
-    document->SetCaretVisible(true);
+    if (document)
+        document->SetCaretVisible(true);
 }
 
 void DocumentWidget::focusOutEvent(QFocusEvent *event)
 {
-    document->SetCaretVisible(false);
+    if (document)
+        document->SetCaretVisible(false);
 }

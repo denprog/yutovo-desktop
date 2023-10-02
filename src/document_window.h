@@ -13,6 +13,8 @@ class DocumentWindow : public QWidget
 public:
     DocumentWindow(yutovo::Config& _config, QWidget* parent);
 
+    void CreateDocument();
+
     void MakeContextMenu(QContextMenuEvent* event);
 
     void SetFocus();

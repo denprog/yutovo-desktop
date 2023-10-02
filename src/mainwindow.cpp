@@ -19,7 +19,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    settings(new QSettings("Yutovo", "Yutovo Desktop"))
+    settings(new QSettings("Yutovo", "Yutovo Desktop")),
+    logger(Logger::GetInstance(".", "yutovo_desktop", true, true))
 {
     ui->setupUi(this);
 
@@ -35,12 +36,15 @@ MainWindow::MainWindow(QWidget *parent) :
     SetupGui();
 
     UpdateRecentFiles();
+
+    logger->Info("Desktop start");
 }
 
 MainWindow::~MainWindow()
 {
     WriteSettings();
     delete ui;
+    logger->Info("Desktop stop");
 }
 
 void MainWindow::contextMenuEvent(QContextMenuEvent* event)
@@ -85,15 +89,11 @@ void MainWindow::SetupGui()
     functions_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
-
-    auto document = GetCurrentDocument();
-    OnCaretMoved(document->GetEditorState());
 }
 
 void MainWindow::AddEditorTab(const QString name)
 {
     DocumentWindow* wnd = new DocumentWindow(config, this);
-    ui->editor_tabs->addTab(wnd, name);
 
     connect(wnd, &DocumentWindow::CaretMoved, this, &MainWindow::OnCaretMoved);
     connect(wnd, &DocumentWindow::SaveResult, this, &MainWindow::OnSaveResult);
@@ -104,8 +104,17 @@ void MainWindow::AddEditorTab(const QString name)
     connect(wnd->document_widget, &DocumentWidget::NextEditorTab, this, &MainWindow::OnNextEditorTab);
     connect(wnd->document_widget, &DocumentWidget::PrevEditorTab, this, &MainWindow::OnPrevEditorTab);
 
+    ui->editor_tabs->addTab(wnd, name);
     ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
     wnd->SetFocus();
+
+    wnd->CreateDocument();
+
+    auto document = GetCurrentDocument();
+    auto s = wnd->document_widget->size();
+    document->Resize(s.width(), s.height());
+    OnCaretMoved(document->GetEditorState());
+    FillParagraphFormats();
 }
 
 DocumentPtr MainWindow::GetCurrentDocument()
