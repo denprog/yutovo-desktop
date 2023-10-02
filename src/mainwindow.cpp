@@ -739,6 +739,13 @@ void MainWindow::Paste()
         auto s = ToUtfString(str.str());
         document->Paste(s);
     }
+    else if (mime_data->hasImage())
+    {
+        QImage image = clipboard->image();
+        image.convertTo(QImage::Format_ARGB32);
+        std::vector<unsigned char> data(image.bits(), image.bits() + image.sizeInBytes());
+        document->PasteImage(data, image.width(), image.height());
+    }
     else if (mime_data->hasText())
     {
         QString s = clipboard->text();

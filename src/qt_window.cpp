@@ -167,6 +167,25 @@ void QtWindow::DrawWavyLine(const int x1, const int y1, const int width, const i
     p.end();
 }
 
+void QtWindow::DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& bmp)
+{
+    QImage image(&bmp[0], width, height, QImage::Format_ARGB32);
+
+    QPainter p;
+    if (!p.begin(surface.get()))
+        return;
+    if (draw_doc)
+    {
+        p.setClipRegion(clip_region);
+        p.drawImage(QRect{x1 - document_point.x, y1 - document_point.y, width, height}, image);
+    }
+    else
+    {
+        p.drawImage(QRect{x1, y1, width, height}, image);
+    }
+    p.end();
+}
+
 void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height)
 {
     DrawFillRect(x1, y1, width, height, Color::White());
@@ -239,6 +258,12 @@ int QtWindow::GetFontAscent(const StringFormatPtr format)
     font.setUnderline(format->underline);
     QFontMetrics m(font);
     return m.ascent();
+}
+
+Size QtWindow::GetImageSize(const std::vector<unsigned char>& bmp, const int width, const int height)
+{
+    QImage image(&bmp[0], width, height, QImage::Format_ARGB32);
+    return Size{image.width(), image.height()};
 }
 
 void QtWindow::Update(const Rect& rect)
