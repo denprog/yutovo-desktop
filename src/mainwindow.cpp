@@ -1536,9 +1536,12 @@ void MainWindow::ReadSettings()
     recent_files_count = settings.value("max_count", 10).toInt();
     if (recent_files_count > 50)
         recent_files_count = 10;
-    auto list = settings.value("files").toList();
+    auto list = settings.value("files").toStringList();
     for (auto it = list.begin(); it != list.end(); ++it)
-        recent_files.push_back(it->toString());
+    {
+        if (*it != "")
+            recent_files.push_back(*it);
+    }
     settings.endGroup();
 
     settings.beginGroup("Service");
