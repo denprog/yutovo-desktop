@@ -1381,6 +1381,12 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     if (result != IOResult::Success)
     {
         recent_files.removeAll(dialog_file_name);
+        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+        if (w)
+        {
+            w->path = "";
+            ui->editor_tabs->setTabText(ui->editor_tabs->currentIndex(), "(No name)");
+        }
         UpdateRecentFiles();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));
         return;
