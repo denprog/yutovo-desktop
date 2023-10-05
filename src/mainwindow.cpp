@@ -9,6 +9,7 @@
 #include <QScrollBar>
 #include <QLineEdit>
 #include <QFileInfo> 
+#include <QColorDialog>
 #include <yutovo_editor/util.h>
 #include "document_window.h"
 #include "about_dialog.h"
@@ -267,6 +268,14 @@ void MainWindow::CreateActions()
     connect(underline_action, &QAction::triggered, this, &MainWindow::OnUnderline);
     underline_action->setCheckable(true);
     format_toolbar->addAction(underline_action);
+
+    text_color_action = new QAction(QIcon(":/icons/images/format/text_color.png"), tr("Text color"), this);
+    connect(text_color_action, &QAction::triggered, this, &MainWindow::OnTextColor);
+    format_toolbar->addAction(text_color_action);
+
+    bg_text_color_action = new QAction(QIcon(":/icons/images/format/bg_text_color.png"), tr("Background text color"), this);
+    connect(bg_text_color_action, &QAction::triggered, this, &MainWindow::OnBgTextColor);
+    format_toolbar->addAction(bg_text_color_action);
 
     //view menu
     QMenu* view_menu = menuBar()->addMenu(tr("&View"));
@@ -955,6 +964,34 @@ void MainWindow::OnUnderline()
         document->SetUnderline(underline_action->isChecked());
 }
 
+void MainWindow::OnTextColor()
+{
+    QColorDialog d(QColor::fromRgba(string_format.text_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        auto document = GetCurrentDocument();
+        if (document)
+        {
+            QColor c = d.selectedColor();
+            document->SetColor(Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()});
+        }
+    }
+}
+
+void MainWindow::OnBgTextColor()
+{
+    QColorDialog d(QColor::fromRgba(string_format.text_bg_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        auto document = GetCurrentDocument();
+        if (document)
+        {
+            QColor c = d.selectedColor();
+            document->SetBgColor(Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()});
+        }
+    }
+}
+
 void MainWindow::OnPlus()
 {
     auto document = GetCurrentDocument();
@@ -1257,7 +1294,6 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     
     const CaretState& c = editor_state.caret_state;
     const SelectionState& s = editor_state.selection_state;
-    StringFormat format;
     ParagraphFormat paragraph_format;
 
     //find common paragraph format
@@ -1282,7 +1318,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     auto t = document->GetElementType(_id);
     if (!document->IsString(document->GetElement(_id)) && !document->IsRow(document->GetElement(_id)))
     {
-        format.Reset();
+        string_format.Reset();
     }
     else if (!s.IsEmpty())
     {
@@ -1297,53 +1333,53 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
                 {
                     if (set_family)
                     {
-                        if (format.family == "")
-                            format.family = f.family;
-                        else if (format.family != f.family)
+                        if (string_format.family == "")
+                            string_format.family = f.family;
+                        else if (string_format.family != f.family)
                         {
-                            format.family = "";
+                            string_format.family = "";
                             set_family = false;
                         }
                     }
                     if (set_size)
                     {
-                        if (format.size == 0)
-                            format.size = f.size;
-                        else if (format.size != f.size)
+                        if (string_format.size == 0)
+                            string_format.size = f.size;
+                        else if (string_format.size != f.size)
                         {
-                            format.size = 0;
+                            string_format.size = 0;
                             set_size = false;
                         }
                     }
                     if (set_bold)
                     {
-                        if (format.bold == true && f.bold == false)
+                        if (string_format.bold == true && f.bold == false)
                         {
-                            format.bold = false;
+                            string_format.bold = false;
                             set_bold = false;
                         }
                         else
-                            format.bold = f.bold;
+                            string_format.bold = f.bold;
                     }
                     if (set_italic)
                     {
-                        if (format.italic == true && f.italic == false)
+                        if (string_format.italic == true && f.italic == false)
                         {
-                            format.italic = false;
+                            string_format.italic = false;
                             set_italic = false;
                         }
                         else
-                            format.italic = f.italic;
+                            string_format.italic = f.italic;
                     }
                     if (set_underline)
                     {
-                        if (format.underline == true && f.underline == false)
+                        if (string_format.underline == true && f.underline == false)
                         {
-                            format.underline = false;
+                            string_format.underline = false;
                             set_underline = false;
                         }
                         else
-                            format.underline = f.underline;
+                            string_format.underline = f.underline;
                     }
                 }
             }
@@ -1351,20 +1387,20 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     }
     else
     {
-        document->GetStringFormat(_id, format);
+        document->GetStringFormat(_id, string_format);
     }
 
     //update the interface elements
     block_format_slots = true;
     paragraph_format_combo->setCurrentText(paragraph_format.name.c_str());
-    family_combo->setCurrentText(format.family.c_str());
-    if (format.size == 0)
+    family_combo->setCurrentText(string_format.family.c_str());
+    if (string_format.size == 0)
         size_combo->setCurrentText("");
     else
-        size_combo->setCurrentText(std::to_string(format.size).c_str());
-    bold_action->setChecked(format.bold);
-    italic_action->setChecked(format.italic);
-    underline_action->setChecked(format.underline);
+        size_combo->setCurrentText(std::to_string(string_format.size).c_str());
+    bold_action->setChecked(string_format.bold);
+    italic_action->setChecked(string_format.italic);
+    underline_action->setChecked(string_format.underline);
     block_format_slots = false;
 
     undo_action->setEnabled(document->CanUndo());

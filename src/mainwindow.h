@@ -92,6 +92,8 @@ private slots:
     void OnBold();
     void OnItalic();
     void OnUnderline();
+    void OnTextColor();
+    void OnBgTextColor();
 
     void OnPlus();
     void OnMinus();
@@ -182,6 +184,8 @@ private:
 
     int last_font_size = 0;
 
+    StringFormat string_format;
+
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;
 
@@ -192,6 +196,9 @@ private:
     QAction* bold_action = nullptr;
     QAction* italic_action = nullptr;
     QAction* underline_action = nullptr;
+
+    QAction* text_color_action = nullptr;
+    QAction* bg_text_color_action = nullptr;
 
     QAction* standard_toolbar_action = nullptr;
     QAction* format_toolbar_action = nullptr;

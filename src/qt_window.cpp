@@ -14,7 +14,7 @@ void QtWindow::Init()
 {
 }
 
-void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color)
+void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color, const Color bg_color)
 {
     QPainter p;
     if (!p.begin(surface.get()))
@@ -25,6 +25,8 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     font.setBold(format->bold);
     font.setUnderline(format->underline);
     p.setPen(QColor::fromRgba(color.ToInt()));
+    p.setBackgroundMode(Qt::OpaqueMode);
+    p.setBackground(QBrush(QColor::fromRgba(bg_color.ToInt())));
     p.setFont(font);
     if (draw_doc)
         p.setClipRegion(clip_region);
@@ -107,6 +109,7 @@ void QtWindow::DrawFillPath(const std::list<Point>& path, const Color color)
     if (!p.begin(surface.get()))
         return;
     p.setRenderHint(QPainter::Antialiasing);
+    p.setPen(QColor::fromRgba(color.ToInt()));
     p.setBrush(QColor::fromRgba(color.ToInt()));
     p.setClipRegion(clip_region);
     QPainterPath _path;
@@ -133,6 +136,7 @@ void QtWindow::DrawBezierPath(const std::list<Point>& path, const Color color)
     if (!p.begin(surface.get()))
         return;
     p.setRenderHint(QPainter::Antialiasing);
+    p.setPen(QColor::fromRgba(color.ToInt()));
     p.setBrush(QColor::fromRgba(color.ToInt()));
     p.setClipRegion(clip_region);
     QPainterPath _path;
