@@ -1311,6 +1311,12 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
         }
     }
 
+    bold_action->setEnabled(true);
+    italic_action->setEnabled(true);
+    underline_action->setEnabled(true);
+    text_color_action->setEnabled(true);
+    bg_text_color_action->setEnabled(true);
+
     //find common string format
     if (c.id.empty() || c.id.size() == 1)
         return;
@@ -1319,6 +1325,12 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     if (!document->IsString(document->GetElement(_id)) && !document->IsRow(document->GetElement(_id)))
     {
         string_format.Reset();
+
+        bold_action->setEnabled(false);
+        italic_action->setEnabled(false);
+        underline_action->setEnabled(false);
+        text_color_action->setEnabled(false);
+        bg_text_color_action->setEnabled(false);
     }
     else if (!s.IsEmpty())
     {
