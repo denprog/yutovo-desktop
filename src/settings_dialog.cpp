@@ -2,6 +2,7 @@
 #include "system_settings_form.h"
 #include "interface_settings_form.h"
 #include "result_settings_form.h"
+#include "colors_settings_form.h"
 #include "ui_settings_dialog.h"
 
 //SettingsDialog
@@ -30,7 +31,7 @@ SettingsDialog::SettingsDialog(yutovo::Config& _config, QHash<QString, QVariant>
     QTreeWidgetItem *formula_item = new QTreeWidgetItem(form->settings_tree);
     formula_item->setText(0, tr("Formula"));
     item = new QTreeWidgetItem(formula_item);
-    item->setText(0, tr("Font"));
+    item->setText(0, tr("Fonts"));
     item = new QTreeWidgetItem(formula_item);
     item->setText(0, tr("Colors"));
     item = new QTreeWidgetItem(formula_item);
@@ -72,6 +73,10 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     else if (item->text(0) == tr("Interface"))
     {
         form->settings_page_layout->addWidget(new InterfaceSettingsForm(settings));
+    }
+    else if (item->text(0) == tr("Colors"))
+    {
+        form->settings_page_layout->addWidget(new ColorsSettingsForm(config));
     }
     else if (item->text(0) == tr("Result"))
     {

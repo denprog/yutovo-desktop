@@ -47,6 +47,8 @@ add_executable(${PROJECT_NAME}
     set_uint_dialog.cpp
     set_unit_dialog.ui
     set_unit_dialog.cpp
+    colors_settings_form.ui
+    colors_settings_form.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)

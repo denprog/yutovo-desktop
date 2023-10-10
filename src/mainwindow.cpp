@@ -1547,6 +1547,10 @@ void MainWindow::WriteSettings()
     settings.setValue("timeout", config.service_timeout);
     settings.endGroup();
 
+    settings.beginGroup("Colors");
+    settings.setValue("code_block_border_color", config.code_block_border_color.ToInt());
+    settings.endGroup();
+
     settings.beginGroup("Calculator");
     settings.setValue("result_auto_advance", config.auto_result.result_auto_advance);
     QList<QVariant> v;
@@ -1596,6 +1600,10 @@ void MainWindow::ReadSettings()
     config.service_ip = settings.value("ip", "localhost").toString().toUtf8().data();
     config.service_port = settings.value("port", 8010).toInt();
     config.service_timeout = settings.value("timeout", 20).toInt();
+    settings.endGroup();
+
+    settings.beginGroup("Colors");
+    config.code_block_border_color = Color::FromInt(settings.value("code_block_border_color", Color::Blue().ToInt()).toInt());
     settings.endGroup();
 
     settings.beginGroup("Calculator");
