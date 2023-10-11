@@ -35,6 +35,8 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence("Shift+End"), "", std::function<void ()>(std::bind(&Document::MoveCaretEnd, document.get(), true)));
     Add(QKeySequence("Shift+Up"), "", std::function<void ()>(std::bind(&Document::MoveCaretUp, document.get(), true)));
     Add(QKeySequence("Shift+Down"), "", std::function<void ()>(std::bind(&Document::MoveCaretDown, document.get(), true)));
+    Add(QKeySequence("Shift+PgUp"), "", std::function<void ()>(std::bind(&Document::MoveCaretPageUp, document.get(), true)));
+    Add(QKeySequence("Shift+PgDown"), "", std::function<void ()>(std::bind(&Document::MoveCaretPageDown, document.get(), true)));
 
     Add(QKeySequence("Shift+Ctrl+Left"), "", std::function<void ()>(std::bind(&Document::MoveCaretWordLeft, document.get(), true)));
     Add(QKeySequence("Shift+Ctrl+Right"), "", std::function<void ()>(std::bind(&Document::MoveCaretWordRight, document.get(), true)));
