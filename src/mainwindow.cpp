@@ -4,6 +4,7 @@
 #include <QToolButton>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QBuffer>
 #include <QClipboard>
 #include <QMimeData>
 #include <QScrollBar>
@@ -761,7 +762,13 @@ void MainWindow::Paste()
     {
         QImage image = clipboard->image();
         image.convertTo(QImage::Format_ARGB32);
-        std::vector<unsigned char> data(image.bits(), image.bits() + image.sizeInBytes());
+        
+        QByteArray arr;
+        QBuffer buffer(&arr);
+        buffer.open(QIODevice::WriteOnly);
+        image.save(&buffer, "BMP");
+
+        std::vector<unsigned char> data(arr.begin(), arr.end());
         document->PasteImage(data, image.width(), image.height());
     }
     else if (mime_data->hasText())
