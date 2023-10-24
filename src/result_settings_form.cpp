@@ -50,7 +50,7 @@ ResultSettingsForm::~ResultSettingsForm()
     config.integer_result.result_notation = (Notation)ui->integer_result_notation->currentIndex();
     config.integer_result.show_notation = ui->integer_show_notation->isChecked();
 
-    config.rational_result.fraction_form = (ui->rational_fraction_form->currentIndex() == 0 ? FractionForm::PROPER : FractionForm::IMPROPER);
+    config.rational_result.fraction_form = (ui->rational_fraction_form->currentIndex() == 0 ? FractionForm::Proper : FractionForm::Improper);
 
     config.complex_result.precision = ui->complex_precision->value();
     config.complex_result.exp = ui->complex_exp->value();

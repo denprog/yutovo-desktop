@@ -12,11 +12,14 @@
 #include <QFileInfo> 
 #include <QColorDialog>
 #include <yutovo_editor/util.h>
+#include <yutovo_calculator/math_helper.h>
 #include "document_window.h"
 #include "about_dialog.h"
 #include "settings_dialog.h"
 
 //MainWindow
+
+using namespace yutovo_calculator;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -1643,7 +1646,7 @@ void MainWindow::ReadSettings()
         config.real_result.exp = 10;
     config.real_result.result_angle_measure = (AngleMeasure)settings.value("real_result_angle_measure", 0).toInt();
     if ((int)config.real_result.result_angle_measure < 0 || (int)config.real_result.result_angle_measure > 2)
-        config.real_result.result_angle_measure = AngleMeasure::RADIAN;
+        config.real_result.result_angle_measure = AngleMeasure::Radian;
     config.real_result.show_angle_measure = settings.value("real_show_angle_measure", false).toBool();
 
     config.integer_result.default_notation = (Notation)settings.value("integer_default_notation", 2).toInt();
@@ -1660,7 +1663,7 @@ void MainWindow::ReadSettings()
         config.complex_result.exp = 10;
     config.complex_result.result_angle_measure = (AngleMeasure)settings.value("complex_result_angle_measure", 0).toInt();
     if ((int)config.complex_result.result_angle_measure < 0 || (int)config.complex_result.result_angle_measure > 2)
-        config.complex_result.result_angle_measure = AngleMeasure::RADIAN;
+        config.complex_result.result_angle_measure = AngleMeasure::Radian;
     config.complex_result.show_angle_measure = settings.value("complex_show_angle_measure", false).toBool();
     config.complex_result.form = (ComplexForm)settings.value("complex_form", 0).toInt();
     if ((int)config.complex_result.form < 0 || (int)config.complex_result.form > 2)

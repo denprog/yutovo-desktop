@@ -167,11 +167,11 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
 
             QMenu* angle_measure_menu = menu.addMenu(tr("Angle measure"));
             angle_measure_menu->addAction(result_radian);
-            result_radian->setChecked(angle_measure == AngleMeasure::RADIAN);
+            result_radian->setChecked(angle_measure == AngleMeasure::Radian);
             angle_measure_menu->addAction(result_degree);
-            result_degree->setChecked(angle_measure == AngleMeasure::DEGREE);
+            result_degree->setChecked(angle_measure == AngleMeasure::Degree);
             angle_measure_menu->addAction(result_grad);
-            result_grad->setChecked(angle_measure == AngleMeasure::GRAD);
+            result_grad->setChecked(angle_measure == AngleMeasure::Grad);
         };
     
     auto add_integer_menu = 
@@ -182,13 +182,13 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             menu.addSeparator();
             QMenu* notation_menu = menu.addMenu(tr("Result notation"));
             notation_menu->addAction(binary_notaion);
-            binary_notaion->setChecked(notation == Notation::BINARY);
+            binary_notaion->setChecked(notation == Notation::Binary);
             notation_menu->addAction(octal_notaion);
-            octal_notaion->setChecked(notation == Notation::OCTAL);
+            octal_notaion->setChecked(notation == Notation::Octal);
             notation_menu->addAction(decimal_notaion);
-            decimal_notaion->setChecked(notation == Notation::DECIMAL);
+            decimal_notaion->setChecked(notation == Notation::Decimal);
             notation_menu->addAction(hexadecimal_notaion);
-            hexadecimal_notaion->setChecked(notation == Notation::HEXADECIMAL);
+            hexadecimal_notaion->setChecked(notation == Notation::Hexadecimal);
         };
     
     auto add_rational_menu = 
@@ -199,9 +199,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             menu.addSeparator();
             QMenu* fraction_type_menu = menu.addMenu(tr("Fraction type"));
             fraction_type_menu->addAction(fraction_form_proper);
-            fraction_form_proper->setChecked(fraction_form == FractionForm::PROPER);
+            fraction_form_proper->setChecked(fraction_form == FractionForm::Proper);
             fraction_type_menu->addAction(fraction_form_improper);
-            fraction_form_improper->setChecked(fraction_form == FractionForm::IMPROPER);
+            fraction_form_improper->setChecked(fraction_form == FractionForm::Improper);
 
             if (document->HasUnit(id))
                 menu.addAction(set_unit);
@@ -406,53 +406,53 @@ void DocumentWindow::OnSetUnit()
 
 void DocumentWindow::OnResultRadian()
 {
-    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::RADIAN, true);
+    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Radian, true);
 }
 
 void DocumentWindow::OnResultDegree()
 {
-    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::DEGREE, true);
+    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Degree, true);
 }
 
 void DocumentWindow::OnResultGrad()
 {
-    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::GRAD, true);
+    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Grad, true);
 }
 
 void DocumentWindow::OnBinaryNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
     Notation n = document->GetDefaultNotation(_el->id);
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::BINARY, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Binary, true);
 }
 
 void DocumentWindow::OnOctalNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
     Notation n = document->GetDefaultNotation(_el->id);
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::OCTAL, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Octal, true);
 }
 
 void DocumentWindow::OnDecimalNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
     Notation n = document->GetDefaultNotation(_el->id);
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::DECIMAL, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Decimal, true);
 }
 
 void DocumentWindow::OnHexadecimalNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
     Notation n = document->GetDefaultNotation(_el->id);
-    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::HEXADECIMAL, true);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Hexadecimal, true);
 }
 
 void DocumentWindow::OnFractionFormProper()
 {
-    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::PROPER, true);
+    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::Proper, true);
 }
 
 void DocumentWindow::OnFractionFormImproper()
 {
-    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::IMPROPER, true);
+    document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::Improper, true);
 }
