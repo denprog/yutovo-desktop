@@ -55,6 +55,8 @@ public:
 
     virtual Rect GetRect();
 
+    virtual std::string Translate(const std::string& str);
+    
     virtual void OnCaretMoved(const EditorState editor_state);
 
     virtual void OnFormatChanged(const EditorState editor_state);

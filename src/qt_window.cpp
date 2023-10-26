@@ -3,6 +3,7 @@
 #include <QFontMetrics>
 #include <QPainterPath>
 #include <QBuffer>
+#include <QCoreApplication>
 
 //QtWindow
 
@@ -321,6 +322,11 @@ Rect QtWindow::GetRect()
 {
     QRect rect = surface->rect();
     return Rect{rect.left(), rect.top(), rect.width(), rect.height()};
+}
+
+std::string QtWindow::Translate(const std::string& str)
+{
+    return QCoreApplication::translate("Solver", str.c_str()).toStdString();
 }
 
 void QtWindow::OnCaretMoved(const EditorState editor_state)

@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QFontComboBox>
 #include <QSettings>
+#include <QTranslator>
 #include <QSortFilterProxyModel>
 #include <yutovo_editor/document.h>
 #include <yutovo_logger/logger.h>
@@ -31,6 +32,7 @@ public:
 
 protected:
     void contextMenuEvent(QContextMenuEvent* event) override;
+    void changeEvent(QEvent* event) override;
 
 private:
     void SetupGui();
@@ -158,6 +160,8 @@ private:
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
 
+    void InstallTranslation(const std::string& language);
+
 private:
     friend class DocumentWindow;
 
@@ -165,6 +169,8 @@ private:
 
     yutovo::Config config;
     QSettings settings;
+
+    QTranslator desktop_translator, editor_translator;
 
     QString dialog_file_name; //file name to be loaded/saved
 

@@ -3,13 +3,30 @@
 
 //SystemSettingsForm
 
-SystemSettingsForm::SystemSettingsForm() :
-    form(new Ui::SystemSettingsForm())
+SystemSettingsForm::SystemSettingsForm(yutovo::Config& _config, QWidget* parent) :
+    QWidget(parent),
+    form(new Ui::SystemSettingsForm()),
+    config(_config)
 {
     form->setupUi(this);
+
+    if (config.language == "en")
+        form->language->setCurrentIndex(0);
+    else if (config.language == "ru")
+        form->language->setCurrentIndex(1);
 }
 
 SystemSettingsForm::~SystemSettingsForm()
 {
+    switch (form->language->currentIndex())
+    {
+    case 0:
+        config.language = "en";
+        break;
+    case 1:
+        config.language = "ru";
+        break;
+    }
+    
     delete form;
 }

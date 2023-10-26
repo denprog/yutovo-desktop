@@ -38,7 +38,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ReadSettings();
 
+    ui->editor_tabs->clear();
     SetupGui();
+
+    AddEditorTab("(No name)");
 
     UpdateRecentFiles();
 
@@ -59,12 +62,37 @@ void MainWindow::contextMenuEvent(QContextMenuEvent* event)
         w->MakeContextMenu(event);
 }
 
+void MainWindow::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui->retranslateUi(this);
+        SetupGui();
+
+        for (int i = 0; i < ui->editor_tabs->count(); ++i)
+        {
+            DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+            if (config.language == "en")
+                w->document->SetLanguage(yutovo_calculator::Language::English);
+            else if (config.language == "ru")
+                w->document->SetLanguage(yutovo_calculator::Language::Russian);
+        }
+    }
+
+    QMainWindow::changeEvent(event);
+}
+
 void MainWindow::SetupGui()
 {
-    ui->editor_tabs->clear();
     ui->editor_tabs->setTabsClosable(true);
     connect(ui->editor_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(OnCloseEditorTab(int)));
     connect(ui->editor_tabs, SIGNAL(currentChanged(int)), this, SLOT(OnEditorChanged(int)));
+
+    menuBar()->clear();
+
+    QList<QToolBar*> toolbars = findChildren<QToolBar*>();
+    for (auto& t : toolbars)
+        removeToolBar(t);
 
     CreateActions();
     addToolBarBreak();
@@ -75,8 +103,6 @@ void MainWindow::SetupGui()
     CreateHyperbolicToolbar();
     addToolBarBreak();
     CreateFunctionsToolbar();
-
-    AddEditorTab("(No name)");
 
     CreateStatusBar();
 
@@ -94,6 +120,10 @@ void MainWindow::SetupGui()
     functions_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
+
+    int i = ui->editor_tabs->currentIndex();
+    if (i >= 0)
+        OnEditorChanged(i);
 }
 
 void MainWindow::AddEditorTab(const QString name)
@@ -136,7 +166,7 @@ DocumentPtr MainWindow::GetCurrentDocument()
 void MainWindow::CreateActions()
 {
     //file menu and toolbar
-    QMenu *file_menu = menuBar()->addMenu(tr("&File"));
+    QMenu* file_menu = menuBar()->addMenu(tr("&File"));
     standard_toolbar = addToolBar(tr("Standard"));
 
     QAction* action = new QAction(QIcon(":/icons/images/standard/new.png"), tr("&New"), this);
@@ -183,7 +213,7 @@ void MainWindow::CreateActions()
     action->setStatusTip(tr("Exit the application"));
 
     //edit menu and toolbar
-    QMenu *edit_menu = menuBar()->addMenu(tr("&Edit"));
+    QMenu* edit_menu = menuBar()->addMenu(tr("&Edit"));
 
     edit_menu->addSeparator();
     standard_toolbar->addSeparator();
@@ -669,6 +699,7 @@ void MainWindow::Settings()
         _settings[key] = settings.value(key);
     }
 
+    std::string language = config.language;
     Config _config = config;
     int r;
     {
@@ -697,6 +728,9 @@ void MainWindow::Settings()
         trigonometry_toolbar_action->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
         hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
+
+        if (language != config.language)
+            InstallTranslation(config.language);
     }
 }
 
@@ -1545,6 +1579,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
+    settings.setValue("MainWindow/language", config.language.c_str());
 
     settings.beginGroup("RecentFiles");
     settings.setValue("max_count", recent_files_count);
@@ -1594,6 +1629,9 @@ void MainWindow::ReadSettings()
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
     
+    config.language = settings.value("MainWindow/language", "en").toString().toUtf8().data();
+    InstallTranslation(config.language);
+
     settings.beginGroup("RecentFiles");
     recent_files_count = settings.value("max_count", 10).toInt();
     if (recent_files_count > 50)
@@ -1731,5 +1769,25 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
         action->setData(*it);
         connect(action, &QAction::triggered, this, &MainWindow::OpenRecentFile);
         recent_files_menu->addAction(action);
+    }
+}
+
+void MainWindow::InstallTranslation(const std::string& language)
+{
+    if (language == "ru")
+    {
+        if (!desktop_translator.load("yutovo_desktop_ru"))
+            logger->Error("Error loading translation: yutovo_desktop_ru");
+        if (!qApp->installTranslator(&desktop_translator))
+            logger->Error("Error installing translation");
+        if (!editor_translator.load("yutovo_editor_ru"))
+            logger->Error("Error loading translation: yutovo_editor_ru");
+        if (!qApp->installTranslator(&editor_translator))
+            logger->Error("Error installing translation");
+    }
+    else
+    {
+        qApp->removeTranslator(&desktop_translator);
+        qApp->removeTranslator(&editor_translator);
     }
 }

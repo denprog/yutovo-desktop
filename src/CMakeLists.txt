@@ -65,6 +65,13 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 )
 
 install(
+    FILES
+        translations/${PROJECT_NAME}.qm
+    DESTINATION ${INSTALL_PATH}/bin
+    COMPONENT ${PROJECT_NAME}
+)
+
+install(
     TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}
     DESTINATION ${INSTALL_PATH}/bin
