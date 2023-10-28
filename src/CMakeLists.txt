@@ -66,7 +66,9 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 install(
     FILES
-        translations/${PROJECT_NAME}.qm
+        translations/${PROJECT_NAME}_ru.qm
+        translations/yutovo_editor_en.qm
+        translations/yutovo_editor_ru.qm
     DESTINATION ${INSTALL_PATH}/bin
     COMPONENT ${PROJECT_NAME}
 )

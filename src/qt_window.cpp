@@ -324,9 +324,14 @@ Rect QtWindow::GetRect()
     return Rect{rect.left(), rect.top(), rect.width(), rect.height()};
 }
 
-std::string QtWindow::Translate(const std::string& str)
+std::string QtWindow::Translate(ElementId id, const std::string& str)
 {
     return QCoreApplication::translate("Solver", str.c_str()).toStdString();
+}
+
+std::u32string QtWindow::Translate(ElementId id, const std::u32string& str)
+{
+    return QCoreApplication::translate("Solver", ToBasicString(str).c_str()).toStdU32String();
 }
 
 void QtWindow::OnCaretMoved(const EditorState editor_state)

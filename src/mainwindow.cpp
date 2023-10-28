@@ -1785,6 +1785,12 @@ void MainWindow::InstallTranslation(const std::string& language)
         if (!qApp->installTranslator(&editor_translator))
             logger->Error("Error installing translation");
     }
+    else if (language == "en")
+    {
+        qApp->removeTranslator(&desktop_translator);
+        if (!editor_translator.load("yutovo_editor_en"))
+            logger->Error("Error loading translation: yutovo_editor_en");
+    }
     else
     {
         qApp->removeTranslator(&desktop_translator);
