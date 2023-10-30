@@ -1774,26 +1774,30 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
 
 void MainWindow::InstallTranslation(const std::string& language)
 {
+    if (language == "")
+    {
+        qApp->removeTranslator(&desktop_translator);
+        qApp->removeTranslator(&editor_translator);
+        return;
+    }
+
     if (language == "ru")
     {
         if (!desktop_translator.load("yutovo_desktop_ru"))
             logger->Error("Error loading translation: yutovo_desktop_ru");
-        if (!qApp->installTranslator(&desktop_translator))
-            logger->Error("Error installing translation");
         if (!editor_translator.load("yutovo_editor_ru"))
             logger->Error("Error loading translation: yutovo_editor_ru");
-        if (!qApp->installTranslator(&editor_translator))
-            logger->Error("Error installing translation");
     }
     else if (language == "en")
     {
-        qApp->removeTranslator(&desktop_translator);
+        if (!desktop_translator.load("yutovo_desktop_en"))
+            logger->Error("Error loading translation: yutovo_desktop_en");
         if (!editor_translator.load("yutovo_editor_en"))
             logger->Error("Error loading translation: yutovo_editor_en");
     }
-    else
-    {
-        qApp->removeTranslator(&desktop_translator);
-        qApp->removeTranslator(&editor_translator);
-    }
+
+    if (!qApp->installTranslator(&desktop_translator))
+        logger->Error("Error installing translation");
+    if (!qApp->installTranslator(&editor_translator))
+        logger->Error("Error installing translation");
 }
