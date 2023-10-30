@@ -68,6 +68,7 @@ void MainWindow::changeEvent(QEvent* event)
     {
         ui->retranslateUi(this);
         SetupGui();
+        UpdateRecentFiles();
 
         for (int i = 0; i < ui->editor_tabs->count(); ++i)
         {
