@@ -4,71 +4,71 @@
 <context>
     <name>Solver</name>
     <message>
-        <source>ok</source>
+        <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <source>unknown_command</source>
+        <source>Unknown command</source>
         <translation>Неизвестная команда</translation>
     </message>
     <message>
-        <source>json_error</source>
+        <source>Json error</source>
         <translation>Ошибка JSON</translation>
     </message>
     <message>
-        <source>no_field</source>
+        <source>No field</source>
         <translation>Нет поля</translation>
     </message>
     <message>
-        <source>field_error</source>
+        <source>Field error</source>
         <translation>Ошибка поля</translation>
     </message>
     <message>
-        <source>parser_error</source>
+        <source>Parser error</source>
         <translation>Ошибка разбора</translation>
     </message>
     <message>
-        <source>operation_error</source>
+        <source>Operation error</source>
         <translation>Ошибочная операция</translation>
     </message>
     <message>
-        <source>solver_restarted</source>
+        <source>Solver restarted</source>
         <translation>Рестарт сервера</translation>
     </message>
     <message>
-        <source>syntax_error</source>
+        <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
     <message>
-        <source>wrong_arguments_count</source>
+        <source>Wrong arguments count</source>
         <translation>Неправильное количество аргументов</translation>
     </message>
     <message>
-        <source>unknown_identifier</source>
+        <source>Unknown identifier</source>
         <translation>Неизвестный идентификатор</translation>
     </message>
     <message>
-        <source>expression_expected</source>
+        <source>Expression expected</source>
         <translation>Ожидается выражение</translation>
     </message>
     <message>
-        <source>division_by_zero</source>
+        <source>Division by zero</source>
         <translation>Деление на ноль</translation>
     </message>
     <message>
-        <source>overflow</source>
+        <source>Overflow</source>
         <translation>Переполнение</translation>
     </message>
     <message>
-        <source>argument_is_over</source>
+        <source>Argument is over</source>
         <translation>Переполнение аргумента</translation>
     </message>
     <message>
-        <source>units_are_incompatible</source>
+        <source>Units are incompatible</source>
         <translation>Размерности несовместимы</translation>
     </message>
     <message>
-        <source>conversion_does_not_fit</source>
+        <source>Conversion does not fit</source>
         <translation>Преобразование невозможно</translation>
     </message>
 </context>
