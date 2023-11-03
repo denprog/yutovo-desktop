@@ -1366,7 +1366,6 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     if (c.id.empty() || c.id.size() == 1)
         return;
     ElementId _id = GetParent(c.id);
-    auto t = document->GetElementType(_id);
     if (!document->IsString(document->GetElement(_id)) && !document->IsRow(document->GetElement(_id)))
     {
         string_format.Reset();
