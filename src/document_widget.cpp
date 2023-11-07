@@ -70,7 +70,18 @@ void DocumentWidget::paintEvent(QPaintEvent *event)
 void DocumentWidget::resizeEvent(QResizeEvent *event)
 {
     if (document)
-        document->Resize(event->size().width(), event->size().height());
+    {
+        if (resize.width() == 0)
+        {
+            document->Resize(event->size().width(), event->size().height());
+            resize = event->size();
+            return;
+        }
+        resize = event->size();
+        if (delay_timer != 0)
+            killTimer(delay_timer);
+        delay_timer = startTimer(std::chrono::milliseconds(500));
+    }
 }
 
 void DocumentWidget::keyPressEvent(QKeyEvent *event)
@@ -144,4 +155,12 @@ void DocumentWidget::focusOutEvent(QFocusEvent *event)
 {
     if (document)
         document->SetCaretVisible(false);
+}
+
+void DocumentWidget::timerEvent(QTimerEvent *event)
+{
+    if (document)
+        document->Resize(resize.width(), resize.height());
+    killTimer(delay_timer);
+    delay_timer = 0;
 }

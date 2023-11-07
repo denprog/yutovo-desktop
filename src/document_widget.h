@@ -44,6 +44,7 @@ protected:
     virtual void wheelEvent(QWheelEvent* event);
     virtual void focusInEvent(QFocusEvent *event);
     virtual void focusOutEvent(QFocusEvent *event);
+    virtual void timerEvent(QTimerEvent *event) override;
 
 private:
     friend class DocumentWindow;
@@ -58,6 +59,10 @@ private:
     DocumentPtr document;
 
     uint caret_moving_task_id = 0;
+
+    int delay_timer = 0;
+
+    QSize resize;
 };
 
 #endif
