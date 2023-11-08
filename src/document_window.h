@@ -37,6 +37,7 @@ private slots:
     void OnPresentAsReal();
     void OnPresentAsInteger();
     void OnPresentAsRational();
+    void OnPresentAsComplex();
 
     void OnSetPrecision();
     void OnSetExp();
@@ -53,6 +54,10 @@ private slots:
 
     void OnFractionFormProper();
     void OnFractionFormImproper();
+
+    void OnComplexFormArithmetic();
+    void OnComplexFormTrigonometric();
+    void OnComplexFormExponential();
 
 signals:
     void CaretMoved(const EditorState editor_state);
@@ -82,6 +87,7 @@ private:
     QAction* present_as_real = nullptr;
     QAction* present_as_integer = nullptr;
     QAction* present_as_rational = nullptr;
+    QAction* present_as_complex = nullptr;
 
     QAction* set_precision = nullptr;
     QAction* set_exp = nullptr;
@@ -98,6 +104,10 @@ private:
 
     QAction* fraction_form_proper = nullptr;
     QAction* fraction_form_improper = nullptr;
+
+    QAction* complex_form_arithmetic = nullptr;
+    QAction* complex_form_trigonometric = nullptr;
+    QAction* complex_form_exponential = nullptr;
 };
 
 #endif

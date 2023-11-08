@@ -1705,7 +1705,7 @@ void MainWindow::ReadSettings()
     config.complex_result.show_angle_measure = settings.value("complex_show_angle_measure", false).toBool();
     config.complex_result.form = (ComplexForm)settings.value("complex_form", 0).toInt();
     if ((int)config.complex_result.form < 0 || (int)config.complex_result.form > 2)
-        config.complex_result.form = ComplexForm::ARITHMETIC;
+        config.complex_result.form = ComplexForm::Arithmetic;
     config.complex_result.max_count = settings.value("complex_max_count", 10).toInt();
     if (config.complex_result.max_count < 0 || config.complex_result.max_count > 20)
         config.complex_result.max_count = 10;

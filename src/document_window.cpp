@@ -66,6 +66,9 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     present_as_rational = new QAction(tr("Rational"), this);
     present_as_rational->setCheckable(true);
     connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
+    present_as_complex = new QAction(tr("Complex"), this);
+    present_as_complex->setCheckable(true);
+    connect(present_as_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsComplex);
 
     set_precision = new QAction(tr("Set precision"), this);
     connect(set_precision, &QAction::triggered, this, &DocumentWindow::OnSetPrecision);
@@ -103,6 +106,16 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     fraction_form_improper = new QAction(tr("Improper"), this);
     fraction_form_improper->setCheckable(true);
     connect(fraction_form_improper, &QAction::triggered, this, &DocumentWindow::OnFractionFormImproper);
+
+    complex_form_arithmetic = new QAction(tr("Arithmetic"), this);
+    complex_form_arithmetic->setCheckable(true);
+    connect(complex_form_arithmetic, &QAction::triggered, this, &DocumentWindow::OnComplexFormArithmetic);
+    complex_form_trigonometric = new QAction(tr("Trigonometric"), this);
+    complex_form_trigonometric->setCheckable(true);
+    connect(complex_form_trigonometric, &QAction::triggered, this, &DocumentWindow::OnComplexFormTrigonometric);
+    complex_form_exponential = new QAction(tr("Exponential"), this);
+    complex_form_exponential->setCheckable(true);
+    connect(complex_form_exponential, &QAction::triggered, this, &DocumentWindow::OnComplexFormExponential);
 }
 
 void DocumentWindow::CreateDocument()
@@ -144,10 +157,12 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             present_as_menu->addAction(present_as_real);
             present_as_menu->addAction(present_as_integer);
             present_as_menu->addAction(present_as_rational);
+            present_as_menu->addAction(present_as_complex);
             present_as_auto->setChecked(false);
             present_as_real->setChecked(false);
             present_as_integer->setChecked(false);
             present_as_rational->setChecked(false);
+            present_as_complex->setChecked(false);
         };
 
     auto add_real_menu = 
@@ -207,6 +222,24 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                 menu.addAction(set_unit);
         };
 
+    auto add_complex_menu = 
+        [&](ElementId id)
+        {
+            auto complex_form = document->GetComplexForm(id);
+
+            menu.addSeparator();
+            QMenu* complex_form_menu = menu.addMenu(tr("Complex form"));
+            complex_form_menu->addAction(complex_form_arithmetic);
+            complex_form_arithmetic->setChecked(complex_form == ComplexForm::Arithmetic);
+            complex_form_menu->addAction(complex_form_trigonometric);
+            complex_form_trigonometric->setChecked(complex_form == ComplexForm::Trigonometric);
+            complex_form_menu->addAction(complex_form_exponential);
+            complex_form_exponential->setChecked(complex_form == ComplexForm::Exponential);
+
+            if (document->HasUnit(id))
+                menu.addAction(set_unit);
+        };
+
     add_copy_paste_menu();
 
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
@@ -225,6 +258,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             break;
         case ResultType::RATIONAL:
             add_rational_menu(id);
+            break;
+        case ResultType::COMPLEX:
+            add_complex_menu(id);
             break;
         }
     }
@@ -254,6 +290,16 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                     add_present_as_menu();
                     present_as_rational->setChecked(true);
                     add_rational_menu(id);
+                }
+                else
+                {
+                    id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
+                    if (!id.empty())
+                    {
+                        add_present_as_menu();
+                        present_as_complex->setChecked(true);
+                        add_complex_menu(id);
+                    }
                 }
             }
         }
@@ -350,6 +396,11 @@ void DocumentWindow::OnPresentAsInteger()
 void DocumentWindow::OnPresentAsRational()
 {
     document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL, true);
+}
+
+void DocumentWindow::OnPresentAsComplex()
+{
+    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::COMPLEX, true);
 }
 
 void DocumentWindow::OnSetPrecision()
@@ -455,4 +506,19 @@ void DocumentWindow::OnFractionFormProper()
 void DocumentWindow::OnFractionFormImproper()
 {
     document->SetFractionForm(document_widget->current_editor_state.caret_state.id, FractionForm::Improper, true);
+}
+
+void DocumentWindow::OnComplexFormArithmetic()
+{
+    document->SetComplexForm(document_widget->current_editor_state.caret_state.id, ComplexForm::Arithmetic, true);
+}
+
+void DocumentWindow::OnComplexFormTrigonometric()
+{
+    document->SetComplexForm(document_widget->current_editor_state.caret_state.id, ComplexForm::Trigonometric, true);
+}
+
+void DocumentWindow::OnComplexFormExponential()
+{
+    document->SetComplexForm(document_widget->current_editor_state.caret_state.id, ComplexForm::Exponential, true);
 }
