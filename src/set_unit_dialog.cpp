@@ -59,8 +59,6 @@ void SetUnitDialog::FillUnits()
     config.with_border = false;
     config.caret_visible = false;
     config.formula_border = false;
-    document->SetConfig(config);
-
     document->Start(config);
 
     std::vector<Unit>& units = it->second;
