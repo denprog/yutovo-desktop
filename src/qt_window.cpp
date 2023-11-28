@@ -8,7 +8,8 @@
 //QtWindow
 
 QtWindow::QtWindow(const int width, const int height) :
-    surface(new QImage(width, height, QImage::Format_RGB32))
+    surface(new QImage(width, height, QImage::Format_RGB32)),
+    logger(Logger::GetInstance(".", "yutovo_desktop", true, true))
 {
 }
 

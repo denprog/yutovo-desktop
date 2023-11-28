@@ -6,6 +6,7 @@
 #include <memory>
 #include <mutex>
 #include <yutovo_editor/window.h>
+#include <yutovo_logger/logger.h>
 
 class DocumentWidget;
 
@@ -87,6 +88,8 @@ private:
     QImage store_image;
 
     QRegion clip_region;
+
+    Logger* logger;
 };
 
 #endif
