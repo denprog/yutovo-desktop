@@ -106,6 +106,8 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
     EditorState s = document->GetEditorState();
     if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
         caret_moving_task_id = document->MoveCaret((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y);
+    if (event->buttons() == Qt::LeftButton)
+        left_click_pos = QPoint{event->pos().x() + window.document_point.x, event->pos().y() + window.document_point.y};
 }
 
 void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
@@ -120,6 +122,12 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         setCursor(Qt::IBeamCursor);
     else
         setCursor(Qt::ArrowCursor);
+    
+    if (event->buttons() == Qt::MouseButton::LeftButton)
+    {
+        //selection with mouse
+        document->Select(left_click_pos.x(), left_click_pos.y(), (int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y);
+    }
 }
 
 void DocumentWidget::wheelEvent(QWheelEvent* event)

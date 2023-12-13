@@ -63,6 +63,8 @@ private:
     int delay_timer = 0;
 
     QSize resize;
+
+    QPoint left_click_pos;
 };
 
 #endif
