@@ -86,6 +86,7 @@ void MainWindow::changeEvent(QEvent* event)
 void MainWindow::SetupGui()
 {
     ui->editor_tabs->setTabsClosable(true);
+    ui->editor_tabs->disconnect();
     connect(ui->editor_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(OnCloseEditorTab(int)));
     connect(ui->editor_tabs, SIGNAL(currentChanged(int)), this, SLOT(OnEditorChanged(int)));
 
@@ -909,8 +910,11 @@ void MainWindow::OnCloseEditorTab(int index)
     if (index == -1)
         return;
     QWidget* tab_item = ui->editor_tabs->widget(index);
-    ui->editor_tabs->removeTab(index);
-    delete(tab_item);
+    if (tab_item)
+    {
+        ui->editor_tabs->removeTab(index);
+        delete(tab_item);
+    }
     SetFocus();
 }
 
