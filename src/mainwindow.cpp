@@ -1745,14 +1745,14 @@ void MainWindow::UpdateCopyPaste()
         return;
     
     EditorState s = document->GetEditorState();
-    bool editable = document->IsEditable(s.caret_state.id);
+    if (s.caret_state.IsEmpty() || s.caret_state.id.size() == 1)
+        return;
 
+    bool editable = document->IsEditable(yutovo::GetParent(s.caret_state.id));
     copy_action->setEnabled(!s.selection_state.IsEmpty());
-
     QClipboard* clipboard = QGuiApplication::clipboard();
     const QMimeData* mime_data = clipboard->mimeData();
-    paste_action->setEnabled(editable && mime_data->hasText());
-
+    paste_action->setEnabled(editable && (mime_data->hasText() || mime_data->hasImage()));
     cut_action->setEnabled(editable && !s.selection_state.IsEmpty());
 }
 

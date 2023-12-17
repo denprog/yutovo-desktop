@@ -133,15 +133,16 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         [&]()
         {
             EditorState s = document->GetEditorState();
-            bool editable = document->IsEditable(s.caret_state.id);
-
+            if (s.caret_state.IsEmpty() || s.caret_state.id.size() == 1)
+                return;
+            
+            bool editable = document->IsEditable(yutovo::GetParent(s.caret_state.id));
             menu.addAction(copy);
             copy->setEnabled(!s.selection_state.IsEmpty());
-
             menu.addAction(paste);
             QClipboard* clipboard = QGuiApplication::clipboard();
             const QMimeData* mime_data = clipboard->mimeData();
-            paste->setEnabled(editable && mime_data->hasText());
+            paste->setEnabled(editable && (mime_data->hasText() || mime_data->hasImage()));
 
             menu.addAction(cut);
             cut->setEnabled(editable && !s.selection_state.IsEmpty());
