@@ -69,6 +69,9 @@ public:
     virtual void OnCopyResult(CopyResult result);
     virtual void OnPasteResult(PasteResult result);
 
+    virtual void OnFormattingStarted();
+    virtual void OnFormattingFinished();
+
 public:
     void GetPixmap(QPixmap& out, const QRect& rect);
 

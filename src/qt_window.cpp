@@ -4,6 +4,7 @@
 #include <QPainterPath>
 #include <QBuffer>
 #include <QCoreApplication>
+#include <QApplication>
 
 //QtWindow
 
@@ -363,6 +364,16 @@ void QtWindow::OnCopyResult(CopyResult result)
 void QtWindow::OnPasteResult(PasteResult result)
 {
     emit ClipboardPasteResult(result);
+}
+
+void QtWindow::OnFormattingStarted()
+{
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+}
+
+void QtWindow::OnFormattingFinished()
+{
+    QApplication::restoreOverrideCursor();
 }
 
 void QtWindow::GetPixmap(QPixmap& out, const QRect& rect)

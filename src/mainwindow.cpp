@@ -637,6 +637,9 @@ void MainWindow::OpenFile(QString file_name)
     auto document = GetCurrentDocument();
     if (!document)
         return;
+    
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    
     document->Load(file_name.toUtf8().data());
 
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -1483,6 +1486,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
+    QApplication::restoreOverrideCursor();
+    
     if (result != IOResult::Success)
     {
         recent_files.removeAll(dialog_file_name);
