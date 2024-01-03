@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <QFileInfo> 
 #include <QColorDialog>
+#include <QCloseEvent>
 #include <yutovo_editor/util.h>
 #include <yutovo_calculator/math_helper.h>
 #include "document_window.h"
@@ -81,6 +82,24 @@ void MainWindow::changeEvent(QEvent* event)
     }
 
     QMainWindow::changeEvent(event);
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    for (int i = 0; i < ui->editor_tabs->count(); ++i)
+    {
+        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+        if (w->document->IsChanged())
+        {
+            if (QMessageBox::question(this, tr("Yutovo"), tr("One or more documents are unsaved. Exit?")) == QMessageBox::No)
+            {
+                event->ignore();
+                return;
+            }
+            break;
+        }
+    }
+    QMainWindow::closeEvent(event);
 }
 
 void MainWindow::SetupGui()
@@ -741,6 +760,17 @@ void MainWindow::Settings()
 
 void MainWindow::Exit()
 {
+    for (int i = 0; i < ui->editor_tabs->count(); ++i)
+    {
+        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+        if (w->document->IsChanged())
+        {
+            if (QMessageBox::question(this, tr("Yutovo"), tr("One or more documents are unsaved. Exit?")) == QMessageBox::No)
+                return;
+            break;
+        }
+    }
+
     close();
 }
 

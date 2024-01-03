@@ -33,6 +33,7 @@ public:
 protected:
     void contextMenuEvent(QContextMenuEvent* event) override;
     void changeEvent(QEvent* event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 private:
     void SetupGui();
