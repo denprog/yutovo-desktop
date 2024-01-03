@@ -46,6 +46,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     UpdateRecentFiles();
 
+    settings.beginGroup("Documents");
+    if (settings.value("load_last_documents").toBool())
+    {
+        auto list = settings.value("last_documents").toStringList();
+        for (auto it = list.begin(); it != list.end(); ++it)
+        {
+            if (*it != "")
+                OpenFile(*it);
+        }
+        settings.endGroup();
+    }
+    settings.endGroup();
+
     logger->Info("Desktop start");
 }
 
@@ -1619,6 +1632,16 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", config.language.c_str());
+
+    QList<QString> last_documents;
+    for (int i = 0; i < ui->editor_tabs->count(); ++i)
+    {
+        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+        if (!w->path.isEmpty())
+            last_documents.push_back(w->path);
+    }
+
+    settings.setValue("Documents/last_documents", QVariant(last_documents));
 
     settings.beginGroup("RecentFiles");
     settings.setValue("max_count", recent_files_count);

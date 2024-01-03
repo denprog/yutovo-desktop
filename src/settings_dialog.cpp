@@ -1,5 +1,6 @@
 #include "settings_dialog.h"
 #include "system_settings_form.h"
+#include "documents_settings_form.h"
 #include "interface_settings_form.h"
 #include "result_settings_form.h"
 #include "colors_settings_form.h"
@@ -69,6 +70,10 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     else if (item->text(0) == tr("System"))
     {
         form->settings_page_layout->addWidget(new SystemSettingsForm(config));
+    }
+    else if (item->text(0) == tr("Documents"))
+    {
+        form->settings_page_layout->addWidget(new DocumentsSettingsForm(settings));
     }
     else if (item->text(0) == tr("Interface"))
     {
