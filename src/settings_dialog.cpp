@@ -79,9 +79,21 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     {
         form->settings_page_layout->addWidget(new InterfaceSettingsForm(settings));
     }
+    else if (item->text(0) == tr("Formula"))
+    {
+        QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("Colors"), Qt::MatchExactly | Qt::MatchRecursive);
+        form->settings_tree->setCurrentItem(*items.begin());
+        form->settings_page_layout->addWidget(new ColorsSettingsForm(config));
+    }
     else if (item->text(0) == tr("Colors"))
     {
         form->settings_page_layout->addWidget(new ColorsSettingsForm(config));
+    }
+    else if (item->text(0) == tr("Calculator"))
+    {
+        QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("Result"), Qt::MatchExactly | Qt::MatchRecursive);
+        form->settings_tree->setCurrentItem(*items.begin());
+        form->settings_page_layout->addWidget(new ResultSettingsForm(config));
     }
     else if (item->text(0) == tr("Result"))
     {
