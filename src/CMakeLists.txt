@@ -51,6 +51,8 @@ add_executable(${PROJECT_NAME}
     colors_settings_form.cpp
     documents_settings_form.ui
     documents_settings_form.cpp
+    fonts_settings_form.ui
+    fonts_settings_form.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)

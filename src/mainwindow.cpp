@@ -55,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
             if (*it != "")
                 OpenFile(*it);
         }
-        settings.endGroup();
     }
     settings.endGroup();
 
@@ -1658,6 +1657,14 @@ void MainWindow::WriteSettings()
     settings.setValue("code_block_border_color", config.code_block_border_color.ToInt());
     settings.endGroup();
 
+    settings.beginGroup("Fonts");
+    settings.setValue("use_numbers_gaps", config.use_numbers_gaps);
+    settings.setValue("binary_gap", config.binary_gap);
+    settings.setValue("octal_gap", config.octal_gap);
+    settings.setValue("decimal_gap", config.decimal_gap);
+    settings.setValue("hexadecimal_gap", config.hexadecimal_gap);
+    settings.endGroup();
+
     settings.beginGroup("Calculator");
     settings.setValue("result_auto_advance", config.auto_result.result_auto_advance);
     QList<QVariant> v;
@@ -1710,6 +1717,14 @@ void MainWindow::ReadSettings()
     config.service_ip = settings.value("ip", "localhost").toString().toUtf8().data();
     config.service_port = settings.value("port", 8010).toInt();
     config.service_timeout = settings.value("timeout", 20).toInt();
+    settings.endGroup();
+
+    settings.beginGroup("Fonts");
+    config.use_numbers_gaps = settings.value("use_numbers_gaps", true).toBool();
+    config.binary_gap = settings.value("binary_gap", 4).toInt();
+    config.octal_gap = settings.value("octal_gap", 3).toInt();
+    config.decimal_gap = settings.value("decimal_gap", 3).toInt();
+    config.hexadecimal_gap = settings.value("hexadecimal_gap", 4).toInt();
     settings.endGroup();
 
     settings.beginGroup("Colors");

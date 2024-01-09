@@ -4,6 +4,7 @@
 #include "interface_settings_form.h"
 #include "result_settings_form.h"
 #include "colors_settings_form.h"
+#include "fonts_settings_form.h"
 #include "ui_settings_dialog.h"
 
 //SettingsDialog
@@ -81,9 +82,13 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     }
     else if (item->text(0) == tr("Formula"))
     {
-        QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("Colors"), Qt::MatchExactly | Qt::MatchRecursive);
+        QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("Fonts"), Qt::MatchExactly | Qt::MatchRecursive);
         form->settings_tree->setCurrentItem(*items.begin());
-        form->settings_page_layout->addWidget(new ColorsSettingsForm(config));
+        form->settings_page_layout->addWidget(new FontsSettingsForm(config));
+    }
+    else if (item->text(0) == tr("Fonts"))
+    {
+        form->settings_page_layout->addWidget(new FontsSettingsForm(config));
     }
     else if (item->text(0) == tr("Colors"))
     {
