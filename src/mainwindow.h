@@ -191,6 +191,8 @@ private:
 
     int last_font_size = 0;
 
+    bool exit_after_save = false;
+
     StringFormat string_format;
 
     QAction* undo_action = nullptr;

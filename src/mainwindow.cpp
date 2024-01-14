@@ -103,12 +103,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
         DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
         if (w->document->IsChanged())
         {
-            if (QMessageBox::question(this, tr("Yutovo"), tr("One or more documents are unsaved. Exit?")) == QMessageBox::No)
+            if (QMessageBox::question(this, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(ui->editor_tabs->tabText(i))) == QMessageBox::Yes)
             {
+                exit_after_save = true;
+                Save();
                 event->ignore();
                 return;
             }
-            break;
         }
     }
     QMainWindow::closeEvent(event);
@@ -772,17 +773,6 @@ void MainWindow::Settings()
 
 void MainWindow::Exit()
 {
-    for (int i = 0; i < ui->editor_tabs->count(); ++i)
-    {
-        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
-        if (w->document->IsChanged())
-        {
-            if (QMessageBox::question(this, tr("Yutovo"), tr("One or more documents are unsaved. Exit?")) == QMessageBox::No)
-                return;
-            break;
-        }
-    }
-
     close();
 }
 
@@ -1518,12 +1508,18 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 {
     if (result != IOResult::Success)
     {
+        exit_after_save = false;
         recent_files.removeAll(dialog_file_name);
         UpdateRecentFiles();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
         return;
     }
     UpdateRecentFiles(dialog_file_name);
+    if (exit_after_save)
+    {
+        Close();
+        close();
+    }
 }
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
