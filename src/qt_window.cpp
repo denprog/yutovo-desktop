@@ -199,7 +199,7 @@ void QtWindow::DrawImage(const int x1, const int y1, const int width, const int 
     p.end();
 }
 
-float QtWindow::GetSymbolSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline)
+int QtWindow::GetSymbolSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline)
 {
     auto it = sizes_cache.find(symbol);
     if (it != sizes_cache.end())
