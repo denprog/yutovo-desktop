@@ -199,6 +199,62 @@ void QtWindow::DrawImage(const int x1, const int y1, const int width, const int 
     p.end();
 }
 
+float QtWindow::GetSymbolSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline)
+{
+    auto it = sizes_cache.find(symbol);
+    if (it != sizes_cache.end())
+    {
+        std::vector<SymbolSize>& v = it->second;
+        auto v_it = std::find_if(v.begin(), v.end(), 
+            [&](SymbolSize& s)
+            {
+                return s.height == height && s.family_name == family_name;
+            });
+        if (v_it != v.end())
+        {
+            size.Set(v_it->symbol_size.width(), v_it->symbol_size.height());
+            baseline = v_it->baseline;
+            return v_it->font_size;
+        }
+    }
+    else
+    {
+        auto [_it, success] = sizes_cache.insert(std::pair<char32_t, std::vector<SymbolSize>>(symbol, std::vector<SymbolSize>()));
+        it = _it;
+    }
+
+    QSize s(0, 0);
+    int font_size = 1;
+    auto _symbol = std::u32string(1, symbol);
+    QString str = QString::fromUcs4(_symbol.c_str());
+    baseline = 0;
+    std::vector<SymbolSize>& v = it->second;
+    while (s.height() < height)
+    {
+        auto v_it = std::find_if(v.begin(), v.end(), 
+            [&](SymbolSize& _s)
+            {
+                return _s.font_size == font_size && _s.family_name == family_name;
+            });
+        if (v_it != v.end())
+        {
+            s = v_it->symbol_size;
+            baseline = v_it->baseline;
+            ++font_size;
+            continue;
+        }
+
+        QFont font(family_name.c_str(), font_size);
+        QFontMetrics m(font);
+        s = m.size(Qt::TextSingleLine, str);
+        baseline = m.ascent();
+        it->second.push_back(SymbolSize{s.height(), family_name, font_size, s, baseline});
+        ++font_size;
+    }
+    size.Set(s.width(), s.height());
+    return font_size - 1;
+}
+
 void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height)
 {
     DrawFillRect(x1, y1, width, height, Color::White());
