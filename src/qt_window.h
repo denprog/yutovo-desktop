@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <memory>
 #include <mutex>
+#include <thread>
 #include <yutovo_editor/window.h>
 #include <yutovo_logger/logger.h>
 
@@ -19,6 +20,7 @@ class QtWindow : public QObject, public Window
 
 public:
     QtWindow(const int width, const int height);
+    ~QtWindow();
 
     virtual void Init();
 
@@ -32,6 +34,7 @@ public:
     virtual void DrawWavyLine(const int x1, const int y1, const int width, const int radius, const Color color);
     virtual void DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& bmp);
     virtual int GetSymbolSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline);
+    virtual void PrepareSymbolsSizes(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes);
 
     virtual void ClearRect(const int x1, const int y1, const int width, const int height);
 
@@ -76,6 +79,10 @@ public:
 public:
     void GetPixmap(QPixmap& out, const QRect& rect);
 
+private:
+    void FillCacheThread(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes);
+    int GetCachedSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline);
+
 signals:
     void DocumentUpdated(const Rect rect);
     void CaretMoved(const EditorState editor_state);
@@ -94,13 +101,16 @@ private:
     struct SymbolSize
     {
         int height = 0;
-        std::string family_name;
-        int font_size;
+        int font_size = 0;
         QSize symbol_size;
-        int baseline;
+        int baseline = 0;
     };
 
-    std::map<char32_t, std::vector<SymbolSize>> sizes_cache;
+    std::mutex sizes_cache_mutex;
+    std::thread fill_cache_thread;
+    bool stop_cache_thread = false;
+    typedef std::map<std::string, std::vector<SymbolSize>> FontSymbolSizes;
+    std::map<char32_t, FontSymbolSizes> sizes_cache; //symbol sizes by font and by character
 
     QRegion clip_region;
 

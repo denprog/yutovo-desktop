@@ -8,10 +8,20 @@
 
 //QtWindow
 
+using namespace std::chrono_literals;
+using namespace std::chrono;
+
 QtWindow::QtWindow(const int width, const int height) :
     surface(new QImage(width, height, QImage::Format_RGB32)),
     logger(Logger::GetInstance(".", "yutovo_desktop", true, true))
 {
+}
+
+QtWindow::~QtWindow()
+{
+    stop_cache_thread = true;
+    if (fill_cache_thread.joinable())
+        fill_cache_thread.join();
 }
 
 void QtWindow::Init()
@@ -201,58 +211,17 @@ void QtWindow::DrawImage(const int x1, const int y1, const int width, const int 
 
 int QtWindow::GetSymbolSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline)
 {
-    auto it = sizes_cache.find(symbol);
-    if (it != sizes_cache.end())
-    {
-        std::vector<SymbolSize>& v = it->second;
-        auto v_it = std::find_if(v.begin(), v.end(), 
-            [&](SymbolSize& s)
-            {
-                return s.height == height && s.family_name == family_name;
-            });
-        if (v_it != v.end())
-        {
-            size.Set(v_it->symbol_size.width(), v_it->symbol_size.height());
-            baseline = v_it->baseline;
-            return v_it->font_size;
-        }
-    }
-    else
-    {
-        auto [_it, success] = sizes_cache.insert(std::pair<char32_t, std::vector<SymbolSize>>(symbol, std::vector<SymbolSize>()));
-        it = _it;
-    }
+    std::lock_guard<std::mutex> lock(sizes_cache_mutex);
+    return GetCachedSize(symbol, height, family_name, size, baseline);
+}
 
-    QSize s(0, 0);
-    int font_size = 1;
-    auto _symbol = std::u32string(1, symbol);
-    QString str = QString::fromUcs4(_symbol.c_str());
-    baseline = 0;
-    std::vector<SymbolSize>& v = it->second;
-    while (s.height() < height)
-    {
-        auto v_it = std::find_if(v.begin(), v.end(), 
-            [&](SymbolSize& _s)
-            {
-                return _s.font_size == font_size && _s.family_name == family_name;
-            });
-        if (v_it != v.end())
-        {
-            s = v_it->symbol_size;
-            baseline = v_it->baseline;
-            ++font_size;
-            continue;
-        }
-
-        QFont font(family_name.c_str(), font_size);
-        QFontMetrics m(font);
-        s = m.size(Qt::TextSingleLine, str);
-        baseline = m.ascent();
-        it->second.push_back(SymbolSize{s.height(), family_name, font_size, s, baseline});
-        ++font_size;
-    }
-    size.Set(s.width(), s.height());
-    return font_size - 1;
+void QtWindow::PrepareSymbolsSizes(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes)
+{
+    stop_cache_thread = true;
+    if (fill_cache_thread.joinable())
+        fill_cache_thread.join();
+    stop_cache_thread = false;
+    fill_cache_thread = std::thread(&QtWindow::FillCacheThread, this, symbols_sizes);
 }
 
 void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height)
@@ -436,4 +405,94 @@ void QtWindow::GetPixmap(QPixmap& out, const QRect& rect)
 {
     std::lock_guard<std::mutex> lock(pixmap_mutex);
     out = pixmap.copy(rect);
+}
+
+void QtWindow::FillCacheThread(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes)
+{
+    Size size;
+    int baseline = 0;
+    for (auto& s : symbols_sizes)
+    {
+        int height = 1;
+        char32_t symbol = std::get<0>(s);
+        std::string family = std::get<1>(s);
+        int max_height = std::get<2>(s);
+        while (!stop_cache_thread && height < max_height)
+        {
+            std::this_thread::sleep_for(10ms); //this thread has low priority
+            std::lock_guard<std::mutex> lock(sizes_cache_mutex);
+            GetCachedSize(symbol, height, family, size, baseline);
+            ++height;
+        }
+    }
+}
+
+int QtWindow::GetCachedSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline)
+{
+    //firstly search the cache
+    FontSymbolSizes::iterator s_it;
+    auto it = sizes_cache.find(symbol);
+    if (it != sizes_cache.end())
+    {
+        s_it = it->second.find(family_name);
+        if (s_it == it->second.end())
+        {
+            auto [_it, success] = it->second.insert(std::pair<std::string, std::vector<SymbolSize>>(family_name, std::vector<SymbolSize>()));
+            s_it = _it;
+        }
+
+        std::vector<SymbolSize>& v = s_it->second;
+        auto v_it = std::find_if(v.begin(), v.end(), 
+            [&](SymbolSize& s)
+            {
+                return s.height == height;
+            });
+        if (v_it != v.end())
+        {
+            size.Set(v_it->symbol_size.width(), v_it->symbol_size.height());
+            baseline = v_it->baseline;
+            return v_it->font_size;
+        }
+    }
+    else
+    {
+        FontSymbolSizes f;
+        f.insert(std::pair<std::string, std::vector<SymbolSize>>(family_name, std::vector<SymbolSize>()));
+        auto [_it, success] = sizes_cache.insert(std::pair<char32_t, FontSymbolSizes>(symbol, f));
+        it = _it;
+        s_it = it->second.find(family_name);
+    }
+
+    //add sizes in the cache from zero up to the height
+    QSize s(0, 0);
+    int font_size = 1;
+    auto _symbol = std::u32string(1, symbol);
+    QString str = QString::fromUcs4(_symbol.c_str());
+    baseline = 0;
+    std::vector<SymbolSize>& v = s_it->second;
+    while (s.height() < height)
+    {
+        //skip the already present items
+        auto v_it = std::find_if(v.begin(), v.end(), 
+            [&](SymbolSize& _s)
+            {
+                return _s.font_size == font_size;
+            });
+        if (v_it != v.end())
+        {
+            s = v_it->symbol_size;
+            baseline = v_it->baseline;
+            ++font_size;
+            continue;
+        }
+
+        QFont font(family_name.c_str(), font_size);
+        QFontMetrics m(font);
+        s = m.size(Qt::TextSingleLine, str);
+        baseline = m.ascent();
+        s_it->second.push_back(SymbolSize{s.height(), font_size, s, baseline});
+        ++font_size;
+    }
+    size.Set(s.width(), s.height());
+    return font_size - 1;
 }
