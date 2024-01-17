@@ -55,8 +55,8 @@ private:
     void Open();
     void OpenRecentFile();
     void OpenFile(QString file_name);
-    void Save();
-    void SaveAs();
+    void Save(int index = -1);
+    void SaveAs(int index = -1);
     void Close();
     void Settings();
     void Exit();
@@ -192,6 +192,7 @@ private:
     int last_font_size = 0;
 
     bool exit_after_save = false;
+    int close_tab_after_save = -1;
 
     StringFormat string_format;
 

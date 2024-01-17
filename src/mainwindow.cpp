@@ -103,10 +103,23 @@ void MainWindow::closeEvent(QCloseEvent *event)
         DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
         if (w->document->IsChanged())
         {
-            if (QMessageBox::question(this, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(ui->editor_tabs->tabText(i))) == QMessageBox::Yes)
+            QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(ui->editor_tabs->tabText(i)), 
+                QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+            int r = m.exec();
+            switch (r)
             {
-                exit_after_save = true;
-                Save();
+            case QMessageBox::Yes:
+                {
+                    close_tab_after_save = i;
+                    exit_after_save = true;
+                    Save(i);
+                    event->ignore();
+                    return;
+                }
+            case QMessageBox::No:
+                break;
+            default:
+                SetFocus();
                 event->ignore();
                 return;
             }
@@ -678,14 +691,18 @@ void MainWindow::OpenFile(QString file_name)
     w->path = file_name;
 }
 
-void MainWindow::Save()
+void MainWindow::Save(int index)
 {
-    auto document = GetCurrentDocument();
+    DocumentWindow* w = nullptr;
+    if (index != -1)
+        w = (DocumentWindow*)ui->editor_tabs->widget(index);
+    else
+        w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    auto document = w->document;
     if (!document)
         return;
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (w->path == "")
-        SaveAs();
+        SaveAs(index);
     else
     {
         dialog_file_name = w->path;
@@ -693,9 +710,14 @@ void MainWindow::Save()
     }
 }
 
-void MainWindow::SaveAs()
+void MainWindow::SaveAs(int index)
 {
-    auto document = GetCurrentDocument();
+    DocumentWindow* w = nullptr;
+    if (index != -1)
+        w = (DocumentWindow*)ui->editor_tabs->widget(index);
+    else
+        w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    auto document = w->document;
     if (!document)
         return;
     QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
@@ -709,13 +731,9 @@ void MainWindow::SaveAs()
     dialog_file_name = file_names[0];
     document->Save(file_names[0].toUtf8().data());
 
-    int p = ui->editor_tabs->currentIndex();
-    if (p == -1)
-        return;
+    int p = index == -1 ? ui->editor_tabs->currentIndex() : index;
     QFileInfo file_info(file_names[0]);
     ui->editor_tabs->setTabText(p, file_info.fileName());
-
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     w->path = file_names[0];
 }
 
@@ -944,6 +962,27 @@ void MainWindow::OnCloseEditorTab(int index)
 {
     if (index == -1)
         return;
+
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(index);
+    if (w->document->IsChanged())
+    {
+        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(ui->editor_tabs->tabText(index)), 
+            QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+        int r = m.exec();
+        switch (r)
+        {
+        case QMessageBox::Yes:
+            close_tab_after_save = index;
+            Save(index);
+            return;
+        case QMessageBox::No:
+            break;
+        default:
+            SetFocus();
+            return;
+        }
+    }
+
     QWidget* tab_item = ui->editor_tabs->widget(index);
     if (tab_item)
     {
@@ -1509,13 +1548,23 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
     if (result != IOResult::Success)
     {
         exit_after_save = false;
+        close_tab_after_save = -1;
         recent_files.removeAll(dialog_file_name);
         UpdateRecentFiles();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
         return;
     }
+
     UpdateRecentFiles(dialog_file_name);
-    if (exit_after_save)
+
+    if (close_tab_after_save != -1)
+    {
+        OnCloseEditorTab(close_tab_after_save);
+        close_tab_after_save = -1;
+        if (exit_after_save)
+            close();
+    }
+    else if (exit_after_save)
     {
         Close();
         close();
