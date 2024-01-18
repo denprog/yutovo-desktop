@@ -765,6 +765,11 @@ void MainWindow::Settings()
     if (r == QDialog::Accepted)
     {
         config = _config;
+        config.auto_result.real_result = config.real_result;
+        config.auto_result.integer_result = config.integer_result;
+        config.auto_result.rational_result = config.rational_result;
+        config.auto_result.complex_result = config.complex_result;
+        
         for (int i = 0; i < ui->editor_tabs->count(); ++i)
         {
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
@@ -1831,6 +1836,11 @@ void MainWindow::ReadSettings()
     config.complex_result.max_count = settings.value("complex_max_count", 10).toInt();
     if (config.complex_result.max_count < 0 || config.complex_result.max_count > 20)
         config.complex_result.max_count = 10;
+
+    config.auto_result.real_result = config.real_result;
+    config.auto_result.integer_result = config.integer_result;
+    config.auto_result.rational_result = config.rational_result;
+    config.auto_result.complex_result = config.complex_result;
     settings.endGroup();
 }
 
