@@ -130,6 +130,12 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
+void DocumentWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if (event->buttons() == Qt::MouseButton::LeftButton)
+        document->SelectOut();
+}
+
 void DocumentWidget::wheelEvent(QWheelEvent* event)
 {
     QPoint num_pixels = event->pixelDelta() / 8;
