@@ -19,9 +19,9 @@ DocumentWidget::DocumentWidget(QWidget *parent) :
     setMouseTracking(true);
 }
 
-DocumentPtr DocumentWidget::CreateDocument()
+DocumentPtr DocumentWidget::CreateDocument(Config& config)
 {
-    document.reset(new Document(&window));
+    document.reset(new Document(&window, config));
     shortcuts_map.Init(document, this);
     return document;
 }

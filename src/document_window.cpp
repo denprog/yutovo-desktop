@@ -120,8 +120,8 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
 
 void DocumentWindow::CreateDocument()
 {
-    document = document_widget->CreateDocument();
-    document->Start(config);
+    document = document_widget->CreateDocument(config);
+    document->Start();
 }
 
 void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)

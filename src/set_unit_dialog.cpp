@@ -52,14 +52,14 @@ void SetUnitDialog::FillUnits()
     stop_fill_thread = false;
 
     DocumentPtr document;
-    document.reset(new Document(&window));
-
     Config config;
+    document.reset(new Document(&window, config));
+
     document->GetConfig(config);
     config.with_border = false;
     config.caret_visible = false;
     config.formula_border = false;
-    document->Start(config);
+    document->Start();
 
     std::vector<Unit>& units = it->second;
     for (size_t i = 0; i < units.size(); ++i)

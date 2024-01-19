@@ -15,7 +15,7 @@ class DocumentWidget : public QWidget
 public:
     DocumentWidget(QWidget *parent);
 
-    DocumentPtr CreateDocument();
+    DocumentPtr CreateDocument(Config& config);
 
     void InsertText(const std::string& str, const StringFormatPtr string_format);
 
