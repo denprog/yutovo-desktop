@@ -22,7 +22,7 @@ public:
     QtWindow(const int width, const int height);
     ~QtWindow();
 
-    virtual void Init();
+    virtual void Init(Document* _document);
 
     virtual void DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color, const Color bg_color);
     virtual void DrawLine(const int x1, const int y1, const int x2, const int y2, const Color color);
@@ -63,7 +63,7 @@ public:
     virtual std::string Translate(ElementId id, const std::string& str);
     virtual std::u32string Translate(ElementId id, const std::u32string& str);
     
-    virtual void OnCaretMoved(const EditorState editor_state);
+    virtual void OnCaretMoved(const EditorState _editor_state);
 
     virtual void OnFormatChanged(const EditorState editor_state);
 
@@ -75,6 +75,9 @@ public:
 
     virtual void OnFormattingStarted();
     virtual void OnFormattingFinished();
+
+    virtual void OnResizeStarted();
+    virtual void OnResizeFinished();
 
 public:
     void GetPixmap(QPixmap& out, const QRect& rect);
@@ -90,8 +93,26 @@ signals:
     void LoadResult(const uint task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
+    void FormatingStarted();
+    void FormatingFinished();
+    void ResizeStarted();
+    void ResizeFinished();
 
 private:
+    friend class MainWindow;
+
+    Document* document;
+
+    //last editor state
+    EditorState editor_state;
+    bool parent_editable = false;
+    ParagraphFormat common_paragraph_format;
+    bool is_string = false;
+    bool is_row = false;
+    StringFormat string_format;
+    bool can_undo = false;
+    bool can_redo = false;
+
     std::unique_ptr<QImage> surface;
     QPixmap pixmap;
     std::mutex pixmap_mutex;

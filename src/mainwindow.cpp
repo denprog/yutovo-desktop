@@ -683,11 +683,13 @@ void MainWindow::OpenFile(QString file_name)
     if (!document)
         return;
     
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    w->document_widget->loading = true;
+
     document->Load(file_name.toUtf8().data());
 
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w->document_widget->formating && !w->document_widget->resizing)
+        QApplication::setOverrideCursor(Qt::WaitCursor);
     w->path = file_name;
 }
 
@@ -1416,28 +1418,14 @@ void MainWindow::OnArcsch()
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
-    auto document = GetCurrentDocument();
-    if (!document)
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
         return;
-    
-    const CaretState& c = editor_state.caret_state;
-    const SelectionState& s = editor_state.selection_state;
-    ParagraphFormat paragraph_format;
 
-    //find common paragraph format
-    document->GetParagraphFormat(c.id, paragraph_format);
-    for (auto& state : s.state)
-    {
-        ParagraphFormat p;
-        if (document->GetParagraphFormat(c.id, p))
-        {
-            if (p.name != paragraph_format.name)
-            {
-                paragraph_format.name = "";
-                break;
-            }
-        }
-    }
+    QtWindow& window = w->document_widget->window;
+    const CaretState& c = window.editor_state.caret_state;
+    const SelectionState& s = window.editor_state.selection_state;
+    ParagraphFormat paragraph_format = window.common_paragraph_format;
 
     bold_action->setEnabled(true);
     italic_action->setEnabled(true);
@@ -1445,105 +1433,33 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     text_color_action->setEnabled(true);
     bg_text_color_action->setEnabled(true);
 
-    //find common string format
     if (c.id.empty() || c.id.size() == 1)
         return;
-    ElementId _id = GetParent(c.id);
-    if (!document->IsString(document->GetElement(_id)) && !document->IsRow(document->GetElement(_id)))
-    {
-        string_format.Reset();
 
+    if (!window.is_string && !window.is_row)
+    {
         bold_action->setEnabled(false);
         italic_action->setEnabled(false);
         underline_action->setEnabled(false);
         text_color_action->setEnabled(false);
         bg_text_color_action->setEnabled(false);
     }
-    else if (!s.IsEmpty())
-    {
-        bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true;
-        for (auto& state : s.state)
-        {
-            for (int i = state.start; i < state.start + state.size; ++i)
-            {
-                ElementId _id = GetChild(state.id, i);
-                StringFormat f;
-                if (document->GetStringFormat(_id, f))
-                {
-                    if (set_family)
-                    {
-                        if (string_format.family == "")
-                            string_format.family = f.family;
-                        else if (string_format.family != f.family)
-                        {
-                            string_format.family = "";
-                            set_family = false;
-                        }
-                    }
-                    if (set_size)
-                    {
-                        if (string_format.size == 0)
-                            string_format.size = f.size;
-                        else if (string_format.size != f.size)
-                        {
-                            string_format.size = 0;
-                            set_size = false;
-                        }
-                    }
-                    if (set_bold)
-                    {
-                        if (string_format.bold == true && f.bold == false)
-                        {
-                            string_format.bold = false;
-                            set_bold = false;
-                        }
-                        else
-                            string_format.bold = f.bold;
-                    }
-                    if (set_italic)
-                    {
-                        if (string_format.italic == true && f.italic == false)
-                        {
-                            string_format.italic = false;
-                            set_italic = false;
-                        }
-                        else
-                            string_format.italic = f.italic;
-                    }
-                    if (set_underline)
-                    {
-                        if (string_format.underline == true && f.underline == false)
-                        {
-                            string_format.underline = false;
-                            set_underline = false;
-                        }
-                        else
-                            string_format.underline = f.underline;
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
-        document->GetStringFormat(_id, string_format);
-    }
 
     //update the interface elements
     block_format_slots = true;
     paragraph_format_combo->setCurrentText(paragraph_format.name.c_str());
-    family_combo->setCurrentText(string_format.family.c_str());
-    if (string_format.size == 0)
+    family_combo->setCurrentText(window.string_format.family.c_str());
+    if (window.string_format.size == 0)
         size_combo->setCurrentText("");
     else
-        size_combo->setCurrentText(std::to_string(string_format.size).c_str());
-    bold_action->setChecked(string_format.bold);
-    italic_action->setChecked(string_format.italic);
-    underline_action->setChecked(string_format.underline);
+        size_combo->setCurrentText(std::to_string(window.string_format.size).c_str());
+    bold_action->setChecked(window.string_format.bold);
+    italic_action->setChecked(window.string_format.italic);
+    underline_action->setChecked(window.string_format.underline);
     block_format_slots = false;
 
-    undo_action->setEnabled(document->CanUndo());
-    redo_action->setEnabled(document->CanRedo());
+    undo_action->setEnabled(window.can_undo);
+    redo_action->setEnabled(window.can_redo);
 
     UpdateCopyPaste();
 }
@@ -1578,12 +1494,17 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
-    QApplication::restoreOverrideCursor();
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w)
+    {
+        if (!w->document_widget->formating && !w->document_widget->resizing)
+            QApplication::restoreOverrideCursor();
+        w->document_widget->loading = false;
+    }
     
     if (result != IOResult::Success)
     {
         recent_files.removeAll(dialog_file_name);
-        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
         if (w)
         {
             w->path = "";
@@ -1868,20 +1789,19 @@ void MainWindow::UpdateFontSize()
 
 void MainWindow::UpdateCopyPaste()
 {
-    auto document = GetCurrentDocument();
-    if (!document)
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
         return;
     
-    EditorState s = document->GetEditorState();
-    if (s.caret_state.IsEmpty() || s.caret_state.id.size() == 1)
+    QtWindow& window = w->document_widget->window;
+    if (window.editor_state.caret_state.IsEmpty() || window.editor_state.caret_state.id.size() == 1)
         return;
-
-    bool editable = document->IsEditable(yutovo::GetParent(s.caret_state.id));
-    copy_action->setEnabled(!s.selection_state.IsEmpty());
+    bool editable = window.parent_editable;
+    copy_action->setEnabled(!window.editor_state.selection_state.IsEmpty());
     QClipboard* clipboard = QGuiApplication::clipboard();
     const QMimeData* mime_data = clipboard->mimeData();
     paste_action->setEnabled(editable && (mime_data->hasText() || mime_data->hasImage()));
-    cut_action->setEnabled(editable && !s.selection_state.IsEmpty());
+    cut_action->setEnabled(editable && !window.editor_state.selection_state.IsEmpty());
 }
 
 void MainWindow::UpdateRecentFiles(const QString add_file_name)

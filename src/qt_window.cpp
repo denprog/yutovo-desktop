@@ -5,6 +5,7 @@
 #include <QBuffer>
 #include <QCoreApplication>
 #include <QApplication>
+#include <yutovo_editor/document.h>
 
 //QtWindow
 
@@ -24,8 +25,9 @@ QtWindow::~QtWindow()
         fill_cache_thread.join();
 }
 
-void QtWindow::Init()
+void QtWindow::Init(Document* _document)
 {
+    document = _document;
 }
 
 void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color, const Color bg_color)
@@ -361,8 +363,116 @@ std::u32string QtWindow::Translate(ElementId id, const std::u32string& str)
     return QCoreApplication::translate("Solver", ToBasicString(str).c_str()).toStdU32String();
 }
 
-void QtWindow::OnCaretMoved(const EditorState editor_state)
+void QtWindow::OnCaretMoved(const EditorState _editor_state)
 {
+    if (!document)
+        return;
+    
+    editor_state = _editor_state;
+    parent_editable = document->IsEditable(yutovo::GetParent(editor_state.caret_state.id));
+
+    const CaretState& c = editor_state.caret_state;
+    const SelectionState& s = editor_state.selection_state;
+
+    //find common paragraph format
+    document->GetParagraphFormat(c.id, common_paragraph_format);
+    for (auto& state : s.state)
+    {
+        ParagraphFormat p;
+        if (document->GetParagraphFormat(c.id, p))
+        {
+            if (p.name != common_paragraph_format.name)
+            {
+                common_paragraph_format.name = "";
+                break;
+            }
+        }
+    }
+
+    ElementId _id = GetParent(c.id);
+    is_string = document->IsString(document->GetElement(_id));
+    is_row = document->IsRow(document->GetElement(_id));
+
+    //find common string format
+    if (c.id.empty() || c.id.size() == 1)
+        return;
+    if (!is_string && !is_row)
+    {
+        string_format.Reset();
+    }
+    else if (!s.IsEmpty())
+    {
+        bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true;
+        for (auto& state : s.state)
+        {
+            for (int i = state.start; i < state.start + state.size; ++i)
+            {
+                ElementId _id = GetChild(state.id, i);
+                StringFormat f;
+                if (document->GetStringFormat(_id, f))
+                {
+                    if (set_family)
+                    {
+                        if (string_format.family == "")
+                            string_format.family = f.family;
+                        else if (string_format.family != f.family)
+                        {
+                            string_format.family = "";
+                            set_family = false;
+                        }
+                    }
+                    if (set_size)
+                    {
+                        if (string_format.size == 0)
+                            string_format.size = f.size;
+                        else if (string_format.size != f.size)
+                        {
+                            string_format.size = 0;
+                            set_size = false;
+                        }
+                    }
+                    if (set_bold)
+                    {
+                        if (string_format.bold == true && f.bold == false)
+                        {
+                            string_format.bold = false;
+                            set_bold = false;
+                        }
+                        else
+                            string_format.bold = f.bold;
+                    }
+                    if (set_italic)
+                    {
+                        if (string_format.italic == true && f.italic == false)
+                        {
+                            string_format.italic = false;
+                            set_italic = false;
+                        }
+                        else
+                            string_format.italic = f.italic;
+                    }
+                    if (set_underline)
+                    {
+                        if (string_format.underline == true && f.underline == false)
+                        {
+                            string_format.underline = false;
+                            set_underline = false;
+                        }
+                        else
+                            string_format.underline = f.underline;
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        document->GetStringFormat(_id, string_format);
+    }
+
+    can_undo = document->CanUndo();
+    can_redo = document->CanRedo();
+
     emit CaretMoved(editor_state);
 }
 
@@ -393,12 +503,22 @@ void QtWindow::OnPasteResult(PasteResult result)
 
 void QtWindow::OnFormattingStarted()
 {
-    QApplication::setOverrideCursor(Qt::WaitCursor);
+    emit FormatingStarted();
 }
 
 void QtWindow::OnFormattingFinished()
 {
-    QApplication::restoreOverrideCursor();
+    emit FormatingFinished();
+}
+
+void QtWindow::OnResizeStarted()
+{
+    emit ResizeStarted();
+}
+
+void QtWindow::OnResizeFinished()
+{
+    emit ResizeFinished();
 }
 
 void QtWindow::GetPixmap(QPixmap& out, const QRect& rect)

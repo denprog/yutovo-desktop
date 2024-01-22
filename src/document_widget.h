@@ -28,6 +28,10 @@ public:
 public slots:
     void OnDocumentUpdated(const Rect rect);
     void OnCaretMoved(const EditorState editor_state);
+    void OnFormatingStarted();
+    void OnFormatingFinished();
+    void OnResizeStarted();
+    void OnResizeFinished();
 
 signals:
     void WheelVertical(const int value);
@@ -62,10 +66,17 @@ private:
     uint caret_moving_task_id = 0;
 
     int delay_timer = 0;
+    int wait_timer = 0;
+
+    bool formating = false;
+    bool loading = false;
+    bool resizing = false;
 
     QSize resize;
 
     QPoint left_click_pos;
+
+    Logger* logger;
 };
 
 #endif

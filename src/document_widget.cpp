@@ -10,10 +10,15 @@
 
 DocumentWidget::DocumentWidget(QWidget *parent) :
     QWidget(parent),
-    window(size().width(), size().height())
+    window(size().width(), size().height()),
+    logger(Logger::GetInstance(".", "yutovo_desktop", true, true))
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
     connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);
+    connect(&window, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted);
+    connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
+    connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
+    connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
 
     setFocusPolicy(Qt::StrongFocus);
     setMouseTracking(true);
@@ -55,6 +60,52 @@ void DocumentWidget::OnDocumentUpdated(const Rect rect)
 void DocumentWidget::OnCaretMoved(const EditorState editor_state)
 {
     current_editor_state = editor_state;
+}
+
+void DocumentWidget::OnFormatingStarted()
+{
+    formating = true;
+    if (loading || resizing)
+        return;
+    if (wait_timer > 0)
+        killTimer(wait_timer);
+    wait_timer = startTimer(std::chrono::milliseconds(100));
+}
+
+void DocumentWidget::OnFormatingFinished()
+{
+    formating = false;
+    if (loading || resizing)
+        return;
+    if (wait_timer != 0)
+    {
+        killTimer(wait_timer);
+        wait_timer = 0;
+    }
+    QApplication::restoreOverrideCursor();
+}
+
+void DocumentWidget::OnResizeStarted()
+{
+    resizing = true;
+    if (loading || formating)
+        return;
+    if (wait_timer > 0)
+        killTimer(wait_timer);
+    wait_timer = startTimer(std::chrono::milliseconds(500));
+}
+
+void DocumentWidget::OnResizeFinished()
+{
+    resizing = false;
+    if (loading || formating)
+        return;
+    if (wait_timer != 0)
+    {
+        killTimer(wait_timer);
+        wait_timer = 0;
+    }
+    QApplication::restoreOverrideCursor();
 }
 
 void DocumentWidget::paintEvent(QPaintEvent *event)
@@ -173,8 +224,17 @@ void DocumentWidget::focusOutEvent(QFocusEvent *event)
 
 void DocumentWidget::timerEvent(QTimerEvent *event)
 {
-    if (document)
-        document->Resize(resize.width(), resize.height());
-    killTimer(delay_timer);
-    delay_timer = 0;
+    if (event->timerId() == wait_timer)
+    {
+        killTimer(wait_timer);
+        wait_timer = 0;
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+    }
+    else if (event->timerId() == delay_timer)
+    {
+        if (document)
+            document->Resize(resize.width(), resize.height());
+        killTimer(delay_timer);
+        delay_timer = 0;
+    }
 }
