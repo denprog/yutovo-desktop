@@ -1669,7 +1669,12 @@ void MainWindow::ReadSettings()
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
     
-    config.language = settings.value("MainWindow/language", "en").toString().toUtf8().data();
+    std::string lang = QLocale::system().name().toUtf8().data(); //get current system language, it will be default one
+    lang = lang.substr(0, lang.find('_'));
+    if (lang != "en" && lang != "ru")
+        lang = "en";
+
+    config.language = settings.value("MainWindow/language", lang.c_str()).toString().toUtf8().data();
     InstallTranslation(config.language);
 
     settings.beginGroup("RecentFiles");
