@@ -79,6 +79,8 @@ private:
 
     QString path;
 
+    bool last_changed = false;
+
     QAction* copy = nullptr;
     QAction* paste = nullptr;
     QAction* cut = nullptr;

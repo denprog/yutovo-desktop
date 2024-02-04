@@ -163,6 +163,8 @@ private:
 
     void InstallTranslation(const std::string& language);
 
+    void UpdateCaption();
+
 private:
     friend class DocumentWindow;
 

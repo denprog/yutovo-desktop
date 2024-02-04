@@ -103,7 +103,14 @@ void MainWindow::closeEvent(QCloseEvent *event)
         DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
         if (w->document->IsChanged())
         {
-            QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(ui->editor_tabs->tabText(i)), 
+            QString file_name;
+            QFileInfo file_info(w->path);
+            if (file_info.fileName().isEmpty())
+                file_name = "(No name)";
+            else
+                file_name = file_info.fileName();
+
+            QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name), 
                 QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
             int r = m.exec();
             switch (r)
@@ -197,6 +204,8 @@ void MainWindow::AddEditorTab(const QString name)
     document->Resize(s.width(), s.height());
     OnCaretMoved(document->GetEditorState());
     FillParagraphFormats();
+
+    UpdateCaption();
 }
 
 DocumentPtr MainWindow::GetCurrentDocument()
@@ -733,10 +742,7 @@ void MainWindow::SaveAs(int index)
     dialog_file_name = file_names[0];
     document->Save(file_names[0].toUtf8().data());
 
-    int p = index == -1 ? ui->editor_tabs->currentIndex() : index;
-    QFileInfo file_info(file_names[0]);
-    ui->editor_tabs->setTabText(p, file_info.fileName());
-    w->path = file_names[0];
+    UpdateCaption();
 }
 
 void MainWindow::Close()
@@ -985,6 +991,7 @@ void MainWindow::OnCloseEditorTab(int index)
         case QMessageBox::No:
             break;
         default:
+            UpdateCaption();
             SetFocus();
             return;
         }
@@ -997,6 +1004,8 @@ void MainWindow::OnCloseEditorTab(int index)
         delete(tab_item);
     }
     SetFocus();
+
+    UpdateCaption();
 }
 
 void MainWindow::OnEditorChanged(int index)
@@ -1006,6 +1015,8 @@ void MainWindow::OnEditorChanged(int index)
         return;
     FillParagraphFormats();
     OnCaretMoved(document->GetEditorState());
+
+    UpdateCaption();
 }
 
 void MainWindow::OnInsertCode()
@@ -1462,6 +1473,12 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     redo_action->setEnabled(window.can_redo);
 
     UpdateCopyPaste();
+
+    if (w->last_changed != w->document->IsChanged())
+    {
+        UpdateCaption();
+        w->last_changed = w->document->IsChanged();
+    }
 }
 
 void MainWindow::OnSaveResult(const uint task_id, IOResult result)
@@ -1472,6 +1489,7 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         close_tab_after_save = -1;
         recent_files.removeAll(dialog_file_name);
         UpdateRecentFiles();
+        UpdateCaption();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
         return;
     }
@@ -1490,6 +1508,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         Close();
         close();
     }
+
+    UpdateCaption();
 }
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
@@ -1506,15 +1526,14 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     {
         recent_files.removeAll(dialog_file_name);
         if (w)
-        {
             w->path = "";
-            ui->editor_tabs->setTabText(ui->editor_tabs->currentIndex(), "(No name)");
-        }
         UpdateRecentFiles();
+        UpdateCaption();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));
         return;
     }
     UpdateRecentFiles(dialog_file_name);
+    UpdateCaption();
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)
@@ -1857,4 +1876,26 @@ void MainWindow::InstallTranslation(const std::string& language)
         logger->Error("Error installing translation");
     if (!qApp->installTranslator(&editor_translator))
         logger->Error("Error installing translation");
+}
+
+void MainWindow::UpdateCaption()
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
+    {
+        setWindowTitle(tr("Yutovo"));
+        return;
+    }
+    
+    QString file_name;
+    QFileInfo file_info(w->path);
+    if (file_info.fileName().isEmpty())
+        file_name = "(No name)";
+    else
+        file_name = file_info.fileName();
+    if (w->document->IsChanged())
+        file_name += " *";
+
+    ui->editor_tabs->setTabText(ui->editor_tabs->currentIndex(), file_name);
+    setWindowTitle(file_name + " - " + tr("Yutovo"));
 }
