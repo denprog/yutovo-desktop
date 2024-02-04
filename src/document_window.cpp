@@ -239,6 +239,15 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
 
             if (document->HasUnit(id))
                 menu.addAction(set_unit);
+
+            AngleMeasure angle_measure = document->GetResultAngleMeasure(id);
+            QMenu* angle_measure_menu = menu.addMenu(tr("Angle measure"));
+            angle_measure_menu->addAction(result_radian);
+            result_radian->setChecked(angle_measure == AngleMeasure::Radian);
+            angle_measure_menu->addAction(result_degree);
+            result_degree->setChecked(angle_measure == AngleMeasure::Degree);
+            angle_measure_menu->addAction(result_grad);
+            result_grad->setChecked(angle_measure == AngleMeasure::Grad);
         };
 
     add_copy_paste_menu();
