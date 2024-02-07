@@ -369,10 +369,12 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
         return;
     
     editor_state = _editor_state;
-    parent_editable = document->IsEditable(yutovo::GetParent(editor_state.caret_state.id));
-
     const CaretState& c = editor_state.caret_state;
+    if (c.id.empty())
+        return;
     const SelectionState& s = editor_state.selection_state;
+
+    parent_editable = document->IsEditable(yutovo::GetParent(c.id));
 
     //find common paragraph format
     document->GetParagraphFormat(c.id, common_paragraph_format);
@@ -486,7 +488,7 @@ void QtWindow::OnSaveResult(const uint task_id, IOResult result)
     emit SaveResult(task_id, result);
 }
 
-void QtWindow::OnLoadResult(const uint task_id, IOResult result)
+void QtWindow::OnLoadResult(const uint task_id, IOResult result, const int document_id)
 {
     emit LoadResult(task_id, result);
 }
