@@ -365,6 +365,11 @@ void MainWindow::CreateActions()
     underline_action->setCheckable(true);
     format_toolbar->addAction(underline_action);
 
+    strikethrough_action = new QAction(QIcon(":/icons/images/format/strikethrough.png"), tr("Strikethrough"), this);
+    connect(strikethrough_action, &QAction::triggered, this, &MainWindow::OnStrikethrough);
+    strikethrough_action->setCheckable(true);
+    format_toolbar->addAction(strikethrough_action);
+
     text_color_action = new QAction(QIcon(":/icons/images/format/text_color.png"), tr("Text color"), this);
     connect(text_color_action, &QAction::triggered, this, &MainWindow::OnTextColor);
     format_toolbar->addAction(text_color_action);
@@ -1111,6 +1116,15 @@ void MainWindow::OnUnderline()
         document->SetUnderline(underline_action->isChecked());
 }
 
+void MainWindow::OnStrikethrough()
+{
+    if (block_format_slots)
+        return;
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetStrikethrough(strikethrough_action->isChecked());
+}
+
 void MainWindow::OnTextColor()
 {
     QColorDialog d(QColor::fromRgba(string_format.text_color.ToInt()), this);
@@ -1447,6 +1461,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     bold_action->setEnabled(true);
     italic_action->setEnabled(true);
     underline_action->setEnabled(true);
+    strikethrough_action->setEnabled(true);
     text_color_action->setEnabled(true);
     bg_text_color_action->setEnabled(true);
 
@@ -1458,6 +1473,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
         bold_action->setEnabled(false);
         italic_action->setEnabled(false);
         underline_action->setEnabled(false);
+        strikethrough_action->setEnabled(false);
         text_color_action->setEnabled(false);
         bg_text_color_action->setEnabled(false);
     }
@@ -1473,6 +1489,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     bold_action->setChecked(window.string_format.bold);
     italic_action->setChecked(window.string_format.italic);
     underline_action->setChecked(window.string_format.underline);
+    strikethrough_action->setChecked(window.string_format.strikethrough);
     block_format_slots = false;
 
     undo_action->setEnabled(window.can_undo);

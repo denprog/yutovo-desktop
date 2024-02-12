@@ -40,6 +40,7 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     font.setItalic(format->italic);
     font.setBold(format->bold);
     font.setUnderline(format->underline);
+    font.setStrikeOut(format->strikethrough);
     p.setPen(QColor::fromRgba(color.ToInt()));
     p.setBackgroundMode(Qt::OpaqueMode);
     p.setBackground(QBrush(QColor::fromRgba(bg_color.ToInt())));
@@ -268,6 +269,7 @@ Size QtWindow::GetTextSize(const std::u32string& text, const StringFormatPtr for
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
+    font.setStrikeOut(format->strikethrough);
     QFontMetrics m(font);
     QString str = QString::fromUcs4(text.c_str());
     QSize s = m.size(Qt::TextSingleLine, str);
@@ -281,6 +283,7 @@ int QtWindow::GetCharPos(const std::u32string& text, const StringFormatPtr forma
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
+    font.setStrikeOut(format->strikethrough);
     QFontMetrics m(font);
     QString str = QString::fromUcs4(text.c_str());
     if (str.length() == pos)
@@ -296,6 +299,7 @@ int QtWindow::GetFontAscent(const StringFormatPtr format)
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
+    font.setStrikeOut(format->strikethrough);
     QFontMetrics m(font);
     return m.ascent();
 }
@@ -404,7 +408,7 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
     }
     else if (!s.IsEmpty())
     {
-        bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true;
+        bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true, set_strikethrough = true;
         for (auto& state : s.state)
         {
             for (int i = state.start; i < state.start + state.size; ++i)
@@ -462,6 +466,16 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
                         }
                         else
                             string_format.underline = f.underline;
+                    }
+                    if (set_strikethrough)
+                    {
+                        if (string_format.strikethrough == true && f.strikethrough == false)
+                        {
+                            string_format.strikethrough = false;
+                            set_strikethrough = false;
+                        }
+                        else
+                            string_format.strikethrough = f.strikethrough;
                     }
                 }
             }
