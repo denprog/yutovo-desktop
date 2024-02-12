@@ -87,9 +87,15 @@ void MainWindow::changeEvent(QEvent* event)
         {
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
             if (config.language == "en")
-                w->document->SetLanguage(yutovo_calculator::Language::English);
+            {
+                w->document->SetLocale(yutovo_calculator::Language::English, '.');
+            }
             else if (config.language == "ru")
-                w->document->SetLanguage(yutovo_calculator::Language::Russian);
+            {
+                std::locale loc("ru_RU.UTF-8");
+                char d = std::use_facet<std::numpunct<char>>(loc).decimal_point();
+                w->document->SetLocale(yutovo_calculator::Language::Russian, d);
+            }
         }
     }
 
