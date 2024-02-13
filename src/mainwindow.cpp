@@ -652,7 +652,7 @@ void MainWindow::New()
 
 void MainWindow::Open()
 {
-    QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt);;All files(*.*)"));
+    QString file_name = QFileDialog::getOpenFileName(this, tr("Open file"), "", tr("Yutovo files (*.yut);;Text files (*.txt);;All files (*.*)"));
     if (file_name == "")
         return;
     OpenFile(file_name);
