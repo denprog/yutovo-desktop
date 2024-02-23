@@ -107,6 +107,8 @@ private slots:
     void OnNthRoot();
     void OnPower();
     void OnSubscript();
+    void OnSum();
+    void OnProduct();
     void OnFences();
     void OnAssignment();
     void OnEquation();

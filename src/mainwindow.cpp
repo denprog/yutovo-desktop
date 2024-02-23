@@ -470,6 +470,14 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnSubscript);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/sum.png"), tr("Sum"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSum);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/product.png"), tr("Product"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnProduct);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/fences.png"), tr("Fences"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnFences);
     algebra_toolbar->addAction(action);
@@ -1207,6 +1215,20 @@ void MainWindow::OnSubscript()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertSubscript(true);
+}
+
+void MainWindow::OnSum()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertSum(true);
+}
+
+void MainWindow::OnProduct()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertProduct(true);
 }
 
 void MainWindow::OnExp()
