@@ -630,6 +630,10 @@
         <translation>Присваивание</translation>
     </message>
     <message>
+        <source>Unit</source>
+        <translation>Размерность</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="481"/>
         <source>Equation</source>
         <translation>Равенство</translation>

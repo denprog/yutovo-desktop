@@ -111,6 +111,7 @@ private slots:
     void OnProduct();
     void OnFences();
     void OnAssignment();
+    void OnUnit();
     void OnEquation();
 
     void OnSin();

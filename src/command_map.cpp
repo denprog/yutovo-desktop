@@ -79,6 +79,8 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence(""), '(', "\\open_fence", std::function<void ()>(std::bind(&Document::InsertOpenFence, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ')', "\\close_fence", std::function<void ()>(std::bind(&Document::InsertCloseFence, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ':', "\\assign", std::function<void ()>(std::bind(&Document::InsertAssignment, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), '~', "\\unit", std::function<void ()>(std::bind(static_cast<uint(Document::*)(bool)>(&Document::InsertUnit), 
+        document.get(), true)), CommandContext::Formula);
 
     //main window
     Add(QKeySequence("Ctrl+Tab"), std::function<void ()>(std::bind(&DocumentWidget::OnNextEditorTab, (DocumentWidget*)document_widget)));

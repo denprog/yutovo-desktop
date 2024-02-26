@@ -486,6 +486,10 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnAssignment);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/unit.png"), tr("Unit"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnUnit);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/equation.png"), tr("Equation"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnEquation);
     algebra_toolbar->addAction(action);
@@ -1299,6 +1303,13 @@ void MainWindow::OnAssignment()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertAssignment(true);
+}
+
+void MainWindow::OnUnit()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertUnit(true);
 }
 
 void MainWindow::OnSin()
