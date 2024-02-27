@@ -742,6 +742,8 @@ void MainWindow::Save(int index)
         dialog_file_name = w->path;
         document->Save(w->path.toUtf8().data());
     }
+
+    UpdateCaption();
 }
 
 void MainWindow::SaveAs(int index)
@@ -1551,6 +1553,10 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
     }
 
     UpdateRecentFiles(dialog_file_name);
+
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (w)
+        w->path = dialog_file_name;
 
     if (close_tab_after_save != -1)
     {
