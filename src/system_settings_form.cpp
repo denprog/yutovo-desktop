@@ -14,6 +14,8 @@ SystemSettingsForm::SystemSettingsForm(yutovo::Config& _config, QWidget* parent)
         form->language->setCurrentIndex(0);
     else if (config.language == "ru")
         form->language->setCurrentIndex(1);
+    
+    form->log_level->setCurrentIndex((int)config.log_level);
 }
 
 SystemSettingsForm::~SystemSettingsForm()
@@ -27,6 +29,8 @@ SystemSettingsForm::~SystemSettingsForm()
         config.language = "ru";
         break;
     }
+
+    config.log_level = (yutovo::LogLevel)form->log_level->currentIndex();
     
     delete form;
 }

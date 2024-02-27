@@ -1150,5 +1150,37 @@
         <source>Language</source>
         <translation>Язык</translation>
     </message>
+    <message>
+        <source>Logs level</source>
+        <translation>Уровень логов</translation>
+    </message>
+    <message>
+        <source>Trace</source>
+        <translation>Полностью</translation>
+    </message>
+    <message>
+        <source>Debug</source>
+        <translation>Отладка</translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>Предупреждения</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Ошибки</translation>
+    </message>
+    <message>
+        <source>Critical</source>
+        <translation>Критическое</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>Выключено</translation>
+    </message>
 </context>
 </TS>

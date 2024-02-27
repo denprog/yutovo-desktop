@@ -824,6 +824,8 @@ void MainWindow::Settings()
 
         if (language != config.language)
             InstallTranslation(config.language);
+        
+        logger->SetLevel((int)config.log_level);
     }
 }
 
@@ -1169,6 +1171,7 @@ void MainWindow::OnBgTextColor()
 
 void MainWindow::OnPlus()
 {
+    logger->Trace("OnPlus");
     auto document = GetCurrentDocument();
     if (document)
         document->InsertPlus(true);
@@ -1723,6 +1726,11 @@ void MainWindow::WriteSettings()
     settings.setValue("hexadecimal_gap", config.hexadecimal_gap);
     settings.endGroup();
 
+    settings.beginGroup("Log");
+    settings.setValue("level", (int)config.log_level);
+    settings.setValue("path", config.logs_path.c_str());
+    settings.endGroup();
+
     settings.beginGroup("Calculator");
     settings.setValue("result_auto_advance", config.auto_result.result_auto_advance);
     QList<QVariant> v;
@@ -1789,6 +1797,12 @@ void MainWindow::ReadSettings()
     config.decimal_gap = settings.value("decimal_gap", 3).toInt();
     config.hexadecimal_gap = settings.value("hexadecimal_gap", 4).toInt();
     settings.endGroup();
+
+    settings.beginGroup("Log");
+    config.log_level = (LogLevel)settings.value("level", (int)LogLevel::LEVEL_INFO).toInt();
+    config.logs_path = settings.value("path", ".").toString().toUtf8().data();
+    settings.endGroup();
+    logger->SetLevel((int)config.log_level);
 
     settings.beginGroup("Colors");
     config.code_block_border_color = Color::FromInt(settings.value("code_block_border_color", Color::Blue().ToInt()).toInt());
