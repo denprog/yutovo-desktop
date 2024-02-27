@@ -167,7 +167,7 @@ private:
 
     void InstallTranslation(const std::string& language);
 
-    void UpdateCaption();
+    void UpdateCaption(int tab = -1);
 
 private:
     friend class DocumentWindow;
@@ -180,6 +180,7 @@ private:
     QTranslator desktop_translator, editor_translator;
 
     QString dialog_file_name; //file name to be loaded/saved
+    std::map<uint, int> loading_files; //files being loaded by tabs
 
     std::u32string clipboard_json;
     std::u32string clipboard_text;

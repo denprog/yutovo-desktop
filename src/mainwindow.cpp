@@ -718,7 +718,7 @@ void MainWindow::OpenFile(QString file_name)
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     w->document_widget->loading = true;
 
-    document->Load(file_name.toUtf8().data());
+    loading_files[document->Load(file_name.toUtf8().data())] = ui->editor_tabs->currentIndex();
 
     if (!w->document_widget->formating && !w->document_widget->resizing)
         QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -1576,17 +1576,23 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    auto it = loading_files.find(task_id);
+    assert(it != loading_files.end());
+    int tab = it->second;
+
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(tab);
     if (w)
     {
         if (!w->document_widget->formating && !w->document_widget->resizing)
             QApplication::restoreOverrideCursor();
         w->document_widget->loading = false;
     }
+
+    loading_files.erase(it);
     
     if (result != IOResult::Success)
     {
-        recent_files.removeAll(dialog_file_name);
+        recent_files.removeAll(w->path);
         if (w)
             w->path = "";
         UpdateRecentFiles();
@@ -1594,8 +1600,8 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));
         return;
     }
-    UpdateRecentFiles(dialog_file_name);
-    UpdateCaption();
+    UpdateRecentFiles(w->path);
+    UpdateCaption(tab);
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)
@@ -1940,9 +1946,9 @@ void MainWindow::InstallTranslation(const std::string& language)
         logger->Error("Error installing translation");
 }
 
-void MainWindow::UpdateCaption()
+void MainWindow::UpdateCaption(int tab)
 {
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    DocumentWindow* w = tab == -1 ? (DocumentWindow*)ui->editor_tabs->currentWidget() : (DocumentWindow*)ui->editor_tabs->widget(tab);
     if (!w)
     {
         setWindowTitle(tr("Yutovo"));
@@ -1958,6 +1964,6 @@ void MainWindow::UpdateCaption()
     if (w->document->IsChanged())
         file_name += " *";
 
-    ui->editor_tabs->setTabText(ui->editor_tabs->currentIndex(), file_name);
+    ui->editor_tabs->setTabText(tab == -1 ? ui->editor_tabs->currentIndex() : tab, file_name);
     setWindowTitle(file_name + " - " + tr("Yutovo"));
 }
