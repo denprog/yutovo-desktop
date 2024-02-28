@@ -169,8 +169,6 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     auto add_real_menu = 
         [&](ElementId id)
         {
-            int precision = document->GetPrecision(id);
-            int exp = document->GetExp(id);
             AngleMeasure angle_measure = document->GetResultAngleMeasure(id);
 
             menu.addSeparator();
@@ -226,6 +224,11 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     auto add_complex_menu = 
         [&](ElementId id)
         {
+            menu.addSeparator();
+
+            menu.addAction(set_precision);
+            menu.addAction(set_exp);
+            
             auto complex_form = document->GetComplexForm(id);
 
             menu.addSeparator();
