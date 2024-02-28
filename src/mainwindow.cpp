@@ -86,11 +86,11 @@ void MainWindow::changeEvent(QEvent* event)
         for (int i = 0; i < ui->editor_tabs->count(); ++i)
         {
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
-            if (config.language == "en")
+            if (config.language == yutovo_calculator::Language::English)
             {
                 w->document->SetLocale(yutovo_calculator::Language::English, '.');
             }
-            else if (config.language == "ru")
+            else if (config.language == yutovo_calculator::Language::Russian)
             {
                 std::locale loc("ru_RU.UTF-8");
                 char d = std::use_facet<std::numpunct<char>>(loc).decimal_point();
@@ -787,7 +787,7 @@ void MainWindow::Settings()
         _settings[key] = settings.value(key);
     }
 
-    std::string language = config.language;
+    yutovo_calculator::Language language = config.language;
     Config _config = config;
     int r;
     {
@@ -1691,7 +1691,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
-    settings.setValue("MainWindow/language", config.language.c_str());
+    settings.setValue("MainWindow/language", (int)config.language);
 
     QList<QString> last_documents;
     for (int i = 0; i < ui->editor_tabs->count(); ++i)
@@ -1769,7 +1769,8 @@ void MainWindow::ReadSettings()
     if (lang != "en" && lang != "ru")
         lang = "en";
 
-    config.language = settings.value("MainWindow/language", lang.c_str()).toString().toUtf8().data();
+    config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", 
+        lang == "en" ? (int)yutovo_calculator::Language::English : (int)yutovo_calculator::Language::Russian).toInt();
     InstallTranslation(config.language);
 
     settings.beginGroup("RecentFiles");
@@ -1930,23 +1931,16 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
     }
 }
 
-void MainWindow::InstallTranslation(const std::string& language)
+void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 {
-    if (language == "")
-    {
-        qApp->removeTranslator(&desktop_translator);
-        qApp->removeTranslator(&editor_translator);
-        return;
-    }
-
-    if (language == "ru")
+    if (language == yutovo_calculator::Language::Russian)
     {
         if (!desktop_translator.load("yutovo_desktop_ru"))
             logger->Error("Error loading translation: yutovo_desktop_ru");
         if (!editor_translator.load("yutovo_editor_ru"))
             logger->Error("Error loading translation: yutovo_editor_ru");
     }
-    else if (language == "en")
+    else if (language == yutovo_calculator::Language::English)
     {
         if (!desktop_translator.load("yutovo_desktop_en"))
             logger->Error("Error loading translation: yutovo_desktop_en");

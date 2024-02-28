@@ -165,7 +165,7 @@ private:
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
 
-    void InstallTranslation(const std::string& language);
+    void InstallTranslation(const yutovo_calculator::Language language);
 
     void UpdateCaption(int tab = -1);
 
