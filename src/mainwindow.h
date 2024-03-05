@@ -110,6 +110,11 @@ private slots:
     void OnSum();
     void OnProduct();
     void OnFences();
+    void OnRadian();
+    void OnDegree();
+    void OnMinute();
+    void OnSecond();
+    void OnGrad();
     void OnAssignment();
     void OnUnit();
     void OnEquation();

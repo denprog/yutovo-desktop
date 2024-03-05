@@ -625,6 +625,26 @@
         <translation>Скобки</translation>
     </message>
     <message>
+        <source>Radian</source>
+        <translation>Радиан</translation>
+    </message>
+    <message>
+        <source>Degree</source>
+        <translation>Градус</translation>
+    </message>
+        <message>
+        <source>Minute</source>
+        <translation>Минута</translation>
+    </message>
+    <message>
+        <source>Second</source>
+        <translation>Секунда</translation>
+    </message>
+    <message>
+        <source>Grad</source>
+        <translation>Град</translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="477"/>
         <source>Assignment</source>
         <translation>Присваивание</translation>
@@ -827,6 +847,14 @@
         <location filename="../mainwindow.cpp" line="1555"/>
         <source>Error loading document</source>
         <translation>Ошибка загрузки документа</translation>
+    </message>
+    <message>
+        <source>rad</source>
+        <translation>рад</translation>
+    </message>
+    <message>
+        <source>grad</source>
+        <translation>град</translation>
     </message>
 </context>
 <context>

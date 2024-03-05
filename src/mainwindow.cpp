@@ -482,6 +482,26 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnFences);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnRadian);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/degree.png"), tr("Degree"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnDegree);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/minute.png"), tr("Minute"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnMinute);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/second.png"), tr("Second"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSecond);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/grad.png"), tr("Grad"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnGrad);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/assignment.png"), tr("Assignment"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnAssignment);
     algebra_toolbar->addAction(action);
@@ -1266,6 +1286,41 @@ void MainWindow::OnFences()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertFences(true);
+}
+
+void MainWindow::OnRadian()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString(tr("rad").toUtf8().data(), true);
+}
+
+void MainWindow::OnDegree()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("°", true);
+}
+
+void MainWindow::OnMinute()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("'", true);
+}
+
+void MainWindow::OnSecond()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("''", true);
+}
+
+void MainWindow::OnGrad()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString(tr("grad").toUtf8().data(), true);
 }
 
 void MainWindow::OnLog()
