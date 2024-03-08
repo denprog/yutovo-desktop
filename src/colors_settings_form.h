@@ -20,6 +20,14 @@ public:
 
 private slots:
     void OnCodeBlockBorderColorClicked();
+    void OnNumbersColorClicked();
+    void OnFunctionsColorClicked();
+    void OnVariablesColorClicked();
+    void OnUnitsColorClicked();
+    void OnShapesColorClicked();
+    void OnErrorsColorClicked();
+    void OnFormulaBgColorClicked();
+    void OnSelectionBgColorClicked();
 
 private:
     Ui::ColorsSettingsForm *form;

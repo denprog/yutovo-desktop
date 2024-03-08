@@ -66,6 +66,10 @@
         <source>Formula background</source>
         <translation>Фон формулы</translation>
     </message>
+    <message>
+        <source>Selection background</source>
+        <translation>Фон выделения</translation>
+    </message>
 </context>
 <context>
     <name>DocumentWindow</name>

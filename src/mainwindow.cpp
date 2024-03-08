@@ -1771,6 +1771,14 @@ void MainWindow::WriteSettings()
 
     settings.beginGroup("Colors");
     settings.setValue("code_block_border_color", config.code_block_border_color.ToInt());
+    settings.setValue("numbers_color", config.numbers_color.ToInt());
+    settings.setValue("functions_color", config.functions_color.ToInt());
+    settings.setValue("variables_color", config.variables_color.ToInt());
+    settings.setValue("units_color", config.units_color.ToInt());
+    settings.setValue("shapes_color", config.shapes_color.ToInt());
+    settings.setValue("error_marks_color", config.error_marks_color.ToInt());
+    settings.setValue("formula_bg_color", config.formula_bg_color.ToInt());
+    settings.setValue("bg_selection_color", config.bg_selection_color.ToInt());
     settings.endGroup();
 
     settings.beginGroup("Fonts");
@@ -1862,6 +1870,14 @@ void MainWindow::ReadSettings()
 
     settings.beginGroup("Colors");
     config.code_block_border_color = Color::FromInt(settings.value("code_block_border_color", Color::Blue().ToInt()).toInt());
+    config.numbers_color = Color::FromInt(settings.value("numbers_color", Color::Blue().ToInt()).toInt());
+    config.functions_color = Color::FromInt(settings.value("functions_color", Color::FromHex("#ff5500").ToInt()).toInt());
+    config.variables_color = Color::FromInt(settings.value("variables_color", Color::FromHex("#00193e").ToInt()).toInt());
+    config.units_color = Color::FromInt(settings.value("units_color", Color::FromHex("#005500").ToInt()).toInt());
+    config.shapes_color = Color::FromInt(settings.value("shapes_color", Color::Black().ToInt()).toInt());
+    config.error_marks_color = Color::FromInt(settings.value("error_marks_color", Color::Red().ToInt()).toInt());
+    config.formula_bg_color = Color::FromInt(settings.value("formula_bg_color", Color::White().ToInt()).toInt());
+    config.bg_selection_color = Color::FromInt(settings.value("bg_selection_color", Color::Blue().ToInt()).toInt());
     settings.endGroup();
 
     settings.beginGroup("Calculator");
