@@ -8,7 +8,6 @@
 SetUnitDialog::SetUnitDialog(std::vector<yutovo_calculator::Unit>& cast_units) :
     QDialog(nullptr),
     ui(new Ui::SetUnitDialog),
-    window(1, 1),
     units_delegate(new UnitsDelegate(this))
 {
     ui->setupUi(this);
@@ -53,6 +52,7 @@ void SetUnitDialog::FillUnits()
 
     DocumentPtr document;
     Config config;
+    QtWindow window(1, 1);
     document.reset(new Document(&window, config));
 
     document->GetConfig(config);
@@ -60,6 +60,7 @@ void SetUnitDialog::FillUnits()
     config.caret_visible = false;
     config.formula_border = false;
     document->Start();
+    document->SetConfig(config);
 
     std::vector<Unit>& units = it->second;
     for (size_t i = 0; i < units.size(); ++i)
@@ -68,12 +69,12 @@ void SetUnitDialog::FillUnits()
             break;
         
         Unit& unit = units[i];
-        document->Resize(0, 0);
+        document->Resize(1, 1);
         document->MoveCaretToDocumentBegin(false);
         document->WaitTask(document->DeleteElements(false, false));
         document->WaitTask(document->InsertUnit(unit));
         ElementPtr text = document->GetElement({0});
-        window.Resize(text->rect.width, text->rect.height);
+        document->Resize(text->rect.width, text->rect.height);
         document->WaitTask(document->Redraw(ElementId{0}, false));
 
         QPixmap pixmap;
@@ -97,10 +98,9 @@ void SetUnitDialog::OnCurrentSystemChanged(QListWidgetItem *current, QListWidget
     if (fill_thread.joinable())
         fill_thread.join();
 
-    ui->units->clear();
-
     {
         std::lock_guard<std::mutex> lock(units_items_mutex);
+        ui->units->clear();
         units_items.clear();
     }
 

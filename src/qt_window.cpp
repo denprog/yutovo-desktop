@@ -256,7 +256,9 @@ void QtWindow::RestoreRect()
     if (store_rect.IsEmpty())
         return;
     
-    QPainter p(surface.get());
+    QPainter p;
+    if (!p.begin(surface.get()))
+        return;
     p.drawImage(QPoint(store_rect.left, store_rect.top), store_image);
     p.end();
 

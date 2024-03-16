@@ -47,7 +47,6 @@ public:
 private:
     Ui::SetUnitDialog *ui;
     std::map<std::u32string, std::vector<Unit>> system_units;
-    QtWindow window;
 
     friend class UnitsDelegate;
 
