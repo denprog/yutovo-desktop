@@ -190,12 +190,7 @@ void QtWindow::DrawWavyLine(const int x1, const int y1, const int width, const i
 
 void QtWindow::DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& bmp)
 {
-    QImage image;
-    QByteArray arr(reinterpret_cast<const char*>(bmp.data()), bmp.size());
-    QBuffer buffer(&arr);
-    buffer.open(QIODevice::ReadOnly);
-    if (!image.load(&buffer, "BMP"))
-        return;
+    QImage image(&bmp[0], width, height, QImage::Format_ARGB32);
 
     QPainter p;
     if (!p.begin(surface.get()))

@@ -914,12 +914,7 @@ void MainWindow::Paste()
     {
         QImage image = clipboard->image();
         image.convertTo(QImage::Format_ARGB32);
-        
-        QByteArray arr;
-        QBuffer buffer(&arr);
-        buffer.open(QIODevice::WriteOnly);
-        image.save(&buffer, "BMP");
-
+        QByteArray arr = QByteArray::fromRawData((const char*)image.bits(), image.byteCount());
         std::vector<unsigned char> data(arr.begin(), arr.end());
         document->PasteImage(data, image.width(), image.height());
     }
