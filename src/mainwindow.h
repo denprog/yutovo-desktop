@@ -55,8 +55,9 @@ private:
     void Open();
     void OpenRecentFile();
     void OpenFile(QString file_name);
-    void Save(int index = -1);
-    void SaveAs(int index = -1);
+    void Save();
+    void SaveFile(int index);
+    void SaveFileAs(int index = -1);
     void Close();
     void Settings();
     void Exit();

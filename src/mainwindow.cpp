@@ -125,7 +125,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
                 {
                     close_tab_after_save = i;
                     exit_after_save = true;
-                    Save(i);
+                    SaveFile(i);
                     event->ignore();
                     return;
                 }
@@ -254,7 +254,7 @@ void MainWindow::CreateActions()
     file_menu->addAction(action);
     standard_toolbar->addAction(action);
 
-    action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveAs);
+    action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAs);
     action->setShortcuts(QKeySequence::SaveAs);
     action->setStatusTip(tr("Save the document under a new name"));
 
@@ -745,7 +745,12 @@ void MainWindow::OpenFile(QString file_name)
     w->path = file_name;
 }
 
-void MainWindow::Save(int index)
+void MainWindow::Save()
+{
+    SaveFile(ui->editor_tabs->currentIndex());
+}
+
+void MainWindow::SaveFile(int index)
 {
     DocumentWindow* w = nullptr;
     if (index != -1)
@@ -756,7 +761,7 @@ void MainWindow::Save(int index)
     if (!document)
         return;
     if (w->path == "")
-        SaveAs(index);
+        SaveFileAs(index);
     else
     {
         dialog_file_name = w->path;
@@ -766,7 +771,7 @@ void MainWindow::Save(int index)
     UpdateCaption();
 }
 
-void MainWindow::SaveAs(int index)
+void MainWindow::SaveFileAs(int index)
 {
     DocumentWindow* w = nullptr;
     if (index != -1)
@@ -1028,7 +1033,7 @@ void MainWindow::OnCloseEditorTab(int index)
         {
         case QMessageBox::Yes:
             close_tab_after_save = index;
-            Save(index);
+            SaveFile(index);
             return;
         case QMessageBox::No:
             break;
