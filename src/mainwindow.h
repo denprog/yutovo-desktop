@@ -239,6 +239,8 @@ private:
     QToolBar* hyperbolic_toolbar = nullptr;
     QToolBar* functions_toolbar = nullptr;
 
+    QList<QString> last_documents;
+
     Logger* logger;
 };
 

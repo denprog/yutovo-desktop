@@ -107,6 +107,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
     for (int i = 0; i < ui->editor_tabs->count(); ++i)
     {
         DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+        if (!w->path.isEmpty() && last_documents.indexOf(w->path) == -1)
+            last_documents.push_back(w->path);
         if (w->document->IsChanged())
         {
             QString file_name;
@@ -132,6 +134,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
             case QMessageBox::No:
                 break;
             default:
+                last_documents.clear();
                 SetFocus();
                 event->ignore();
                 return;
@@ -1621,10 +1624,16 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         OnCloseEditorTab(close_tab_after_save);
         close_tab_after_save = -1;
         if (exit_after_save)
+        {
+            if (!w->path.isEmpty() && last_documents.indexOf(w->path) == -1)
+                last_documents.push_back(w->path);
             close();
+        }
     }
     else if (exit_after_save)
     {
+        if (!w->path.isEmpty() && last_documents.indexOf(w->path) == -1)
+            last_documents.push_back(w->path);
         Close();
         close();
     }
@@ -1748,15 +1757,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
-    QList<QString> last_documents;
-    for (int i = 0; i < ui->editor_tabs->count(); ++i)
-    {
-        DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
-        if (!w->path.isEmpty())
-            last_documents.push_back(w->path);
-    }
-
-    settings.setValue("Documents/last_documents", QVariant(last_documents));
+    settings.setValue("Documents/last_documents", last_documents.isEmpty() ? "" : QVariant(last_documents));
 
     settings.beginGroup("RecentFiles");
     settings.setValue("max_count", recent_files_count);
