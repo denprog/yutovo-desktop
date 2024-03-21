@@ -32,6 +32,7 @@ private slots:
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
     void OnDocumentUpdated(const Rect rect);
+    void OnDocumentChanged(const bool changed);
 
     void OnPresentAsAuto();
     void OnPresentAsReal();
@@ -61,6 +62,7 @@ private slots:
 
 signals:
     void CaretMoved(const EditorState editor_state);
+    void DocumentChanged(const bool changed);
     void SaveResult(const uint task_id, IOResult result);
     void LoadResult(const uint task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);

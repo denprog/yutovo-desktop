@@ -194,6 +194,7 @@ void MainWindow::AddEditorTab(const QString name)
     DocumentWindow* wnd = new DocumentWindow(config, this);
 
     connect(wnd, &DocumentWindow::CaretMoved, this, &MainWindow::OnCaretMoved);
+    connect(wnd, &DocumentWindow::DocumentChanged, this, &MainWindow::OnDocumentChanged);
     connect(wnd, &DocumentWindow::SaveResult, this, &MainWindow::OnSaveResult);
     connect(wnd, &DocumentWindow::LoadResult, this, &MainWindow::OnLoadResult);
     connect(wnd, &DocumentWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
@@ -1592,11 +1593,17 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     redo_action->setEnabled(window.can_redo);
 
     UpdateCopyPaste();
+}
 
-    if (w->last_changed != w->document->IsChanged())
+void MainWindow::OnDocumentChanged(const bool changed)
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
+        return;
+    if (w->last_changed != changed)
     {
         UpdateCaption();
-        w->last_changed = w->document->IsChanged();
+        w->last_changed = changed;
     }
 }
 

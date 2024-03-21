@@ -155,6 +155,7 @@ private slots:
     void OnRound();
 
     void OnCaretMoved(const EditorState editor_state);
+    void OnDocumentChanged(const bool changed);
     void OnSaveResult(const uint task_id, IOResult result);
     void OnLoadResult(const uint task_id, IOResult result);
     void OnClipboardCopyResult(CopyResult result);

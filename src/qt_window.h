@@ -67,6 +67,8 @@ public:
 
     virtual void OnFormatChanged(const EditorState editor_state);
 
+    virtual void OnDocumentChanged(const bool changed);
+
     virtual void OnSaveResult(const uint task_id, IOResult result);
     virtual void OnLoadResult(const uint task_id, IOResult result, const int document_id);
 
@@ -89,6 +91,7 @@ private:
 signals:
     void DocumentUpdated(const Rect rect);
     void CaretMoved(const EditorState editor_state);
+    void DocumentChanged(const bool changed);
     void SaveResult(const uint task_id, IOResult result);
     void LoadResult(const uint task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);

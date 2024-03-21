@@ -39,6 +39,7 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(document_widget, &DocumentWidget::WheelHorizontal, this, &DocumentWindow::OnWheelHorizontal);
 
     connect(&document_widget->window, &QtWindow::CaretMoved, this, &DocumentWindow::OnCaretMoved);
+    connect(&document_widget->window, &QtWindow::DocumentChanged, this, &DocumentWindow::OnDocumentChanged);
     connect(&document_widget->window, &QtWindow::SaveResult, this, &DocumentWindow::OnSaveResult);
     connect(&document_widget->window, &QtWindow::LoadResult, this, &DocumentWindow::OnLoadResult);
     connect(&document_widget->window, &QtWindow::ClipboardCopyResult, this, &DocumentWindow::OnClipboardCopyResult);
@@ -389,6 +390,11 @@ void DocumentWindow::OnDocumentUpdated(const Rect rect)
     horizontal_scroll->setMaximum(s.width - r.width > 0 ? s.width - r.width : 1);
     horizontal_scroll->setPageStep(r.width);
     horizontal_scroll->setValue(p.x);
+}
+
+void DocumentWindow::OnDocumentChanged(const bool changed)
+{
+    emit DocumentChanged(changed);
 }
 
 void DocumentWindow::OnPresentAsAuto()
