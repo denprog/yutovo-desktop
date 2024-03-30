@@ -93,6 +93,11 @@ private slots:
     void OnCurrentSizeEditingFinished();
     void OnCurrentSizeChanged(int index);
 
+    void OnAlignLeft();
+    void OnAlignRight();
+    void OnAlignCenter();
+    void OnAlignJustify();
+
     void OnBold();
     void OnItalic();
     void OnUnderline();
@@ -216,6 +221,11 @@ private:
     QAction* copy_action = nullptr;
     QAction* paste_action = nullptr;
     QAction* cut_action = nullptr;
+
+    QAction* align_left_action = nullptr;
+    QAction* align_right_action = nullptr;
+    QAction* align_center_action = nullptr;
+    QAction* align_justify_action = nullptr;
 
     QAction* bold_action = nullptr;
     QAction* italic_action = nullptr;

@@ -373,6 +373,28 @@ void MainWindow::CreateActions()
     connect(bg_text_color_action, &QAction::triggered, this, &MainWindow::OnBgTextColor);
     format_toolbar->addAction(bg_text_color_action);
 
+    format_toolbar->addSeparator();
+
+    align_left_action = new QAction(QIcon(":/icons/images/format/align_left.png"), tr("Align left"), this);
+    connect(align_left_action, &QAction::triggered, this, &MainWindow::OnAlignLeft);
+    align_left_action->setCheckable(true);
+    format_toolbar->addAction(align_left_action);
+
+    align_center_action = new QAction(QIcon(":/icons/images/format/align_center.png"), tr("Align center"), this);
+    connect(align_center_action, &QAction::triggered, this, &MainWindow::OnAlignCenter);
+    align_center_action->setCheckable(true);
+    format_toolbar->addAction(align_center_action);
+
+    align_right_action = new QAction(QIcon(":/icons/images/format/align_right.png"), tr("Align right"), this);
+    connect(align_right_action, &QAction::triggered, this, &MainWindow::OnAlignRight);
+    align_right_action->setCheckable(true);
+    format_toolbar->addAction(align_right_action);
+
+    align_justify_action = new QAction(QIcon(":/icons/images/format/align_justify.png"), tr("Align justify"), this);
+    connect(align_justify_action, &QAction::triggered, this, &MainWindow::OnAlignJustify);
+    align_justify_action->setCheckable(true);
+    format_toolbar->addAction(align_justify_action);
+
     //view menu
     QMenu* view_menu = menuBar()->addMenu(tr("&View"));
 
@@ -1120,6 +1142,46 @@ void MainWindow::OnCurrentSizeChanged(int index)
     UpdateFontSize();
 }
 
+void MainWindow::OnAlignLeft()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    if (!align_left_action->isChecked())
+        OnCaretMoved(document->GetEditorState());
+    document->ChangeParagraphFormat(ParagraphFormat::Alignment::Left, true);
+}
+
+void MainWindow::OnAlignRight()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    if (!align_right_action->isChecked())
+        OnCaretMoved(document->GetEditorState());
+    document->ChangeParagraphFormat(ParagraphFormat::Alignment::Right, true);
+}
+
+void MainWindow::OnAlignCenter()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    if (!align_center_action->isChecked())
+        OnCaretMoved(document->GetEditorState());
+    document->ChangeParagraphFormat(ParagraphFormat::Alignment::Center, true);
+}
+
+void MainWindow::OnAlignJustify()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    if (!align_justify_action->isChecked())
+        OnCaretMoved(document->GetEditorState());
+    document->ChangeParagraphFormat(ParagraphFormat::Alignment::Justify, true);
+}
+
 void MainWindow::OnBold()
 {
     if (block_format_slots)
@@ -1574,6 +1636,12 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
         size_combo->setCurrentText("");
     else
         size_combo->setCurrentText(std::to_string(window.string_format.size).c_str());
+    
+    align_left_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Left);
+    align_right_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Right);
+    align_center_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Center);
+    align_justify_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Justify);
+
     bold_action->setChecked(window.string_format.bold);
     italic_action->setChecked(window.string_format.italic);
     underline_action->setChecked(window.string_format.underline);
