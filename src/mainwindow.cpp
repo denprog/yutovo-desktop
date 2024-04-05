@@ -17,6 +17,7 @@
 #include "document_window.h"
 #include "about_dialog.h"
 #include "settings_dialog.h"
+#include "properties_dialog.h"
 
 //MainWindow
 
@@ -82,12 +83,6 @@ void MainWindow::changeEvent(QEvent* event)
         ui->retranslateUi(this);
         SetupGui();
         UpdateRecentFiles();
-
-        for (int i = 0; i < ui->editor_tabs->count(); ++i)
-        {
-            DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
-            w->document->SetLocale(config.language);
-        }
     }
 
     QMainWindow::changeEvent(event);
@@ -312,6 +307,13 @@ void MainWindow::CreateActions()
     connect(paste_action, &QAction::triggered, this, &MainWindow::Paste);
     edit_menu->addAction(paste_action);
     standard_toolbar->addAction(paste_action);
+
+    standard_toolbar->addSeparator();
+
+    properties_action = new QAction(QIcon(":/icons/images/standard/properties.png"), tr("&Properties"), this);
+    properties_action->setStatusTip(tr("Properties of the document"));
+    connect(properties_action, &QAction::triggered, this, &MainWindow::Properties);
+    standard_toolbar->addAction(properties_action);
 
     UpdateCopyPaste();
 
@@ -679,7 +681,11 @@ void MainWindow::CreateFunctionsToolbar()
 
 void MainWindow::CreateStatusBar()
 {
-    statusBar()->showMessage(tr("Ready"));
+    if (!locale_status)
+    {
+        locale_status = new QLabel("");
+        statusBar()->addWidget(locale_status);
+    }
 }
 
 void MainWindow::SetFocus()
@@ -697,6 +703,8 @@ void MainWindow::New()
     if (!document)
         return;
     document->New();
+
+    UpdateLocaleMessage();
 }
 
 void MainWindow::Open()
@@ -760,6 +768,8 @@ void MainWindow::OpenFile(QString file_name)
     if (!w->document_widget->formating && !w->document_widget->resizing)
         QApplication::setOverrideCursor(Qt::WaitCursor);
     w->path = file_name;
+
+    UpdateLocaleMessage();
 }
 
 void MainWindow::Save()
@@ -829,7 +839,7 @@ void MainWindow::Settings()
         _settings[key] = settings.value(key);
     }
 
-    yutovo_calculator::Language language = config.language;
+    yutovo_calculator::Language last_language = config.language;
     Config _config = config;
     int r;
     {
@@ -848,7 +858,10 @@ void MainWindow::Settings()
         for (int i = 0; i < ui->editor_tabs->count(); ++i)
         {
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
-            w->document->SetConfig(config);
+            Config c;
+            w->document->GetConfig(c);
+            _config.language = c.language; //update all but language
+            w->document->SetConfig(_config);
         }
 
         keys = _settings.keys();
@@ -864,8 +877,11 @@ void MainWindow::Settings()
         hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
 
-        if (language != config.language)
+        if (last_language != config.language)
+        {
             InstallTranslation(config.language);
+            UpdateLocaleMessage();
+        }
         
         logger->SetLevel((int)config.log_level);
     }
@@ -967,6 +983,26 @@ void MainWindow::Redo()
     auto document = GetCurrentDocument();
     if (document)
         document->Redo();
+}
+
+void MainWindow::Properties()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    
+    Config _config;
+    document->GetConfig(_config);
+    int r;
+    {
+        PropertiesDialog settings_dialog(_config);
+        r = settings_dialog.exec();
+    }
+
+    if (r == QDialog::Accepted)
+        document->SetConfig(_config);
+
+    UpdateLocaleMessage();
 }
 
 void MainWindow::About()
@@ -1081,6 +1117,7 @@ void MainWindow::OnEditorChanged(int index)
     OnCaretMoved(document->GetEditorState());
 
     UpdateCaption();
+    UpdateLocaleMessage();
 }
 
 void MainWindow::OnInsertCode()
@@ -1664,6 +1701,7 @@ void MainWindow::OnDocumentChanged(const bool changed)
         UpdateCaption();
         w->last_changed = changed;
     }
+    UpdateLocaleMessage();
 }
 
 void MainWindow::OnSaveResult(const uint task_id, IOResult result)
@@ -2112,4 +2150,14 @@ void MainWindow::UpdateCaption(int tab)
 
     ui->editor_tabs->setTabText(tab == -1 ? ui->editor_tabs->currentIndex() : tab, file_name);
     setWindowTitle(file_name + " - " + tr("Yutovo"));
+}
+
+void MainWindow::UpdateLocaleMessage()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    Config c;
+    document->GetConfig(c);
+    locale_status->setText(tr("Locale: ") + (c.language == yutovo_calculator::Language::English ? tr("English") : tr("Russian")));
 }

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QComboBox>
+#include <QLabel>
 #include <QFontComboBox>
 #include <QSettings>
 #include <QTranslator>
@@ -65,6 +66,8 @@ private:
     void Copy();
     void Paste();
     void Cut();
+
+    void Properties();
 
     void Undo();
     void Redo();
@@ -181,6 +184,8 @@ private:
 
     void UpdateCaption(int tab = -1);
 
+    void UpdateLocaleMessage();
+
 private:
     friend class DocumentWindow;
 
@@ -222,6 +227,8 @@ private:
     QAction* paste_action = nullptr;
     QAction* cut_action = nullptr;
 
+    QAction* properties_action = nullptr;
+
     QAction* align_left_action = nullptr;
     QAction* align_right_action = nullptr;
     QAction* align_center_action = nullptr;
@@ -251,6 +258,8 @@ private:
     QToolBar* functions_toolbar = nullptr;
 
     QList<QString> last_documents;
+
+    QLabel* locale_status = nullptr;
 
     Logger* logger;
 };

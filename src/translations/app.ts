@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru" sourcelanguage="en">
+<TS version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../about.ui" line="20"/>
-        <source>About</source>
-        <translation>О программе</translation>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about.ui" line="31"/>
         <source>Yutovo</source>
-        <translation>Ютово</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../about.ui" line="67"/>
         <source>OK</source>
-        <translation>Да</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -24,52 +24,52 @@
     <message>
         <location filename="../colors_settings_form.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../colors_settings_form.ui" line="22"/>
         <source>Code block frame</source>
-        <translation>Рамка блока кода</translation>
-    </message>
-    <message>
-        <location filename="../colors_settings_form.ui" line="36"/>
-        <source>Numbers</source>
-        <translation>Числа</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../colors_settings_form.ui" line="29"/>
         <source>Variables</source>
-        <translation>Переменные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../colors_settings_form.ui" line="85"/>
-        <source>Functions</source>
-        <translation>Функции</translation>
-    </message>
-    <message>
-        <location filename="../colors_settings_form.ui" line="127"/>
-        <source>Units</source>
-        <translation>Размерности</translation>
+        <location filename="../colors_settings_form.ui" line="36"/>
+        <source>Numbers</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../colors_settings_form.ui" line="43"/>
         <source>Shapes</source>
-        <translation>Графические элементы формул</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../colors_settings_form.ui" line="50"/>
         <source>Error marks</source>
-        <translation>Метка ошибки</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../colors_settings_form.ui" line="57"/>
         <source>Formula background</source>
-        <translation>Фон формулы</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colors_settings_form.ui" line="85"/>
+        <source>Functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../colors_settings_form.ui" line="127"/>
+        <source>Units</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../colors_settings_form.ui" line="134"/>
         <source>Selection background</source>
-        <translation>Фон выделения</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -77,155 +77,155 @@
     <message>
         <location filename="../document_window.cpp" line="51"/>
         <source>Copy</source>
-        <translation>Копировать</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="53"/>
         <source>Paste</source>
-        <translation>Вставить</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="55"/>
         <source>Cut</source>
-        <translation>Вырезать</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="58"/>
         <source>Auto</source>
-        <translation>Автоподбор</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="61"/>
         <source>Real</source>
-        <translation>Вещественные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="64"/>
         <source>Integer</source>
-        <translation>Целые</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="67"/>
         <source>Rational</source>
-        <translation>Дробные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="70"/>
         <source>Complex</source>
-        <translation>Комплексные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="74"/>
         <location filename="../document_window.cpp" line="434"/>
         <source>Set precision</source>
-        <translation>Точность</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="76"/>
         <location filename="../document_window.cpp" line="449"/>
         <source>Set exponential threshold</source>
-        <translation>Величина порядка</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="78"/>
         <source>Set unit</source>
-        <translation>Размерность</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="81"/>
         <source>Radian</source>
-        <translation>Радианы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="84"/>
         <source>Degree</source>
-        <translation>Градусы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="87"/>
         <source>Grad</source>
-        <translation>Грады</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="91"/>
         <source>Binary</source>
-        <translation>Двоичная система</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="94"/>
         <source>Octal</source>
-        <translation>Восьмеричная система</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="97"/>
         <source>Decimal</source>
-        <translation>Десятичная система</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="100"/>
         <source>Hexadecimal</source>
-        <translation>Шестнадцатиричная система</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="104"/>
         <source>Proper</source>
-        <translation>Правильная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="107"/>
         <source>Improper</source>
-        <translation>Неправильная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="111"/>
         <source>Arithmetic</source>
-        <translation>Арифметическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="114"/>
         <source>Trigonometric</source>
-        <translation>Тригонометрическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="117"/>
         <source>Exponential</source>
-        <translation>Экспоненциальная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="157"/>
         <source>Present as</source>
-        <translation>Представить как</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="183"/>
         <location filename="../document_window.cpp" line="248"/>
         <source>Angle measure</source>
-        <translation>Мера угла</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="198"/>
         <source>Result notation</source>
-        <translation>Система счисления результата</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="215"/>
         <source>Fraction type</source>
-        <translation>Тип дроби</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="236"/>
         <source>Complex form</source>
-        <translation>Комплексная форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="434"/>
         <source>Precision</source>
-        <translation>Точность</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../document_window.cpp" line="449"/>
         <source>Exponential threshold</source>
-        <translation>Порядок экспоненты</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -233,12 +233,12 @@
     <message>
         <location filename="../documents_settings_form.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../documents_settings_form.ui" line="30"/>
         <source>Load last documents</source>
-        <translation>Загружать последний документ</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -246,37 +246,37 @@
     <message>
         <location filename="../fonts_settings_form.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../fonts_settings_form.ui" line="20"/>
         <source>Number gaps</source>
-        <translation>Пробелы в числах</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../fonts_settings_form.ui" line="26"/>
         <source>Use numbers gaps</source>
-        <translation>Использовать пробелы в числах</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../fonts_settings_form.ui" line="49"/>
         <source>Binary</source>
-        <translation>Двоичные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../fonts_settings_form.ui" line="63"/>
         <source>Octal</source>
-        <translation>Восьмеричные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../fonts_settings_form.ui" line="70"/>
         <source>Decimal</source>
-        <translation>Десятичные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../fonts_settings_form.ui" line="77"/>
         <source>Hexadecimal</source>
-        <translation>Шестнадцатиричные</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -284,663 +284,630 @@
     <message>
         <location filename="../interface_settings_form.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="22"/>
         <source>Toolbars</source>
-        <translation>Панели управления</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="28"/>
         <source>Standard</source>
-        <translation>Стандартная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="35"/>
         <source>Format</source>
-        <translation>Форматирование</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="42"/>
         <source>Algebraic</source>
-        <translation>Алгебраическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="49"/>
         <source>Trigonometric</source>
-        <translation>Тригонометрическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="56"/>
         <source>Hyperbolic</source>
-        <translation>Гиперболическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../interface_settings_form.ui" line="63"/>
         <source>Functions</source>
-        <translation>Функции</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="113"/>
-        <location filename="../mainwindow.cpp" line="1084"/>
-        <location filename="../mainwindow.cpp" line="1716"/>
-        <location filename="../mainwindow.cpp" line="1771"/>
-        <location filename="../mainwindow.cpp" line="2138"/>
-        <location filename="../mainwindow.cpp" line="2152"/>
+        <location filename="../mainwindow.cpp" line="112"/>
+        <location filename="../mainwindow.cpp" line="1058"/>
+        <location filename="../mainwindow.cpp" line="1690"/>
+        <location filename="../mainwindow.cpp" line="1745"/>
+        <location filename="../mainwindow.cpp" line="2112"/>
+        <location filename="../mainwindow.cpp" line="2126"/>
         <source>Yutovo</source>
-        <translation>Ютово</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="113"/>
-        <location filename="../mainwindow.cpp" line="1084"/>
+        <location filename="../mainwindow.cpp" line="112"/>
+        <location filename="../mainwindow.cpp" line="1058"/>
         <source>Document %1 is unsaved. Save?</source>
-        <translation>Документ %1 не сохранен. Сохранить?</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="226"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="227"/>
-        <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="228"/>
         <source>Standard</source>
-        <translation>Стандартная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="230"/>
+        <location filename="../mainwindow.cpp" line="229"/>
         <source>&amp;New</source>
-        <translation>&amp;Новый</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="232"/>
+        <location filename="../mainwindow.cpp" line="231"/>
         <source>Create a new document</source>
-        <translation>Создать новый документ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="237"/>
+        <location filename="../mainwindow.cpp" line="236"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Открыть</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="239"/>
+        <location filename="../mainwindow.cpp" line="238"/>
         <source>Open an existing file</source>
-        <translation>Открыть документ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="243"/>
         <source>&amp;Open recent file</source>
-        <translation>Открыть последний файл</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="246"/>
+        <location filename="../mainwindow.cpp" line="245"/>
         <source>&amp;Save</source>
-        <translation>&amp;Сохранить</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="247"/>
         <source>Save the document to disk</source>
-        <translation>Сохранить документ на диск</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="252"/>
         <source>Save &amp;As...</source>
-        <translation>Сохранить &amp;как...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="254"/>
         <source>Save the document under a new name</source>
-        <translation>Сохранить документ с другим именем</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="256"/>
         <source>&amp;Close</source>
-        <translation>&amp;Закрыть</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="262"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Настройки</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="269"/>
+        <location filename="../mainwindow.cpp" line="268"/>
         <source>E&amp;xit</source>
-        <translation>В&amp;ыход</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>Exit the application</source>
-        <translation>Выйти из приложения</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="274"/>
+        <location filename="../mainwindow.cpp" line="273"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Редактирование</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="279"/>
+        <location filename="../mainwindow.cpp" line="278"/>
         <source>U&amp;ndo</source>
-        <translation>&amp;Отмена</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="281"/>
+        <location filename="../mainwindow.cpp" line="280"/>
         <source>Undo the last operation</source>
-        <translation>Отмена последнего действия</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="285"/>
         <source>&amp;Redo</source>
-        <translation>&amp;Повтор</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="288"/>
+        <location filename="../mainwindow.cpp" line="287"/>
         <source>Redo the last operation</source>
-        <translation>Повтор последнего отмененного действия</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="296"/>
+        <location filename="../mainwindow.cpp" line="295"/>
         <source>Cu&amp;t</source>
-        <translation>Вы&amp;резать</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="298"/>
+        <location filename="../mainwindow.cpp" line="297"/>
         <source>Cut the current selection&apos;s contents to the clipboard</source>
-        <translation>Вырезать текущее выделение в буфер обмена</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="302"/>
         <source>&amp;Copy</source>
-        <translation>&amp;Копировать</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="305"/>
+        <location filename="../mainwindow.cpp" line="304"/>
         <source>Copy the current selection&apos;s contents to the clipboard</source>
-        <translation>Копировать текущее выделение в буфер обмена</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="309"/>
         <source>&amp;Paste</source>
-        <translation>В&amp;ставить</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="311"/>
         <source>Paste the clipboard&apos;s contents into the current selection</source>
-        <translation>Вставить содержимое буфера обмена в документ</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="318"/>
+        <source>&amp;Properties</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="319"/>
-        <source>&amp;Properties</source>
-        <translation>Свойства</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="327"/>
-        <source>Format</source>
-        <translation>Форматирование</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="320"/>
         <source>Properties of the document</source>
-        <translation>Свойства документа</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="326"/>
+        <source>Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="329"/>
+        <source>&amp;Code</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="330"/>
-        <source>&amp;Code</source>
-        <translation>&amp;Код</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="331"/>
         <source>Insert code</source>
-        <translation>Вставить код</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="355"/>
         <source>Bold</source>
-        <translation>Жирный</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="360"/>
         <source>Italic</source>
-        <translation>Курсив</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="366"/>
+        <location filename="../mainwindow.cpp" line="365"/>
         <source>Underline</source>
-        <translation>Подчеркнутый</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="371"/>
+        <location filename="../mainwindow.cpp" line="370"/>
         <source>Strikethrough</source>
-        <translation>Зачеркнутый</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="376"/>
+        <location filename="../mainwindow.cpp" line="375"/>
         <source>Text color</source>
-        <translation>Цвет текста</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="380"/>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>Background text color</source>
-        <translation>Цвет фона текста</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="386"/>
+        <location filename="../mainwindow.cpp" line="385"/>
         <source>Align left</source>
-        <translation>Выравнивание по левому краю</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.cpp" line="390"/>
         <source>Align center</source>
-        <translation>Выравнивание по центру</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="395"/>
         <source>Align right</source>
-        <translation>Выравнивание по правому краю</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="400"/>
         <source>Align justify</source>
-        <translation>Выравнивание по ширине</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="406"/>
         <source>&amp;View</source>
-        <translation>&amp;Вид</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>&amp;Toolbars</source>
-        <translation>&amp;Панели</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="411"/>
         <source>Standard toolbar</source>
-        <translation>Стандарная панель</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="418"/>
+        <location filename="../mainwindow.cpp" line="417"/>
         <source>Format toolbar</source>
-        <translation>Панель форматирования</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="424"/>
+        <location filename="../mainwindow.cpp" line="423"/>
         <source>Algebraic operations</source>
-        <translation>Алгебраические операции</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="430"/>
-        <location filename="../mainwindow.cpp" line="546"/>
+        <location filename="../mainwindow.cpp" line="429"/>
+        <location filename="../mainwindow.cpp" line="545"/>
         <source>Trigonometric functions</source>
-        <translation>Тригонометрические функции</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="436"/>
-        <location filename="../mainwindow.cpp" line="601"/>
-        <location filename="../mainwindow.cpp" line="656"/>
+        <location filename="../mainwindow.cpp" line="435"/>
+        <location filename="../mainwindow.cpp" line="600"/>
+        <location filename="../mainwindow.cpp" line="655"/>
         <source>Hyperbolic functions</source>
-        <translation>Гиперболические функции</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="442"/>
+        <location filename="../mainwindow.cpp" line="441"/>
         <source>Math functions</source>
-        <translation>Математические функции</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="448"/>
+        <location filename="../mainwindow.cpp" line="447"/>
         <source>&amp;Status bar</source>
-        <translation>Панель &amp;статуса</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="454"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="455"/>
-        <source>&amp;Help</source>
-        <translation>&amp;Помощь</translation>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="456"/>
-        <source>&amp;About</source>
-        <translation>&amp;О программе</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="457"/>
         <source>Show the application&apos;s About box</source>
-        <translation>Показать диалог О программе</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="463"/>
+        <location filename="../mainwindow.cpp" line="462"/>
         <source>Algebraic functions</source>
-        <translation>Алгебраические функции</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="466"/>
+        <location filename="../mainwindow.cpp" line="465"/>
         <source>Plus</source>
-        <translation>Плюс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="470"/>
+        <location filename="../mainwindow.cpp" line="469"/>
         <source>Minus</source>
-        <translation>Минус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="474"/>
+        <location filename="../mainwindow.cpp" line="473"/>
         <source>Multiply</source>
-        <translation>Умножение</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="478"/>
+        <location filename="../mainwindow.cpp" line="477"/>
         <source>Division</source>
-        <translation>Деление</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="482"/>
+        <location filename="../mainwindow.cpp" line="481"/>
         <source>Power</source>
-        <translation>Возведение в степень</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="486"/>
+        <location filename="../mainwindow.cpp" line="485"/>
         <source>Square root</source>
-        <translation>Квадратный корень</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="490"/>
+        <location filename="../mainwindow.cpp" line="489"/>
         <source>Nth root</source>
-        <translation>Корень степени</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="494"/>
+        <location filename="../mainwindow.cpp" line="493"/>
         <source>Subscript</source>
-        <translation>Нижний индекс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="497"/>
         <source>Sum</source>
-        <translation>Сумма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="502"/>
+        <location filename="../mainwindow.cpp" line="501"/>
         <source>Product</source>
-        <translation>Произведение</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="506"/>
+        <location filename="../mainwindow.cpp" line="505"/>
         <source>Fences</source>
-        <translation>Скобки</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="509"/>
         <source>Radian</source>
-        <translation>Радиан</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="514"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>Degree</source>
-        <translation>Градус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="518"/>
+        <location filename="../mainwindow.cpp" line="517"/>
         <source>Minute</source>
-        <translation>Минута</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="522"/>
+        <location filename="../mainwindow.cpp" line="521"/>
         <source>Second</source>
-        <translation>Секунда</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="526"/>
+        <location filename="../mainwindow.cpp" line="525"/>
         <source>Grad</source>
-        <translation>Град</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="530"/>
+        <location filename="../mainwindow.cpp" line="529"/>
         <source>Assignment</source>
-        <translation>Присваивание</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="533"/>
         <source>Unit</source>
-        <translation>Размерность</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="537"/>
         <source>Equation</source>
-        <translation>Равенство</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
+        <location filename="../mainwindow.cpp" line="548"/>
         <source>Sine</source>
-        <translation>Синус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="553"/>
+        <location filename="../mainwindow.cpp" line="552"/>
         <source>Cosine</source>
-        <translation>Косинус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="557"/>
+        <location filename="../mainwindow.cpp" line="556"/>
         <source>Tangens</source>
-        <translation>Тангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="561"/>
+        <location filename="../mainwindow.cpp" line="560"/>
         <source>Cotangens</source>
-        <translation>Котангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="565"/>
+        <location filename="../mainwindow.cpp" line="564"/>
         <source>Secans</source>
-        <translation>Секанс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>Cosecans</source>
-        <translation>Косеканс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="572"/>
         <source>Arcsine</source>
-        <translation>Арксинус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="577"/>
+        <location filename="../mainwindow.cpp" line="576"/>
         <source>Arccosine</source>
-        <translation>Арккосинус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="580"/>
         <source>Arctangens</source>
-        <translation>Арктангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="584"/>
         <source>Arccotangens</source>
-        <translation>Арккотангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>Arcsecans</source>
-        <translation>Арксеканс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="593"/>
+        <location filename="../mainwindow.cpp" line="592"/>
         <source>Arccosecans</source>
-        <translation>Арккосеканс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="603"/>
         <source>Hyperbolic sine</source>
-        <translation>Гиперболический синус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="608"/>
+        <location filename="../mainwindow.cpp" line="607"/>
         <source>Hyperbolic cosine</source>
-        <translation>Гиперболический косинус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="612"/>
+        <location filename="../mainwindow.cpp" line="611"/>
         <source>Hyperbolic tangens</source>
-        <translation>Гиперболический тангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="616"/>
+        <location filename="../mainwindow.cpp" line="615"/>
         <source>Hyperbolic cotangens</source>
-        <translation>Гиперболический котангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="620"/>
+        <location filename="../mainwindow.cpp" line="619"/>
         <source>Hyperbolic secans</source>
-        <translation>Гиперболический секанс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="624"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Hyperbolic cosecans</source>
-        <translation>Гиперболический косеканс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="628"/>
+        <location filename="../mainwindow.cpp" line="627"/>
         <source>Hyperbolic arsine</source>
-        <translation>Гиперболический арксинус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="632"/>
+        <location filename="../mainwindow.cpp" line="631"/>
         <source>Hyperbolic arcosine</source>
-        <translation>Гиперболический арккосинус</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="636"/>
+        <location filename="../mainwindow.cpp" line="635"/>
         <source>Hyperbolic artangens</source>
-        <translation>Гиперболический арктангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="640"/>
+        <location filename="../mainwindow.cpp" line="639"/>
         <source>Hyperbolic arcotangens</source>
-        <translation>Гиперболический арккотангенс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="644"/>
+        <location filename="../mainwindow.cpp" line="643"/>
         <source>Hyperbolic arsecans</source>
-        <translation>Гиперболический арксеканс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="648"/>
+        <location filename="../mainwindow.cpp" line="647"/>
         <source>Hyperbolic arcosecans</source>
-        <translation>Гиперболический арккосеканс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="659"/>
+        <location filename="../mainwindow.cpp" line="658"/>
         <source>Exponent</source>
-        <translation>Экспонента</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="663"/>
+        <location filename="../mainwindow.cpp" line="662"/>
         <source>Natural logarithm</source>
-        <translation>Натуральный логарифм</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="667"/>
+        <location filename="../mainwindow.cpp" line="666"/>
         <source>Decimal logarithm</source>
-        <translation>Десятичный логарифм</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="671"/>
+        <location filename="../mainwindow.cpp" line="670"/>
         <source>Logarithm</source>
-        <translation>Логарифм</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="674"/>
         <source>Integer part</source>
-        <translation>Целая часть</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="679"/>
+        <location filename="../mainwindow.cpp" line="678"/>
         <source>Fraction part</source>
-        <translation>Дробная часть</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="683"/>
+        <location filename="../mainwindow.cpp" line="682"/>
         <source>Round</source>
-        <translation>Округление</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2162"/>
-        <source>Locale: </source>
-        <translation>Язык: </translation>
+        <location filename="../mainwindow.cpp" line="689"/>
+        <source>Ready</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2162"/>
-        <source>English</source>
-        <translation>Английский</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="2162"/>
-        <source>Russian</source>
-        <translation>Русский</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="716"/>
+        <location filename="../mainwindow.cpp" line="711"/>
         <source>Open file</source>
-        <translation>Открыть файл</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="716"/>
+        <location filename="../mainwindow.cpp" line="711"/>
         <source>Yutovo files (*.yut);;Text files (*.txt);;All files (*.*)</source>
-        <translation>Файлы Ютово (*.yut);;Текстовые файлы (*.txt);;Все файлы (*.*)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="815"/>
-        <source>Yutovo files (*.yut);;Text files (*.txt)</source>
-        <translation>Файлы Ютово (*.yut);; Текстовые файлы (*.txt)</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="815"/>
+        <location filename="../mainwindow.cpp" line="808"/>
         <source>Save file as</source>
-        <translation>Сохранить файл как</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1716"/>
-        <source>Error saving document</source>
-        <translation>Ошибка сохранения документа</translation>
+        <location filename="../mainwindow.cpp" line="808"/>
+        <source>Yutovo files (*.yut);;Text files (*.txt)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1771"/>
-        <source>Error loading document</source>
-        <translation>Ошибка загрузки документа</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="1390"/>
+        <location filename="../mainwindow.cpp" line="1364"/>
         <source>rad</source>
-        <translation>рад</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1418"/>
+        <location filename="../mainwindow.cpp" line="1392"/>
         <source>grad</source>
-        <translation>град</translation>
-    </message>
-</context>
-<context>
-    <name>PropertiesDialog</name>
-    <message>
-        <location filename="../properties_dialog.ui" line="23"/>
-        <source>Properties</source>
-        <translation>Свойства</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_dialog.ui" line="34"/>
-        <source>Locale</source>
-        <translation>Язык</translation>
+        <location filename="../mainwindow.cpp" line="1690"/>
+        <source>Error saving document</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../properties_dialog.ui" line="42"/>
-        <source>English</source>
-        <translation>Английский</translation>
-    </message>
-    <message>
-        <location filename="../properties_dialog.ui" line="47"/>
-        <source>Russian</source>
-        <translation>Русский</translation>
+        <location filename="../mainwindow.cpp" line="1745"/>
+        <source>Error loading document</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -949,171 +916,171 @@
         <location filename="../result_settings_form.ui" line="14"/>
         <location filename="../result_settings_form.ui" line="419"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="22"/>
         <source>Result auto advance</source>
-        <translation>Автоподбор результата</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="35"/>
         <source>Result advance order</source>
-        <translation>Порядок подбора результата</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="61"/>
         <source>Up</source>
-        <translation>Вверх</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="81"/>
         <source>Down</source>
-        <translation>Вниз</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="99"/>
         <location filename="../result_settings_form.cpp" line="100"/>
         <source>Real</source>
-        <translation>Вещественные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="107"/>
         <location filename="../result_settings_form.ui" line="433"/>
         <source>Angle measure</source>
-        <translation>Мера угла</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="114"/>
         <location filename="../result_settings_form.ui" line="447"/>
         <source>Exponential threshold</source>
-        <translation>Порядок экспоненты</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="124"/>
         <source>Show angle measure</source>
-        <translation>Показывать меру угла</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="138"/>
         <location filename="../result_settings_form.ui" line="394"/>
         <source>Radian</source>
-        <translation>Радианы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="143"/>
         <location filename="../result_settings_form.ui" line="399"/>
         <source>Degree</source>
-        <translation>Градусы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="148"/>
         <location filename="../result_settings_form.ui" line="404"/>
         <source>Grad</source>
-        <translation>Грады</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="156"/>
         <location filename="../result_settings_form.ui" line="440"/>
         <source>Precision</source>
-        <translation>Точность</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="202"/>
         <location filename="../result_settings_form.cpp" line="103"/>
         <source>Integer</source>
-        <translation>Целые</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="211"/>
         <location filename="../result_settings_form.ui" line="269"/>
         <source>Binary</source>
-        <translation>Двоичные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="216"/>
         <location filename="../result_settings_form.ui" line="274"/>
         <source>Octal</source>
-        <translation>Восьмеричные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="221"/>
         <location filename="../result_settings_form.ui" line="279"/>
         <source>Decimal</source>
-        <translation>Десятичные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="226"/>
         <location filename="../result_settings_form.ui" line="284"/>
         <source>Hexadecimal</source>
-        <translation>Шестнадцатиричные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="234"/>
         <source>Show result numeral system</source>
-        <translation>Показывать систему счисления результата</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="254"/>
         <source>Result numeral system</source>
-        <translation>Система счисления результата</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="261"/>
         <source>Default numeral system</source>
-        <translation>Система счисления по умолчанию</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="308"/>
         <location filename="../result_settings_form.cpp" line="106"/>
         <source>Rational</source>
-        <translation>Дробные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="317"/>
         <source>Proper</source>
-        <translation>Правильная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="322"/>
         <source>Improper</source>
-        <translation>Неправильная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="330"/>
         <source>Fraction form</source>
-        <translation>Форма дроби</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="366"/>
         <location filename="../result_settings_form.cpp" line="109"/>
         <source>Complex</source>
-        <translation>Комплексные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="375"/>
         <source>Arithmetical</source>
-        <translation>Арифметическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="380"/>
         <source>Trigonometric</source>
-        <translation>Тригонометрическая</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="385"/>
         <source>Scientific</source>
-        <translation>Вещественная</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="412"/>
         <source>Maximum count of results</source>
-        <translation>Максимальное количество результатов</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="464"/>
         <source>Show angle_measure</source>
-        <translation>Показывать меру угла</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1121,12 +1088,12 @@
     <message>
         <location filename="../set_uint_dialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Диалог</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../set_uint_dialog.ui" line="22"/>
         <source>Precision</source>
-        <translation>Точность</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1134,7 +1101,7 @@
     <message>
         <location filename="../set_unit_dialog.ui" line="14"/>
         <source>Units</source>
-        <translation>Размерности</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1142,84 +1109,84 @@
     <message>
         <location filename="../settings_dialog.ui" line="14"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="23"/>
         <location filename="../settings_dialog.cpp" line="65"/>
         <source>Basic</source>
-        <translation>Основные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="25"/>
         <location filename="../settings_dialog.cpp" line="67"/>
         <location filename="../settings_dialog.cpp" line="71"/>
         <source>System</source>
-        <translation>Системные</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="29"/>
         <location filename="../settings_dialog.cpp" line="75"/>
         <source>Documents</source>
-        <translation>Документы</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="31"/>
         <location filename="../settings_dialog.cpp" line="79"/>
         <source>Interface</source>
-        <translation>Интерфейс</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="34"/>
         <location filename="../settings_dialog.cpp" line="83"/>
         <source>Formula</source>
-        <translation>Формула</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="36"/>
         <location filename="../settings_dialog.cpp" line="85"/>
         <location filename="../settings_dialog.cpp" line="89"/>
         <source>Fonts</source>
-        <translation>Шрифты</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="38"/>
         <location filename="../settings_dialog.cpp" line="93"/>
         <source>Colors</source>
-        <translation>Цвета</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="40"/>
         <source>Cursor</source>
-        <translation>Курсор</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="42"/>
         <source>Clipboard</source>
-        <translation>Буфер обмена</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="45"/>
         <location filename="../settings_dialog.cpp" line="97"/>
         <source>Calculator</source>
-        <translation>Калькулятор</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="47"/>
         <source>Computation</source>
-        <translation>Вычисления</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="49"/>
         <location filename="../settings_dialog.cpp" line="99"/>
         <location filename="../settings_dialog.cpp" line="103"/>
         <source>Result</source>
-        <translation>Результат</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../settings_dialog.cpp" line="51"/>
         <source>Include</source>
-        <translation>Подключение</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1227,83 +1194,83 @@
     <message>
         <location filename="../system_settings_form.ui" line="14"/>
         <source>Form</source>
-        <translation>Форма</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="30"/>
         <source>Start when OS starts</source>
-        <translation>Загружать при старте ОС</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="37"/>
         <source>Tray icon</source>
-        <translation>Иконка в трее</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="44"/>
         <source>Minimize to tray</source>
-        <translation>Сворачивать в трей</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="51"/>
         <source>Update over Internet</source>
-        <translation>Обновления через Интернет</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="69"/>
         <source>English</source>
-        <translation>Английский</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="74"/>
         <source>Русский</source>
-        <translation>Русский</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="82"/>
         <source>Interface language</source>
-        <translation>Язык интерфейса</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="89"/>
         <source>Logs level</source>
-        <translation>Уровень логов</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="96"/>
         <location filename="../system_settings_form.ui" line="100"/>
         <source>Trace</source>
-        <translation>Полностью</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="105"/>
         <source>Debug</source>
-        <translation>Отладка</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="110"/>
         <source>Info</source>
-        <translation>Информация</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="115"/>
         <source>Warning</source>
-        <translation>Предупреждения</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="120"/>
         <source>Error</source>
-        <translation>Ошибки</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="125"/>
         <source>Critical</source>
-        <translation>Критическое</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../system_settings_form.ui" line="130"/>
         <source>Off</source>
-        <translation>Выключено</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

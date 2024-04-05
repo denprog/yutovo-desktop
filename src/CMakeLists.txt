@@ -53,6 +53,8 @@ add_executable(${PROJECT_NAME}
     documents_settings_form.cpp
     fonts_settings_form.ui
     fonts_settings_form.cpp
+    properties_dialog.ui
+    properties_dialog.cpp
 )
 
 target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)
