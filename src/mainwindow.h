@@ -7,6 +7,7 @@
 #include <QFontComboBox>
 #include <QSettings>
 #include <QTranslator>
+#include <QProcess>
 #include <QSortFilterProxyModel>
 #include <yutovo_editor/document.h>
 #include <yutovo_logger/logger.h>
@@ -169,6 +170,8 @@ private slots:
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
 
+    void OnServiceStatus(IOResult result);
+
 private:
     void FillParagraphFormats();
     void FillSizes(const QFont& font);
@@ -186,6 +189,8 @@ private:
 
     void UpdateLocaleMessage();
 
+    void RestartService();
+
 private:
     friend class DocumentWindow;
 
@@ -193,6 +198,8 @@ private:
 
     yutovo::Config config;
     QSettings settings;
+
+    std::unique_ptr<QProcess> service;
 
     QTranslator desktop_translator, editor_translator;
 

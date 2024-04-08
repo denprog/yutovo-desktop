@@ -539,6 +539,11 @@ void QtWindow::OnResizeFinished()
     emit ResizeFinished();
 }
 
+void QtWindow::OnServiceStatus(IOResult result)
+{
+    emit ServiceStatus(result);
+}
+
 void QtWindow::GetPixmap(QPixmap& out, const QRect& rect)
 {
     std::lock_guard<std::mutex> lock(pixmap_mutex);

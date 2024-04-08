@@ -81,6 +81,8 @@ public:
     virtual void OnResizeStarted();
     virtual void OnResizeFinished();
 
+    virtual void OnServiceStatus(IOResult result);
+
 public:
     void GetPixmap(QPixmap& out, const QRect& rect);
 
@@ -100,6 +102,7 @@ signals:
     void FormatingFinished();
     void ResizeStarted();
     void ResizeFinished();
+    void ServiceStatus(IOResult result);
 
 private:
     friend class MainWindow;

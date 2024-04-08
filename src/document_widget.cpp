@@ -19,6 +19,7 @@ DocumentWidget::DocumentWidget(QWidget *parent) :
     connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
     connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
     connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
+    connect(&window, &QtWindow::ServiceStatus, this, &DocumentWidget::OnServiceStatus);
 
     setFocusPolicy(Qt::StrongFocus);
     setMouseTracking(true);
@@ -106,6 +107,11 @@ void DocumentWidget::OnResizeFinished()
         wait_timer = 0;
     }
     QApplication::restoreOverrideCursor();
+}
+
+void DocumentWidget::OnServiceStatus(IOResult result)
+{
+    emit ServiceStatus(result);
 }
 
 void DocumentWidget::paintEvent(QPaintEvent *event)

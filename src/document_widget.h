@@ -32,12 +32,14 @@ public slots:
     void OnFormatingFinished();
     void OnResizeStarted();
     void OnResizeFinished();
+    void OnServiceStatus(IOResult result);
 
 signals:
     void WheelVertical(const int value);
     void WheelHorizontal(const int value);
     void NextEditorTab();
     void PrevEditorTab();
+    void ServiceStatus(IOResult result);
 
 protected:
     virtual void paintEvent(QPaintEvent *event);

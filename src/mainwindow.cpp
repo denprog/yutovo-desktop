@@ -40,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ReadSettings();
 
+    RestartService();
+
     ui->editor_tabs->clear();
     SetupGui();
 
@@ -188,6 +190,8 @@ void MainWindow::AddEditorTab(const QString name)
 
     connect(wnd->document_widget, &DocumentWidget::NextEditorTab, this, &MainWindow::OnNextEditorTab);
     connect(wnd->document_widget, &DocumentWidget::PrevEditorTab, this, &MainWindow::OnPrevEditorTab);
+
+    connect(wnd->document_widget, &DocumentWidget::ServiceStatus, this, &MainWindow::OnServiceStatus);
 
     ui->editor_tabs->addTab(wnd, name);
     ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
@@ -1799,6 +1803,12 @@ void MainWindow::OnClipboardPasteResult(PasteResult result)
 {
 }
 
+void MainWindow::OnServiceStatus(IOResult result)
+{
+    if (result != IOResult::Success)
+        RestartService();
+}
+
 void MainWindow::FillParagraphFormats()
 {
     auto document = GetCurrentDocument();
@@ -2160,4 +2170,12 @@ void MainWindow::UpdateLocaleMessage()
     Config c;
     document->GetConfig(c);
     locale_status->setText(tr("Locale: ") + (c.language == yutovo_calculator::Language::English ? tr("English") : tr("Russian")));
+}
+
+void MainWindow::RestartService()
+{
+    logger->Info("Restarting service");
+    service.reset(new QProcess(this));
+    service->setWorkingDirectory(".");
+    service->start("./yutovo_serviced");
 }
