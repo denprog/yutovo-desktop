@@ -6,6 +6,7 @@
 #include "colors_settings_form.h"
 #include "fonts_settings_form.h"
 #include "ui_settings_dialog.h"
+#include <QLabel>
 
 //SettingsDialog
 
@@ -102,6 +103,7 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     }
     else if (item->text(0) == tr("Result"))
     {
+        form->settings_page_layout->addWidget(new QLabel(tr("Result settings for new documents")));
         form->settings_page_layout->addWidget(new ResultSettingsForm(config));
     }
 }

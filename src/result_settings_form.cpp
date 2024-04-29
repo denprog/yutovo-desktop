@@ -39,8 +39,6 @@ ResultSettingsForm::ResultSettingsForm(yutovo::Config& _config, QWidget *parent)
 
 ResultSettingsForm::~ResultSettingsForm()
 {
-    config.auto_result.result_auto_advance = ui->result_auto_advance->isChecked();
-
     config.real_result.precision = ui->real_precision->value();
     config.real_result.exp = ui->real_exp->value();
     config.real_result.result_angle_measure = (AngleMeasure)ui->real_result_angle_measure->currentIndex();
@@ -58,6 +56,12 @@ ResultSettingsForm::~ResultSettingsForm()
     config.complex_result.max_count = ui->complex_results_count->value();
     config.complex_result.result_angle_measure = (AngleMeasure)ui->complex_result_angle_measure->currentIndex();
     config.complex_result.show_angle_measure = ui->complex_show_angle_measure->isChecked();
+
+    config.auto_result.result_auto_advance = ui->result_auto_advance->isChecked();
+    config.auto_result.real_result = config.real_result;
+    config.auto_result.integer_result = config.integer_result;
+    config.auto_result.rational_result = config.rational_result;
+    config.auto_result.complex_result = config.complex_result;
 
     delete ui;
 }

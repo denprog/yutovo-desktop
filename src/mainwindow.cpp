@@ -864,7 +864,12 @@ void MainWindow::Settings()
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
             Config c;
             w->document->GetConfig(c);
-            _config.language = c.language; //update all but language
+            //update all but language and result settings
+            _config.language = c.language;
+            _config.auto_result = c.auto_result;
+            _config.real_result = c.real_result;
+            _config.integer_result = c.integer_result;
+            _config.rational_result = c.rational_result;
             w->document->SetConfig(_config);
         }
 
