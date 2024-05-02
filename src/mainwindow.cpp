@@ -870,7 +870,7 @@ void MainWindow::Settings()
             _config.real_result = c.real_result;
             _config.integer_result = c.integer_result;
             _config.rational_result = c.rational_result;
-            w->document->SetConfig(_config);
+            w->document->SetConfig(_config, true);
         }
 
         keys = _settings.keys();
@@ -1009,7 +1009,7 @@ void MainWindow::Properties()
     }
 
     if (r == QDialog::Accepted)
-        document->SetConfig(_config);
+        document->SetConfig(_config, true);
 
     UpdateLocaleMessage();
 }

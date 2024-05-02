@@ -60,7 +60,7 @@ void SetUnitDialog::FillUnits()
     config.caret_visible = false;
     config.formula_border = false;
     document->Start();
-    document->SetConfig(config);
+    document->SetConfig(config, false);
 
     std::vector<Unit>& units = it->second;
     for (size_t i = 0; i < units.size(); ++i)
