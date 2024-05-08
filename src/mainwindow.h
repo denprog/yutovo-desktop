@@ -185,7 +185,7 @@ private:
 
     void InstallTranslation(const yutovo_calculator::Language language);
 
-    void UpdateCaption(int tab = -1);
+    void UpdateCaption(int tab = -1, bool update_title = true);
 
     void UpdateLocaleMessage();
 

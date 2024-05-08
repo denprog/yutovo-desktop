@@ -1781,7 +1781,7 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
         return;
     }
     UpdateRecentFiles(w->path);
-    UpdateCaption(tab);
+    UpdateCaption(tab, ui->editor_tabs->currentIndex() == tab);
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)
@@ -2145,7 +2145,7 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
         logger->Error("Error installing translation");
 }
 
-void MainWindow::UpdateCaption(int tab)
+void MainWindow::UpdateCaption(int tab, bool update_title)
 {
     DocumentWindow* w = tab == -1 ? (DocumentWindow*)ui->editor_tabs->currentWidget() : (DocumentWindow*)ui->editor_tabs->widget(tab);
     if (!w)
@@ -2164,7 +2164,8 @@ void MainWindow::UpdateCaption(int tab)
         file_name += " *";
 
     ui->editor_tabs->setTabText(tab == -1 ? ui->editor_tabs->currentIndex() : tab, file_name);
-    setWindowTitle(file_name + " - " + tr("Yutovo"));
+    if (update_title)
+        setWindowTitle(file_name + " - " + tr("Yutovo"));
 }
 
 void MainWindow::UpdateLocaleMessage()
