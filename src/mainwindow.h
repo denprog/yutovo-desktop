@@ -70,6 +70,8 @@ private:
 
     void Properties();
 
+    void Recalculate();
+
     void Undo();
     void Redo();
 
@@ -235,6 +237,8 @@ private:
     QAction* cut_action = nullptr;
 
     QAction* properties_action = nullptr;
+
+    QAction* recalculate_action = nullptr;
 
     QAction* align_left_action = nullptr;
     QAction* align_right_action = nullptr;

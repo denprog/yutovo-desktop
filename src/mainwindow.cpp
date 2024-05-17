@@ -319,6 +319,11 @@ void MainWindow::CreateActions()
     connect(properties_action, &QAction::triggered, this, &MainWindow::Properties);
     standard_toolbar->addAction(properties_action);
 
+    recalculate_action = new QAction(QIcon(":/icons/images/standard/recalculate.png"), tr("&Recalculate all"), this);
+    recalculate_action->setStatusTip(tr("Recalculate all the document"));
+    connect(recalculate_action, &QAction::triggered, this, &MainWindow::Recalculate);
+    standard_toolbar->addAction(recalculate_action);
+
     UpdateCopyPaste();
 
     //format toolbar
@@ -1012,6 +1017,13 @@ void MainWindow::Properties()
         document->SetConfig(_config, true);
 
     UpdateLocaleMessage();
+}
+
+void MainWindow::Recalculate()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->ReSolve(ElementId{});
 }
 
 void MainWindow::About()
