@@ -326,83 +326,83 @@
     <name>MainWindow</name>
     <message>
         <location filename="../mainwindow.ui" line="14"/>
-        <location filename="../mainwindow.cpp" line="113"/>
-        <location filename="../mainwindow.cpp" line="1084"/>
-        <location filename="../mainwindow.cpp" line="1716"/>
-        <location filename="../mainwindow.cpp" line="1771"/>
-        <location filename="../mainwindow.cpp" line="2138"/>
-        <location filename="../mainwindow.cpp" line="2152"/>
+        <location filename="../mainwindow.cpp" line="109"/>
+        <location filename="../mainwindow.cpp" line="1115"/>
+        <location filename="../mainwindow.cpp" line="1749"/>
+        <location filename="../mainwindow.cpp" line="1804"/>
+        <location filename="../mainwindow.cpp" line="2177"/>
+        <location filename="../mainwindow.cpp" line="2192"/>
         <source>Yutovo</source>
         <translation>Ютово</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="113"/>
-        <location filename="../mainwindow.cpp" line="1084"/>
+        <location filename="../mainwindow.cpp" line="109"/>
+        <location filename="../mainwindow.cpp" line="1115"/>
         <source>Document %1 is unsaved. Save?</source>
         <translation>Документ %1 не сохранен. Сохранить?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="227"/>
+        <location filename="../mainwindow.cpp" line="225"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="228"/>
+        <location filename="../mainwindow.cpp" line="226"/>
         <source>Standard</source>
         <translation>Стандартная</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="230"/>
+        <location filename="../mainwindow.cpp" line="228"/>
         <source>&amp;New</source>
         <translation>&amp;Новый</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="232"/>
+        <location filename="../mainwindow.cpp" line="230"/>
         <source>Create a new document</source>
         <translation>Создать новый документ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="237"/>
+        <location filename="../mainwindow.cpp" line="235"/>
         <source>&amp;Open...</source>
         <translation>&amp;Открыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="239"/>
+        <location filename="../mainwindow.cpp" line="237"/>
         <source>Open an existing file</source>
         <translation>Открыть документ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>&amp;Open recent file</source>
         <translation>Открыть последний файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="246"/>
+        <location filename="../mainwindow.cpp" line="244"/>
         <source>&amp;Save</source>
         <translation>&amp;Сохранить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="246"/>
         <source>Save the document to disk</source>
-        <translation>Сохранить документ на диск</translation>
+        <translation>Сохранить документ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="251"/>
         <source>Save &amp;As...</source>
         <translation>Сохранить &amp;как...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="253"/>
         <source>Save the document under a new name</source>
         <translation>Сохранить документ с другим именем</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="255"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрыть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="262"/>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
     </message>
@@ -477,7 +477,7 @@
         <translation>Свойства</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="332"/>
         <source>Format</source>
         <translation>Форматирование</translation>
     </message>
@@ -487,435 +487,492 @@
         <translation>Свойства документа</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="330"/>
+        <location filename="../mainwindow.cpp" line="256"/>
+        <source>Close the document</source>
+        <translation>Закрыть документ</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="263"/>
+        <source>Application settings</source>
+        <translation>Настройки приложения</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="325"/>
+        <source>Recalculate the whole document</source>
+        <translation>Пересчитать весь документ</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="335"/>
         <source>&amp;Code</source>
         <translation>&amp;Код</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="331"/>
+        <location filename="../mainwindow.cpp" line="336"/>
         <source>Insert code</source>
         <translation>Вставить код</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="356"/>
+        <location filename="../mainwindow.cpp" line="361"/>
         <source>Bold</source>
         <translation>Жирный</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="361"/>
+        <location filename="../mainwindow.cpp" line="364"/>
+        <source>Bold font</source>
+        <translation>Жирный шрифт</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="367"/>
         <source>Italic</source>
         <translation>Курсив</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="366"/>
+        <location filename="../mainwindow.cpp" line="370"/>
+        <source>Italic font</source>
+        <translation>Курсив</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="373"/>
         <source>Underline</source>
         <translation>Подчеркнутый</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="371"/>
+        <location filename="../mainwindow.cpp" line="376"/>
+        <source>Underline font</source>
+        <translation>Подчеркнутый шрифт</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>Strikethrough</source>
         <translation>Зачеркнутый</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="376"/>
+        <location filename="../mainwindow.cpp" line="382"/>
+        <source>Strikethrough font</source>
+        <translation>Зачеркнутый шрифт</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="385"/>
+        <location filename="../mainwindow.cpp" line="387"/>
         <source>Text color</source>
         <translation>Цвет текста</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="380"/>
+        <location filename="../mainwindow.cpp" line="390"/>
+        <location filename="../mainwindow.cpp" line="392"/>
         <source>Background text color</source>
         <translation>Цвет фона текста</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="386"/>
+        <location filename="../mainwindow.cpp" line="397"/>
         <source>Align left</source>
         <translation>Выравнивание по левому краю</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="391"/>
+        <location filename="../mainwindow.cpp" line="400"/>
+        <source>Align text left</source>
+        <translation>Выровнять текст по левому краю</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="403"/>
         <source>Align center</source>
         <translation>Выравнивание по центру</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="396"/>
+        <location filename="../mainwindow.cpp" line="406"/>
+        <source>Align text center</source>
+        <translation>Выровнять текст по центру</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>Align right</source>
         <translation>Выравнивание по правому краю</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="401"/>
+        <location filename="../mainwindow.cpp" line="412"/>
+        <source>Align text right</source>
+        <translation>Выравнивание по правому краю</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="415"/>
         <source>Align justify</source>
         <translation>Выравнивание по ширине</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="418"/>
+        <source>Align text justify</source>
+        <translation>Выравнивание по ширине</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="422"/>
         <source>&amp;View</source>
         <translation>&amp;Вид</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="410"/>
+        <location filename="../mainwindow.cpp" line="425"/>
         <source>&amp;Toolbars</source>
         <translation>&amp;Панели</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="412"/>
+        <location filename="../mainwindow.cpp" line="427"/>
         <source>Standard toolbar</source>
         <translation>Стандарная панель</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="418"/>
+        <location filename="../mainwindow.cpp" line="433"/>
         <source>Format toolbar</source>
         <translation>Панель форматирования</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="424"/>
+        <location filename="../mainwindow.cpp" line="439"/>
         <source>Algebraic operations</source>
         <translation>Алгебраические операции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="430"/>
-        <location filename="../mainwindow.cpp" line="546"/>
+        <location filename="../mainwindow.cpp" line="445"/>
+        <location filename="../mainwindow.cpp" line="561"/>
         <source>Trigonometric functions</source>
         <translation>Тригонометрические функции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="436"/>
-        <location filename="../mainwindow.cpp" line="601"/>
-        <location filename="../mainwindow.cpp" line="656"/>
+        <location filename="../mainwindow.cpp" line="451"/>
+        <location filename="../mainwindow.cpp" line="616"/>
+        <location filename="../mainwindow.cpp" line="671"/>
         <source>Hyperbolic functions</source>
         <translation>Гиперболические функции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="442"/>
+        <location filename="../mainwindow.cpp" line="457"/>
         <source>Math functions</source>
         <translation>Математические функции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="448"/>
+        <location filename="../mainwindow.cpp" line="463"/>
         <source>&amp;Status bar</source>
         <translation>Панель &amp;статуса</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="455"/>
+        <location filename="../mainwindow.cpp" line="470"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="456"/>
+        <location filename="../mainwindow.cpp" line="471"/>
         <source>&amp;About</source>
         <translation>&amp;О программе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="457"/>
+        <location filename="../mainwindow.cpp" line="472"/>
         <source>Show the application&apos;s About box</source>
         <translation>Показать диалог О программе</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="463"/>
+        <location filename="../mainwindow.cpp" line="478"/>
         <source>Algebraic functions</source>
         <translation>Алгебраические функции</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="466"/>
+        <location filename="../mainwindow.cpp" line="481"/>
         <source>Plus</source>
         <translation>Плюс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="470"/>
+        <location filename="../mainwindow.cpp" line="485"/>
         <source>Minus</source>
         <translation>Минус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="474"/>
+        <location filename="../mainwindow.cpp" line="489"/>
         <source>Multiply</source>
         <translation>Умножение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="478"/>
+        <location filename="../mainwindow.cpp" line="493"/>
         <source>Division</source>
         <translation>Деление</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="482"/>
+        <location filename="../mainwindow.cpp" line="497"/>
         <source>Power</source>
         <translation>Возведение в степень</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="486"/>
+        <location filename="../mainwindow.cpp" line="501"/>
         <source>Square root</source>
         <translation>Квадратный корень</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="490"/>
+        <location filename="../mainwindow.cpp" line="505"/>
         <source>Nth root</source>
         <translation>Корень степени</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="494"/>
+        <location filename="../mainwindow.cpp" line="509"/>
         <source>Subscript</source>
         <translation>Нижний индекс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="498"/>
+        <location filename="../mainwindow.cpp" line="513"/>
         <source>Sum</source>
         <translation>Сумма</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="502"/>
+        <location filename="../mainwindow.cpp" line="517"/>
         <source>Product</source>
         <translation>Произведение</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="506"/>
+        <location filename="../mainwindow.cpp" line="521"/>
         <source>Fences</source>
         <translation>Скобки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="525"/>
         <source>Radian</source>
         <translation>Радиан</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="514"/>
+        <location filename="../mainwindow.cpp" line="529"/>
         <source>Degree</source>
         <translation>Градус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="518"/>
+        <location filename="../mainwindow.cpp" line="533"/>
         <source>Minute</source>
         <translation>Минута</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="522"/>
+        <location filename="../mainwindow.cpp" line="537"/>
         <source>Second</source>
         <translation>Секунда</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="526"/>
+        <location filename="../mainwindow.cpp" line="541"/>
         <source>Grad</source>
         <translation>Град</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="530"/>
+        <location filename="../mainwindow.cpp" line="545"/>
         <source>Assignment</source>
         <translation>Присваивание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="534"/>
+        <location filename="../mainwindow.cpp" line="549"/>
         <source>Unit</source>
         <translation>Размерность</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="538"/>
+        <location filename="../mainwindow.cpp" line="553"/>
         <source>Equation</source>
         <translation>Равенство</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="549"/>
+        <location filename="../mainwindow.cpp" line="564"/>
         <source>Sine</source>
         <translation>Синус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="553"/>
+        <location filename="../mainwindow.cpp" line="568"/>
         <source>Cosine</source>
         <translation>Косинус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="557"/>
+        <location filename="../mainwindow.cpp" line="572"/>
         <source>Tangens</source>
         <translation>Тангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="561"/>
+        <location filename="../mainwindow.cpp" line="576"/>
         <source>Cotangens</source>
         <translation>Котангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="565"/>
+        <location filename="../mainwindow.cpp" line="580"/>
         <source>Secans</source>
         <translation>Секанс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="584"/>
         <source>Cosecans</source>
         <translation>Косеканс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="573"/>
+        <location filename="../mainwindow.cpp" line="588"/>
         <source>Arcsine</source>
         <translation>Арксинус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="577"/>
+        <location filename="../mainwindow.cpp" line="592"/>
         <source>Arccosine</source>
         <translation>Арккосинус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="581"/>
+        <location filename="../mainwindow.cpp" line="596"/>
         <source>Arctangens</source>
         <translation>Арктангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="585"/>
+        <location filename="../mainwindow.cpp" line="600"/>
         <source>Arccotangens</source>
         <translation>Арккотангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="589"/>
+        <location filename="../mainwindow.cpp" line="604"/>
         <source>Arcsecans</source>
         <translation>Арксеканс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="593"/>
+        <location filename="../mainwindow.cpp" line="608"/>
         <source>Arccosecans</source>
         <translation>Арккосеканс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="604"/>
+        <location filename="../mainwindow.cpp" line="619"/>
         <source>Hyperbolic sine</source>
         <translation>Гиперболический синус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="608"/>
+        <location filename="../mainwindow.cpp" line="623"/>
         <source>Hyperbolic cosine</source>
         <translation>Гиперболический косинус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="612"/>
+        <location filename="../mainwindow.cpp" line="627"/>
         <source>Hyperbolic tangens</source>
         <translation>Гиперболический тангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="616"/>
+        <location filename="../mainwindow.cpp" line="631"/>
         <source>Hyperbolic cotangens</source>
         <translation>Гиперболический котангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="620"/>
+        <location filename="../mainwindow.cpp" line="635"/>
         <source>Hyperbolic secans</source>
         <translation>Гиперболический секанс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="624"/>
+        <location filename="../mainwindow.cpp" line="639"/>
         <source>Hyperbolic cosecans</source>
         <translation>Гиперболический косеканс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="628"/>
+        <location filename="../mainwindow.cpp" line="643"/>
         <source>Hyperbolic arsine</source>
         <translation>Гиперболический арксинус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="632"/>
+        <location filename="../mainwindow.cpp" line="647"/>
         <source>Hyperbolic arcosine</source>
         <translation>Гиперболический арккосинус</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="636"/>
+        <location filename="../mainwindow.cpp" line="651"/>
         <source>Hyperbolic artangens</source>
         <translation>Гиперболический арктангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="640"/>
+        <location filename="../mainwindow.cpp" line="655"/>
         <source>Hyperbolic arcotangens</source>
         <translation>Гиперболический арккотангенс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="644"/>
+        <location filename="../mainwindow.cpp" line="659"/>
         <source>Hyperbolic arsecans</source>
         <translation>Гиперболический арксеканс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="648"/>
+        <location filename="../mainwindow.cpp" line="663"/>
         <source>Hyperbolic arcosecans</source>
         <translation>Гиперболический арккосеканс</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="659"/>
+        <location filename="../mainwindow.cpp" line="674"/>
         <source>Exponent</source>
         <translation>Экспонента</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="663"/>
+        <location filename="../mainwindow.cpp" line="678"/>
         <source>Natural logarithm</source>
         <translation>Натуральный логарифм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="667"/>
+        <location filename="../mainwindow.cpp" line="682"/>
         <source>Decimal logarithm</source>
         <translation>Десятичный логарифм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="671"/>
+        <location filename="../mainwindow.cpp" line="686"/>
         <source>Logarithm</source>
         <translation>Логарифм</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="675"/>
+        <location filename="../mainwindow.cpp" line="690"/>
         <source>Integer part</source>
         <translation>Целая часть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="679"/>
+        <location filename="../mainwindow.cpp" line="694"/>
         <source>Fraction part</source>
         <translation>Дробная часть</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="683"/>
+        <location filename="../mainwindow.cpp" line="698"/>
         <source>Round</source>
         <translation>Округление</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2162"/>
+        <location filename="../mainwindow.cpp" line="2202"/>
         <source>Locale: </source>
         <translation>Язык: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2162"/>
+        <location filename="../mainwindow.cpp" line="2202"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="2162"/>
+        <location filename="../mainwindow.cpp" line="2202"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="716"/>
+        <location filename="../mainwindow.cpp" line="733"/>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="716"/>
+        <location filename="../mainwindow.cpp" line="733"/>
         <source>Yutovo files (*.yut);;Text files (*.txt);;All files (*.*)</source>
         <translation>Файлы Ютово (*.yut);;Текстовые файлы (*.txt);;Все файлы (*.*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="815"/>
+        <location filename="../mainwindow.cpp" line="832"/>
         <source>Yutovo files (*.yut);;Text files (*.txt)</source>
         <translation>Файлы Ютово (*.yut);; Текстовые файлы (*.txt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="815"/>
+        <location filename="../mainwindow.cpp" line="832"/>
         <source>Save file as</source>
         <translation>Сохранить файл как</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1716"/>
+        <location filename="../mainwindow.cpp" line="1749"/>
         <source>Error saving document</source>
         <translation>Ошибка сохранения документа</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1771"/>
+        <location filename="../mainwindow.cpp" line="1804"/>
         <source>Error loading document</source>
         <translation>Ошибка загрузки документа</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1390"/>
+        <location filename="../mainwindow.cpp" line="1422"/>
         <source>rad</source>
         <translation>рад</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="1418"/>
+        <location filename="../mainwindow.cpp" line="1450"/>
         <source>grad</source>
         <translation>град</translation>
     </message>
@@ -928,19 +985,25 @@
         <translation>Свойства</translation>
     </message>
     <message>
-        <location filename="../properties_dialog.ui" line="34"/>
+        <location filename="../properties_dialog.ui" line="36"/>
+        <location filename="../properties_dialog.ui" line="44"/>
         <source>Locale</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../properties_dialog.ui" line="42"/>
+        <location filename="../properties_dialog.ui" line="52"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../properties_dialog.ui" line="47"/>
+        <location filename="../properties_dialog.ui" line="57"/>
         <source>Russian</source>
         <translation>Русский</translation>
+    </message>
+    <message>
+        <location filename="../properties_dialog.ui" line="81"/>
+        <source>Result</source>
+        <translation>Результат</translation>
     </message>
 </context>
 <context>
@@ -973,7 +1036,7 @@
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="99"/>
-        <location filename="../result_settings_form.cpp" line="100"/>
+        <location filename="../result_settings_form.cpp" line="104"/>
         <source>Real</source>
         <translation>Вещественные</translation>
     </message>
@@ -1020,7 +1083,7 @@
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="202"/>
-        <location filename="../result_settings_form.cpp" line="103"/>
+        <location filename="../result_settings_form.cpp" line="107"/>
         <source>Integer</source>
         <translation>Целые</translation>
     </message>
@@ -1065,7 +1128,7 @@
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="308"/>
-        <location filename="../result_settings_form.cpp" line="106"/>
+        <location filename="../result_settings_form.cpp" line="110"/>
         <source>Rational</source>
         <translation>Дробные</translation>
     </message>
@@ -1086,7 +1149,7 @@
     </message>
     <message>
         <location filename="../result_settings_form.ui" line="366"/>
-        <location filename="../result_settings_form.cpp" line="109"/>
+        <location filename="../result_settings_form.cpp" line="113"/>
         <source>Complex</source>
         <translation>Комплексные</translation>
     </message>
@@ -1145,81 +1208,86 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="23"/>
-        <location filename="../settings_dialog.cpp" line="65"/>
+        <location filename="../settings_dialog.cpp" line="24"/>
+        <location filename="../settings_dialog.cpp" line="66"/>
         <source>Basic</source>
         <translation>Основные</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="25"/>
-        <location filename="../settings_dialog.cpp" line="67"/>
-        <location filename="../settings_dialog.cpp" line="71"/>
+        <location filename="../settings_dialog.cpp" line="26"/>
+        <location filename="../settings_dialog.cpp" line="68"/>
+        <location filename="../settings_dialog.cpp" line="72"/>
         <source>System</source>
         <translation>Системные</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="29"/>
-        <location filename="../settings_dialog.cpp" line="75"/>
+        <location filename="../settings_dialog.cpp" line="30"/>
+        <location filename="../settings_dialog.cpp" line="76"/>
         <source>Documents</source>
         <translation>Документы</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="31"/>
-        <location filename="../settings_dialog.cpp" line="79"/>
+        <location filename="../settings_dialog.cpp" line="32"/>
+        <location filename="../settings_dialog.cpp" line="80"/>
         <source>Interface</source>
         <translation>Интерфейс</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="34"/>
-        <location filename="../settings_dialog.cpp" line="83"/>
+        <location filename="../settings_dialog.cpp" line="35"/>
+        <location filename="../settings_dialog.cpp" line="84"/>
         <source>Formula</source>
         <translation>Формула</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="36"/>
-        <location filename="../settings_dialog.cpp" line="85"/>
-        <location filename="../settings_dialog.cpp" line="89"/>
+        <location filename="../settings_dialog.cpp" line="37"/>
+        <location filename="../settings_dialog.cpp" line="86"/>
+        <location filename="../settings_dialog.cpp" line="90"/>
         <source>Fonts</source>
         <translation>Шрифты</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="38"/>
-        <location filename="../settings_dialog.cpp" line="93"/>
+        <location filename="../settings_dialog.cpp" line="39"/>
+        <location filename="../settings_dialog.cpp" line="94"/>
         <source>Colors</source>
         <translation>Цвета</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="40"/>
+        <location filename="../settings_dialog.cpp" line="41"/>
         <source>Cursor</source>
         <translation>Курсор</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="42"/>
+        <location filename="../settings_dialog.cpp" line="43"/>
         <source>Clipboard</source>
         <translation>Буфер обмена</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="45"/>
-        <location filename="../settings_dialog.cpp" line="97"/>
+        <location filename="../settings_dialog.cpp" line="46"/>
+        <location filename="../settings_dialog.cpp" line="98"/>
         <source>Calculator</source>
         <translation>Калькулятор</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="47"/>
+        <location filename="../settings_dialog.cpp" line="48"/>
         <source>Computation</source>
         <translation>Вычисления</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="49"/>
-        <location filename="../settings_dialog.cpp" line="99"/>
-        <location filename="../settings_dialog.cpp" line="103"/>
+        <location filename="../settings_dialog.cpp" line="50"/>
+        <location filename="../settings_dialog.cpp" line="100"/>
+        <location filename="../settings_dialog.cpp" line="104"/>
         <source>Result</source>
         <translation>Результат</translation>
     </message>
     <message>
-        <location filename="../settings_dialog.cpp" line="51"/>
+        <location filename="../settings_dialog.cpp" line="52"/>
         <source>Include</source>
         <translation>Подключение</translation>
+    </message>
+    <message>
+        <location filename="../settings_dialog.cpp" line="106"/>
+        <source>Result settings for new documents</source>
+        <translation>Настройки результата для нового документа</translation>
     </message>
 </context>
 <context>

@@ -253,12 +253,14 @@ void MainWindow::CreateActions()
     action->setStatusTip(tr("Save the document under a new name"));
 
     action = new QAction(tr("&Close"), this);
+    action->setStatusTip(tr("Close the document"));
     connect(action, &QAction::triggered, this, &MainWindow::Close);
     file_menu->addAction(action);
 
     file_menu->addSeparator();
 
     action = new QAction(tr("&Settings"), this);
+    action->setStatusTip(tr("Application settings"));
     connect(action, &QAction::triggered, this, &MainWindow::Settings);
     file_menu->addAction(action);
 
@@ -320,7 +322,7 @@ void MainWindow::CreateActions()
     standard_toolbar->addAction(properties_action);
 
     recalculate_action = new QAction(QIcon(":/icons/images/standard/recalculate.png"), tr("&Recalculate all"), this);
-    recalculate_action->setStatusTip(tr("Recalculate all the document"));
+    recalculate_action->setStatusTip(tr("Recalculate the whole document"));
     connect(recalculate_action, &QAction::triggered, this, &MainWindow::Recalculate);
     standard_toolbar->addAction(recalculate_action);
 
@@ -359,29 +361,35 @@ void MainWindow::CreateActions()
     bold_action = new QAction(QIcon(":/icons/images/format/bold.png"), tr("Bold"), this);
     connect(bold_action, &QAction::triggered, this, &MainWindow::OnBold);
     bold_action->setCheckable(true);
+    bold_action->setStatusTip(tr("Bold font"));
     format_toolbar->addAction(bold_action);
 
     italic_action = new QAction(QIcon(":/icons/images/format/italic.png"), tr("Italic"), this);
     connect(italic_action, &QAction::triggered, this, &MainWindow::OnItalic);
     italic_action->setCheckable(true);
+    italic_action->setStatusTip(tr("Italic font"));
     format_toolbar->addAction(italic_action);
 
     underline_action = new QAction(QIcon(":/icons/images/format/underline.png"), tr("Underline"), this);
     connect(underline_action, &QAction::triggered, this, &MainWindow::OnUnderline);
     underline_action->setCheckable(true);
+    underline_action->setStatusTip(tr("Underline font"));
     format_toolbar->addAction(underline_action);
 
     strikethrough_action = new QAction(QIcon(":/icons/images/format/strikethrough.png"), tr("Strikethrough"), this);
     connect(strikethrough_action, &QAction::triggered, this, &MainWindow::OnStrikethrough);
     strikethrough_action->setCheckable(true);
+    strikethrough_action->setStatusTip(tr("Strikethrough font"));
     format_toolbar->addAction(strikethrough_action);
 
     text_color_action = new QAction(QIcon(":/icons/images/format/text_color.png"), tr("Text color"), this);
     connect(text_color_action, &QAction::triggered, this, &MainWindow::OnTextColor);
+    text_color_action->setStatusTip(tr("Text color"));
     format_toolbar->addAction(text_color_action);
 
     bg_text_color_action = new QAction(QIcon(":/icons/images/format/bg_text_color.png"), tr("Background text color"), this);
     connect(bg_text_color_action, &QAction::triggered, this, &MainWindow::OnBgTextColor);
+    bg_text_color_action->setStatusTip(tr("Background text color"));
     format_toolbar->addAction(bg_text_color_action);
 
     format_toolbar->addSeparator();
@@ -389,21 +397,25 @@ void MainWindow::CreateActions()
     align_left_action = new QAction(QIcon(":/icons/images/format/align_left.png"), tr("Align left"), this);
     connect(align_left_action, &QAction::triggered, this, &MainWindow::OnAlignLeft);
     align_left_action->setCheckable(true);
+    align_left_action->setStatusTip(tr("Align text left"));
     format_toolbar->addAction(align_left_action);
 
     align_center_action = new QAction(QIcon(":/icons/images/format/align_center.png"), tr("Align center"), this);
     connect(align_center_action, &QAction::triggered, this, &MainWindow::OnAlignCenter);
     align_center_action->setCheckable(true);
+    align_center_action->setStatusTip(tr("Align text center"));
     format_toolbar->addAction(align_center_action);
 
     align_right_action = new QAction(QIcon(":/icons/images/format/align_right.png"), tr("Align right"), this);
     connect(align_right_action, &QAction::triggered, this, &MainWindow::OnAlignRight);
     align_right_action->setCheckable(true);
+    align_right_action->setStatusTip(tr("Align text right"));
     format_toolbar->addAction(align_right_action);
 
     align_justify_action = new QAction(QIcon(":/icons/images/format/align_justify.png"), tr("Align justify"), this);
     connect(align_justify_action, &QAction::triggered, this, &MainWindow::OnAlignJustify);
     align_justify_action->setCheckable(true);
+    align_justify_action->setStatusTip(tr("Align text justify"));
     format_toolbar->addAction(align_justify_action);
 
     //view menu
