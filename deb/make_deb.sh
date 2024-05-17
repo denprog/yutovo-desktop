@@ -12,4 +12,6 @@ cp ../../yutovo_service/keys/yutovo_service.crt yutovo-desktop_1.0.1-1_amd64/opt
 cp ../../yutovo_service/keys/yutovo_service.key yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
 cp ../../yutovo_service/src/service.ini yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
 
+cp yutovo.desktop yutovo-desktop_1.0.1-1_amd64/usr/share/applications/
+
 dpkg-deb --build yutovo-desktop_1.0.1-1_amd64
