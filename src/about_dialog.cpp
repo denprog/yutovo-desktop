@@ -10,6 +10,7 @@ AboutDialog::AboutDialog() :
 
     setFixedSize(width(), height());
     setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    setWindowIcon(QIcon(":/icons/images/mainicon.png")); 
 
     connect(form->ok, SIGNAL(clicked()), this, SLOT(OnOkClicked()));
 }

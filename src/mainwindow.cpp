@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowIcon(QIcon(":/icons/images/mainicon.png")); 
+
     qRegisterMetaType<Rect>("Rect");
     qRegisterMetaType<CaretState>("CaretState");
     qRegisterMetaType<EditorState>("EditorState");
