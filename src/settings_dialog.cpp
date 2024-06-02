@@ -38,10 +38,6 @@ SettingsDialog::SettingsDialog(yutovo::Config& _config, QHash<QString, QVariant>
     item->setText(0, tr("Fonts"));
     item = new QTreeWidgetItem(formula_item);
     item->setText(0, tr("Colors"));
-    item = new QTreeWidgetItem(formula_item);
-    item->setText(0, tr("Cursor"));
-    item = new QTreeWidgetItem(formula_item);
-    item->setText(0, tr("Clipboard"));
 
     QTreeWidgetItem *calculator_item = new QTreeWidgetItem(form->settings_tree);
     calculator_item->setText(0, tr("Calculator"));
@@ -49,8 +45,6 @@ SettingsDialog::SettingsDialog(yutovo::Config& _config, QHash<QString, QVariant>
     item->setText(0, tr("Computation"));
     item = new QTreeWidgetItem(calculator_item);
     item->setText(0, tr("Result"));
-    item = new QTreeWidgetItem(calculator_item);
-    item->setText(0, tr("Include"));
 
     form->settings_tree->expandAll();
 }
