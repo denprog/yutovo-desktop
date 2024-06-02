@@ -1941,6 +1941,7 @@ void MainWindow::WriteSettings()
     settings.endGroup();
 
     settings.beginGroup("Calculator");
+    settings.setValue("solve_delay", config.solve_delay);
     settings.setValue("result_auto_advance", config.auto_result.result_auto_advance);
     QList<QVariant> v;
     for (auto r : config.auto_result.results_order)
@@ -2027,6 +2028,7 @@ void MainWindow::ReadSettings()
     settings.endGroup();
 
     settings.beginGroup("Calculator");
+    config.solve_delay = settings.value("solve_delay", 2000).toInt();
     config.auto_result.result_auto_advance = settings.value("result_auto_advance", true).toBool();
     QList<QVariant> v = settings.value("results_order").toList();
     size_t i = 0;

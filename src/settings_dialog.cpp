@@ -5,6 +5,7 @@
 #include "result_settings_form.h"
 #include "colors_settings_form.h"
 #include "fonts_settings_form.h"
+#include "computation_settings_form.h"
 #include "ui_settings_dialog.h"
 #include <QLabel>
 
@@ -97,9 +98,13 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     }
     else if (item->text(0) == tr("Calculator"))
     {
-        QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("Result"), Qt::MatchExactly | Qt::MatchRecursive);
+        QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("Computation"), Qt::MatchExactly | Qt::MatchRecursive);
         form->settings_tree->setCurrentItem(*items.begin());
-        form->settings_page_layout->addWidget(new ResultSettingsForm(config));
+        form->settings_page_layout->addWidget(new ComputationSettingsForm(config));
+    }
+    else if (item->text(0) == tr("Computation"))
+    {
+        form->settings_page_layout->addWidget(new ComputationSettingsForm(config));
     }
     else if (item->text(0) == tr("Result"))
     {
