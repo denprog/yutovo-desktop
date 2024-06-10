@@ -24,6 +24,10 @@
         <translation>Ошибка поля</translation>
     </message>
     <message>
+        <source>Solver error</source>
+        <translation>Ошибка сервиса</translation>
+    </message>
+    <message>
         <source>Parser error</source>
         <translation>Ошибка разбора</translation>
     </message>
@@ -34,6 +38,10 @@
     <message>
         <source>Solver restarted</source>
         <translation>Рестарт сервера</translation>
+    </message>
+    <message>
+        <source>Solver timeout</source>
+        <translation>Превышено время ожидания</translation>
     </message>
     <message>
         <source>Syntax error</source>
@@ -70,6 +78,14 @@
     <message>
         <source>Conversion does not fit</source>
         <translation>Преобразование невозможно</translation>
+    </message>
+    <message>
+        <source>Solving time exceeded</source>
+        <translation>Превышено время вычисления</translation>
+    </message>
+    <message>
+        <source>Solving has interrupted</source>
+        <translation>Вычисление прервано</translation>
     </message>
 </context>
 </TS>
