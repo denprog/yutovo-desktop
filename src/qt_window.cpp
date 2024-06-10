@@ -176,13 +176,23 @@ void QtWindow::DrawWavyLine(const int x1, const int y1, const int width, const i
     p.setRenderHint(QPainter::Antialiasing);
     p.setPen(QColor::fromRgba(color.ToInt()));
     int x = x1;
+
+    if (draw_doc)
+        p.setClipRegion(clip_region);
+
     while (x <= x1 + width)
     {
-        p.drawArc(QRect(x, y1, radius * 2, radius * 2), 0, -180 * 16);
+        if (draw_doc)
+            p.drawArc(QRect(x - document_point.x, y1 - document_point.y, radius * 2, radius * 2), 0, -180 * 16);
+        else
+            p.drawArc(QRect(x, y1, radius * 2, radius * 2), 0, -180 * 16);
         x += radius * 2;
         if (x >= x1 + width)
             break;
-        p.drawArc(QRect(x, y1, radius * 2, radius * 2), 0, 180 * 16);
+        if (draw_doc)
+            p.drawArc(QRect(x - document_point.x, y1 - document_point.y, radius * 2, radius * 2), 0, 180 * 16);
+        else
+            p.drawArc(QRect(x, y1, radius * 2, radius * 2), 0, 180 * 16);
         x += radius * 2;
     }
     p.end();
