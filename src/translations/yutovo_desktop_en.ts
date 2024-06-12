@@ -5,7 +5,7 @@
     <name>AboutDialog</name>
     <message>
         <source>about_text</source>
-        <translation>Yutovo is a powerful calculator with graphical representaion of solvingsю</translation>
+        <translation>Yutovo is a powerful calculator with graphical representaion of solvings inside a text editor.</translation>
     </message>
 </context>
 </TS>

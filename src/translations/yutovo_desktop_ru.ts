@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>about_text</source>
-        <translation>Ютово - это мощный калькулятор с графическим представлением вычислений.</translation>
+        <translation>Ютово - это мощный калькулятор с графическим представлением вычислений совместно с текстовым редактором.</translation>
     </message>
 </context>
 <context>
