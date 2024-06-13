@@ -40,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent) :
     qRegisterMetaType<CopyResult>("CopyResult");
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
 
+    bool first_run = false;
+    if (!settings.childGroups().contains("MainWindow"))
+        first_run = true;
+
     ReadSettings();
 
     RestartService();
@@ -62,6 +66,15 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     }
     settings.endGroup();
+
+    if (first_run)
+    {
+        //it is the first run - open the hello document
+        if (config.language == yutovo_calculator::Language::Russian)
+            OpenFile("first_page_ru.yut");
+        else
+            OpenFile("first_page_en.yut");
+    }
 
     logger->Info("Desktop start");
 }
