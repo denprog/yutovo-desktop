@@ -11,6 +11,11 @@ set(CMAKE_AUTORCC ON)
 
 #set(QT_SELECT qt5.14)
 
+if(NOT REMOTE_SOLVER)
+    find_package(yutovo_service REQUIRED)
+    find_package(yutovo_calculator REQUIRED)
+endif()
+
 find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(yutovo_logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
@@ -66,11 +71,21 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${INSTALL_PATH}/include
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    yutovo_editor
-    yutovo_logger
-    Qt5::Widgets
-)
+if(REMOTE_SOLVER)
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        yutovo_editor
+        yutovo_logger
+        Qt5::Widgets
+    )
+else()
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        yutovo_editor
+        yutovo_logger
+        yutovo_calculator
+        yutovo_service
+        Qt5::Widgets
+    )
+endif()
 
 install(
     FILES

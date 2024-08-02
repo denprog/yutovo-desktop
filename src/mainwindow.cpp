@@ -46,7 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ReadSettings();
 
+#ifdef REMOTE_SOLVER
     RestartService();
+#endif
 
     ui->editor_tabs->clear();
     SetupGui();
@@ -206,7 +208,9 @@ void MainWindow::AddEditorTab(const QString name)
     connect(wnd->document_widget, &DocumentWidget::NextEditorTab, this, &MainWindow::OnNextEditorTab);
     connect(wnd->document_widget, &DocumentWidget::PrevEditorTab, this, &MainWindow::OnPrevEditorTab);
 
+#ifdef REMOTE_SOLVER
     connect(wnd->document_widget, &DocumentWidget::ServiceStatus, this, &MainWindow::OnServiceStatus);
+#endif
 
     ui->editor_tabs->addTab(wnd, name);
     ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
@@ -982,11 +986,11 @@ void MainWindow::Paste()
                 s = mime_data->text();
             if (s == "")
                 return;
-            document->PasteText(ToUtfString(s.toUtf8().data()));
+            document->PasteText(yutovo::ToUtfString(s.toUtf8().data()));
             return;
         }
         std::stringstream str(arr.toStdString());
-        auto s = ToUtfString(str.str());
+        auto s = yutovo::ToUtfString(str.str());
         document->Paste(s);
     }
     else if (mime_data->hasImage())
@@ -1829,14 +1833,14 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
         return;
     QClipboard* clipboard = QGuiApplication::clipboard();
     QMimeData* mime_data = new QMimeData;
-    auto s = ToBasicString(clipboard_json);
+    auto s = yutovo::ToBasicString(clipboard_json);
 
     QByteArray item_data(s.c_str(), s.length());
     //custom web clipboard type
     mime_data->setData("application/web;type=\"custom/format0\"", item_data);
     mime_data->setData("application/web;type=\"custom/formatmap\"", "{\"yutovo/elements\":\"application/web;type=\\\"custom/format0\\\"\"}");
 
-    mime_data->setText(ToBasicString(clipboard_text).c_str()); //text clipboard type
+    mime_data->setText(yutovo::ToBasicString(clipboard_text).c_str()); //text clipboard type
 
     clipboard->setMimeData(mime_data);
     clipboard_json = U"";
@@ -1847,11 +1851,13 @@ void MainWindow::OnClipboardPasteResult(PasteResult result)
 {
 }
 
+#ifdef REMOTE_SOLVER
 void MainWindow::OnServiceStatus(IOResult result)
 {
     if (result != IOResult::Success)
         RestartService();
 }
+#endif
 
 void MainWindow::FillParagraphFormats()
 {
@@ -2219,6 +2225,7 @@ void MainWindow::UpdateLocaleMessage()
     locale_status->setText(tr("Locale: ") + (c.language == yutovo_calculator::Language::English ? tr("English") : tr("Russian")));
 }
 
+#ifdef REMOTE_SOLVER
 void MainWindow::RestartService()
 {
     logger->Info("Restarting service");
@@ -2226,3 +2233,4 @@ void MainWindow::RestartService()
     service->setWorkingDirectory(".");
     service->start("./yutovo_serviced");
 }
+#endif

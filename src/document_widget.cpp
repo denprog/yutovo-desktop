@@ -19,7 +19,9 @@ DocumentWidget::DocumentWidget(QWidget *parent) :
     connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
     connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
     connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
+#ifdef REMOTE_SOLVER
     connect(&window, &QtWindow::ServiceStatus, this, &DocumentWidget::OnServiceStatus);
+#endif
 
     setFocusPolicy(Qt::StrongFocus);
     setMouseTracking(true);
@@ -109,10 +111,12 @@ void DocumentWidget::OnResizeFinished()
     QApplication::restoreOverrideCursor();
 }
 
+#ifdef REMOTE_SOLVER
 void DocumentWidget::OnServiceStatus(IOResult result)
 {
     emit ServiceStatus(result);
 }
+#endif
 
 void DocumentWidget::paintEvent(QPaintEvent *event)
 {

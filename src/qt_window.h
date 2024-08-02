@@ -81,7 +81,9 @@ public:
     virtual void OnResizeStarted();
     virtual void OnResizeFinished();
 
+#ifdef REMOTE_SOLVER
     virtual void OnServiceStatus(IOResult result);
+#endif
 
 public:
     void GetPixmap(QPixmap& out, const QRect& rect);

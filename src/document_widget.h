@@ -32,7 +32,9 @@ public slots:
     void OnFormatingFinished();
     void OnResizeStarted();
     void OnResizeFinished();
+#ifdef REMOTE_SOLVER
     void OnServiceStatus(IOResult result);
+#endif
 
 signals:
     void WheelVertical(const int value);

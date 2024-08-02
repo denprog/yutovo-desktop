@@ -5,6 +5,7 @@ project(yutovo_desktop
     LANGUAGES CXX
 )
 
+#add_compile_definitions(REMOTE_SOLVER)
 add_compile_definitions(DEBUG)
 set(CMAKE_DEBUG_POSTFIX d)
 

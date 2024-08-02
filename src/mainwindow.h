@@ -172,7 +172,9 @@ private slots:
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
 
+#ifdef REMOTE_SOLVER
     void OnServiceStatus(IOResult result);
+#endif
 
 private:
     void FillParagraphFormats();
@@ -191,7 +193,9 @@ private:
 
     void UpdateLocaleMessage();
 
+#ifdef REMOTE_SOLVER
     void RestartService();
+#endif
 
 private:
     friend class DocumentWindow;

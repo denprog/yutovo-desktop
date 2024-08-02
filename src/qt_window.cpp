@@ -371,7 +371,7 @@ std::string QtWindow::Translate(ElementId id, const std::string& str)
 
 std::u32string QtWindow::Translate(ElementId id, const std::u32string& str)
 {
-    return QCoreApplication::translate("Solver", ToBasicString(str).c_str()).toStdU32String();
+    return QCoreApplication::translate("Solver", yutovo::ToBasicString(str).c_str()).toStdU32String();
 }
 
 void QtWindow::OnCaretMoved(const EditorState _editor_state)
@@ -549,10 +549,12 @@ void QtWindow::OnResizeFinished()
     emit ResizeFinished();
 }
 
+#ifdef REMOTE_SOLVER
 void QtWindow::OnServiceStatus(IOResult result)
 {
     emit ServiceStatus(result);
 }
+#endif
 
 void QtWindow::GetPixmap(QPixmap& out, const QRect& rect)
 {
