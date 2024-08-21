@@ -11,14 +11,17 @@ set(CMAKE_AUTORCC ON)
 
 #set(QT_SELECT qt5.14)
 
+set(CMAKE_FIND_ROOT_PATH ${INSTALL_PATH}/lib/cmake/)
+
 if(NOT REMOTE_SOLVER)
-    find_package(yutovo_service REQUIRED)
     find_package(yutovo_calculator REQUIRED)
+    find_package(yutovo_solver REQUIRED)
 endif()
 
 find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(yutovo_logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
+
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 if (Qt5Widgets_FOUND)
     if (Qt5Widgets_VERSION VERSION_LESS 5.14.0)
@@ -82,8 +85,9 @@ else()
         yutovo_editor
         yutovo_logger
         yutovo_calculator
-        yutovo_service
+        yutovo_solver
         Qt5::Widgets
+        boost_chrono
     )
 endif()
 

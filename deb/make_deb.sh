@@ -11,10 +11,10 @@ cp ../../yutovo_editor/keys/yutovo_desktop_cert.pem yutovo-desktop_1.0.1-1_amd64
 cp ../../yutovo_editor/keys/yutovo_desktop_key.pem yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
 cp ../build/*.qm yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
 
-cp ../../yutovo_service/build/src/yutovo_serviced yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_service/keys/yutovo_service.crt yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_service/keys/yutovo_service.key yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_service/src/service.ini yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp ../../yutovo_solver/build/src/yutovo_serviced yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp ../../yutovo_solver/keys/yutovo_solver.crt yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp ../../yutovo_solver/keys/yutovo_solver.key yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp ../../yutovo_solver/src/service.ini yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
 
 cp yutovo.desktop yutovo-desktop_1.0.1-1_amd64/usr/share/applications/
 
