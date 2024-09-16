@@ -64,6 +64,17 @@
     </message>
 </context>
 <context>
+    <name>ComputationSettingsForm</name>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <source>Delay before solving</source>
+        <translation>Задержка перед вычислением</translation>
+    </message>
+</context>
+<context>
     <name>DocumentWindow</name>
     <message>
         <source>Copy</source>
@@ -514,6 +525,10 @@
         <translation>Математические функции</translation>
     </message>
     <message>
+        <source>Greek letters</source>
+        <translation>Греческие буквы</translation>
+    </message>
+    <message>
         <source>&amp;Status bar</source>
         <translation>Панель &amp;статуса</translation>
     </message>
@@ -777,6 +792,10 @@
         <source>grad</source>
         <translation>град</translation>
     </message>
+    <message>
+        <source>Recalculate all</source>
+        <translation>Пересчитать всё</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>
@@ -1029,7 +1048,7 @@
     </message>
     <message>
         <source>Update over Internet</source>
-        <translation>Обновления через Интернет</translation>
+        <translation>Обновлениe через Интернет</translation>
     </message>
     <message>
         <source>English</source>

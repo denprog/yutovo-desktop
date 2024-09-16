@@ -171,6 +171,7 @@ void MainWindow::SetupGui()
     CreateHyperbolicToolbar();
     addToolBarBreak();
     CreateFunctionsToolbar();
+    CreateGreekToolbar();
 
     CreateStatusBar();
 
@@ -186,6 +187,8 @@ void MainWindow::SetupGui()
     hyperbolic_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/functions_toolbar", false).toBool();
     functions_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/greek_toolbar", false).toBool();
+    greek_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
 
@@ -479,6 +482,12 @@ void MainWindow::CreateActions()
     connect(functions_toolbar_action, &QAction::toggled, this, &MainWindow::FunctionsToolbar);
     toolbars_menu->addAction(functions_toolbar_action);
 
+    greek_toolbar_action = new QAction(tr("Greek letters"), this);
+    greek_toolbar_action->setCheckable(true);
+    greek_toolbar_action->setChecked(true);
+    connect(greek_toolbar_action, &QAction::toggled, this, &MainWindow::GreekToolbar);
+    toolbars_menu->addAction(greek_toolbar_action);
+
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
     status_bar_action->setChecked(true);
@@ -719,6 +728,63 @@ void MainWindow::CreateFunctionsToolbar()
     functions_toolbar->addAction(action);
 }
 
+void MainWindow::CreateGreekToolbar()
+{
+    //greek toolbar
+    greek_toolbar = addToolBar(tr("Greek letters"));
+    greek_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    AddGreekLetter(L'α');
+    AddGreekLetter(L'β');
+    AddGreekLetter(L'γ');
+    AddGreekLetter(L'δ');
+    AddGreekLetter(L'ε');
+    AddGreekLetter(L'ζ');
+    AddGreekLetter(L'η');
+    AddGreekLetter(L'θ');
+    AddGreekLetter(L'ι');
+    AddGreekLetter(L'κ');
+    AddGreekLetter(L'λ');
+    AddGreekLetter(L'μ');
+    AddGreekLetter(L'ν');
+    AddGreekLetter(L'ξ');
+    AddGreekLetter(L'ο');
+    AddGreekLetter(L'π');
+    AddGreekLetter(L'ρ');
+    AddGreekLetter(L'σ');
+    AddGreekLetter(L'τ');
+    AddGreekLetter(L'υ');
+    AddGreekLetter(L'φ');
+    AddGreekLetter(L'χ');
+    AddGreekLetter(L'ψ');
+    AddGreekLetter(L'ω');
+
+    AddGreekLetter(L'Α');
+    AddGreekLetter(L'Β');
+    AddGreekLetter(L'Γ');
+    AddGreekLetter(L'Δ');
+    AddGreekLetter(L'Ε');
+    AddGreekLetter(L'Ζ');
+    AddGreekLetter(L'Η');
+    AddGreekLetter(L'Θ');
+    AddGreekLetter(L'Ι');
+    AddGreekLetter(L'Κ');
+    AddGreekLetter(L'Λ');
+    AddGreekLetter(L'Μ');
+    AddGreekLetter(L'Ν');
+    AddGreekLetter(L'Ξ');
+    AddGreekLetter(L'Ο');
+    AddGreekLetter(L'Π');
+    AddGreekLetter(L'Ρ');
+    AddGreekLetter(L'Σ');
+    AddGreekLetter(L'Τ');
+    AddGreekLetter(L'Υ');
+    AddGreekLetter(L'Φ');
+    AddGreekLetter(L'Χ');
+    AddGreekLetter(L'Ψ');
+    AddGreekLetter(L'Ω');
+}
+
 void MainWindow::CreateStatusBar()
 {
     if (!locale_status)
@@ -726,6 +792,14 @@ void MainWindow::CreateStatusBar()
         locale_status = new QLabel("");
         statusBar()->addWidget(locale_status);
     }
+}
+
+void MainWindow::AddGreekLetter(const QChar& letter)
+{
+    QAction* action = new QAction(letter, this);
+    action->setData(letter);
+    connect(action, &QAction::triggered, this, &MainWindow::OnGreekLetter);
+    greek_toolbar->addAction(action);
 }
 
 void MainWindow::SetFocus()
@@ -921,6 +995,7 @@ void MainWindow::Settings()
         trigonometry_toolbar_action->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
         hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
+        greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
 
         if (last_language != config.language)
         {
@@ -1097,6 +1172,12 @@ void MainWindow::FunctionsToolbar()
 {
     functions_toolbar_action->isChecked() ? functions_toolbar->show() : functions_toolbar->hide();
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
+}
+
+void MainWindow::GreekToolbar()
+{
+    greek_toolbar_action->isChecked() ? greek_toolbar->show() : greek_toolbar->hide();
+    settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
 }
 
 void MainWindow::StatusBar()
@@ -1686,6 +1767,16 @@ void MainWindow::OnArcsch()
         document->InsertFunction("arcsch", true);
 }
 
+void MainWindow::OnGreekLetter()
+{
+    QAction *action = qobject_cast<QAction*>(sender());
+    QVariant v = action->data();
+    QChar letter = v.toChar();
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString(QString(letter).toStdString(), true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -1918,6 +2009,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/trigonometry_toolbar", trigonometry_toolbar_action->isChecked());
     settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
+    settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 

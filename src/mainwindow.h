@@ -49,7 +49,10 @@ private:
     void CreateTrigonometryToolbar();
     void CreateHyperbolicToolbar();
     void CreateFunctionsToolbar();
+    void CreateGreekToolbar();
     void CreateStatusBar();
+
+    void AddGreekLetter(const QChar& letter);
 
     void SetFocus();
 
@@ -83,6 +86,7 @@ private:
     void TrigonometryToolbar();
     void HyperbolicToolbar();
     void FunctionsToolbar();
+    void GreekToolbar();
 
     void StatusBar();
 
@@ -164,6 +168,8 @@ private slots:
     void OnInt();
     void OnFract();
     void OnRound();
+
+    void OnGreekLetter();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);
@@ -263,6 +269,7 @@ private:
     QAction* trigonometry_toolbar_action = nullptr;
     QAction* hyperbolic_toolbar_action = nullptr;
     QAction* functions_toolbar_action = nullptr;
+    QAction* greek_toolbar_action = nullptr;
     QAction* status_bar_action = nullptr;
 
     QToolBar* standard_toolbar = nullptr;
@@ -271,6 +278,7 @@ private:
     QToolBar* trigonometry_toolbar = nullptr;
     QToolBar* hyperbolic_toolbar = nullptr;
     QToolBar* functions_toolbar = nullptr;
+    QToolBar* greek_toolbar = nullptr;
 
     QList<QString> last_documents;
 
