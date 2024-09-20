@@ -32,7 +32,7 @@ public:
     virtual void DrawFillPath(const std::list<Point>& path, const Color color);
     virtual void DrawBezierPath(const std::list<Point>& path, const Color color);
     virtual void DrawWavyLine(const int x1, const int y1, const int width, const int radius, const Color color);
-    virtual void DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& bmp);
+    virtual void DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& image);
     virtual int GetSymbolSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline);
     virtual void PrepareSymbolsSizes(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes);
 
@@ -46,7 +46,7 @@ public:
     virtual Size GetTextSize(const std::u32string& text, const StringFormatPtr format);
     virtual int GetCharPos(const std::u32string& text, const StringFormatPtr format, int pos);
     virtual int GetFontAscent(const StringFormatPtr format);
-    virtual Size GetImageSize(const std::vector<unsigned char>& bmp, const int width, const int height);
+    virtual Size GetImageSize(const std::vector<unsigned char>& image);
 
     virtual void Update(const Rect& rect);
 

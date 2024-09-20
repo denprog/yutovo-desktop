@@ -1071,10 +1071,17 @@ void MainWindow::Paste()
     else if (mime_data->hasImage())
     {
         QImage image = clipboard->image();
-        image.convertTo(QImage::Format_ARGB32);
-        QByteArray arr = QByteArray::fromRawData((const char*)image.bits(), image.byteCount());
+        QByteArray arr;
+        QBuffer buffer(&arr);
+        buffer.open(QIODevice::WriteOnly);
+        if (!image.save(&buffer, "PNG"))
+        {
+            logger->Error("Error converting image");
+            return;
+        }
+
         std::vector<unsigned char> data(arr.begin(), arr.end());
-        document->PasteImage(data, image.width(), image.height());
+        document->PasteImage(data);
     }
     else if (mime_data->hasText())
     {

@@ -198,21 +198,26 @@ void QtWindow::DrawWavyLine(const int x1, const int y1, const int width, const i
     p.end();
 }
 
-void QtWindow::DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& bmp)
+void QtWindow::DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& image)
 {
-    QImage image(&bmp[0], width, height, QImage::Format_ARGB32);
-
+    QImage picture;
+    if (!picture.loadFromData(&image[0], image.size()))
+    {
+        picture = QImage(&image[0], width, height, QImage::Format_ARGB32);
+        if (picture.width() == 0 || picture.height() == 0)
+            return;
+    }
     QPainter p;
     if (!p.begin(surface.get()))
         return;
     if (draw_doc)
     {
         p.setClipRegion(clip_region);
-        p.drawImage(QRect{x1 - document_point.x, y1 - document_point.y, width, height}, image);
+        p.drawImage(QRect{x1 - document_point.x, y1 - document_point.y, width, height}, picture);
     }
     else
     {
-        p.drawImage(QRect{x1, y1, width, height}, image);
+        p.drawImage(QRect{x1, y1, width, height}, picture);
     }
     p.end();
 }
@@ -311,10 +316,11 @@ int QtWindow::GetFontAscent(const StringFormatPtr format)
     return m.ascent();
 }
 
-Size QtWindow::GetImageSize(const std::vector<unsigned char>& bmp, const int width, const int height)
+Size QtWindow::GetImageSize(const std::vector<unsigned char>& image)
 {
-    QImage image(&bmp[0], width, height, QImage::Format_ARGB32);
-    return Size{image.width(), image.height()};
+    QImage picture;
+    picture.loadFromData(&image[0], image.size());
+    return Size{picture.width(), picture.height()};
 }
 
 void QtWindow::Update(const Rect& rect)
