@@ -279,6 +279,11 @@ void MainWindow::CreateActions()
     connect(action, &QAction::triggered, this, &MainWindow::Close);
     file_menu->addAction(action);
 
+    action = new QAction(tr("Close all"), this);
+    action->setStatusTip(tr("Close all documents"));
+    connect(action, &QAction::triggered, this, &MainWindow::CloseAll);
+    file_menu->addAction(action);
+
     file_menu->addSeparator();
 
     action = new QAction(tr("&Settings"), this);
@@ -944,6 +949,15 @@ void MainWindow::Close()
     OnCloseEditorTab(p);
 }
 
+void MainWindow::CloseAll()
+{
+    for (int i = 0; i < ui->editor_tabs->count();)
+    {
+        if (!OnCloseEditorTab(0))
+            return;
+    }
+}
+
 void MainWindow::Settings()
 {
     QHash<QString, QVariant> _settings;
@@ -1211,10 +1225,10 @@ void MainWindow::OnPrevEditorTab()
         ui->editor_tabs->setCurrentIndex(c - 1);
 }
 
-void MainWindow::OnCloseEditorTab(int index)
+bool MainWindow::OnCloseEditorTab(int index)
 {
     if (index == -1)
-        return;
+        return false;
 
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(index);
     if (w->document->IsChanged())
@@ -1227,13 +1241,13 @@ void MainWindow::OnCloseEditorTab(int index)
         case QMessageBox::Yes:
             close_tab_after_save = index;
             SaveFile(index);
-            return;
+            return true;
         case QMessageBox::No:
             break;
         default:
             UpdateCaption();
             SetFocus();
-            return;
+            return false;
         }
     }
 
@@ -1246,6 +1260,7 @@ void MainWindow::OnCloseEditorTab(int index)
     SetFocus();
 
     UpdateCaption();
+    return true;
 }
 
 void MainWindow::OnEditorChanged(int index)

@@ -64,6 +64,7 @@ private:
     void SaveFile(int index);
     void SaveFileAs(int index = -1);
     void Close();
+    void CloseAll();
     void Settings();
     void Exit();
 
@@ -93,7 +94,7 @@ private:
 private slots:
     void OnNextEditorTab();
     void OnPrevEditorTab();
-    void OnCloseEditorTab(int index);
+    bool OnCloseEditorTab(int index);
     void OnEditorChanged(int index);
 
     void OnInsertCode();

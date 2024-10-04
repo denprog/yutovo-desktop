@@ -333,6 +333,10 @@
         <translation>&amp;Закрыть</translation>
     </message>
     <message>
+        <source>Close all</source>
+        <translation>Закрыть все</translation>
+    </message>
+    <message>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
     </message>
