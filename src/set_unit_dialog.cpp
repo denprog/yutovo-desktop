@@ -7,6 +7,7 @@
 
 SetUnitDialog::SetUnitDialog(std::vector<yutovo_calculator::Unit>& cast_units) :
     QDialog(nullptr),
+    window(1, 1),
     ui(new Ui::SetUnitDialog),
     units_delegate(new UnitsDelegate(this))
 {
@@ -52,7 +53,6 @@ void SetUnitDialog::FillUnits()
 
     DocumentPtr document;
     Config config;
-    QtWindow window(1, 1);
     document.reset(new Document(&window, config));
 
     document->GetConfig(config);
