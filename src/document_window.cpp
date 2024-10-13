@@ -428,6 +428,8 @@ void DocumentWindow::OnSetPrecision()
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
     if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
+    if (id.empty())
         return;
     
     int precision = document->GetPrecision(id);
@@ -442,6 +444,8 @@ void DocumentWindow::OnSetExp()
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
     if (id.empty())
         return;
     
