@@ -2131,7 +2131,7 @@ void MainWindow::ReadSettings()
     settings.beginGroup("Service");
     config.service_ip = settings.value("ip", "localhost").toString().toUtf8().data();
     config.service_port = settings.value("port", 8010).toInt();
-    config.service_timeout = settings.value("timeout", 20).toInt();
+    config.service_timeout = settings.value("timeout", 10000).toInt();
     settings.endGroup();
 
     settings.beginGroup("Fonts");
