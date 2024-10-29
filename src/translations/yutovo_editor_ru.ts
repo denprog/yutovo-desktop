@@ -76,6 +76,10 @@
         <translation>Размерности несовместимы</translation>
     </message>
     <message>
+        <source>Cannot cast to unit</source>
+        <translation>Невозможно преобразовать размерность</translation>
+    </message>
+    <message>
         <source>Conversion does not fit</source>
         <translation>Преобразование невозможно</translation>
     </message>
