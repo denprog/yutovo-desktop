@@ -1233,7 +1233,14 @@ bool MainWindow::OnCloseEditorTab(int index)
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(index);
     if (w->document->IsChanged())
     {
-        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(ui->editor_tabs->tabText(index)), 
+        QString file_name;
+        QFileInfo file_info(w->path);
+        if (file_info.fileName().isEmpty())
+            file_name = "(No name)";
+        else
+            file_name = file_info.fileName();
+
+        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name), 
             QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
         int r = m.exec();
         switch (r)
