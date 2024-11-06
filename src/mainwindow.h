@@ -62,7 +62,8 @@ private:
     void OpenFile(QString file_name);
     void Save();
     void SaveFile(int index);
-    void SaveFileAs(int index = -1);
+    void SaveFileAsName();
+    void SaveFileAs(int index);
     void Close();
     void CloseAll();
     void Settings();

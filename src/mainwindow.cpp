@@ -270,7 +270,7 @@ void MainWindow::CreateActions()
     file_menu->addAction(action);
     standard_toolbar->addAction(action);
 
-    action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAs);
+    action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
     action->setShortcuts(QKeySequence::SaveAs);
     action->setStatusTip(tr("Save the document under a new name"));
 
@@ -915,6 +915,11 @@ void MainWindow::SaveFile(int index)
     }
 
     UpdateCaption();
+}
+
+void MainWindow::SaveFileAsName()
+{
+    SaveFileAs(ui->editor_tabs->currentIndex());
 }
 
 void MainWindow::SaveFileAs(int index)
