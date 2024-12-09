@@ -512,6 +512,9 @@ void QtWindow::OnFormatChanged(const EditorState editor_state)
 
 void QtWindow::OnDocumentChanged(const bool changed)
 {
+    can_undo = document->CanUndo();
+    can_redo = document->CanRedo();
+
     emit DocumentChanged(changed);
 }
 
