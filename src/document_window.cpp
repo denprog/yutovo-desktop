@@ -399,27 +399,27 @@ void DocumentWindow::OnDocumentChanged(const bool changed)
 
 void DocumentWindow::OnPresentAsAuto()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::AUTO, true);
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::AUTO, true);
 }
 
 void DocumentWindow::OnPresentAsReal()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::REAL, true);
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::REAL, true);
 }
 
 void DocumentWindow::OnPresentAsInteger()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::INTEGER, true);
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::INTEGER, true);
 }
 
 void DocumentWindow::OnPresentAsRational()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL, true);
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::RATIONAL, true);
 }
 
 void DocumentWindow::OnPresentAsComplex()
 {
-    document->SetResult(document_widget->current_editor_state.caret_state.id, ResultType::COMPLEX, true);
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::COMPLEX, true);
 }
 
 void DocumentWindow::OnSetPrecision()
