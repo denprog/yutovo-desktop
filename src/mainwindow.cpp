@@ -999,6 +999,7 @@ void MainWindow::Settings()
             _config.real_result = c.real_result;
             _config.integer_result = c.integer_result;
             _config.rational_result = c.rational_result;
+            _config.complex_result = c.complex_result;
             w->document->SetConfig(_config, true);
         }
 
