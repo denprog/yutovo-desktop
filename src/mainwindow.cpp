@@ -12,7 +12,7 @@
 #include <QFileInfo> 
 #include <QColorDialog>
 #include <QCloseEvent>
-#include <yutovo_editor/util.h>
+#include <yutovo_editor/editor_utils.h>
 #include <yutovo_calculator/math_helper.h>
 #include "document_window.h"
 #include "about_dialog.h"

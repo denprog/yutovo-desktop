@@ -1,7 +1,7 @@
 #include "colors_settings_form.h"
 #include "ui_colors_settings_form.h"
 #include <QColorDialog>
-#include <yutovo_editor/util.h>
+#include <yutovo_editor/editor_utils.h>
 
 //ColorsSettingsForm
 
