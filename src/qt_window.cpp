@@ -14,7 +14,7 @@ using namespace std::chrono;
 
 QtWindow::QtWindow(const int width, const int height) :
     surface(new QImage(width, height, QImage::Format_RGB32)),
-    logger(Logger::GetInstance(".", "yutovo_desktop", true, true))
+    logger(Logger::GetInstance(std::string(std::getenv("YUTOVO_DEPLOY")) + "/log/yutovo_desktop", "yutovo_desktop", true, true))
 {
 }
 
