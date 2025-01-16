@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     settings(new QSettings("Yutovo", "Yutovo Desktop")),
-    logger(Logger::GetInstance(".", "yutovo_desktop", true, true))
+    logger(Logger::GetInstance(std::string(std::getenv("YUTOVO_DEPLOY")) + "/log/yutovo_desktop", "yutovo_desktop", true, true))
 {
     ui->setupUi(this);
 
@@ -1852,10 +1852,29 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     else
         size_combo->setCurrentText(std::to_string(window.string_format.size).c_str());
     
-    align_left_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Left);
-    align_right_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Right);
-    align_center_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Center);
-    align_justify_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Justify);
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    
+    bool code_block = document->FindParent(c.id, ElementType::CODE_BLOCK) != nullptr;
+    align_left_action->setEnabled(!code_block);
+    align_right_action->setEnabled(!code_block);
+    align_center_action->setEnabled(!code_block);
+    align_justify_action->setEnabled(!code_block);
+    if (code_block)
+    {
+        align_left_action->setChecked(false);
+        align_right_action->setChecked(false);
+        align_center_action->setChecked(false);
+        align_justify_action->setChecked(false);
+    }
+    else
+    {
+        align_left_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Left);
+        align_right_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Right);
+        align_center_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Center);
+        align_justify_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Justify);
+    }
 
     bold_action->setChecked(window.string_format.bold);
     italic_action->setChecked(window.string_format.italic);
