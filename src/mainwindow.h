@@ -73,6 +73,8 @@ private:
     void Paste();
     void Cut();
 
+    void Link();
+
     void Properties();
 
     void Recalculate();
@@ -98,6 +100,8 @@ private slots:
     bool OnCloseEditorTab(int index);
     void OnEditorChanged(int index);
 
+    void OnLinkClicked(const std::u32string& url);
+
     void OnInsertCode();
 
     void OnCurrentParagraphFormatChanged(const QString& format);
@@ -116,6 +120,7 @@ private slots:
     void OnStrikethrough();
     void OnTextColor();
     void OnBgTextColor();
+    void OnLink();
 
     void OnPlus();
     void OnMinus();
@@ -264,6 +269,7 @@ private:
 
     QAction* text_color_action = nullptr;
     QAction* bg_text_color_action = nullptr;
+    QAction* link_action = nullptr;
 
     QAction* standard_toolbar_action = nullptr;
     QAction* format_toolbar_action = nullptr;

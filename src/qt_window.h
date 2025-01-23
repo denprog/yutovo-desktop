@@ -81,6 +81,8 @@ public:
     virtual void OnResizeStarted();
     virtual void OnResizeFinished();
 
+    virtual void OnLinkClicked(const ElementId& id, const std::u32string& url);
+
 #ifdef REMOTE_SOLVER
     virtual void OnServiceStatus(IOResult result);
 #endif
@@ -105,6 +107,7 @@ signals:
     void ResizeStarted();
     void ResizeFinished();
     void ServiceStatus(IOResult result);
+    void LinkClicked(const ElementId& id, const std::u32string& url);
 
 private:
     friend class MainWindow;

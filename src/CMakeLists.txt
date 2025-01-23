@@ -67,6 +67,8 @@ add_executable(${PROJECT_NAME}
     computation_settings_form.cpp
     properties_dialog.ui
     properties_dialog.cpp
+    link_dialog.ui
+    link_dialog.cpp
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})

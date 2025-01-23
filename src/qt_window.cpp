@@ -558,6 +558,11 @@ void QtWindow::OnResizeFinished()
     emit ResizeFinished();
 }
 
+void QtWindow::OnLinkClicked(const ElementId& id, const std::u32string& url)
+{
+    emit LinkClicked(id, url);
+}
+
 #ifdef REMOTE_SOLVER
 void QtWindow::OnServiceStatus(IOResult result)
 {

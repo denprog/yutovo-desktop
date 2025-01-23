@@ -47,6 +47,8 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
 
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
 
+    connect(&document_widget->window, &QtWindow::LinkClicked, this, &DocumentWindow::OnLinkClicked);
+
     //context menu
     copy = new QAction(tr("Copy"), this);
     connect(copy, &QAction::triggered, main_window, &MainWindow::Copy);
@@ -54,6 +56,9 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     connect(paste, &QAction::triggered, main_window, &MainWindow::Paste);
     cut = new QAction(tr("Cut"), this);
     connect(cut, &QAction::triggered, main_window, &MainWindow::Cut);
+
+    link = new QAction(tr("Link"), this);
+    connect(link, &QAction::triggered, main_window, &MainWindow::Link);
 
     present_as_auto = new QAction(tr("Auto"), this);
     present_as_auto->setCheckable(true);
@@ -147,6 +152,22 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
 
             menu.addAction(cut);
             cut->setEnabled(editable && !s.selection_state.IsEmpty());
+        };
+
+    auto add_link_menu = 
+        [&]()
+        {
+            EditorState s = document->GetEditorState();
+            if (s.caret_state.IsEmpty())
+                return;
+            
+            auto t = document->GetElementType(s.caret_state.id);
+            if (t != ElementType::LINK)
+                return;
+
+            if (!menu.isEmpty())
+                menu.addSeparator();
+            menu.addAction(link);
         };
 
     auto add_present_as_menu = 
@@ -255,6 +276,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         };
 
     add_copy_paste_menu();
+    add_link_menu();
 
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
@@ -395,6 +417,11 @@ void DocumentWindow::OnDocumentUpdated(const Rect rect)
 void DocumentWindow::OnDocumentChanged(const bool changed)
 {
     emit DocumentChanged(changed);
+}
+
+void DocumentWindow::OnLinkClicked(const ElementId& id, const std::u32string& url)
+{
+    emit LinkClicked(url);
 }
 
 void DocumentWindow::OnPresentAsAuto()

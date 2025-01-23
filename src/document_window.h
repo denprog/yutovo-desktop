@@ -33,6 +33,7 @@ private slots:
     void OnClipboardPasteResult(PasteResult result);
     void OnDocumentUpdated(const Rect rect);
     void OnDocumentChanged(const bool changed);
+    void OnLinkClicked(const ElementId& id, const std::u32string& url);
 
     void OnPresentAsAuto();
     void OnPresentAsReal();
@@ -67,6 +68,7 @@ signals:
     void LoadResult(const uint task_id, IOResult result);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
+    void LinkClicked(const std::u32string& url);
 
 private:
     friend class MainWindow;
@@ -86,6 +88,8 @@ private:
     QAction* copy = nullptr;
     QAction* paste = nullptr;
     QAction* cut = nullptr;
+
+    QAction* link = nullptr;
 
     QAction* present_as_auto = nullptr;
     QAction* present_as_real = nullptr;

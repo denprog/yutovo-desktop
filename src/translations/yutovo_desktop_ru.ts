@@ -465,6 +465,18 @@
         <translation>Цвет фона текста</translation>
     </message>
     <message>
+        <source>Link</source>
+        <translation>Ссылка</translation>
+    </message>
+    <message>
+        <source>Insert link</source>
+        <translation>Вставить ссылку</translation>
+    </message>
+    <message>
+        <source>Change link</source>
+        <translation>Изменить ссылку</translation>
+    </message>
+    <message>
         <source>Align left</source>
         <translation>Выравнивание по левому краю</translation>
     </message>

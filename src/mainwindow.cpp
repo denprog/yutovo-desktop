@@ -12,12 +12,15 @@
 #include <QFileInfo> 
 #include <QColorDialog>
 #include <QCloseEvent>
+#include <QUrl>
+#include <QDesktopServices>
 #include <yutovo_editor/editor_utils.h>
 #include <yutovo_calculator/math_helper.h>
 #include "document_window.h"
 #include "about_dialog.h"
 #include "settings_dialog.h"
 #include "properties_dialog.h"
+#include "link_dialog.h"
 
 //MainWindow
 
@@ -39,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent) :
     qRegisterMetaType<IOResult>("IOResult");
     qRegisterMetaType<CopyResult>("CopyResult");
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
+    qRegisterMetaType<ElementId>("ElementId");
+    qRegisterMetaType<std::u32string>("std::u32string");
 
     bool first_run = false;
     if (!settings.childGroups().contains("MainWindow"))
@@ -207,6 +212,7 @@ void MainWindow::AddEditorTab(const QString name)
     connect(wnd, &DocumentWindow::LoadResult, this, &MainWindow::OnLoadResult);
     connect(wnd, &DocumentWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
     connect(wnd, &DocumentWindow::ClipboardPasteResult, this, &MainWindow::OnClipboardPasteResult);
+    connect(wnd, &DocumentWindow::LinkClicked, this, &MainWindow::OnLinkClicked);
 
     connect(wnd->document_widget, &DocumentWidget::NextEditorTab, this, &MainWindow::OnNextEditorTab);
     connect(wnd->document_widget, &DocumentWidget::PrevEditorTab, this, &MainWindow::OnPrevEditorTab);
@@ -418,6 +424,11 @@ void MainWindow::CreateActions()
     connect(bg_text_color_action, &QAction::triggered, this, &MainWindow::OnBgTextColor);
     bg_text_color_action->setStatusTip(tr("Background text color"));
     format_toolbar->addAction(bg_text_color_action);
+
+    link_action = new QAction(QIcon(":/icons/images/format/link.png"), tr("Link"), this);
+    connect(link_action, &QAction::triggered, this, &MainWindow::OnLink);
+    link_action->setStatusTip(tr("Link"));
+    format_toolbar->addAction(link_action);
 
     format_toolbar->addSeparator();
 
@@ -1118,6 +1129,24 @@ void MainWindow::Cut()
         document->Cut(clipboard_json, clipboard_text);
 }
 
+void MainWindow::Link()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    EditorState s = document->GetEditorState();
+    std::u32string str, url;
+    if (!document->GetLink(s.caret_state.id, str, url))
+        return;
+    
+    LinkDialog dialog(ToBasicString(str).c_str(), ToBasicString(url).c_str(), tr("Change link"));
+    if (!dialog.exec())
+        return;
+    
+    document->InsertLink(dialog.text.toStdString(), dialog.url.toStdString(), true);
+}
+
 void MainWindow::Undo()
 {
     auto document = GetCurrentDocument();
@@ -1288,6 +1317,11 @@ void MainWindow::OnEditorChanged(int index)
     UpdateLocaleMessage();
 }
 
+void MainWindow::OnLinkClicked(const std::u32string& url)
+{
+    QDesktopServices::openUrl(QUrl(ToBasicString(url).c_str()));
+}
+
 void MainWindow::OnInsertCode()
 {
     auto document = GetCurrentDocument();
@@ -1451,9 +1485,32 @@ void MainWindow::OnBgTextColor()
     }
 }
 
+void MainWindow::OnLink()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    EditorState s = document->GetEditorState();
+    std::u32string str, url;
+    if (document->GetLink(s.caret_state.id, str, url))
+    {
+        LinkDialog dialog(ToBasicString(str).c_str(), ToBasicString(url).c_str(), tr("Change link"));
+        if (!dialog.exec())
+            return;
+        document->InsertLink(dialog.text.toStdString(), dialog.url.toStdString(), true);
+    }
+    else
+    {
+        LinkDialog dialog("", "", tr("Insert link"));
+        if (!dialog.exec())
+            return;
+        document->InsertLink(dialog.text.toStdString(), dialog.url.toStdString(), true);
+    }
+}
+
 void MainWindow::OnPlus()
 {
-    logger->Trace("OnPlus");
     auto document = GetCurrentDocument();
     if (document)
         document->InsertPlus(true);

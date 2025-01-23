@@ -527,6 +527,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mainwindow.cpp"/>
+        <source>Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.cpp" line="385"/>
         <source>Align left</source>
         <translation type="unfinished"></translation>
