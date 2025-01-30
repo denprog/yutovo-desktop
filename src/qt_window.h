@@ -69,7 +69,7 @@ public:
 
     virtual void OnDocumentChanged(const bool changed);
 
-    virtual void OnSaveResult(const uint task_id, IOResult result);
+    virtual void OnSaveResult(const uint task_id, IOResult result, const int document_id);
     virtual void OnLoadResult(const uint task_id, IOResult result, const int document_id);
 
     virtual void OnCopyResult(CopyResult result);

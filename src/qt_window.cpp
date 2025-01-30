@@ -518,7 +518,7 @@ void QtWindow::OnDocumentChanged(const bool changed)
     emit DocumentChanged(changed);
 }
 
-void QtWindow::OnSaveResult(const uint task_id, IOResult result)
+void QtWindow::OnSaveResult(const uint task_id, IOResult result, const int document_id)
 {
     emit SaveResult(task_id, result);
 }
