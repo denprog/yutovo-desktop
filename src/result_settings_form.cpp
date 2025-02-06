@@ -16,7 +16,7 @@ ResultSettingsForm::ResultSettingsForm(yutovo::Config& _config, QWidget *parent)
 
     ui->real_precision->setValue(config.real_result.precision);
     ui->real_exp->setValue(config.real_result.exp);
-    auto r = (int)config.real_result.result_angle_measure;
+    ui->real_default_angle_measure->setCurrentIndex((int)config.real_result.default_angle_measure);
     ui->real_result_angle_measure->setCurrentIndex((int)config.real_result.result_angle_measure);
     ui->real_show_angle_measure->setChecked(config.real_result.show_angle_measure);
 
@@ -30,6 +30,7 @@ ResultSettingsForm::ResultSettingsForm(yutovo::Config& _config, QWidget *parent)
     ui->complex_exp->setValue(config.complex_result.exp);
     ui->complex_form->setCurrentIndex((int)config.complex_result.form);
     ui->complex_results_count->setValue(config.complex_result.max_count);
+    ui->complex_default_angle_measure->setCurrentIndex((int)config.complex_result.default_angle_measure);
     ui->complex_result_angle_measure->setCurrentIndex((int)config.complex_result.result_angle_measure);
     ui->complex_show_angle_measure->setChecked(config.complex_result.show_angle_measure);
 

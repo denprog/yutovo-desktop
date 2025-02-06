@@ -83,6 +83,16 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     set_unit = new QAction(tr("Set unit"), this);
     connect(set_unit, &QAction::triggered, this, &DocumentWindow::OnSetUnit);
 
+    default_radian = new QAction(tr("Radian"), this);
+    default_radian->setCheckable(true);
+    connect(default_radian, &QAction::triggered, this, &DocumentWindow::OnDefaultRadian);
+    default_degree = new QAction(tr("Degree"), this);
+    default_degree->setCheckable(true);
+    connect(default_degree, &QAction::triggered, this, &DocumentWindow::OnDefaultDegree);
+    default_grad = new QAction(tr("Grad"), this);
+    default_grad->setCheckable(true);
+    connect(default_grad, &QAction::triggered, this, &DocumentWindow::OnDefaultGrad);
+
     result_radian = new QAction(tr("Radian"), this);
     result_radian->setCheckable(true);
     connect(result_radian, &QAction::triggered, this, &DocumentWindow::OnResultRadian);
@@ -191,7 +201,8 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     auto add_real_menu = 
         [&](ElementId id)
         {
-            AngleMeasure angle_measure = document->GetResultAngleMeasure(id);
+            AngleMeasure default_angle_measure = document->GetDefaultAngleMeasure(id);
+            AngleMeasure result_angle_measure = document->GetResultAngleMeasure(id);
 
             menu.addSeparator();
 
@@ -201,13 +212,23 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (document->HasUnit(id))
                 menu.addAction(set_unit);
 
-            QMenu* angle_measure_menu = menu.addMenu(tr("Angle measure"));
+            QMenu* angle_measure_menu = menu.addMenu(tr("Default angle measure"));
+            angle_measure_menu->addAction(default_radian);
+            angle_measure_menu->addAction(default_degree);
+            angle_measure_menu->addAction(default_grad);
+
+            default_radian->setChecked(default_angle_measure == AngleMeasure::Radian);
+            default_degree->setChecked(default_angle_measure == AngleMeasure::Degree);
+            default_grad->setChecked(default_angle_measure == AngleMeasure::Grad);
+
+            angle_measure_menu = menu.addMenu(tr("Result angle measure"));
             angle_measure_menu->addAction(result_radian);
-            result_radian->setChecked(angle_measure == AngleMeasure::Radian);
             angle_measure_menu->addAction(result_degree);
-            result_degree->setChecked(angle_measure == AngleMeasure::Degree);
             angle_measure_menu->addAction(result_grad);
-            result_grad->setChecked(angle_measure == AngleMeasure::Grad);
+
+            result_radian->setChecked(result_angle_measure == AngleMeasure::Radian);
+            result_degree->setChecked(result_angle_measure == AngleMeasure::Degree);
+            result_grad->setChecked(result_angle_measure == AngleMeasure::Grad);
         };
     
     auto add_integer_menu = 
@@ -265,14 +286,24 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (document->HasUnit(id))
                 menu.addAction(set_unit);
 
-            AngleMeasure angle_measure = document->GetResultAngleMeasure(id);
-            QMenu* angle_measure_menu = menu.addMenu(tr("Angle measure"));
+            AngleMeasure default_angle_measure = document->GetDefaultAngleMeasure(id);
+            AngleMeasure result_angle_measure = document->GetResultAngleMeasure(id);
+
+            QMenu* angle_measure_menu = menu.addMenu(tr("Default angle measure"));
+            angle_measure_menu->addAction(default_radian);
+            angle_measure_menu->addAction(default_degree);
+            angle_measure_menu->addAction(default_grad);
+            default_radian->setChecked(default_angle_measure == AngleMeasure::Radian);
+            default_degree->setChecked(default_angle_measure == AngleMeasure::Degree);
+            default_grad->setChecked(default_angle_measure == AngleMeasure::Grad);
+
+            angle_measure_menu = menu.addMenu(tr("Result angle measure"));
             angle_measure_menu->addAction(result_radian);
-            result_radian->setChecked(angle_measure == AngleMeasure::Radian);
             angle_measure_menu->addAction(result_degree);
-            result_degree->setChecked(angle_measure == AngleMeasure::Degree);
             angle_measure_menu->addAction(result_grad);
-            result_grad->setChecked(angle_measure == AngleMeasure::Grad);
+            result_radian->setChecked(result_angle_measure == AngleMeasure::Radian);
+            result_degree->setChecked(result_angle_measure == AngleMeasure::Degree);
+            result_grad->setChecked(result_angle_measure == AngleMeasure::Grad);
         };
 
     add_copy_paste_menu();
@@ -505,19 +536,58 @@ void DocumentWindow::OnSetUnit()
     document->SetUnit(document_widget->current_editor_state.caret_state.id, dialog.value, true);
 }
 
+void DocumentWindow::OnDefaultRadian()
+{
+    ElementId id = GetResultId();
+    if (id.empty())
+        return;
+    AngleMeasure m = document->GetResultAngleMeasure(id);
+    document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Radian, m, true);
+}
+
+void DocumentWindow::OnDefaultDegree()
+{
+    ElementId id = GetResultId();
+    if (id.empty())
+        return;
+    AngleMeasure m = document->GetResultAngleMeasure(id);
+    document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Degree, m, true);
+}
+
+void DocumentWindow::OnDefaultGrad()
+{
+    ElementId id = GetResultId();
+    if (id.empty())
+        return;
+    AngleMeasure m = document->GetResultAngleMeasure(id);
+    document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Grad, m, true);
+}
+
 void DocumentWindow::OnResultRadian()
 {
-    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Radian, true);
+    ElementId id = GetResultId();
+    if (id.empty())
+        return;
+    AngleMeasure m = document->GetDefaultAngleMeasure(id);
+    document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, m, AngleMeasure::Radian, true);
 }
 
 void DocumentWindow::OnResultDegree()
 {
-    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Degree, true);
+    ElementId id = GetResultId();
+    if (id.empty())
+        return;
+    AngleMeasure m = document->GetDefaultAngleMeasure(id);
+    document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, m, AngleMeasure::Degree, true);
 }
 
 void DocumentWindow::OnResultGrad()
 {
-    document->SetResultAngleMeasure(document_widget->current_editor_state.caret_state.id, AngleMeasure::Grad, true);
+    ElementId id = GetResultId();
+    if (id.empty())
+        return;
+    AngleMeasure m = document->GetDefaultAngleMeasure(id);
+    document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, m, AngleMeasure::Grad, true);
 }
 
 void DocumentWindow::OnBinaryNotation()
@@ -571,4 +641,14 @@ void DocumentWindow::OnComplexFormTrigonometric()
 void DocumentWindow::OnComplexFormExponential()
 {
     document->SetComplexForm(document_widget->current_editor_state.caret_state.id, ComplexForm::Exponential, true);
+}
+
+ElementId DocumentWindow::GetResultId()
+{
+    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
+    return id;
 }

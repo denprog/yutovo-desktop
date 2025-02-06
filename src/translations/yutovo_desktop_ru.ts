@@ -173,8 +173,12 @@
         <translation>Представить как</translation>
     </message>
     <message>
-        <source>Angle measure</source>
-        <translation>Мера угла</translation>
+        <source>Default angle measure</source>
+        <translation>Мера угла по умолчанию</translation>
+    </message>
+    <message>
+        <source>Result angle measure</source>
+        <translation>Мера угла результата</translation>
     </message>
     <message>
         <source>Result notation</source>

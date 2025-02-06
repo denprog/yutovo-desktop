@@ -45,6 +45,10 @@ private slots:
     void OnSetExp();
     void OnSetUnit();
 
+    void OnDefaultRadian();
+    void OnDefaultDegree();
+    void OnDefaultGrad();
+
     void OnResultRadian();
     void OnResultDegree();
     void OnResultGrad();
@@ -69,6 +73,9 @@ signals:
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
     void LinkClicked(const std::u32string& url);
+
+private:
+    ElementId GetResultId();
 
 private:
     friend class MainWindow;
@@ -100,6 +107,10 @@ private:
     QAction* set_precision = nullptr;
     QAction* set_exp = nullptr;
     QAction* set_unit = nullptr;
+
+    QAction* default_radian = nullptr;
+    QAction* default_degree = nullptr;
+    QAction* default_grad = nullptr;
 
     QAction* result_radian = nullptr;
     QAction* result_degree = nullptr;

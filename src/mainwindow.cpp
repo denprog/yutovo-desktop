@@ -2172,6 +2172,7 @@ void MainWindow::WriteSettings()
 
     settings.setValue("real_precision", config.real_result.precision);
     settings.setValue("real_exp", config.real_result.exp);
+    settings.setValue("real_default_angle_measure", (int)config.real_result.default_angle_measure);
     settings.setValue("real_result_angle_measure", (int)config.real_result.result_angle_measure);
     settings.setValue("real_show_angle_measure", config.real_result.show_angle_measure);
 
@@ -2183,6 +2184,7 @@ void MainWindow::WriteSettings()
 
     settings.setValue("complex_precision", config.complex_result.precision);
     settings.setValue("complex_exp", config.complex_result.exp);
+    settings.setValue("complex_default_angle_measure", (int)config.complex_result.default_angle_measure);
     settings.setValue("complex_result_angle_measure", (int)config.complex_result.result_angle_measure);
     settings.setValue("complex_show_angle_measure", config.complex_result.show_angle_measure);
     settings.setValue("complex_form", (int)config.complex_result.form);
@@ -2278,6 +2280,9 @@ void MainWindow::ReadSettings()
     config.real_result.exp = settings.value("real_exp", 10).toInt();
     if (config.real_result.exp < 1)
         config.real_result.exp = 10;
+    config.real_result.default_angle_measure = (AngleMeasure)settings.value("real_default_angle_measure", 0).toInt();
+    if ((int)config.real_result.default_angle_measure < 0 || (int)config.real_result.default_angle_measure > 2)
+        config.real_result.default_angle_measure = AngleMeasure::Radian;
     config.real_result.result_angle_measure = (AngleMeasure)settings.value("real_result_angle_measure", 0).toInt();
     if ((int)config.real_result.result_angle_measure < 0 || (int)config.real_result.result_angle_measure > 2)
         config.real_result.result_angle_measure = AngleMeasure::Radian;
@@ -2295,6 +2300,9 @@ void MainWindow::ReadSettings()
     config.complex_result.exp = settings.value("complex_exp", 10).toInt();
     if (config.complex_result.exp < 1)
         config.complex_result.exp = 10;
+    config.complex_result.default_angle_measure = (AngleMeasure)settings.value("complex_default_angle_measure", 0).toInt();
+    if ((int)config.complex_result.default_angle_measure < 0 || (int)config.complex_result.default_angle_measure > 2)
+        config.complex_result.default_angle_measure = AngleMeasure::Radian;
     config.complex_result.result_angle_measure = (AngleMeasure)settings.value("complex_result_angle_measure", 0).toInt();
     if ((int)config.complex_result.result_angle_measure < 0 || (int)config.complex_result.result_angle_measure > 2)
         config.complex_result.result_angle_measure = AngleMeasure::Radian;
