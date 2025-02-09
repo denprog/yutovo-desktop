@@ -103,18 +103,31 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     result_grad->setCheckable(true);
     connect(result_grad, &QAction::triggered, this, &DocumentWindow::OnResultGrad);
 
-    binary_notaion = new QAction(tr("Binary"), this);
-    binary_notaion->setCheckable(true);
-    connect(binary_notaion, &QAction::triggered, this, &DocumentWindow::OnBinaryNotation);
-    octal_notaion = new QAction(tr("Octal"), this);
-    octal_notaion->setCheckable(true);
-    connect(octal_notaion, &QAction::triggered, this, &DocumentWindow::OnOctalNotation);
-    decimal_notaion = new QAction(tr("Decimal"), this);
-    decimal_notaion->setCheckable(true);
-    connect(decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDecimalNotation);
-    hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
-    hexadecimal_notaion->setCheckable(true);
-    connect(hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnHexadecimalNotation);
+    default_binary_notaion = new QAction(tr("Binary"), this);
+    default_binary_notaion->setCheckable(true);
+    connect(default_binary_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultBinaryNotation);
+    default_octal_notaion = new QAction(tr("Octal"), this);
+    default_octal_notaion->setCheckable(true);
+    connect(default_octal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultOctalNotation);
+    default_decimal_notaion = new QAction(tr("Decimal"), this);
+    default_decimal_notaion->setCheckable(true);
+    connect(default_decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultDecimalNotation);
+    default_hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
+    default_hexadecimal_notaion->setCheckable(true);
+    connect(default_hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultHexadecimalNotation);
+
+    result_binary_notaion = new QAction(tr("Binary"), this);
+    result_binary_notaion->setCheckable(true);
+    connect(result_binary_notaion, &QAction::triggered, this, &DocumentWindow::OnResultBinaryNotation);
+    result_octal_notaion = new QAction(tr("Octal"), this);
+    result_octal_notaion->setCheckable(true);
+    connect(result_octal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultOctalNotation);
+    result_decimal_notaion = new QAction(tr("Decimal"), this);
+    result_decimal_notaion->setCheckable(true);
+    connect(result_decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultDecimalNotation);
+    result_hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
+    result_hexadecimal_notaion->setCheckable(true);
+    connect(result_hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultHexadecimalNotation);
 
     fraction_form_proper = new QAction(tr("Proper"), this);
     fraction_form_proper->setCheckable(true);
@@ -234,18 +247,29 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     auto add_integer_menu = 
         [&](ElementId id)
         {
-            auto notation = document->GetResultNotation(id);
-
             menu.addSeparator();
-            QMenu* notation_menu = menu.addMenu(tr("Result notation"));
-            notation_menu->addAction(binary_notaion);
-            binary_notaion->setChecked(notation == Notation::Binary);
-            notation_menu->addAction(octal_notaion);
-            octal_notaion->setChecked(notation == Notation::Octal);
-            notation_menu->addAction(decimal_notaion);
-            decimal_notaion->setChecked(notation == Notation::Decimal);
-            notation_menu->addAction(hexadecimal_notaion);
-            hexadecimal_notaion->setChecked(notation == Notation::Hexadecimal);
+
+            auto notation = document->GetDefaultNotation(id);
+            QMenu* notation_menu = menu.addMenu(tr("Default notation"));
+            notation_menu->addAction(default_binary_notaion);
+            default_binary_notaion->setChecked(notation == Notation::Binary);
+            notation_menu->addAction(default_octal_notaion);
+            default_octal_notaion->setChecked(notation == Notation::Octal);
+            notation_menu->addAction(default_decimal_notaion);
+            default_decimal_notaion->setChecked(notation == Notation::Decimal);
+            notation_menu->addAction(default_hexadecimal_notaion);
+            default_hexadecimal_notaion->setChecked(notation == Notation::Hexadecimal);
+
+            notation = document->GetResultNotation(id);
+            notation_menu = menu.addMenu(tr("Result notation"));
+            notation_menu->addAction(result_binary_notaion);
+            result_binary_notaion->setChecked(notation == Notation::Binary);
+            notation_menu->addAction(result_octal_notaion);
+            result_octal_notaion->setChecked(notation == Notation::Octal);
+            notation_menu->addAction(result_decimal_notaion);
+            result_decimal_notaion->setChecked(notation == Notation::Decimal);
+            notation_menu->addAction(result_hexadecimal_notaion);
+            result_hexadecimal_notaion->setChecked(notation == Notation::Hexadecimal);
         };
     
     auto add_rational_menu = 
@@ -590,30 +614,74 @@ void DocumentWindow::OnResultGrad()
     document->SetAngleMeasure(document_widget->current_editor_state.caret_state.id, m, AngleMeasure::Grad, true);
 }
 
-void DocumentWindow::OnBinaryNotation()
+void DocumentWindow::OnDefaultBinaryNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
+    Notation n = document->GetResultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Binary, n, true);
+}
+
+void DocumentWindow::OnDefaultOctalNotation()
+{
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
+    Notation n = document->GetResultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Octal, n, true);
+}
+
+void DocumentWindow::OnDefaultDecimalNotation()
+{
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
+    Notation n = document->GetResultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Decimal, n, true);
+}
+
+void DocumentWindow::OnDefaultHexadecimalNotation()
+{
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
+    Notation n = document->GetResultNotation(_el->id);
+    document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Hexadecimal, n, true);
+}
+
+void DocumentWindow::OnResultBinaryNotation()
+{
+    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
     Notation n = document->GetDefaultNotation(_el->id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Binary, true);
 }
 
-void DocumentWindow::OnOctalNotation()
+void DocumentWindow::OnResultOctalNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
     Notation n = document->GetDefaultNotation(_el->id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Octal, true);
 }
 
-void DocumentWindow::OnDecimalNotation()
+void DocumentWindow::OnResultDecimalNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
     Notation n = document->GetDefaultNotation(_el->id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Decimal, true);
 }
 
-void DocumentWindow::OnHexadecimalNotation()
+void DocumentWindow::OnResultHexadecimalNotation()
 {
     auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (!_el)
+        return;
     Notation n = document->GetDefaultNotation(_el->id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Hexadecimal, true);
 }

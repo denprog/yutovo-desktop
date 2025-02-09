@@ -181,6 +181,10 @@
         <translation>Мера угла результата</translation>
     </message>
     <message>
+        <source>Default notation</source>
+        <translation>Система счисления по умолчанию</translation>
+    </message>
+    <message>
         <source>Result notation</source>
         <translation>Система счисления результата</translation>
     </message>

@@ -53,10 +53,15 @@ private slots:
     void OnResultDegree();
     void OnResultGrad();
 
-    void OnBinaryNotation();
-    void OnOctalNotation();
-    void OnDecimalNotation();
-    void OnHexadecimalNotation();
+    void OnDefaultBinaryNotation();
+    void OnDefaultOctalNotation();
+    void OnDefaultDecimalNotation();
+    void OnDefaultHexadecimalNotation();
+
+    void OnResultBinaryNotation();
+    void OnResultOctalNotation();
+    void OnResultDecimalNotation();
+    void OnResultHexadecimalNotation();
 
     void OnFractionFormProper();
     void OnFractionFormImproper();
@@ -116,10 +121,15 @@ private:
     QAction* result_degree = nullptr;
     QAction* result_grad = nullptr;
 
-    QAction* binary_notaion = nullptr;
-    QAction* octal_notaion = nullptr;
-    QAction* decimal_notaion = nullptr;
-    QAction* hexadecimal_notaion = nullptr;
+    QAction* default_binary_notaion = nullptr;
+    QAction* default_octal_notaion = nullptr;
+    QAction* default_decimal_notaion = nullptr;
+    QAction* default_hexadecimal_notaion = nullptr;
+
+    QAction* result_binary_notaion = nullptr;
+    QAction* result_octal_notaion = nullptr;
+    QAction* result_decimal_notaion = nullptr;
+    QAction* result_hexadecimal_notaion = nullptr;
 
     QAction* fraction_form_proper = nullptr;
     QAction* fraction_form_improper = nullptr;
