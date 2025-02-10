@@ -1319,7 +1319,25 @@ void MainWindow::OnEditorChanged(int index)
 
 void MainWindow::OnLinkClicked(const std::u32string& url)
 {
-    QDesktopServices::openUrl(QUrl(ToBasicString(url).c_str()));
+    //if this is a file, open it
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
+        return;
+    int p = w->path.lastIndexOf('/');
+    if (p == -1)
+        return;
+    QString s = w->path.left(p + 1);
+    s += ToBasicString(url).c_str();
+    if (!s.endsWith(".yut"))
+        s += ".yut";
+    if (QFile::exists(s))
+    {
+        OpenFile(s);
+        return;
+    }
+
+    QUrl u(ToBasicString(url).c_str());
+    QDesktopServices::openUrl(u);
 }
 
 void MainWindow::OnInsertCode()
