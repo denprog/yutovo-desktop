@@ -134,19 +134,19 @@
     </message>
     <message>
         <source>Binary</source>
-        <translation>Двоичная система</translation>
+        <translation>Двоичная</translation>
     </message>
     <message>
         <source>Octal</source>
-        <translation>Восьмеричная система</translation>
+        <translation>Восьмеричная</translation>
     </message>
     <message>
         <source>Decimal</source>
-        <translation>Десятичная система</translation>
+        <translation>Десятичная</translation>
     </message>
     <message>
         <source>Hexadecimal</source>
-        <translation>Шестнадцатиричная система</translation>
+        <translation>Шестнадцатиричная</translation>
     </message>
     <message>
         <source>Proper</source>
