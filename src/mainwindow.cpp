@@ -1520,7 +1520,19 @@ void MainWindow::OnLink()
     }
     else
     {
-        LinkDialog dialog("", "", tr("Insert link"));
+        std::u32string str;
+        if (s.selection_state.state.size() == 1)
+        {
+            auto t = document->GetElementType(s.caret_state.id);
+            if (t == ElementType::STRING)
+            {
+                str = document->ToText(s.caret_state.id);
+                ElementSelectionState& el_s = s.selection_state.state[0];
+                if (str.length() >= el_s.start + el_s.size)
+                    str = str.substr(el_s.start, el_s.size);
+            }
+        }
+        LinkDialog dialog(ToBasicString(str).c_str(), "", tr("Insert link"));
         if (!dialog.exec())
             return;
         document->InsertLink(dialog.text.toStdString(), dialog.url.toStdString(), true);
