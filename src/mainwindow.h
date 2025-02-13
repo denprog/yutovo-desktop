@@ -292,6 +292,8 @@ private:
 
     QLabel* locale_status = nullptr;
 
+    QLabel* link_label = nullptr;
+
     Logger* logger;
 };
 

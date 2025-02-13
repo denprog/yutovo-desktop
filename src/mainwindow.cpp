@@ -105,6 +105,8 @@ void MainWindow::changeEvent(QEvent* event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui->retranslateUi(this);
+        if (link_label)
+            link_label->setText(tr("yutovo_web"));
         SetupGui();
         UpdateRecentFiles();
     }
@@ -514,6 +516,20 @@ void MainWindow::CreateActions()
     QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
     action = help_menu->addAction(tr("&About"), this, &MainWindow::About);
     help_menu->setStatusTip(tr("Show the application's About box"));
+
+    if (!link_label)
+    {
+        QHBoxLayout* layout = new QHBoxLayout();
+        link_label = new QLabel();
+        link_label->setText(tr("yutovo_web"));
+        link_label->setTextFormat(Qt::RichText);
+        link_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        link_label->setOpenExternalLinks(true);
+        layout->addWidget(link_label);
+        QWidget* web_link = new QWidget(nullptr);
+        web_link->setLayout(layout);
+        menuBar()->setCornerWidget(web_link, Qt::TopRightCorner);
+    }
 }
 
 void MainWindow::CreateAlgebraToolbar()

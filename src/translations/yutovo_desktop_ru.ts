@@ -565,6 +565,10 @@
         <translation>&amp;О программе</translation>
     </message>
     <message>
+        <source>yutovo_web</source>
+        <translation>&lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
+    </message>
+    <message>
         <source>Show the application&apos;s About box</source>
         <translation>Показать диалог О программе</translation>
     </message>
