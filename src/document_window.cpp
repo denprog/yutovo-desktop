@@ -616,73 +616,73 @@ void DocumentWindow::OnResultGrad()
 
 void DocumentWindow::OnDefaultBinaryNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetResultNotation(_el->id);
+    Notation n = document->GetResultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Binary, n, true);
 }
 
 void DocumentWindow::OnDefaultOctalNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetResultNotation(_el->id);
+    Notation n = document->GetResultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Octal, n, true);
 }
 
 void DocumentWindow::OnDefaultDecimalNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetResultNotation(_el->id);
+    Notation n = document->GetResultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Decimal, n, true);
 }
 
 void DocumentWindow::OnDefaultHexadecimalNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetResultNotation(_el->id);
+    Notation n = document->GetResultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, Notation::Hexadecimal, n, true);
 }
 
 void DocumentWindow::OnResultBinaryNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetDefaultNotation(_el->id);
+    Notation n = document->GetDefaultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Binary, true);
 }
 
 void DocumentWindow::OnResultOctalNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetDefaultNotation(_el->id);
+    Notation n = document->GetDefaultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Octal, true);
 }
 
 void DocumentWindow::OnResultDecimalNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetDefaultNotation(_el->id);
+    Notation n = document->GetDefaultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Decimal, true);
 }
 
 void DocumentWindow::OnResultHexadecimalNotation()
 {
-    auto _el = document->FindParent(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
-    if (!_el)
+    auto _id = document->GetParentId(document_widget->current_editor_state.caret_state.id, ElementType::INTEGER_RESULT);
+    if (_id.empty())
         return;
-    Notation n = document->GetDefaultNotation(_el->id);
+    Notation n = document->GetDefaultNotation(_id);
     document->SetNotation(document_widget->current_editor_state.caret_state.id, n, Notation::Hexadecimal, true);
 }
 

@@ -1959,7 +1959,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     if (!document)
         return;
     
-    bool code_block = document->FindParent(c.id, ElementType::CODE_BLOCK) != nullptr;
+    bool code_block = document->GetParentId(c.id, ElementType::CODE_BLOCK) != ElementId{};
     align_left_action->setEnabled(!code_block);
     align_right_action->setEnabled(!code_block);
     align_center_action->setEnabled(!code_block);
