@@ -883,8 +883,16 @@
         <translation>Порядок экспоненты</translation>
     </message>
     <message>
-        <source>Show angle measure</source>
-        <translation>Показывать меру угла</translation>
+        <source>Default angle measure</source>
+        <translation>Мера угла по умолчанию</translation>
+    </message>
+    <message>
+        <source>Result angle measure</source>
+        <translation>Мера угла результата</translation>
+    </message>
+    <message>
+        <source>Show result angle measure</source>
+        <translation>Показывать меру угла результата</translation>
     </message>
     <message>
         <source>Radian</source>
