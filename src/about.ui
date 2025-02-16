@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>288</width>
-    <height>168</height>
+    <width>434</width>
+    <height>191</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -39,14 +39,32 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="text">
-       <property name="text">
-        <string>About</string>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QLabel" name="text">
+         <property name="text">
+          <string>About</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="web_link">
+         <property name="text">
+          <string>web:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="support_links">
+         <property name="text">
+          <string>support:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>

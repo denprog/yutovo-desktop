@@ -19,6 +19,14 @@
         <source>about_text</source>
         <translation>Ютово - это мощный калькулятор с графическим представлением вычислений совместно с текстовым редактором.</translation>
     </message>
+    <message>
+        <source>web_link_text</source>
+        <translation>Онлайн версия: &lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>support_links_text</source>
+        <translation>Поддержка: Телеграм: &lt;a href="https://t.me/yutovo"&gt;@yutovo&lt;/a&gt;, e-mail: &lt;a href="mailto:support@yutovo.ru"&gt;support@yutovo.ru&lt;/a&gt;</translation>
+    </message>
 </context>
 <context>
     <name>ColorsSettingsForm</name>
