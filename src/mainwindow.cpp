@@ -279,7 +279,6 @@ void MainWindow::CreateActions()
     standard_toolbar->addAction(action);
 
     action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
-    action->setShortcuts(QKeySequence::SaveAs);
     action->setStatusTip(tr("Save the document under a new name"));
 
     action = new QAction(tr("&Close"), this);

@@ -69,8 +69,8 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence(""), '%', "\\percent", std::function<void ()>(std::bind(&Document::InsertPercent, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ',', "\\comma", std::function<void ()>(std::bind(&Document::InsertComma, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence("/"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence("Ctrl+Shift+6"), "\\pow", std::function<void ()>(std::bind(&Document::InsertPower, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence("Ctrl+Shift+3"), "\\sub", std::function<void ()>(std::bind(&Document::InsertSubscript, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence("Ctrl+Shift+P"), "\\pow", std::function<void()>(std::bind(&Document::InsertPower, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence("Ctrl+Shift+S"), "\\sub", std::function<void ()>(std::bind(&Document::InsertSubscript, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence("Ctrl+Shift+N"), "\\nth", std::function<void ()>(std::bind(&Document::InsertNthRoot, document.get(), true)));
     Add(QKeySequence("Ctrl+Shift+Q"), "\\sqrt", std::function<void ()>(std::bind(&Document::InsertSquareRoot, document.get(), true)));
     Add(QKeySequence(""), '=', "\\equal", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::AUTO, true)), 
