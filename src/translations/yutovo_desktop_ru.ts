@@ -577,6 +577,10 @@
         <translation>&lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
     </message>
     <message>
+        <source>help_online</source>
+        <translation>https://yutovo.ru/library/ru%5CСправка%5CВведение%5CО%20Ютово.yut</translation>
+    </message>
+    <message>
         <source>Show the application&apos;s About box</source>
         <translation>Показать диалог О программе</translation>
     </message>

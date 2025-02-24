@@ -513,6 +513,12 @@ void MainWindow::CreateActions()
 
     //help menu
     QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
+
+    action = help_menu->addAction(tr("Help &online"), this, &MainWindow::HelpOnline);
+    help_menu->setStatusTip(tr("Help system online"));
+
+    help_menu->addSeparator();
+
     action = help_menu->addAction(tr("&About"), this, &MainWindow::About);
     help_menu->setStatusTip(tr("Show the application's About box"));
 
@@ -1201,6 +1207,12 @@ void MainWindow::Recalculate()
     auto document = GetCurrentDocument();
     if (document)
         document->ReSolve(ElementId{});
+}
+
+void MainWindow::HelpOnline()
+{
+    QUrl u(tr("help_online"));
+    QDesktopServices::openUrl(u);
 }
 
 void MainWindow::About()

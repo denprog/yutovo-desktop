@@ -82,6 +82,7 @@ private:
     void Undo();
     void Redo();
 
+    void HelpOnline();
     void About();
 
     void StandardToolbar();

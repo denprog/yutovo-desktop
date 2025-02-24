@@ -22,5 +22,9 @@
         <source>yutovo_web</source>
         <translation>&lt;a href="https://yutovo.com/"&gt;yutovo.com&lt;/a&gt;</translation>
     </message>
+    <message>
+        <source>help_online</source>
+        <translation>https://yutovo.com/library/en%5CHelp%5CIntroduction%5CAbout%20Yutovo.yut</translation>
+    </message>
 </context>
 </TS>
