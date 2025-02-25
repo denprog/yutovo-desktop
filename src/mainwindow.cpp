@@ -514,7 +514,7 @@ void MainWindow::CreateActions()
     //help menu
     QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 
-    action = help_menu->addAction(tr("Help &online"), this, &MainWindow::HelpOnline);
+    action = help_menu->addAction(tr("Help online"), this, &MainWindow::HelpOnline);
     help_menu->setStatusTip(tr("Help system online"));
 
     help_menu->addSeparator();

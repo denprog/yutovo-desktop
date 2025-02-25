@@ -8,6 +8,10 @@
         <translation>Yutovo is a powerful calculator with graphical representaion of solvings inside a text editor.</translation>
     </message>
     <message>
+        <source>libraries_text</source>
+        <translation>Technologies and libraries used: WebAssembly, Emscripten, boost, MPFR, GMP, Drogon, Quasar, jwt-cpp, spdlog, rapidjson.</translation>
+    </message>
+    <message>
         <source>web_link_text</source>
         <translation>Online version: &lt;a href="https://yutovo.com/"&gt;yutovo.com&lt;/a&gt;</translation>
     </message>

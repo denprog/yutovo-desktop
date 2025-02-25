@@ -20,6 +20,10 @@
         <translation>Ютово - это мощный калькулятор с графическим представлением вычислений совместно с текстовым редактором.</translation>
     </message>
     <message>
+        <source>libraries_text</source>
+        <translation>Использованные технологии и библиотеки: WebAssembly, Emscripten, boost, MPFR, GMP, Drogon, Quasar, jwt-cpp, spdlog, rapidjson.</translation>
+    </message>
+    <message>
         <source>web_link_text</source>
         <translation>Онлайн версия: &lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
     </message>
@@ -567,6 +571,14 @@
     <message>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
+    </message>
+    <message>
+        <source>Help online</source>
+        <translation>Справка онлайн</translation>
+    </message>
+    <message>
+        <source>Help system online</source>
+        <source>Справочная система онлайн</source>
     </message>
     <message>
         <source>&amp;About</source>

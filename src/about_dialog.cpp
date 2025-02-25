@@ -13,7 +13,8 @@ AboutDialog::AboutDialog() :
     setWindowIcon(QIcon(":/icons/images/mainicon.png"));
 
     form->icon->setPixmap(QIcon(":/icons/images/mainicon.png").pixmap(64, 64));
-    form->text->setText(tr("about_text"));
+    form->about->setText(tr("about_text"));
+    form->libraries->setText(tr("libraries_text"));
     form->web_link->setText(tr("web_link_text"));
     form->web_link->setOpenExternalLinks(true);
     form->support_links->setText(tr("support_links_text"));
