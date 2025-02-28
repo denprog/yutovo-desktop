@@ -607,7 +607,7 @@
         <source>&amp;About</source>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="456"/>
+        <location filename="../mainwindow.cpp"/>
         <source>Show the application&apos;s About box</source>
     </message>
     <message>

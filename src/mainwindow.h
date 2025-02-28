@@ -83,6 +83,8 @@ private:
     void Redo();
 
     void HelpOnline();
+    void TermsOfUse();
+    void PrivacyPolicy();
     void About();
 
     void StandardToolbar();

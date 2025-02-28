@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AboutDialog</class>
- <widget class="QDialog" name="AboutDialog">
+ <class>TermsOfUseDialog</class>
+ <widget class="QDialog" name="TermsOfUseDialog">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>442</width>
-    <height>242</height>
+    <width>560</width>
+    <height>281</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,10 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>About</string>
+   <string>Terms of use</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -44,37 +47,32 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="about">
-         <property name="text">
-          <string>About</string>
-         </property>
-         <property name="wordWrap">
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
           <bool>true</bool>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="libraries">
-         <property name="text">
-          <string>libraries</string>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="web_link">
-         <property name="text">
-          <string>web:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="support_links">
-         <property name="text">
-          <string>support:</string>
-         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>507</width>
+            <height>91</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="QLabel" name="terms_of_use">
+             <property name="text">
+              <string>Terms of use</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </widget>
        </item>
       </layout>

@@ -69,6 +69,10 @@ add_executable(${PROJECT_NAME}
     properties_dialog.cpp
     link_dialog.ui
     link_dialog.cpp
+    terms_of_use_dialog.ui
+    terms_of_use_dialog.cpp
+    privacy_policy_dialog.ui
+    privacy_policy_dialog.cpp
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})

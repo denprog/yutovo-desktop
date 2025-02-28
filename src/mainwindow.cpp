@@ -21,6 +21,8 @@
 #include "settings_dialog.h"
 #include "properties_dialog.h"
 #include "link_dialog.h"
+#include "terms_of_use_dialog.h"
+#include "privacy_policy_dialog.h"
 
 //MainWindow
 
@@ -516,6 +518,14 @@ void MainWindow::CreateActions()
 
     action = help_menu->addAction(tr("Help online"), this, &MainWindow::HelpOnline);
     help_menu->setStatusTip(tr("Help system online"));
+
+    help_menu->addSeparator();
+
+    action = help_menu->addAction(tr("&Terms of use"), this, &MainWindow::TermsOfUse);
+    help_menu->setStatusTip(tr("Show the application's Terms of use box"));
+
+    action = help_menu->addAction(tr("&Privacy policy"), this, &MainWindow::PrivacyPolicy);
+    help_menu->setStatusTip(tr("Show the application's Privacy policy box"));
 
     help_menu->addSeparator();
 
@@ -1213,6 +1223,18 @@ void MainWindow::HelpOnline()
 {
     QUrl u(tr("help_online"));
     QDesktopServices::openUrl(u);
+}
+
+void MainWindow::TermsOfUse()
+{
+    TermsOfUseDialog terms_of_use_dialog;
+    terms_of_use_dialog.exec();
+}
+
+void MainWindow::PrivacyPolicy()
+{
+    PrivacyPolicyDialog privacy_policy_dialog;
+    privacy_policy_dialog.exec();
 }
 
 void MainWindow::About()
