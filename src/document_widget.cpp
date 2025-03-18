@@ -8,10 +8,10 @@
 
 //DocumentWidget
 
-DocumentWidget::DocumentWidget(QWidget *parent) :
+DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config) :
     QWidget(parent),
-    window(size().width(), size().height()),
-    logger(Logger::GetInstance(std::string(std::getenv("YUTOVO_DEPLOY")) + "/log/yutovo_desktop", "yutovo_desktop", true, true))
+    window(size().width(), size().height(), _config),
+    logger(Logger::GetInstance(_config.logs_path + "/yutovo_desktop", "yutovo_desktop", true, true))
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
     connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);

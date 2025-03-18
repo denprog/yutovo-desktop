@@ -31,8 +31,7 @@ using namespace yutovo_calculator;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    settings(new QSettings("Yutovo", "Yutovo Desktop")),
-    logger(Logger::GetInstance(std::string(std::getenv("YUTOVO_DEPLOY")) + "/log/yutovo_desktop", "yutovo_desktop", true, true))
+    settings(new QSettings("Yutovo", "Yutovo Desktop"))
 {
     ui->setupUi(this);
 
@@ -52,6 +51,11 @@ MainWindow::MainWindow(QWidget *parent) :
         first_run = true;
 
     ReadSettings();
+
+    logger = Logger::GetInstance(config.logs_path + "/yutovo_desktop", "yutovo_desktop", true, true);
+    logger->SetLevel((int)config.log_level);
+
+    InstallTranslation(config.language);
 
 #ifdef REMOTE_SOLVER
     RestartService();
@@ -80,9 +84,9 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         //it is the first run - open the hello document
         if (config.language == yutovo_calculator::Language::Russian)
-            OpenFile("first_page_ru.yut");
+            OpenFile("./library/ru/Другое/Первая страница.yut");
         else
-            OpenFile("first_page_en.yut");
+            OpenFile("./library/en/Others/First page.yut");
     }
 
     logger->Info("Desktop start");
@@ -1051,9 +1055,9 @@ void MainWindow::Settings()
             settings.setValue(key, _settings.value(key));
         }
 
-        standard_toolbar_action->setChecked(settings.value("MainWindow/standard_toolbar", false).toBool());
-        format_toolbar_action->setChecked(settings.value("MainWindow/format_toolbar", false).toBool());
-        algebra_toolbar_action->setChecked(settings.value("MainWindow/algebra_toolbar", false).toBool());
+        standard_toolbar_action->setChecked(settings.value("MainWindow/standard_toolbar", true).toBool());
+        format_toolbar_action->setChecked(settings.value("MainWindow/format_toolbar", true).toBool());
+        algebra_toolbar_action->setChecked(settings.value("MainWindow/algebra_toolbar", true).toBool());
         trigonometry_toolbar_action->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
         hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
@@ -2284,7 +2288,6 @@ void MainWindow::ReadSettings()
 
     config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", 
         lang == "en" ? (int)yutovo_calculator::Language::English : (int)yutovo_calculator::Language::Russian).toInt();
-    InstallTranslation(config.language);
 
     settings.beginGroup("RecentFiles");
     recent_files_count = settings.value("max_count", 10).toInt();
@@ -2314,9 +2317,8 @@ void MainWindow::ReadSettings()
 
     settings.beginGroup("Log");
     config.log_level = (LogLevel)settings.value("level", (int)LogLevel::LEVEL_INFO).toInt();
-    config.logs_path = settings.value("path", ".").toString().toUtf8().data();
+    config.logs_path = settings.value("path", "./log").toString().toUtf8().data();
     settings.endGroup();
-    logger->SetLevel((int)config.log_level);
 
     settings.beginGroup("Colors");
     config.code_block_border_color = Color::FromInt(settings.value("code_block_border_color", Color::Blue().ToInt()).toInt());

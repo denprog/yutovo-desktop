@@ -13,7 +13,7 @@ class DocumentWidget : public QWidget
     Q_OBJECT
 
 public:
-    DocumentWidget(QWidget *parent);
+    DocumentWidget(QWidget *parent, yutovo::Config& _config);
 
     DocumentPtr CreateDocument(Config& config);
 

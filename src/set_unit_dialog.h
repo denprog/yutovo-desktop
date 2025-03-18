@@ -26,7 +26,7 @@ class SetUnitDialog : public QDialog
     Q_OBJECT
 
 public:
-    SetUnitDialog(std::vector<Unit>& cast_units);
+    SetUnitDialog(std::vector<Unit>& cast_units, yutovo::Config& _config);
     ~SetUnitDialog();
 
 private:

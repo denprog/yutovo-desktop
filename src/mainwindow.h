@@ -297,7 +297,7 @@ private:
 
     QLabel* link_label = nullptr;
 
-    Logger* logger;
+    Logger* logger = nullptr;
 };
 
 #endif

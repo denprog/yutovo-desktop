@@ -5,9 +5,9 @@
 
 //SetUnitDialog
 
-SetUnitDialog::SetUnitDialog(std::vector<yutovo_calculator::Unit>& cast_units) :
+SetUnitDialog::SetUnitDialog(std::vector<yutovo_calculator::Unit>& cast_units, yutovo::Config& _config) :
     QDialog(nullptr),
-    window(1, 1),
+    window(1, 1, _config),
     ui(new Ui::SetUnitDialog),
     units_delegate(new UnitsDelegate(this))
 {

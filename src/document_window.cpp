@@ -16,7 +16,7 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     config(_config),
     main_window((MainWindow*)parent)
 {
-    document_widget = new DocumentWidget(this);
+    document_widget = new DocumentWidget(this, config);
 
     document_widget->setObjectName(QStringLiteral("document_widget"));
 
@@ -553,7 +553,7 @@ void DocumentWindow::OnSetUnit()
     std::vector<yutovo_calculator::Unit> cast_units;
     document->GetCastUnits(id, cast_units);
 
-    SetUnitDialog dialog(cast_units);
+    SetUnitDialog dialog(cast_units, config);
     if (!dialog.exec())
         return;
     

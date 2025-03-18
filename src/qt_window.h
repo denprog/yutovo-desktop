@@ -8,6 +8,7 @@
 #include <thread>
 #include <yutovo_editor/window.h>
 #include <yutovo_logger/logger.h>
+#include <yutovo_editor/config.h>
 
 class DocumentWidget;
 
@@ -19,7 +20,7 @@ class QtWindow : public QObject, public Window
     Q_OBJECT
 
 public:
-    QtWindow(const int width, const int height);
+    QtWindow(const int width, const int height, yutovo::Config& _config);
     ~QtWindow();
 
     virtual void Init(Document* _document);

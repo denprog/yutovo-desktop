@@ -12,9 +12,9 @@
 using namespace std::chrono_literals;
 using namespace std::chrono;
 
-QtWindow::QtWindow(const int width, const int height) :
+QtWindow::QtWindow(const int width, const int height, yutovo::Config& _config) :
     surface(new QImage(width, height, QImage::Format_RGB32)),
-    logger(Logger::GetInstance(std::string(std::getenv("YUTOVO_DEPLOY")) + "/log/yutovo_desktop", "yutovo_desktop", true, true))
+    logger(Logger::GetInstance(_config.logs_path + "/yutovo_desktop", "yutovo_desktop", true, true))
 {
 }
 

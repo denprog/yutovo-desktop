@@ -1,20 +1,19 @@
 #!/bin/bash
 
-rm yutovo-desktop_1.0.1-1_amd64/opt/yutovo/*
+rm -rf yutovo-desktop_1.0.1-1_amd64/*
 mkdir -p yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+mkdir -p yutovo-desktop_1.0.1-1_amd64/usr/share/applications/
+mkdir -p yutovo-desktop_1.0.1-1_amd64/usr/share/icons/hicolor/256x256/apps/
+mkdir -p yutovo-desktop_1.0.1-1_amd64/DEBIAN/
 
-cp ../build/src/yutovo_desktop yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../build/src/doc/first_page_ru.yut yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../build/src/doc/first_page_en.yut yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-
-cp ../../yutovo_editor/keys/yutovo_desktop_cert.pem yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_editor/keys/yutovo_desktop_key.pem yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp control yutovo-desktop_1.0.1-1_amd64/DEBIAN/
+cp ../build/RelWithDebugInfo/src/yutovo_desktop yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp -r ../../yutovo_server/library yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
 cp ../build/*.qm yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+cp ../src/images/mainicon.png yutovo-desktop_1.0.1-1_amd64/usr/share/icons/hicolor/256x256/apps/yutovo.png
 
-cp ../../yutovo_solver/build/src/yutovo_serviced yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_solver/keys/yutovo_solver.crt yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_solver/keys/yutovo_solver.key yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
-cp ../../yutovo_solver/src/service.ini yutovo-desktop_1.0.1-1_amd64/opt/yutovo/
+chmod g-w yutovo-desktop_1.0.1-1_amd64/opt/yutovo/yutovo_desktop
+chmod o-w yutovo-desktop_1.0.1-1_amd64/opt/yutovo/yutovo_desktop
 
 cp yutovo.desktop yutovo-desktop_1.0.1-1_amd64/usr/share/applications/
 
