@@ -2208,6 +2208,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/language", (int)config.language);
 
     settings.setValue("Documents/last_documents", last_documents.isEmpty() ? "" : QVariant(last_documents));
+    settings.setValue("Documents/load_last_documents", true);
 
     settings.beginGroup("RecentFiles");
     settings.setValue("max_count", recent_files_count);
