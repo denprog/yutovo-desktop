@@ -162,6 +162,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event);
 }
 
+bool MainWindow::focusNextPrevChild(bool next)
+{
+    return false;
+}
+
 void MainWindow::SetupGui()
 {
     ui->editor_tabs->setTabsClosable(true);
@@ -2215,6 +2220,11 @@ void MainWindow::WriteSettings()
     settings.setValue("files", QVariant(recent_files));
     settings.endGroup();
 
+    settings.beginGroup("Document");
+    settings.setValue("use_tabs", config.use_tabs);
+    settings.setValue("tab_spaces", config.tab_spaces);
+    settings.endGroup();
+
     settings.beginGroup("Service");
     settings.setValue("ip", config.service_ip.c_str());
     settings.setValue("port", config.service_port);
@@ -2300,6 +2310,11 @@ void MainWindow::ReadSettings()
         if (*it != "")
             recent_files.push_back(*it);
     }
+    settings.endGroup();
+
+    settings.beginGroup("Document");
+    config.use_tabs = settings.value("use_tabs", true).toBool();
+    config.tab_spaces = settings.value("tab_spaces", 4).toInt();
     settings.endGroup();
 
     settings.beginGroup("Service");

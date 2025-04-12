@@ -52,6 +52,9 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence("Delete"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), false, true)));
     Add(QKeySequence("Backspace"), "", std::function<void ()>(std::bind(&Document::DeleteElements, document.get(), true, true)));
     Add(QKeySequence("Return"), "", std::function<void ()>(std::bind(&Document::InsertParagraph, document.get(), true)));
+    
+    Add(QKeySequence("Tab"), "", std::function<void ()>(std::bind(static_cast<uint(Document::*)(const std::u32string&, bool)>(&Document::InsertString), 
+        document.get(), U"	", true)));
 
     Add(QKeySequence("Ctrl+Z"), "", std::function<void ()>(std::bind(&Document::Undo, document.get())));
     Add(QKeySequence("Ctrl+Y"), "", std::function<void ()>(std::bind(&Document::Redo, document.get())));

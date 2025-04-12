@@ -47,7 +47,7 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     p.setFont(font);
     if (draw_doc)
         p.setClipRegion(clip_region);
-    p.drawText(QRect(rect.left - document_point.x, rect.top - document_point.y, rect.width, rect.height), text.c_str());
+    p.drawText(QRect(rect.left - document_point.x, rect.top - document_point.y, rect.width, rect.height), Qt::TextExpandTabs, text.c_str());
     p.end();
 }
 
