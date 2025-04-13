@@ -635,7 +635,7 @@
     </message>
     <message>
         <source>yutovo_web</source>
-        <translation>&lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.ru/?ref=desktop"&gt;yutovo.ru&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>

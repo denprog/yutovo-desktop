@@ -56,7 +56,7 @@ You assume all responsibility and risk with respect to your use of the website, 
     <name>MainWindow</name>
     <message>
         <source>yutovo_web</source>
-        <translation>&lt;a href="https://yutovo.com/"&gt;yutovo.com&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.com/?ref=desktop"&gt;yutovo.com&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>
