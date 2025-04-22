@@ -9,7 +9,10 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-#set(QT_SELECT qt5.14)
+if(WIN32)
+    set(QT_SELECT qt5.15)
+    find_package(PkgConfig REQUIRED)
+endif()
 
 set(CMAKE_FIND_ROOT_PATH ${INSTALL_PATH}/lib/cmake/)
 
@@ -22,6 +25,13 @@ find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo_logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+if(WIN32)
+    find_package(Boost REQUIRED COMPONENTS iostreams)
+    find_package(RapidJSON CONFIG REQUIRED)
+    pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
+
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /bigobj")
+endif()
 
 if (Qt5Widgets_FOUND)
     if (Qt5Widgets_VERSION VERSION_LESS 5.14.0)
@@ -95,26 +105,28 @@ else()
         yutovo_calculator
         yutovo_solver
         Qt5::Widgets
-        boost_chrono
     )
 endif()
 
-install(
-    FILES
-        translations/${PROJECT_NAME}_ru.qm
-        translations/yutovo_editor_en.qm
-        translations/yutovo_editor_ru.qm
-    DESTINATION ${INSTALL_PATH}/bin
-    COMPONENT ${PROJECT_NAME}
-)
+if(NOT WIN32)
+    install(
+        FILES
+            translations/${PROJECT_NAME}_en.qm
+            translations/${PROJECT_NAME}_ru.qm
+            translations/yutovo_editor_en.qm
+            translations/yutovo_editor_ru.qm
+        DESTINATION ${INSTALL_PATH}/bin
+        COMPONENT ${PROJECT_NAME}
+    )
 
-install(
-    TARGETS ${PROJECT_NAME}
-    EXPORT ${PROJECT_NAME}
-    DESTINATION ${INSTALL_PATH}/bin
-    COMPONENT ${PROJECT_NAME}
-)
+    install(
+        TARGETS ${PROJECT_NAME}
+        EXPORT ${PROJECT_NAME}
+        DESTINATION ${INSTALL_PATH}/bin
+        COMPONENT ${PROJECT_NAME}
+    )
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/translations/*.qm ${CMAKE_CURRENT_BINARY_DIR}/../
-)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/translations/*.qm ${CMAKE_CURRENT_BINARY_DIR}/../
+    )
+endif()
