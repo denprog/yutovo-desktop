@@ -16,6 +16,12 @@ endif()
 
 set(CMAKE_FIND_ROOT_PATH ${INSTALL_PATH}/lib/cmake/)
 
+find_package(PkgConfig REQUIRED)
+
+if(WIN32)
+	set(CMAKE_PREFIX_PATH "${INSTALL_PATH}")
+endif()
+
 if(NOT REMOTE_SOLVER)
     find_package(yutovo_calculator REQUIRED)
     find_package(yutovo_solver REQUIRED)
