@@ -2055,7 +2055,7 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         recent_files.removeAll(dialog_file_name);
         UpdateRecentFiles();
         UpdateCaption();
-        QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document"));
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error saving document") + QString(": ") + dialog_file_name);
         return;
     }
 
@@ -2105,12 +2105,13 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     
     if (result != IOResult::Success)
     {
+        QString p = w->path;
         recent_files.removeAll(w->path);
         if (w)
             w->path = "";
         UpdateRecentFiles();
         UpdateCaption();
-        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document"));
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + p);
         return;
     }
     UpdateRecentFiles(w->path);
