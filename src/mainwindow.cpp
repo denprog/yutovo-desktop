@@ -84,9 +84,21 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         //it is the first run - open the hello document
         if (config.language == yutovo_calculator::Language::Russian)
+        {
+#ifdef _WIN32
+            OpenFile("library/ru/Другое/Первая страница.yut");
+#else
             OpenFile("./library/ru/Другое/Первая страница.yut");
+#endif
+        }
         else
+        {
+#ifdef _WIN32
+            OpenFile("library/en/Others/First page.yut");
+#else
             OpenFile("./library/en/Others/First page.yut");
+#endif
+        }
     }
 
     logger->Info("Desktop start");
