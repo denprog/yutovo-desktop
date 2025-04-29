@@ -151,6 +151,7 @@ void DocumentWindow::CreateDocument()
 {
     document = document_widget->CreateDocument(config);
     document->Start();
+    document->InsertCode(false, true);
 }
 
 void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
