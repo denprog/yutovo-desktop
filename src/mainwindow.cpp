@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ReadSettings();
 
-    logger = Logger::GetInstance(config.logs_path + "/yutovo_desktop", "yutovo_desktop", true, true);
+    logger = Logger::GetInstance(config.logs_path + "/yutovo_desktop", "yutovo_desktop", config.log_console, config.log_file);
     logger->SetLevel((int)config.log_level);
 
     InstallTranslation(config.language);

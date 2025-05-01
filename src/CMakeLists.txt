@@ -47,7 +47,7 @@ else()
     message(SEND_ERROR "The Qt5Widgets library could not be found!")
 endif(Qt5Widgets_FOUND)
 
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} WIN32 
     main.cpp
     document_widget.cpp
     mainwindow.cpp
