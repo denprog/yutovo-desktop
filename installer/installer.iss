@@ -15,6 +15,7 @@ ChangesAssociations=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
@@ -26,10 +27,6 @@ Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWi
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
-
-//[Dirs]
-//Name: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\library"
-//Name: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\plugins"
 
 [Icons]
 Name: "{group}\Yutovo"; Filename: "{app}\yutovo_desktop.exe"
