@@ -610,6 +610,10 @@
         <translation>Панель &amp;статуса</translation>
     </message>
     <message>
+        <source>&amp;Library</source>
+        <translation>&amp;Библиотека</translation>
+    </message>
+    <message>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>

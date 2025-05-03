@@ -14,6 +14,7 @@
 #include <QCloseEvent>
 #include <QUrl>
 #include <QDesktopServices>
+#include <filesystem>
 #include <yutovo_editor/editor_utils.h>
 #include <yutovo_calculator/math_helper.h>
 #include "document_window.h"
@@ -522,6 +523,10 @@ void MainWindow::CreateActions()
     connect(status_bar_action, &QAction::toggled, this, &MainWindow::StatusBar);
     view_menu->addAction(status_bar_action);
 
+    //library menu
+    QMenu* library_menu = menuBar()->addMenu(tr("&Library"));
+    UpdateLibraryMenu(library_menu);
+
     //help menu
     QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 
@@ -886,6 +891,17 @@ void MainWindow::Open()
 }
 
 void MainWindow::OpenRecentFile()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    if (!action)
+        return;
+    QString file_name = action->data().toString();
+    if (file_name == "")
+        return;
+    OpenFile(file_name);
+}
+
+void MainWindow::OpenLibraryFile()
 {
     QAction* action = qobject_cast<QAction*>(sender());
     if (!action)
@@ -2476,6 +2492,128 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
         connect(action, &QAction::triggered, this, &MainWindow::OpenRecentFile);
         recent_files_menu->addAction(action);
     }
+}
+
+void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
+{
+    std::function<void (const std::filesystem::path& path, const std::string& name, QMenu* menu)> get_files = 
+        [&](const std::filesystem::path& path, const std::string& name, QMenu* menu)
+        {
+            std::vector<std::string> order;
+            if (std::filesystem::exists(path / ".order"))
+            {
+                std::string order_file = path / ".order";
+                try
+                {
+                    std::ifstream file(order_file);
+                    if (file.is_open())
+                    {
+                        std::string line;
+                        while (std::getline(file, line))
+                            order.push_back(line);
+                    }
+                }
+                catch (const std::ios_base::failure& ex)
+                {
+                }
+            }
+
+            std::vector<std::filesystem::path> sorted_dirs;
+            std::vector<std::filesystem::path> sorted_files;
+            for (const auto& entry : std::filesystem::directory_iterator(path))
+            {
+                if (entry.is_directory())
+                {
+                    int pos = -1;
+                    if (!order.empty())
+                    {
+                        auto s = entry.path().filename().c_str();
+                        auto it = std::find(order.begin(), order.end(), entry.path().filename().c_str());
+                        if (it != order.end())
+                            pos = std::distance(order.begin(), it);
+                        if (pos == -1)
+                            sorted_dirs.push_back(entry.path());
+                        else
+                        {
+                            if (pos < sorted_dirs.size())
+                            {
+                                sorted_dirs[pos] = entry.path();
+                            }
+                            else
+                            {
+                                for (int i = sorted_dirs.size(); i < pos; ++i)
+                                    sorted_dirs.push_back(std::filesystem::path());
+                                sorted_dirs.push_back(entry.path());
+                            }
+                        }
+                    }
+                    else
+                        sorted_dirs.push_back(entry.path());
+                }
+                else if (entry.is_regular_file())
+                {
+                    if (entry.path().stem() != ".order")
+                    {
+                        int pos = -1;
+                        if (!order.empty())
+                        {
+                            auto it = std::find(order.begin(), order.end(), entry.path().filename().c_str());
+                            if (it != order.end())
+                                pos = std::distance(order.begin(), it);
+                            if (pos == -1)
+                                sorted_files.push_back(entry.path());
+                            else
+                            {
+                                if (pos < sorted_files.size())
+                                {
+                                    sorted_files[pos] = entry.path();
+                                }
+                                else
+                                {
+                                    for (int i = sorted_files.size(); i < pos; ++i)
+                                        sorted_files.push_back(std::filesystem::path());
+                                    sorted_files.push_back(entry.path());
+                                }
+                            }
+                        }
+                        else
+                            sorted_files.push_back(entry.path());
+                    }
+                }
+            }
+
+            if (order.empty())
+            {
+                std::sort(sorted_dirs.begin(), sorted_dirs.end());
+                std::sort(sorted_files.begin(), sorted_files.end());
+            }
+
+            for (const auto& entry : sorted_dirs)
+            {
+                if (entry.empty())
+                    continue;
+                QMenu* dir = menu->addMenu(entry.filename().c_str());
+                get_files(entry, entry.stem(), dir);
+            }
+
+            for (const auto& entry : sorted_files)
+            {
+                if (entry.empty())
+                    continue;
+                QAction* action = new QAction(entry.stem().c_str(), this);
+                action->setData(std::filesystem::absolute(entry).c_str());
+                connect(action, &QAction::triggered, this, &MainWindow::OpenLibraryFile);
+                menu->addAction(action);
+            }
+        };
+    
+    library_menu->clear();
+
+    auto p = std::string("./library/") + (config.language == yutovo_calculator::Language::English ? "en" : "ru");
+    if (!std::filesystem::exists(p))
+        return;
+    
+    get_files(std::filesystem::path(p), "library", library_menu);
 }
 
 void MainWindow::InstallTranslation(const yutovo_calculator::Language language)

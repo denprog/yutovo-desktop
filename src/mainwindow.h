@@ -60,6 +60,7 @@ private:
     void New();
     void Open();
     void OpenRecentFile();
+    void OpenLibraryFile();
     void OpenFile(QString file_name);
     void Save();
     void SaveFile(int index);
@@ -203,6 +204,7 @@ private:
     void UpdateFontSize();
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
+    void UpdateLibraryMenu(QMenu* library_menu);
 
     void InstallTranslation(const yutovo_calculator::Language language);
 
