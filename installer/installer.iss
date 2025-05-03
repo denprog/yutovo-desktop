@@ -30,7 +30,7 @@ Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWi
 
 [Icons]
 Name: "{group}\Yutovo"; Filename: "{app}\yutovo_desktop.exe"
-Name: "{group}\Yutovo online"; Filename: "https://yutovo.com"
+Name: "{group}\Yutovo online"; Filename: "https://yutovo.com?ref=windows_menu"
 Name: "{commondesktop}\Yutovo"; Filename: "{app}\yutovo_desktop.exe"; Tasks: desktopicon
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Yutovo"; Filename: "{app}\yutovo_desktop.exe"; Tasks: quicklaunchicon
 
