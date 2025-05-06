@@ -2601,7 +2601,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                 if (entry.empty())
                     continue;
                 QAction* action = new QAction(QString::fromWCharArray(entry.stem().wstring().c_str()), this);
-                action->setData(std::filesystem::absolute(entry).c_str());
+                action->setData(QString(QString::fromWCharArray(std::filesystem::absolute(entry).wstring().c_str())));
                 connect(action, &QAction::triggered, this, &MainWindow::OpenLibraryFile);
                 menu->addAction(action);
             }
