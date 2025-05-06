@@ -91,7 +91,9 @@ add_executable(${PROJECT_NAME} WIN32
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 
-target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)
+if(NOT WIN32)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)
+endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${THIRD_PARTY_PATH}
