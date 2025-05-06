@@ -15,6 +15,9 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <filesystem>
+#ifdef _WIN32
+#include <shlobj_core.h>
+#endif
 #include <yutovo_editor/editor_utils.h>
 #include <yutovo_calculator/math_helper.h>
 #include "document_window.h"
@@ -2350,7 +2353,16 @@ void MainWindow::ReadSettings()
 
     settings.beginGroup("Log");
     config.log_level = (LogLevel)settings.value("level", (int)LogLevel::LEVEL_INFO).toInt();
+#ifdef _WIN32
+    std::string p;
+    char szPath[MAX_PATH];
+    if (SUCCEEDED(SHGetFolderPathA(NULL, CSIDL_COMMON_APPDATA, NULL, 0, szPath)))
+        p = std::string(szPath) + "/Yutovo/";
+    p += "log";
+    config.logs_path = settings.value("path", p.c_str()).toString().toUtf8().data();
+#else
     config.logs_path = settings.value("path", "./log").toString().toUtf8().data();
+#endif
     settings.endGroup();
 
     settings.beginGroup("Colors");
