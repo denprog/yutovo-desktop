@@ -2496,19 +2496,19 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
 
 void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
 {
-    std::function<void (const std::filesystem::path& path, const std::string& name, QMenu* menu)> get_files = 
-        [&](const std::filesystem::path& path, const std::string& name, QMenu* menu)
+    std::function<void (const std::filesystem::path& path, const std::wstring& name, QMenu* menu)> get_files = 
+        [&](const std::filesystem::path& path, const std::wstring& name, QMenu* menu)
         {
-            std::vector<std::string> order;
+            std::vector<std::wstring> order;
             if (std::filesystem::exists(path / ".order"))
             {
-                std::string order_file = path / ".order";
+                std::wstring order_file((path / ".order").wstring());
                 try
                 {
-                    std::ifstream file(order_file);
+                    std::wifstream file(order_file);
                     if (file.is_open())
                     {
-                        std::string line;
+                        std::wstring line;
                         while (std::getline(file, line))
                             order.push_back(line);
                     }
@@ -2527,8 +2527,8 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                     int pos = -1;
                     if (!order.empty())
                     {
-                        auto s = entry.path().filename().c_str();
-                        auto it = std::find(order.begin(), order.end(), entry.path().filename().c_str());
+                        std::wstring s = entry.path().filename().wstring();
+                        auto it = std::find(order.begin(), order.end(), s);
                         if (it != order.end())
                             pos = std::distance(order.begin(), it);
                         if (pos == -1)
@@ -2557,7 +2557,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                         int pos = -1;
                         if (!order.empty())
                         {
-                            auto it = std::find(order.begin(), order.end(), entry.path().filename().c_str());
+                            auto it = std::find(order.begin(), order.end(), entry.path().filename().wstring());
                             if (it != order.end())
                                 pos = std::distance(order.begin(), it);
                             if (pos == -1)
@@ -2592,15 +2592,15 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
             {
                 if (entry.empty())
                     continue;
-                QMenu* dir = menu->addMenu(entry.filename().c_str());
-                get_files(entry, entry.stem(), dir);
+                QMenu* dir = menu->addMenu(QString::fromWCharArray(entry.filename().wstring().c_str()));
+                get_files(entry, entry.stem().wstring(), dir);
             }
 
             for (const auto& entry : sorted_files)
             {
                 if (entry.empty())
                     continue;
-                QAction* action = new QAction(entry.stem().c_str(), this);
+                QAction* action = new QAction(QString::fromWCharArray(entry.stem().wstring().c_str()), this);
                 action->setData(std::filesystem::absolute(entry).c_str());
                 connect(action, &QAction::triggered, this, &MainWindow::OpenLibraryFile);
                 menu->addAction(action);
@@ -2613,7 +2613,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
     if (!std::filesystem::exists(p))
         return;
     
-    get_files(std::filesystem::path(p), "library", library_menu);
+    get_files(std::filesystem::path(p), L"library", library_menu);
 }
 
 void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
