@@ -2514,7 +2514,11 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
             std::vector<std::wstring> order;
             if (std::filesystem::exists(path / ".order"))
             {
+#ifdef _WIN32
                 std::wstring order_file((path / ".order").wstring());
+#else
+                std::string order_file((path / ".order").string());
+#endif
                 try
                 {
                     std::wifstream file(order_file);
