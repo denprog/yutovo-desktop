@@ -1,14 +1,14 @@
 [Setup]
 AppId={{bd041914-8896-43bc-b496-7aeb90887fff}}
 AppName=Yutovo
-AppVerName=Yutovo 1.0.3
+AppVerName=Yutovo 1.0.2
 AppPublisher=yutovo.com
 AppPublisherURL=http://www.yutovo.com/
 AppSupportURL=http://www.yutovo.com/
 AppUpdatesURL=http://www.yutovo.com/
 DefaultDirName={commonpf}\Yutovo
 DefaultGroupName=Yutovo
-OutputBaseFilename=installer
+OutputBaseFilename=yutovo-desktop_1.0.2-1_win10_amd64
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
