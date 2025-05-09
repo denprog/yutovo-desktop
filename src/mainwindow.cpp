@@ -917,6 +917,10 @@ void MainWindow::OpenLibraryFile()
 
 void MainWindow::OpenFile(QString file_name)
 {
+    if (!std::filesystem::exists(file_name.toUtf8().data()))
+        return;
+    file_name = QString::fromWCharArray(std::filesystem::canonical(std::filesystem::absolute(file_name.toUtf8().data())).wstring().c_str());
+
     dialog_file_name = file_name;
 
     for (int i = 0; i < ui->editor_tabs->count(); ++i)
