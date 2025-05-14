@@ -27,6 +27,7 @@ Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWi
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
+Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 
 [Icons]
 Name: "{group}\Yutovo"; Filename: "{app}\yutovo_desktop.exe"
@@ -43,4 +44,18 @@ Root: HKCR; Subkey: "Yutovo\shell\open\command"; ValueType: string; ValueName: "
 Root: HKLM; Subkey: "Software\Yutovo"; ValueType: string; ValueName: "InstallDir"; ValueData: "{app}"
 
 [Run]
+Filename: "{tmp}\VC_redist.x64.exe"; Check: not VC2022RedistNeedsInstall
 Filename: "{app}\yutovo_desktop.exe"; Description: "{cm:LaunchProgram,Yutovo}"; Flags: nowait postinstall skipifsilent
+
+[Code]
+function VC2022RedistNeedsInstall: Boolean;
+var 
+  Version: String;
+begin
+  Result := False;
+  if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\X64', 'Version', Version) then
+  begin
+    Log('VC Redist Version check : found ' + Version);
+    Result := (CompareStr(Version, 'v14.44.35112.01') = 0);
+  end
+end;
