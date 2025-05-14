@@ -2357,6 +2357,8 @@ void MainWindow::ReadSettings()
 
     settings.beginGroup("Log");
     config.log_level = (LogLevel)settings.value("level", (int)LogLevel::LEVEL_INFO).toInt();
+    config.log_console = settings.value("level", false).toBool();
+    config.log_file = settings.value("level", true).toBool();
 #ifdef _WIN32
     std::string p;
     char szPath[MAX_PATH];
