@@ -17,6 +17,7 @@
 #include <filesystem>
 #ifdef _WIN32
 #include <shlobj_core.h>
+#include <codecvt>
 #endif
 #include <yutovo_editor/editor_utils.h>
 #include <yutovo_calculator/math_helper.h>
@@ -32,14 +33,14 @@
 
 using namespace yutovo_calculator;
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     settings(new QSettings("Yutovo", "Yutovo Desktop"))
 {
     ui->setupUi(this);
 
-    setWindowIcon(QIcon(":/icons/images/mainicon.png")); 
+    setWindowIcon(QIcon(":/icons/images/mainicon.png"));
 
     qRegisterMetaType<Rect>("Rect");
     qRegisterMetaType<CaretState>("CaretState");
@@ -124,7 +125,7 @@ void MainWindow::changeEvent(QEvent* event)
     QMainWindow::changeEvent(event);
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+void MainWindow::closeEvent(QCloseEvent* event)
 {
     for (int i = 0; i < ui->editor_tabs->count(); ++i)
     {
@@ -140,19 +141,19 @@ void MainWindow::closeEvent(QCloseEvent *event)
             else
                 file_name = file_info.fileName();
 
-            QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name), 
+            QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name),
                 QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
             int r = m.exec();
             switch (r)
             {
             case QMessageBox::Yes:
-                {
-                    close_tab_after_save = i;
-                    exit_after_save = true;
-                    SaveFile(i);
-                    event->ignore();
-                    return;
-                }
+            {
+                close_tab_after_save = i;
+                exit_after_save = true;
+                SaveFile(i);
+                event->ignore();
+                return;
+            }
             case QMessageBox::No:
                 break;
             default:
@@ -1130,7 +1131,7 @@ void MainWindow::Paste()
     std::string format;
     if (mime_data->hasFormat("application/web;type=\"custom/formatmap\"")) //firstly check the own web format
     {
-        QByteArray arr = mime_data->data("application/web;type=\"custom/formatmap\""); 
+        QByteArray arr = mime_data->data("application/web;type=\"custom/formatmap\"");
         if (!arr.isEmpty())
         {
             std::stringstream str(arr.toStdString());
@@ -1565,7 +1566,7 @@ void MainWindow::OnTextColor()
         if (document)
         {
             QColor c = d.selectedColor();
-            document->SetColor(Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()});
+            document->SetColor(Color{ (uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue() });
         }
     }
 }
@@ -1579,7 +1580,7 @@ void MainWindow::OnBgTextColor()
         if (document)
         {
             QColor c = d.selectedColor();
-            document->SetBgColor(Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()});
+            document->SetBgColor(Color{ (uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue() });
         }
     }
 }
@@ -1972,7 +1973,7 @@ void MainWindow::OnArcsch()
 
 void MainWindow::OnGreekLetter()
 {
-    QAction *action = qobject_cast<QAction*>(sender());
+    QAction* action = qobject_cast<QAction*>(sender());
     QVariant v = action->data();
     QChar letter = v.toChar();
     auto document = GetCurrentDocument();
@@ -2321,7 +2322,7 @@ void MainWindow::ReadSettings()
     if (lang != "en" && lang != "ru")
         lang = "en";
 
-    config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", 
+    config.language = (yutovo_calculator::Language)settings.value("MainWindow/language",
         lang == "en" ? (int)yutovo_calculator::Language::English : (int)yutovo_calculator::Language::Russian).toInt();
 
     settings.beginGroup("RecentFiles");
@@ -2514,26 +2515,36 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
 
 void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
 {
-    std::function<void (const std::filesystem::path& path, const std::wstring& name, QMenu* menu)> get_files = 
+    std::function<void(const std::filesystem::path& path, const std::wstring& name, QMenu* menu)> get_files =
         [&](const std::filesystem::path& path, const std::wstring& name, QMenu* menu)
         {
-            std::vector<std::wstring> order;
+            std::vector<std::string> order;
             if (std::filesystem::exists(path / ".order"))
             {
-#ifdef _WIN32
-                std::wstring order_file((path / ".order").wstring());
-#else
-                std::string order_file((path / ".order").string());
-#endif
                 try
                 {
+#ifdef _WIN32
+                    std::wstring order_file((path / ".order").wstring());
                     std::wifstream file(order_file);
                     if (file.is_open())
                     {
+                        file.imbue(std::locale(std::locale::empty(), new std::codecvt_utf8<wchar_t>));
+                        std::wstringstream ws;
+                        ws << file.rdbuf();
                         std::wstring line;
+                        while (std::getline(ws, line))
+                            order.push_back(ToBasicString(line));
+                    }
+#else
+                    std::string order_file((path / ".order").string());
+                    std::ifstream file(order_file);
+                    if (file.is_open())
+                    {
+                        std::string line;
                         while (std::getline(file, line))
                             order.push_back(line);
                     }
+#endif
                 }
                 catch (const std::ios_base::failure& ex)
                 {
@@ -2549,7 +2560,11 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                     int pos = -1;
                     if (!order.empty())
                     {
-                        std::wstring s = entry.path().filename().wstring();
+#ifdef _WIN32
+                        std::string s = ToBasicString(entry.path().filename().wstring());
+#else
+                        std::string s = entry.path().filename().string();
+#endif
                         auto it = std::find(order.begin(), order.end(), s);
                         if (it != order.end())
                             pos = std::distance(order.begin(), it);
@@ -2579,7 +2594,11 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                         int pos = -1;
                         if (!order.empty())
                         {
-                            auto it = std::find(order.begin(), order.end(), entry.path().filename().wstring());
+#ifdef _WIN32
+                            auto it = std::find(order.begin(), order.end(), ToBasicString(entry.path().filename().wstring()));
+#else
+                            auto it = std::find(order.begin(), order.end(), entry.path().filename().string());
+#endif
                             if (it != order.end())
                                 pos = std::distance(order.begin(), it);
                             if (pos == -1)
