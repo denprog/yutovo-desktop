@@ -1609,7 +1609,6 @@ void MainWindow::OnLink()
     }
     else
     {
-        std::u32string str;
         if (s.selection_state.state.size() == 1)
         {
             auto t = document->GetElementType(s.caret_state.id);
@@ -1617,7 +1616,7 @@ void MainWindow::OnLink()
             {
                 str = document->ToText(s.caret_state.id);
                 ElementSelectionState& el_s = s.selection_state.state[0];
-                if (str.length() >= el_s.start + el_s.size)
+                if (el_s.id == yutovo::GetParent(s.caret_state.id) && str.length() >= el_s.start + el_s.size)
                     str = str.substr(el_s.start, el_s.size);
             }
         }
