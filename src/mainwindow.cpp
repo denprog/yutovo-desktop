@@ -918,9 +918,10 @@ void MainWindow::OpenLibraryFile()
 
 void MainWindow::OpenFile(QString file_name)
 {
-    if (!std::filesystem::exists(file_name.toUtf8().data()))
+    if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
         return;
-    file_name = QString::fromWCharArray(std::filesystem::canonical(std::filesystem::absolute(file_name.toUtf8().data())).wstring().c_str());
+    auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
+    file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
 
     dialog_file_name = file_name;
 
@@ -2642,6 +2643,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                 if (entry.empty())
                     continue;
                 QAction* action = new QAction(QString::fromWCharArray(entry.stem().wstring().c_str()), this);
+                //action->setData(QString(ToBasicString(std::filesystem::absolute(entry).wstring()).c_str()));
                 action->setData(QString(QString::fromWCharArray(std::filesystem::absolute(entry).wstring().c_str())));
                 connect(action, &QAction::triggered, this, &MainWindow::OpenLibraryFile);
                 menu->addAction(action);
