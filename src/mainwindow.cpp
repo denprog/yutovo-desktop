@@ -918,10 +918,16 @@ void MainWindow::OpenLibraryFile()
 
 void MainWindow::OpenFile(QString file_name)
 {
+#ifdef _WIN32
     if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
         return;
     auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
     file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
+#else
+    if (!std::filesystem::exists(file_name.toUtf8().data()))
+        return;
+    file_name = QString::fromWCharArray(std::filesystem::canonical(std::filesystem::absolute(file_name.toUtf8().data())).wstring().c_str());
+#endif
 
     dialog_file_name = file_name;
 
