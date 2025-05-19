@@ -25,7 +25,7 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}";
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\yutovo_desktop.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\*.qm"; DestDir: "{app}"; Flags: ignoreversion
-Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs
+Source: "c:\Lang\Programs\yutovo\yutovo_server\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs
 Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
 Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 
