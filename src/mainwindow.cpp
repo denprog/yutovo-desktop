@@ -877,13 +877,6 @@ void MainWindow::SetFocus()
 void MainWindow::New()
 {
     AddEditorTab("(No name)");
-
-    auto document = GetCurrentDocument();
-    if (!document)
-        return;
-    document->New();
-
-    UpdateLocaleMessage();
 }
 
 void MainWindow::Open()
