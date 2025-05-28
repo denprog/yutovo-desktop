@@ -44,6 +44,10 @@
         <translation>Превышено время ожидания</translation>
     </message>
     <message>
+        <source>No result</source>
+        <translation>Нет результата</translation>
+    </message>
+    <message>
         <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
