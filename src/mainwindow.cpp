@@ -1375,6 +1375,7 @@ bool MainWindow::OnCloseEditorTab(int index)
         }
     }
 
+    int c = ui->editor_tabs->currentIndex();
     QWidget* tab_item = ui->editor_tabs->widget(index);
     if (tab_item)
     {
@@ -1383,7 +1384,8 @@ bool MainWindow::OnCloseEditorTab(int index)
     }
     SetFocus();
 
-    UpdateCaption();
+    if (index == c)
+        UpdateCaption();
     return true;
 }
 
@@ -2084,7 +2086,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
     UpdateRecentFiles(dialog_file_name);
 
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    DocumentWindow* w = (close_tab_after_save != -1 ? (DocumentWindow*)ui->editor_tabs->widget(close_tab_after_save) : 
+        (DocumentWindow*)ui->editor_tabs->currentWidget());
     if (w)
         w->path = dialog_file_name;
 
@@ -2106,8 +2109,6 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         Close();
         close();
     }
-
-    UpdateCaption();
 }
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
@@ -2682,7 +2683,7 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 
 void MainWindow::UpdateCaption(int tab, bool update_title)
 {
-    DocumentWindow* w = tab == -1 ? (DocumentWindow*)ui->editor_tabs->currentWidget() : (DocumentWindow*)ui->editor_tabs->widget(tab);
+    DocumentWindow* w = (tab == -1 ? (DocumentWindow*)ui->editor_tabs->currentWidget() : (DocumentWindow*)ui->editor_tabs->widget(tab));
     if (!w)
     {
         setWindowTitle(tr("Yutovo"));
