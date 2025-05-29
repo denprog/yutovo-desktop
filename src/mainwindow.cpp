@@ -2109,6 +2109,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         Close();
         close();
     }
+
+    UpdateCaption();
 }
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
