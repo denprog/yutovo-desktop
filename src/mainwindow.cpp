@@ -913,12 +913,18 @@ void MainWindow::OpenFile(QString file_name)
 {
 #ifdef _WIN32
     if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name);
         return;
+    }
     auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
     file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
 #else
     if (!std::filesystem::exists(file_name.toUtf8().data()))
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("File not found") + QString(": ") + file_name);
         return;
+    }
     file_name = QString::fromWCharArray(std::filesystem::canonical(std::filesystem::absolute(file_name.toUtf8().data())).wstring().c_str());
 #endif
 

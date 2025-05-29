@@ -898,6 +898,10 @@
         <translation>Ошибка загрузки документа</translation>
     </message>
     <message>
+        <source>File not found</source>
+        <translation>Файл не найден</translation>
+    </message>
+    <message>
         <source>rad</source>
         <translation>рад</translation>
     </message>
