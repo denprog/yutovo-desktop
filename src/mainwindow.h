@@ -32,6 +32,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void Start();
+    
 protected:
     void contextMenuEvent(QContextMenuEvent* event) override;
     void changeEvent(QEvent* event) override;

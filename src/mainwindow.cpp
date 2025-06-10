@@ -50,7 +50,18 @@ MainWindow::MainWindow(QWidget* parent) :
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
     qRegisterMetaType<ElementId>("ElementId");
     qRegisterMetaType<std::u32string>("std::u32string");
+}
 
+MainWindow::~MainWindow()
+{
+    WriteSettings();
+    delete ui;
+    if (logger)
+        logger->Info("Desktop stop");
+}
+
+void MainWindow::Start()
+{
     bool first_run = false;
     if (!settings.childGroups().contains("MainWindow"))
         first_run = true;
@@ -95,13 +106,6 @@ MainWindow::MainWindow(QWidget* parent) :
     }
 
     logger->Info("Desktop start");
-}
-
-MainWindow::~MainWindow()
-{
-    WriteSettings();
-    delete ui;
-    logger->Info("Desktop stop");
 }
 
 void MainWindow::contextMenuEvent(QContextMenuEvent* event)
@@ -2234,6 +2238,8 @@ void MainWindow::FillSizes(const QFont& font)
 
 void MainWindow::WriteSettings()
 {
+    if (!standard_toolbar_action)
+        return;
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/standard_toolbar", standard_toolbar_action->isChecked());
     settings.setValue("MainWindow/format_toolbar", format_toolbar_action->isChecked());
@@ -2376,7 +2382,25 @@ void MainWindow::ReadSettings()
     p += "log";
     config.logs_path = settings.value("path", p.c_str()).toString().toUtf8().data();
 #else
-    config.logs_path = settings.value("path", "./log").toString().toUtf8().data();
+    std::string p;
+    QStringList args = qApp->arguments();
+    for (int i = 0; i < args.length(); i++)
+    {
+        QString s = args.at(i);
+        if (s.startsWith("--logs-path"))
+        {
+            QStringList pair = s.split("=");
+            if (pair.length() == 2)
+            {
+                p = pair[1].toUtf8().data();
+                break;
+            }
+        }
+    }
+    if (!p.empty())
+        config.logs_path = p;
+    else
+        config.logs_path = settings.value("path", "./log").toString().toUtf8().data();
 #endif
     settings.endGroup();
 
