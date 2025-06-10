@@ -92,7 +92,7 @@ add_executable(${PROJECT_NAME} WIN32
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 
 if(NOT WIN32)
-    target_compile_options(${PROJECT_NAME} PRIVATE -fPIC)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fPIC -static-libstdc++)
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -105,14 +105,19 @@ if(REMOTE_SOLVER)
         yutovo_editor
         yutovo_logger
         Qt5::Widgets
+		libboost_iostreams.a
+        z
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
+        libstdc++.a
         yutovo_editor
         yutovo_logger
         yutovo_calculator
         yutovo_solver
         Qt5::Widgets
+		libboost_iostreams.a
+        z
     )
 endif()
 
