@@ -94,6 +94,7 @@ public:
 private:
     void FillCacheThread(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes);
     int GetCachedSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline);
+    QFont GetFont(const StringFormatPtr format) const;
 
 signals:
     void DocumentUpdated(const Rect rect);

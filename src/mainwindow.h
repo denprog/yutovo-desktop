@@ -125,6 +125,8 @@ private slots:
     void OnItalic();
     void OnUnderline();
     void OnStrikethrough();
+    void OnTextSubscript();
+    void OnTextSuperscript();
     void OnTextColor();
     void OnBgTextColor();
     void OnLink();
@@ -274,6 +276,8 @@ private:
     QAction* italic_action = nullptr;
     QAction* underline_action = nullptr;
     QAction* strikethrough_action = nullptr;
+    QAction* subscript_action = nullptr;
+    QAction* superscript_action = nullptr;
 
     QAction* text_color_action = nullptr;
     QAction* bg_text_color_action = nullptr;

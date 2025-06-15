@@ -36,7 +36,7 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     if (!p.begin(surface.get()))
         return;
     
-    QFont font(format->family.c_str(), format->size);
+    QFont font = GetFont(format);
     font.setItalic(format->italic);
     font.setBold(format->bold);
     font.setUnderline(format->underline);
@@ -277,7 +277,7 @@ void QtWindow::RestoreRect()
 
 Size QtWindow::GetTextSize(const std::u32string& text, const StringFormatPtr format)
 {
-    QFont font(format->family.c_str(), format->size);
+    QFont font = GetFont(format);
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
@@ -291,7 +291,7 @@ Size QtWindow::GetTextSize(const std::u32string& text, const StringFormatPtr for
 
 int QtWindow::GetCharPos(const std::u32string& text, const StringFormatPtr format, int pos)
 {
-    QFont font(format->family.c_str(), format->size);
+    QFont font = GetFont(format);
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
@@ -307,13 +307,18 @@ int QtWindow::GetCharPos(const std::u32string& text, const StringFormatPtr forma
 
 int QtWindow::GetFontAscent(const StringFormatPtr format)
 {
-    QFont font(format->family.c_str(), format->size);
+    QFont font = GetFont(format);
     font.setBold(format->bold);
     font.setItalic(format->italic);
     font.setUnderline(format->underline);
     font.setStrikeOut(format->strikethrough);
     QFontMetrics m(font);
-    return m.ascent();
+    int r = m.ascent();
+    if (format->subscript)
+        r -= format->size / 3;
+    else if (format->superscript)
+        r = format->size + format->size / 3;
+    return r;
 }
 
 Size QtWindow::GetImageSize(const std::vector<unsigned char>& image)
@@ -664,4 +669,12 @@ int QtWindow::GetCachedSize(const char32_t symbol, const int height, const std::
     }
     size.Set(s.width(), s.height());
     return font_size - 1;
+}
+
+QFont QtWindow::GetFont(const StringFormatPtr format) const
+{
+    int size = format->size;
+    if ((format->subscript || format->superscript) && size > 2)
+        size /= 2;
+    return QFont(format->family.c_str(), size);
 }

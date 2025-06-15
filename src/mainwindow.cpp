@@ -436,6 +436,18 @@ void MainWindow::CreateActions()
     strikethrough_action->setStatusTip(tr("Strikethrough font"));
     format_toolbar->addAction(strikethrough_action);
 
+    subscript_action = new QAction(QIcon(":/icons/images/format/subscript.png"), tr("Subscript"), this);
+    connect(subscript_action, &QAction::triggered, this, &MainWindow::OnTextSubscript);
+    subscript_action->setCheckable(true);
+    subscript_action->setStatusTip(tr("Subscript"));
+    format_toolbar->addAction(subscript_action);
+
+    superscript_action = new QAction(QIcon(":/icons/images/format/superscript.png"), tr("Superscript"), this);
+    connect(superscript_action, &QAction::triggered, this, &MainWindow::OnTextSuperscript);
+    superscript_action->setCheckable(true);
+    superscript_action->setStatusTip(tr("Superscript"));
+    format_toolbar->addAction(superscript_action);
+
     text_color_action = new QAction(QIcon(":/icons/images/format/text_color.png"), tr("Text color"), this);
     connect(text_color_action, &QAction::triggered, this, &MainWindow::OnTextColor);
     text_color_action->setStatusTip(tr("Text color"));
@@ -1569,6 +1581,26 @@ void MainWindow::OnStrikethrough()
         document->SetStrikethrough(strikethrough_action->isChecked());
 }
 
+void MainWindow::OnTextSubscript()
+{
+    superscript_action->setChecked(false);
+    if (block_format_slots)
+        return;
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetSubscript(subscript_action->isChecked());
+}
+
+void MainWindow::OnTextSuperscript()
+{
+    subscript_action->setChecked(false);
+    if (block_format_slots)
+        return;
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetSuperscript(superscript_action->isChecked());
+}
+
 void MainWindow::OnTextColor()
 {
     QColorDialog d(QColor::fromRgba(string_format.text_color.ToInt()), this);
@@ -2007,6 +2039,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     italic_action->setEnabled(true);
     underline_action->setEnabled(true);
     strikethrough_action->setEnabled(true);
+    subscript_action->setEnabled(true);
+    superscript_action->setEnabled(true);
     text_color_action->setEnabled(true);
     bg_text_color_action->setEnabled(true);
 
@@ -2019,6 +2053,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
         italic_action->setEnabled(false);
         underline_action->setEnabled(false);
         strikethrough_action->setEnabled(false);
+        subscript_action->setEnabled(false);
+        superscript_action->setEnabled(false);
         text_color_action->setEnabled(false);
         bg_text_color_action->setEnabled(false);
     }
@@ -2060,6 +2096,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     italic_action->setChecked(window.string_format.italic);
     underline_action->setChecked(window.string_format.underline);
     strikethrough_action->setChecked(window.string_format.strikethrough);
+    subscript_action->setChecked(window.string_format.subscript);
+    superscript_action->setChecked(window.string_format.superscript);
     block_format_slots = false;
 
     undo_action->setEnabled(window.can_undo);

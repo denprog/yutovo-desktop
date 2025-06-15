@@ -694,6 +694,10 @@
         <translation>Нижний индекс</translation>
     </message>
     <message>
+        <source>Superscript</source>
+        <translation>Верхний индекс</translation>
+    </message>
+    <message>
         <source>Sum</source>
         <translation>Сумма</translation>
     </message>
