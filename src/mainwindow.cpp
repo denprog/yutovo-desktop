@@ -2164,7 +2164,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
     auto it = loading_files.find(task_id);
-    assert(it != loading_files.end());
+    if (it == loading_files.end())
+        return;
     int tab = it->second;
 
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(tab);

@@ -533,6 +533,13 @@ void QtWindow::OnLoadResult(const uint task_id, IOResult result, const int docum
     emit LoadResult(task_id, result);
 }
 
+void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id)
+{
+    QtWindowPtr w(new QtWindow(0, 0, document->config));
+    document->LoadInclude(file_name, w.get());
+    include_windows.push_back(w);
+}
+
 void QtWindow::OnCopyResult(CopyResult result)
 {
     emit ClipboardCopyResult(result);

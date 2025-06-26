@@ -940,6 +940,10 @@
         <source>Result</source>
         <translation>Результат</translation>
     </message>
+    <message>
+        <source>Include documents</source>
+        <translation>Подключенные документы</translation>
+    </message>
 </context>
 <context>
     <name>ResultSettingsForm</name>
