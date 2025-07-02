@@ -121,7 +121,13 @@ void MainWindow::changeEvent(QEvent* event)
     {
         ui->retranslateUi(this);
         if (link_label)
-            link_label->setText(tr("yutovo_web"));
+        {
+#ifdef _WIN32
+            link_label->setText(tr("yutovo_web_windows"));
+#else
+            link_label->setText(tr("yutovo_web_linux"));
+#endif
+        }
         SetupGui();
         UpdateRecentFiles();
     }
@@ -570,7 +576,11 @@ void MainWindow::CreateActions()
     {
         QHBoxLayout* layout = new QHBoxLayout();
         link_label = new QLabel();
-        link_label->setText(tr("yutovo_web"));
+#ifdef _WIN32
+        link_label->setText(tr("yutovo_web_windows"));
+#else
+        link_label->setText(tr("yutovo_web_linux"));
+#endif
         link_label->setTextFormat(Qt::RichText);
         link_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
         link_label->setOpenExternalLinks(true);

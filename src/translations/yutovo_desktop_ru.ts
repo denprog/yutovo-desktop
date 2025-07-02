@@ -630,8 +630,12 @@
         <translation>&amp;О программе</translation>
     </message>
     <message>
-        <source>yutovo_web</source>
-        <translation>&lt;a href="https://yutovo.ru/?ref=desktop"&gt;yutovo.ru&lt;/a&gt;</translation>
+        <source>yutovo_web_linux</source>
+        <translation>&lt;a href="https://yutovo.ru/?ref=desktop_linux"&gt;Ютово онлайн&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>yutovo_web_windows</source>
+        <translation>&lt;a href="https://yutovo.ru/?ref=desktop_windows"&gt;Ютово онлайн&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>

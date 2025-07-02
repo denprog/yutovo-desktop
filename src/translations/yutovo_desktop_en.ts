@@ -48,8 +48,12 @@ You assume all responsibility and risk in relation to your use of this applicati
 <context>
     <name>MainWindow</name>
     <message>
-        <source>yutovo_web</source>
-        <translation>&lt;a href="https://yutovo.com/?ref=desktop"&gt;yutovo.com&lt;/a&gt;</translation>
+        <source>yutovo_web_linux</source>
+        <translation>&lt;a href="https://yutovo.com/?ref=desktop_linux"&gt;Yutovo online&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>yutovo_web_windows</source>
+        <translation>&lt;a href="https://yutovo.com/?ref=desktop_windows"&gt;Yutovo online&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>
