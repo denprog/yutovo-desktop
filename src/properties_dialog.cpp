@@ -33,7 +33,7 @@ void PropertiesDialog::accept()
         QListWidgetItem* item = form->includes->item(i);
         if (item->text() == "")
             continue;
-        config.include_documents.documents.emplace_back(yutovo::Config::IncludeDocument{item->text().toUtf8().data(), item->checkState() == Qt::Checked});
+        config.include_documents.documents.emplace_back(yutovo::Config::IncludeDocument{item->text().toUtf8().data()});
     }
 
     QDialog::accept();
@@ -47,7 +47,6 @@ void PropertiesDialog::IncludesItemChanged(QListWidgetItem *item)
         //add empty item
         QListWidgetItem *item = new QListWidgetItem("");
         item->setFlags(item->flags() | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-        item->setCheckState(Qt::Checked);
         form->includes->addItem(item);
     }
     else if (item->text() == "" && form->includes->count() > 1 && r < form->includes->count() - 1)
@@ -85,13 +84,11 @@ void PropertiesDialog::FillIncludes()
     {
         QListWidgetItem *item = new QListWidgetItem(inc.file_name.c_str());
         item->setFlags(item->flags() | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-        item->setCheckState(inc.enabled ? Qt::Checked : Qt::Unchecked);
         form->includes->addItem(item);
     }
 
     //add empty item
     QListWidgetItem *item = new QListWidgetItem("");
     item->setFlags(item->flags() | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-    item->setCheckState(Qt::Checked);
     form->includes->addItem(item);
 }
