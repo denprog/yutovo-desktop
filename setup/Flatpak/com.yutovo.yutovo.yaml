@@ -4,7 +4,8 @@ runtime-version: '5.15-24.08'
 sdk: org.kde.Sdk
 command: run.sh
 finish-args:
-  - --socket=x11
+  - --socket=fallback-x11
+  - --socket=wayland
   - --share=ipc
   - --device=dri
 modules:
