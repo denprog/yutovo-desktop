@@ -74,9 +74,11 @@ cmake -DCMAKE_BUILD_TYPE=RelWithDebugInfo -DCMAKE_INSTALL_PREFIX=/root/yutovo/de
 make -sj16 && make install
 
 cd ../../../
+export CMAKE_PREFIX_PATH=/var/lib/flatpak/runtime/org.kde.Sdk/x86_64/5.15-24.08/6f4b6de0e4d528b689691c6c7e4ece9439b90955a1896e658953dba6f8d31d7c/files/lib/x86_64-linux-gnu/cmake/
 export PATH=$PATH:/var/lib/flatpak/runtime/org.kde.Sdk/x86_64/5.15-24.08/6f4b6de0e4d528b689691c6c7e4ece9439b90955a1896e658953dba6f8d31d7c/files/lib/x86_64-linux-gnu/
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/var/lib/flatpak/runtime/org.kde.Sdk/x86_64/5.15-24.08/6f4b6de0e4d528b689691c6c7e4ece9439b90955a1896e658953dba6f8d31d7c/files/lib/x86_64-linux-gnu/
 git clone http://192.168.1.227:3000/dgordenin/yutovo_desktop
 cd yutovo_desktop/
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=RelWithDebugInfo -DCMAKE_INSTALL_PREFIX=/root/yutovo/deploy/ ..
+make -sj16 && make install
