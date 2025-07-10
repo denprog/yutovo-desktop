@@ -1,8 +1,8 @@
 #!/bin/sh
 
-rm -rf yutovo-bin-1.0.3
-mkdir yutovo-bin-1.0.3
-cd yutovo-bin-1.0.3
+rm -rf yutovo-bin-1.1.1
+mkdir yutovo-bin-1.1.1
+cd yutovo-bin-1.1.1
 cp ../docker_build/build/src/yutovo_desktop .
 cp -r ../../../../yutovo_server/library .
 cp ../../../src/translations/*.qm .
@@ -12,4 +12,4 @@ cp ../com.yutovo.yutovo.metainfo.xml .
 cp ../run.sh .
 
 cd ..
-tar -czvf yutovo-bin-1.0.3.tar.gz yutovo-bin-1.0.3/*
+tar -czvf yutovo-bin-1.1.1.tar.gz yutovo-bin-1.1.1/*
