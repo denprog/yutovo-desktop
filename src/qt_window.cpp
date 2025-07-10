@@ -6,6 +6,7 @@
 #include <QCoreApplication>
 #include <QApplication>
 #include <yutovo_editor/document.h>
+#include "mainwindow.h"
 
 //QtWindow
 
@@ -538,7 +539,10 @@ void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
     QtWindowPtr w(new QtWindow(0, 0, document->config));
     std::string f = file_name;
     if (file_name.rfind("/", 0) == 0)
-        f = std::string("./library/") + (document->config.language == yutovo_calculator::Language::English ? "en" : "ru") + file_name;
+    {
+        f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + 
+            (document->config.language == yutovo_calculator::Language::English ? "en" : "ru") + file_name;
+    }
     document->LoadInclude(f, w.get());
     include_windows.push_back(w);
 }

@@ -107,9 +107,9 @@ void MainWindow::Start(QString filename)
     {
         //it is the first run - open the hello document
         if (config.language == yutovo_calculator::Language::Russian)
-            OpenFile("./library/ru/Другое/Первая страница.yut");
+            OpenFile(GetLibraryDir() + "ru/Другое/Первая страница.yut");
         else
-            OpenFile("./library/en/Others/First page.yut");
+            OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
 
     logger->Info("Desktop start");
@@ -2738,7 +2738,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
     
     library_menu->clear();
 
-    auto p = std::string("./library/") + (config.language == yutovo_calculator::Language::English ? "en" : "ru");
+    auto p = std::string(GetLibraryDir().toUtf8().data()) + (config.language == yutovo_calculator::Language::English ? "en" : "ru");
     if (!std::filesystem::exists(p))
         return;
     
@@ -2749,16 +2749,16 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 {
     if (language == yutovo_calculator::Language::Russian)
     {
-        if (!desktop_translator.load("yutovo_desktop_ru"))
+        if (!desktop_translator.load("yutovo_desktop_ru", GetTranslationDir("yutovo_desktop_ru")))
             logger->Error("Error loading translation: yutovo_desktop_ru");
-        if (!editor_translator.load("yutovo_editor_ru"))
+        if (!editor_translator.load("yutovo_editor_ru", GetTranslationDir("yutovo_editor_ru")))
             logger->Error("Error loading translation: yutovo_editor_ru");
     }
     else if (language == yutovo_calculator::Language::English)
     {
-        if (!desktop_translator.load("yutovo_desktop_en"))
+        if (!desktop_translator.load("yutovo_desktop_en", GetTranslationDir("yutovo_desktop_en")))
             logger->Error("Error loading translation: yutovo_desktop_en");
-        if (!editor_translator.load("yutovo_editor_en"))
+        if (!editor_translator.load("yutovo_editor_en", GetTranslationDir("yutovo_editor_en")))
             logger->Error("Error loading translation: yutovo_editor_en");
     }
 
@@ -2810,3 +2810,18 @@ void MainWindow::RestartService()
     service->start("./yutovo_serviced");
 }
 #endif
+
+QString MainWindow::GetLibraryDir()
+{
+    if (std::filesystem::exists("./library/"))
+        return "./library/";
+    QString p = QCoreApplication::applicationDirPath();
+    return p + "/library/";
+}
+
+QString MainWindow::GetTranslationDir(QString filename)
+{
+    if (std::filesystem::exists(filename.toUtf8().data()))
+        return "./";
+    return QCoreApplication::applicationDirPath();
+}

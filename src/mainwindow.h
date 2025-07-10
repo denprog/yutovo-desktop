@@ -220,6 +220,10 @@ private:
     void RestartService();
 #endif
 
+public:
+    static QString GetLibraryDir();
+    static QString GetTranslationDir(QString filename);
+
 private:
     friend class DocumentWindow;
 
