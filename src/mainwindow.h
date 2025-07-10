@@ -32,7 +32,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void Start();
+    void Start(QString filename = "");
     
 protected:
     void contextMenuEvent(QContextMenuEvent* event) override;

@@ -60,7 +60,7 @@ MainWindow::~MainWindow()
         logger->Info("Desktop stop");
 }
 
-void MainWindow::Start()
+void MainWindow::Start(QString filename)
 {
     bool first_run = false;
     if (!settings.childGroups().contains("MainWindow"))
@@ -84,17 +84,24 @@ void MainWindow::Start()
 
     UpdateRecentFiles();
 
-    settings.beginGroup("Documents");
-    if (settings.value("load_last_documents").toBool())
+    if (filename.isEmpty())
     {
-        auto list = settings.value("last_documents").toStringList();
-        for (auto it = list.begin(); it != list.end(); ++it)
+        settings.beginGroup("Documents");
+        if (settings.value("load_last_documents").toBool())
         {
-            if (*it != "")
-                OpenFile(*it);
+            auto list = settings.value("last_documents").toStringList();
+            for (auto it = list.begin(); it != list.end(); ++it)
+            {
+                if (*it != "")
+                    OpenFile(*it);
+            }
         }
+        settings.endGroup();
     }
-    settings.endGroup();
+    else
+    {
+        OpenFile(filename.toUtf8().data());
+    }
 
     if (first_run)
     {
