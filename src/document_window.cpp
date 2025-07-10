@@ -420,7 +420,7 @@ void DocumentWindow::OnHorizontalValueChanged(int value)
 
 void DocumentWindow::OnWheelVertical(const int value)
 {
-    vertical_scroll->setSliderPosition(vertical_scroll->sliderPosition() - value);
+    vertical_scroll->setSliderPosition(vertical_scroll->sliderPosition() - value * 2);
 }
 
 void DocumentWindow::OnWheelHorizontal(const int value)
