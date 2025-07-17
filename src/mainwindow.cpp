@@ -944,22 +944,33 @@ void MainWindow::OpenLibraryFile()
 
 void MainWindow::OpenFile(QString file_name)
 {
+    try
+    {
 #ifdef _WIN32
-    if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
-    {
-        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name);
-        return;
-    }
-    auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
-    file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
+        if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
+        {
+            QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name);
+            return;
+        }
+        auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
+        file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
 #else
-    if (!std::filesystem::exists(file_name.toUtf8().data()))
+        if (!std::filesystem::exists(file_name.toUtf8().data()))
+        {
+            QMessageBox::critical(this, tr("Yutovo"), tr("File not found") + QString(": ") + file_name);
+            return;
+        }
+        std::filesystem::path path = std::filesystem::u8path(file_name.toUtf8().constData());
+        std::filesystem::path abs_path = std::filesystem::canonical(std::filesystem::absolute(path));
+        file_name = QString::fromStdString(abs_path.u8string());
+#endif
+    }
+    catch (const std::filesystem::filesystem_error& ex)
     {
-        QMessageBox::critical(this, tr("Yutovo"), tr("File not found") + QString(": ") + file_name);
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name + 
+            QString("\n") + ex.what());
         return;
     }
-    file_name = QString::fromWCharArray(std::filesystem::canonical(std::filesystem::absolute(file_name.toUtf8().data())).wstring().c_str());
-#endif
 
     dialog_file_name = file_name;
 

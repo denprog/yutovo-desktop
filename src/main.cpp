@@ -1,4 +1,4 @@
-#include <QApplication>
+﻿#include <QApplication>
 #include <QFileInfo>
 #include "mainwindow.h"
 
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     }
     catch (std::exception& ex)
     {
-        printf("Error stating: %s", ex.what());
+        printf("Error starting: %s\n", ex.what());
         return 1;
     }
     w.show();
