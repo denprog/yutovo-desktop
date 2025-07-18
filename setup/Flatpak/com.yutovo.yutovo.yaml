@@ -9,8 +9,6 @@ finish-args:
   - --share=ipc
   - --device=dri
   - --filesystem=xdg-documents
-  - --talk-name=org.freedesktop.portal.*
-  - --talk-name=org.freedesktop.FileChooser  
 modules:
   - name: yutovo
     buildsystem: simple
@@ -23,4 +21,4 @@ modules:
       - type: archive
         url: https://yutovo.com/yutovo-bin-1.1.2.tar.gz
         dest: bin/
-        sha256: 73f334abc6914854e4da240c5125e50c7579d0a49d0ed8042ba136d6b9286f44
+        sha256: ea511f8e088dad0c036298450ce10389dd3bb4f986825d70714606707e156ec1
