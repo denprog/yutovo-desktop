@@ -108,7 +108,7 @@ if(REMOTE_SOLVER)
 		libboost_iostreams.a
         z
     )
-else()
+elseif(NOT WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         libstdc++.a
         yutovo_editor
@@ -118,6 +118,14 @@ else()
         Qt5::Widgets
 		libboost_iostreams.a
         z
+    )
+else()
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        yutovo_editor
+        yutovo_logger
+        yutovo_calculator
+        yutovo_solver
+        Qt5::Widgets
     )
 endif()
 
