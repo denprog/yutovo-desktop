@@ -1,14 +1,14 @@
 [Setup]
 AppId={{bd041914-8896-43bc-b496-7aeb90887fff}}
 AppName=Yutovo
-AppVerName=Yutovo 1.0.2
+AppVerName=Yutovo 1.1.2
 AppPublisher=yutovo.com
 AppPublisherURL=http://www.yutovo.com/
 AppSupportURL=http://www.yutovo.com/
 AppUpdatesURL=http://www.yutovo.com/
 DefaultDirName={commonpf}\Yutovo
 DefaultGroupName=Yutovo
-OutputBaseFilename=yutovo-desktop_1.0.2-1_win10_amd64
+OutputBaseFilename=yutovo-desktop_1.1.2-1_win10_amd64
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
@@ -22,11 +22,11 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}";
 
 [Files]
-Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\yutovo_desktop.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\*.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\*.qm"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\debug\src\RelWithDebInfo\yutovo_desktop.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\debug\src\RelWithDebInfo\*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\debug\src\RelWithDebInfo\*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo_server\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs
-Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\RelWithDebugInfo\src\RelWithDebInfo\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
+Source: "c:\Lang\Programs\yutovo\yutovo_desktop\build\debug\src\RelWithDebInfo\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
 Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 
 [Icons]

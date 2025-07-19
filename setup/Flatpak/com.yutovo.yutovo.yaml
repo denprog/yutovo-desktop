@@ -8,6 +8,7 @@ finish-args:
   - --socket=wayland
   - --share=ipc
   - --device=dri
+  - --filesystem=xdg-documents
 modules:
   - name: yutovo
     buildsystem: simple
@@ -18,6 +19,6 @@ modules:
       - install -Dm644 /app/bin/com.yutovo.yutovo.metainfo.xml -t /app/share/metainfo/
     sources:
       - type: archive
-        url: https://yutovo.com/yutovo-bin-1.1.1.tar.gz
+        url: https://yutovo.com/yutovo-bin-1.1.2.tar.gz
         dest: bin/
-        sha256: 7c135fe2aaf3f68a717941e548a863cab0e87cc31cb6fbb1d79f59cab8787b2c
+        sha256: 2af97c34816a570755336c8b8c241f22a0e8adf20a3d29afbe18d03904ec9de9
