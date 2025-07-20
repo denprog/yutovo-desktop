@@ -2758,6 +2758,9 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
 
 void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 {
+    qApp->removeTranslator(&desktop_translator);
+    qApp->removeTranslator(&editor_translator);
+    
     if (language == yutovo_calculator::Language::Russian)
     {
         if (!desktop_translator.load("yutovo_desktop_ru", GetTranslationDir("yutovo_desktop_ru")))
