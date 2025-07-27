@@ -2484,7 +2484,7 @@ void MainWindow::ReadSettings()
     settings.endGroup();
 
     settings.beginGroup("Calculator");
-    config.solve_delay = settings.value("solve_delay", 2000).toInt();
+    config.solve_delay = settings.value("solve_delay", config.solve_delay).toInt();
     config.auto_result.result_auto_advance = settings.value("result_auto_advance", true).toBool();
     QList<QVariant> v = settings.value("results_order").toList();
     size_t i = 0;
