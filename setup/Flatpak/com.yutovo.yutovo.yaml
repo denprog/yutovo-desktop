@@ -14,11 +14,15 @@ modules:
     buildsystem: simple
     build-commands:
       - cp -r bin/ /app/bin/
+      - install -Dm644 /app/bin/com.yutovo.yutovo.xml /app/share/mime/packages/com.yutovo.yutovo.xml
       - install -Dm644 /app/bin/com.yutovo.yutovo.png -t /app/share/icons/hicolor/256x256/apps/
+      - install -Dm644 /app/bin/com.yutovo.yutovo.png /app/share/icons/hicolor/256x256/mimetypes/application-x-yutovo.png
+      - install -Dm644 /app/bin/index.theme /app/share/icons/hicolor/index.theme
       - install -Dm644 /app/bin/com.yutovo.yutovo.desktop -t /app/share/applications/
       - install -Dm644 /app/bin/com.yutovo.yutovo.metainfo.xml -t /app/share/metainfo/
+      - update-mime-database /app/share/mime
     sources:
       - type: archive
-        url: https://yutovo.com/yutovo-bin-1.1.2.tar.gz
+        url: https://yutovo.com/yutovo-bin-1.1.3.tar.gz
         dest: bin/
-        sha256: 2af97c34816a570755336c8b8c241f22a0e8adf20a3d29afbe18d03904ec9de9
+        sha256: a0363b49708a6502b773db615aa6b15eabdc6f985e6574763d4ce1c9956ec5f2
