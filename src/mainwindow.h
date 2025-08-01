@@ -141,7 +141,8 @@ private slots:
     void OnSubscript();
     void OnSum();
     void OnProduct();
-    void OnFences();
+    void OnRoundBrackets();
+    void OnSquareBrackets();
     void OnRadian();
     void OnDegree();
     void OnMinute();

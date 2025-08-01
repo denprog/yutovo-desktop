@@ -702,8 +702,12 @@
         <translation>Произведение</translation>
     </message>
     <message>
-        <source>Fences</source>
-        <translation>Скобки</translation>
+        <source>Round brackets</source>
+        <translation>Круглые скобки</translation>
+    </message>
+    <message>
+        <source>Square brackets</source>
+        <translation>Квадратные скобки</translation>
     </message>
     <message>
         <source>Radian</source>

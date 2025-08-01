@@ -644,8 +644,12 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnProduct);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/fences.png"), tr("Fences"), this);
-    connect(action, &QAction::triggered, this, &MainWindow::OnFences);
+    action = new QAction(QIcon(":/icons/images/algebra/round_brackets.png"), tr("Round brackets"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnRoundBrackets);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/square_brackets.png"), tr("Square brackets"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSquareBrackets);
     algebra_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
@@ -1783,11 +1787,18 @@ void MainWindow::OnLg()
         document->InsertFunction("lg", true);
 }
 
-void MainWindow::OnFences()
+void MainWindow::OnRoundBrackets()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertFences(true);
+        document->InsertRoundBrackets(true);
+}
+
+void MainWindow::OnSquareBrackets()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertSquareBrackets(true);
 }
 
 void MainWindow::OnRadian()

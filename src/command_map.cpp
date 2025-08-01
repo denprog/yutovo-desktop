@@ -86,8 +86,14 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
         CommandContext::Formula);
     Add(QKeySequence(""), "\\eq_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::COMPLEX, true)), 
         CommandContext::Formula);
-    Add(QKeySequence(""), '(', "\\open_fence", std::function<void ()>(std::bind(&Document::InsertOpenFence, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence(""), ')', "\\close_fence", std::function<void ()>(std::bind(&Document::InsertCloseFence, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence(""), '(', "\\open_round_bracket", std::function<void ()>(std::bind(&Document::InsertOpenRoundBracket, document.get(), true)), 
+        CommandContext::Formula);
+    Add(QKeySequence(""), ')', "\\close_round_bracket", std::function<void ()>(std::bind(&Document::InsertCloseRoundBracket, document.get(), true)), 
+        CommandContext::Formula);
+    Add(QKeySequence(""), '[', "\\open_square_bracket", std::function<void ()>(std::bind(&Document::InsertOpenSquareBracket, document.get(), true)), 
+        CommandContext::Formula);
+    Add(QKeySequence(""), ']', "\\close_square_bracket", std::function<void ()>(std::bind(&Document::InsertCloseSquareBracket, document.get(), true)), 
+        CommandContext::Formula);
     Add(QKeySequence(""), ':', "\\assign", std::function<void ()>(std::bind(&Document::InsertAssignment, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '~', "\\unit", std::function<void ()>(std::bind(static_cast<uint(Document::*)(bool)>(&Document::InsertUnit), 
         document.get(), true)), CommandContext::Formula);

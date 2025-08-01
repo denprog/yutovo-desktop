@@ -657,7 +657,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="505"/>
-        <source>Fences</source>
+        <source>Round brackets</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
