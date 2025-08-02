@@ -118,6 +118,10 @@
         <source>Delay before solving</source>
         <translation>Задержка перед вычислением</translation>
     </message>
+    <message>
+        <source>Solving timeout</source>
+        <translation>Таймаут вычислений</translation>
+    </message>
 </context>
 <context>
     <name>DocumentWindow</name>
