@@ -1060,6 +1060,10 @@
         <translation>Комплексные</translation>
     </message>
     <message>
+        <source>Array of real</source>
+        <translation>Массив вещественных</translation>
+    </message>
+    <message>
         <source>Arithmetical</source>
         <translation>Арифметическая</translation>
     </message>
