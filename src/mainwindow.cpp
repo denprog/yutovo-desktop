@@ -399,8 +399,8 @@ void MainWindow::CreateActions()
     format_toolbar = addToolBar(tr("Format"));
     format_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    action = new QAction(QIcon(":/icons/images/format/code.png"), tr("&Code"), this);
-    action->setStatusTip(tr("Insert code"));
+    action = new QAction(QIcon(":/icons/images/format/code.png"), tr("Insert calculator"), this);
+    action->setStatusTip(tr("Insert calculator"));
     connect(action, &QAction::triggered, this, &MainWindow::OnInsertCode);
     format_toolbar->addAction(action);
 

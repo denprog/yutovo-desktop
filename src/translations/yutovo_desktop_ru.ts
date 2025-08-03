@@ -474,12 +474,8 @@
         <translation>Пересчитать весь документ</translation>
     </message>
     <message>
-        <source>&amp;Code</source>
-        <translation>&amp;Код</translation>
-    </message>
-    <message>
-        <source>Insert code</source>
-        <translation>Вставить код</translation>
+        <source>Insert calculator</source>
+        <translation>Вставить калькулятор</translation>
     </message>
     <message>
         <source>Bold</source>

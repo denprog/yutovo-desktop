@@ -493,7 +493,7 @@
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="330"/>
-        <source>Insert code</source>
+        <source>Insert calculator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
