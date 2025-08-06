@@ -331,6 +331,39 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             result_grad->setChecked(result_angle_measure == AngleMeasure::Grad);
         };
 
+    auto add_array_real_menu = 
+        [&](ElementId id)
+        {
+            AngleMeasure default_angle_measure = document->GetDefaultAngleMeasure(id);
+            AngleMeasure result_angle_measure = document->GetResultAngleMeasure(id);
+
+            menu.addSeparator();
+
+            menu.addAction(set_precision);
+            menu.addAction(set_exp);
+
+            if (document->HasUnit(id))
+                menu.addAction(set_unit);
+
+            QMenu* angle_measure_menu = menu.addMenu(tr("Default angle measure"));
+            angle_measure_menu->addAction(default_radian);
+            angle_measure_menu->addAction(default_degree);
+            angle_measure_menu->addAction(default_grad);
+
+            default_radian->setChecked(default_angle_measure == AngleMeasure::Radian);
+            default_degree->setChecked(default_angle_measure == AngleMeasure::Degree);
+            default_grad->setChecked(default_angle_measure == AngleMeasure::Grad);
+
+            angle_measure_menu = menu.addMenu(tr("Result angle measure"));
+            angle_measure_menu->addAction(result_radian);
+            angle_measure_menu->addAction(result_degree);
+            angle_measure_menu->addAction(result_grad);
+
+            result_radian->setChecked(result_angle_measure == AngleMeasure::Radian);
+            result_degree->setChecked(result_angle_measure == AngleMeasure::Degree);
+            result_grad->setChecked(result_angle_measure == AngleMeasure::Grad);
+        };
+
     add_copy_paste_menu();
     add_link_menu();
 
@@ -353,6 +386,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             break;
         case ResultType::COMPLEX:
             add_complex_menu(id);
+            break;
+        case ResultType::ARRAY_REAL:
+            add_array_real_menu(id);
             break;
         }
     }
@@ -391,6 +427,14 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                         add_present_as_menu();
                         present_as_complex->setChecked(true);
                         add_complex_menu(id);
+                    }
+                    else
+                    {
+                        id = document->FindCurrentParentByType(ElementType::ARRAY_REAL_RESULT);
+                        if (!id.empty())
+                        {
+                            add_array_real_menu(id);
+                        }
                     }
                 }
             }
