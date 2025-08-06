@@ -217,6 +217,8 @@ private:
 
     void UpdateLocaleMessage();
 
+    void EnableButtons(bool enable);
+
 #ifdef REMOTE_SOLVER
     void RestartService();
 #endif
@@ -261,6 +263,8 @@ private:
 
     StringFormat string_format;
 
+    QAction* save_action = nullptr;
+
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;
 
@@ -269,6 +273,8 @@ private:
     QAction* cut_action = nullptr;
 
     QAction* properties_action = nullptr;
+
+    QAction* calculator_action = nullptr;
 
     QAction* recalculate_action = nullptr;
 

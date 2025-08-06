@@ -269,6 +269,8 @@ void MainWindow::AddEditorTab(const QString name)
     FillParagraphFormats();
 
     UpdateCaption();
+
+    EnableButtons(true);
 }
 
 DocumentPtr MainWindow::GetCurrentDocument()
@@ -304,12 +306,12 @@ void MainWindow::CreateActions()
 
     recent_files_menu = file_menu->addMenu(tr("&Open recent file"));
 
-    action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
-    action->setShortcuts(QKeySequence::Save);
-    action->setStatusTip(tr("Save the document to disk"));
-    connect(action, &QAction::triggered, this, &MainWindow::Save);
-    file_menu->addAction(action);
-    standard_toolbar->addAction(action);
+    save_action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
+    save_action->setShortcuts(QKeySequence::Save);
+    save_action->setStatusTip(tr("Save the document to disk"));
+    connect(save_action, &QAction::triggered, this, &MainWindow::Save);
+    file_menu->addAction(save_action);
+    standard_toolbar->addAction(save_action);
 
     action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
     action->setStatusTip(tr("Save the document under a new name"));
@@ -399,10 +401,10 @@ void MainWindow::CreateActions()
     format_toolbar = addToolBar(tr("Format"));
     format_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    action = new QAction(QIcon(":/icons/images/format/code.png"), tr("Insert calculator"), this);
-    action->setStatusTip(tr("Insert calculator"));
-    connect(action, &QAction::triggered, this, &MainWindow::OnInsertCode);
-    format_toolbar->addAction(action);
+    calculator_action = new QAction(QIcon(":/icons/images/format/code.png"), tr("Insert calculator"), this);
+    calculator_action->setStatusTip(tr("Insert calculator"));
+    connect(calculator_action, &QAction::triggered, this, &MainWindow::OnInsertCode);
+    format_toolbar->addAction(calculator_action);
 
     format_toolbar->addSeparator();
 
@@ -2501,11 +2503,11 @@ void MainWindow::ReadSettings()
     size_t i = 0;
     for (auto r : v)
     {
-        if (i < 4)
+        if (i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]))
             config.auto_result.results_order[i++] = (ResultType)r.toInt();
     }
     auto& results_order = config.auto_result.results_order;
-    for (; i < 4; ++i)
+    for (; i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]); ++i)
     {
         if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order))
             results_order[i++] = ResultType::REAL;
@@ -2515,6 +2517,8 @@ void MainWindow::ReadSettings()
             results_order[i++] = ResultType::RATIONAL;
         if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order))
             results_order[i++] = ResultType::COMPLEX;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order))
+            results_order[i++] = ResultType::ARRAY_REAL;
     }
 
     config.real_result.precision = settings.value("real_precision", 3).toInt();
@@ -2799,6 +2803,7 @@ void MainWindow::UpdateCaption(int tab, bool update_title)
     if (!w)
     {
         setWindowTitle(tr("Yutovo"));
+        EnableButtons(false);
         return;
     }
     
@@ -2824,6 +2829,40 @@ void MainWindow::UpdateLocaleMessage()
     Config c;
     document->GetConfig(c);
     locale_status->setText(tr("Locale: ") + (c.language == yutovo_calculator::Language::English ? tr("English") : tr("Russian")));
+}
+
+void MainWindow::EnableButtons(bool enable)
+{
+    save_action->setEnabled(enable);
+    undo_action->setEnabled(enable);
+    redo_action->setEnabled(enable);
+    copy_action->setEnabled(enable);
+    paste_action->setEnabled(enable);
+    cut_action->setEnabled(enable);
+    properties_action->setEnabled(enable);
+    recalculate_action->setEnabled(enable);
+    calculator_action->setEnabled(enable);
+    align_left_action->setEnabled(enable);
+    align_right_action->setEnabled(enable);
+    align_center_action->setEnabled(enable);
+    align_justify_action->setEnabled(enable);
+    bold_action->setEnabled(enable);
+    italic_action->setEnabled(enable);
+    underline_action->setEnabled(enable);
+    strikethrough_action->setEnabled(enable);
+    subscript_action->setEnabled(enable);
+    superscript_action->setEnabled(enable);
+    text_color_action->setEnabled(enable);
+    bg_text_color_action->setEnabled(enable);
+    link_action->setEnabled(enable);
+    paragraph_format_combo->setEnabled(enable);
+    family_combo->setEnabled(enable);
+    size_combo->setEnabled(enable);
+    algebra_toolbar->setEnabled(enable);
+    trigonometry_toolbar->setEnabled(enable);
+    hyperbolic_toolbar->setEnabled(enable);
+    functions_toolbar->setEnabled(enable);
+    greek_toolbar->setEnabled(enable);
 }
 
 #ifdef REMOTE_SOLVER
