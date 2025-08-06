@@ -212,6 +212,7 @@ void MainWindow::SetupGui()
     addToolBarBreak();
     CreateFunctionsToolbar();
     CreateGreekToolbar();
+    CreateCurrenciesToolbar();
 
     CreateStatusBar();
 
@@ -229,6 +230,8 @@ void MainWindow::SetupGui()
     functions_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/greek_toolbar", false).toBool();
     greek_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/currency_toolbar", false).toBool();
+    currency_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
 
@@ -552,6 +555,12 @@ void MainWindow::CreateActions()
     connect(greek_toolbar_action, &QAction::toggled, this, &MainWindow::GreekToolbar);
     toolbars_menu->addAction(greek_toolbar_action);
 
+    currency_toolbar_action = new QAction(tr("Currencies"), this);
+    currency_toolbar_action->setCheckable(true);
+    currency_toolbar_action->setChecked(true);
+    connect(currency_toolbar_action, &QAction::toggled, this, &MainWindow::CurrencyToolbar);
+    toolbars_menu->addAction(currency_toolbar_action);
+
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
     status_bar_action->setChecked(true);
@@ -838,55 +847,87 @@ void MainWindow::CreateGreekToolbar()
     greek_toolbar = addToolBar(tr("Greek letters"));
     greek_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    AddGreekLetter(L'α');
-    AddGreekLetter(L'β');
-    AddGreekLetter(L'γ');
-    AddGreekLetter(L'δ');
-    AddGreekLetter(L'ε');
-    AddGreekLetter(L'ζ');
-    AddGreekLetter(L'η');
-    AddGreekLetter(L'θ');
-    AddGreekLetter(L'ι');
-    AddGreekLetter(L'κ');
-    AddGreekLetter(L'λ');
-    AddGreekLetter(L'μ');
-    AddGreekLetter(L'ν');
-    AddGreekLetter(L'ξ');
-    AddGreekLetter(L'ο');
-    AddGreekLetter(L'π');
-    AddGreekLetter(L'ρ');
-    AddGreekLetter(L'σ');
-    AddGreekLetter(L'τ');
-    AddGreekLetter(L'υ');
-    AddGreekLetter(L'φ');
-    AddGreekLetter(L'χ');
-    AddGreekLetter(L'ψ');
-    AddGreekLetter(L'ω');
+    auto add_greek_letter = 
+        [greek_toolbar = greek_toolbar, this](const QChar& letter)
+        {
+            QAction* action = new QAction(letter, this);
+            action->setData(letter);
+            connect(action, &QAction::triggered, this, &MainWindow::OnGreekLetter);
+            greek_toolbar->addAction(action);
+        };
 
-    AddGreekLetter(L'Α');
-    AddGreekLetter(L'Β');
-    AddGreekLetter(L'Γ');
-    AddGreekLetter(L'Δ');
-    AddGreekLetter(L'Ε');
-    AddGreekLetter(L'Ζ');
-    AddGreekLetter(L'Η');
-    AddGreekLetter(L'Θ');
-    AddGreekLetter(L'Ι');
-    AddGreekLetter(L'Κ');
-    AddGreekLetter(L'Λ');
-    AddGreekLetter(L'Μ');
-    AddGreekLetter(L'Ν');
-    AddGreekLetter(L'Ξ');
-    AddGreekLetter(L'Ο');
-    AddGreekLetter(L'Π');
-    AddGreekLetter(L'Ρ');
-    AddGreekLetter(L'Σ');
-    AddGreekLetter(L'Τ');
-    AddGreekLetter(L'Υ');
-    AddGreekLetter(L'Φ');
-    AddGreekLetter(L'Χ');
-    AddGreekLetter(L'Ψ');
-    AddGreekLetter(L'Ω');
+    add_greek_letter(L'α');
+    add_greek_letter(L'β');
+    add_greek_letter(L'γ');
+    add_greek_letter(L'δ');
+    add_greek_letter(L'ε');
+    add_greek_letter(L'ζ');
+    add_greek_letter(L'η');
+    add_greek_letter(L'θ');
+    add_greek_letter(L'ι');
+    add_greek_letter(L'κ');
+    add_greek_letter(L'λ');
+    add_greek_letter(L'μ');
+    add_greek_letter(L'ν');
+    add_greek_letter(L'ξ');
+    add_greek_letter(L'ο');
+    add_greek_letter(L'π');
+    add_greek_letter(L'ρ');
+    add_greek_letter(L'σ');
+    add_greek_letter(L'τ');
+    add_greek_letter(L'υ');
+    add_greek_letter(L'φ');
+    add_greek_letter(L'χ');
+    add_greek_letter(L'ψ');
+    add_greek_letter(L'ω');
+
+    add_greek_letter(L'Α');
+    add_greek_letter(L'Β');
+    add_greek_letter(L'Γ');
+    add_greek_letter(L'Δ');
+    add_greek_letter(L'Ε');
+    add_greek_letter(L'Ζ');
+    add_greek_letter(L'Η');
+    add_greek_letter(L'Θ');
+    add_greek_letter(L'Ι');
+    add_greek_letter(L'Κ');
+    add_greek_letter(L'Λ');
+    add_greek_letter(L'Μ');
+    add_greek_letter(L'Ν');
+    add_greek_letter(L'Ξ');
+    add_greek_letter(L'Ο');
+    add_greek_letter(L'Π');
+    add_greek_letter(L'Ρ');
+    add_greek_letter(L'Σ');
+    add_greek_letter(L'Τ');
+    add_greek_letter(L'Υ');
+    add_greek_letter(L'Φ');
+    add_greek_letter(L'Χ');
+    add_greek_letter(L'Ψ');
+    add_greek_letter(L'Ω');
+}
+
+void MainWindow::CreateCurrenciesToolbar()
+{
+    currency_toolbar = addToolBar(tr("Currencies"));
+    currency_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    auto add_currency = 
+        [currency_toolbar = currency_toolbar, this](const QString& symbol, const QString& tooltip)
+        {
+            QAction* action = new QAction(symbol, this);
+            action->setToolTip(tooltip);
+            action->setData(symbol);
+            connect(action, &QAction::triggered, this, &MainWindow::OnCurrency);
+            currency_toolbar->addAction(action);
+        };
+
+    add_currency("R$", tr("Brazilian real"));
+    add_currency("¥", tr("Chinese yuan"));
+    add_currency("€", tr("Euro"));
+    add_currency("₹", tr("Indian rupee"));
+    add_currency("₽", tr("Russian ruble"));
+    add_currency("$", tr("US dollar"));
 }
 
 void MainWindow::CreateStatusBar()
@@ -896,14 +937,6 @@ void MainWindow::CreateStatusBar()
         locale_status = new QLabel("");
         statusBar()->addWidget(locale_status);
     }
-}
-
-void MainWindow::AddGreekLetter(const QChar& letter)
-{
-    QAction* action = new QAction(letter, this);
-    action->setData(letter);
-    connect(action, &QAction::triggered, this, &MainWindow::OnGreekLetter);
-    greek_toolbar->addAction(action);
 }
 
 void MainWindow::SetFocus()
@@ -1372,6 +1405,12 @@ void MainWindow::GreekToolbar()
 {
     greek_toolbar_action->isChecked() ? greek_toolbar->show() : greek_toolbar->hide();
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
+}
+
+void MainWindow::CurrencyToolbar()
+{
+    currency_toolbar_action->isChecked() ? currency_toolbar->show() : currency_toolbar->hide();
+    settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
 }
 
 void MainWindow::StatusBar()
@@ -2065,6 +2104,16 @@ void MainWindow::OnGreekLetter()
         document->InsertString(QString(letter).toStdString(), true);
 }
 
+void MainWindow::OnCurrency()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    QVariant v = action->data();
+    QString symbol = v.toString();
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString(symbol.toStdString(), true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -2328,6 +2377,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
+    settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
@@ -2863,6 +2913,7 @@ void MainWindow::EnableButtons(bool enable)
     hyperbolic_toolbar->setEnabled(enable);
     functions_toolbar->setEnabled(enable);
     greek_toolbar->setEnabled(enable);
+    currency_toolbar->setEnabled(enable);
 }
 
 #ifdef REMOTE_SOLVER

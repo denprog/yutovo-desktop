@@ -598,6 +598,34 @@
         <translation>Греческие буквы</translation>
     </message>
     <message>
+        <source>Currencies</source>
+        <translation>Валюты</translation>
+    </message>
+    <message>
+        <source>Russian ruble</source>
+        <translation>Российский рубль</translation>
+    </message>
+    <message>
+        <source>US dollar</source>
+        <translation>Доллар США</translation>
+    </message>
+    <message>
+        <source>Euro</source>
+        <translation>Евро</translation>
+    </message>
+    <message>
+        <source>Chinese yuan</source>
+        <translation>Китайский юань</translation>
+    </message>
+    <message>
+        <source>Indian rupee</source>
+        <translation>Индийская рупия</translation>
+    </message>
+    <message>
+        <source>Brazilian real</source>
+        <translation>Бразильский реал</translation>
+    </message>
+    <message>
         <source>&amp;Status bar</source>
         <translation>Панель &amp;статуса</translation>
     </message>
