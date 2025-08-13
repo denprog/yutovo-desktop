@@ -11,11 +11,13 @@ ComputationSettingsForm::ComputationSettingsForm(yutovo::Config& _config, QWidge
     form->setupUi(this);
 
     form->solve_delay->setValue(config.solve_delay / 1000);
+    form->solve_timeout->setValue(config.service_timeout / 1000);
 }
 
 ComputationSettingsForm::~ComputationSettingsForm()
 {
     config.solve_delay = form->solve_delay->value() * 1000;
+    config.service_timeout = form->solve_timeout->value() * 1000;
     
     delete form;
 }

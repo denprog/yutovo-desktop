@@ -6,7 +6,10 @@ project(yutovo_desktop
 )
 
 #add_compile_definitions(REMOTE_SOLVER)
-add_compile_definitions(DEBUG)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions(DEBUG)
+endif()
+
 set(CMAKE_DEBUG_POSTFIX d)
 
 if(WIN32)

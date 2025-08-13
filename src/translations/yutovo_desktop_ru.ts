@@ -55,21 +55,13 @@
     </message>
     <message>
         <source>privacy_policy</source>
-        <translation>1. Информация для сбора
-Мы можем собирать личную информацию пользователя, такую как имя, адрес электронной почты, IP-адрес и другую информацию.
-2. Способы сбора информации
-Мы можем собирать информацию, когда пользователь регистрируется, отменяет регистрацию, входит или выходит из системы на сайте.
-Мы можем собирать личную информацию, когда пользователь использует любую из услуг сайта.
-3. Использование информации
-Мы можем использовать информацию для проверки вашей учетной записи на веб-сайте, отправив письмо с подтверждением на ваш зарегистрированный адрес электронной почты.
-Мы можем использовать личную информацию для ответа на запросы пользователей.
-Мы можем использовать личную информацию для улучшения услуг, веб-сайта и настольного приложения.
-Мы можем использовать личную информацию в целях безопасности для защиты пользователей и веб-сайта.
+        <translation>1. Использование информации
+Мы можем использовать информацию и (или) документы, которые пользователь предоставляет нам для ответа на запросы пользователей, для улучшения услуг, веб-сайта и настольного приложения.
 Мы можем использовать информацию, если это разрешено законом.
-4. Права пользователя на свои данные
+2. Права пользователя на свои данные
 Вы можете потребовать, чтобы мы удалили любые личные данные, которые мы храним о вас. Сюда не входят данные, которые мы обязаны хранить в административных, юридических целях или целях безопасности. Отправить запрос на удаление данных можно по почте: support@yutovo.ru.
-5. Отказ от ответственности
-Вы принимаете на себя всю ответственность и риск в отношении использования вами веб-сайта, который предоставляется «как есть» без каких-либо гарантий. Информация, доступ к которой осуществляется с помощью веб-сайта, включая, помимо прочего, весь контент и материалы, а также функции и услуги, представленные на нашем веб-сайте, все они представляются без каких-либо гарантий, включая, помимо прочего, гарантии относительно доступности, точности, полноты или полезности контента или информации, бесперебойности доступа и любые гарантии прав собственности, ненарушения прав, коммерческой пригодности или пригодности для определенной цели. Мы не гарантируем, что наш веб-сайт или его функционирование, а также содержимое и материалы предоставляемых через него услуг будут своевременными, безопасными, бесперебойными и не содержать ошибок, что дефекты будут исправлены или что наши веб-сайты или серверы, обеспечивающие доступ к нашему веб-сайту, не содержат вирусов или другие вредные компоненты. Вы используете наш веб-сайт на свой страх и риск, и вы принимаете на себя полную ответственность за любые расходы, связанные с использование вами веб-сайта. Мы не несем ответственности за любой ущерб, связанный с использованием нашего веб-сайта.
+3. Отказ от ответственности
+Вы принимаете на себя всю ответственность и риск в отношении использования вами этого приложения, который предоставляется «как есть» без каких-либо гарантий. Информация, доступ к которой осуществляется с помощью приложения, включая, помимо прочего, весь контент и материалы, а также функции и услуги, представленные в приложении, все они представляются без каких-либо гарантий, включая, помимо прочего, гарантии относительно доступности, точности, полноты или полезности контента или информации, бесперебойности доступа и любые гарантии прав собственности, ненарушения прав, коммерческой пригодности или пригодности для определенной цели. Мы не гарантируем, что наше приложение или его функционирование, а также содержимое и материалы предоставляемых через него услуг будут своевременными, безопасными, бесперебойными и не содержать ошибок, что дефекты будут исправлены, не содержат вирусов или другие вредные компоненты. Вы используете наше приложение на свой страх и риск, и вы принимаете на себя полную ответственность за любые расходы, связанные с использование вами этого приложения. Мы не несем ответственности за любой ущерб, связанный с использованием нашего веб-сайта.
         </translation>
     </message>
 </context>
@@ -125,6 +117,10 @@
     <message>
         <source>Delay before solving</source>
         <translation>Задержка перед вычислением</translation>
+    </message>
+    <message>
+        <source>Solving timeout</source>
+        <translation>Таймаут вычислений</translation>
     </message>
 </context>
 <context>
@@ -478,12 +474,8 @@
         <translation>Пересчитать весь документ</translation>
     </message>
     <message>
-        <source>&amp;Code</source>
-        <translation>&amp;Код</translation>
-    </message>
-    <message>
-        <source>Insert code</source>
-        <translation>Вставить код</translation>
+        <source>Insert calculator</source>
+        <translation>Вставить калькулятор</translation>
     </message>
     <message>
         <source>Bold</source>
@@ -606,6 +598,34 @@
         <translation>Греческие буквы</translation>
     </message>
     <message>
+        <source>Currencies</source>
+        <translation>Валюты</translation>
+    </message>
+    <message>
+        <source>Russian ruble</source>
+        <translation>Российский рубль</translation>
+    </message>
+    <message>
+        <source>US dollar</source>
+        <translation>Доллар США</translation>
+    </message>
+    <message>
+        <source>Euro</source>
+        <translation>Евро</translation>
+    </message>
+    <message>
+        <source>Chinese yuan</source>
+        <translation>Китайский юань</translation>
+    </message>
+    <message>
+        <source>Indian rupee</source>
+        <translation>Индийская рупия</translation>
+    </message>
+    <message>
+        <source>Brazilian real</source>
+        <translation>Бразильский реал</translation>
+    </message>
+    <message>
         <source>&amp;Status bar</source>
         <translation>Панель &amp;статуса</translation>
     </message>
@@ -638,8 +658,12 @@
         <translation>&amp;О программе</translation>
     </message>
     <message>
-        <source>yutovo_web</source>
-        <translation>&lt;a href="https://yutovo.ru/?ref=desktop"&gt;yutovo.ru&lt;/a&gt;</translation>
+        <source>yutovo_web_linux</source>
+        <translation>&lt;a href="https://yutovo.ru/?ref=desktop_linux"&gt;Ютово онлайн&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>yutovo_web_windows</source>
+        <translation>&lt;a href="https://yutovo.ru/?ref=desktop_windows"&gt;Ютово онлайн&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>
@@ -694,6 +718,10 @@
         <translation>Нижний индекс</translation>
     </message>
     <message>
+        <source>Superscript</source>
+        <translation>Верхний индекс</translation>
+    </message>
+    <message>
         <source>Sum</source>
         <translation>Сумма</translation>
     </message>
@@ -702,8 +730,12 @@
         <translation>Произведение</translation>
     </message>
     <message>
-        <source>Fences</source>
-        <translation>Скобки</translation>
+        <source>Round brackets</source>
+        <translation>Круглые скобки</translation>
+    </message>
+    <message>
+        <source>Square brackets</source>
+        <translation>Квадратные скобки</translation>
     </message>
     <message>
         <source>Radian</source>
@@ -936,6 +968,10 @@
         <source>Result</source>
         <translation>Результат</translation>
     </message>
+    <message>
+        <source>Include documents</source>
+        <translation>Подключенные документы</translation>
+    </message>
 </context>
 <context>
     <name>ResultSettingsForm</name>
@@ -1050,6 +1086,10 @@
     <message>
         <source>Complex</source>
         <translation>Комплексные</translation>
+    </message>
+    <message>
+        <source>Array of real</source>
+        <translation>Массив вещественных</translation>
     </message>
     <message>
         <source>Arithmetical</source>

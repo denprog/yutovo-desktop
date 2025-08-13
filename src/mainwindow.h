@@ -32,6 +32,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void Start(QString filename = "");
+    
 protected:
     void contextMenuEvent(QContextMenuEvent* event) override;
     void changeEvent(QEvent* event) override;
@@ -51,9 +53,8 @@ private:
     void CreateHyperbolicToolbar();
     void CreateFunctionsToolbar();
     void CreateGreekToolbar();
+    void CreateCurrenciesToolbar();
     void CreateStatusBar();
-
-    void AddGreekLetter(const QChar& letter);
 
     void SetFocus();
 
@@ -96,6 +97,7 @@ private:
     void HyperbolicToolbar();
     void FunctionsToolbar();
     void GreekToolbar();
+    void CurrencyToolbar();
 
     void StatusBar();
 
@@ -123,6 +125,8 @@ private slots:
     void OnItalic();
     void OnUnderline();
     void OnStrikethrough();
+    void OnTextSubscript();
+    void OnTextSuperscript();
     void OnTextColor();
     void OnBgTextColor();
     void OnLink();
@@ -137,7 +141,8 @@ private slots:
     void OnSubscript();
     void OnSum();
     void OnProduct();
-    void OnFences();
+    void OnRoundBrackets();
+    void OnSquareBrackets();
     void OnRadian();
     void OnDegree();
     void OnMinute();
@@ -183,6 +188,8 @@ private slots:
 
     void OnGreekLetter();
 
+    void OnCurrency();
+
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);
     void OnSaveResult(const uint task_id, IOResult result);
@@ -212,9 +219,15 @@ private:
 
     void UpdateLocaleMessage();
 
+    void EnableButtons(bool enable);
+
 #ifdef REMOTE_SOLVER
     void RestartService();
 #endif
+
+public:
+    static QString GetLibraryDir();
+    static QString GetTranslationDir(QString filename);
 
 private:
     friend class DocumentWindow;
@@ -252,6 +265,8 @@ private:
 
     StringFormat string_format;
 
+    QAction* save_action = nullptr;
+
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;
 
@@ -260,6 +275,8 @@ private:
     QAction* cut_action = nullptr;
 
     QAction* properties_action = nullptr;
+
+    QAction* calculator_action = nullptr;
 
     QAction* recalculate_action = nullptr;
 
@@ -272,6 +289,8 @@ private:
     QAction* italic_action = nullptr;
     QAction* underline_action = nullptr;
     QAction* strikethrough_action = nullptr;
+    QAction* subscript_action = nullptr;
+    QAction* superscript_action = nullptr;
 
     QAction* text_color_action = nullptr;
     QAction* bg_text_color_action = nullptr;
@@ -284,6 +303,7 @@ private:
     QAction* hyperbolic_toolbar_action = nullptr;
     QAction* functions_toolbar_action = nullptr;
     QAction* greek_toolbar_action = nullptr;
+    QAction* currency_toolbar_action = nullptr;
     QAction* status_bar_action = nullptr;
 
     QToolBar* standard_toolbar = nullptr;
@@ -293,6 +313,7 @@ private:
     QToolBar* hyperbolic_toolbar = nullptr;
     QToolBar* functions_toolbar = nullptr;
     QToolBar* greek_toolbar = nullptr;
+    QToolBar* currency_toolbar = nullptr;
 
     QList<QString> last_documents;
 

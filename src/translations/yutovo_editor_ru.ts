@@ -64,6 +64,14 @@
         <translation>Ожидается выражение</translation>
     </message>
     <message>
+        <source>Incorrect comparasion</source>
+        <translation>Некорректное сравнение</translation>
+    </message>
+    <message>
+        <source>Incorrect operation</source>
+        <translation>Некорректная операция</translation>
+    </message>
+    <message>
         <source>Division by zero</source>
         <translation>Деление на ноль</translation>
     </message>

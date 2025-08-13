@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.yutovo.yutovo</id>
+  
+  <name>Yutovo</name>
+  <summary>Visual calculator inside a text editor</summary>
+  
+  <metadata_license>MIT</metadata_license>
+  <project_license>LicenseRef-proprietary=https://yutovo.com/license.txt</project_license>
+
+  <developer id="com.yutovo.yutovo">
+    <name>Denis Gordenin</name>
+  </developer>
+
+  <url type="homepage">https://yutovo.com</url>
+
+  <icon type="remote">https://yutovo.com/yutovo.png</icon>
+  
+  <description>
+    <p>Yutovo is an application for solving various mathematical problems. Yutovo has a visual &quot;paper&quot; view for calculations. It uses a generally accepted mathematical syntax to display formulas. Yutovo is designed to solve everyday and engineering problems and can be used by different people and for different jobs.</p>
+    <ul>
+      <li>Graphical representation of mathematical formulas</li>
+      <li>Math WYSIWYG editor</li>
+      <li>Numbers and calculation results can have (almost) any number of digits and accuracy</li>
+      <li>Following types of numbers are supported: real, integer, fractional, complex</li>
+      <li>Measure of an angle can be changed</li>
+      <li>Commonly used mathematical functions and constants are supported</li>
+      <li>User variables and functions are supported</li>
+      <li>Units, unit systems and translating values between them are supported</li>
+      <li>Automatic recalculation of expressions</li>
+      <li>Text editor with basic features</li>
+      <li>Include documents</li>
+      <li>Syntax highlighting</li>
+      <li>Library of examples and visual documentation</li>
+      <li>Online version with the same features</li>
+    </ul>
+  </description>
+  
+  <releases>
+    <release version="1.1.3" date="2025-07-28">
+      <description>
+        <p>Release description</p>
+        <ul>
+          <li>Fixed angle measures</li>
+          <li>Optimize casting units</li>
+          <li>Added computation timeout</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.2" date="2025-07-18">
+      <description>
+        <p>Release description</p>
+        <ul>
+          <li>Fixed calculating of rational numbers</li>
+          <li>Fixed calculating of large numbers</li>
+          <li>Fixed finding suitable unit</li>
+          <li>Fixed recalculating variables</li>
+          <li>Fixed loading path in UTF-8</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.1.1" date="2025-07-07">
+      <description>
+        <p>Release description</p>
+        <ul>
+          <li>Add include documents</li>
+          <li>Add subscript and superscript for text</li>
+          <li>Add electrodynamics laws</li>
+          <li>Add electrical calculators</li>
+          <li>Add area calculators</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.3" date="2025-05-30">
+      <description>
+        <p>Release description</p>
+        <ul>
+          <li>Add translations</li>
+          <li>Fix tab caption after save as</li>
+          <li>Fix tab caption when saving an inactive tab</li>
+          <li>Fix deb</li>
+          <li>Get the library documents from the server project</li>
+          <li>Fix opening new document</li>
+          <li>Fix of the Link dialog</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.0.2" date="2025-05-14">
+      <description>
+        <p>Release description</p>
+        <ul>
+          <li>Print tabs</li>
+          <li>Add installer for Windows</li>
+          <li>Update logs</li>
+          <li>Fix the deb file</li>
+          <li>Fix of loading library file in Windows</li>
+          <li>Add translations</li>
+          <li>Update the About dialog</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <launchable type="desktop-id">com.yutovo.yutovo.desktop</launchable>
+
+  <content_rating type="oars-1.1" />
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://yutovo.com/screenshots/2025-05-07_20-27.png</image>
+      <caption>First page</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://yutovo.com/screenshots/2025-05-07_20-31.png</image>
+      <caption>Physical task example</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://yutovo.com/screenshots/2025-07-12_07-17.png</image>
+      <caption>Physical task example</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://yutovo.com/screenshots/2025-05-07_20-29_2.png</image>
+      <caption>Calculating expressions</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://yutovo.com/screenshots/2025-05-07_20-31_1.png</image>
+      <caption>Integer numbers</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://yutovo.com/screenshots/2025-07-12_07-17_1.png</image>
+      <caption>Rational numbers</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://yutovo.com/screenshots/2025-07-12_07-19.png</image>
+      <caption>Complex numbers</caption>
+    </screenshot>
+  </screenshots>
+</component>

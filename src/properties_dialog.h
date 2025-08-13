@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QTreeWidget>
 #include <QSettings>
+#include <QListWidgetItem>
 #include <yutovo_editor/config.h>
 
 namespace Ui
@@ -17,7 +18,16 @@ class PropertiesDialog : public QDialog
 
 public:
     PropertiesDialog(yutovo::Config& _config);
-    ~PropertiesDialog();
+
+    virtual void accept();
+
+public slots:
+    void IncludesItemChanged(QListWidgetItem *item);
+    void OnMoveFileUp();
+    void OnMoveFileDown();
+
+private:
+    void FillIncludes();
 
 private:
     Ui::PropertiesDialog* form = nullptr;

@@ -50,7 +50,18 @@ MainWindow::MainWindow(QWidget* parent) :
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
     qRegisterMetaType<ElementId>("ElementId");
     qRegisterMetaType<std::u32string>("std::u32string");
+}
 
+MainWindow::~MainWindow()
+{
+    WriteSettings();
+    delete ui;
+    if (logger)
+        logger->Info("Desktop stop");
+}
+
+void MainWindow::Start(QString filename)
+{
     bool first_run = false;
     if (!settings.childGroups().contains("MainWindow"))
         first_run = true;
@@ -73,35 +84,35 @@ MainWindow::MainWindow(QWidget* parent) :
 
     UpdateRecentFiles();
 
-    settings.beginGroup("Documents");
-    if (settings.value("load_last_documents").toBool())
+    if (filename.isEmpty())
     {
-        auto list = settings.value("last_documents").toStringList();
-        for (auto it = list.begin(); it != list.end(); ++it)
+        settings.beginGroup("Documents");
+        if (settings.value("load_last_documents").toBool())
         {
-            if (*it != "")
-                OpenFile(*it);
+            auto list = settings.value("last_documents").toStringList();
+            for (auto it = list.begin(); it != list.end(); ++it)
+            {
+                if (*it != "")
+                    OpenFile(*it);
+            }
         }
+        settings.endGroup();
     }
-    settings.endGroup();
+    else
+    {
+        OpenFile(filename.toUtf8().data());
+    }
 
     if (first_run)
     {
         //it is the first run - open the hello document
         if (config.language == yutovo_calculator::Language::Russian)
-            OpenFile("./library/ru/Другое/Первая страница.yut");
+            OpenFile(GetLibraryDir() + "ru/Другое/Первая страница.yut");
         else
-            OpenFile("./library/en/Others/First page.yut");
+            OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
 
     logger->Info("Desktop start");
-}
-
-MainWindow::~MainWindow()
-{
-    WriteSettings();
-    delete ui;
-    logger->Info("Desktop stop");
 }
 
 void MainWindow::contextMenuEvent(QContextMenuEvent* event)
@@ -117,7 +128,13 @@ void MainWindow::changeEvent(QEvent* event)
     {
         ui->retranslateUi(this);
         if (link_label)
-            link_label->setText(tr("yutovo_web"));
+        {
+#ifdef _WIN32
+            link_label->setText(tr("yutovo_web_windows"));
+#else
+            link_label->setText(tr("yutovo_web_linux"));
+#endif
+        }
         SetupGui();
         UpdateRecentFiles();
     }
@@ -195,6 +212,7 @@ void MainWindow::SetupGui()
     addToolBarBreak();
     CreateFunctionsToolbar();
     CreateGreekToolbar();
+    CreateCurrenciesToolbar();
 
     CreateStatusBar();
 
@@ -212,6 +230,8 @@ void MainWindow::SetupGui()
     functions_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/greek_toolbar", false).toBool();
     greek_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/currency_toolbar", false).toBool();
+    currency_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
 
@@ -252,6 +272,8 @@ void MainWindow::AddEditorTab(const QString name)
     FillParagraphFormats();
 
     UpdateCaption();
+
+    EnableButtons(true);
 }
 
 DocumentPtr MainWindow::GetCurrentDocument()
@@ -287,12 +309,12 @@ void MainWindow::CreateActions()
 
     recent_files_menu = file_menu->addMenu(tr("&Open recent file"));
 
-    action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
-    action->setShortcuts(QKeySequence::Save);
-    action->setStatusTip(tr("Save the document to disk"));
-    connect(action, &QAction::triggered, this, &MainWindow::Save);
-    file_menu->addAction(action);
-    standard_toolbar->addAction(action);
+    save_action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
+    save_action->setShortcuts(QKeySequence::Save);
+    save_action->setStatusTip(tr("Save the document to disk"));
+    connect(save_action, &QAction::triggered, this, &MainWindow::Save);
+    file_menu->addAction(save_action);
+    standard_toolbar->addAction(save_action);
 
     action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
     action->setStatusTip(tr("Save the document under a new name"));
@@ -382,10 +404,10 @@ void MainWindow::CreateActions()
     format_toolbar = addToolBar(tr("Format"));
     format_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    action = new QAction(QIcon(":/icons/images/format/code.png"), tr("&Code"), this);
-    action->setStatusTip(tr("Insert code"));
-    connect(action, &QAction::triggered, this, &MainWindow::OnInsertCode);
-    format_toolbar->addAction(action);
+    calculator_action = new QAction(QIcon(":/icons/images/format/code.png"), tr("Insert calculator"), this);
+    calculator_action->setStatusTip(tr("Insert calculator"));
+    connect(calculator_action, &QAction::triggered, this, &MainWindow::OnInsertCode);
+    format_toolbar->addAction(calculator_action);
 
     format_toolbar->addSeparator();
 
@@ -431,6 +453,18 @@ void MainWindow::CreateActions()
     strikethrough_action->setCheckable(true);
     strikethrough_action->setStatusTip(tr("Strikethrough font"));
     format_toolbar->addAction(strikethrough_action);
+
+    subscript_action = new QAction(QIcon(":/icons/images/format/subscript.png"), tr("Subscript"), this);
+    connect(subscript_action, &QAction::triggered, this, &MainWindow::OnTextSubscript);
+    subscript_action->setCheckable(true);
+    subscript_action->setStatusTip(tr("Subscript"));
+    format_toolbar->addAction(subscript_action);
+
+    superscript_action = new QAction(QIcon(":/icons/images/format/superscript.png"), tr("Superscript"), this);
+    connect(superscript_action, &QAction::triggered, this, &MainWindow::OnTextSuperscript);
+    superscript_action->setCheckable(true);
+    superscript_action->setStatusTip(tr("Superscript"));
+    format_toolbar->addAction(superscript_action);
 
     text_color_action = new QAction(QIcon(":/icons/images/format/text_color.png"), tr("Text color"), this);
     connect(text_color_action, &QAction::triggered, this, &MainWindow::OnTextColor);
@@ -521,6 +555,12 @@ void MainWindow::CreateActions()
     connect(greek_toolbar_action, &QAction::toggled, this, &MainWindow::GreekToolbar);
     toolbars_menu->addAction(greek_toolbar_action);
 
+    currency_toolbar_action = new QAction(tr("Currencies"), this);
+    currency_toolbar_action->setCheckable(true);
+    currency_toolbar_action->setChecked(true);
+    connect(currency_toolbar_action, &QAction::toggled, this, &MainWindow::CurrencyToolbar);
+    toolbars_menu->addAction(currency_toolbar_action);
+
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
     status_bar_action->setChecked(true);
@@ -554,7 +594,11 @@ void MainWindow::CreateActions()
     {
         QHBoxLayout* layout = new QHBoxLayout();
         link_label = new QLabel();
-        link_label->setText(tr("yutovo_web"));
+#ifdef _WIN32
+        link_label->setText(tr("yutovo_web_windows"));
+#else
+        link_label->setText(tr("yutovo_web_linux"));
+#endif
         link_label->setTextFormat(Qt::RichText);
         link_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
         link_label->setOpenExternalLinks(true);
@@ -611,8 +655,12 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnProduct);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/fences.png"), tr("Fences"), this);
-    connect(action, &QAction::triggered, this, &MainWindow::OnFences);
+    action = new QAction(QIcon(":/icons/images/algebra/round_brackets.png"), tr("Round brackets"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnRoundBrackets);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/square_brackets.png"), tr("Square brackets"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnSquareBrackets);
     algebra_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
@@ -799,55 +847,87 @@ void MainWindow::CreateGreekToolbar()
     greek_toolbar = addToolBar(tr("Greek letters"));
     greek_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    AddGreekLetter(L'α');
-    AddGreekLetter(L'β');
-    AddGreekLetter(L'γ');
-    AddGreekLetter(L'δ');
-    AddGreekLetter(L'ε');
-    AddGreekLetter(L'ζ');
-    AddGreekLetter(L'η');
-    AddGreekLetter(L'θ');
-    AddGreekLetter(L'ι');
-    AddGreekLetter(L'κ');
-    AddGreekLetter(L'λ');
-    AddGreekLetter(L'μ');
-    AddGreekLetter(L'ν');
-    AddGreekLetter(L'ξ');
-    AddGreekLetter(L'ο');
-    AddGreekLetter(L'π');
-    AddGreekLetter(L'ρ');
-    AddGreekLetter(L'σ');
-    AddGreekLetter(L'τ');
-    AddGreekLetter(L'υ');
-    AddGreekLetter(L'φ');
-    AddGreekLetter(L'χ');
-    AddGreekLetter(L'ψ');
-    AddGreekLetter(L'ω');
+    auto add_greek_letter = 
+        [greek_toolbar = greek_toolbar, this](const QChar& letter)
+        {
+            QAction* action = new QAction(letter, this);
+            action->setData(letter);
+            connect(action, &QAction::triggered, this, &MainWindow::OnGreekLetter);
+            greek_toolbar->addAction(action);
+        };
 
-    AddGreekLetter(L'Α');
-    AddGreekLetter(L'Β');
-    AddGreekLetter(L'Γ');
-    AddGreekLetter(L'Δ');
-    AddGreekLetter(L'Ε');
-    AddGreekLetter(L'Ζ');
-    AddGreekLetter(L'Η');
-    AddGreekLetter(L'Θ');
-    AddGreekLetter(L'Ι');
-    AddGreekLetter(L'Κ');
-    AddGreekLetter(L'Λ');
-    AddGreekLetter(L'Μ');
-    AddGreekLetter(L'Ν');
-    AddGreekLetter(L'Ξ');
-    AddGreekLetter(L'Ο');
-    AddGreekLetter(L'Π');
-    AddGreekLetter(L'Ρ');
-    AddGreekLetter(L'Σ');
-    AddGreekLetter(L'Τ');
-    AddGreekLetter(L'Υ');
-    AddGreekLetter(L'Φ');
-    AddGreekLetter(L'Χ');
-    AddGreekLetter(L'Ψ');
-    AddGreekLetter(L'Ω');
+    add_greek_letter(L'α');
+    add_greek_letter(L'β');
+    add_greek_letter(L'γ');
+    add_greek_letter(L'δ');
+    add_greek_letter(L'ε');
+    add_greek_letter(L'ζ');
+    add_greek_letter(L'η');
+    add_greek_letter(L'θ');
+    add_greek_letter(L'ι');
+    add_greek_letter(L'κ');
+    add_greek_letter(L'λ');
+    add_greek_letter(L'μ');
+    add_greek_letter(L'ν');
+    add_greek_letter(L'ξ');
+    add_greek_letter(L'ο');
+    add_greek_letter(L'π');
+    add_greek_letter(L'ρ');
+    add_greek_letter(L'σ');
+    add_greek_letter(L'τ');
+    add_greek_letter(L'υ');
+    add_greek_letter(L'φ');
+    add_greek_letter(L'χ');
+    add_greek_letter(L'ψ');
+    add_greek_letter(L'ω');
+
+    add_greek_letter(L'Α');
+    add_greek_letter(L'Β');
+    add_greek_letter(L'Γ');
+    add_greek_letter(L'Δ');
+    add_greek_letter(L'Ε');
+    add_greek_letter(L'Ζ');
+    add_greek_letter(L'Η');
+    add_greek_letter(L'Θ');
+    add_greek_letter(L'Ι');
+    add_greek_letter(L'Κ');
+    add_greek_letter(L'Λ');
+    add_greek_letter(L'Μ');
+    add_greek_letter(L'Ν');
+    add_greek_letter(L'Ξ');
+    add_greek_letter(L'Ο');
+    add_greek_letter(L'Π');
+    add_greek_letter(L'Ρ');
+    add_greek_letter(L'Σ');
+    add_greek_letter(L'Τ');
+    add_greek_letter(L'Υ');
+    add_greek_letter(L'Φ');
+    add_greek_letter(L'Χ');
+    add_greek_letter(L'Ψ');
+    add_greek_letter(L'Ω');
+}
+
+void MainWindow::CreateCurrenciesToolbar()
+{
+    currency_toolbar = addToolBar(tr("Currencies"));
+    currency_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    auto add_currency = 
+        [currency_toolbar = currency_toolbar, this](const QString& symbol, const QString& tooltip)
+        {
+            QAction* action = new QAction(symbol, this);
+            action->setToolTip(tooltip);
+            action->setData(symbol);
+            connect(action, &QAction::triggered, this, &MainWindow::OnCurrency);
+            currency_toolbar->addAction(action);
+        };
+
+    add_currency("R$", tr("Brazilian real"));
+    add_currency("¥", tr("Chinese yuan"));
+    add_currency("€", tr("Euro"));
+    add_currency("₹", tr("Indian rupee"));
+    add_currency("₽", tr("Russian ruble"));
+    add_currency("$", tr("US dollar"));
 }
 
 void MainWindow::CreateStatusBar()
@@ -857,14 +937,6 @@ void MainWindow::CreateStatusBar()
         locale_status = new QLabel("");
         statusBar()->addWidget(locale_status);
     }
-}
-
-void MainWindow::AddGreekLetter(const QChar& letter)
-{
-    QAction* action = new QAction(letter, this);
-    action->setData(letter);
-    connect(action, &QAction::triggered, this, &MainWindow::OnGreekLetter);
-    greek_toolbar->addAction(action);
 }
 
 void MainWindow::SetFocus()
@@ -911,22 +983,33 @@ void MainWindow::OpenLibraryFile()
 
 void MainWindow::OpenFile(QString file_name)
 {
+    try
+    {
 #ifdef _WIN32
-    if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
-    {
-        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name);
-        return;
-    }
-    auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
-    file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
+        if (!std::filesystem::exists(ToWString(file_name.toUtf8().data())))
+        {
+            QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name);
+            return;
+        }
+        auto p = std::filesystem::absolute(ToWString(file_name.toUtf8().data()));
+        file_name = ToBasicString(std::filesystem::canonical(p).wstring()).c_str();
 #else
-    if (!std::filesystem::exists(file_name.toUtf8().data()))
+        if (!std::filesystem::exists(file_name.toUtf8().data()))
+        {
+            QMessageBox::critical(this, tr("Yutovo"), tr("File not found") + QString(": ") + file_name);
+            return;
+        }
+        std::filesystem::path path = std::filesystem::u8path(file_name.toUtf8().constData());
+        std::filesystem::path abs_path = std::filesystem::canonical(std::filesystem::absolute(path));
+        file_name = QString::fromStdString(abs_path.u8string());
+#endif
+    }
+    catch (const std::filesystem::filesystem_error& ex)
     {
-        QMessageBox::critical(this, tr("Yutovo"), tr("File not found") + QString(": ") + file_name);
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + file_name + 
+            QString("\n") + ex.what());
         return;
     }
-    file_name = QString::fromWCharArray(std::filesystem::canonical(std::filesystem::absolute(file_name.toUtf8().data())).wstring().c_str());
-#endif
 
     dialog_file_name = file_name;
 
@@ -1324,6 +1407,12 @@ void MainWindow::GreekToolbar()
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
 }
 
+void MainWindow::CurrencyToolbar()
+{
+    currency_toolbar_action->isChecked() ? currency_toolbar->show() : currency_toolbar->hide();
+    settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
+}
+
 void MainWindow::StatusBar()
 {
     status_bar_action->isChecked() ? statusBar()->show() : statusBar()->hide();
@@ -1565,6 +1654,26 @@ void MainWindow::OnStrikethrough()
         document->SetStrikethrough(strikethrough_action->isChecked());
 }
 
+void MainWindow::OnTextSubscript()
+{
+    superscript_action->setChecked(false);
+    if (block_format_slots)
+        return;
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetSubscript(subscript_action->isChecked());
+}
+
+void MainWindow::OnTextSuperscript()
+{
+    subscript_action->setChecked(false);
+    if (block_format_slots)
+        return;
+    auto document = GetCurrentDocument();
+    if (document)
+        document->SetSuperscript(superscript_action->isChecked());
+}
+
 void MainWindow::OnTextColor()
 {
     QColorDialog d(QColor::fromRgba(string_format.text_color.ToInt()), this);
@@ -1719,11 +1828,18 @@ void MainWindow::OnLg()
         document->InsertFunction("lg", true);
 }
 
-void MainWindow::OnFences()
+void MainWindow::OnRoundBrackets()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertFences(true);
+        document->InsertRoundBrackets(true);
+}
+
+void MainWindow::OnSquareBrackets()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertSquareBrackets(true);
 }
 
 void MainWindow::OnRadian()
@@ -1988,6 +2104,16 @@ void MainWindow::OnGreekLetter()
         document->InsertString(QString(letter).toStdString(), true);
 }
 
+void MainWindow::OnCurrency()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    QVariant v = action->data();
+    QString symbol = v.toString();
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString(symbol.toStdString(), true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -2003,6 +2129,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     italic_action->setEnabled(true);
     underline_action->setEnabled(true);
     strikethrough_action->setEnabled(true);
+    subscript_action->setEnabled(true);
+    superscript_action->setEnabled(true);
     text_color_action->setEnabled(true);
     bg_text_color_action->setEnabled(true);
 
@@ -2015,6 +2143,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
         italic_action->setEnabled(false);
         underline_action->setEnabled(false);
         strikethrough_action->setEnabled(false);
+        subscript_action->setEnabled(false);
+        superscript_action->setEnabled(false);
         text_color_action->setEnabled(false);
         bg_text_color_action->setEnabled(false);
     }
@@ -2056,6 +2186,8 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     italic_action->setChecked(window.string_format.italic);
     underline_action->setChecked(window.string_format.underline);
     strikethrough_action->setChecked(window.string_format.strikethrough);
+    subscript_action->setChecked(window.string_format.subscript);
+    superscript_action->setChecked(window.string_format.superscript);
     block_format_slots = false;
 
     undo_action->setEnabled(window.can_undo);
@@ -2122,7 +2254,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
     auto it = loading_files.find(task_id);
-    assert(it != loading_files.end());
+    if (it == loading_files.end())
+        return;
     int tab = it->second;
 
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(tab);
@@ -2234,6 +2367,8 @@ void MainWindow::FillSizes(const QFont& font)
 
 void MainWindow::WriteSettings()
 {
+    if (!standard_toolbar_action)
+        return;
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/standard_toolbar", standard_toolbar_action->isChecked());
     settings.setValue("MainWindow/format_toolbar", format_toolbar_action->isChecked());
@@ -2242,6 +2377,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/hyperbolic_toolbar", hyperbolic_toolbar_action->isChecked());
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
+    settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
@@ -2376,7 +2512,25 @@ void MainWindow::ReadSettings()
     p += "log";
     config.logs_path = settings.value("path", p.c_str()).toString().toUtf8().data();
 #else
-    config.logs_path = settings.value("path", "./log").toString().toUtf8().data();
+    std::string p;
+    QStringList args = qApp->arguments();
+    for (int i = 0; i < args.length(); i++)
+    {
+        QString s = args.at(i);
+        if (s.startsWith("--logs-path"))
+        {
+            QStringList pair = s.split("=");
+            if (pair.length() == 2)
+            {
+                p = pair[1].toUtf8().data();
+                break;
+            }
+        }
+    }
+    if (!p.empty())
+        config.logs_path = p;
+    else
+        config.logs_path = settings.value("path", "./log").toString().toUtf8().data();
 #endif
     settings.endGroup();
 
@@ -2393,17 +2547,17 @@ void MainWindow::ReadSettings()
     settings.endGroup();
 
     settings.beginGroup("Calculator");
-    config.solve_delay = settings.value("solve_delay", 2000).toInt();
+    config.solve_delay = settings.value("solve_delay", config.solve_delay).toInt();
     config.auto_result.result_auto_advance = settings.value("result_auto_advance", true).toBool();
     QList<QVariant> v = settings.value("results_order").toList();
     size_t i = 0;
     for (auto r : v)
     {
-        if (i < 4)
+        if (i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]))
             config.auto_result.results_order[i++] = (ResultType)r.toInt();
     }
     auto& results_order = config.auto_result.results_order;
-    for (; i < 4; ++i)
+    for (; i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]); ++i)
     {
         if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order))
             results_order[i++] = ResultType::REAL;
@@ -2413,6 +2567,8 @@ void MainWindow::ReadSettings()
             results_order[i++] = ResultType::RATIONAL;
         if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order))
             results_order[i++] = ResultType::COMPLEX;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order))
+            results_order[i++] = ResultType::ARRAY_REAL;
     }
 
     config.real_result.precision = settings.value("real_precision", 3).toInt();
@@ -2650,7 +2806,6 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                 if (entry.empty())
                     continue;
                 QAction* action = new QAction(QString::fromWCharArray(entry.stem().wstring().c_str()), this);
-                //action->setData(QString(ToBasicString(std::filesystem::absolute(entry).wstring()).c_str()));
                 action->setData(QString(QString::fromWCharArray(std::filesystem::absolute(entry).wstring().c_str())));
                 connect(action, &QAction::triggered, this, &MainWindow::OpenLibraryFile);
                 menu->addAction(action);
@@ -2659,7 +2814,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
     
     library_menu->clear();
 
-    auto p = std::string("./library/") + (config.language == yutovo_calculator::Language::English ? "en" : "ru");
+    auto p = std::string(GetLibraryDir().toUtf8().data()) + (config.language == yutovo_calculator::Language::English ? "en" : "ru");
     if (!std::filesystem::exists(p))
         return;
     
@@ -2668,18 +2823,21 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
 
 void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 {
+    qApp->removeTranslator(&desktop_translator);
+    qApp->removeTranslator(&editor_translator);
+    
     if (language == yutovo_calculator::Language::Russian)
     {
-        if (!desktop_translator.load("yutovo_desktop_ru"))
+        if (!desktop_translator.load("yutovo_desktop_ru", GetTranslationDir("yutovo_desktop_ru")))
             logger->Error("Error loading translation: yutovo_desktop_ru");
-        if (!editor_translator.load("yutovo_editor_ru"))
+        if (!editor_translator.load("yutovo_editor_ru", GetTranslationDir("yutovo_editor_ru")))
             logger->Error("Error loading translation: yutovo_editor_ru");
     }
     else if (language == yutovo_calculator::Language::English)
     {
-        if (!desktop_translator.load("yutovo_desktop_en"))
+        if (!desktop_translator.load("yutovo_desktop_en", GetTranslationDir("yutovo_desktop_en")))
             logger->Error("Error loading translation: yutovo_desktop_en");
-        if (!editor_translator.load("yutovo_editor_en"))
+        if (!editor_translator.load("yutovo_editor_en", GetTranslationDir("yutovo_editor_en")))
             logger->Error("Error loading translation: yutovo_editor_en");
     }
 
@@ -2695,6 +2853,7 @@ void MainWindow::UpdateCaption(int tab, bool update_title)
     if (!w)
     {
         setWindowTitle(tr("Yutovo"));
+        EnableButtons(false);
         return;
     }
     
@@ -2722,6 +2881,41 @@ void MainWindow::UpdateLocaleMessage()
     locale_status->setText(tr("Locale: ") + (c.language == yutovo_calculator::Language::English ? tr("English") : tr("Russian")));
 }
 
+void MainWindow::EnableButtons(bool enable)
+{
+    save_action->setEnabled(enable);
+    undo_action->setEnabled(enable);
+    redo_action->setEnabled(enable);
+    copy_action->setEnabled(enable);
+    paste_action->setEnabled(enable);
+    cut_action->setEnabled(enable);
+    properties_action->setEnabled(enable);
+    recalculate_action->setEnabled(enable);
+    calculator_action->setEnabled(enable);
+    align_left_action->setEnabled(enable);
+    align_right_action->setEnabled(enable);
+    align_center_action->setEnabled(enable);
+    align_justify_action->setEnabled(enable);
+    bold_action->setEnabled(enable);
+    italic_action->setEnabled(enable);
+    underline_action->setEnabled(enable);
+    strikethrough_action->setEnabled(enable);
+    subscript_action->setEnabled(enable);
+    superscript_action->setEnabled(enable);
+    text_color_action->setEnabled(enable);
+    bg_text_color_action->setEnabled(enable);
+    link_action->setEnabled(enable);
+    paragraph_format_combo->setEnabled(enable);
+    family_combo->setEnabled(enable);
+    size_combo->setEnabled(enable);
+    algebra_toolbar->setEnabled(enable);
+    trigonometry_toolbar->setEnabled(enable);
+    hyperbolic_toolbar->setEnabled(enable);
+    functions_toolbar->setEnabled(enable);
+    greek_toolbar->setEnabled(enable);
+    currency_toolbar->setEnabled(enable);
+}
+
 #ifdef REMOTE_SOLVER
 void MainWindow::RestartService()
 {
@@ -2731,3 +2925,18 @@ void MainWindow::RestartService()
     service->start("./yutovo_serviced");
 }
 #endif
+
+QString MainWindow::GetLibraryDir()
+{
+    if (std::filesystem::exists("./library/"))
+        return "./library/";
+    QString p = QCoreApplication::applicationDirPath();
+    return p + "/library/";
+}
+
+QString MainWindow::GetTranslationDir(QString filename)
+{
+    if (std::filesystem::exists(filename.toUtf8().data()))
+        return "./";
+    return QCoreApplication::applicationDirPath();
+}

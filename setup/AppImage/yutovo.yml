@@ -1,0 +1,66 @@
+app: yutovo
+binpatch: true
+#union: true
+
+ingredients:
+  dist: trusty
+  sources:
+    #- deb http://archive.ubuntu.com/ubuntu/ noble main universe
+    - deb http://us.archive.ubuntu.com/ubuntu/ trusty trusty-updates trusty-security main universe
+    - deb http://us.archive.ubuntu.com/ubuntu/ trusty-updates main universe
+    - deb http://us.archive.ubuntu.com/ubuntu/ trusty-security main universe
+  # script:
+  #   - sudo apt install build-essential
+  debs:
+    - /home/denis/programs/Math/yutovo/yutovo_desktop/setup/Ubuntu/yutovo-desktop_1.0.3-1_ubuntu24_amd64.deb
+
+script:
+  # - HERE="$(dirname "$(readlink -f "${0}")")"
+  # - export LD_LIBRARY_PATH=${HERE}/usr/lib:${HERE}/usr/lib64:${HERE}/usr/lib/x86_64-linux-gnu/:${HERE}/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/
+  # - mkdir -p usr/lib64/
+  # - cp /lib/x86_64-linux-gnu/libstdc++.so.6 usr/lib64
+  # - cp /lib/x86_64-linux-gnu/libc.so.6 usr/lib
+  # - cp /lib/x86_64-linux-gnu/libgcc_s.so.1 usr/lib
+  # - cp /lib/x86_64-linux-gnu/libQt5Widgets.so.5 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libQt5Gui.so.5 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libQt5Core.so.5 usr/lib
+	- cp /lib/x86_64-linux-gnu/libmpfr.so.6 usr/lib
+	- cp /lib/x86_64-linux-gnu/libgmp.so.10 usr/lib
+	- cp /lib/x86_64-linux-gnu/libboost_iostreams.so.1.83.0 usr/lib
+	- cp /lib/x86_64-linux-gnu/libm.so.6 usr/lib
+	- cp /lib/x86_64-linux-gnu/libz.so.1 usr/lib
+	- cp /lib/x86_64-linux-gnu/libbz2.so.1.0 usr/lib
+	- cp /lib/x86_64-linux-gnu/liblzma.so.5 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libzstd.so.1 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libpng16.so.16 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libharfbuzz.so.0 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libmd4c.so.0 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libdouble-conversion.so.3 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libicui18n.so.74 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libicuuc.so.74 usr/lib
+  # - cp /lib/x86_64-linux-gnu/libicudata.so.74 usr/lib
+	# - cp /lib/x86_64-linux-gnu/libpcre2-16.so.0 usr/lib
+  - mkdir -p usr/lib/qt5/plugins
+  - cp -r /usr/lib/x86_64-linux-gnu/qt5/plugins/platforms usr/lib/qt5/plugins
+  - mv opt/yutovo/* usr/bin/
+  - cp ../../run.sh usr/bin/
+  - cat > yutovo.desktop <<EOF
+  - [Desktop Entry]
+  - Encoding=UTF-8
+  - Name=Yutovo
+  - Name[ru]=Ютово
+  - Comment=Calculator
+  - Comment[ru]=Калькулятор
+  - GenericName=Calculator
+  - GenericName[ru]=Калькулятор
+  - Type=Application
+  - Path=bin/
+  - Exec=run.sh
+  - Icon=/usr/share/icons/hicolor/256x256/apps/yutovo.png
+  - StartupNotify=true
+  - Terminal=false
+  - Categories=Science;
+  - MimeType=text/plain;
+  - Keywords=yutovo;calculator;mathematics;education;ютово;калькулятор;математика;
+  - EOF

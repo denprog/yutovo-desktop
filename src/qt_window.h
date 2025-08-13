@@ -73,6 +73,8 @@ public:
     virtual void OnSaveResult(const uint task_id, IOResult result, const int document_id);
     virtual void OnLoadResult(const uint task_id, IOResult result, const int document_id);
 
+    virtual void OnLoadInclude(const std::string& file_name, const int document_id);
+
     virtual void OnCopyResult(CopyResult result);
     virtual void OnPasteResult(PasteResult result);
 
@@ -94,6 +96,7 @@ public:
 private:
     void FillCacheThread(const std::vector<std::tuple<char32_t, std::string, int>>& symbols_sizes);
     int GetCachedSize(const char32_t symbol, const int height, const std::string& family_name, Size& size, int& baseline);
+    QFont GetFont(const StringFormatPtr format) const;
 
 signals:
     void DocumentUpdated(const Rect rect);
@@ -101,6 +104,7 @@ signals:
     void DocumentChanged(const bool changed);
     void SaveResult(const uint task_id, IOResult result);
     void LoadResult(const uint task_id, IOResult result);
+    void LoadInclude(const std::string& file_name, const int document_id);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
     void FormatingStarted();
@@ -114,6 +118,9 @@ private:
     friend class MainWindow;
 
     Document* document;
+
+    typedef std::shared_ptr<QtWindow> QtWindowPtr;
+    std::vector<QtWindowPtr> include_windows;
 
     //last editor state
     EditorState editor_state;

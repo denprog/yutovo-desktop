@@ -35,28 +35,25 @@ The provider of the yutovo service reserves the right to change these Terms of U
     <name>PrivacyPolicyDialog</name>
     <message>
         <source>privacy_policy</source>
-        <translation>1. Types of information to collect
-We might collect user’s personal information such as name, email, ip address and other information.
-2. Ways to collect information
-We might collect information when user register, unregister, login or logout to the site.
-We might collect personal information when user uses any of the services of the site.
-3. Using of information
-We may use information to verify your account at the website by sending verification email to your registered email address.
-We may use personal information to respond to user's requests.
-We may use personal information to improve the services, the website and the desktop application.
-We may use personal information for security purposes to protect users and the website. We may use information as otherwise permitted by law.
-4. User rights over his data
-You can request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes. You can send your request for data deletion at support@yutovo.ru.
-5. Disclamer
-You assume all responsibility and risk with respect to your use of the website, which is provided “as is” without warranties, representations or conditions of any kind, either express or implied, with regard to information accessed from or via the website, including without limitation, all content and materials, and functions and services provided on our website, all of which are provided without warranty of any kind, including but not limited to warranties concerning the availability, accuracy, completeness or usefulness of content or information, uninterrupted access, and any warranties of title, non-infringement, merchantability or fitness for a particular purpose. We do not warrant that our website or its functioning or the content and material of the services made available thereby will be timely, secure, uninterrupted or error-free, that defects will be corrected, or that our websites or the servers that make our website available are free of viruses or other harmful components. The use of our website is at your sole risk and you assume full responsibility for any costs associated with your use of the website. We will not be liable for any damages of any kind related to the use of our website.
+        <translation>1. Use of information
+We may use information and/or documents that the user provides to us to respond to user requests, to improve the services, website and desktop application.
+We may use information if permitted by law.
+2. User rights to your data
+You may request that we delete any personal data that we hold about you. This does not include data that we are obliged to keep for administrative, legal or security purposes. You can send a request for data deletion by email: support@yutovo.ru.
+3. Disclaimer
+You assume all responsibility and risk in relation to your use of this application, which is provided "as is" without any warranties. The information accessed through the application, including but not limited to all content and materials, as well as the functions and services provided in the application, are all provided without any warranties, including but not limited to warranties regarding the availability, accuracy, completeness or usefulness of the content or information, uninterrupted access and any warranties of title, non-infringement, merchantability or fitness for a particular purpose. We do not warrant that our application or its operation, as well as the content and materials of the services provided through it, will be timely, secure, uninterrupted or error-free, that defects will be corrected, or free of viruses or other harmful components. Your use of our application is at your own risk and you assume full responsibility for any costs associated with your use of this application. We are not liable for any damages related to the use of our website.
         </translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>yutovo_web</source>
-        <translation>&lt;a href="https://yutovo.com/?ref=desktop"&gt;yutovo.com&lt;/a&gt;</translation>
+        <source>yutovo_web_linux</source>
+        <translation>&lt;a href="https://yutovo.com/?ref=desktop_linux"&gt;Yutovo online&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>yutovo_web_windows</source>
+        <translation>&lt;a href="https://yutovo.com/?ref=desktop_windows"&gt;Yutovo online&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>

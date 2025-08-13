@@ -97,7 +97,7 @@ void ResultSettingsForm::FillResultsOrder()
 {
     ui->auto_result_order->clear();
 
-    for (size_t i = 0; i < 4; ++i)
+    for (size_t i = 0; i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]); ++i)
     {
         switch (config.auto_result.results_order[i])
         {
@@ -112,6 +112,9 @@ void ResultSettingsForm::FillResultsOrder()
             break;
         case ResultType::COMPLEX:
             ui->auto_result_order->addItem(tr("Complex"));
+            break;
+        case ResultType::ARRAY_REAL:
+            ui->auto_result_order->addItem(tr("Array of real"));
             break;
         default:
             break;

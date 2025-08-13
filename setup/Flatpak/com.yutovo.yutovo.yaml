@@ -1,0 +1,30 @@
+app-id: com.yutovo.yutovo
+runtime: org.kde.Platform
+runtime-version: '5.15-24.08'
+sdk: org.kde.Sdk
+command: run.sh
+finish-args:
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=ipc
+  - --device=dri
+  - --filesystem=xdg-documents
+rename-desktop-file: yutovo.desktop
+rename-icon: yutovo
+rename-mime-file: yutovo.xml
+modules:
+  - name: yutovo
+    buildsystem: simple
+    build-commands:
+      - cp -r bin/ /app/bin/
+      - mkdir -p /app/share/mime/packages
+      - install -Dm644 /app/bin/yutovo.xml -t /app/share/mime/packages/
+      - install -Dm644 /app/bin/yutovo.png -t /app/share/icons/hicolor/256x256/apps/
+      - install -Dm644 /app/bin/yutovo.desktop -t /app/share/applications/
+    post-install:
+      - update-mime-database /app/share/mime
+    sources:
+      - type: archive
+        url: https://yutovo.ru/yutovo-bin-1.1.3.tar.gz
+        dest: bin/
+        sha256: bff947e99c8616997285496be1be549a279a4a23ce43ec17a0c3101372e89a71

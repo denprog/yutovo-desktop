@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+update-mime-database /usr/share/mime
+update-desktop-database /usr/share/applications
+
+if [ -x /usr/bin/gtk-update-icon-cache ]; then
+    gtk-update-icon-cache -f /usr/share/icons/hicolor || true
+fi
