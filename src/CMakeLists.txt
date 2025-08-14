@@ -89,6 +89,13 @@ add_executable(${PROJECT_NAME} WIN32
     privacy_policy_dialog.cpp
 )
 
+if(WIN32)
+    set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/images/mainicon.ico")
+    set(APP_RC_FILE "${CMAKE_CURRENT_BINARY_DIR}/icon.rc")
+    file(WRITE "${APP_RC_FILE}" "1 ICON \"${APP_ICON_RESOURCE}\"\n")
+    target_sources(${PROJECT_NAME} PRIVATE "${APP_RC_FILE}")
+endif()
+
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 
 if(NOT WIN32)
