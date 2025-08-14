@@ -1,6 +1,17 @@
 ﻿#include <QApplication>
 #include <QFileInfo>
 #include "mainwindow.h"
+#ifdef _WIN32
+#include <boost/throw_exception.hpp>
+
+namespace boost
+{
+    BOOST_NORETURN void throw_exception(std::exception const& e)
+    {
+        throw e;
+    }
+}
+#endif
 
 int main(int argc, char *argv[])
 {
