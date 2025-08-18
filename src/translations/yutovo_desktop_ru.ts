@@ -945,6 +945,10 @@
         <source>Recalculate all</source>
         <translation>Пересчитать всё</translation>
     </message>
+    <message>
+        <source>(No name)</source>
+        <translation>(Без имени)</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

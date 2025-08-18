@@ -42,7 +42,7 @@ protected:
 private:
     void SetupGui();
 
-    void AddEditorTab(const QString name);
+    void AddEditorTab(const QString name, const QString tooltip);
 
     DocumentPtr GetCurrentDocument();
 

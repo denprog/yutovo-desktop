@@ -80,7 +80,7 @@ void MainWindow::Start(QString filename)
     ui->editor_tabs->clear();
     SetupGui();
 
-    AddEditorTab("(No name)");
+    AddEditorTab(tr("(No name)"), "");
 
     UpdateRecentFiles();
 
@@ -147,7 +147,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
             QString file_name;
             QFileInfo file_info(w->path);
             if (file_info.fileName().isEmpty())
-                file_name = "(No name)";
+                file_name = tr("(No name)");
             else
                 file_name = file_info.fileName();
 
@@ -233,7 +233,7 @@ void MainWindow::SetupGui()
         OnEditorChanged(i);
 }
 
-void MainWindow::AddEditorTab(const QString name)
+void MainWindow::AddEditorTab(const QString name, const QString tooltip)
 {
     DocumentWindow* wnd = new DocumentWindow(config, this);
 
@@ -253,6 +253,8 @@ void MainWindow::AddEditorTab(const QString name)
 #endif
 
     ui->editor_tabs->addTab(wnd, name);
+    if (!tooltip.isEmpty())
+        ui->editor_tabs->setTabToolTip(ui->editor_tabs->count() - 1, tooltip);
     ui->editor_tabs->setCurrentIndex(ui->editor_tabs->count() - 1);
     wnd->SetFocus();
 
@@ -941,7 +943,7 @@ void MainWindow::SetFocus()
 
 void MainWindow::New()
 {
-    AddEditorTab("(No name)");
+    AddEditorTab(tr("(No name)"), "");
 }
 
 void MainWindow::Open()
@@ -1030,7 +1032,7 @@ void MainWindow::OpenFile(QString file_name)
 
     //open new tab with document
     QFileInfo file_info(file_name);
-    AddEditorTab(file_info.fileName());
+    AddEditorTab(file_info.fileName(), file_info.canonicalFilePath());
 
     auto document = GetCurrentDocument();
     if (!document)
@@ -1441,7 +1443,7 @@ bool MainWindow::OnCloseEditorTab(int index)
         QString file_name;
         QFileInfo file_info(w->path);
         if (file_info.fileName().isEmpty())
-            file_name = "(No name)";
+            file_name = tr("(No name)");
         else
             file_name = file_info.fileName();
 
@@ -2853,13 +2855,15 @@ void MainWindow::UpdateCaption(int tab, bool update_title)
     QString file_name;
     QFileInfo file_info(w->path);
     if (file_info.fileName().isEmpty())
-        file_name = "(No name)";
+        file_name = tr("(No name)");
     else
         file_name = file_info.fileName();
     if (w->document->IsChanged())
         file_name += " *";
 
     ui->editor_tabs->setTabText(tab == -1 ? ui->editor_tabs->currentIndex() : tab, file_name);
+    if (!w->path.isEmpty())
+        ui->editor_tabs->setTabToolTip(tab == -1 ? ui->editor_tabs->currentIndex() : tab, file_info.canonicalFilePath());
     if (update_title)
         setWindowTitle(file_name + " - " + tr("Yutovo"));
 }
