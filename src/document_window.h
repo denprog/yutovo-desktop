@@ -79,6 +79,9 @@ signals:
     void ClipboardPasteResult(PasteResult result);
     void LinkClicked(const std::u32string& url);
 
+protected:
+    void contextMenuEvent(QContextMenuEvent* event) override;
+    
 private:
     ElementId GetResultId();
 

@@ -524,6 +524,11 @@ void DocumentWindow::OnLinkClicked(const ElementId& id, const std::u32string& ur
     emit LinkClicked(url);
 }
 
+void DocumentWindow::contextMenuEvent(QContextMenuEvent* event)
+{
+    MakeContextMenu(event);
+}
+
 void DocumentWindow::OnPresentAsAuto()
 {
     document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::AUTO, true);

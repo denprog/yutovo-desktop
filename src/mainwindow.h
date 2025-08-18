@@ -35,7 +35,6 @@ public:
     void Start(QString filename = "");
     
 protected:
-    void contextMenuEvent(QContextMenuEvent* event) override;
     void changeEvent(QEvent* event) override;
     void closeEvent(QCloseEvent *event) override;
     bool focusNextPrevChild(bool next) override;

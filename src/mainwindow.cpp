@@ -115,13 +115,6 @@ void MainWindow::Start(QString filename)
     logger->Info("Desktop start");
 }
 
-void MainWindow::contextMenuEvent(QContextMenuEvent* event)
-{
-    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
-    if (w)
-        w->MakeContextMenu(event);
-}
-
 void MainWindow::changeEvent(QEvent* event)
 {
     if (event->type() == QEvent::LanguageChange)
