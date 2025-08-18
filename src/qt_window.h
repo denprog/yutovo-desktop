@@ -6,9 +6,9 @@
 #include <memory>
 #include <mutex>
 #include <thread>
-#include <yutovo_editor/window.h>
-#include <yutovo_logger/logger.h>
-#include <yutovo_editor/config.h>
+#include <yutovo-editor/window.h>
+#include <yutovo-logger/logger.h>
+#include <yutovo-editor/config.h>
 
 class DocumentWidget;
 

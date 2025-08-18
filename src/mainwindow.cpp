@@ -19,8 +19,8 @@
 #include <shlobj_core.h>
 #include <codecvt>
 #endif
-#include <yutovo_editor/editor_utils.h>
-#include <yutovo_calculator/math_helper.h>
+#include <yutovo-editor/editor_utils.h>
+#include <yutovo-calculator/math_helper.h>
 #include "document_window.h"
 #include "about_dialog.h"
 #include "settings_dialog.h"
@@ -68,7 +68,7 @@ void MainWindow::Start(QString filename)
 
     ReadSettings();
 
-    logger = Logger::GetInstance(config.logs_path + "/yutovo_desktop", "yutovo_desktop", config.log_console, config.log_file);
+    logger = Logger::GetInstance(config.logs_path + "/yutovo-desktop", "yutovo-desktop", config.log_console, config.log_file);
     logger->SetLevel((int)config.log_level);
 
     InstallTranslation(config.language);
@@ -2823,17 +2823,17 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
     
     if (language == yutovo_calculator::Language::Russian)
     {
-        if (!desktop_translator.load("yutovo_desktop_ru", GetTranslationDir("yutovo_desktop_ru")))
+        if (!desktop_translator.load("yutovo-desktop_ru", GetTranslationDir("yutovo-desktop_ru")))
             logger->Error("Error loading translation: yutovo_desktop_ru");
-        if (!editor_translator.load("yutovo_editor_ru", GetTranslationDir("yutovo_editor_ru")))
+        if (!editor_translator.load("yutovo-editor_ru", GetTranslationDir("yutovo-editor_ru")))
             logger->Error("Error loading translation: yutovo_editor_ru");
     }
     else if (language == yutovo_calculator::Language::English)
     {
-        if (!desktop_translator.load("yutovo_desktop_en", GetTranslationDir("yutovo_desktop_en")))
-            logger->Error("Error loading translation: yutovo_desktop_en");
-        if (!editor_translator.load("yutovo_editor_en", GetTranslationDir("yutovo_editor_en")))
-            logger->Error("Error loading translation: yutovo_editor_en");
+        if (!desktop_translator.load("yutovo-desktop_en", GetTranslationDir("yutovo-desktop_en")))
+            logger->Error("Error loading translation: yutovo-desktop_en");
+        if (!editor_translator.load("yutovo-editor_en", GetTranslationDir("yutovo-editor_en")))
+            logger->Error("Error loading translation: yutovo-editor_en");
     }
 
     if (!qApp->installTranslator(&desktop_translator))
@@ -2919,7 +2919,7 @@ void MainWindow::RestartService()
     logger->Info("Restarting service");
     service.reset(new QProcess(this));
     service->setWorkingDirectory(".");
-    service->start("./yutovo_serviced");
+    service->start("./yutovo-serviced");
 }
 #endif
 

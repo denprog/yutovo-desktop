@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <functional>
 #include <variant>
-#include <yutovo_editor/document.h>
+#include <yutovo-editor/document.h>
 
 namespace yutovo
 {

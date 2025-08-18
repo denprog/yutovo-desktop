@@ -11,7 +11,7 @@
 DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config) :
     QWidget(parent),
     window(size().width(), size().height(), _config),
-    logger(Logger::GetInstance(_config.logs_path + "/yutovo_desktop", "yutovo_desktop", _config.log_console, _config.log_file))
+    logger(Logger::GetInstance(_config.logs_path + "/yutovo-desktop", "yutovo-desktop", _config.log_console, _config.log_file))
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
     connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);

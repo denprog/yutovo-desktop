@@ -6,9 +6,9 @@
 #include <QStyledItemDelegate>
 #include <thread>
 #include <mutex>
-#include <yutovo_calculator/unit.h>
-#include <yutovo_editor/window.h>
-#include <yutovo_editor/document.h>
+#include <yutovo-calculator/unit.h>
+#include <yutovo-editor/window.h>
+#include <yutovo-editor/document.h>
 #include "qt_window.h"
 
 namespace Ui

@@ -3,8 +3,8 @@
 rm -rf yutovo-bin-1.1.3
 mkdir yutovo-bin-1.1.3
 cd yutovo-bin-1.1.3
-cp ../docker_build/build/src/yutovo_desktop .
-cp -r ../../../../yutovo_server/library .
+cp ../docker_build/build/src/yutovo-desktop .
+cp -r ../../../../yutovo-server/library .
 cp ../../../src/translations/*.qm .
 cp ../yutovo.png .
 cp ../yutovo.desktop .

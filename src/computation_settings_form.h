@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QSettings>
-#include <yutovo_editor/config.h>
+#include <yutovo-editor/config.h>
 
 namespace Ui
 {

@@ -2,7 +2,7 @@
 #define __SYSTEM_SETTINGS_FORM_H__
 
 #include <QWidget>
-#include <yutovo_editor/config.h>
+#include <yutovo-editor/config.h>
 
 namespace Ui
 {

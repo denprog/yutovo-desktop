@@ -1,6 +1,6 @@
 #include "set_unit_dialog.h"
 #include "ui_set_unit_dialog.h"
-#include <yutovo_editor/editor_utils.h>
+#include <yutovo-editor/editor_utils.h>
 #include <QPainter>
 
 //SetUnitDialog

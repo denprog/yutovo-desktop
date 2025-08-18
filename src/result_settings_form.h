@@ -2,7 +2,7 @@
 #define RESULT_SETTINGS_FORM_H
 
 #include <QWidget>
-#include <yutovo_editor/config.h>
+#include <yutovo-editor/config.h>
 
 namespace Ui
 {

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cd ./bin && ./yutovo_desktop %u
+cd ./bin && ./yutovo-desktop %u

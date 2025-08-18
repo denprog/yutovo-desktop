@@ -9,8 +9,8 @@
 #include <QTranslator>
 #include <QProcess>
 #include <QSortFilterProxyModel>
-#include <yutovo_editor/document.h>
-#include <yutovo_logger/logger.h>
+#include <yutovo-editor/document.h>
+#include <yutovo-logger/logger.h>
 #include "ui_mainwindow.h"
 #include <cstring>
 #include <sstream>

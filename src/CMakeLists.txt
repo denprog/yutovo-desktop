@@ -23,12 +23,12 @@ if(WIN32)
 endif()
 
 if(NOT REMOTE_SOLVER)
-    find_package(yutovo_calculator REQUIRED)
-    find_package(yutovo_solver REQUIRED)
+    find_package(yutovo-calculator REQUIRED)
+    find_package(yutovo-solver REQUIRED)
 endif()
 
-find_package(yutovo_editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
-find_package(yutovo_logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
+find_package(yutovo-editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
+find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 if(WIN32)
@@ -109,8 +109,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 if(REMOTE_SOLVER)
     target_link_libraries(${PROJECT_NAME} PUBLIC
-        yutovo_editor
-        yutovo_logger
+        yutovo-editor
+        yutovo-logger
         Qt5::Widgets
 		libboost_iostreams.a
         z
@@ -118,20 +118,20 @@ if(REMOTE_SOLVER)
 elseif(NOT WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         libstdc++.a
-        yutovo_editor
-        yutovo_logger
-        yutovo_calculator
-        yutovo_solver
+        yutovo-editor
+        yutovo-logger
+        yutovo-calculator
+        yutovo-solver
         Qt5::Widgets
 		libboost_iostreams.a
         z
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
-        yutovo_editor
-        yutovo_logger
-        yutovo_calculator
-        yutovo_solver
+        yutovo-editor
+        yutovo-logger
+        yutovo-calculator
+        yutovo-solver
         Qt5::Widgets
     )
 endif()
@@ -141,8 +141,8 @@ if(NOT WIN32)
         FILES
             translations/${PROJECT_NAME}_en.qm
             translations/${PROJECT_NAME}_ru.qm
-            translations/yutovo_editor_en.qm
-            translations/yutovo_editor_ru.qm
+            translations/yutovo-editor_en.qm
+            translations/yutovo-editor_ru.qm
         DESTINATION ${INSTALL_PATH}/bin
         COMPONENT ${PROJECT_NAME}
     )

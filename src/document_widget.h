@@ -2,7 +2,7 @@
 #define __DOCUMENT_WIDGET_H__
 
 #include <QWidget>
-#include <yutovo_editor/document.h>
+#include <yutovo-editor/document.h>
 #include "qt_window.h"
 #include "command_map.h"
 
