@@ -1,3 +1,10 @@
+/*
+ * Yutovo Desktop
+ * Copyright (C) 2022-2025 Yutovo developers. All rights reserved.
+ * This file is a part of the Yutovo project
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
+
 #include "set_unit_dialog.h"
 #include "ui_set_unit_dialog.h"
 #include <yutovo-editor/editor_utils.h>
