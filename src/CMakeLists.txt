@@ -103,7 +103,6 @@ if(NOT WIN32)
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${THIRD_PARTY_PATH}
     ${INSTALL_PATH}/include
 )
 
