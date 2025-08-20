@@ -5,6 +5,10 @@ project(yutovo-desktop
     LANGUAGES CXX
 )
 
+set(PROJECT_LICENSE "GPL-3.0-only")
+
+message(STATUS "Project license: ${PROJECT_LICENSE}")
+
 #add_compile_definitions(REMOTE_SOLVER)
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(DEBUG)
