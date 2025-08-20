@@ -135,25 +135,43 @@ else()
     )
 endif()
 
-if(NOT WIN32)
-    install(
-        FILES
-            translations/${PROJECT_NAME}_en.qm
-            translations/${PROJECT_NAME}_ru.qm
-            translations/yutovo-editor_en.qm
-            translations/yutovo-editor_ru.qm
-        DESTINATION ${INSTALL_PATH}/bin
-        COMPONENT ${PROJECT_NAME}
-    )
+set(TS_FILES
+    translations/yutovo-editor_ru.ts
+    translations/yutovo-desktop_ru.ts
+    translations/yutovo-editor_en.ts
+    translations/yutovo-desktop_en.ts
+)
 
+find_program(LRELEASE_EXECUTABLE NAMES lrelease lrelease-qt5 lrelease-qt6)
+
+if(NOT LRELEASE_EXECUTABLE)
+    message(FATAL_ERROR "lrelease not found.")
+endif()
+
+set(QM_FILES)
+foreach(TS_FILE ${TS_FILES})
+    get_filename_component(TS_NAME ${TS_FILE} NAME_WE)
+    set(QM_FILE ${CMAKE_CURRENT_BINARY_DIR}/${TS_NAME}.qm)
+    list(APPEND QM_FILES ${QM_FILE})
+
+    add_custom_command(
+        OUTPUT ${QM_FILE}
+        COMMAND ${LRELEASE_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/${TS_FILE} -qm ${QM_FILE}
+        DEPENDS ${TS_FILE}
+        COMMENT "Generating ${QM_FILE}"
+        VERBATIM
+    )
+endforeach()
+
+add_custom_target(translate ALL
+    DEPENDS ${QM_FILES}
+)
+
+if(NOT WIN32)
     install(
         TARGETS ${PROJECT_NAME}
         EXPORT ${PROJECT_NAME}
         DESTINATION ${INSTALL_PATH}/bin
         COMPONENT ${PROJECT_NAME}
-    )
-
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/translations/*.qm ${CMAKE_CURRENT_BINARY_DIR}/../
     )
 endif()
