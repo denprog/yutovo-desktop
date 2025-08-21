@@ -1,6 +1,8 @@
---- include/rapidjson/document.h	2016-08-25 10:59:05.000000000 +0300
-+++ include/rapidjson/document.h	2025-08-21 20:25:09.549227244 +0300
-@@ -316,8 +316,6 @@
+diff --git a/include/rapidjson/document.h b/include/rapidjson/document.h
+index e3e20dfb..3eeca1b2 100644
+--- a/include/rapidjson/document.h
++++ b/include/rapidjson/document.h
+@@ -316,8 +316,6 @@ struct GenericStringRef {
  
      GenericStringRef(const GenericStringRef& rhs) : s(rhs.s), length(rhs.length) {}
  
@@ -9,7 +11,7 @@
      //! implicit conversion to plain CharType pointer
      operator const Ch *() const { return s; }
  
-@@ -328,6 +326,7 @@
+@@ -328,6 +326,7 @@ private:
      //! Disallow construction from non-const array
      template<SizeType N>
      GenericStringRef(CharType (&str)[N]) /* = delete */;
