@@ -1,0 +1,19 @@
+--- include/rapidjson/document.h	2016-08-25 10:59:05.000000000 +0300
++++ include/rapidjson/document.h	2025-08-21 20:25:09.549227244 +0300
+@@ -316,8 +316,6 @@
+ 
+     GenericStringRef(const GenericStringRef& rhs) : s(rhs.s), length(rhs.length) {}
+ 
+-    GenericStringRef& operator=(const GenericStringRef& rhs) { s = rhs.s; length = rhs.length; }
+-
+     //! implicit conversion to plain CharType pointer
+     operator const Ch *() const { return s; }
+ 
+@@ -328,6 +326,7 @@
+     //! Disallow construction from non-const array
+     template<SizeType N>
+     GenericStringRef(CharType (&str)[N]) /* = delete */;
++    GenericStringRef& operator=(const GenericStringRef& rhs) /* = delete */;
+ };
+ 
+ //! Mark a character pointer as constant string

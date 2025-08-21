@@ -13,18 +13,132 @@ rename-desktop-file: yutovo.desktop
 rename-icon: yutovo
 rename-mime-file: yutovo.xml
 modules:
-  - name: yutovo
+  - name: spdlog
+    buildsystem: cmake
+    sources:
+      - type: git
+        url: https://github.com/gabime/spdlog.git
+        tag: v1.15.3
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+
+  - name: yutovo-logger
+    buildsystem: cmake
+    build-options:
+      env:
+        YUTOVO_DEPLOY: /app
+    sources:
+      - type: git
+        url: https://github.com/denprog/yutovo-logger.git
+        branch: develop
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+
+  - name: boost
     buildsystem: simple
     build-commands:
-      - cp -r bin/ /app/bin/
-      - mkdir -p /app/share/mime/packages
-      - install -Dm644 /app/bin/yutovo.xml -t /app/share/mime/packages/
-      - install -Dm644 /app/bin/yutovo.png -t /app/share/icons/hicolor/256x256/apps/
-      - install -Dm644 /app/bin/yutovo.desktop -t /app/share/applications/
-    post-install:
-      - update-mime-database /app/share/mime
+      - ./bootstrap.sh --prefix=/app --with-libraries=iostreams
+      - ./b2 -j $FLATPAK_BUILDER_N_JOBS install link=static variant=release cxxflags='-fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2' --layout=system
     sources:
       - type: archive
-        url: https://yutovo.ru/yutovo-bin-1.1.3.tar.gz
-        dest: bin/
-        sha256: bff947e99c8616997285496be1be549a279a4a23ce43ec17a0c3101372e89a71
+        url: https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
+        sha256: c86bd9d9eef795b4b0d3802279419fde5221922805b073b9bd822edecb1ca28e
+
+  - name: gmp
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/sethtroisi/libgmp.git
+        branch: prev_prime
+    build-commands:
+      - ./.bootstrap
+      - ./configure --enable-static --disable-shared --enable-cxx --libdir=/app/ --prefix=/app/
+      - make -sj && make install
+
+  - name: mpfr
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://gitlab.inria.fr/mpfr/mpfr.git
+        branch: 4.2.1
+    build-commands:
+      - ./autogen.sh
+      - ./configure --enable-static --disable-shared --prefix=/app/ --with-gmp=/app/include/
+      - make -sj && make install
+
+  - name: yutovo-calculator
+    buildsystem: cmake
+    build-options:
+      env:
+        YUTOVO_DEPLOY: /app
+    sources:
+      - type: git
+        url: https://github.com/denprog/yutovo-calculator.git
+        branch: develop
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
+
+  - name: rapidjson
+    buildsystem: cmake
+    sources:
+      - type: archive
+        url: http://mirrors.kodi.tv/build-deps/sources/rapidjson-1.1.0.tar.gz
+        sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
+        patches:
+          - document.h.diff
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+
+  - name: yutovo-solver
+    buildsystem: cmake
+    build-options:
+      env:
+        YUTOVO_DEPLOY: /app
+    sources:
+      - type: git
+        url: https://github.com/denprog/yutovo-solver.git
+        branch: develop
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+
+  - name: yutovo-editor
+    buildsystem: cmake
+    build-options:
+      env:
+        YUTOVO_DEPLOY: /app
+    sources:
+      - type: git
+        url: https://github.com/denprog/yutovo-editor.git
+        branch: develop
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+
+  - name: yutovo-desktop
+    buildsystem: cmake
+    build-options:
+      env:
+        YUTOVO_DEPLOY: /app
+    sources:
+      - type: git
+        url: https://github.com/denprog/yutovo-desktop.git
+        branch: develop
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+    post-install:
+      - update-mime-database /app/share/mime
+      - mkdir -p /app/share/mime/packages
+      - install -Dm644 /app/yutovo.xml -t /app/share/mime/packages/
+      - install -Dm644 /app/yutovo.png -t /app/share/icons/hicolor/256x256/apps/
+      - install -Dm644 /app/yutovo.desktop -t /app/share/applications/
