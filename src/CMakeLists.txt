@@ -124,6 +124,7 @@ elseif(NOT WIN32)
         Qt5::Widgets
 		libboost_iostreams.a
         z
+        libgmp.a
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC
