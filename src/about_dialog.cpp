@@ -26,6 +26,8 @@ AboutDialog::AboutDialog() :
     form->web_link->setOpenExternalLinks(true);
     form->support_links->setText(tr("support_links_text"));
     form->support_links->setOpenExternalLinks(true);
+    form->source_code_link->setText(tr("source_code_link_text"));
+    form->source_code_link->setOpenExternalLinks(true);
 
     connect(form->ok, SIGNAL(clicked()), this, SLOT(OnOkClicked()));
 }
