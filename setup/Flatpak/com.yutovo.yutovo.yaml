@@ -31,7 +31,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-logger.git
-        branch: release-1.0.4
+        tag: v1.0.4
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -51,7 +51,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/sethtroisi/libgmp.git
-        branch: prev_prime
+        commit: 21623db
     build-commands:
       - ./.bootstrap
       - ./configure --enable-static --disable-shared --enable-cxx --libdir=/app/lib/ --prefix=/app/
@@ -76,7 +76,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        branch: release-1.2.2
+        tag: v1.2.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -106,7 +106,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        branch: release-1.1.2
+        tag: v1.1.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -119,7 +119,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        branch: release-1.2.2
+        tag: v1.2.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -130,7 +130,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        branch: release-1.1.2
+        tag: v1.1.2
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -143,12 +143,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        branch: develop
+        tag: v1.2.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
     post-install:
       - mkdir -p /app/share/mime/packages
+      - mkdir -p /app/share/metainfo
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/com.yutovo.yutovo.metainfo.xml /app/share/metainfo/
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo.xml /app/share/mime/packages/yutovo.xml
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-16.png /app/share/icons/hicolor/16x16/apps/yutovo.png
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-32.png /app/share/icons/hicolor/32x32/apps/yutovo.png
