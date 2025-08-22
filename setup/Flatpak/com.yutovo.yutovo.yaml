@@ -149,6 +149,8 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
     post-install:
       - mkdir -p /app/share/mime/packages
+      - mkdir -p /app/share/metainfo
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/com.yutovo.yutovo.metainfo.xml /app/share/metainfo/
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo.xml /app/share/mime/packages/yutovo.xml
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-16.png /app/share/icons/hicolor/16x16/apps/yutovo.png
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-32.png /app/share/icons/hicolor/32x32/apps/yutovo.png
