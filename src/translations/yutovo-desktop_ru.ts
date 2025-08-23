@@ -663,11 +663,11 @@
     </message>
     <message>
         <source>yutovo_web_linux</source>
-        <translation>&lt;a href="https://yutovo.ru/?ref=desktop_linux"&gt;Ютово онлайн&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.ru/?ref=yutovo-desktop_linux"&gt;Ютово онлайн&lt;/a&gt;</translation>
     </message>
     <message>
         <source>yutovo_web_windows</source>
-        <translation>&lt;a href="https://yutovo.ru/?ref=desktop_windows"&gt;Ютово онлайн&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.ru/?ref=yutovo-desktop_windows"&gt;Ютово онлайн&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>

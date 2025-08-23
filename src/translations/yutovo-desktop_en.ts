@@ -53,11 +53,11 @@ You assume all responsibility and risk in relation to your use of this applicati
     <name>MainWindow</name>
     <message>
         <source>yutovo_web_linux</source>
-        <translation>&lt;a href="https://yutovo.com/?ref=desktop_linux"&gt;Yutovo online&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.com/?ref=yutovo-desktop_linux"&gt;Yutovo online&lt;/a&gt;</translation>
     </message>
     <message>
         <source>yutovo_web_windows</source>
-        <translation>&lt;a href="https://yutovo.com/?ref=desktop_windows"&gt;Yutovo online&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.com/?ref=yutovo-desktop_windows"&gt;Yutovo online&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>
