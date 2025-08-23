@@ -854,6 +854,7 @@ void MainWindow::CreateGreekToolbar()
         {
             QAction* action = new QAction(letter, this);
             action->setData(letter);
+            action->setToolTip(tr(QString(letter).toUtf8().data()));
             connect(action, &QAction::triggered, this, &MainWindow::OnGreekLetter);
             greek_toolbar->addAction(action);
         };
