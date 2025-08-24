@@ -2718,8 +2718,8 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                 }
             }
 
-            std::vector<std::filesystem::path> sorted_dirs;
-            std::vector<std::filesystem::path> sorted_files;
+            std::vector<std::filesystem::path> sorted_dirs, others_dirs;
+            std::vector<std::filesystem::path> sorted_files, others_files;
             for (const auto& entry : std::filesystem::directory_iterator(path))
             {
                 if (entry.is_directory())
@@ -2736,7 +2736,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                         if (it != order.end())
                             pos = std::distance(order.begin(), it);
                         if (pos == -1)
-                            sorted_dirs.push_back(entry.path());
+                            others_dirs.push_back(entry.path());
                         else
                         {
                             if (pos < sorted_dirs.size())
@@ -2769,7 +2769,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                             if (it != order.end())
                                 pos = std::distance(order.begin(), it);
                             if (pos == -1)
-                                sorted_files.push_back(entry.path());
+                                others_files.push_back(entry.path());
                             else
                             {
                                 if (pos < sorted_files.size())
@@ -2789,6 +2789,9 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
                     }
                 }
             }
+
+            sorted_dirs.insert(sorted_dirs.end(), others_dirs.begin(), others_dirs.end());
+            sorted_files.insert(sorted_files.end(), others_files.begin(), others_files.end());
 
             if (order.empty())
             {
