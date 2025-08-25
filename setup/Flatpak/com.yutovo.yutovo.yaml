@@ -9,6 +9,14 @@ finish-args:
   - --share=ipc
   - --device=dri
   - --filesystem=xdg-documents
+build-options:
+  strip: true
+  no-debuginfo: true
+cleanup:
+  - /include
+  - /lib
+  - /lib64
+  - /share/doc
 rename-desktop-file: yutovo.desktop
 rename-icon: yutovo
 rename-mime-file: yutovo.xml
