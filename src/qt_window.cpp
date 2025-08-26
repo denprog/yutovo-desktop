@@ -547,8 +547,18 @@ void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
     std::string f = file_name;
     if (file_name.rfind("/", 0) == 0)
     {
-        f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + 
-            (document->config.language == yutovo_calculator::Language::English ? "en" : "ru") + file_name;
+        switch (document->config.language)
+        {
+        case yutovo_calculator::Language::Russian:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "ru/" + file_name;
+            break;
+        case yutovo_calculator::Language::Spanish:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "es/" + file_name;
+            break;
+        default:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "en/" + file_name;
+            break;
+        }
     }
     document->LoadInclude(f, w.get());
     include_windows.push_back(w);

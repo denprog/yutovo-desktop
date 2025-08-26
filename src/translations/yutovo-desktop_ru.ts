@@ -910,6 +910,10 @@
         <translation>Русский</translation>
     </message>
     <message>
+        <source>Spanish</source>
+        <translation>Испанский</translation>
+    </message>
+    <message>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
@@ -1167,6 +1171,10 @@
     <message>
         <source>Russian</source>
         <translation>Русский</translation>
+    </message>
+    <message>
+        <source>Spanish</source>
+        <translation>Испанский</translation>
     </message>
     <message>
         <source>Result</source>

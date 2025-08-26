@@ -115,6 +115,8 @@ void MainWindow::Start(QString filename)
         //it is the first run - open the hello document
         if (config.language == yutovo_calculator::Language::Russian)
             OpenFile(GetLibraryDir() + "ru/Другое/Первая страница.yut");
+        else if (config.language == yutovo_calculator::Language::Spanish)
+            OpenFile(GetLibraryDir() + "es/Otros/Primera página.yut");
         else
             OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
@@ -2466,11 +2468,15 @@ void MainWindow::ReadSettings()
     
     std::string lang = QLocale::system().name().toUtf8().data(); //get current system language, it will be default one
     lang = lang.substr(0, lang.find('_'));
-    if (lang != "en" && lang != "ru")
+    if (lang != "en" && lang != "ru" && lang != "es")
         lang = "en";
 
-    config.language = (yutovo_calculator::Language)settings.value("MainWindow/language",
-        lang == "en" ? (int)yutovo_calculator::Language::English : (int)yutovo_calculator::Language::Russian).toInt();
+    if (lang == "ru")
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::Russian).toInt();
+    else if (lang == "es")
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::Spanish).toInt();
+    else
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::English).toInt();
 
     settings.beginGroup("RecentFiles");
     recent_files_count = settings.value("max_count", 10).toInt();
@@ -2820,7 +2826,17 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
     
     library_menu->clear();
 
-    auto p = std::string(GetLibraryDir().toUtf8().data()) + (config.language == yutovo_calculator::Language::English ? "en" : "ru");
+    std::string dir = "en";
+    switch (config.language)
+    {
+    case yutovo_calculator::Language::Russian:
+        dir = "ru";
+        break;
+    case yutovo_calculator::Language::Spanish:
+        dir = "es";
+        break;
+    }
+    auto p = std::string(GetLibraryDir().toUtf8().data()) + dir;
     if (!std::filesystem::exists(p))
         return;
     
@@ -2838,6 +2854,13 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
             logger->Error("Error loading translation: yutovo_desktop_ru");
         if (!editor_translator.load("yutovo-editor_ru", GetTranslationDir("yutovo-editor_ru")))
             logger->Error("Error loading translation: yutovo_editor_ru");
+    }
+    else if (language == yutovo_calculator::Language::Spanish)
+    {
+        if (!desktop_translator.load("yutovo-desktop_es", GetTranslationDir("yutovo-desktop_es")))
+            logger->Error("Error loading translation: yutovo_desktop_ru");
+        if (!editor_translator.load("yutovo-editor_es", GetTranslationDir("yutovo-editor_es")))
+            logger->Error("Error loading translation: yutovo_editor_es");
     }
     else if (language == yutovo_calculator::Language::English)
     {
@@ -2886,7 +2909,7 @@ void MainWindow::UpdateLocaleMessage()
         return;
     Config c;
     document->GetConfig(c);
-    locale_status->setText(tr("Locale: ") + (c.language == yutovo_calculator::Language::English ? tr("English") : tr("Russian")));
+    locale_status->setText(tr("Locale: ") + (tr(yutovo_calculator::LanguageToString(c.language).c_str())));
 }
 
 void MainWindow::EnableButtons(bool enable)
