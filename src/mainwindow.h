@@ -76,6 +76,7 @@ private:
     void SaveAll();
     void Close();
     void CloseAll();
+    void CloseOthers();
     void Settings();
     void Exit();
 

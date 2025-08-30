@@ -934,6 +934,18 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Guardar &amp;todos</translation>
     </message>
     <message>
+        <source>Save all the documents to disk</source>
+        <translation>Guardar todos los documentos en el disco</translation>
+    </message>
+    <message>
+        <source>Close others</source>
+        <translation>Cerrar otros</translation>
+    </message>
+    <message>
+        <source>Close all documents except current</source>
+        <translation>Cerrar todos los documentos excepto el actual</translation>
+    </message>
+    <message>
         <source>Error saving document</source>
         <translation>Error al guardar el documento</translation>
     </message>

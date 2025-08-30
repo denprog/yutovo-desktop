@@ -934,6 +934,18 @@
         <translation>Сохранить &amp;все</translation>
     </message>
     <message>
+        <source>Save all the documents to disk</source>
+        <translation>Сохранить все документы на диск</translation>
+    </message>
+    <message>
+        <source>Close others</source>
+        <translation>Закрыть другие</translation>
+    </message>
+    <message>
+        <source>Close all documents except current</source>
+        <translation>Закрыть все документы кроме текущего</translation>
+    </message>
+    <message>
         <source>Error saving document</source>
         <translation>Ошибка сохранения документа</translation>
     </message>

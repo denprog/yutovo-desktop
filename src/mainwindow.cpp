@@ -338,6 +338,11 @@ void MainWindow::CreateActions()
     connect(action, &QAction::triggered, this, &MainWindow::CloseAll);
     file_menu->addAction(action);
 
+    action = new QAction(tr("Close others"), this);
+    action->setStatusTip(tr("Close all documents except current"));
+    connect(action, &QAction::triggered, this, &MainWindow::CloseOthers);
+    file_menu->addAction(action);
+
     file_menu->addSeparator();
 
     action = new QAction(tr("&Settings"), this);
@@ -1139,6 +1144,21 @@ void MainWindow::CloseAll()
     for (int i = 0; i < ui->editor_tabs->count();)
     {
         if (!OnCloseEditorTab(0))
+            return;
+    }
+}
+
+void MainWindow::CloseOthers()
+{
+    int p = ui->editor_tabs->currentIndex();
+    for (int i = 0; i < p; ++i)
+    {
+        if (!OnCloseEditorTab(0))
+            return;
+    }
+    for (int i = 1; i < ui->editor_tabs->count();)
+    {
+        if (!OnCloseEditorTab(1))
             return;
     }
 }
