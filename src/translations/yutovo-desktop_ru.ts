@@ -930,6 +930,10 @@
         <translation>Сохранить файл как</translation>
     </message>
     <message>
+        <source>Save &amp;all</source>
+        <translation>Сохранить &amp;все</translation>
+    </message>
+    <message>
         <source>Error saving document</source>
         <translation>Ошибка сохранения документа</translation>
     </message>

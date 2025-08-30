@@ -320,6 +320,11 @@ void MainWindow::CreateActions()
     file_menu->addAction(save_action);
     standard_toolbar->addAction(save_action);
 
+    action = new QAction(tr("Save &all"), this);
+    action->setStatusTip(tr("Save all the documents to disk"));
+    connect(action, &QAction::triggered, this, &MainWindow::SaveAll);
+    file_menu->addAction(action);
+
     action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
     action->setStatusTip(tr("Save the document under a new name"));
 
@@ -1080,7 +1085,7 @@ void MainWindow::SaveFile(int index)
     else
     {
         dialog_file_name = w->path;
-        document->Save(w->path.toUtf8().data());
+        save_tasks[document->Save(w->path.toUtf8().data())] = index;
     }
 
     UpdateCaption();
@@ -1113,6 +1118,12 @@ void MainWindow::SaveFileAs(int index)
     document->Save(file_names[0].toUtf8().data());
 
     UpdateCaption();
+}
+
+void MainWindow::SaveAll()
+{
+    for (int i = 0; i < ui->editor_tabs->count(); ++i)
+        SaveFile(i);
 }
 
 void MainWindow::Close()
@@ -2216,6 +2227,14 @@ void MainWindow::OnDocumentChanged(const bool changed)
 
 void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 {
+    int index = -1;
+    auto it = save_tasks.find(task_id);
+    if (it != save_tasks.end())
+    {
+        index = it->second;
+        save_tasks.erase(it);
+    }
+
     if (result != IOResult::Success)
     {
         exit_after_save = false;
@@ -2253,7 +2272,7 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
         close();
     }
 
-    UpdateCaption();
+    UpdateCaption(index);
 }
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)

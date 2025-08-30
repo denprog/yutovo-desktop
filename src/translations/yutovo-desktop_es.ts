@@ -930,6 +930,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Guardar archivo como</translation>
     </message>
     <message>
+        <source>Save &amp;all</source>
+        <translation>Guardar &amp;todos</translation>
+    </message>
+    <message>
         <source>Error saving document</source>
         <translation>Error al guardar el documento</translation>
     </message>

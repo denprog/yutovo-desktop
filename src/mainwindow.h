@@ -73,6 +73,7 @@ private:
     void SaveFile(int index);
     void SaveFileAsName();
     void SaveFileAs(int index);
+    void SaveAll();
     void Close();
     void CloseAll();
     void Settings();
@@ -268,6 +269,8 @@ private:
 
     bool exit_after_save = false;
     int close_tab_after_save = -1;
+
+    std::map<uint, int> save_tasks;
 
     StringFormat string_format;
 
