@@ -60,6 +60,7 @@ private:
     void CreateFunctionsToolbar();
     void CreateGreekToolbar();
     void CreateCurrenciesToolbar();
+    void CreateGraphsToolbar();
     void CreateStatusBar();
 
     void SetFocus();
@@ -106,6 +107,7 @@ private:
     void FunctionsToolbar();
     void GreekToolbar();
     void CurrencyToolbar();
+    void GraphToolbar();
 
     void StatusBar();
 
@@ -197,6 +199,8 @@ private slots:
     void OnGreekLetter();
 
     void OnCurrency();
+
+    void GraphLine();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);
@@ -315,6 +319,7 @@ private:
     QAction* greek_toolbar_action = nullptr;
     QAction* currency_toolbar_action = nullptr;
     QAction* status_bar_action = nullptr;
+    QAction* graph_toolbar_action = nullptr;
 
     QToolBar* standard_toolbar = nullptr;
     QToolBar* format_toolbar = nullptr;
@@ -324,6 +329,7 @@ private:
     QToolBar* functions_toolbar = nullptr;
     QToolBar* greek_toolbar = nullptr;
     QToolBar* currency_toolbar = nullptr;
+    QToolBar* graph_toolbar = nullptr;
 
     QList<QString> last_documents;
 

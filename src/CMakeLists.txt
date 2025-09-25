@@ -29,6 +29,7 @@ endif()
 
 find_package(yutovo-editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
+find_package(MathGL2 REQUIRED PATHS ${INSTALL_PATH}/lib/cmake)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 if(WIN32)
@@ -113,6 +114,7 @@ if(REMOTE_SOLVER)
         Qt5::Widgets
 		libboost_iostreams.a
         z
+        mgl
     )
 elseif(NOT WIN32)
     target_link_libraries(${PROJECT_NAME} PUBLIC

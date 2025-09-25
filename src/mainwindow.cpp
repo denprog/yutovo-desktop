@@ -215,6 +215,7 @@ void MainWindow::SetupGui()
     CreateFunctionsToolbar();
     CreateGreekToolbar();
     CreateCurrenciesToolbar();
+    CreateGraphsToolbar();
 
     CreateStatusBar();
 
@@ -234,6 +235,8 @@ void MainWindow::SetupGui()
     greek_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/currency_toolbar", false).toBool();
     currency_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/graph_toolbar", false).toBool();
+    graph_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
 
@@ -574,6 +577,12 @@ void MainWindow::CreateActions()
     currency_toolbar_action->setChecked(true);
     connect(currency_toolbar_action, &QAction::toggled, this, &MainWindow::CurrencyToolbar);
     toolbars_menu->addAction(currency_toolbar_action);
+
+    graph_toolbar_action = new QAction(tr("Graphs"), this);
+    graph_toolbar_action->setCheckable(true);
+    graph_toolbar_action->setChecked(true);
+    connect(graph_toolbar_action, &QAction::toggled, this, &MainWindow::GraphToolbar);
+    toolbars_menu->addAction(graph_toolbar_action);
 
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
@@ -943,6 +952,17 @@ void MainWindow::CreateCurrenciesToolbar()
     add_currency("₹", tr("Indian rupee"));
     add_currency("₽", tr("Russian ruble"));
     add_currency("$", tr("US dollar"));
+}
+
+void MainWindow::CreateGraphsToolbar()
+{
+    //graphs toolbar
+    graph_toolbar = addToolBar(tr("Graphs"));
+    graph_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* action = new QAction(QIcon(":/icons/images/graphs/graph_line.png"), tr("Graph line"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::GraphLine);
+    graph_toolbar->addAction(action);
 }
 
 void MainWindow::CreateStatusBar()
@@ -1447,6 +1467,12 @@ void MainWindow::CurrencyToolbar()
 {
     currency_toolbar_action->isChecked() ? currency_toolbar->show() : currency_toolbar->hide();
     settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
+}
+
+void MainWindow::GraphToolbar()
+{
+    graph_toolbar_action->isChecked() ? graph_toolbar->show() : graph_toolbar->hide();
+    settings.setValue("MainWindow/graph_toolbar", graph_toolbar_action->isChecked());
 }
 
 void MainWindow::StatusBar()
@@ -2150,6 +2176,13 @@ void MainWindow::OnCurrency()
         document->InsertString(symbol.toStdString(), true);
 }
 
+void MainWindow::GraphLine()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertGraph(true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -2422,6 +2455,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
     settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
+    settings.setValue("MainWindow/graph_toolbar", graph_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
@@ -2984,6 +3018,7 @@ void MainWindow::EnableButtons(bool enable)
     functions_toolbar->setEnabled(enable);
     greek_toolbar->setEnabled(enable);
     currency_toolbar->setEnabled(enable);
+    graph_toolbar->setEnabled(enable);
 }
 
 #ifdef REMOTE_SOLVER
