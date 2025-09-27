@@ -172,6 +172,19 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
 void DocumentWidget::mousePressEvent(QMouseEvent *event)
 {
     EditorState s = document->GetEditorState();
+    if (event->buttons() == Qt::LeftButton)
+    {
+        ElementId id;
+        if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), id))
+        {
+            ElementPtr el = document->GetElement(id);
+            if (el && el->OnMouseLButtonDown((int)event->pos().x(), (int)event->pos().y()))
+            {
+                mouse_capture_id = id;
+                return;
+            }
+        }
+    }
     if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
     {
         caret_moving_task_id = document->MoveCaret((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y, 
@@ -179,6 +192,24 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
     }
     if (event->buttons() == Qt::LeftButton)
         left_click_pos = QPoint{event->pos().x() + window.document_point.x, event->pos().y() + window.document_point.y};
+}
+
+void DocumentWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    EditorState s = document->GetEditorState();
+    if (event->button() == Qt::LeftButton)
+    {
+        ElementPtr el = document->GetElement(mouse_capture_id);
+        if (el && el->OnMouseLButtonUp((int)event->pos().x(), (int)event->pos().y()))
+            return;
+        ElementId id;
+        if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), id))
+        {
+            el = document->GetElement(id);
+            if (el && el->OnMouseLButtonUp((int)event->pos().x(), (int)event->pos().y()))
+                return;
+        }
+    }
 }
 
 void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
@@ -189,6 +220,14 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         setCursor(Qt::ArrowCursor);
         return;
     }
+
+    ElementPtr el = document->GetElement(mouse_capture_id);
+    if (el && el->OnMouseMove((int)event->pos().x(), (int)event->pos().y()))
+        return;
+    el = document->GetElement(id);
+    if (el && el->OnMouseMove((int)event->pos().x(), (int)event->pos().y()))
+        return;
+    
     if (document->IsString(id))
     {
         if (document->GetElementType(id) == ElementType::LINK && event->modifiers() == Qt::ControlModifier)
@@ -217,19 +256,41 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
     QPoint num_pixels = event->pixelDelta() / 8;
     QPoint num_degrees = event->angleDelta() / 8;
 
+    EditorState s = document->GetEditorState();
+    ElementId id;
+    ElementPtr el;
+    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), id))
+        el = document->GetElement(id);
+
     if (!num_pixels.isNull())
     {
         if (num_pixels.x() != 0)
+        {
+            if (el && el->OnMouseWheelHorizontal(num_pixels.x()))
+                return;
             emit WheelHorizontal(num_pixels.x());
+        }
         if (num_pixels.y() != 0)
+        {
+            if (el && el->OnMouseWheelVertical(num_pixels.y()))
+                return;
             emit WheelVertical(num_pixels.y());
+        }
     }
     else if (!num_degrees.isNull())
     {
         if (num_degrees.x() != 0)
+        {
+            if (el && el->OnMouseWheelHorizontal(num_pixels.x()))
+                return;
             emit WheelHorizontal(num_degrees.x());
+        }
         if (num_degrees.y() != 0)
+        {
+            if (el && el->OnMouseWheelVertical(num_pixels.y()))
+                return;
             emit WheelVertical(num_degrees.y());
+        }
     }
 
     event->accept();
