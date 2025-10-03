@@ -88,6 +88,7 @@ add_executable(${PROJECT_NAME} WIN32
     terms_of_use_dialog.cpp
     privacy_policy_dialog.ui
     privacy_policy_dialog.cpp
+    graph_settings_dialog.cpp
 )
 
 if(WIN32)

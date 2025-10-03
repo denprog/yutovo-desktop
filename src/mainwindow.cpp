@@ -35,6 +35,7 @@
 #include "link_dialog.h"
 #include "terms_of_use_dialog.h"
 #include "privacy_policy_dialog.h"
+#include "graph_settings_dialog.h"
 
 //MainWindow
 
@@ -1354,6 +1355,22 @@ void MainWindow::Link()
         return;
     
     document->InsertLink(dialog.text.toStdString(), dialog.url.toStdString(), true);
+}
+
+void MainWindow::Graph()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    EditorState s = document->GetEditorState();
+    GraphFormat f;
+    if (!document->GetGraphFormat(yutovo::GetParent(s.caret_state.id), f))
+        return;
+    GraphSettingsDialog dialog(f);
+    if (!dialog.exec())
+        return;
+    document->SetGraphFormat(yutovo::GetParent(s.caret_state.id), f);
 }
 
 void MainWindow::Undo()

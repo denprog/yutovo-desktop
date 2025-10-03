@@ -87,6 +87,8 @@ private:
 
     void Link();
 
+    void Graph();
+
     void Properties();
 
     void Recalculate();
