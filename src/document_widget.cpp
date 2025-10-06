@@ -198,7 +198,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     int x = (int)event->pos().x() + window.document_point.x;
     int y = (int)event->pos().y() + window.document_point.y;
     int m = document->config.resize_margin_width;
-    if (GetElementAtCoords(x, y, m, id))
+    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), m, id))
     {
         if (document->IsResizable(id))
         {
@@ -233,7 +233,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         }
     }
 
-    if (!GetElementAtCoords(x, y, 0, id))
+    if (!GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), 0, id))
     {
         setCursor(Qt::ArrowCursor);
         return;
