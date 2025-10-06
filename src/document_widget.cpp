@@ -171,14 +171,44 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
 
 void DocumentWidget::mousePressEvent(QMouseEvent *event)
 {
+    ElementId id;
+    int x = (int)event->pos().x() + window.document_point.x;
+    int y = (int)event->pos().y() + window.document_point.y;
+    int m = document->config.resize_margin_width;
+    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), m, id))
+    {
+        if (document->IsResizable(id))
+        {
+            Rect rect;
+            if (document->GetElementRect(id, rect))
+            {
+                if ((x <= rect.left + m && y <= rect.top + m) || (x >= rect.GetRight() - m && y >= rect.GetBottom() - m))
+                {
+                    mouse_capture_id = id;
+                }
+                else if ((x >= rect.GetRight() - m && y <= rect.top + m) || (x <= rect.left + m && y >= rect.GetBottom() - m))
+                {
+                    mouse_capture_id = id;
+                }
+                else if (x <= rect.left + m || (x <= rect.GetRight() + m && x >= rect.GetRight() - m))
+                {
+                    mouse_capture_id = id;
+                }
+                else if (y <= rect.top + m || (y <= rect.GetBottom() + m && y >= rect.GetBottom() - m))
+                {
+                    mouse_capture_id = id;
+                }
+            }
+        }
+    }
+
     EditorState s = document->GetEditorState();
     if (event->buttons() == Qt::LeftButton)
     {
         if (document->MouseLButtonDown((int)event->pos().x(), (int)event->pos().y()))
             return;
     }
-    int x = (int)event->pos().x() + window.document_point.x;
-    int y = (int)event->pos().y() + window.document_point.y;
+
     if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
         caret_moving_task_id = document->MoveCaret(x, y, event->modifiers() == Qt::ControlModifier);
     if (event->buttons() == Qt::LeftButton)
@@ -187,6 +217,7 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
 
 void DocumentWidget::mouseReleaseEvent(QMouseEvent *event)
 {
+    mouse_capture_id = ElementId{};
     EditorState s = document->GetEditorState();
     if (event->button() == Qt::LeftButton)
         document->MouseLButtonUp((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y);
@@ -207,25 +238,29 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
             {
                 if ((x <= rect.left + m && y <= rect.top + m) || (x >= rect.GetRight() - m && y >= rect.GetBottom() - m))
                 {
-                    setCursor(Qt::SizeFDiagCursor);
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeFDiagCursor);
                     document->MouseMove(x, y);
                     return;
                 }
                 if ((x >= rect.GetRight() - m && y <= rect.top + m) || (x <= rect.left + m && y >= rect.GetBottom() - m))
                 {
-                    setCursor(Qt::SizeBDiagCursor);
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeBDiagCursor);
                     document->MouseMove(x, y);
                     return;
                 }
                 if (x <= rect.left + m || (x <= rect.GetRight() + m && x >= rect.GetRight() - m))
                 {
-                    setCursor(Qt::SizeHorCursor);
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeHorCursor);
                     document->MouseMove(x, y);
                     return;
                 }
                 if (y <= rect.top + m || (y <= rect.GetBottom() + m && y >= rect.GetBottom() - m))
                 {
-                    setCursor(Qt::SizeVerCursor);
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeVerCursor);
                     document->MouseMove(x, y);
                     return;
                 }
@@ -235,7 +270,8 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
 
     if (!GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), 0, id))
     {
-        setCursor(Qt::ArrowCursor);
+        if (mouse_capture_id == ElementId{})
+            setCursor(Qt::ArrowCursor);
         return;
     }
 

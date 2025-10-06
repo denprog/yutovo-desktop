@@ -1370,7 +1370,7 @@ void MainWindow::Graph()
     GraphSettingsDialog dialog(f);
     if (!dialog.exec())
         return;
-    document->SetGraphFormat(yutovo::GetParent(s.caret_state.id), f);
+    document->SetGraphFormat(yutovo::GetParent(s.caret_state.id), f, true);
 }
 
 void MainWindow::Undo()
