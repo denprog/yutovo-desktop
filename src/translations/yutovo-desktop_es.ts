@@ -35,6 +35,10 @@
         <source>source_code_link_text</source>
         <translation>&lt;a href="https://github.com/denprog/yutovo-desktop"&gt;Código fuente&lt;/a&gt;</translation>
     </message>
+    <message>
+        <source>version</source>
+        <translation>Versión: </translation>
+    </message>
 </context>
 <context>
     <name>TermsOfUseDialog</name>
