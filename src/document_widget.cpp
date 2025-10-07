@@ -46,10 +46,10 @@ void DocumentWidget::InsertText(const std::string& str, const StringFormatPtr st
     document->InsertString(str, string_format, true);
 }
 
-bool DocumentWidget::GetElementAtCoords(const int x, const int y, ElementId& id)
+bool DocumentWidget::GetElementAtCoords(const int x, const int y, const int margin, ElementId& id)
 {
     auto p = window.GetDocumentPoint();
-    return document->GetElementAtCoords(x + p.x, y + p.y, id);
+    return document->GetElementAtCoords(x + p.x, y + p.y, margin, id);
 }
 
 void DocumentWidget::OnNextEditorTab()
@@ -171,24 +171,113 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
 
 void DocumentWidget::mousePressEvent(QMouseEvent *event)
 {
-    EditorState s = document->GetEditorState();
-    if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
+    ElementId id;
+    int x = (int)event->pos().x() + window.document_point.x;
+    int y = (int)event->pos().y() + window.document_point.y;
+    int m = document->config.resize_margin_width;
+    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), m, id))
     {
-        caret_moving_task_id = document->MoveCaret((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y, 
-            event->modifiers() == Qt::ControlModifier);
+        if (document->IsResizable(id))
+        {
+            Rect rect;
+            if (document->GetElementRect(id, rect))
+            {
+                if ((x <= rect.left + m && y <= rect.top + m) || (x >= rect.GetRight() - m && y >= rect.GetBottom() - m))
+                {
+                    mouse_capture_id = id;
+                }
+                else if ((x >= rect.GetRight() - m && y <= rect.top + m) || (x <= rect.left + m && y >= rect.GetBottom() - m))
+                {
+                    mouse_capture_id = id;
+                }
+                else if (x <= rect.left + m || (x <= rect.GetRight() + m && x >= rect.GetRight() - m))
+                {
+                    mouse_capture_id = id;
+                }
+                else if (y <= rect.top + m || (y <= rect.GetBottom() + m && y >= rect.GetBottom() - m))
+                {
+                    mouse_capture_id = id;
+                }
+            }
+        }
     }
+
+    EditorState s = document->GetEditorState();
     if (event->buttons() == Qt::LeftButton)
-        left_click_pos = QPoint{event->pos().x() + window.document_point.x, event->pos().y() + window.document_point.y};
+    {
+        if (document->MouseLButtonDown((int)event->pos().x(), (int)event->pos().y()))
+            return;
+    }
+
+    if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
+        caret_moving_task_id = document->MoveCaret(x, y, event->modifiers() == Qt::ControlModifier);
+    if (event->buttons() == Qt::LeftButton)
+        left_click_pos = QPoint{x, y};
+}
+
+void DocumentWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    mouse_capture_id = ElementId{};
+    EditorState s = document->GetEditorState();
+    if (event->button() == Qt::LeftButton)
+        document->MouseLButtonUp((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y);
 }
 
 void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
 {
     ElementId id;
-    if (!GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), id))
+    int x = (int)event->pos().x() + window.document_point.x;
+    int y = (int)event->pos().y() + window.document_point.y;
+    int m = document->config.resize_margin_width;
+    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), m, id))
     {
-        setCursor(Qt::ArrowCursor);
+        if (document->IsResizable(id))
+        {
+            Rect rect;
+            if (document->GetElementRect(id, rect))
+            {
+                if ((x <= rect.left + m && y <= rect.top + m) || (x >= rect.GetRight() - m && y >= rect.GetBottom() - m))
+                {
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeFDiagCursor);
+                    document->MouseMove(x, y);
+                    return;
+                }
+                if ((x >= rect.GetRight() - m && y <= rect.top + m) || (x <= rect.left + m && y >= rect.GetBottom() - m))
+                {
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeBDiagCursor);
+                    document->MouseMove(x, y);
+                    return;
+                }
+                if (x <= rect.left + m || (x <= rect.GetRight() + m && x >= rect.GetRight() - m))
+                {
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeHorCursor);
+                    document->MouseMove(x, y);
+                    return;
+                }
+                if (y <= rect.top + m || (y <= rect.GetBottom() + m && y >= rect.GetBottom() - m))
+                {
+                    if (mouse_capture_id == ElementId{})
+                        setCursor(Qt::SizeVerCursor);
+                    document->MouseMove(x, y);
+                    return;
+                }
+            }
+        }
+    }
+
+    if (!GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), 0, id))
+    {
+        if (mouse_capture_id == ElementId{})
+            setCursor(Qt::ArrowCursor);
         return;
     }
+
+    if (document->MouseMove(x, y))
+        return;
+    
     if (document->IsString(id))
     {
         if (document->GetElementType(id) == ElementType::LINK && event->modifiers() == Qt::ControlModifier)
@@ -202,7 +291,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     if (event->buttons() == Qt::MouseButton::LeftButton)
     {
         //selection with mouse
-        document->Select(left_click_pos.x(), left_click_pos.y(), (int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y);
+        document->Select(left_click_pos.x(), left_click_pos.y(), x + window.document_point.x, y + window.document_point.y);
     }
 }
 
@@ -216,6 +305,12 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
 {
     QPoint num_pixels = event->pixelDelta() / 8;
     QPoint num_degrees = event->angleDelta() / 8;
+
+    if (document->MouseWheel((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y, 
+        yutovo::Point{num_pixels.x(), num_pixels.y()}, yutovo::Point{num_degrees.x(), num_degrees.y()}))
+    {
+        return;
+    }
 
     if (!num_pixels.isNull())
     {

@@ -26,7 +26,7 @@ public:
 
     void InsertText(const std::string& str, const StringFormatPtr string_format);
 
-    bool GetElementAtCoords(const int x, const int y, ElementId& id);
+    bool GetElementAtCoords(const int x, const int y, const int margin, ElementId& id);
 
 public:
     void OnNextEditorTab();
@@ -55,6 +55,7 @@ protected:
     virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent(QKeyEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
     virtual void wheelEvent(QWheelEvent* event);
@@ -86,6 +87,8 @@ private:
     QSize resize;
 
     QPoint left_click_pos;
+
+    ElementId mouse_capture_id;
 
     Logger* logger;
 };

@@ -147,6 +147,8 @@ private:
     QAction* complex_form_arithmetic = nullptr;
     QAction* complex_form_trigonometric = nullptr;
     QAction* complex_form_exponential = nullptr;
+
+    QAction* graph = nullptr;
 };
 
 #endif

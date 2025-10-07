@@ -152,6 +152,9 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
     complex_form_exponential = new QAction(tr("Exponential"), this);
     complex_form_exponential->setCheckable(true);
     connect(complex_form_exponential, &QAction::triggered, this, &DocumentWindow::OnComplexFormExponential);
+
+    graph = new QAction(tr("Graph"), this);
+    connect(graph, &QAction::triggered, main_window, &MainWindow::Graph);
 }
 
 void DocumentWindow::CreateDocument()
@@ -371,8 +374,25 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             result_grad->setChecked(result_angle_measure == AngleMeasure::Grad);
         };
 
+    auto add_graph_menu = 
+        [&]()
+        {
+            EditorState s = document->GetEditorState();
+            if (s.caret_state.IsEmpty())
+                return;
+            
+            auto t = document->GetElementType(yutovo::GetParent(s.caret_state.id));
+            if (t != ElementType::GRAPH_LINE)
+                return;
+
+            if (!menu.isEmpty())
+                menu.addSeparator();
+            menu.addAction(graph);
+        };
+
     add_copy_paste_menu();
     add_link_menu();
+    add_graph_menu();
 
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
