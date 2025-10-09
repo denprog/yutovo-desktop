@@ -261,6 +261,10 @@
         <source>Exponential threshold</source>
         <translation>Порядок экспоненты</translation>
     </message>
+    <message>
+        <source>Graph</source>
+        <translation>График</translation>
+    </message>
 </context>
 <context>
     <name>DocumentsSettingsForm</name>
@@ -608,6 +612,10 @@
     <message>
         <source>Currencies</source>
         <translation>Валюты</translation>
+    </message>
+    <message>
+        <source>Graphs</source>
+        <translation>Графики</translation>
     </message>
     <message>
         <source>Russian ruble</source>
@@ -1173,12 +1181,16 @@
         <source>Ω</source>
         <translation>Омега</translation>
     </message>    
+    <message>
+        <source>Line graph</source>
+        <translation>Линейный график</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>
     <message>
-        <source>Properties</source>
-        <translation>Свойства</translation>
+        <source>Document properties</source>
+        <translation>Свойства документа</translation>
     </message>
     <message>
         <source>Locale</source>
@@ -1490,6 +1502,29 @@
     <message>
         <source>Off</source>
         <translation>Выключено</translation>
+    </message>
+</context>
+<context>
+    <name>GraphSettingsDialog</name>
+    <message>
+        <source>Graph format</source>
+        <translation>Формат графика</translation>
+    </message>
+    <message>
+        <source>Graph width</source>
+        <translation>Ширина графика</translation>
+    </message>
+    <message>
+        <source>Graph height</source>
+        <translation>Высота графика</translation>
+    </message>
+    <message>
+        <source>Plot color</source>
+        <translation>Цвет графика</translation>
+    </message>
+    <message>
+        <source>Plot width</source>
+        <translation>Толщина графика</translation>
     </message>
 </context>
 </TS>

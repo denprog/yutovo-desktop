@@ -46,12 +46,6 @@ void DocumentWidget::InsertText(const std::string& str, const StringFormatPtr st
     document->InsertString(str, string_format, true);
 }
 
-bool DocumentWidget::GetElementAtCoords(const int x, const int y, const int margin, ElementId& id)
-{
-    auto p = window.GetDocumentPoint();
-    return document->GetElementAtCoords(x + p.x, y + p.y, margin, id);
-}
-
 void DocumentWidget::OnNextEditorTab()
 {
     emit NextEditorTab();
@@ -175,7 +169,7 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
     int x = (int)event->pos().x() + window.document_point.x;
     int y = (int)event->pos().y() + window.document_point.y;
     int m = document->config.resize_margin_width;
-    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), m, id))
+    if (document->GetElementAtCoords(x, y, m, id))
     {
         if (document->IsResizable(id))
         {
@@ -205,7 +199,7 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
     EditorState s = document->GetEditorState();
     if (event->buttons() == Qt::LeftButton)
     {
-        if (document->MouseLButtonDown((int)event->pos().x(), (int)event->pos().y()))
+        if (document->MouseLButtonDown(x, y))
             return;
     }
 
@@ -229,7 +223,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     int x = (int)event->pos().x() + window.document_point.x;
     int y = (int)event->pos().y() + window.document_point.y;
     int m = document->config.resize_margin_width;
-    if (GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), m, id))
+    if (document->GetElementAtCoords(x, y, m, id))
     {
         if (document->IsResizable(id))
         {
@@ -268,7 +262,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         }
     }
 
-    if (!GetElementAtCoords((int)event->pos().x(), (int)event->pos().y(), 0, id))
+    if (!document->GetElementAtCoords(x, y, 0, id))
     {
         if (mouse_capture_id == ElementId{})
             setCursor(Qt::ArrowCursor);
@@ -291,7 +285,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     if (event->buttons() == Qt::MouseButton::LeftButton)
     {
         //selection with mouse
-        document->Select(left_click_pos.x(), left_click_pos.y(), x + window.document_point.x, y + window.document_point.y);
+        document->Select(left_click_pos.x(), left_click_pos.y(), x, y);
     }
 }
 
@@ -309,6 +303,7 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
     if (document->MouseWheel((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y, 
         yutovo::Point{num_pixels.x(), num_pixels.y()}, yutovo::Point{num_degrees.x(), num_degrees.y()}))
     {
+        event->accept();
         return;
     }
 

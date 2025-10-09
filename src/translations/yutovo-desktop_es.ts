@@ -261,6 +261,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Exponential threshold</source>
         <translation>Orden del exponente</translation>
     </message>
+    <message>
+        <source>Graph</source>
+        <translation>Gráfica</translation>
+    </message>
 </context>
 <context>
     <name>DocumentsSettingsForm</name>
@@ -608,6 +612,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Currencies</source>
         <translation>Monedas</translation>
+    </message>
+    <message>
+        <source>Graphs</source>
+        <translation>Gráficas</translation>
     </message>
     <message>
         <source>Russian ruble</source>
@@ -1173,12 +1181,16 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Ω</source>
         <translation>Omega</translation>
     </message>
+    <message>
+        <source>Line graph</source>
+        <translation>Gráfica lineal</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>
     <message>
-        <source>Properties</source>
-        <translation>Propiedades</translation>
+        <source>Document properties</source>
+        <translation>Propiedades del documento</translation>
     </message>
     <message>
         <source>Locale</source>
@@ -1490,6 +1502,36 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Off</source>
         <translation>Apagado</translation>
+    </message>
+</context>
+<context>
+    <name>SystemSettingsDialog</name>
+    <message>
+        <source>Form</source>
+        <translation>Formulario</translation>
+    </message>
+</context>
+<context>
+    <name>GraphSettingsDialog</name>
+    <message>
+        <source>Graph format</source>
+        <translation>Formato de gráfico</translation>
+    </message>
+    <message>
+        <source>Graph width</source>
+        <translation>Ancho del gráfico</translation>
+    </message>
+    <message>
+        <source>Graph height</source>
+        <translation>Altura del gráfico</translation>
+    </message>
+    <message>
+        <source>Plot color</source>
+        <translation>Color del gráfico</translation>
+    </message>
+    <message>
+        <source>Plot width</source>
+        <translation>Grosor del gráfico</translation>
     </message>
 </context>
 </TS>

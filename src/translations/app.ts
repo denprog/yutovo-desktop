@@ -227,6 +227,9 @@
         <source>Exponential threshold</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Graph</source>
+    </message>
 </context>
 <context>
     <name>DocumentsSettingsForm</name>

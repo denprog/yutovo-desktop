@@ -961,7 +961,7 @@ void MainWindow::CreateGraphsToolbar()
     graph_toolbar = addToolBar(tr("Graphs"));
     graph_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    QAction* action = new QAction(QIcon(":/icons/images/graphs/graph_line.png"), tr("Graph line"), this);
+    QAction* action = new QAction(QIcon(":/icons/images/graphs/graph_line.png"), tr("Line graph"), this);
     connect(action, &QAction::triggered, this, &MainWindow::GraphLine);
     graph_toolbar->addAction(action);
 }

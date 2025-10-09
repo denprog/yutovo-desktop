@@ -26,8 +26,6 @@ public:
 
     void InsertText(const std::string& str, const StringFormatPtr string_format);
 
-    bool GetElementAtCoords(const int x, const int y, const int margin, ElementId& id);
-
 public:
     void OnNextEditorTab();
     void OnPrevEditorTab();
