@@ -21,11 +21,11 @@
     </message>
     <message>
         <source>libraries_text</source>
-        <translation>Tecnologías y bibliotecas utilizadas: C++, WebAssembly, Emscripten, boost, MPFR, GMP, JavaScript, Drogon, Quasar, jwt-cpp, spdlog, rapidjson.</translation>
+        <translation>Tecnologías y bibliotecas utilizadas: C++, WebAssembly, Emscripten, boost, MPFR, GMP, JavaScript, Drogon, Quasar, jwt-cpp, spdlog, rapidjson, MathGL.</translation>
     </message>
     <message>
         <source>web_link_text</source>
-        <translation>Versión en línea: &lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
+        <translation>Versión en línea: &lt;a href="https://yutovo.com/"&gt;yutovo.com&lt;/a&gt;</translation>
     </message>
     <message>
         <source>support_links_text</source>
