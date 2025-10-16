@@ -263,7 +263,7 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
     <message>
         <source>Graph</source>
-        <translation>Gráfica</translation>
+        <translation>Gráfico</translation>
     </message>
 </context>
 <context>
@@ -615,7 +615,7 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
     <message>
         <source>Graphs</source>
-        <translation>Gráficas</translation>
+        <translation>Gráficos</translation>
     </message>
     <message>
         <source>Russian ruble</source>
@@ -1183,7 +1183,7 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
     <message>
         <source>Line graph</source>
-        <translation>Gráfica lineal</translation>
+        <translation>Gráfico lineal</translation>
     </message>
 </context>
 <context>

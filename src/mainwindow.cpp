@@ -2941,16 +2941,16 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
     if (language == yutovo_calculator::Language::Russian)
     {
         if (!desktop_translator.load("yutovo-desktop_ru", GetTranslationDir("yutovo-desktop_ru")))
-            logger->Error("Error loading translation: yutovo_desktop_ru");
+            logger->Error("Error loading translation: yutovo-desktop_ru");
         if (!editor_translator.load("yutovo-editor_ru", GetTranslationDir("yutovo-editor_ru")))
-            logger->Error("Error loading translation: yutovo_editor_ru");
+            logger->Error("Error loading translation: yutovo-editor_ru");
     }
     else if (language == yutovo_calculator::Language::Spanish)
     {
         if (!desktop_translator.load("yutovo-desktop_es", GetTranslationDir("yutovo-desktop_es")))
-            logger->Error("Error loading translation: yutovo_desktop_ru");
+            logger->Error("Error loading translation: yutovo-desktop_es");
         if (!editor_translator.load("yutovo-editor_es", GetTranslationDir("yutovo-editor_es")))
-            logger->Error("Error loading translation: yutovo_editor_es");
+            logger->Error("Error loading translation: yutovo-editor_es");
     }
     else if (language == yutovo_calculator::Language::English)
     {
