@@ -1,4 +1,5 @@
 name: yutovo
+title: Yutovo
 base: core24
 version: '1.3.1'
 summary: Visual calculator inside a text editor
@@ -26,6 +27,10 @@ issues:
 
 website:
   - https://yutovo.com
+
+license: GPL-3.0-only
+
+contact: https://yutovo.com
 
 icon: yutovo.png
   
@@ -196,7 +201,7 @@ parts:
       - build-essential
     override-stage: |
       set -e
-      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
+      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE/
 
   yutovo-editor:
     plugin: cmake
@@ -225,9 +230,7 @@ parts:
     override-stage: |
       set -e
       mkdir -p $CRAFT_STAGE/app/bin
-      rm -rf $CRAFT_STAGE/app/bin/*
       cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin
-    after: [yutovo-editor]
     override-prime: |
       true
 
@@ -247,9 +250,6 @@ parts:
       - qt5-gtk-platformtheme
       - shared-mime-info
       - libqt5gui5
-      - libgdk-pixbuf2.0-0
-      - libgtk2.0-0
-      - libqt5svg5 # for loading icon themes which are svg
       - locales-all
       - xdg-user-dirs
 
@@ -257,6 +257,8 @@ parts:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
     source-tag: develop
+    build-packages:
+      - rsync
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/app
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
@@ -276,15 +278,16 @@ parts:
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
       cp $CRAFT_PART_BUILD/src/*.qm $CRAFT_STAGE/app/bin/
     override-prime: |
-      rm -rf $CRAFT_PRIME/app/lib/*.a
+      rm $CRAFT_PRIME/app/lib/*.a || true
       rm -rf $CRAFT_PRIME/app/include
       mkdir -p $CRAFT_PRIME/app/bin
       mkdir -p $CRAFT_PRIME/usr/share/metainfo
+      mkdir -p $CRAFT_PRIME/usr/share/mime/packages
       mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/16x16/apps/
       mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/32x32/apps/
       mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/64x64/apps/
-      cp -r $CRAFT_STAGE/app/bin/* $CRAFT_PRIME/app/bin/
-      cp -r $CRAFT_STAGE/app/yutovo.desktop $CRAFT_PRIME/app/yutovo.desktop
+      rsync -a --update $CRAFT_STAGE/app/bin/ $CRAFT_PRIME/app/bin/
+      cp -u $CRAFT_STAGE/app/yutovo.desktop $CRAFT_PRIME/app/yutovo.desktop
       cp $CRAFT_STAGE/app/com.yutovo.yutovo.metainfo.xml $CRAFT_PRIME/usr/share/metainfo/
       cp $CRAFT_STAGE/app/application-x-yutovo.png $CRAFT_PRIME/
       cp $CRAFT_STAGE/app/yutovo-16.png $CRAFT_PRIME/usr/share/icons/hicolor/16x16/apps/yutovo.png
@@ -293,6 +296,14 @@ parts:
       cp $CRAFT_STAGE/app/yutovo.xml $CRAFT_PRIME/usr/share/mime/packages/
       chmod +x $CRAFT_PRIME/app/bin/run.sh
       update-mime-database $CRAFT_PRIME/usr/share/mime
+      cd $CRAFT_PRIME/usr/lib/x86_64-linux-gnu || exit 0
+      rm -f \
+        libicutest.so.* \
+        libdconf.so.* \
+        libgdk_pixbuf_xlib-2.0.so.* \
+        libvulkan.so.* \
+        || true
+      rm -f libEGL_mesa.so.* libGLX_mesa.so.*
     after: [yutovo-editor, yutovo-server, desktop-qt5]
 
 apps:
