@@ -119,6 +119,22 @@ modules:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
 
+  - name: mathgl
+    buildsystem: cmake
+    build-options:
+      env:
+        YUTOVO_DEPLOY: /app
+    sources:
+      - type: archive
+        url: http://downloads.sourceforge.net/mathgl/mathgl-8.0.3.tar.gz
+        sha256: 9bba9ee6a0f86d1b8f3f3ba0374d3cb776f772dbb6f1a01684ca6c0bd56204d6
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+      - -Denable-openmp=False
+      - -Denable-png=False
+      - -Denable-opengl=False
+
   - name: yutovo-editor
     buildsystem: cmake
     build-options:
@@ -158,13 +174,13 @@ modules:
     post-install:
       - mkdir -p /app/share/mime/packages
       - mkdir -p /app/share/metainfo
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/com.yutovo.yutovo.metainfo.xml /app/share/metainfo/
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo.xml /app/share/mime/packages/yutovo.xml
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-16.png /app/share/icons/hicolor/16x16/apps/yutovo.png
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-32.png /app/share/icons/hicolor/32x32/apps/yutovo.png
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo-64.png /app/share/icons/hicolor/64x64/apps/yutovo.png
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo.png /app/share/icons/hicolor/256x256/apps/yutovo.png
-      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/yutovo.desktop /app/share/applications/yutovo.desktop
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/com.yutovo.yutovo.metainfo.xml /app/share/metainfo/
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo.xml /app/share/mime/packages/yutovo.xml
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-16.png /app/share/icons/hicolor/16x16/apps/yutovo.png
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-32.png /app/share/icons/hicolor/32x32/apps/yutovo.png
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-64.png /app/share/icons/hicolor/64x64/apps/yutovo.png
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo.png /app/share/icons/hicolor/256x256/apps/yutovo.png
+      - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo.desktop /app/share/applications/yutovo.desktop
       - update-mime-database /app/share/mime
       - update-desktop-database /app/share/applications
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/run.sh /app/bin/run.sh
