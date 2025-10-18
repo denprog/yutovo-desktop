@@ -273,11 +273,11 @@ parts:
       cp $CRAFT_PART_SRC/setup/yutovo-64.png $CRAFT_STAGE/app/
     override-stage: |
       set -e
-      rm -rf $CRAFT_PART_INSTALL/app/lib
-      rm -rf $CRAFT_PART_INSTALL/app/include
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
       cp $CRAFT_PART_BUILD/src/*.qm $CRAFT_STAGE/app/bin/
     override-prime: |
+      rm -rf $CRAFT_PRIME/app/lib/*.a
+      rm -rf $CRAFT_PRIME/app/include
       mkdir -p $CRAFT_PRIME/app/bin
       mkdir -p $CRAFT_PRIME/usr/share/metainfo
       mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/16x16/apps/
@@ -302,9 +302,10 @@ apps:
     command: app/bin/run.sh
     environment:
       DISABLE_WAYLAND: 1
-      XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS    
+      XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
       QT_STYLE_OVERRIDE: "Breeze"
       GIO_EXTRA_MODULES: ""
+      LD_LIBRARY_PATH: $SNAP/app/lib:$LD_LIBRARY_PATH
     plugs:
       - desktop
       - desktop-legacy
