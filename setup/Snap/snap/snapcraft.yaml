@@ -146,7 +146,7 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.2.4
+    source-tag: develop
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app
@@ -166,7 +166,7 @@ parts:
   yutovo-solver:
     plugin: cmake
     source: https://github.com/denprog/yutovo-solver.git
-    source-tag: v1.1.4
+    source-tag: develop
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -201,7 +201,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.2.4
+    source-tag: develop
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -256,7 +256,7 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.2.4
+    source-tag: develop
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/app
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
@@ -268,9 +268,9 @@ parts:
       cp $CRAFT_PART_SRC/setup/yutovo.png $CRAFT_STAGE/app/application-x-yutovo.png
       cp $CRAFT_PART_SRC/setup/yutovo.xml $CRAFT_STAGE/app/
       cp $CRAFT_PART_SRC/setup/com.yutovo.yutovo.metainfo.xml $CRAFT_STAGE/app/
-      cp $CRAFT_PART_SRC/setup/setup/yutovo-16.png $CRAFT_STAGE/app/
-      cp $CRAFT_PART_SRC/setup/setup/yutovo-32.png $CRAFT_STAGE/app/
-      cp $CRAFT_PART_SRC/setup/setup/yutovo-64.png $CRAFT_STAGE/app/
+      cp $CRAFT_PART_SRC/setup/yutovo-16.png $CRAFT_STAGE/app/
+      cp $CRAFT_PART_SRC/setup/yutovo-32.png $CRAFT_STAGE/app/
+      cp $CRAFT_PART_SRC/setup/yutovo-64.png $CRAFT_STAGE/app/
     override-stage: |
       set -e
       rm -rf $CRAFT_PART_INSTALL/app/lib
@@ -280,9 +280,9 @@ parts:
     override-prime: |
       mkdir -p $CRAFT_PRIME/app/bin
       mkdir -p $CRAFT_PRIME/usr/share/metainfo
-      mkdir $CRAFT_PRIME/usr/share/icons/hicolor/16x16/apps/
-      mkdir $CRAFT_PRIME/usr/share/icons/hicolor/32x32/apps/
-      mkdir $CRAFT_PRIME/usr/share/icons/hicolor/64x64/apps/
+      mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/16x16/apps/
+      mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/32x32/apps/
+      mkdir -p $CRAFT_PRIME/usr/share/icons/hicolor/64x64/apps/
       cp -r $CRAFT_STAGE/app/bin/* $CRAFT_PRIME/app/bin/
       cp -r $CRAFT_STAGE/app/yutovo.desktop $CRAFT_PRIME/app/yutovo.desktop
       cp $CRAFT_STAGE/app/com.yutovo.yutovo.metainfo.xml $CRAFT_PRIME/usr/share/metainfo/

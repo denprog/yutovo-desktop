@@ -2,7 +2,7 @@
 
 file="$1"
 
-cd app/bin || exit 1
+cd $SNAP/app/bin || exit 1
 
 if [[ -n "$file" ]]; then
     ./yutovo-desktop "$file" --logs-path="$SNAP_USER_COMMON/log"
