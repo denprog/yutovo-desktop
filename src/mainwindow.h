@@ -40,7 +40,9 @@ public:
     ~MainWindow();
 
     void Start(QString filename = "");
-    
+
+    void OpenFile(QString file_name);
+
 protected:
     void changeEvent(QEvent* event) override;
     void closeEvent(QCloseEvent *event) override;
@@ -69,7 +71,6 @@ private:
     void Open();
     void OpenRecentFile();
     void OpenLibraryFile();
-    void OpenFile(QString file_name);
     void Save();
     void SaveFile(int index);
     void SaveFileAsName();

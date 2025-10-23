@@ -32,6 +32,7 @@ find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(MathGL2 REQUIRED PATHS ${INSTALL_PATH}/lib/cmake)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Network REQUIRED)
 if(WIN32)
     find_package(Boost REQUIRED COMPONENTS iostreams)
     find_package(RapidJSON CONFIG REQUIRED)
@@ -125,6 +126,7 @@ elseif(NOT WIN32)
         yutovo-calculator
         yutovo-solver
         Qt5::Widgets
+        Qt5::Network
 		libboost_iostreams.a
         z
         libgmp.a
