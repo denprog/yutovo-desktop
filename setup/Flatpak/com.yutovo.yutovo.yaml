@@ -84,7 +84,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.2.4
+        tag: v1.3.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -114,26 +114,27 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.1.4
+        tag: v1.1.5
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
 
   - name: mathgl
     buildsystem: cmake
-    build-options:
-      env:
-        YUTOVO_DEPLOY: /app
     sources:
       - type: archive
         url: http://downloads.sourceforge.net/mathgl/mathgl-8.0.3.tar.gz
         sha256: 9bba9ee6a0f86d1b8f3f3ba0374d3cb776f772dbb6f1a01684ca6c0bd56204d6
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_INSTALL_LIBDIR=/app
       - -DCMAKE_BUILD_TYPE=Release
       - -Denable-openmp=False
       - -Denable-png=False
       - -Denable-opengl=False
+    post-install:
+      - cp /app/lib/libmgl.so.8 /app/bin/
+      - rm -rf /app/share/mathgl
 
   - name: yutovo-editor
     buildsystem: cmake
@@ -143,7 +144,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.2.4
+        tag: v1.3.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -154,7 +155,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        tag: v1.1.4
+        tag: v1.1.5
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -167,7 +168,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.2.4
+        tag: v1.3.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release

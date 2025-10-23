@@ -151,7 +151,7 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: develop
+    source-tag: v1.3.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app
@@ -171,7 +171,7 @@ parts:
   yutovo-solver:
     plugin: cmake
     source: https://github.com/denprog/yutovo-solver.git
-    source-tag: develop
+    source-tag: v1.1.5
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -206,7 +206,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: develop
+    source-tag: v1.3.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -225,7 +225,7 @@ parts:
   yutovo-server:
     plugin: dump
     source: https://github.com/denprog/yutovo-server.git
-    source-tag: develop
+    source-tag: v1.1.5
     source-depth: 1
     override-stage: |
       set -e
@@ -256,9 +256,10 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: develop
+    source-tag: v1.3.1
     build-packages:
       - rsync
+      - qttools5-dev-tools
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/app
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
@@ -325,5 +326,4 @@ apps:
       - home
       - removable-media
       - gsettings
-      - opengl
     desktop: app/yutovo.desktop

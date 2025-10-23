@@ -5,7 +5,7 @@ file="$1"
 cd /app/bin || exit 1
 
 if [[ -n "$file" ]]; then
-    ./yutovo-desktop "$file" --logs-path="$XDG_DATA_HOME/log"
+    LD_LIBRARY_PATH=/app/bin:$LD_LIBRARY_PATH ./yutovo-desktop "$file" --logs-path="$XDG_DATA_HOME/log"
 else
-    ./yutovo-desktop --logs-path="$XDG_DATA_HOME/log"
+    LD_LIBRARY_PATH=/app/bin:$LD_LIBRARY_PATH ./yutovo-desktop --logs-path="$XDG_DATA_HOME/log"
 fi
