@@ -134,6 +134,7 @@ modules:
       - -Denable-opengl=False
     post-install:
       - cp /app/lib/libmgl.so.8 /app/bin/
+      - rm -rf /app/share/mathgl
 
   - name: yutovo-editor
     buildsystem: cmake
