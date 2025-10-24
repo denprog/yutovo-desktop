@@ -146,7 +146,7 @@ set(TS_FILES
     translations/yutovo-desktop_ru.ts
     translations/yutovo-editor_en.ts
     translations/yutovo-desktop_en.ts
-    translations/yutovo-editor_ru.ts
+    translations/yutovo-editor_es.ts
     translations/yutovo-desktop_es.ts
 )
 

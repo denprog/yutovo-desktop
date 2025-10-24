@@ -104,3 +104,4 @@
         <translation>Cálculo interrumpido</translation>
     </message>
 </context>
+</TS>
