@@ -5,31 +5,31 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-#ifndef __GRAPH_SETTINGS_DIALOG_H__
-#define __GRAPH_SETTINGS_DIALOG_H__
+#ifndef __PLOT_FORMAT_DIALOG_H__
+#define __PLOT_FORMAT_DIALOG_H__
 
 #include <QDialog>
 #include <yutovo-editor/style.h>
 
 namespace Ui
 {
-class GraphSettingsDialog;
+class PlotFormatDialog;
 };
 
-class GraphSettingsDialog : public QDialog
+class PlotFormatDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    GraphSettingsDialog(yutovo::GraphFormat& _settings);
+    PlotFormatDialog(yutovo::PlotFormat& _plot_format);
 
 private slots:
     void OnColorClicked();
     void OnAccepted();
 
 private:
-    Ui::GraphSettingsDialog* form = nullptr;
-    yutovo::GraphFormat& settings;
+    Ui::PlotFormatDialog* form = nullptr;
+    yutovo::PlotFormat& plot_format;
 };
 
 #endif

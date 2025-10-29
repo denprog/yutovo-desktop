@@ -1518,20 +1518,35 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Formato de gráfico</translation>
     </message>
     <message>
-        <source>Graph width</source>
-        <translation>Ancho del gráfico</translation>
+        <source>Width</source>
+        <translation>Ancho</translation>
     </message>
     <message>
-        <source>Graph height</source>
-        <translation>Altura del gráfico</translation>
+        <source>Height</source>
+        <translation>Altura</translation>
     </message>
     <message>
-        <source>Plot color</source>
-        <translation>Color del gráfico</translation>
+        <source>Color</source>
+        <translation>Color</translation>
     </message>
     <message>
-        <source>Plot width</source>
-        <translation>Grosor del gráfico</translation>
+        <source>Grid thickness</source>
+        <translation>Grosor de cuadrícula</translation>
+    </message>
+</context>
+<context>
+    <name>PlotFormatDialog</name>
+    <message>
+        <source>Plot format</source>
+        <translation>Formato de gráfico</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>Color</translation>
+    </message>
+    <message>
+        <source>Thickness</source>
+        <translation>Grosor</translation>
     </message>
 </context>
 </TS>

@@ -19,33 +19,32 @@ GraphSettingsDialog::GraphSettingsDialog(yutovo::GraphFormat& _settings) :
 
     setWindowIcon(QIcon(":/icons/images/mainicon.png"));
 
-    form->graph_width->setValue(settings.size.width);
-    form->graph_height->setValue(settings.size.height);
-    form->plot_width->setValue(settings.plot_width);
+    form->width->setValue(settings.size.width);
+    form->height->setValue(settings.size.height);
+    form->grid_width->setValue(settings.grid_width);
 
-    QColor c = QColor::fromRgb(settings.plot_color.ToInt());
-    form->plot_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
-    connect(form->plot_color, SIGNAL(clicked()), this, SLOT(OnPlotColorClicked()));
-
+    QColor c = QColor::fromRgb(settings.color.ToInt());
+    form->color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    connect(form->color, SIGNAL(clicked()), this, SLOT(OnColorClicked()));
     connect(this, &QDialog::accepted, this, &GraphSettingsDialog::OnAccepted);
 }
 
-void GraphSettingsDialog::OnPlotColorClicked()
+void GraphSettingsDialog::OnColorClicked()
 {
-    QColorDialog d(QColor::fromRgba(settings.plot_color.ToInt()), this);
+    QColorDialog d(QColor::fromRgba(settings.color.ToInt()), this);
     if (d.exec() == QDialog::Accepted)
     {
         QColor c = d.selectedColor();
-        settings.plot_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
-        form->plot_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+        settings.color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     }
 }
 
 void GraphSettingsDialog::OnAccepted()
 {
-    settings.size.width = form->graph_width->value();
-    settings.size.height = form->graph_height->value();
-    settings.plot_width = form->plot_width->value();
+    settings.size.width = form->width->value();
+    settings.size.height = form->height->value();
+    settings.grid_width = form->grid_width->value();
 
     close();
 }

@@ -12,6 +12,7 @@
 #include <QGuiApplication>
 #include <QCursor>
 #include "mainwindow.h"
+#include "plot_format_dialog.h"
 
 //DocumentWidget
 
@@ -177,21 +178,13 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
             if (document->GetElementRect(id, rect))
             {
                 if ((x <= rect.left + m && y <= rect.top + m) || (x >= rect.GetRight() - m && y >= rect.GetBottom() - m))
-                {
                     mouse_capture_id = id;
-                }
                 else if ((x >= rect.GetRight() - m && y <= rect.top + m) || (x <= rect.left + m && y >= rect.GetBottom() - m))
-                {
                     mouse_capture_id = id;
-                }
                 else if (x <= rect.left + m || (x <= rect.GetRight() + m && x >= rect.GetRight() - m))
-                {
                     mouse_capture_id = id;
-                }
                 else if (y <= rect.top + m || (y <= rect.GetBottom() + m && y >= rect.GetBottom() - m))
-                {
                     mouse_capture_id = id;
-                }
             }
         }
     }
@@ -199,8 +192,27 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
     EditorState s = document->GetEditorState();
     if (event->buttons() == Qt::LeftButton)
     {
-        if (document->MouseLButtonDown(x, y))
-            return;
+        MouseHoldType hold_type;
+        ElementId hold_id;
+        if (document->MouseLButtonDown(x, y, hold_type, hold_id))
+        {
+            switch (hold_type)
+            {
+            case MouseHoldType::PLOT_FORMAT_DIALOG:
+                {
+                    yutovo::PlotFormat f;
+                    if (!document->GetPlotFormat(hold_id, f))
+                        return;
+                    PlotFormatDialog dialog(f);
+                    if (!dialog.exec())
+                        return;
+                    document->SetPlotFormat(hold_id, f, true);
+                }
+                return;
+            default:
+                return;
+            }
+        }
     }
 
     if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))

@@ -1511,20 +1511,35 @@
         <translation>Формат графика</translation>
     </message>
     <message>
-        <source>Graph width</source>
-        <translation>Ширина графика</translation>
+        <source>Width</source>
+        <translation>Ширина</translation>
     </message>
     <message>
-        <source>Graph height</source>
-        <translation>Высота графика</translation>
+        <source>Height</source>
+        <translation>Высота</translation>
     </message>
     <message>
-        <source>Plot color</source>
-        <translation>Цвет графика</translation>
+        <source>Color</source>
+        <translation>Цвет</translation>
     </message>
     <message>
-        <source>Plot width</source>
-        <translation>Толщина графика</translation>
+        <source>Grid thickness</source>
+        <translation>Толщина сетки</translation>
+    </message>
+</context>
+<context>
+    <name>PlotFormatDialog</name>
+    <message>
+        <source>Plot format</source>
+        <translation>Формат графика</translation>
+    </message>
+    <message>
+        <source>Color</source>
+        <translation>Цвет</translation>
+    </message>
+    <message>
+        <source>Thickness</source>
+        <translation>Толщина</translation>
     </message>
 </context>
 </TS>
