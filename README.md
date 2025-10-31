@@ -3,7 +3,11 @@ Yutovo is a powerful calculator with graphical representation of mathematics ope
 
 Yutovo desktop is an application for Linux and Windows that implements computing.
 
-[![Get it on Flathub](https://flathub.org/assets/badges/flathub-badge-en.png)](https://flathub.org/en/apps/com.yutovo.yutovo)
+## Installing from Flathub
+[![Get it on Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/en/apps/com.yutovo.yutovo)
+
+## Installing from Snap Store
+[![Get it from the Snap Store](https://snapcraft.io/en/dark/install.svg)](https://snapcraft.io/yutovo)
 
 ## Building for Ubuntu
 
