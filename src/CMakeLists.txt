@@ -140,6 +140,7 @@ else()
         yutovo-calculator
         yutovo-solver
         Qt5::Widgets
+        Qt5::Network
         mgl
         Boost::property_tree
     )

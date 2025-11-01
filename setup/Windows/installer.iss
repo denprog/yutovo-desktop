@@ -36,11 +36,11 @@ Name: "{commondesktop}\Yutovo"; Filename: "{app}\yutovo-desktop.exe"; Tasks: des
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Yutovo"; Filename: "{app}\yutovo-desktop.exe"; Tasks: quicklaunchicon
 
 [Registry]
-Root: HKCU; Subkey: "Software\Classes\.yut"; ValueType: string; ValueName: ""; ValueData: "YutovoFile"; Flags: uninsdeletevalue
-Root: HKCU; Subkey: "Software\Classes\YutovoFile"; ValueType: string; ValueName: ""; ValueData: "Yutovo Document"; Flags: uninsdeletekey
-Root: HKCU; Subkey: "Software\Classes\YutovoFile\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\yutovo-desktop.exe,0"
-Root: HKCR; Subkey: "Yutovo\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\yutovo-desktop.exe"" ""%1"""
-Root: HKLM; Subkey: "Software\Yutovo"; ValueType: string; ValueName: "InstallDir"; ValueData: "{app}"
+Root: HKCR; Subkey: ".yut"; ValueType: string; ValueName: ""; ValueData: "YutovoFile"; Flags: uninsdeletevalue
+Root: HKCR; Subkey: "YutovoFile\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\yutovo-desktop.exe,0"
+Root: HKCR; Subkey: "YutovoFile"; ValueType: string; ValueName: ""; ValueData: "Yutovo File"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "YutovoFile\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\yutovo-desktop.exe,0"; Flags: uninsdeletekey
+Root: HKCR; Subkey: "YutovoFile\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\yutovo-desktop.exe"" ""%1"""; Flags: uninsdeletekey
 
 [Run]
 Filename: "{tmp}\VC_redist.x64.exe"; Check: not VC2022RedistNeedsInstall
