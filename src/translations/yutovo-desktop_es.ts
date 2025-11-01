@@ -683,7 +683,7 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
     <message>
         <source>help_online</source>
-        <translation>https://yutovo.ru/library/es%5CAyuda%5CIntroducción%5CAcerca%20de%20Yutovo.yut</translation>
+        <translation>https://yutovo.ru/library/es/Ayuda/Introducción/Acerca de Yutovo.yut</translation>
     </message>
     <message>
         <source>Show the application's Terms of use box</source>

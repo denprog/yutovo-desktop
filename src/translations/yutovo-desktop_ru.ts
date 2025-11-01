@@ -683,7 +683,7 @@
     </message>
     <message>
         <source>help_online</source>
-        <translation>https://yutovo.ru/library/ru%5CСправка%5CВведение%5CО%20Ютово.yut</translation>
+        <translation>https://yutovo.ru/library/ru/Справка/Введение/О Ютово.yut</translation>
     </message>
     <message>
         <source>Show the application&apos;s Terms of use box</source>

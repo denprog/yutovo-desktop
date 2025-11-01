@@ -65,7 +65,7 @@ You assume all responsibility and risk in relation to your use of this applicati
     </message>
     <message>
         <source>help_online</source>
-        <translation>https://yutovo.com/library/en%5CHelp%5CIntroduction%5CAbout%20Yutovo.yut</translation>
+        <translation>https://yutovo.com/library/en/Help/Introduction/About Yutovo.yut</translation>
     </message>
     <message>
         <source>α</source>
