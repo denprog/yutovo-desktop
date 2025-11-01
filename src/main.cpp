@@ -8,8 +8,10 @@
 #include <QApplication>
 #include <QFileInfo>
 #include "mainwindow.h"
+#ifndef _WIN32
 #include <QLocalServer>
 #include <QLocalSocket>
+#endif
 #include <QDebug>
 #ifdef _WIN32
 #include <boost/throw_exception.hpp>
@@ -20,9 +22,15 @@ namespace boost
     {
         throw e;
     }
+
+    BOOST_NORETURN void throw_exception(std::exception const& e, boost::source_location const&)
+    {
+        throw e;
+    }
 }
 #endif
 
+#ifndef _WIN32
 bool SendToRunningInstance(const QString& socket_name, const QString& path)
 {
     QLocalSocket socket;
@@ -34,12 +42,15 @@ bool SendToRunningInstance(const QString& socket_name, const QString& path)
     socket.waitForBytesWritten();
     return true;
 }
+#endif
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     app.setOrganizationName("Yutovo");
+    SetConsoleOutputCP(CP_UTF8);
 
+#ifndef _WIN32
     QString socket_name = "yutovo_instance";
     if (SendToRunningInstance(socket_name, app.arguments().value(1)))
         return 0; //an instance of the app is already running
@@ -58,6 +69,7 @@ int main(int argc, char *argv[])
             w.OpenFile(file);
             c->disconnectFromServer();
         });
+#endif
 
     QString filename;
     QStringList args = QCoreApplication::arguments();
@@ -68,6 +80,7 @@ int main(int argc, char *argv[])
             filename = args.at(1);
     }
 
+    MainWindow w;
     try
     {
         w.Start(filename);
