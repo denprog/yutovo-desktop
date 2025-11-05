@@ -16,9 +16,10 @@
 
 //DocumentWidget
 
-DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config) :
+DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettings& _settings) :
     QWidget(parent),
     window(size().width(), size().height(), _config),
+    settings(_settings),
     logger(Logger::GetInstance(_config.logs_path + "/yutovo-desktop", "yutovo-desktop", _config.log_console, _config.log_file))
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
@@ -216,7 +217,11 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
     }
 
     if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
-        caret_moving_task_id = document->MoveCaret(x, y, event->modifiers() == Qt::ControlModifier);
+    {
+        int c = settings.value("Documents/click_link", 0).toInt();
+        caret_moving_task_id = document->MoveCaret(x, y, ((event->modifiers() == Qt::ControlModifier && c == 1) || 
+            (event->modifiers() == 0 && c == 0)));
+    }
     if (event->buttons() == Qt::LeftButton)
         left_click_pos = QPoint{x, y};
 }
@@ -286,8 +291,12 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     
     if (document->IsString(id))
     {
-        if (document->GetElementType(id) == ElementType::LINK && event->modifiers() == Qt::ControlModifier)
+        int c = settings.value("Documents/click_link", 0).toInt();
+        if (document->GetElementType(id) == ElementType::LINK && ((event->modifiers() == Qt::ControlModifier && c == 1) || 
+            (event->modifiers() == 0 && c == 0)))
+        {
             setCursor(Qt::PointingHandCursor);
+        }
         else
             setCursor(Qt::IBeamCursor);
     }

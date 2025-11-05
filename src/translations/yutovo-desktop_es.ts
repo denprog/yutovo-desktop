@@ -274,7 +274,19 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
     <message>
         <source>Load last documents</source>
-        <translation>Cargar el último documento</translation>
+        <translation>Cargar los últimos documentos</translation>
+    </message>
+    <message>
+        <source>Click on the link</source>
+        <translation>Clic en enlace</translation>
+    </message>
+    <message>
+        <source>Click</source>
+        <translation>Clic</translation>
+    </message>
+    <message>
+        <source>Ctrl+Click</source>
+        <translation>Ctrl+Clic</translation>
     </message>
 </context>
 <context>

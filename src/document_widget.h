@@ -9,6 +9,7 @@
 #define __DOCUMENT_WIDGET_H__
 
 #include <QWidget>
+#include <QSettings>
 #include <yutovo-editor/document.h>
 #include "qt_window.h"
 #include "command_map.h"
@@ -20,7 +21,7 @@ class DocumentWidget : public QWidget
     Q_OBJECT
 
 public:
-    DocumentWidget(QWidget *parent, yutovo::Config& _config);
+    DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettings& _settings);
 
     DocumentPtr CreateDocument(Config& config);
 
@@ -72,6 +73,8 @@ private:
     EditorState current_editor_state;
 
     DocumentPtr document;
+
+    QSettings& settings;
 
     uint caret_moving_task_id = 0;
 

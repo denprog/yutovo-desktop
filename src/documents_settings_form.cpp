@@ -18,11 +18,13 @@ DocumentsSettingsForm::DocumentsSettingsForm(QHash<QString, QVariant>& _settings
     form->setupUi(this);
 
     form->load_last_documents->setChecked(settings.value("Documents/load_last_documents", false).toBool());
+    form->click_link->setCurrentIndex(settings.value("Documents/click_link", 0).toInt());
 }
 
 DocumentsSettingsForm::~DocumentsSettingsForm()
 {
     settings["Documents/load_last_documents"] = form->load_last_documents->isChecked();
+    settings["Documents/click_link"] = form->click_link->currentIndex();
 
     delete form;
 }

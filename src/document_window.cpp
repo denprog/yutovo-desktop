@@ -18,12 +18,12 @@
 
 //DocumentWindow
 
-DocumentWindow::DocumentWindow(yutovo::Config& _config, QWidget *parent) :
+DocumentWindow::DocumentWindow(yutovo::Config& _config, QSettings& _settings, QWidget *parent) :
     QWidget(parent),
     config(_config),
     main_window((MainWindow*)parent)
 {
-    document_widget = new DocumentWidget(this, config);
+    document_widget = new DocumentWidget(this, config, _settings);
 
     document_widget->setObjectName(QStringLiteral("document_widget"));
 

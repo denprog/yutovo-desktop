@@ -248,7 +248,7 @@ void MainWindow::SetupGui()
 
 void MainWindow::AddEditorTab(const QString name, const QString tooltip)
 {
-    DocumentWindow* wnd = new DocumentWindow(config, this);
+    DocumentWindow* wnd = new DocumentWindow(config, settings, this);
 
     connect(wnd, &DocumentWindow::CaretMoved, this, &MainWindow::OnCaretMoved);
     connect(wnd, &DocumentWindow::DocumentChanged, this, &MainWindow::OnDocumentChanged);
@@ -366,14 +366,14 @@ void MainWindow::CreateActions()
     edit_menu->addSeparator();
     standard_toolbar->addSeparator();
 
-    undo_action = new QAction(QIcon(":/icons/images/standard/undo.png"), tr("U&ndo"), this);
+    undo_action = new QAction(QIcon(":/icons/images/standard/undo.png"), tr("U&ndo") + " (Ctrl+Z)", this);
     undo_action->setShortcuts(QKeySequence::Undo);
     undo_action->setStatusTip(tr("Undo the last operation"));
     connect(undo_action, &QAction::triggered, this, &MainWindow::Undo);
     edit_menu->addAction(undo_action);
     standard_toolbar->addAction(undo_action);
 
-    redo_action = new QAction(QIcon(":/icons/images/standard/redo.png"), tr("&Redo"), this);
+    redo_action = new QAction(QIcon(":/icons/images/standard/redo.png"), tr("&Redo") + " (Ctrl+Y)", this);
     redo_action->setShortcuts(QKeySequence::Redo);
     redo_action->setStatusTip(tr("Redo the last operation"));
     connect(redo_action, &QAction::triggered, this, &MainWindow::Redo);
@@ -383,21 +383,21 @@ void MainWindow::CreateActions()
     edit_menu->addSeparator();
     standard_toolbar->addSeparator();
 
-    cut_action = new QAction(QIcon(":/icons/images/standard/cut.png"), tr("Cu&t"), this);
+    cut_action = new QAction(QIcon(":/icons/images/standard/cut.png"), tr("Cu&t") + " (Shift+Del)", this);
     cut_action->setShortcuts(QKeySequence::Cut);
     cut_action->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
     connect(cut_action, &QAction::triggered, this, &MainWindow::Cut);
     edit_menu->addAction(cut_action);
     standard_toolbar->addAction(cut_action);
 
-    copy_action = new QAction(QIcon(":/icons/images/standard/copy.png"), tr("&Copy"), this);
+    copy_action = new QAction(QIcon(":/icons/images/standard/copy.png"), tr("&Copy") + " (Ctrl+Ins)", this);
     copy_action->setShortcuts(QKeySequence::Copy);
     copy_action->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
     connect(copy_action, &QAction::triggered, this, &MainWindow::Copy);
     edit_menu->addAction(copy_action);
     standard_toolbar->addAction(copy_action);
 
-    paste_action = new QAction(QIcon(":/icons/images/standard/paste.png"), tr("&Paste"), this);
+    paste_action = new QAction(QIcon(":/icons/images/standard/paste.png"), tr("&Paste") + " (Shift+Ins)", this);
     paste_action->setShortcuts(QKeySequence::Paste);
     paste_action->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
     connect(paste_action, &QAction::triggered, this, &MainWindow::Paste);
@@ -639,35 +639,35 @@ void MainWindow::CreateAlgebraToolbar()
     algebra_toolbar = addToolBar(tr("Algebraic functions"));
     algebra_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
-    QAction* action = new QAction(QIcon(":/icons/images/algebra/plus.png"), tr("Plus"), this);
+    QAction* action = new QAction(QIcon(":/icons/images/algebra/plus.png"), tr("Plus") + " (+)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnPlus);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/minus.png"), tr("Minus"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/minus.png"), tr("Minus") + " (-)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnMinus);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/multiply.png"), tr("Multiply"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/multiply.png"), tr("Multiply") + " (*)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnMultiply);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/division.png"), tr("Division"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/division.png"), tr("Division") + " (/)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnDivision);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/power.png"), tr("Power"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/power.png"), tr("Power") + " (Ctrl+Shift+P)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnPower);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/sqrt.png"), tr("Square root"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/sqrt.png"), tr("Square root") + " (Ctrl+Shift+Q)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnSquareRoot);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/nth_root.png"), tr("Nth root"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/nth_root.png"), tr("Nth root") + " (Ctrl+Shift+N)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnNthRoot);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/subscript.png"), tr("Subscript"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/subscript.png"), tr("Subscript") + " (Ctrl+Shift+S)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnSubscript);
     algebra_toolbar->addAction(action);
 
@@ -707,15 +707,15 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnGrad);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/assignment.png"), tr("Assignment"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/assignment.png"), tr("Assignment") + " (:)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnAssignment);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/unit.png"), tr("Unit"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/unit.png"), tr("Unit") + " (~)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnUnit);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/equation.png"), tr("Equation"), this);
+    action = new QAction(QIcon(":/icons/images/algebra/equation.png"), tr("Equation") + " (=)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnEquation);
     algebra_toolbar->addAction(action);
 }
@@ -2477,7 +2477,6 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/language", (int)config.language);
 
     settings.setValue("Documents/last_documents", last_documents.isEmpty() ? "" : QVariant(last_documents));
-    settings.setValue("Documents/load_last_documents", true);
 
     settings.beginGroup("RecentFiles");
     settings.setValue("max_count", recent_files_count);

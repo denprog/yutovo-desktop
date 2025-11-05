@@ -274,7 +274,19 @@
     </message>
     <message>
         <source>Load last documents</source>
-        <translation>Загружать последний документ</translation>
+        <translation>Загружать последние документы</translation>
+    </message>
+    <message>
+        <source>Click on the link</source>
+        <translation>Клик по ссылке</translation>
+    </message>
+    <message>
+        <source>Click</source>
+        <translation>Клик</translation>
+    </message>
+    <message>
+        <source>Ctrl+Click</source>
+        <translation>Ctrl+Клик</translation>
     </message>
 </context>
 <context>
