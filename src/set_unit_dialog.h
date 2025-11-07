@@ -52,7 +52,7 @@ public:
     Unit value;
 
 private:
-    QtWindow window;
+    std::shared_ptr<QtWindow> window;
 
     Ui::SetUnitDialog *ui;
     std::map<std::u32string, std::vector<Unit>> system_units;

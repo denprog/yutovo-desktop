@@ -14,7 +14,7 @@
 
 SetUnitDialog::SetUnitDialog(std::vector<yutovo_calculator::Unit>& cast_units, yutovo::Config& _config) :
     QDialog(nullptr),
-    window(1, 1, _config),
+    window(new QtWindow(1, 1, _config)),
     ui(new Ui::SetUnitDialog),
     units_delegate(new UnitsDelegate(this))
 {
@@ -60,7 +60,7 @@ void SetUnitDialog::FillUnits()
 
     DocumentPtr document;
     Config config;
-    document.reset(new Document(&window, config));
+    document.reset(new Document(window, config));
 
     document->GetConfig(config);
     config.with_border = false;
@@ -85,7 +85,7 @@ void SetUnitDialog::FillUnits()
         document->WaitTask(document->Redraw(ElementId{0}, false));
 
         QPixmap pixmap;
-        window.GetPixmap(pixmap, QRect(0, 0, text->rect.width, text->rect.height));
+        window->GetPixmap(pixmap, QRect(0, 0, text->rect.width, text->rect.height));
 
         {
             std::lock_guard<std::mutex> lock(units_items_mutex);

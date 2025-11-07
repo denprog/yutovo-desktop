@@ -66,13 +66,13 @@ private:
     friend class DocumentWindow;
     friend class MainWindow;
 
-    QtWindow window;
+    DocumentPtr document;
+
+    std::shared_ptr<QtWindow> window;
 
     ShortcutsMap shortcuts_map;
     
     EditorState current_editor_state;
-
-    DocumentPtr document;
 
     QSettings& settings;
 
