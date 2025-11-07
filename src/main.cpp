@@ -44,7 +44,9 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     app.setOrganizationName("Yutovo");
+#ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
+#endif
 
     QString socket_name = "yutovo_instance";
     if (SendToRunningInstance(socket_name, app.arguments().value(1)))
