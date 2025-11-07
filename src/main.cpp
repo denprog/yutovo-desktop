@@ -20,6 +20,11 @@ namespace boost
     {
         throw e;
     }
+
+    BOOST_NORETURN void throw_exception(std::exception const& e, boost::source_location const&)
+    {
+        throw e;
+    }
 }
 #endif
 
@@ -39,6 +44,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     app.setOrganizationName("Yutovo");
+    SetConsoleOutputCP(CP_UTF8);
 
     QString socket_name = "yutovo_instance";
     if (SendToRunningInstance(socket_name, app.arguments().value(1)))
