@@ -45,18 +45,14 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QSettings& _settings, QW
     connect(document_widget, &DocumentWidget::WheelVertical, this, &DocumentWindow::OnWheelVertical);
     connect(document_widget, &DocumentWidget::WheelHorizontal, this, &DocumentWindow::OnWheelHorizontal);
 
-    QtWindow* window = (QtWindow*)document_widget->window.get();
-
-    connect(window, &QtWindow::CaretMoved, this, &DocumentWindow::OnCaretMoved);
-    connect(window, &QtWindow::DocumentChanged, this, &DocumentWindow::OnDocumentChanged);
-    connect(window, &QtWindow::SaveResult, this, &DocumentWindow::OnSaveResult);
-    connect(window, &QtWindow::LoadResult, this, &DocumentWindow::OnLoadResult);
-    connect(window, &QtWindow::ClipboardCopyResult, this, &DocumentWindow::OnClipboardCopyResult);
-    connect(window, &QtWindow::ClipboardPasteResult, this, &DocumentWindow::OnClipboardPasteResult);
-
-    connect(window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
-
-    connect(window, &QtWindow::LinkClicked, this, &DocumentWindow::OnLinkClicked);
+    connect(&document_widget->window, &QtWindow::CaretMoved, this, &DocumentWindow::OnCaretMoved);
+    connect(&document_widget->window, &QtWindow::DocumentChanged, this, &DocumentWindow::OnDocumentChanged);
+    connect(&document_widget->window, &QtWindow::SaveResult, this, &DocumentWindow::OnSaveResult);
+    connect(&document_widget->window, &QtWindow::LoadResult, this, &DocumentWindow::OnLoadResult);
+    connect(&document_widget->window, &QtWindow::ClipboardCopyResult, this, &DocumentWindow::OnClipboardCopyResult);
+    connect(&document_widget->window, &QtWindow::ClipboardPasteResult, this, &DocumentWindow::OnClipboardPasteResult);
+    connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
+    connect(&document_widget->window, &QtWindow::LinkClicked, this, &DocumentWindow::OnLinkClicked);
 
     //context menu
     copy = new QAction(tr("Copy"), this);
@@ -481,13 +477,13 @@ void DocumentWindow::SetFocus()
 
 void DocumentWindow::OnVerticalValueChanged(int value)
 {
-    document_widget->window->document_point.y = (value > 0 ? value : 0);
+    document_widget->window.document_point.y = (value > 0 ? value : 0);
     document->Redraw();
 }
 
 void DocumentWindow::OnHorizontalValueChanged(int value)
 {
-    document_widget->window->document_point.x = (value > 0 ? value : 0);
+    document_widget->window.document_point.x = (value > 0 ? value : 0);
     document->Redraw();
 }
 
@@ -528,9 +524,9 @@ void DocumentWindow::OnClipboardPasteResult(PasteResult result)
 
 void DocumentWindow::OnDocumentUpdated(const Rect rect)
 {
-    Rect r = document_widget->window->GetViewPort(0);
-    Size& s = document_widget->window->document_size;
-    Point& p = document_widget->window->document_point;
+    Rect r = document_widget->window.GetViewPort(0);
+    Size& s = document_widget->window.document_size;
+    Point& p = document_widget->window.document_point;
     
     vertical_scroll->setMinimum(0);
     vertical_scroll->setMaximum(s.height - r.height > 0 ? s.height - r.height : 1);

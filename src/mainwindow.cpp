@@ -2207,10 +2207,10 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     if (!w)
         return;
 
-    QtWindow* window = w->document_widget->window.get();
-    const CaretState& c = window->editor_state.caret_state;
-    const SelectionState& s = window->editor_state.selection_state;
-    ParagraphFormat paragraph_format = window->common_paragraph_format;
+    QtWindow& window = w->document_widget->window;
+    const CaretState& c = window.editor_state.caret_state;
+    const SelectionState& s = window.editor_state.selection_state;
+    ParagraphFormat paragraph_format = window.common_paragraph_format;
 
     bold_action->setEnabled(true);
     italic_action->setEnabled(true);
@@ -2224,7 +2224,7 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     if (c.id.empty() || c.id.size() == 1)
         return;
 
-    if (!window->is_string && !window->is_row)
+    if (!window.is_string && !window.is_row)
     {
         bold_action->setEnabled(false);
         italic_action->setEnabled(false);
@@ -2239,11 +2239,11 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     //update the interface elements
     block_format_slots = true;
     paragraph_format_combo->setCurrentText(paragraph_format.name.c_str());
-    family_combo->setCurrentText(window->string_format.family.c_str());
-    if (window->string_format.size == 0)
+    family_combo->setCurrentText(window.string_format.family.c_str());
+    if (window.string_format.size == 0)
         size_combo->setCurrentText("");
     else
-        size_combo->setCurrentText(std::to_string(window->string_format.size).c_str());
+        size_combo->setCurrentText(std::to_string(window.string_format.size).c_str());
     
     auto document = GetCurrentDocument();
     if (!document)
@@ -2269,16 +2269,16 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
         align_justify_action->setChecked(paragraph_format.alignment == ParagraphFormat::Alignment::Justify);
     }
 
-    bold_action->setChecked(window->string_format.bold);
-    italic_action->setChecked(window->string_format.italic);
-    underline_action->setChecked(window->string_format.underline);
-    strikethrough_action->setChecked(window->string_format.strikethrough);
-    subscript_action->setChecked(window->string_format.subscript);
-    superscript_action->setChecked(window->string_format.superscript);
+    bold_action->setChecked(window.string_format.bold);
+    italic_action->setChecked(window.string_format.italic);
+    underline_action->setChecked(window.string_format.underline);
+    strikethrough_action->setChecked(window.string_format.strikethrough);
+    subscript_action->setChecked(window.string_format.subscript);
+    superscript_action->setChecked(window.string_format.superscript);
     block_format_slots = false;
 
-    undo_action->setEnabled(window->can_undo);
-    redo_action->setEnabled(window->can_redo);
+    undo_action->setEnabled(window.can_undo);
+    redo_action->setEnabled(window.can_redo);
 
     UpdateCopyPaste();
 }
@@ -2745,15 +2745,15 @@ void MainWindow::UpdateCopyPaste()
     if (!w)
         return;
     
-    QtWindow* window = w->document_widget->window.get();
-    if (window->editor_state.caret_state.IsEmpty() || window->editor_state.caret_state.id.size() == 1)
+    QtWindow& window = w->document_widget->window;
+    if (window.editor_state.caret_state.IsEmpty() || window.editor_state.caret_state.id.size() == 1)
         return;
-    bool editable = window->parent_editable;
-    copy_action->setEnabled(!window->editor_state.selection_state.IsEmpty());
+    bool editable = window.parent_editable;
+    copy_action->setEnabled(!window.editor_state.selection_state.IsEmpty());
     QClipboard* clipboard = QGuiApplication::clipboard();
     const QMimeData* mime_data = clipboard->mimeData();
     paste_action->setEnabled(editable && (mime_data->hasText() || mime_data->hasImage()));
-    cut_action->setEnabled(editable && !window->editor_state.selection_state.IsEmpty());
+    cut_action->setEnabled(editable && !window.editor_state.selection_state.IsEmpty());
 }
 
 void MainWindow::UpdateRecentFiles(const QString add_file_name)

@@ -560,7 +560,7 @@ void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
             break;
         }
     }
-    document->LoadInclude(f, w);
+    document->LoadInclude(f, w.get());
     include_windows.push_back(w);
 }
 

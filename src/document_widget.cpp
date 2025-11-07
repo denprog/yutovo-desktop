@@ -18,17 +18,16 @@
 
 DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettings& _settings) :
     QWidget(parent),
-    window(new QtWindow(size().width(), size().height(), _config)),
+    window(size().width(), size().height(), _config),
     settings(_settings),
     logger(Logger::GetInstance(_config.logs_path + "/yutovo-desktop", "yutovo-desktop", _config.log_console, _config.log_file))
 {
-    QtWindow* w = window.get();
-    connect(w, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
-    connect(w, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);
-    connect(w, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted);
-    connect(w, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
-    connect(w, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
-    connect(w, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
+    connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
+    connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);
+    connect(&window, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted);
+    connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
+    connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
+    connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
 #ifdef REMOTE_SOLVER
     connect(&window, &QtWindow::ServiceStatus, this, &DocumentWidget::OnServiceStatus);
 #endif
@@ -39,7 +38,7 @@ DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettin
 
 DocumentPtr DocumentWidget::CreateDocument(Config& config)
 {
-    document.reset(new Document(window, config));
+    document.reset(new Document(&window, config));
     shortcuts_map.Init(document, this);
     return document;
 }
@@ -126,7 +125,7 @@ void DocumentWidget::paintEvent(QPaintEvent *event)
 {
     const QRect& rect = event->rect();
     QPixmap pixmap;
-    window->GetPixmap(pixmap, rect);
+    window.GetPixmap(pixmap, rect);
 
     QPainter p(this);
     p.drawPixmap(QPoint(rect.left(), rect.top()), pixmap);
@@ -169,8 +168,8 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
 void DocumentWidget::mousePressEvent(QMouseEvent *event)
 {
     ElementId id;
-    int x = (int)event->pos().x() + window->document_point.x;
-    int y = (int)event->pos().y() + window->document_point.y;
+    int x = (int)event->pos().x() + window.document_point.x;
+    int y = (int)event->pos().y() + window.document_point.y;
     int m = document->config.resize_margin_width;
     if (document->GetElementAtCoords(x, y, m, id))
     {
@@ -232,14 +231,14 @@ void DocumentWidget::mouseReleaseEvent(QMouseEvent *event)
     mouse_capture_id = ElementId{};
     EditorState s = document->GetEditorState();
     if (event->button() == Qt::LeftButton)
-        document->MouseLButtonUp((int)event->pos().x() + window->document_point.x, (int)event->pos().y() + window->document_point.y);
+        document->MouseLButtonUp((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y);
 }
 
 void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
 {
     ElementId id;
-    int x = (int)event->pos().x() + window->document_point.x;
-    int y = (int)event->pos().y() + window->document_point.y;
+    int x = (int)event->pos().x() + window.document_point.x;
+    int y = (int)event->pos().y() + window.document_point.y;
     int m = document->config.resize_margin_width;
     if (document->GetElementAtCoords(x, y, m, id))
     {
@@ -322,7 +321,7 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
     QPoint num_pixels = event->pixelDelta() / 8;
     QPoint num_degrees = event->angleDelta() / 8;
 
-    if (document->MouseWheel((int)event->pos().x() + window->document_point.x, (int)event->pos().y() + window->document_point.y, 
+    if (document->MouseWheel((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y, 
         yutovo::Point{num_pixels.x(), num_pixels.y()}, yutovo::Point{num_degrees.x(), num_degrees.y()}))
     {
         event->accept();
