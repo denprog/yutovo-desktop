@@ -63,6 +63,8 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence("Tab"), "", std::function<void ()>(std::bind(static_cast<uint(Document::*)(const std::u32string&, bool)>(&Document::InsertString), 
         document.get(), U"	", true)));
 
+    Add(QKeySequence("Insert"), "", std::function<void ()>(std::bind(&Document::SwitchInsertMode, document.get())));
+
     Add(QKeySequence("Ctrl+Z"), "", std::function<void ()>(std::bind(&Document::Undo, document.get())));
     Add(QKeySequence("Ctrl+Y"), "", std::function<void ()>(std::bind(&Document::Redo, document.get())));
 
