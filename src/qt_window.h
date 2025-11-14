@@ -127,7 +127,6 @@ private:
     Document* document;
 
     typedef std::shared_ptr<QtWindow> QtWindowPtr;
-    std::vector<QtWindowPtr> include_windows;
 
     //last editor state
     EditorState editor_state;

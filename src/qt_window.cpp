@@ -543,7 +543,6 @@ void QtWindow::OnLoadResult(const uint task_id, IOResult result, const int docum
 
 void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id)
 {
-    QtWindowPtr w(new QtWindow(0, 0, document->config));
     std::string f = file_name;
     if (file_name.rfind("/", 0) == 0)
     {
@@ -560,8 +559,7 @@ void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
             break;
         }
     }
-    document->LoadInclude(f, w.get());
-    include_windows.push_back(w);
+    document->LoadInclude(f);
 }
 
 void QtWindow::OnCopyResult(CopyResult result)
