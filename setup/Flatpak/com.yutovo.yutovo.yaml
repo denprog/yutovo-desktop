@@ -84,7 +84,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.3.1
+        tag: v1.3.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -144,7 +144,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.3.2
+        tag: v1.3.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -155,7 +155,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        tag: v1.1.6
+        tag: v1.1.7
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -168,7 +168,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.3.2
+        tag: v1.3.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
