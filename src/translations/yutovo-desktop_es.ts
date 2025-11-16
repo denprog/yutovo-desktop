@@ -687,15 +687,15 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
     <message>
         <source>yutovo_web_linux</source>
-        <translation>&lt;a href="https://yutovo.ru/?ref=yutovo-desktop_linux"&gt;Yutovo en línea&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.com/?ref=yutovo-desktop_linux"&gt;Yutovo en línea&lt;/a&gt;</translation>
     </message>
     <message>
         <source>yutovo_web_windows</source>
-        <translation>&lt;a href="https://yutovo.ru/?ref=yutovo-desktop_windows"&gt;Yutovo en línea&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://yutovo.com/?ref=yutovo-desktop_windows"&gt;Yutovo en línea&lt;/a&gt;</translation>
     </message>
     <message>
         <source>help_online</source>
-        <translation>https://yutovo.ru/library/es/Ayuda/Introducción/Acerca de Yutovo.yut</translation>
+        <translation>https://yutovo.com/library/es/Ayuda/Introducción/Acerca de Yutovo.yut</translation>
     </message>
     <message>
         <source>Show the application's Terms of use box</source>
