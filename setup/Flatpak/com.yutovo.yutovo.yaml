@@ -68,12 +68,11 @@ modules:
   - name: mpfr
     buildsystem: simple
     sources:
-      - type: git
-        url: https://gitlab.inria.fr/mpfr/mpfr.git
-        tag: 4.2.1
+      - type: archive
+        url: https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.gz
+        sha256: 116715552bd966c85b417c424db1bbdf639f53836eb361549d1f8d6ded5cb4c6
     build-commands:
-      - ./autogen.sh
-      - ./configure --enable-static --disable-shared --prefix=/app/ --with-gmp=/app/include/
+      - ./configure --enable-static --disable-shared --enable-cxx --libdir=/app/lib/ --prefix=/app/
       - make -sj && make install
 
   - name: yutovo-calculator
@@ -84,7 +83,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.3.1
+        tag: v1.3.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -144,7 +143,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.3.2
+        tag: v1.3.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -155,7 +154,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        tag: v1.1.6
+        tag: v1.1.7
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -168,7 +167,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.3.2
+        tag: v1.3.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
