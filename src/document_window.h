@@ -26,6 +26,8 @@ public:
 
     void SetFocus();
 
+    void CreateMenus();
+
 private slots:
     void OnVerticalValueChanged(int value);
     void OnHorizontalValueChanged(int value);

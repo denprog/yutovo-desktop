@@ -1242,6 +1242,11 @@ void MainWindow::Settings()
         {
             InstallTranslation(config.language);
             UpdateLocaleMessage();
+            for (int i = 0; i < ui->editor_tabs->count(); ++i)
+            {
+                DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
+                w->CreateMenus();
+            }
         }
         
         logger->SetLevel((int)config.log_level);

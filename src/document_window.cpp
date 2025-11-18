@@ -54,105 +54,7 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QSettings& _settings, QW
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
     connect(&document_widget->window, &QtWindow::LinkClicked, this, &DocumentWindow::OnLinkClicked);
 
-    //context menu
-    copy = new QAction(tr("Copy"), this);
-    connect(copy, &QAction::triggered, main_window, &MainWindow::Copy);
-    paste = new QAction(tr("Paste"), this);
-    connect(paste, &QAction::triggered, main_window, &MainWindow::Paste);
-    cut = new QAction(tr("Cut"), this);
-    connect(cut, &QAction::triggered, main_window, &MainWindow::Cut);
-
-    link = new QAction(tr("Link"), this);
-    connect(link, &QAction::triggered, main_window, &MainWindow::Link);
-
-    present_as_auto = new QAction(tr("Auto"), this);
-    present_as_auto->setCheckable(true);
-    connect(present_as_auto, &QAction::triggered, this, &DocumentWindow::OnPresentAsAuto);
-    present_as_real = new QAction(tr("Real"), this);
-    present_as_real->setCheckable(true);
-    connect(present_as_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsReal);
-    present_as_integer = new QAction(tr("Integer"), this);
-    present_as_integer->setCheckable(true);
-    connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
-    present_as_rational = new QAction(tr("Rational"), this);
-    present_as_rational->setCheckable(true);
-    connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
-    present_as_complex = new QAction(tr("Complex"), this);
-    present_as_complex->setCheckable(true);
-    connect(present_as_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsComplex);
-
-    set_precision = new QAction(tr("Set precision"), this);
-    connect(set_precision, &QAction::triggered, this, &DocumentWindow::OnSetPrecision);
-    set_exp = new QAction(tr("Set exponential threshold"), this);
-    connect(set_exp, &QAction::triggered, this, &DocumentWindow::OnSetExp);
-    set_unit = new QAction(tr("Set unit"), this);
-    connect(set_unit, &QAction::triggered, this, &DocumentWindow::OnSetUnit);
-
-    default_radian = new QAction(tr("Radian"), this);
-    default_radian->setCheckable(true);
-    connect(default_radian, &QAction::triggered, this, &DocumentWindow::OnDefaultRadian);
-    default_degree = new QAction(tr("Degree"), this);
-    default_degree->setCheckable(true);
-    connect(default_degree, &QAction::triggered, this, &DocumentWindow::OnDefaultDegree);
-    default_grad = new QAction(tr("Grad"), this);
-    default_grad->setCheckable(true);
-    connect(default_grad, &QAction::triggered, this, &DocumentWindow::OnDefaultGrad);
-
-    result_radian = new QAction(tr("Radian"), this);
-    result_radian->setCheckable(true);
-    connect(result_radian, &QAction::triggered, this, &DocumentWindow::OnResultRadian);
-    result_degree = new QAction(tr("Degree"), this);
-    result_degree->setCheckable(true);
-    connect(result_degree, &QAction::triggered, this, &DocumentWindow::OnResultDegree);
-    result_grad = new QAction(tr("Grad"), this);
-    result_grad->setCheckable(true);
-    connect(result_grad, &QAction::triggered, this, &DocumentWindow::OnResultGrad);
-
-    default_binary_notaion = new QAction(tr("Binary"), this);
-    default_binary_notaion->setCheckable(true);
-    connect(default_binary_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultBinaryNotation);
-    default_octal_notaion = new QAction(tr("Octal"), this);
-    default_octal_notaion->setCheckable(true);
-    connect(default_octal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultOctalNotation);
-    default_decimal_notaion = new QAction(tr("Decimal"), this);
-    default_decimal_notaion->setCheckable(true);
-    connect(default_decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultDecimalNotation);
-    default_hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
-    default_hexadecimal_notaion->setCheckable(true);
-    connect(default_hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultHexadecimalNotation);
-
-    result_binary_notaion = new QAction(tr("Binary"), this);
-    result_binary_notaion->setCheckable(true);
-    connect(result_binary_notaion, &QAction::triggered, this, &DocumentWindow::OnResultBinaryNotation);
-    result_octal_notaion = new QAction(tr("Octal"), this);
-    result_octal_notaion->setCheckable(true);
-    connect(result_octal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultOctalNotation);
-    result_decimal_notaion = new QAction(tr("Decimal"), this);
-    result_decimal_notaion->setCheckable(true);
-    connect(result_decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultDecimalNotation);
-    result_hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
-    result_hexadecimal_notaion->setCheckable(true);
-    connect(result_hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultHexadecimalNotation);
-
-    fraction_form_proper = new QAction(tr("Proper"), this);
-    fraction_form_proper->setCheckable(true);
-    connect(fraction_form_proper, &QAction::triggered, this, &DocumentWindow::OnFractionFormProper);
-    fraction_form_improper = new QAction(tr("Improper"), this);
-    fraction_form_improper->setCheckable(true);
-    connect(fraction_form_improper, &QAction::triggered, this, &DocumentWindow::OnFractionFormImproper);
-
-    complex_form_arithmetic = new QAction(tr("Arithmetic"), this);
-    complex_form_arithmetic->setCheckable(true);
-    connect(complex_form_arithmetic, &QAction::triggered, this, &DocumentWindow::OnComplexFormArithmetic);
-    complex_form_trigonometric = new QAction(tr("Trigonometric"), this);
-    complex_form_trigonometric->setCheckable(true);
-    connect(complex_form_trigonometric, &QAction::triggered, this, &DocumentWindow::OnComplexFormTrigonometric);
-    complex_form_exponential = new QAction(tr("Exponential"), this);
-    complex_form_exponential->setCheckable(true);
-    connect(complex_form_exponential, &QAction::triggered, this, &DocumentWindow::OnComplexFormExponential);
-
-    graph = new QAction(tr("Graph"), this);
-    connect(graph, &QAction::triggered, main_window, &MainWindow::Graph);
+    CreateMenus();
 }
 
 void DocumentWindow::CreateDocument()
@@ -473,6 +375,173 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
 void DocumentWindow::SetFocus()
 {
     document_widget->setFocus();
+}
+
+void DocumentWindow::CreateMenus()
+{
+    //context menu
+    if (copy)
+        copy->deleteLater();
+    copy = new QAction(tr("Copy"), this);
+    connect(copy, &QAction::triggered, main_window, &MainWindow::Copy);
+    if (paste)
+        paste->deleteLater();
+    paste = new QAction(tr("Paste"), this);
+    connect(paste, &QAction::triggered, main_window, &MainWindow::Paste);
+    if (cut)
+        cut->deleteLater();
+    cut = new QAction(tr("Cut"), this);
+    connect(cut, &QAction::triggered, main_window, &MainWindow::Cut);
+
+    if (link)
+        link->deleteLater();
+    link = new QAction(tr("Link"), this);
+    connect(link, &QAction::triggered, main_window, &MainWindow::Link);
+
+    if (present_as_auto)
+        present_as_auto->deleteLater();
+    present_as_auto = new QAction(tr("Auto"), this);
+    present_as_auto->setCheckable(true);
+    connect(present_as_auto, &QAction::triggered, this, &DocumentWindow::OnPresentAsAuto);
+    if (present_as_real)
+        present_as_real->deleteLater();
+    present_as_real = new QAction(tr("Real"), this);
+    present_as_real->setCheckable(true);
+    connect(present_as_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsReal);
+    if (present_as_integer)
+        present_as_integer->deleteLater();
+    present_as_integer = new QAction(tr("Integer"), this);
+    present_as_integer->setCheckable(true);
+    connect(present_as_integer, &QAction::triggered, this, &DocumentWindow::OnPresentAsInteger);
+    if (present_as_rational)
+        present_as_rational->deleteLater();
+    present_as_rational = new QAction(tr("Rational"), this);
+    present_as_rational->setCheckable(true);
+    connect(present_as_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsRational);
+    if (present_as_complex)
+        present_as_complex->deleteLater();
+    present_as_complex = new QAction(tr("Complex"), this);
+    present_as_complex->setCheckable(true);
+    connect(present_as_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsComplex);
+
+    if (set_precision)
+        set_precision->deleteLater();
+    set_precision = new QAction(tr("Set precision"), this);
+    connect(set_precision, &QAction::triggered, this, &DocumentWindow::OnSetPrecision);
+    if (set_exp)
+        set_exp->deleteLater();
+    set_exp = new QAction(tr("Set exponential threshold"), this);
+    connect(set_exp, &QAction::triggered, this, &DocumentWindow::OnSetExp);
+    if (set_unit)
+        set_unit->deleteLater();
+    set_unit = new QAction(tr("Set unit"), this);
+    connect(set_unit, &QAction::triggered, this, &DocumentWindow::OnSetUnit);
+
+    if (default_radian)
+        default_radian->deleteLater();
+    default_radian = new QAction(tr("Radian"), this);
+    default_radian->setCheckable(true);
+    connect(default_radian, &QAction::triggered, this, &DocumentWindow::OnDefaultRadian);
+    if (default_degree)
+        default_degree->deleteLater();
+    default_degree = new QAction(tr("Degree"), this);
+    default_degree->setCheckable(true);
+    connect(default_degree, &QAction::triggered, this, &DocumentWindow::OnDefaultDegree);
+    if (default_grad)
+        default_grad->deleteLater();
+    default_grad = new QAction(tr("Grad"), this);
+    default_grad->setCheckable(true);
+    connect(default_grad, &QAction::triggered, this, &DocumentWindow::OnDefaultGrad);
+
+    if (result_radian)
+        result_radian->deleteLater();
+    result_radian = new QAction(tr("Radian"), this);
+    result_radian->setCheckable(true);
+    connect(result_radian, &QAction::triggered, this, &DocumentWindow::OnResultRadian);
+    if (result_degree)
+        result_degree->deleteLater();
+    result_degree = new QAction(tr("Degree"), this);
+    result_degree->setCheckable(true);
+    connect(result_degree, &QAction::triggered, this, &DocumentWindow::OnResultDegree);
+    if (result_grad)
+        result_grad->deleteLater();
+    result_grad = new QAction(tr("Grad"), this);
+    result_grad->setCheckable(true);
+    connect(result_grad, &QAction::triggered, this, &DocumentWindow::OnResultGrad);
+
+    if (default_binary_notaion)
+        default_binary_notaion->deleteLater();
+    default_binary_notaion = new QAction(tr("Binary"), this);
+    default_binary_notaion->setCheckable(true);
+    connect(default_binary_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultBinaryNotation);
+    if (default_octal_notaion)
+        default_octal_notaion->deleteLater();
+    default_octal_notaion = new QAction(tr("Octal"), this);
+    default_octal_notaion->setCheckable(true);
+    connect(default_octal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultOctalNotation);
+    if (default_decimal_notaion)
+        default_decimal_notaion->deleteLater();
+    default_decimal_notaion = new QAction(tr("Decimal"), this);
+    default_decimal_notaion->setCheckable(true);
+    connect(default_decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultDecimalNotation);
+    if (default_hexadecimal_notaion)
+        default_hexadecimal_notaion->deleteLater();
+    default_hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
+    default_hexadecimal_notaion->setCheckable(true);
+    connect(default_hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnDefaultHexadecimalNotation);
+
+    if (result_binary_notaion)
+        result_binary_notaion->deleteLater();
+    result_binary_notaion = new QAction(tr("Binary"), this);
+    result_binary_notaion->setCheckable(true);
+    connect(result_binary_notaion, &QAction::triggered, this, &DocumentWindow::OnResultBinaryNotation);
+    if (result_octal_notaion)
+        result_octal_notaion->deleteLater();
+    result_octal_notaion = new QAction(tr("Octal"), this);
+    result_octal_notaion->setCheckable(true);
+    connect(result_octal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultOctalNotation);
+    if (result_decimal_notaion)
+        result_decimal_notaion->deleteLater();
+    result_decimal_notaion = new QAction(tr("Decimal"), this);
+    result_decimal_notaion->setCheckable(true);
+    connect(result_decimal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultDecimalNotation);
+    if (result_hexadecimal_notaion)
+        result_hexadecimal_notaion->deleteLater();
+    result_hexadecimal_notaion = new QAction(tr("Hexadecimal"), this);
+    result_hexadecimal_notaion->setCheckable(true);
+    connect(result_hexadecimal_notaion, &QAction::triggered, this, &DocumentWindow::OnResultHexadecimalNotation);
+
+    if (fraction_form_proper)
+        fraction_form_proper->deleteLater();
+    fraction_form_proper = new QAction(tr("Proper"), this);
+    fraction_form_proper->setCheckable(true);
+    connect(fraction_form_proper, &QAction::triggered, this, &DocumentWindow::OnFractionFormProper);
+    if (fraction_form_improper)
+        fraction_form_improper->deleteLater();
+    fraction_form_improper = new QAction(tr("Improper"), this);
+    fraction_form_improper->setCheckable(true);
+    connect(fraction_form_improper, &QAction::triggered, this, &DocumentWindow::OnFractionFormImproper);
+
+    if (complex_form_arithmetic)
+        complex_form_arithmetic->deleteLater();
+    complex_form_arithmetic = new QAction(tr("Arithmetic"), this);
+    complex_form_arithmetic->setCheckable(true);
+    connect(complex_form_arithmetic, &QAction::triggered, this, &DocumentWindow::OnComplexFormArithmetic);
+    if (complex_form_trigonometric)
+        complex_form_trigonometric->deleteLater();
+    complex_form_trigonometric = new QAction(tr("Trigonometric"), this);
+    complex_form_trigonometric->setCheckable(true);
+    connect(complex_form_trigonometric, &QAction::triggered, this, &DocumentWindow::OnComplexFormTrigonometric);
+    if (complex_form_exponential)
+        complex_form_exponential->deleteLater();
+    complex_form_exponential = new QAction(tr("Exponential"), this);
+    complex_form_exponential->setCheckable(true);
+    connect(complex_form_exponential, &QAction::triggered, this, &DocumentWindow::OnComplexFormExponential);
+
+    if (graph)
+        graph->deleteLater();
+    graph = new QAction(tr("Graph"), this);
+    connect(graph, &QAction::triggered, main_window, &MainWindow::Graph);
 }
 
 void DocumentWindow::OnVerticalValueChanged(int value)

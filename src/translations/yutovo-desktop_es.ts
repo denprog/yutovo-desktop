@@ -265,6 +265,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Graph</source>
         <translation>Gráfico</translation>
     </message>
+    <message>
+        <source>Link</source>
+        <translation>Enlace</translation>
+    </message>
 </context>
 <context>
     <name>DocumentsSettingsForm</name>
@@ -540,10 +544,6 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Background text color</source>
         <translation>Color de fondo del texto</translation>
-    </message>
-    <message>
-        <source>Link</source>
-        <translation>Enlace</translation>
     </message>
     <message>
         <source>Insert link</source>

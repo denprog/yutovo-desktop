@@ -265,6 +265,10 @@
         <source>Graph</source>
         <translation>График</translation>
     </message>
+    <message>
+        <source>Link</source>
+        <translation>Ссылка</translation>
+    </message>
 </context>
 <context>
     <name>DocumentsSettingsForm</name>
