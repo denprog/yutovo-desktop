@@ -1221,7 +1221,7 @@ void MainWindow::Settings()
             _config.integer_result = c.integer_result;
             _config.rational_result = c.rational_result;
             _config.complex_result = c.complex_result;
-            w->document->SetConfig(_config, true);
+            w->document->SetConfig(_config, false);
         }
 
         keys = _settings.keys();
