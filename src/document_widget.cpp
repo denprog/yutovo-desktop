@@ -214,16 +214,12 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
                 return;
             }
         }
-    }
 
-    if (event->buttons() == Qt::LeftButton || (event->buttons() == Qt::RightButton && s.selection_state.IsEmpty()))
-    {
         int c = settings.value("Documents/click_link", 0).toInt();
         caret_moving_task_id = document->MoveCaret(x, y, ((event->modifiers() == Qt::ControlModifier && c == 1) || 
             (event->modifiers() == 0 && c == 0)));
-    }
-    if (event->buttons() == Qt::LeftButton)
         left_click_pos = QPoint{x, y};
+    }
 }
 
 void DocumentWidget::mouseReleaseEvent(QMouseEvent *event)
