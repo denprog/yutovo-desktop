@@ -115,6 +115,10 @@
         <source>Selection background</source>
         <translation>Фон выделения</translation>
     </message>
+    <message>
+        <source>Formula hilight color</source>
+        <translation>Цвет подсветки формулы</translation>
+    </message>
 </context>
 <context>
     <name>ComputationSettingsForm</name>

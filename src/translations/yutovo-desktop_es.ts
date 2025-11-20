@@ -115,6 +115,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Selection background</source>
         <translation>Fondo de selección</translation>
     </message>
+    <message>
+        <source>Formula hilight color</source>
+        <translation>Color de resaltado de fórmula</translation>
+    </message>
 </context>
 <context>
     <name>ComputationSettingsForm</name>

@@ -54,6 +54,10 @@ ColorsSettingsForm::ColorsSettingsForm(yutovo::Config& _config, QWidget *parent)
     c = QColor::fromRgb(config.bg_selection_color.ToInt());
     form->bg_selection_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     connect(form->bg_selection_color, SIGNAL(clicked()), this, SLOT(OnSelectionBgColorClicked()));
+
+    c = QColor::fromRgb(config.hilight_color.ToInt());
+    form->formula_hilight_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    connect(form->formula_hilight_color, SIGNAL(clicked()), this, SLOT(OnFormulaHilightColorClicked()));
 }
 
 ColorsSettingsForm::~ColorsSettingsForm()
@@ -157,5 +161,16 @@ void ColorsSettingsForm::OnSelectionBgColorClicked()
         QColor c = d.selectedColor();
         config.bg_selection_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
         form->bg_selection_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    }
+}
+
+void ColorsSettingsForm::OnFormulaHilightColorClicked()
+{
+    QColorDialog d(QColor::fromRgba(config.hilight_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        QColor c = d.selectedColor();
+        config.hilight_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->formula_hilight_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     }
 }

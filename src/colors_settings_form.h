@@ -35,6 +35,7 @@ private slots:
     void OnErrorsColorClicked();
     void OnFormulaBgColorClicked();
     void OnSelectionBgColorClicked();
+    void OnFormulaHilightColorClicked();
 
 private:
     Ui::ColorsSettingsForm *form;
