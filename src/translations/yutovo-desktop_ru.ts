@@ -116,8 +116,12 @@
         <translation>Фон выделения</translation>
     </message>
     <message>
-        <source>Formula hilight color</source>
-        <translation>Цвет подсветки формулы</translation>
+        <source>Formula hilight</source>
+        <translation>Подсветка формулы</translation>
+    </message>
+    <message>
+        <source>Formula frame</source>
+        <translation>Рамка формулы</translation>
     </message>
 </context>
 <context>

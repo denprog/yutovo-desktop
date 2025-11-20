@@ -116,8 +116,12 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Fondo de selección</translation>
     </message>
     <message>
-        <source>Formula hilight color</source>
-        <translation>Color de resaltado de fórmula</translation>
+        <source>Formula hilight</source>
+        <translation>Resaltado de fórmula</translation>
+    </message>
+    <message>
+        <source>Formula frame</source>
+        <translation>Marco de fórmula</translation>
     </message>
 </context>
 <context>
