@@ -1314,7 +1314,7 @@ void MainWindow::Paste()
         auto s = yutovo::ToUtfString(str.str());
         document->Paste(s);
     }
-    else if (mime_data->hasImage())
+    else if (mime_data->hasImage() || mime_data->hasFormat("image/png") || mime_data->hasFormat("image/jpeg"))
     {
         QImage image = clipboard->image();
         QByteArray arr;
@@ -1325,9 +1325,32 @@ void MainWindow::Paste()
             logger->Error("Error converting image");
             return;
         }
-
         std::vector<unsigned char> data(arr.begin(), arr.end());
         document->PasteImage(data);
+    }
+    else if (mime_data->hasUrls())
+    {
+        for (auto& url : mime_data->urls())
+        {
+            if (url.isLocalFile())
+            {
+                QString path = url.toLocalFile();
+                QImage image(path);
+                if (!image.isNull())
+                {
+                    QByteArray arr;
+                    QBuffer buffer(&arr);
+                    buffer.open(QIODevice::WriteOnly);
+                    if (!image.save(&buffer, "PNG"))
+                    {
+                        logger->Error("Error converting image");
+                        return;
+                    }
+                    std::vector<unsigned char> data(arr.begin(), arr.end());
+                    document->PasteImage(data);
+                }
+            }
+        }        
     }
     else if (mime_data->hasText())
     {
