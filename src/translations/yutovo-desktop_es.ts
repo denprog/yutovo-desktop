@@ -430,6 +430,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Cerrar todo</translation>
     </message>
     <message>
+        <source>Export to HTML</source>
+        <translation>Exportar a HTML</translation>
+    </message>
+    <message>
         <source>&amp;Settings</source>
         <translation>&amp;Configuración</translation>
     </message>
@@ -958,6 +962,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Archivos de Yutovo (*.yut);; Archivos de texto (*.txt)</translation>
     </message>
     <message>
+        <source>Html files (*.html)</source>
+        <translation>Archivos HTML (*.html)</translation>
+    </message>
+    <message>
         <source>Save file as</source>
         <translation>Guardar archivo como</translation>
     </message>
@@ -988,6 +996,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>File not found</source>
         <translation>Archivo no encontrado</translation>
+    </message>
+    <message>
+        <source>This document was created with </source>
+        <translation>Este documento fue creado con </translation>
     </message>
     <message>
         <source>rad</source>

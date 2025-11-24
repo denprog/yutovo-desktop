@@ -349,6 +349,13 @@ void MainWindow::CreateActions()
 
     file_menu->addSeparator();
 
+    action = new QAction(tr("Export to HTML"), this);
+    action->setStatusTip(tr("Export current document to HTML"));
+    connect(action, &QAction::triggered, this, &MainWindow::ExportToHtml);
+    file_menu->addAction(action);
+
+    file_menu->addSeparator();
+
     action = new QAction(tr("&Settings"), this);
     action->setStatusTip(tr("Application settings"));
     connect(action, &QAction::triggered, this, &MainWindow::Settings);
@@ -1182,6 +1189,41 @@ void MainWindow::CloseOthers()
         if (!OnCloseEditorTab(1))
             return;
     }
+}
+
+void MainWindow::ExportToHtml()
+{
+    QString path = QFileDialog::getSaveFileName(this, tr("Save file as"), "", tr("Html files (*.html)"));
+    if (path.isEmpty())
+        return;
+    QFile file(path);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QMessageBox::warning(this, tr("Error"), tr("Cannot save file"));
+        return;
+    }
+    
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    std::string html = "<!DOCTYPE html>\n";
+    html += "<meta charset=\"UTF-8\">\n";
+    html += document->ToHtml() + "\n";
+    size_t p = html.find("</body>");
+    if (p != std::string::npos)
+    {
+        std::string footer = 
+            "<p>\n"\
+                "<hr>"\
+                "<span style=\"font-family:'Arial';font-size:12px;\">" + tr("This document was created with ").toStdString() + "</span>\n"\
+                "<a href=\"https://yutovo.com?ref=html_export\" style=\"font-family:'Arial';font-size:12px;\">Yutovo</a>\n"\
+                "<span style=\"font-family:'Arial';font-size:12px;\">.</span>\n"\
+            "</p>";
+        html.insert(p, footer);
+    }
+
+    file.write(html.c_str());
+    file.close();
 }
 
 void MainWindow::Settings()
@@ -2321,7 +2363,12 @@ void MainWindow::OnDocumentChanged(const bool changed)
         UpdateCaption();
         w->last_changed = changed;
     }
+
     UpdateLocaleMessage();
+
+    QtWindow& window = w->document_widget->window;
+    undo_action->setEnabled(window.can_undo);
+    redo_action->setEnabled(window.can_redo);
 }
 
 void MainWindow::OnSaveResult(const uint task_id, IOResult result)

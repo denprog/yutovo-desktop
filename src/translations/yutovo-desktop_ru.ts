@@ -430,6 +430,10 @@
         <translation>Закрыть все</translation>
     </message>
     <message>
+        <source>Export to HTML</source>
+        <translation>Экспорт в HTML</translation>
+    </message>
+    <message>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
     </message>
@@ -962,6 +966,10 @@
         <translation>Файлы Ютово (*.yut);; Текстовые файлы (*.txt)</translation>
     </message>
     <message>
+        <source>Html files (*.html)</source>
+        <translation>Html файлы (*.html)</translation>
+    </message>
+    <message>
         <source>Save file as</source>
         <translation>Сохранить файл как</translation>
     </message>
@@ -992,6 +1000,10 @@
     <message>
         <source>File not found</source>
         <translation>Файл не найден</translation>
+    </message>
+    <message>
+        <source>This document was created with </source>
+        <translation>Этот документ был создан с помощью</translation>
     </message>
     <message>
         <source>rad</source>

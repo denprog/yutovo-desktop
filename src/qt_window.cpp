@@ -211,7 +211,7 @@ void QtWindow::DrawImage(const int x1, const int y1, const int width, const int 
     QImage picture;
     if (!picture.loadFromData(&image[0], image.size()))
     {
-        picture = QImage(&image[0], width, height, QImage::Format_ARGB32);
+        picture = QImage(&image[0], width, height, QImage::Format_RGBA8888);
         if (picture.width() == 0 || picture.height() == 0)
             return;
     }

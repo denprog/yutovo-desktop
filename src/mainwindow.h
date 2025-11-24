@@ -79,6 +79,7 @@ private:
     void Close();
     void CloseAll();
     void CloseOthers();
+    void ExportToHtml();
     void Settings();
     void Exit();
 
