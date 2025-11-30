@@ -68,6 +68,7 @@ void SetUnitDialog::FillUnits()
     config.formula_border = false;
     document->Start();
     document->SetConfig(config, false);
+    document->SetTextFormat({TextFormat::Paging::WEB_VIEW, 0, 0, 0, 0, 0, Size{0, 0}}, false);
 
     std::vector<Unit>& units = it->second;
     for (size_t i = 0; i < units.size(); ++i)
@@ -88,7 +89,7 @@ void SetUnitDialog::FillUnits()
         window.GetPixmap(pixmap, QRect(0, 0, text->rect.width, text->rect.height));
 
         {
-            std::lock_guard<std::mutex> lock(units_items_mutex);
+            std::lock_guard<std::recursive_mutex> lock(units_items_mutex);
             units_items[i] = pixmap;
         }
 
@@ -106,7 +107,7 @@ void SetUnitDialog::OnCurrentSystemChanged(QListWidgetItem *current, QListWidget
         fill_thread.join();
 
     {
-        std::lock_guard<std::mutex> lock(units_items_mutex);
+        std::lock_guard<std::recursive_mutex> lock(units_items_mutex);
         ui->units->clear();
         units_items.clear();
     }
@@ -123,7 +124,7 @@ void SetUnitDialog::OnUnitsItemDoubleClicked(QListWidgetItem *item)
 
 void SetUnitDialog::OnUnitsItemsReady()
 {
-    std::lock_guard<std::mutex> lock(units_items_mutex);
+    std::lock_guard<std::recursive_mutex> lock(units_items_mutex);
     for (int i = ui->units->count(); i < units_items.size(); ++i)
         ui->units->addItem(new QListWidgetItem());
 }
@@ -146,13 +147,13 @@ void UnitsDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 {
     if (option.state & QStyle::State_Selected)
         painter->fillRect(option.rect, dialog->palette().highlight().color());
-    std::lock_guard<std::mutex> lock(dialog->units_items_mutex);
+    std::lock_guard<std::recursive_mutex> lock(dialog->units_items_mutex);
     QPixmap& p = dialog->units_items[index.row()];
     painter->drawPixmap(option.rect.x(), option.rect.y(), p);
 }
 
 QSize UnitsDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    std::lock_guard<std::mutex> lock(dialog->units_items_mutex);
+    std::lock_guard<std::recursive_mutex> lock(dialog->units_items_mutex);
     return dialog->units_items[index.row()].size();
 }

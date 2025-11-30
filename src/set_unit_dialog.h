@@ -63,7 +63,7 @@ private:
 
     std::thread fill_thread;
     std::u32string current_system;
-    std::mutex units_items_mutex;
+    std::recursive_mutex units_items_mutex;
     std::map<int, QPixmap> units_items;
     bool stop_fill_thread = false;
 };
