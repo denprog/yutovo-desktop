@@ -19,6 +19,7 @@
 #include <yutovo-editor/document.h>
 #include <yutovo-logger/logger.h>
 #include "ui_mainwindow.h"
+#include "qt_pdf_window.h"
 #include <cstring>
 #include <sstream>
 
@@ -80,6 +81,7 @@ private:
     void CloseAll();
     void CloseOthers();
     void ExportToHtml();
+    void ExportToPdf();
     void Settings();
     void Exit();
 
@@ -212,6 +214,7 @@ private slots:
     void OnLoadResult(const uint task_id, IOResult result);
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
+    void OnPdfExportResult(const std::vector<uint8_t>& pdf, const yutovo::PdfResult result);
 
 #ifdef REMOTE_SOLVER
     void OnServiceStatus(IOResult result);
@@ -252,6 +255,8 @@ private:
 
     yutovo::Config config;
     QSettings settings;
+
+    std::unique_ptr<QtPdfWindow> pdf_window;
 
     std::unique_ptr<QProcess> service;
 

@@ -21,6 +21,7 @@
 #include <QCloseEvent>
 #include <QUrl>
 #include <QDesktopServices>
+#include <QTextDocument>
 #include <filesystem>
 #ifdef _WIN32
 #include <shlobj_core.h>
@@ -36,6 +37,7 @@
 #include "terms_of_use_dialog.h"
 #include "privacy_policy_dialog.h"
 #include "graph_settings_dialog.h"
+#include "export_pdf_dialog.h"
 
 //MainWindow
 
@@ -58,6 +60,8 @@ MainWindow::MainWindow(QWidget* parent) :
     qRegisterMetaType<std::vector<ElementPtr>>("std::vector<ElementPtr>");
     qRegisterMetaType<ElementId>("ElementId");
     qRegisterMetaType<std::u32string>("std::u32string");
+    qRegisterMetaType<std::vector<uint8_t>>("std::vector<uint8_t>");
+    qRegisterMetaType<PdfResult>("PdfResult");
 }
 
 MainWindow::~MainWindow()
@@ -352,6 +356,11 @@ void MainWindow::CreateActions()
     action = new QAction(tr("Export to HTML"), this);
     action->setStatusTip(tr("Export current document to HTML"));
     connect(action, &QAction::triggered, this, &MainWindow::ExportToHtml);
+    file_menu->addAction(action);
+
+    action = new QAction(tr("Export to PDF"), this);
+    action->setStatusTip(tr("Export current document to PDF"));
+    connect(action, &QAction::triggered, this, &MainWindow::ExportToPdf);
     file_menu->addAction(action);
 
     file_menu->addSeparator();
@@ -1224,6 +1233,40 @@ void MainWindow::ExportToHtml()
 
     file.write(html.c_str());
     file.close();
+}
+
+void MainWindow::ExportToPdf()
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
+        return;
+
+    TextFormat f;
+    w->document->GetTextFormat(f);
+    ExportPdfDialog export_pdf_dialog({(qreal)f.left_indent, (qreal)f.top_indent, (qreal)f.right_indent, (qreal)f.bottom_indent});
+    if (export_pdf_dialog.exec() == QDialog::Accepted)
+    {
+        dialog_file_name = export_pdf_dialog.FilePath();
+        Config config;
+        w->document->GetConfig(config);
+        config.with_border = false;
+        config.code_block_border = true;
+        config.caret_visible = false;
+        config.hilight_caret_element = false;
+        config.draw_whole = true;
+
+        QMarginsF m = export_pdf_dialog.Margins();
+        f.left_indent = (int)m.left();
+        f.top_indent = (int)m.top();
+        f.right_indent = (int)m.right();
+        f.bottom_indent = (int)m.bottom();
+
+        QSizeF s = export_pdf_dialog.GetPageSize();
+        pdf_window.reset(new QtPdfWindow({(int)(s.width() * 72 / 25.4), (int)(s.height() * 72 / 25.4)}));
+        connect(pdf_window.get(), &QtPdfWindow::PdfExportResult, this, &MainWindow::OnPdfExportResult);
+        Document pdf_document(pdf_window.get(), config, *w->document.get());
+        pdf_document.Start(f);
+    }
 }
 
 void MainWindow::Settings()
@@ -2475,6 +2518,20 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
 
 void MainWindow::OnClipboardPasteResult(PasteResult result)
 {
+}
+
+void MainWindow::OnPdfExportResult(const std::vector<uint8_t>& pdf, const yutovo::PdfResult result)
+{
+    if (result != PdfResult::Success)
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error exporting document") + QString(": ") + dialog_file_name);
+        pdf_window.reset();
+        return;
+    }
+
+    std::ofstream file(dialog_file_name.toUtf8().data(), std::ios::binary);
+    file.write(reinterpret_cast<const char*>(pdf.data()), pdf.size());
+    pdf_window.reset();
 }
 
 #ifdef REMOTE_SOLVER

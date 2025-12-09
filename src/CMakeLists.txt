@@ -36,6 +36,8 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Qt5 COMPONENTS PrintSupport REQUIRED)
+
 if(WIN32)
     find_package(Boost REQUIRED COMPONENTS iostreams)
     find_package(RapidJSON CONFIG REQUIRED)
@@ -61,6 +63,7 @@ add_executable(${PROJECT_NAME} WIN32
     about.ui
     resources.qrc
     qt_window.cpp
+    qt_pdf_window.cpp
     document_window.cpp
     command_map.cpp
     about_dialog.cpp
@@ -94,6 +97,8 @@ add_executable(${PROJECT_NAME} WIN32
     privacy_policy_dialog.cpp
     graph_settings_dialog.cpp
     plot_format_dialog.cpp
+    export_pdf_dialog.ui
+    export_pdf_dialog.cpp
 )
 
 if(WIN32)
@@ -111,6 +116,7 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${INSTALL_PATH}/include
+    ${THIRD_PARTY_PATH}
 )
 
 if(REMOTE_SOLVER)
@@ -131,9 +137,11 @@ elseif(NOT WIN32)
         yutovo-solver
         Qt5::Widgets
         Qt5::Network
+        Qt5::PrintSupport
 		libboost_iostreams.a
         z
         libgmp.a
+        fontconfig
     )
 else()
     target_link_libraries(${PROJECT_NAME} PUBLIC

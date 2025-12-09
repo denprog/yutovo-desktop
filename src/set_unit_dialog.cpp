@@ -65,7 +65,7 @@ void SetUnitDialog::FillUnits()
     document->GetConfig(config);
     config.with_border = false;
     config.caret_visible = false;
-    config.formula_border = false;
+    config.code_block_border = false;
     document->Start();
     document->SetConfig(config, false);
     document->SetTextFormat({TextFormat::Paging::WEB_VIEW, 0, 0, 0, 0, 0, Size{0, 0}}, false);
