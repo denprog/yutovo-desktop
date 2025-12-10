@@ -13,6 +13,8 @@ class QtPdfWindow : public QObject, public PdfWindow
 public:
     QtPdfWindow(const Size& _page_size);
 
+    virtual std::u32string Translate(ElementId id, const std::u32string& str);
+
     virtual void OnPdfExportResult(const std::vector<uint8_t>& pdf, const PdfResult result);
 
     virtual bool GetFontPath(const StringFormatPtr format, std::string& path);

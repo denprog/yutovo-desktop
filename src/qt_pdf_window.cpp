@@ -1,4 +1,5 @@
 #include "qt_pdf_window.h"
+#include <QCoreApplication>
 #ifdef _WIN32
 #include <Windows.h>
 #else
@@ -8,8 +9,13 @@
 //QtPdfWindow
 
 QtPdfWindow::QtPdfWindow(const Size& _page_size) : 
-    PdfWindow(_page_size)
+    PdfWindow(_page_size, true)
 {
+}
+
+std::u32string QtPdfWindow::Translate(ElementId id, const std::u32string& str)
+{
+    return QCoreApplication::translate("MainWindow", yutovo::ToBasicString(str).c_str()).toStdU32String();
 }
 
 void QtPdfWindow::OnPdfExportResult(const std::vector<uint8_t>& pdf, const PdfResult result)

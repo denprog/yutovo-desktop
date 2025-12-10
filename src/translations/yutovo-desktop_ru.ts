@@ -368,6 +368,57 @@
     </message>
 </context>
 <context>
+    <name>ExportPdfDialog</name>
+    <message>
+        <source>Page settings</source>
+        <translation>Настройки страницы</translation>
+    </message>
+    <message>
+        <source>Format:</source>
+        <translation>Формат:</translation>
+    </message>
+    <message>
+        <source>Orientation:</source>
+        <translation>Ориентация:</translation>
+    </message>
+    <message>
+        <source>Margins (mm):</source>
+        <translation>Поля (мм):</translation>
+    </message>
+    <message>
+        <source>Width (mm):</source>
+        <translation>Ширина (мм):</translation>
+    </message>
+    <message>
+        <source>Height (mm):</source>
+        <translation>Высота (мм):</translation>
+    </message>
+    <message>
+        <source>Choose file...</source>
+        <translation>Выбор файла...</translation>
+    </message>
+    <message>
+        <source>Letter</source>
+        <translation>Letter</translation>
+    </message>
+    <message>
+        <source>Legal</source>
+        <translation>Legal</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Пользовательский</translation>
+    </message>
+    <message>
+        <source>Portrait</source>
+        <translation>Книжная</translation>
+    </message>
+    <message>
+        <source>Landscape</source>
+        <translation>Альбомная</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Yutovo</source>
@@ -432,6 +483,10 @@
     <message>
         <source>Export to HTML</source>
         <translation>Экспорт в HTML</translation>
+    </message>
+    <message>
+        <source>Export to PDF</source>
+        <translation>Экспорт в PDF</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -942,18 +997,6 @@
         <translation>Язык: </translation>
     </message>
     <message>
-        <source>English</source>
-        <translation>Английский</translation>
-    </message>
-    <message>
-        <source>Russian</source>
-        <translation>Русский</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <translation>Испанский</translation>
-    </message>
-    <message>
         <source>Open file</source>
         <translation>Открыть файл</translation>
     </message>
@@ -1003,7 +1046,7 @@
     </message>
     <message>
         <source>This document was created with </source>
-        <translation>Этот документ был создан с помощью</translation>
+        <translation>Этот документ был создан с помощью </translation>
     </message>
     <message>
         <source>rad</source>
@@ -1494,14 +1537,6 @@
     <message>
         <source>Update over Internet</source>
         <translation>Обновлениe через Интернет</translation>
-    </message>
-    <message>
-        <source>English</source>
-        <translation>Английский</translation>
-    </message>
-    <message>
-        <source>Русский</source>
-        <translation>Русский</translation>
     </message>
     <message>
         <source>Interface language</source>

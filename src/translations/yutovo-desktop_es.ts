@@ -140,6 +140,57 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     </message>
 </context>
 <context>
+    <name>ExportPdfDialog</name>
+    <message>
+        <source>Page settings</source>
+        <translation>Configuración de página</translation>
+    </message>
+    <message>
+        <source>Format:</source>
+        <translation>Formato:</translation>
+    </message>
+    <message>
+        <source>Orientation:</source>
+        <translation>Orientación:</translation>
+    </message>
+    <message>
+        <source>Margins (mm):</source>
+        <translation>Márgenes (mm):</translation>
+    </message>
+    <message>
+        <source>Width (mm):</source>
+        <translation>Ancho (mm):</translation>
+    </message>
+    <message>
+        <source>Height (mm):</source>
+        <translation>Altura (mm):</translation>
+    </message>
+    <message>
+        <source>Choose file...</source>
+        <translation>Elegir archivo...</translation>
+    </message>
+    <message>
+        <source>Letter</source>
+        <translation>Letter</translation>
+    </message>
+    <message>
+        <source>Legal</source>
+        <translation>Legal</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Personalizado</translation>
+    </message>
+    <message>
+        <source>Portrait</source>
+        <translation>Vertical</translation>
+    </message>
+    <message>
+        <source>Landscape</source>
+        <translation>Horizontal</translation>
+    </message>
+</context>
+<context>
     <name>DocumentWindow</name>
     <message>
         <source>Copy</source>
@@ -432,6 +483,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Export to HTML</source>
         <translation>Exportar a HTML</translation>
+    </message>
+    <message>
+        <source>Export to PDF</source>
+        <translation>Exportar a PDF</translation>
     </message>
     <message>
         <source>&amp;Settings</source>
@@ -936,18 +991,6 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Locale: </source>
         <translation>Idioma: </translation>
-    </message>
-    <message>
-        <source>English</source>
-        <translation>Inglés</translation>
-    </message>
-    <message>
-        <source>Russian</source>
-        <translation>Ruso</translation>
-    </message>
-    <message>
-        <source>Spanish</source>
-        <translation>Español</translation>
     </message>
     <message>
         <source>Open file</source>
@@ -1490,14 +1533,6 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Update over Internet</source>
         <translation>Actualizar a través de Internet</translation>
-    </message>
-    <message>
-        <source>English</source>
-        <translation>Inglés</translation>
-    </message>
-    <message>
-        <source>Русский</source>
-        <translation>Ruso</translation>
     </message>
     <message>
         <source>Interface language</source>

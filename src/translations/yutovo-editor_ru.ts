@@ -5,7 +5,7 @@
     <name>Solver</name>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Принять</translation>
     </message>
     <message>
         <source>Unknown command</source>
