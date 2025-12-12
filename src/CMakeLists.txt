@@ -116,7 +116,6 @@ endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${INSTALL_PATH}/include
-    ${THIRD_PARTY_PATH}
 )
 
 if(REMOTE_SOLVER)
