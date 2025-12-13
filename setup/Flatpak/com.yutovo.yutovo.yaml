@@ -83,7 +83,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.3.2
+        tag: v1.3.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -135,15 +135,48 @@ modules:
       - cp /app/lib/libmgl.so.8 /app/bin/
       - rm -rf /app/share/mathgl
 
+  - name: libharu
+    buildsystem: cmake
+    sources:
+      - type: git
+        url: https://github.com/libharu/libharu.git
+        tag: v2.4.4
+    config-opts:
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=OFF
+    post-install:
+      - |
+        if [ -f /app/lib64/libhpdf.a ]; then
+          mv /app/lib64/libhpdf.a /app/lib/
+        fi
+
+  - name: stb_image
+    buildsystem: simple
+    sources:
+      - type: file
+        url: https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
+        sha256: 594c2fe35d49488b4382dbfaec8f98366defca819d916ac95becf3e75f4200b3
+      - type: file
+        url: https://raw.githubusercontent.com/nothings/stb/master/stb_image_write.h
+        sha256: cbd5f0ad7a9cf4468affb36354a1d2338034f2c12473cf1a8e32053cb6914a05
+    build-commands:
+      - mkdir -p /app/include/stb_image
+      - install -Dm644 stb_image.h /app/include/stb_image/stb_image.h
+      - install -Dm644 stb_image_write.h /app/include/stb_image/stb_image_write.h
+    cleanup:
+      - "*.h"
+
   - name: yutovo-editor
     buildsystem: cmake
     build-options:
       env:
         YUTOVO_DEPLOY: /app
+        THIRD_PARTY_PATH: ""
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.3.3
+        tag: v1.4.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -154,7 +187,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        tag: v1.1.7
+        tag: v1.1.8
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -164,10 +197,11 @@ modules:
     build-options:
       env:
         YUTOVO_DEPLOY: /app
+        THIRD_PARTY_PATH: ""
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.3.3
+        tag: v1.4.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
