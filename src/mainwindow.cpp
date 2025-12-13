@@ -81,7 +81,7 @@ void MainWindow::Start(QString filename)
     ReadSettings();
 
     logger = Logger::GetInstance(config.logs_path + "/yutovo-desktop", "yutovo-desktop", config.log_console, config.log_file);
-    logger->SetLevel((int)config.log_level);
+    logger->SetLevel(config.log_level);
 
     InstallTranslation(config.language);
 
@@ -1334,7 +1334,7 @@ void MainWindow::Settings()
             }
         }
         
-        logger->SetLevel((int)config.log_level);
+        logger->SetLevel(config.log_level);
     }
 }
 
