@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.3.3'
+version: '1.4.1'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -148,10 +148,36 @@ parts:
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
 
+  libharu:
+    plugin: cmake
+    source: https://github.com/libharu/libharu.git
+    source-tag: v2.4.4
+    override-build: |
+      set -e
+      mkdir -p $CRAFT_PART_INSTALL/app/include
+      cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DBUILD_SHARED_LIBS=OFF
+      make -j$(nproc) && make install
+    override-stage: |
+      set -e
+      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
+
+  stb-image:
+    plugin: dump
+    source: .
+    override-pull: |
+      curl -L -o stb_image.h https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
+      curl -L -o stb_image_write.h https://raw.githubusercontent.com/nothings/stb/master/stb_image_write.h
+    organize:
+      stb_image.h: app/include/stb_image/stb_image.h
+      stb_image_write.h: app/include/stb_image/stb_image_write.h
+    stage:
+      - app/include/stb_image/stb_image.h
+      - app/include/stb_image/stb_image_write.h
+
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.3.2
+    source-tag: v1.3.3
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app
@@ -206,7 +232,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.3.3
+    source-tag: v1.4.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -220,12 +246,12 @@ parts:
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-    after: [yutovo-solver, mathgl]
+    after: [yutovo-solver, mathgl, libharu, stb-image]
 
   yutovo-server:
     plugin: dump
     source: https://github.com/denprog/yutovo-server.git
-    source-tag: v1.1.6
+    source-tag: v1.1.8
     source-depth: 1
     override-stage: |
       set -e
@@ -256,10 +282,11 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.3.3
+    source-tag: v1.4.1
     build-packages:
       - rsync
       - qttools5-dev-tools
+      - libfontconfig1-dev
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/app
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
