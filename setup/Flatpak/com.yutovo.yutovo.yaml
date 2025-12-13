@@ -144,6 +144,12 @@ modules:
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=OFF
+    post-install:
+      - |
+        if [ -f /app/lib64/libhpdf.a ]; then
+          mv /app/lib64/libhpdf.a /app/lib/
+        fi
 
   - name: stb_image
     buildsystem: simple
@@ -166,6 +172,7 @@ modules:
     build-options:
       env:
         YUTOVO_DEPLOY: /app
+        THIRD_PARTY_PATH: ""
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
@@ -190,10 +197,11 @@ modules:
     build-options:
       env:
         YUTOVO_DEPLOY: /app
+        THIRD_PARTY_PATH: ""
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.3.3
+        tag: v1.4.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
