@@ -23,6 +23,7 @@ InterfaceSettingsForm::InterfaceSettingsForm(QHash<QString, QVariant>& _settings
     form->trigonometry_toolbar->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
     form->hyperbolic_toolbar->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
     form->functions_toolbar->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
+    form->graphs_toolbar->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
 }
 
 InterfaceSettingsForm::~InterfaceSettingsForm()
@@ -33,6 +34,7 @@ InterfaceSettingsForm::~InterfaceSettingsForm()
     settings["MainWindow/trigonometry_toolbar"] = form->trigonometry_toolbar->isChecked();
     settings["MainWindow/hyperbolic_toolbar"] = form->hyperbolic_toolbar->isChecked();
     settings["MainWindow/functions_toolbar"] = form->functions_toolbar->isChecked();
+    settings["MainWindow/graphs_toolbar"] = form->graphs_toolbar->isChecked();
 
     delete form;
 }
