@@ -139,7 +139,6 @@ elseif(NOT WIN32)
         Qt5::PrintSupport
 		${INSTALL_PATH}/lib/libboost_iostreams.a
         z
-        libgmp.a
         fontconfig
     )
 else()
