@@ -137,7 +137,7 @@ elseif(NOT WIN32)
         Qt5::Widgets
         Qt5::Network
         Qt5::PrintSupport
-		libboost_iostreams.a
+		${INSTALL_PATH}/lib/libboost_iostreams.a
         z
         libgmp.a
         fontconfig
