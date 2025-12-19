@@ -3188,12 +3188,23 @@ QString MainWindow::GetLibraryDir()
     if (std::filesystem::exists("./library/"))
         return "./library/";
     QString p = QCoreApplication::applicationDirPath();
-    return p + "/library/";
+    if (std::filesystem::exists((p + "/library/").toUtf8().data()))
+        return p + "/library/";
+#ifndef _WIN32
+    if (std::filesystem::exists("/usr/share/yutovo/library/"))
+        return "/usr/share/yutovo/library/";
+#endif
+    return p;
 }
 
 QString MainWindow::GetTranslationDir(QString filename)
 {
     if (std::filesystem::exists(filename.toUtf8().data()))
         return "./";
+#ifndef _WIN32
+    QString p = "/usr/share/yutovo/translations/";
+    if (std::filesystem::exists((p + filename).toUtf8().data()))
+        return p;
+#endif
     return QCoreApplication::applicationDirPath();
 }
