@@ -366,6 +366,10 @@
         <source>Functions</source>
         <translation>Функции</translation>
     </message>
+    <message>
+        <source>Graphs</source>
+        <translation>Графики</translation>
+    </message>
 </context>
 <context>
     <name>ExportPdfDialog</name>

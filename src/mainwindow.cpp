@@ -81,7 +81,7 @@ void MainWindow::Start(QString filename)
     ReadSettings();
 
     logger = Logger::GetInstance(config.logs_path + "/yutovo-desktop", "yutovo-desktop", config.log_console, config.log_file);
-    logger->SetLevel((int)config.log_level);
+    logger->SetLevel(config.log_level);
 
     InstallTranslation(config.language);
 
@@ -236,6 +236,8 @@ void MainWindow::SetupGui()
     hyperbolic_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/functions_toolbar", false).toBool();
     functions_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/graphs_toolbar", false).toBool();
+    graph_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/greek_toolbar", false).toBool();
     greek_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/currency_toolbar", false).toBool();
@@ -1321,6 +1323,7 @@ void MainWindow::Settings()
         trigonometry_toolbar_action->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
         hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
+        graph_toolbar_action->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
         greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
 
         if (last_language != config.language)
@@ -1334,7 +1337,7 @@ void MainWindow::Settings()
             }
         }
         
-        logger->SetLevel((int)config.log_level);
+        logger->SetLevel(config.log_level);
     }
 }
 

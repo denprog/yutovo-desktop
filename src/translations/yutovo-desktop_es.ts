@@ -417,6 +417,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Functions</source>
         <translation>Funciones</translation>
     </message>
+    <message>
+        <source>Graphs</source>
+        <translation>Gráficos</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
