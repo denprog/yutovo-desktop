@@ -3075,23 +3075,23 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
     
     if (language == yutovo_calculator::Language::Russian)
     {
-        if (!desktop_translator.load("yutovo-desktop_ru", GetTranslationDir("yutovo-desktop_ru")))
+        if (!desktop_translator.load("yutovo-desktop_ru", GetTranslationDir("yutovo-desktop_ru.qm")))
             logger->Error("Error loading translation: yutovo-desktop_ru");
-        if (!editor_translator.load("yutovo-editor_ru", GetTranslationDir("yutovo-editor_ru")))
+        if (!editor_translator.load("yutovo-editor_ru", GetTranslationDir("yutovo-editor_ru.qm")))
             logger->Error("Error loading translation: yutovo-editor_ru");
     }
     else if (language == yutovo_calculator::Language::Spanish)
     {
-        if (!desktop_translator.load("yutovo-desktop_es", GetTranslationDir("yutovo-desktop_es")))
+        if (!desktop_translator.load("yutovo-desktop_es", GetTranslationDir("yutovo-desktop_es.qm")))
             logger->Error("Error loading translation: yutovo-desktop_es");
-        if (!editor_translator.load("yutovo-editor_es", GetTranslationDir("yutovo-editor_es")))
+        if (!editor_translator.load("yutovo-editor_es", GetTranslationDir("yutovo-editor_es.qm")))
             logger->Error("Error loading translation: yutovo-editor_es");
     }
     else if (language == yutovo_calculator::Language::English)
     {
-        if (!desktop_translator.load("yutovo-desktop_en", GetTranslationDir("yutovo-desktop_en")))
+        if (!desktop_translator.load("yutovo-desktop_en", GetTranslationDir("yutovo-desktop_en.qm")))
             logger->Error("Error loading translation: yutovo-desktop_en");
-        if (!editor_translator.load("yutovo-editor_en", GetTranslationDir("yutovo-editor_en")))
+        if (!editor_translator.load("yutovo-editor_en", GetTranslationDir("yutovo-editor_en.qm")))
             logger->Error("Error loading translation: yutovo-editor_en");
     }
 
