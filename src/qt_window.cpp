@@ -245,9 +245,9 @@ void QtWindow::PrepareSymbolsSizes(const std::vector<std::tuple<char32_t, std::s
     fill_cache_thread = std::thread(&QtWindow::FillCacheThread, this, symbols_sizes);
 }
 
-void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height)
+void QtWindow::ClearRect(const int x1, const int y1, const int width, const int height, const Color color)
 {
-    DrawFillRect(x1, y1, width, height, Color::White());
+    DrawFillRect(x1, y1, width, height, color);
 }
 
 void QtWindow::ClearSurface()
