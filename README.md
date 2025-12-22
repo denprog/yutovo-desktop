@@ -38,6 +38,24 @@ cmake -DCMAKE_BUILD_TYPE=Debug ../..
 make -sj && make install
 ```
 
+## Building for Arch
+
+Install the base dependiences.
+```
+sudo pacman -S --needed base-devel git
+```
+
+Clone the repo:
+```
+git clone https://aur.archlinux.org/yutovo.git
+cd yutovo
+```
+
+Make and install the package:
+```
+makepkg -si
+```
+
 ## Building for Windows
 
 If you haven't yet, build [yutovo-logger](https://github.com/denprog/yutovo-logger), [yutovo-calculator](https://github.com/denprog/yutovo-calculator) and [yutovo-solver](https://github.com/denprog/yutovo-solver), [yutovo-editor](https://github.com/denprog/yutovo-editor).
