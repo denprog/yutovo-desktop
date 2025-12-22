@@ -323,6 +323,7 @@ parts:
       cp $CRAFT_STAGE/app/yutovo-32.png $CRAFT_PRIME/usr/share/icons/hicolor/32x32/apps/yutovo.png
       cp $CRAFT_STAGE/app/yutovo-64.png $CRAFT_PRIME/usr/share/icons/hicolor/64x64/apps/yutovo.png
       cp $CRAFT_STAGE/app/yutovo.xml $CRAFT_PRIME/usr/share/mime/packages/
+      chmod -R -w $CRAFT_PRIME/app/bin/library
       chmod +x $CRAFT_PRIME/app/bin/run.sh
       update-mime-database $CRAFT_PRIME/usr/share/mime
       cd $CRAFT_PRIME/usr/lib/x86_64-linux-gnu || exit 0

@@ -219,4 +219,5 @@ modules:
       - update-desktop-database /app/share/applications
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/Flatpak/run.sh /app/bin/run.sh
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/src/*.qm /app/bin/
+      - chmod -R -w /app/bin/library
       - chmod +x /app/bin/run.sh

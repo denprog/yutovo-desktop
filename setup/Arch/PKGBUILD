@@ -163,6 +163,7 @@ package() {
     chmod g-w $pkgdir/usr/bin/yutovo-desktop
     chmod o-w $pkgdir/usr/bin/yutovo-desktop
     chmod +x $pkgdir/usr/bin/yutovo
+    chmod -R -w $pkgdir/usr/share/yutovo/library
 
     cp $srcdir/yutovo-desktop/setup/Arch/yutovo.desktop $pkgdir/usr/share/applications/
     cp $srcdir/yutovo-desktop/setup/yut.xml $pkgdir/usr/share/mime/packages/

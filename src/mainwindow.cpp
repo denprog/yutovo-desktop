@@ -2429,6 +2429,12 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
     if (result != IOResult::Success)
     {
+        if (result == IOResult::PermissionDenied) //for read-only files call the SaveAs dialog
+        {
+            SaveFileAsName();
+            return;
+        }
+
         exit_after_save = false;
         close_tab_after_save = -1;
         recent_files.removeAll(dialog_file_name);
