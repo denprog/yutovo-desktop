@@ -3,6 +3,43 @@ Yutovo is a powerful calculator with graphical representation of mathematics ope
 
 Yutovo desktop is an application for Linux and Windows that implements computing.
 
+The base features are:
+
+* Graphical representation of mathematical formulas
+* Math WYSIWYG editor
+* Numbers and calculation results can have (almost) any number of digits and accuracy
+* Following types of numbers are supported: real, integer, fractional, complex
+* Measure of an angle can be changed
+* Commonly used mathematical functions and constants are supported
+* User variables and functions are supported
+* Units, unit systems and translating values between them are supported
+* Automatic recalculation of expressions
+* Text editor with basic features
+* Include documents
+* Graphs of functions
+* Syntax highlighting
+* Library of examples and visual documentation
+* Online version with the same features
+
+## Screenshots
+<img src="https://yutovo.com/screenshots/2025-05-07_20-27.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-05-07_20-31.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-07-12_07-17.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-05-07_20-29_2.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-05-07_20-31_1.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-07-12_07-17_1.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-07-12_07-19.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-12-23_17-20_1.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2025-12-23_17-20.png" width="500">
+
 ## Installing from Flathub
 [![Get it on Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/en/apps/com.yutovo.yutovo)
 
