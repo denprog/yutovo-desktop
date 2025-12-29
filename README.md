@@ -97,7 +97,7 @@ makepkg -si
 
 If you haven't yet, build [yutovo-logger](https://github.com/denprog/yutovo-logger), [yutovo-calculator](https://github.com/denprog/yutovo-calculator) and [yutovo-solver](https://github.com/denprog/yutovo-solver), [yutovo-editor](https://github.com/denprog/yutovo-editor).
 
-Install the requirements:
+Set the VCPKG_ROOT variable to your vcpkg path. Install the requirements:
 ```
 vcpkg install qt5-base qt5-widgets qt5-gui
 ```
@@ -113,13 +113,12 @@ Create the build directory:
 
 ```
 cd yutovo-desktop
-mkdir -p build/debug
+mkdir "build/debug"
 cd build/debug
 ```
 
 Build the project:
 
 ```
-cmake -DCMAKE_BUILD_TYPE=Debug ../..
-make -sj && make install
+cmake --build . --config Debug ../..
 ```

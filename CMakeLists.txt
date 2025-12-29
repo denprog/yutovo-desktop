@@ -17,7 +17,7 @@ endif()
 set(CMAKE_DEBUG_POSTFIX d)
 
 if(WIN32)
-    set(INSTALL_PATH "c:/Lang/vcpkg/installed/x64-windows")
+    set(INSTALL_PATH "$ENV{VCPKG_ROOT}/installed/x64-windows")
 else()
     set(INSTALL_PATH "$ENV{YUTOVO_DEPLOY}")
 endif()

@@ -12,6 +12,7 @@ set(CMAKE_AUTORCC ON)
 if(WIN32)
     set(QT_SELECT qt5.15)
     find_package(PkgConfig REQUIRED)
+	list(APPEND CMAKE_PROGRAM_PATH "${INSTALL_PATH}/tools/qt5/bin")
 endif()
 
 set(CMAKE_FIND_ROOT_PATH ${INSTALL_PATH}/lib/cmake/)
