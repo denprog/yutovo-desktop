@@ -96,7 +96,7 @@ modules:
         url: https://github.com/Tencent/rapidjson.git
         tag: v1.1.0
       - type: patch
-        path: ../document.h.diff
+        path: ./document.h.diff
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
