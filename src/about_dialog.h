@@ -27,7 +27,7 @@ private slots:
 
 private:
     Ui::AboutDialog* form = nullptr;
-    const char* version = "1.3.3";
+    const char* version = "1.4.2";
 };
 
 #endif
