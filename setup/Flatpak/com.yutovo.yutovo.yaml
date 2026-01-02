@@ -39,7 +39,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-logger.git
-        tag: v1.0.4
+        tag: v1.0.5
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -83,7 +83,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.3.3
+        tag: v1.3.4
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -96,7 +96,7 @@ modules:
         url: https://github.com/Tencent/rapidjson.git
         tag: v1.1.0
       - type: patch
-        path: ../document.h.diff
+        path: ./document.h.diff
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -113,7 +113,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.1.5
+        tag: v1.1.6
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -176,7 +176,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.4.1
+        tag: v1.4.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -187,7 +187,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        tag: v1.1.8
+        tag: v1.1.9
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -201,7 +201,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.4.1
+        tag: v1.4.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
