@@ -26,7 +26,7 @@ SettingsDialog::SettingsDialog(yutovo::Config& _config, QHash<QString, QVariant>
     form->setupUi(this);
 
     form->settings_tree->setColumnCount(1);
-    connect(form->settings_tree, &QTreeWidget::itemActivated, this, &SettingsDialog::OnSettingsTreeItemActivated);
+    connect(form->settings_tree, &QTreeWidget::itemClicked, this, &SettingsDialog::OnSettingsTreeItemActivated);
 
     QTreeWidgetItem *basic_item = new QTreeWidgetItem(form->settings_tree);
     basic_item->setText(0, tr("Basic"));
