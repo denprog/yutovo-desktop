@@ -26,6 +26,8 @@ AboutDialog::AboutDialog() :
     form->web_link->setOpenExternalLinks(true);
     form->support_links->setText(tr("support_links_text"));
     form->support_links->setOpenExternalLinks(true);
+    form->bug_tracker_link->setText(tr("bug_tracker_link"));
+    form->bug_tracker_link->setOpenExternalLinks(true);
     form->source_code_link->setText(tr("source_code_link_text"));
     form->source_code_link->setOpenExternalLinks(true);
     form->version->setText(tr("version") + version + ".");

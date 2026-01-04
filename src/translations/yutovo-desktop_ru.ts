@@ -25,15 +25,19 @@
     </message>
     <message>
         <source>web_link_text</source>
-        <translation>Онлайн версия: &lt;a href="https://yutovo.ru/"&gt;yutovo.ru&lt;/a&gt;</translation>
+        <translation>Онлайн версия: &lt;a href="https://yutovo.ru/?ref=yutovo-desktop"&gt;yutovo.ru&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>support_links_text</source>
-        <translation>Поддержка: Телеграм: &lt;a href="https://t.me/yutovo"&gt;@yutovo&lt;/a&gt;, e-mail: &lt;a href="mailto:support@yutovo.ru"&gt;support@yutovo.ru&lt;/a&gt;</translation>
+        <translation>Поддержка: Телеграм: &lt;a href="https://t.me/yutovo"&gt;@yutovo&lt;/a&gt;, e-mail: &lt;a href="mailto:support@yutovo.ru"&gt;support@yutovo.ru&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <source>bug_tracker_link</source>
+        <translation>&lt;a href="https://github.com/denprog/yutovo-desktop/issues"&gt;Система отслеживания ошибок&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>source_code_link_text</source>
-        <translation>&lt;a href="https://github.com/denprog/yutovo-desktop"&gt;Исходный код&lt;/a&gt;</translation>
+        <translation>&lt;a href="https://github.com/denprog/yutovo-desktop"&gt;Исходный код&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>version</source>
