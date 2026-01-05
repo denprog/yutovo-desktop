@@ -330,40 +330,40 @@ void MainWindow::CreateActions()
     file_menu->addAction(save_action);
     standard_toolbar->addAction(save_action);
 
-    action = new QAction(tr("Save &all"), this);
-    action->setStatusTip(tr("Save all the documents to disk"));
-    connect(action, &QAction::triggered, this, &MainWindow::SaveAll);
-    file_menu->addAction(action);
+    save_all_action = new QAction(tr("Save &all"), this);
+    save_all_action->setStatusTip(tr("Save all the documents to disk"));
+    connect(save_all_action, &QAction::triggered, this, &MainWindow::SaveAll);
+    file_menu->addAction(save_all_action);
 
-    action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
-    action->setStatusTip(tr("Save the document under a new name"));
+    save_as_action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
+    save_as_action->setStatusTip(tr("Save the document under a new name"));
 
-    action = new QAction(tr("&Close"), this);
-    action->setStatusTip(tr("Close the document"));
-    connect(action, &QAction::triggered, this, &MainWindow::Close);
-    file_menu->addAction(action);
+    close_action = new QAction(tr("&Close"), this);
+    close_action->setStatusTip(tr("Close the document"));
+    connect(close_action, &QAction::triggered, this, &MainWindow::Close);
+    file_menu->addAction(close_action);
 
-    action = new QAction(tr("Close all"), this);
-    action->setStatusTip(tr("Close all documents"));
-    connect(action, &QAction::triggered, this, &MainWindow::CloseAll);
-    file_menu->addAction(action);
+    close_all_action = new QAction(tr("Close all"), this);
+    close_all_action->setStatusTip(tr("Close all documents"));
+    connect(close_all_action, &QAction::triggered, this, &MainWindow::CloseAll);
+    file_menu->addAction(close_all_action);
 
-    action = new QAction(tr("Close others"), this);
-    action->setStatusTip(tr("Close all documents except current"));
-    connect(action, &QAction::triggered, this, &MainWindow::CloseOthers);
-    file_menu->addAction(action);
+    close_others_action = new QAction(tr("Close others"), this);
+    close_others_action->setStatusTip(tr("Close all documents except current"));
+    connect(close_others_action, &QAction::triggered, this, &MainWindow::CloseOthers);
+    file_menu->addAction(close_others_action);
 
     file_menu->addSeparator();
 
-    action = new QAction(tr("Export to HTML"), this);
-    action->setStatusTip(tr("Export current document to HTML"));
-    connect(action, &QAction::triggered, this, &MainWindow::ExportToHtml);
-    file_menu->addAction(action);
+    export_html_action = new QAction(tr("Export to HTML"), this);
+    export_html_action->setStatusTip(tr("Export current document to HTML"));
+    connect(export_html_action, &QAction::triggered, this, &MainWindow::ExportToHtml);
+    file_menu->addAction(export_html_action);
 
-    action = new QAction(tr("Export to PDF"), this);
-    action->setStatusTip(tr("Export current document to PDF"));
-    connect(action, &QAction::triggered, this, &MainWindow::ExportToPdf);
-    file_menu->addAction(action);
+    export_pdf_action = new QAction(tr("Export to PDF"), this);
+    export_pdf_action->setStatusTip(tr("Export current document to PDF"));
+    connect(export_pdf_action, &QAction::triggered, this, &MainWindow::ExportToPdf);
+    file_menu->addAction(export_pdf_action);
 
     file_menu->addSeparator();
 
@@ -1147,8 +1147,7 @@ void MainWindow::SaveFileAs(int index)
         w = (DocumentWindow*)ui->editor_tabs->widget(index);
     else
         w = (DocumentWindow*)ui->editor_tabs->currentWidget();
-    auto document = w->document;
-    if (!document)
+    if (!w || !w->document)
         return;
     QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
     save_dialog.setDefaultSuffix("yut");
@@ -1159,7 +1158,7 @@ void MainWindow::SaveFileAs(int index)
     if (file_names.empty())
         return;
     dialog_file_name = file_names[0];
-    document->Save(file_names[0].toUtf8().data());
+    w->document->Save(file_names[0].toUtf8().data());
 
     UpdateCaption();
 }
@@ -3146,6 +3145,14 @@ void MainWindow::UpdateLocaleMessage()
 void MainWindow::EnableButtons(bool enable)
 {
     save_action->setEnabled(enable);
+    save_all_action->setEnabled(enable);
+    save_as_action->setEnabled(enable);
+    close_action->setEnabled(enable);
+    close_all_action->setEnabled(enable);
+    close_others_action->setEnabled(enable);
+    export_html_action->setEnabled(enable);
+    export_pdf_action->setEnabled(enable);
+
     undo_action->setEnabled(enable);
     redo_action->setEnabled(enable);
     copy_action->setEnabled(enable);

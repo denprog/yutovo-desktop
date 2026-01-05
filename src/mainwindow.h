@@ -289,6 +289,14 @@ private:
     StringFormat string_format;
 
     QAction* save_action = nullptr;
+    QAction* save_all_action = nullptr;
+    QAction* save_as_action = nullptr;
+    QAction* close_action = nullptr;
+    QAction* close_all_action = nullptr;
+    QAction* close_others_action = nullptr;
+
+    QAction* export_html_action = nullptr;
+    QAction* export_pdf_action = nullptr;
 
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;
