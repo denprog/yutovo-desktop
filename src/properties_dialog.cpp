@@ -28,6 +28,12 @@ PropertiesDialog::PropertiesDialog(yutovo::Config& _config) :
     connect(form->move_file_down, &QAbstractButton::clicked, this, &PropertiesDialog::OnMoveFileDown);
 
     FillIncludes();
+
+    connect(form->use_spaces, &QRadioButton::toggled, form->indent_size, &QSpinBox::setEnabled);
+    form->use_tabs->setChecked(config.use_tabs);
+    form->use_spaces->setChecked(!config.use_tabs);
+    form->indent_size->setValue(config.tab_spaces);
+    form->indent_size->setEnabled(form->use_spaces->isChecked());
 }
 
 void PropertiesDialog::accept()
@@ -42,6 +48,9 @@ void PropertiesDialog::accept()
             continue;
         config.include_documents.documents.emplace_back(yutovo::Config::IncludeDocument{item->text().toUtf8().data()});
     }
+
+    config.use_tabs = form->use_tabs->isChecked();
+    config.tab_spaces = form->indent_size->value();
 
     QDialog::accept();
 }

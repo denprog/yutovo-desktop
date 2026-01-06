@@ -1303,6 +1303,26 @@
         <source>Include documents</source>
         <translation>Подключенные документы</translation>
     </message>
+    <message>
+        <source>Document</source>
+        <translation>Документ</translation>
+    </message>
+    <message>
+        <source>Indentation</source>
+        <translation>Табуляция</translation>
+    </message>
+    <message>
+        <source>Use tabs</source>
+        <translation>Использовать табуляцию</translation>
+    </message>
+    <message>
+        <source>Use spaces</source>
+        <translation>Использовать пробелы</translation>
+    </message>
+    <message>
+        <source>spaces per indent level</source>
+        <translation>пробелов на отступ</translation>
+    </message>
 </context>
 <context>
     <name>ResultSettingsForm</name>

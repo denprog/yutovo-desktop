@@ -1299,6 +1299,26 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Include documents</source>
         <translation>Documentos incluidos</translation>
     </message>
+    <message>
+        <source>Document</source>
+        <translation>Documento</translation>
+    </message>
+    <message>
+        <source>Indentation</source>
+        <translation>Indentación</translation>
+    </message>
+    <message>
+        <source>Use tabs</source>
+        <translation>Usar tabulaciones</translation>
+    </message>
+    <message>
+        <source>Use spaces</source>
+        <translation>Usar espacios</translation>
+    </message>
+    <message>
+        <source>spaces per indent level</source>
+        <translation>espacios por nivel de indentación</translation>
+    </message>    
 </context>
 <context>
     <name>ResultSettingsForm</name>
