@@ -2725,6 +2725,10 @@ void MainWindow::ReadSettings()
     config.tab_spaces = settings.value("tab_spaces", 4).toInt();
     settings.endGroup();
 
+    settings.beginGroup("Documents");
+    config.undo_size = settings.value("undo_size", 100).toInt();
+    settings.endGroup();
+
     settings.beginGroup("Service");
     config.service_ip = settings.value("ip", "localhost").toString().toUtf8().data();
     config.service_port = settings.value("port", 8010).toInt();

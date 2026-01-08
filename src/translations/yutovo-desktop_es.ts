@@ -348,6 +348,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Clic en enlace</translation>
     </message>
     <message>
+        <source>Maximum Undo/Redo size</source>
+        <translation>Tamaño máximo de Deshacer/Rehacer</translation>
+    </message>
+    <message>
         <source>Click</source>
         <translation>Clic</translation>
     </message>

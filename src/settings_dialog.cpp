@@ -77,7 +77,7 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     }
     else if (item->text(0) == tr("Documents"))
     {
-        form->settings_page_layout->addWidget(new DocumentsSettingsForm(settings));
+        form->settings_page_layout->addWidget(new DocumentsSettingsForm(settings, config));
     }
     else if (item->text(0) == tr("Interface"))
     {

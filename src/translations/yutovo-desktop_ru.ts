@@ -297,6 +297,10 @@
         <translation>Клик по ссылке</translation>
     </message>
     <message>
+        <source>Maximum Undo/Redo size</source>
+        <translation>Максимальный размер Отмены/Повтора</translation>
+    </message>
+    <message>
         <source>Click</source>
         <translation>Клик</translation>
     </message>
