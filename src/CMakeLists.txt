@@ -102,6 +102,15 @@ add_executable(${PROJECT_NAME} WIN32
     export_pdf_dialog.cpp
 )
 
+if (NOT WIN32)
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+		add_compile_options(-Og -g -fsanitize=undefined -fsanitize=address -fno-omit-frame-pointer)
+        add_definitions(-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_EXTENSIVE)
+        add_definitions(-D_LIBCPP_ENABLE_ASSERTIONS)
+		target_link_options(${PROJECT_NAME} PRIVATE -fsanitize=undefined -fsanitize=address)
+    endif()
+endif()
+
 if(WIN32)
     set(APP_ICON_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/images/mainicon.ico")
     set(APP_RC_FILE "${CMAKE_CURRENT_BINARY_DIR}/icon.rc")
