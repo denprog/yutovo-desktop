@@ -71,7 +71,7 @@ build() {
     cd boost_1_83_0
     unset CFLAGS CXXFLAGS LDFLAGS
     ./bootstrap.sh --prefix=$YUTOVO_DEPLOY
-    ./b2 -sj install link=static variant=release cxxflags='-fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2' --layout=system --with-iostreams
+    ./b2 -sj install link=static variant=release cxxflags='-fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2' --layout=system
     cd ..
 
     (

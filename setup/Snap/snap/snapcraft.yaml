@@ -82,7 +82,7 @@ parts:
       - yacc
     override-build: |
       cd $SNAPCRAFT_PART_SRC/boost_1_83_0
-      ./bootstrap.sh --prefix=$SNAPCRAFT_PART_INSTALL/app --with-libraries=iostreams
+      ./bootstrap.sh --prefix=$SNAPCRAFT_PART_INSTALL/app
       ./b2 -j$(nproc) install link=static variant=release cxxflags='-fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2' --layout=system
     override-stage: |
       set -e

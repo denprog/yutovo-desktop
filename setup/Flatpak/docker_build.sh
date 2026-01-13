@@ -47,7 +47,7 @@ cd ../../third-party/
 wget https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
 unzip boost_1_83_0.zip
 cd boost_1_83_0
-./bootstrap.sh --prefix=$PWD/../../deploy --libdir=$PWD/../../deploy/lib --includedir=$PWD/../../deploy/include --with-libraries=iostreams
+./bootstrap.sh --prefix=$PWD/../../deploy --libdir=$PWD/../../deploy/lib --includedir=$PWD/../../deploy/include
 ./b2 --prefix=$PWD/../../deploy link=static install
 
 cd ..

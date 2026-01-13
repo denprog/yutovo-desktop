@@ -40,7 +40,6 @@ find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS PrintSupport REQUIRED)
 
 if(WIN32)
-    find_package(Boost REQUIRED COMPONENTS iostreams)
     find_package(RapidJSON CONFIG REQUIRED)
     pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
