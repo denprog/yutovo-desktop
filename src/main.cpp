@@ -18,12 +18,12 @@ namespace boost
 {
     BOOST_NORETURN void throw_exception(std::exception const& e)
     {
-        throw e;
+        throw;
     }
 
     BOOST_NORETURN void throw_exception(std::exception const& e, boost::source_location const&)
     {
-        throw e;
+        throw;
     }
 }
 #endif
