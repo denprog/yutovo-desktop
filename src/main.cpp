@@ -11,22 +11,6 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QDebug>
-#ifdef _WIN32
-#include <boost/throw_exception.hpp>
-
-namespace boost
-{
-    BOOST_NORETURN void throw_exception(std::exception const& e)
-    {
-        throw;
-    }
-
-    BOOST_NORETURN void throw_exception(std::exception const& e, boost::source_location const&)
-    {
-        throw;
-    }
-}
-#endif
 
 bool SendToRunningInstance(const QString& socket_name, const QString& path)
 {
