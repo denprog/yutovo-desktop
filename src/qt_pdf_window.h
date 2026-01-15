@@ -24,6 +24,12 @@ signals:
 
 private:
     QString ResolveFontPath(const StringFormatPtr format);
+#ifdef _WIN32
+    std::wstring FindFontFile(const std::wstring& family);
+#endif
+
+    const QString base_dir = "./fonts/";
+    static std::map<std::string, QString> font_files;
 };
 
 #endif

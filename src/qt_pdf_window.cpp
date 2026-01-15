@@ -16,6 +16,16 @@ extern "C" BOOL WINAPI GetFontResourceInfoW(LPCWSTR lpszFilename, LPDWORD cbBuff
 
 //QtPdfWindow
 
+std::map<std::string, QString> QtPdfWindow::font_files =
+{
+    {"Arial", "Arial.ttf"},
+    {"Courier New", "Courier_New.ttf"},
+    {"Courier", "Courier_New.ttf"},
+    {"Times New Roman", "Times_New_Roman.ttf"},
+    {"FreeMono", "FreeMono.ttf"},
+    {"DejaVu Serif", "DejaVuSerif.ttf"}
+};
+
 QtPdfWindow::QtPdfWindow(const Size& _page_size) :
     PdfWindow(_page_size, true)
 {
@@ -43,12 +53,19 @@ bool QtPdfWindow::GetFontPath(const StringFormatPtr format, std::string& path)
 QString QtPdfWindow::ResolveFontPath(const StringFormatPtr format)
 {
 #ifdef _WIN32
-    WCHAR filePath[MAX_PATH];
+    auto it = font_files.find(format->family);
+    if (it != font_files.end())
+        return base_dir + it->second;
+
+    std::wstring family;
+    WCHAR file_path[MAX_PATH];
     DWORD size = MAX_PATH * sizeof(WCHAR);
-    std::wstring familyW = std::wstring(format->family.begin(), format->family.end());
-    BOOL ok = GetFontResourceInfoW(familyW.c_str(), &size, filePath, GFRI_FONTFILENAME);
-    if (ok && size > sizeof(WCHAR))
-        return QString::fromWCharArray(filePath);
+    family = std::wstring(format->family.begin(), format->family.end());
+    std::wstring path = FindFontFile(family);
+    BOOL ok = GetFontResourceInfoW(path.c_str(), &size, file_path, GFRI_FONTFILENAME);
+    if (ok)
+        return QString::fromWCharArray(file_path);
+    DWORD err = GetLastError();
     return {};
 #else
     FcInit();
@@ -74,3 +91,40 @@ QString QtPdfWindow::ResolveFontPath(const StringFormatPtr format)
     return path;
 #endif
 }
+
+#ifdef _WIN32
+std::wstring QtPdfWindow::FindFontFile(const std::wstring& family)
+{
+    HKEY hKey;
+    if (RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Fonts", 0, KEY_READ, &hKey) != ERROR_SUCCESS)
+        return {};
+
+    DWORD index = 0;
+    WCHAR name[256];
+    BYTE data[512];
+    DWORD nameSize, dataSize, type;
+    std::wstring result;
+
+    while (true)
+    {
+        nameSize = sizeof(name) / sizeof(WCHAR);
+        dataSize = sizeof(data);
+
+        if (RegEnumValueW(hKey, index, name, &nameSize, nullptr, &type, data, &dataSize) != ERROR_SUCCESS)
+            break;
+
+        std::wstring keyName(name);
+        if (keyName.rfind(family, 0) == 0)
+        {
+            std::wstring fileName(reinterpret_cast<WCHAR*>(data));
+            result = L"C:\\Windows\\Fonts\\" + fileName;
+            break;
+        }
+
+        index++;
+    }
+
+    RegCloseKey(hKey);
+    return result;
+}
+#endif
