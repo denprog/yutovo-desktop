@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.4.2'
+version: '1.4.3'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -83,11 +83,15 @@ parts:
     override-build: |
       cd $SNAPCRAFT_PART_SRC/boost_1_83_0
       ./bootstrap.sh --prefix=$SNAPCRAFT_PART_INSTALL/app
-      ./b2 -j$(nproc) install link=static variant=release cxxflags='-fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2' --layout=system
+      ./b2 headers
     override-stage: |
       set -e
-      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-
+      mkdir -p $CRAFT_STAGE/app/include
+      cp -r $CRAFT_PART_SRC/boost_1_83_0/boost $CRAFT_STAGE/app/include/
+    prime:
+      - app/include/*
+      - -app/lib      
+      
   gmp:
     plugin: cmake
     source: https://github.com/sethtroisi/libgmp.git
