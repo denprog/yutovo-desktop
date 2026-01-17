@@ -39,7 +39,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-logger.git
-        tag: v1.0.5
+        tag: v1.0.6
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -48,11 +48,14 @@ modules:
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app
-      - ./b2 -j $FLATPAK_BUILDER_N_JOBS install link=static variant=release cxxflags='-fPIE -fstack-protector-strong -D_FORTIFY_SOURCE=2' --layout=system
+      - ./b2 headers
     sources:
       - type: archive
         url: https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
         sha256: c86bd9d9eef795b4b0d3802279419fde5221922805b073b9bd822edecb1ca28e
+    post-install:
+      - install -d /app/include
+      - cp -r boost /app/include/
 
   - name: gmp
     buildsystem: simple
@@ -83,7 +86,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.3.4
+        tag: v1.3.5
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -113,7 +116,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.1.6
+        tag: v1.1.7
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -176,7 +179,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.4.2
+        tag: v1.4.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -187,7 +190,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-server.git
-        tag: v1.1.9
+        tag: v1.1.10
     build-commands:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
@@ -201,7 +204,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.4.2
+        tag: v1.4.3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release

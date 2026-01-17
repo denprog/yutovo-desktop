@@ -132,7 +132,6 @@ if(REMOTE_SOLVER)
         yutovo-editor
         yutovo-logger
         Qt5::Widgets
-		libboost_iostreams.a
         z
         mgl
     )
@@ -146,7 +145,6 @@ elseif(NOT WIN32)
         Qt5::Widgets
         Qt5::Network
         Qt5::PrintSupport
-		${INSTALL_PATH}/lib/libboost_iostreams.a
         z
         fontconfig
     )
