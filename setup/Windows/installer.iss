@@ -1,14 +1,14 @@
 [Setup]
 AppId={{bd041914-8896-43bc-b496-7aeb90887fff}}
 AppName=Yutovo
-AppVerName=Yutovo 1.3.3
+AppVerName=Yutovo 1.4.3
 AppPublisher=yutovo.com
-AppPublisherURL=http://www.yutovo.com/
-AppSupportURL=http://www.yutovo.com/
-AppUpdatesURL=http://www.yutovo.com/
+AppPublisherURL=https://yutovo.com/
+AppSupportURL=https://yutovo.com/
+AppUpdatesURL=https://yutovo.com/
 DefaultDirName={commonpf}\Yutovo
 DefaultGroupName=Yutovo
-OutputBaseFilename=yutovo-desktop_1.3.3-1_win10_amd64
+OutputBaseFilename=yutovo-desktop_1.4.3-1_win10_amd64
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
@@ -27,6 +27,7 @@ Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\*.dll"
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\*.qm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo-server\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs; Attribs: readonly
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
+Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\platforms\*"; DestDir: "{app}\platforms"; Flags: ignoreversion recursesubdirs
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\setup\Windows\fonts\*"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs
 Source: "VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 
