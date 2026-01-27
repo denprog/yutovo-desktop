@@ -352,6 +352,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Tamaño máximo de Deshacer/Rehacer</translation>
     </message>
     <message>
+        <source>Show prompt window</source>
+        <translation>Mostrar ventana de sugerencias</translation>
+    </message>
+    <message>
         <source>Click</source>
         <translation>Clic</translation>
     </message>

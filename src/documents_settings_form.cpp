@@ -21,6 +21,7 @@ DocumentsSettingsForm::DocumentsSettingsForm(QHash<QString, QVariant>& _settings
     form->load_last_documents->setChecked(settings.value("Documents/load_last_documents", false).toBool());
     form->click_link->setCurrentIndex(settings.value("Documents/click_link", 0).toInt());
     form->undo_size->setValue(settings.value("Documents/undo_size", 100).toInt());
+    form->auto_prompt->setChecked(settings.value("Documents/auto_prompt", true).toBool());
 }
 
 DocumentsSettingsForm::~DocumentsSettingsForm()
@@ -28,7 +29,8 @@ DocumentsSettingsForm::~DocumentsSettingsForm()
     settings["Documents/load_last_documents"] = form->load_last_documents->isChecked();
     settings["Documents/click_link"] = form->click_link->currentIndex();
     settings["Documents/undo_size"] = form->undo_size->value();
+    settings["Documents/auto_prompt"] = form->auto_prompt->isChecked();
     config.undo_size = form->undo_size->value();
-
+    config.auto_prompt = form->auto_prompt->isChecked();
     delete form;
 }

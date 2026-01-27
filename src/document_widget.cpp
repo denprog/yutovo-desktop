@@ -19,6 +19,7 @@
 DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettings& _settings) :
     QWidget(parent),
     window(size().width(), size().height(), _config),
+    prompt_form(this),
     settings(_settings),
     logger(Logger::GetInstance(_config.logs_path + "/yutovo-desktop", "yutovo-desktop", _config.log_console, _config.log_file))
 {
@@ -31,6 +32,10 @@ DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettin
 #ifdef REMOTE_SOLVER
     connect(&window, &QtWindow::ServiceStatus, this, &DocumentWidget::OnServiceStatus);
 #endif
+
+    connect(&prompt_form, &PromptForm::PromptActivated, this, &DocumentWidget::OnPromptActivated);
+
+    prompt_form.hide();
 
     setFocusPolicy(Qt::StrongFocus);
     setMouseTracking(true);
@@ -58,6 +63,23 @@ void DocumentWidget::OnPrevEditorTab()
     emit PrevEditorTab();
 }
 
+void DocumentWidget::OnPrompt()
+{
+    prompt_form.hide();
+
+    std::vector<std::pair<IdentifierType, std::string>> prompt;
+    document->GetPrompt(prompt);
+    if (prompt.empty())
+        return;
+    
+    Rect r;
+    if (!document->GetCaretRect(r))
+        return;
+    prompt_form.move(r.GetRight(), r.GetBottom());
+    prompt_form.Fill(std::move(prompt));
+    prompt_form.show();
+}
+
 void DocumentWidget::OnDocumentUpdated(const Rect rect)
 {
     update(rect.left, rect.top, rect.width, rect.height);
@@ -66,6 +88,11 @@ void DocumentWidget::OnDocumentUpdated(const Rect rect)
 void DocumentWidget::OnCaretMoved(const EditorState editor_state)
 {
     current_editor_state = editor_state;
+    if (show_prompt)
+    {
+        OnPrompt();
+        show_prompt = false;
+    }
 }
 
 void DocumentWidget::OnFormatingStarted()
@@ -121,6 +148,34 @@ void DocumentWidget::OnServiceStatus(IOResult result)
 }
 #endif
 
+void DocumentWidget::OnPromptActivated(const IdentifierType id_type, const std::string& id_str)
+{
+    using InsertFunc = uint (Document::*)(bool, bool);
+    static const std::map<std::string, InsertFunc> insert_map = 
+    {
+        { "plus", &Document::InsertPlus },
+        { "minus", &Document::InsertMinus },
+        { "mul", &Document::InsertMultiply },
+        { "div", &Document::InsertDivision },
+        { "power", &Document::InsertPower },
+        { "root", &Document::InsertNthRoot },
+        { "sqrt", &Document::InsertSquareRoot },
+        { "sub", &Document::InsertSubscript },
+        { "sum", &Document::InsertSum },
+        { "prod", &Document::InsertProduct }
+    };
+
+    show_prompt = false;
+    auto it = insert_map.find(id_str);
+    if (it == insert_map.end())
+        document->ReplaceString(ToUtfString(id_str), true);
+    else
+    {
+        InsertFunc func = it->second;
+        ((document.get())->*func)(true, true);
+    }
+}
+
 void DocumentWidget::paintEvent(QPaintEvent *event)
 {
     const QRect& rect = event->rect();
@@ -150,10 +205,52 @@ void DocumentWidget::resizeEvent(QResizeEvent *event)
 
 void DocumentWidget::keyPressEvent(QKeyEvent *event)
 {
+    if (prompt_form.isVisible())
+    {
+        if (event->type() == QEvent::KeyPress)
+        {
+            const int count = prompt_form.count();
+            if (count == 0)
+                return;
+            int row = prompt_form.currentRow();
+            int page = prompt_form.viewport()->height() / prompt_form.sizeHintForRow(0);
+            if (page <= 0)
+                page = 1;
+
+            auto* key = static_cast<QKeyEvent*>(event);
+            switch (key->key())
+            {
+            case Qt::Key_Down:
+                prompt_form.setCurrentRow((prompt_form.currentRow() + 1) % prompt_form.count());
+                return;
+            case Qt::Key_Up:
+                prompt_form.setCurrentRow((prompt_form.currentRow() - 1 + prompt_form.count()) % prompt_form.count());
+                return;
+            case Qt::Key_PageDown:
+                prompt_form.setCurrentRow(qMin(row + page, count - 1));
+                return;
+            case Qt::Key_PageUp:
+                prompt_form.setCurrentRow(qMax(row - page, 0));
+                return;                
+            case Qt::Key_Return:
+            case Qt::Key_Enter:
+                prompt_form.ActivateCurrentItem();
+                return;
+            case Qt::Key_Escape:
+                prompt_form.hide();
+                return;
+            }
+        }
+    }
+
     QKeySequence s(event->modifiers() | event->key());
     QString str = event->text();
     if (shortcuts_map.Call(s, str.length() > 0 ? str[0] : QChar(), current_editor_state))
+    {
+        if (prompt_form.isVisible())
+            show_prompt = true;
         return;
+    }
 
     for (auto ch : str)
     {
@@ -163,6 +260,9 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
     if (!str.isEmpty())
         document->InsertString(str.toUtf8().data(), true);
     setFocus();
+
+    if (prompt_form.isVisible() || document->config.auto_prompt)
+        show_prompt = true;
 }
 
 void DocumentWidget::mousePressEvent(QMouseEvent *event)

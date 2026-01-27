@@ -70,21 +70,21 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
 
     //edit code
     Add(QKeySequence("Ctrl+Shift+C"), "\\code", std::function<void ()>(std::bind(&Document::InsertCode, document.get(), false, true)));
-    Add(QKeySequence("Ctrl+Shift+D"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true)));
-    Add(QKeySequence(""), '+', "\\plus", std::function<void ()>(std::bind(&Document::InsertPlus, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence(""), '-', "\\minus", std::function<void ()>(std::bind(&Document::InsertMinus, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence(""), '*', "\\times", std::function<void ()>(std::bind(&Document::InsertMultiply, document.get(), true)), CommandContext::Formula);
+    Add(QKeySequence("Ctrl+Shift+D"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true, false)));
+    Add(QKeySequence(""), '+', "\\plus", std::function<void ()>(std::bind(&Document::InsertPlus, document.get(), true, false)), CommandContext::Formula);
+    Add(QKeySequence(""), '-', "\\minus", std::function<void ()>(std::bind(&Document::InsertMinus, document.get(), true, false)), CommandContext::Formula);
+    Add(QKeySequence(""), '*', "\\times", std::function<void ()>(std::bind(&Document::InsertMultiply, document.get(), true, false)), CommandContext::Formula);
     Add(QKeySequence(""), '!', "\\excl", std::function<void ()>(std::bind(&Document::InsertExclamation, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '&', "\\and", std::function<void ()>(std::bind(&Document::InsertAnd, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '|', "\\or", std::function<void ()>(std::bind(&Document::InsertOr, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '^', "\\xor", std::function<void ()>(std::bind(&Document::InsertXor, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '%', "\\percent", std::function<void ()>(std::bind(&Document::InsertPercent, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ',', "\\comma", std::function<void ()>(std::bind(&Document::InsertComma, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence("/"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence("Ctrl+Shift+P"), "\\pow", std::function<void()>(std::bind(&Document::InsertPower, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence("Ctrl+Shift+S"), "\\sub", std::function<void ()>(std::bind(&Document::InsertSubscript, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence("Ctrl+Shift+N"), "\\nth", std::function<void ()>(std::bind(&Document::InsertNthRoot, document.get(), true)));
-    Add(QKeySequence("Ctrl+Shift+Q"), "\\sqrt", std::function<void ()>(std::bind(&Document::InsertSquareRoot, document.get(), true)));
+    Add(QKeySequence("/"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true, false)), CommandContext::Formula);
+    Add(QKeySequence("Ctrl+Shift+P"), "\\pow", std::function<void()>(std::bind(&Document::InsertPower, document.get(), true, false)), CommandContext::Formula);
+    Add(QKeySequence("Ctrl+Shift+S"), "\\sub", std::function<void ()>(std::bind(&Document::InsertSubscript, document.get(), true, false)), CommandContext::Formula);
+    Add(QKeySequence("Ctrl+Shift+N"), "\\nth", std::function<void ()>(std::bind(&Document::InsertNthRoot, document.get(), true, false)));
+    Add(QKeySequence("Ctrl+Shift+Q"), "\\sqrt", std::function<void ()>(std::bind(&Document::InsertSquareRoot, document.get(), true, false)));
     Add(QKeySequence(""), '=', "\\equal", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::AUTO, true)), 
         CommandContext::Formula);
     Add(QKeySequence(""), "\\eq_real", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::REAL, true)), 
@@ -112,6 +112,7 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence("Ctrl+]"), std::function<void ()>(std::bind(&DocumentWidget::OnNextEditorTab, (DocumentWidget*)document_widget)));
     Add(QKeySequence("Ctrl+Shift+Tab"), std::function<void ()>(std::bind(&DocumentWidget::OnPrevEditorTab, (DocumentWidget*)document_widget)));
     Add(QKeySequence("Ctrl+["), std::function<void ()>(std::bind(&DocumentWidget::OnPrevEditorTab, (DocumentWidget*)document_widget)));
+    Add(QKeySequence("Ctrl+p"), std::function<void ()>(std::bind(&DocumentWidget::OnPrompt, (DocumentWidget*)document_widget)));
 }
 
 bool ShortcutsMap::Call(const QKeySequence& shortcut, QChar symbol, const EditorState& editor_state)

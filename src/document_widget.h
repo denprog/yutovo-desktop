@@ -13,6 +13,7 @@
 #include <yutovo-editor/document.h>
 #include "qt_window.h"
 #include "command_map.h"
+#include "prompt_form.h"
 
 using namespace yutovo;
 
@@ -30,6 +31,7 @@ public:
 public:
     void OnNextEditorTab();
     void OnPrevEditorTab();
+    void OnPrompt();
 
 public slots:
     void OnDocumentUpdated(const Rect rect);
@@ -41,6 +43,7 @@ public slots:
 #ifdef REMOTE_SOLVER
     void OnServiceStatus(IOResult result);
 #endif
+    void OnPromptActivated(const IdentifierType id_type, const std::string& id_str);
 
 signals:
     void WheelVertical(const int value);
@@ -68,6 +71,9 @@ private:
 
     QtWindow window;
     DocumentPtr document;
+
+    PromptForm prompt_form;
+    bool show_prompt = false;
 
     ShortcutsMap shortcuts_map;
     

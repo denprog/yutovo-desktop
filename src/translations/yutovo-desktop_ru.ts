@@ -301,6 +301,10 @@
         <translation>Максимальный размер Отмены/Повтора</translation>
     </message>
     <message>
+        <source>Show prompt window</source>
+        <translation>Показывать окно подсказски</translation>
+    </message>
+    <message>
         <source>Click</source>
         <translation>Клик</translation>
     </message>

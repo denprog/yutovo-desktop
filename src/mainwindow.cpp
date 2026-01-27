@@ -335,7 +335,7 @@ void MainWindow::CreateActions()
     connect(save_all_action, &QAction::triggered, this, &MainWindow::SaveAll);
     file_menu->addAction(save_all_action);
 
-    save_as_action = file_menu->addAction(QIcon(":/images/standard/new.png"), tr("Save &As..."), this, &MainWindow::SaveFileAsName);
+    save_as_action = file_menu->addAction(tr("Save &As..."), this, &MainWindow::SaveFileAsName);
     save_as_action->setStatusTip(tr("Save the document under a new name"));
 
     close_action = new QAction(tr("&Close"), this);
@@ -2726,6 +2726,7 @@ void MainWindow::ReadSettings()
     settings.endGroup();
 
     settings.beginGroup("Documents");
+    config.auto_prompt = settings.value("auto_prompt", true).toBool();
     config.undo_size = settings.value("undo_size", 100).toInt();
     settings.endGroup();
 

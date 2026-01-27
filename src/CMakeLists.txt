@@ -99,6 +99,7 @@ add_executable(${PROJECT_NAME} WIN32
     plot_format_dialog.cpp
     export_pdf_dialog.ui
     export_pdf_dialog.cpp
+    prompt_form.cpp
 )
 
 if (NOT WIN32)
