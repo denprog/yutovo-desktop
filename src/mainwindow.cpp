@@ -266,6 +266,7 @@ void MainWindow::AddEditorTab(const QString name, const QString tooltip)
 
     connect(wnd->document_widget, &DocumentWidget::NextEditorTab, this, &MainWindow::OnNextEditorTab);
     connect(wnd->document_widget, &DocumentWidget::PrevEditorTab, this, &MainWindow::OnPrevEditorTab);
+    connect(wnd->document_widget, &DocumentWidget::ScaleChanged, this, &MainWindow::OnScaleChanged);
 
 #ifdef REMOTE_SOLVER
     connect(wnd->document_widget, &DocumentWidget::ServiceStatus, this, &MainWindow::OnServiceStatus);
@@ -284,6 +285,7 @@ void MainWindow::AddEditorTab(const QString name, const QString tooltip)
     document->Resize(s.width(), s.height());
     OnCaretMoved(document->GetEditorState());
     FillParagraphFormats();
+    FillScales();
 
     UpdateCaption();
 
@@ -444,6 +446,16 @@ void MainWindow::CreateActions()
     calculator_action->setStatusTip(tr("Insert calculator"));
     connect(calculator_action, &QAction::triggered, this, &MainWindow::OnInsertCode);
     format_toolbar->addAction(calculator_action);
+
+    format_toolbar->addSeparator();
+
+    scale_combo = new QComboBox;
+    scale_combo->setEditable(true);
+    connect(scale_combo, SIGNAL(currentIndexChanged(int)), this, SLOT(OnCurrentScaleChanged(int)));
+    connect(scale_combo->lineEdit(), &QLineEdit::editingFinished, this, &MainWindow::OnCurrentScaleEditingFinished);
+    scale_combo->setInsertPolicy(QComboBox::NoInsert);
+    format_toolbar->addWidget(scale_combo);
+    FillScales();
 
     format_toolbar->addSeparator();
 
@@ -1631,6 +1643,11 @@ void MainWindow::OnPrevEditorTab()
         ui->editor_tabs->setCurrentIndex(c - 1);
 }
 
+void MainWindow::OnScaleChanged(const float scale)
+{
+    scale_combo->setCurrentText(QString::number(std::round(scale * 100)) + "%");
+}
+
 bool MainWindow::OnCloseEditorTab(int index)
 {
     if (index == -1)
@@ -1684,7 +1701,9 @@ void MainWindow::OnEditorChanged(int index)
     auto document = GetCurrentDocument();
     if (!document)
         return;
+
     FillParagraphFormats();
+    FillScales();
     OnCaretMoved(document->GetEditorState());
 
     UpdateCaption();
@@ -1719,6 +1738,32 @@ void MainWindow::OnInsertCode()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertCode(false, true);
+}
+
+void MainWindow::OnCurrentScaleChanged(int index)
+{
+    if (block_scale_slots)
+        return;
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    QString s = scale_combo->currentText().trimmed();
+    s.remove('%');
+    bool ok = false;
+    int scale = s.toInt(&ok);
+    if (ok && scale >= 50 && scale <= 500)
+    {
+        Config c;
+        document->GetConfig(c);
+        c.scale = scale / 100.;
+        document->SetConfig(c, false);
+    }
+}
+
+void MainWindow::OnCurrentScaleEditingFinished()
+{
+    OnCurrentScaleChanged(scale_combo->currentIndex());
 }
 
 void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
@@ -2362,7 +2407,10 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     
     auto document = GetCurrentDocument();
     if (!document)
+    {
+        block_format_slots = false;
         return;
+    }
     
     bool code_block = document->GetParentId(c.id, ElementType::CODE_BLOCK) != ElementId{};
     align_left_action->setEnabled(!code_block);
@@ -2502,6 +2550,7 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     }
     UpdateRecentFiles(w->path);
     UpdateCaption(tab, ui->editor_tabs->currentIndex() == tab);
+    FillScales();
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)
@@ -2549,6 +2598,25 @@ void MainWindow::OnServiceStatus(IOResult result)
         RestartService();
 }
 #endif
+
+void MainWindow::FillScales()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    
+    block_scale_slots = true;
+    scale_combo->clear();
+    scale_combo->addItem("50%");
+    scale_combo->addItem("80%");
+    scale_combo->addItem("90%");
+    scale_combo->addItem("100%");
+    scale_combo->addItem("110%");
+    scale_combo->addItem("120%");
+    scale_combo->addItem("150%");
+    scale_combo->setCurrentText(QString::number(std::round(document->config.scale * 100)) + "%");
+    block_scale_slots = false;
+}
 
 void MainWindow::FillParagraphFormats()
 {
@@ -3179,6 +3247,7 @@ void MainWindow::EnableButtons(bool enable)
     text_color_action->setEnabled(enable);
     bg_text_color_action->setEnabled(enable);
     link_action->setEnabled(enable);
+    scale_combo->setEnabled(enable);
     paragraph_format_combo->setEnabled(enable);
     family_combo->setEnabled(enable);
     size_combo->setEnabled(enable);

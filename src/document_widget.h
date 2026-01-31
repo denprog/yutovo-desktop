@@ -51,6 +51,7 @@ signals:
     void NextEditorTab();
     void PrevEditorTab();
     void ServiceStatus(IOResult result);
+    void ScaleChanged(const float scale);
 
 protected:
     virtual void paintEvent(QPaintEvent *event);

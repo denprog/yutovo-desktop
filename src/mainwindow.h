@@ -120,6 +120,7 @@ private:
 private slots:
     void OnNextEditorTab();
     void OnPrevEditorTab();
+    void OnScaleChanged(const float scale);
     bool OnCloseEditorTab(int index);
     void OnEditorChanged(int index);
 
@@ -127,6 +128,8 @@ private slots:
 
     void OnInsertCode();
 
+    void OnCurrentScaleChanged(int index);
+    void OnCurrentScaleEditingFinished();
     void OnCurrentParagraphFormatChanged(const QString& format);
     void OnCurrentFontChanged(const QFont& font);
     void OnCurrentSizeEditingFinished();
@@ -221,6 +224,7 @@ private slots:
 #endif
 
 private:
+    void FillScales();
     void FillParagraphFormats();
     void FillSizes(const QFont& font);
 
@@ -272,8 +276,10 @@ private:
     int recent_files_count = 10;
     QList<QString> recent_files;
 
+    bool block_scale_slots = false;
+    QComboBox* scale_combo = nullptr;
+
     bool block_format_slots = false;
-    
     QComboBox* paragraph_format_combo = nullptr;
     
     QFontComboBox* family_combo = nullptr;

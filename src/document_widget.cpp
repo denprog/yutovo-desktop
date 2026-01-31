@@ -417,6 +417,23 @@ void DocumentWidget::wheelEvent(QWheelEvent* event)
     QPoint num_pixels = event->pixelDelta() / 8;
     QPoint num_degrees = event->angleDelta() / 8;
 
+    if (event->modifiers() == Qt::ControlModifier)
+    {
+        Config c;
+        document->GetConfig(c);
+        if (num_degrees.y() > 0)
+            c.scale /= 0.9;
+        else
+            c.scale *= 0.9;
+        if (c.scale >= 0.5 && c.scale <= 5)
+        {
+            document->SetConfig(c, false);
+            emit ScaleChanged(c.scale);
+        }
+        event->accept();
+        return;
+    }
+
     if (document->MouseWheel((int)event->pos().x() + window.document_point.x, (int)event->pos().y() + window.document_point.y, 
         yutovo::Point{num_pixels.x(), num_pixels.y()}, yutovo::Point{num_degrees.x(), num_degrees.y()}))
     {
