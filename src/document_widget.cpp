@@ -258,11 +258,14 @@ void DocumentWidget::keyPressEvent(QKeyEvent *event)
             return;
     }
     if (!str.isEmpty())
+    {
         document->InsertString(str.toUtf8().data(), true);
+        if (prompt_form.isVisible() || document->config.auto_prompt)
+            show_prompt = true;
+    }
+    else
+        prompt_form.hide();
     setFocus();
-
-    if (prompt_form.isVisible() || document->config.auto_prompt)
-        show_prompt = true;
 }
 
 void DocumentWidget::mousePressEvent(QMouseEvent *event)
