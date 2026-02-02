@@ -66,6 +66,8 @@ private:
     std::recursive_mutex units_items_mutex;
     std::map<int, QPixmap> units_items;
     bool stop_fill_thread = false;
+
+    std::string logs_path;
 };
 
 class UnitsDelegate : public QStyledItemDelegate

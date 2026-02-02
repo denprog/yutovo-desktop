@@ -16,7 +16,8 @@ SetUnitDialog::SetUnitDialog(std::vector<yutovo_calculator::Unit>& cast_units, y
     QDialog(nullptr),
     window(1, 1, _config),
     ui(new Ui::SetUnitDialog),
-    units_delegate(new UnitsDelegate(this))
+    units_delegate(new UnitsDelegate(this)),
+    logs_path(_config.logs_path)
 {
     ui->setupUi(this);
 
@@ -60,6 +61,7 @@ void SetUnitDialog::FillUnits()
 
     DocumentPtr document;
     Config config;
+    config.logs_path = logs_path;
     document.reset(new Document(&window, config));
 
     document->GetConfig(config);
