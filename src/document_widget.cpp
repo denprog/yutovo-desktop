@@ -75,7 +75,7 @@ void DocumentWidget::OnPrompt()
     Rect r;
     if (!document->GetCaretRect(r))
         return;
-    prompt_form.move(r.GetRight(), r.GetBottom());
+    prompt_form.move(r.GetRight() - window.document_point.x, r.GetBottom() - window.document_point.y);
     prompt_form.Fill(std::move(prompt));
     prompt_form.show();
 }
