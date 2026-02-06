@@ -55,7 +55,7 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     p.setFont(font);
     if (draw_doc)
         p.setClipRegion(clip_region);
-    p.drawText(QRect(rect.left - document_point.x, rect.top - document_point.y, rect.width, rect.height), Qt::TextExpandTabs, text.c_str());
+    p.drawText(QRect(rect.left - document_point.x, rect.top - document_point.y, rect.width, rect.height), Qt::TextExpandTabs, QString::fromUtf8(text.c_str()));
     p.end();
 }
 
@@ -705,5 +705,7 @@ QFont QtWindow::GetFont(const StringFormatPtr format) const
     int size = format->size;
     if ((format->subscript || format->superscript) && size > 2)
         size /= 2;
-    return QFont(format->family.c_str(), size);
+    QFont f(format->family.c_str(), size);
+    f.setStyleStrategy(QFont::NoFontMerging);
+    return f;
 }
