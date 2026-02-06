@@ -1,0 +1,19 @@
+Source: yutovo
+Section: math
+Priority: optional
+Maintainer: Denis Gordenin <support@yutovo.ru>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+Standards-Version: 4.6.2
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/yutovo
+#Vcs-Git: https://salsa.debian.org/debian/yutovo.git
+
+Package: yutovo
+Architecture: amd64
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Visual calculator inside a text editor
+ Yutovo is an application for solving various mathematical problems. Yutovo has a visual "paper" view for calculations. It uses a generally accepted mathematical syntax to display formulas. Yutovo is designed to solve everyday and engineering problems and can be used by different people and for different jobs.
