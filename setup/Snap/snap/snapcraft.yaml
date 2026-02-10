@@ -260,9 +260,17 @@ parts:
     override-stage: |
       set -e
       mkdir -p $CRAFT_STAGE/app/bin
-      cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin
     override-prime: |
       true
+
+  yutovo-library:
+    plugin: dump
+    source: https://github.com/denprog/yutovo-library.git
+    source-tag: v1.0.1
+    source-depth: 1
+    override-stage: |
+      set -e
+      cp -r $CRAFT_PART_SRC $CRAFT_STAGE/app/bin
 
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git

@@ -196,6 +196,15 @@ modules:
       - mkdir -p /app/bin
       - cp -r $FLATPAK_BUILDER_BUILDDIR/library /app/bin
 
+  - name: yutovo-library
+    buildsystem: simple
+    sources:
+      - type: git
+        url: https://github.com/denprog/yutovo-library.git
+        tag: v1.0.1
+    build-commands:
+      - cp -r $FLATPAK_BUILDER_BUILDDIR /app/bin
+
   - name: yutovo-desktop
     buildsystem: cmake
     build-options:
