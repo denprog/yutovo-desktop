@@ -2713,6 +2713,8 @@ void MainWindow::WriteSettings()
     settings.setValue("error_marks_color", config.error_marks_color.ToInt());
     settings.setValue("formula_bg_color", config.formula_bg_color.ToInt());
     settings.setValue("bg_selection_color", config.bg_selection_color.ToInt());
+    settings.setValue("hilight_color", config.hilight_color.ToInt());
+    settings.setValue("formula_frame_color", config.formula_frame_color.ToInt());
     settings.endGroup();
 
     settings.beginGroup("Fonts");
@@ -2856,6 +2858,8 @@ void MainWindow::ReadSettings()
     config.error_marks_color = Color::FromInt(settings.value("error_marks_color", Color::Red().ToInt()).toInt());
     config.formula_bg_color = Color::FromInt(settings.value("formula_bg_color", Color::White().ToInt()).toInt());
     config.bg_selection_color = Color::FromInt(settings.value("bg_selection_color", Color::Blue().ToInt()).toInt());
+    config.hilight_color = Color::FromInt(settings.value("hilight_color", Color::FromHex("#97deff").ToInt()).toInt());
+    config.formula_frame_color = Color::FromInt(settings.value("formula_frame_color", Color::FromHex("#b8d3ff").ToInt()).toInt());
     settings.endGroup();
 
     settings.beginGroup("Calculator");
