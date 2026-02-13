@@ -48,7 +48,9 @@ protected:
     void changeEvent(QEvent* event) override;
     void closeEvent(QCloseEvent *event) override;
     bool focusNextPrevChild(bool next) override;
-
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    
 private:
     void SetupGui();
 

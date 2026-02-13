@@ -62,6 +62,8 @@ MainWindow::MainWindow(QWidget* parent) :
     qRegisterMetaType<std::u32string>("std::u32string");
     qRegisterMetaType<std::vector<uint8_t>>("std::vector<uint8_t>");
     qRegisterMetaType<PdfResult>("PdfResult");
+
+    setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow()
@@ -194,6 +196,39 @@ void MainWindow::closeEvent(QCloseEvent* event)
 bool MainWindow::focusNextPrevChild(bool next)
 {
     return false;
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (!event->mimeData()->hasUrls())
+        return;
+
+    const QList<QUrl> urls = event->mimeData()->urls();
+    for (const QUrl &url : urls)
+    {
+        auto s = QFileInfo(url.toLocalFile()).suffix();
+        if (s == "yut" || s == "txt")
+        {
+            event->acceptProposedAction();
+            return;
+        }
+    }    
+}
+
+void MainWindow::dropEvent(QDropEvent *event)
+{
+    const QList<QUrl> urls = event->mimeData()->urls();
+    if (urls.isEmpty())
+        return;
+
+    for (const QUrl& url : urls)
+    {
+        QString file_name = url.toLocalFile();
+        if (!file_name.isEmpty())
+            OpenFile(file_name);
+    }
+
+    event->acceptProposedAction();    
 }
 
 void MainWindow::SetupGui()
