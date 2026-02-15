@@ -103,6 +103,11 @@ mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/root/yutovo/deploy/ ..
 make -sj16 && make install
 
+cd ../..
+git clone --branch=v1.0.1 https://github.com/denprog/yutovo-library.git
+cd yutovo-library/
+./pack.sh
+cp -r library /root/yutovo/deploy/
+
 git clone --branch=v1.1.9 https://github.com/denprog/yutovo-server.git
 cd yutovo-server/
-cp -r library /root/yutovo/deploy/

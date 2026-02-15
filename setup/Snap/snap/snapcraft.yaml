@@ -270,7 +270,8 @@ parts:
     source-depth: 1
     override-stage: |
       set -e
-      cp -r $CRAFT_PART_SRC $CRAFT_STAGE/app/bin
+      ./$CRAFT_PART_SRC/pack.sh
+      cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin
 
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git

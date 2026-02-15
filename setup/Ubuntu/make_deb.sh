@@ -12,7 +12,10 @@ cp control yutovo-desktop_1.5.1-1_ubuntu24_amd64/DEBIAN/
 cp postinst yutovo-desktop_1.5.1-1_ubuntu24_amd64/DEBIAN/
 cp prerm yutovo-desktop_1.5.1-1_ubuntu24_amd64/DEBIAN/
 cp ../../build/release/src/yutovo-desktop yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/
-cp -r ../../../yutovo-library yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/
+cp -r ../../../yutovo-library/library yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/
+cp -r ../../../yutovo-library/pack.sh yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/
+./yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/pack.sh
+rm ./yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/pack.sh
 chmod -R -w yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/library
 cp ../../build/release/src/*.qm yutovo-desktop_1.5.1-1_ubuntu24_amd64/opt/yutovo/
 cp ../../src/images/mainicon.png yutovo-desktop_1.5.1-1_ubuntu24_amd64/usr/share/icons/hicolor/256x256/apps/yutovo.png
