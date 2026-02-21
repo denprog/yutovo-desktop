@@ -1302,6 +1302,7 @@ void MainWindow::ExportToPdf()
         config.caret_visible = false;
         config.hilight_caret_element = false;
         config.draw_whole = true;
+        config.pdf = true;
 
         QMarginsF m = export_pdf_dialog.Margins();
         f.left_indent = (int)m.left();

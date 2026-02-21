@@ -38,7 +38,7 @@ void QtWindow::Init(Document* _document)
     document = _document;
 }
 
-void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color, const Color bg_color)
+void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, const Rect& rect, const Color color, const Color bg_color, bool transparent)
 {
     QPainter p;
     if (!p.begin(surface.get()))
@@ -50,7 +50,7 @@ void QtWindow::DrawText(const std::string& text, const StringFormatPtr format, c
     font.setUnderline(format->underline);
     font.setStrikeOut(format->strikethrough);
     p.setPen(QColor::fromRgba(color.ToInt()));
-    p.setBackgroundMode(Qt::OpaqueMode);
+    p.setBackgroundMode(transparent ? Qt::TransparentMode : Qt::OpaqueMode);
     p.setBackground(QBrush(QColor::fromRgba(bg_color.ToInt())));
     p.setFont(font);
     if (draw_doc)
