@@ -753,12 +753,12 @@
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <source>Help online</source>
-        <translation>Справка онлайн</translation>
+        <source>Help</source>
+        <translation>Справка</translation>
     </message>
     <message>
-        <source>Help system online</source>
-        <source>Справочная система онлайн</source>
+        <source>Help system</source>
+        <source>Справочная система</source>
     </message>
     <message>
         <source>&amp;Terms of use</source>

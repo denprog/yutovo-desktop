@@ -749,12 +749,12 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>A&amp;yuda</translation>
     </message>
     <message>
-        <source>Help online</source>
-        <translation>Ayuda en línea</translation>
+        <source>Help</source>
+        <translation>Ayuda</translation>
     </message>
     <message>
-        <source>Help system online</source>
-        <source>Sistema de ayuda en línea</source>
+        <source>Help system</source>
+        <source>Sistema de ayuda</source>
     </message>
     <message>
         <source>&amp;Terms of use</source>

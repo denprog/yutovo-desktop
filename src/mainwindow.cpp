@@ -658,13 +658,13 @@ void MainWindow::CreateActions()
 
     //library menu
     QMenu* library_menu = menuBar()->addMenu(tr("&Library"));
-    UpdateLibraryMenu(library_menu);
+    UpdateLibraryMenu(library_menu, ".", tr("Help"));
 
     //help menu
     QMenu* help_menu = menuBar()->addMenu(tr("&Help"));
 
-    action = help_menu->addAction(tr("Help online"), this, &MainWindow::HelpOnline);
-    help_menu->setStatusTip(tr("Help system online"));
+    QMenu* help_system_menu = help_menu->addMenu(tr("Help"));
+    UpdateLibraryMenu(help_system_menu, tr("Help"), "");
 
     help_menu->addSeparator();
 
@@ -1575,12 +1575,6 @@ void MainWindow::Recalculate()
     auto document = GetCurrentDocument();
     if (document)
         document->ReSolve(ElementId{});
-}
-
-void MainWindow::HelpOnline()
-{
-    QUrl u(tr("help_online"));
-    QDesktopServices::openUrl(u);
 }
 
 void MainWindow::TermsOfUse()
@@ -3029,7 +3023,7 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
     }
 }
 
-void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
+void MainWindow::UpdateLibraryMenu(QMenu* library_menu, const QString start_topic, const QString except_topic)
 {
     std::function<void(const std::filesystem::path& path, const std::wstring& name, QMenu* menu)> get_files =
         [&](const std::filesystem::path& path, const std::wstring& name, QMenu* menu)
@@ -3081,6 +3075,9 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
 #else
                         std::string s = entry.path().filename().string();
 #endif
+                        if (s == except_topic.toUtf8().data())
+                            continue;
+                        
                         auto it = std::find(order.begin(), order.end(), s);
                         if (it != order.end())
                             pos = std::distance(order.begin(), it);
@@ -3183,7 +3180,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu)
     if (!std::filesystem::exists(p))
         return;
     
-    get_files(std::filesystem::path(p), L"library", library_menu);
+    get_files(std::filesystem::path(p) / start_topic.toUtf8().data(), L"library", library_menu);
 }
 
 void MainWindow::InstallTranslation(const yutovo_calculator::Language language)

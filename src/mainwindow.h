@@ -102,7 +102,6 @@ private:
     void Undo();
     void Redo();
 
-    void HelpOnline();
     void TermsOfUse();
     void PrivacyPolicy();
     void About();
@@ -236,7 +235,7 @@ private:
     void UpdateFontSize();
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
-    void UpdateLibraryMenu(QMenu* library_menu);
+    void UpdateLibraryMenu(QMenu* library_menu, const QString start_topic, const QString except_topic);
 
     void InstallTranslation(const yutovo_calculator::Language language);
 
