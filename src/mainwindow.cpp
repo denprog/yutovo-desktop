@@ -461,7 +461,7 @@ void MainWindow::CreateActions()
 
     standard_toolbar->addSeparator();
 
-    properties_action = new QAction(QIcon(":/icons/images/standard/properties.png"), tr("&Properties"), this);
+    properties_action = new QAction(QIcon(":/icons/images/standard/properties.png"), tr("Document properties"), this);
     properties_action->setStatusTip(tr("Properties of the document"));
     connect(properties_action, &QAction::triggered, this, &MainWindow::Properties);
     standard_toolbar->addAction(properties_action);

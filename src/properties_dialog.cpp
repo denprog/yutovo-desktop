@@ -17,6 +17,8 @@ PropertiesDialog::PropertiesDialog(yutovo::Config& _config) :
 {
     form->setupUi(this);
 
+    setWindowIcon(QIcon(":/icons/images/mainicon.png"));
+
     form->results_layout->addWidget(new ResultSettingsForm(config));
 
     form->language->setCurrentIndex((int)config.language - 1);

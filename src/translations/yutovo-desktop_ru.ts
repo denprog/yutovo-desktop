@@ -569,7 +569,7 @@
         <translation>Форматирование</translation>
     </message>
     <message>
-        <source>Properties of the document</source>
+        <source>Document properties</source>
         <translation>Свойства документа</translation>
     </message>
     <message>

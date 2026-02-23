@@ -569,7 +569,7 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Formato</translation>
     </message>
     <message>
-        <source>Properties of the document</source>
+        <source>Document properties</source>
         <translation>Propiedades del documento</translation>
     </message>
     <message>
