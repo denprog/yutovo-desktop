@@ -31,10 +31,11 @@ PromptForm::PromptForm(QWidget* parent) :
     setWindowFlags(Qt::FramelessWindowHint);
     setFocusPolicy(Qt::NoFocus);
     setMouseTracking(true);
-
     setIconSize(QSize(24, 24));
 
     qApp->installEventFilter(this);
+
+    setItemDelegate(new SubscriptDelegate(this));
 
     connect(this, &PromptForm::itemActivated, this, &PromptForm::OnPromptActivated);
 }
@@ -55,7 +56,13 @@ void PromptForm::Fill(std::vector<std::pair<IdentifierType, std::string>>&& _pro
         if (it != icons.end())
             item = new QListWidgetItem(QIcon(it->second), "");
         else
-            item = new QListWidgetItem(QString::fromStdString(p.second));
+        {
+            //make subscript if it exists
+            QString s = QString::fromStdString(p.second);
+            s.replace("{", "<sub>");
+            s.replace("}", "</sub>");
+            item = new QListWidgetItem(s);
+        }
         addItem(item);
     }
 
@@ -99,4 +106,42 @@ bool PromptForm::eventFilter(QObject* obj, QEvent* event)
 void PromptForm::OnPromptActivated(QListWidgetItem *item)
 {
     ActivateCurrentItem();
+}
+
+//SubscriptDelegate
+
+void SubscriptDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    QStyleOptionViewItem opt = option;
+    initStyleOption(&opt, index);
+
+    QString text = opt.text;
+    opt.text.clear();
+
+    QStyle *style = opt.widget ? opt.widget->style() : QApplication::style();
+    style->drawControl(QStyle::CE_ItemViewItem, &opt, painter, opt.widget);
+
+    QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &opt, opt.widget);
+
+    QTextDocument doc;
+    doc.setHtml(text);
+
+    QTextOption textOption;
+    textOption.setWrapMode(QTextOption::NoWrap);
+    doc.setDefaultTextOption(textOption);
+    doc.setTextWidth(-1);
+
+    painter->save();
+    painter->translate(textRect.topLeft());
+    doc.drawContents(painter);
+    painter->restore();
+}
+
+QSize SubscriptDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+    QTextDocument doc;
+    doc.setHtml(index.data().toString());
+    doc.setTextWidth(-1);
+    QSizeF size = doc.size();
+    return QSize(size.width() + 8, size.height() + 6);
 }

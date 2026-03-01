@@ -9,6 +9,10 @@
 #define __PROMPT_FORM_H__
 
 #include <QListWidget>
+#include <QApplication>
+#include <QStyledItemDelegate>
+#include <QTextDocument>
+#include <QPainter>
 #include <yutovo-editor/editor_utils.h>
 
 using namespace yutovo;
@@ -38,6 +42,17 @@ private:
     std::vector<std::pair<IdentifierType, std::string>> prompt;
     const int max_visible_rows = 10;
     static const std::map<std::string, QString> icons;
+};
+
+class SubscriptDelegate : public QStyledItemDelegate
+{
+public:
+    explicit SubscriptDelegate(QObject* parent = nullptr) : QStyledItemDelegate(parent)
+    {
+    }
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 };
 
 #endif
