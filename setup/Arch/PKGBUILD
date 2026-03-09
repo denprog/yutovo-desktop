@@ -139,7 +139,7 @@ build() {
     echo "Building yutovo-library"
     cd yutovo-library
     ./pack.sh
-    cd ../..
+    cd ..
 
     echo "Building yutovo-desktop"
     cd yutovo-desktop
@@ -161,7 +161,6 @@ package() {
     cp $YUTOVO_DEPLOY/bin/yutovo-desktop $pkgdir/usr/bin/
     cp -r $srcdir/yutovo-desktop/build/src/*.qm $pkgdir/usr/share/yutovo/translations/
     cp -r $srcdir/yutovo-library/library $pkgdir/usr/share/yutovo/
-    rm $srcdir/usr/share/yutovo/pack.sh
     cp $srcdir/yutovo-desktop/setup/Arch/run.sh $pkgdir/usr/bin/yutovo
     cp $srcdir/yutovo-desktop/src/images/mainicon.png $pkgdir/usr/share/icons/hicolor/256x256/apps/yutovo.png
     cp $srcdir/yutovo-desktop/src/images/mainicon.png $pkgdir/usr/share/icons/hicolor/256x256/mimetypes/application-x-yut.png
