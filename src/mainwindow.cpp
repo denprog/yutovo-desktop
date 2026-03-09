@@ -3176,11 +3176,13 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu, const QString start_topi
         dir = "es";
         break;
     }
+
     auto p = std::string(GetLibraryDir().toUtf8().data()) + dir;
     if (!std::filesystem::exists(p))
         return;
     
-    get_files(std::filesystem::path(p) / start_topic.toUtf8().data(), L"library", library_menu);
+    auto s = std::filesystem::u8path(start_topic.toUtf8().constData());
+    get_files(std::filesystem::path(p) / s, L"library", library_menu);
 }
 
 void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
