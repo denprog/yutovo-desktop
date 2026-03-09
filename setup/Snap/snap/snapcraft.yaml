@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.5.1'
+version: '1.5.2'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -181,7 +181,7 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.3.6
+    source-tag: v1.3.7
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app
@@ -236,7 +236,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.5.1
+    source-tag: v1.5.2
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -252,25 +252,15 @@ parts:
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
     after: [yutovo-solver, mathgl, libharu, stb-image]
 
-  yutovo-server:
-    plugin: dump
-    source: https://github.com/denprog/yutovo-server.git
-    source-tag: v1.1.11
-    source-depth: 1
-    override-stage: |
-      set -e
-      mkdir -p $CRAFT_STAGE/app/bin
-    override-prime: |
-      true
-
   yutovo-library:
     plugin: dump
     source: https://github.com/denprog/yutovo-library.git
-    source-tag: v1.0.1
+    source-tag: desktop
     source-depth: 1
     override-stage: |
       set -e
-      ./$CRAFT_PART_SRC/pack.sh
+      cd $CRAFT_PART_SRC
+      ./pack.sh
       cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin
 
   desktop-qt5:
@@ -296,7 +286,7 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.5.1
+    source-tag: v1.5.2
     build-packages:
       - rsync
       - qttools5-dev-tools
@@ -348,7 +338,8 @@ parts:
         || true
       rm -f libEGL_mesa.so.* libGLX_mesa.so.*
       rm -rf $CRAFT_PRIME/usr/share/mathgl
-    after: [yutovo-editor, yutovo-server, desktop-qt5]
+      rm -rf $CRAFT_PRIME/library
+    after: [yutovo-editor, yutovo-library, desktop-qt5]
 
 apps:
   yutovo-desktop:
