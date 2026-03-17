@@ -382,6 +382,10 @@
         <source>Graphs</source>
         <translation>Графики</translation>
     </message>
+    <message>
+        <source>Logical</source>
+        <translation>Логическая</translation>
+    </message>
 </context>
 <context>
     <name>ExportPdfDialog</name>
@@ -717,6 +721,10 @@
         <translation>Графики</translation>
     </message>
     <message>
+        <source>Logical operations</source>
+        <translation>Логические операции</translation>
+    </message>
+    <message>
         <source>Russian ruble</source>
         <translation>Российский рубль</translation>
     </message>
@@ -1007,6 +1015,22 @@
     <message>
         <source>Round</source>
         <translation>Округление</translation>
+    </message>
+    <message>
+        <source>Logical AND</source>
+        <translation>Логическое И</translation>
+    </message>
+    <message>
+        <source>Logical OR</source>
+        <translation>Логическое ИЛИ</translation>
+    </message>
+    <message>
+        <source>Logical XOR</source>
+        <translation>Логическое исключающее ИЛИ</translation>
+    </message>
+    <message>
+        <source>Logical NOT</source>
+        <translation>Логическое НЕ</translation>
     </message>
     <message>
         <source>Locale: </source>

@@ -433,6 +433,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Graphs</source>
         <translation>Gráficos</translation>
     </message>
+    <message>
+        <source>Logical operations</source>
+        <translation>Operaciones lógicas</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -711,6 +715,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Graphs</source>
         <translation>Gráficos</translation>
+    </message>
+    <message>
+        <source>Logical</source>
+        <translation>Lógicas</translation>
     </message>
     <message>
         <source>Russian ruble</source>
@@ -1003,6 +1011,22 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Round</source>
         <translation>Redondeo</translation>
+    </message>
+    <message>
+        <source>Logical AND</source>
+        <translation>Y lógico</translation>
+    </message>
+    <message>
+        <source>Logical OR</source>
+        <translation>O lógico</translation>
+    </message>
+    <message>
+        <source>Logical XOR</source>
+        <translation>XOR lógico</translation>
+    </message>
+    <message>
+        <source>Logical NOT</source>
+        <translation>Lógico NO</translation>
     </message>
     <message>
         <source>Locale: </source>

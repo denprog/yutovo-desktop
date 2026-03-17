@@ -256,6 +256,7 @@ void MainWindow::SetupGui()
     CreateGreekToolbar();
     CreateCurrenciesToolbar();
     CreateGraphsToolbar();
+    CreateLogicalToolbar();
 
     CreateStatusBar();
 
@@ -277,8 +278,8 @@ void MainWindow::SetupGui()
     greek_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/currency_toolbar", false).toBool();
     currency_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/graph_toolbar", false).toBool();
-    graph_toolbar_action->setChecked(b);
+    b = settings.value("MainWindow/logical_toolbar", false).toBool();
+    logical_toolbar_action->setChecked(b);
     b = settings.value("MainWindow/status_bar", true).toBool();
     status_bar_action->setChecked(b);
 
@@ -649,6 +650,12 @@ void MainWindow::CreateActions()
     graph_toolbar_action->setChecked(true);
     connect(graph_toolbar_action, &QAction::toggled, this, &MainWindow::GraphToolbar);
     toolbars_menu->addAction(graph_toolbar_action);
+
+    logical_toolbar_action = new QAction(tr("Logical operations"), this);
+    logical_toolbar_action->setCheckable(true);
+    logical_toolbar_action->setChecked(true);
+    connect(logical_toolbar_action, &QAction::toggled, this, &MainWindow::LogicalToolbar);
+    toolbars_menu->addAction(logical_toolbar_action);
 
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
@@ -1031,6 +1038,29 @@ void MainWindow::CreateGraphsToolbar()
     graph_toolbar->addAction(action);
 }
 
+void MainWindow::CreateLogicalToolbar()
+{
+    //logical operations toolbar
+    logical_toolbar = addToolBar(tr("Logical operations"));
+    logical_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* action = new QAction(QIcon(":/icons/images/logical/and.png"), tr("Logical AND"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnAnd);
+    logical_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/logical/or.png"), tr("Logical OR"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnOr);
+    logical_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/logical/xor.png"), tr("Logical XOR"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnXor);
+    logical_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/logical/not.png"), tr("Logical NOT"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnNot);
+    logical_toolbar->addAction(action);
+}
+
 void MainWindow::CreateStatusBar()
 {
     if (!locale_status)
@@ -1372,6 +1402,7 @@ void MainWindow::Settings()
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
         graph_toolbar_action->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
         greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
+        logical_toolbar_action->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
 
         if (last_language != config.language)
         {
@@ -1646,7 +1677,13 @@ void MainWindow::CurrencyToolbar()
 void MainWindow::GraphToolbar()
 {
     graph_toolbar_action->isChecked() ? graph_toolbar->show() : graph_toolbar->hide();
-    settings.setValue("MainWindow/graph_toolbar", graph_toolbar_action->isChecked());
+    settings.setValue("MainWindow/graphs_toolbar", graph_toolbar_action->isChecked());
+}
+
+void MainWindow::LogicalToolbar()
+{
+    logical_toolbar_action->isChecked() ? logical_toolbar->show() : logical_toolbar->hide();
+    settings.setValue("MainWindow/logical_toolbar", logical_toolbar_action->isChecked());
 }
 
 void MainWindow::StatusBar()
@@ -2391,6 +2428,34 @@ void MainWindow::GraphLine()
         document->InsertGraph(true);
 }
 
+void MainWindow::OnAnd()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("&", true);
+}
+
+void MainWindow::OnOr()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("|", true);
+}
+
+void MainWindow::OnXor()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("^", true);
+}
+
+void MainWindow::OnNot()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("!", true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -2711,7 +2776,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/functions_toolbar", functions_toolbar_action->isChecked());
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
     settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
-    settings.setValue("MainWindow/graph_toolbar", graph_toolbar_action->isChecked());
+    settings.setValue("MainWindow/graphs_toolbar", graph_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
@@ -3297,6 +3362,7 @@ void MainWindow::EnableButtons(bool enable)
     greek_toolbar->setEnabled(enable);
     currency_toolbar->setEnabled(enable);
     graph_toolbar->setEnabled(enable);
+    logical_toolbar->setEnabled(enable);
 }
 
 #ifdef REMOTE_SOLVER
