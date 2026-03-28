@@ -51,7 +51,11 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     
+#ifdef TEST_APP
+public:
+#else
 private:
+#endif
     void SetupGui();
 
     void AddEditorTab(const QString name, const QString tooltip);
@@ -231,7 +235,11 @@ private slots:
     void OnServiceStatus(IOResult result);
 #endif
 
+#ifdef TEST_APP
+public:
+#else
 private:
+#endif
     void FillScales();
     void FillParagraphFormats();
     void FillSizes(const QFont& font);
@@ -260,7 +268,11 @@ public:
     static QString GetLibraryDir();
     static QString GetTranslationDir(QString filename);
 
+#ifdef TEST_APP
+public:
+#else
 private:
+#endif
     friend class DocumentWindow;
 
     Ui::MainWindow *ui;

@@ -94,7 +94,11 @@ protected:
 private:
     ElementId GetResultId();
 
+#ifdef TEST_APP
+public:
+#else
 private:
+#endif
     friend class MainWindow;
 
     yutovo::Config& config;

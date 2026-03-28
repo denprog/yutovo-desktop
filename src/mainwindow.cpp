@@ -348,6 +348,7 @@ void MainWindow::CreateActions()
     QAction* action = new QAction(QIcon(":/icons/images/standard/new.png"), tr("&New"), this);
     action->setShortcuts(QKeySequence::New);
     action->setStatusTip(tr("Create a new document"));
+    action->setObjectName("actionNew");
     connect(action, &QAction::triggered, this, &MainWindow::New);
     file_menu->addAction(action);
     standard_toolbar->addAction(action);
@@ -355,6 +356,7 @@ void MainWindow::CreateActions()
     action = new QAction(QIcon(":/icons/images/standard/open.png"), tr("&Open..."), this);
     action->setShortcuts(QKeySequence::Open);
     action->setStatusTip(tr("Open an existing file"));
+    action->setObjectName("actionOpen");
     connect(action, &QAction::triggered, this, &MainWindow::Open);
     file_menu->addAction(action);
     standard_toolbar->addAction(action);
@@ -364,6 +366,7 @@ void MainWindow::CreateActions()
     save_action = new QAction(QIcon(":/icons/images/standard/save.png"), tr("&Save"), this);
     save_action->setShortcuts(QKeySequence::Save);
     save_action->setStatusTip(tr("Save the document to disk"));
+    save_action->setObjectName("actionSave");
     connect(save_action, &QAction::triggered, this, &MainWindow::Save);
     file_menu->addAction(save_action);
     standard_toolbar->addAction(save_action);
@@ -378,6 +381,7 @@ void MainWindow::CreateActions()
 
     close_action = new QAction(tr("&Close"), this);
     close_action->setStatusTip(tr("Close the document"));
+    close_action->setObjectName("actionClose");
     connect(close_action, &QAction::triggered, this, &MainWindow::Close);
     file_menu->addAction(close_action);
 
