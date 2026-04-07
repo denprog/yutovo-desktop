@@ -92,7 +92,27 @@ void MainWindow::Start(QString filename)
 #endif
 
     ui->editor_tabs->clear();
-    SetupGui();
+
+    //create toolbars and menu - they will never be deleted, only recreated on language change
+    CreateActions();
+    addToolBarBreak();
+    CreateAlgebraToolbar();
+    addToolBarBreak();
+    CreateTrigonometryToolbar();
+    addToolBarBreak();
+    CreateHyperbolicToolbar();
+    addToolBarBreak();
+    CreateFunctionsToolbar();
+    CreateGreekToolbar();
+    CreateCurrenciesToolbar();
+    CreateGraphsToolbar();
+    CreateLogicalToolbar();
+    CreateStatusBar();
+
+    //restore toolbar positions now that they exist
+    const auto state = settings.value("MainWindow/state", QByteArray()).toByteArray();
+    if (!state.isEmpty())
+        restoreState(state);
 
     AddEditorTab(tr("(No name)"), "");
 
@@ -144,7 +164,7 @@ void MainWindow::changeEvent(QEvent* event)
             link_label->setText(tr("yutovo_web_linux"));
 #endif
         }
-        SetupGui();
+        SetupGuiActions();
         UpdateRecentFiles();
     }
 
@@ -231,19 +251,37 @@ void MainWindow::dropEvent(QDropEvent *event)
     event->acceptProposedAction();    
 }
 
-void MainWindow::SetupGui()
+void MainWindow::SetupGuiActions()
 {
     ui->editor_tabs->setTabsClosable(true);
     ui->editor_tabs->disconnect();
     connect(ui->editor_tabs, SIGNAL(tabCloseRequested(int)), this, SLOT(OnCloseEditorTab(int)));
     connect(ui->editor_tabs, SIGNAL(currentChanged(int)), this, SLOT(OnEditorChanged(int)));
-
-    menuBar()->clear();
-
-    QList<QToolBar*> toolbars = findChildren<QToolBar*>();
-    for (auto& t : toolbars)
+    
+    //save toolbar positions before recreating
+    QByteArray saved_state = saveState();
+    
+    //remove existing toolbars
+    QList<QToolBar*> old_toolbars = findChildren<QToolBar*>();
+    for (auto t : old_toolbars)
+    {
         removeToolBar(t);
-
+        delete t;
+    }
+    
+    standard_toolbar = nullptr;
+    format_toolbar = nullptr;
+    algebra_toolbar = nullptr;
+    trigonometry_toolbar = nullptr;
+    hyperbolic_toolbar = nullptr;
+    functions_toolbar = nullptr;
+    greek_toolbar = nullptr;
+    currency_toolbar = nullptr;
+    graph_toolbar = nullptr;
+    logical_toolbar = nullptr;
+    
+    menuBar()->clear();
+    
     CreateActions();
     addToolBarBreak();
     CreateAlgebraToolbar();
@@ -257,31 +295,22 @@ void MainWindow::SetupGui()
     CreateCurrenciesToolbar();
     CreateGraphsToolbar();
     CreateLogicalToolbar();
-
-    CreateStatusBar();
-
-    bool b = settings.value("MainWindow/standard_toolbar", true).toBool();
-    standard_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/format_toolbar", true).toBool();
-    format_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/algebra_toolbar", true).toBool();
-    algebra_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/trigonometry_toolbar", false).toBool();
-    trigonometry_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/hyperbolic_toolbar", false).toBool();
-    hyperbolic_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/functions_toolbar", false).toBool();
-    functions_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/graphs_toolbar", false).toBool();
-    graph_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/greek_toolbar", false).toBool();
-    greek_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/currency_toolbar", false).toBool();
-    currency_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/logical_toolbar", false).toBool();
-    logical_toolbar_action->setChecked(b);
-    b = settings.value("MainWindow/status_bar", true).toBool();
-    status_bar_action->setChecked(b);
+    
+    if (!saved_state.isEmpty())
+        restoreState(saved_state);
+    
+    //restore toolbar visibility from settings
+    standard_toolbar_action->setChecked(settings.value("MainWindow/standard_toolbar", true).toBool());
+    format_toolbar_action->setChecked(settings.value("MainWindow/format_toolbar", true).toBool());
+    algebra_toolbar_action->setChecked(settings.value("MainWindow/algebra_toolbar", true).toBool());
+    trigonometry_toolbar_action->setChecked(settings.value("MainWindow/trigonometry_toolbar", false).toBool());
+    hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
+    functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
+    graph_toolbar_action->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
+    greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
+    currency_toolbar_action->setChecked(settings.value("MainWindow/currency_toolbar", false).toBool());
+    logical_toolbar_action->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
+    status_bar_action->setChecked(settings.value("MainWindow/status_bar", true).toBool());
 
     int i = ui->editor_tabs->currentIndex();
     if (i >= 0)
@@ -344,6 +373,7 @@ void MainWindow::CreateActions()
     //file menu and toolbar
     QMenu* file_menu = menuBar()->addMenu(tr("&File"));
     standard_toolbar = addToolBar(tr("Standard"));
+    standard_toolbar->setObjectName("standard_toolbar");
 
     QAction* action = new QAction(QIcon(":/icons/images/standard/new.png"), tr("&New"), this);
     action->setShortcuts(QKeySequence::New);
@@ -480,6 +510,7 @@ void MainWindow::CreateActions()
 
     //format toolbar
     format_toolbar = addToolBar(tr("Format"));
+    format_toolbar->setObjectName("format_toolbar");
     format_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     calculator_action = new QAction(QIcon(":/icons/images/format/code.png"), tr("Insert calculator"), this);
@@ -713,6 +744,7 @@ void MainWindow::CreateAlgebraToolbar()
 {
     //algebra toolbar
     algebra_toolbar = addToolBar(tr("Algebraic functions"));
+    algebra_toolbar->setObjectName("algebra_toolbar");
     algebra_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/algebra/plus.png"), tr("Plus") + " (+)", this);
@@ -800,6 +832,7 @@ void MainWindow::CreateTrigonometryToolbar()
 {
     //trigonometry toolbar
     trigonometry_toolbar = addToolBar(tr("Trigonometric functions"));
+    trigonometry_toolbar->setObjectName("trigonometry_toolbar");
     trigonometry_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/trigonometry/sin.png"), tr("Sine"), this);
@@ -855,6 +888,7 @@ void MainWindow::CreateHyperbolicToolbar()
 {
     //hyperbolic toolbar
     hyperbolic_toolbar = addToolBar(tr("Hyperbolic functions"));
+    hyperbolic_toolbar->setObjectName("hyperbolic_toolbar");
     hyperbolic_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/hyperbolic/sinh.png"), tr("Hyperbolic sine"), this);
@@ -910,6 +944,7 @@ void MainWindow::CreateFunctionsToolbar()
 {
     //functions toolbar
     functions_toolbar = addToolBar(tr("Hyperbolic functions"));
+    functions_toolbar->setObjectName("functions_toolbar");
     functions_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/functions/exp.png"), tr("Exponent"), this);
@@ -945,6 +980,7 @@ void MainWindow::CreateGreekToolbar()
 {
     //greek toolbar
     greek_toolbar = addToolBar(tr("Greek letters"));
+    greek_toolbar->setObjectName("greek_toolbar");
     greek_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     auto add_greek_letter = 
@@ -1011,6 +1047,7 @@ void MainWindow::CreateGreekToolbar()
 void MainWindow::CreateCurrenciesToolbar()
 {
     currency_toolbar = addToolBar(tr("Currencies"));
+    currency_toolbar->setObjectName("currency_toolbar");
     currency_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     auto add_currency = 
@@ -1035,6 +1072,7 @@ void MainWindow::CreateGraphsToolbar()
 {
     //graphs toolbar
     graph_toolbar = addToolBar(tr("Graphs"));
+    graph_toolbar->setObjectName("graph_toolbar");
     graph_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/graphs/graph_line.png"), tr("Line graph"), this);
@@ -1046,6 +1084,7 @@ void MainWindow::CreateLogicalToolbar()
 {
     //logical operations toolbar
     logical_toolbar = addToolBar(tr("Logical operations"));
+    logical_toolbar->setObjectName("logical_toolbar");
     logical_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/logical/and.png"), tr("Logical AND"), this);
@@ -2772,6 +2811,7 @@ void MainWindow::WriteSettings()
     if (!standard_toolbar_action)
         return;
     settings.setValue("MainWindow/geometry", saveGeometry());
+    settings.setValue("MainWindow/state", saveState());
     settings.setValue("MainWindow/standard_toolbar", standard_toolbar_action->isChecked());
     settings.setValue("MainWindow/format_toolbar", format_toolbar_action->isChecked());
     settings.setValue("MainWindow/algebra_toolbar", algebra_toolbar_action->isChecked());
@@ -2864,7 +2904,7 @@ void MainWindow::ReadSettings()
     const auto geometry = settings.value("MainWindow/geometry", QByteArray()).toByteArray();
     if (!geometry.isEmpty())
         restoreGeometry(geometry);
-    
+
     std::string lang = QLocale::system().name().toUtf8().data(); //get current system language, it will be default one
     lang = lang.substr(0, lang.find('_'));
     if (lang != "en" && lang != "ru" && lang != "es")

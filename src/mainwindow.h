@@ -56,7 +56,7 @@ public:
 #else
 private:
 #endif
-    void SetupGui();
+    void SetupGuiActions();
 
     void AddEditorTab(const QString name, const QString tooltip);
 
