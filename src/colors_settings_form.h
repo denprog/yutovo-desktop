@@ -37,6 +37,8 @@ private slots:
     void OnSelectionBgColorClicked();
     void OnFormulaHilightColorClicked();
     void OnFormulaFrameColorClicked();
+    void OnPageColorClicked();
+    void OnPageBorderColorClicked();
 
 private:
     Ui::ColorsSettingsForm *form;

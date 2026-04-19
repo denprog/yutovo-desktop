@@ -84,6 +84,14 @@
         <translation>Форма</translation>
     </message>
     <message>
+        <source>Page</source>
+        <translation>Страница</translation>
+    </message>
+    <message>
+        <source>Page frame</source>
+        <translation>Рамка страницы</translation>
+    </message>
+    <message>
         <source>Code block frame</source>
         <translation>Рамка блока кода</translation>
     </message>

@@ -62,6 +62,14 @@ ColorsSettingsForm::ColorsSettingsForm(yutovo::Config& _config, QWidget *parent)
     c = QColor::fromRgb(config.formula_frame_color.ToInt());
     form->formula_frame_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     connect(form->formula_frame_color, SIGNAL(clicked()), this, SLOT(OnFormulaFrameColorClicked()));
+
+    c = QColor::fromRgb(config.page_color.ToInt());
+    form->page_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    connect(form->page_color, SIGNAL(clicked()), this, SLOT(OnPageColorClicked()));
+
+    c = QColor::fromRgb(config.page_border_color.ToInt());
+    form->page_border_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    connect(form->page_border_color, SIGNAL(clicked()), this, SLOT(OnPageBorderColorClicked()));
 }
 
 ColorsSettingsForm::~ColorsSettingsForm()
@@ -187,5 +195,27 @@ void ColorsSettingsForm::OnFormulaFrameColorClicked()
         QColor c = d.selectedColor();
         config.formula_frame_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
         form->formula_frame_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    }
+}
+
+void ColorsSettingsForm::OnPageColorClicked()
+{
+    QColorDialog d(QColor::fromRgba(config.page_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        QColor c = d.selectedColor();
+        config.page_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->page_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    }
+}
+
+void ColorsSettingsForm::OnPageBorderColorClicked()
+{
+    QColorDialog d(QColor::fromRgba(config.page_border_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        QColor c = d.selectedColor();
+        config.page_border_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->page_border_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     }
 }

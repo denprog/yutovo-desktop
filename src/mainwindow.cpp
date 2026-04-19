@@ -2854,6 +2854,8 @@ void MainWindow::WriteSettings()
     settings.setValue("bg_selection_color", config.bg_selection_color.ToInt());
     settings.setValue("hilight_color", config.hilight_color.ToInt());
     settings.setValue("formula_frame_color", config.formula_frame_color.ToInt());
+    settings.setValue("page_color", config.page_color.ToInt());
+    settings.setValue("page_border_color", config.page_border_color.ToInt());
     settings.endGroup();
 
     settings.beginGroup("Fonts");
@@ -2999,6 +3001,8 @@ void MainWindow::ReadSettings()
     config.bg_selection_color = Color::FromInt(settings.value("bg_selection_color", Color::Blue().ToInt()).toInt());
     config.hilight_color = Color::FromInt(settings.value("hilight_color", Color::FromHex("#97deff").ToInt()).toInt());
     config.formula_frame_color = Color::FromInt(settings.value("formula_frame_color", Color::FromHex("#b8d3ff").ToInt()).toInt());
+    config.page_color = Color::FromInt(settings.value("page_color", Color::White().ToInt()).toInt());
+    config.page_border_color = Color::FromInt(settings.value("page_border_color", Color::Blue().ToInt()).toInt());
     settings.endGroup();
 
     settings.beginGroup("Calculator");

@@ -84,6 +84,14 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Formulario</translation>
     </message>
     <message>
+        <source>Page</source>
+        <translation>Página</translation>
+    </message>
+    <message>
+        <source>Page frame</source>
+        <translation>Marco de página</translation>
+    </message>
+    <message>
         <source>Code block frame</source>
         <translation>Marco del bloque de código</translation>
     </message>
