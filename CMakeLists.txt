@@ -22,5 +22,9 @@ else()
     set(INSTALL_PATH "$ENV{YUTOVO_DEPLOY}")
 endif()
 
+option(BUILD_TESTS "Build unit tests" ON)
+
 add_subdirectory(src)
-add_subdirectory(test)
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif()
