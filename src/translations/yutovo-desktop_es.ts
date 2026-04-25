@@ -805,8 +805,16 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Mostrar el diálogo de Política de privacidad</translation>
     </message>
     <message>
-        <source>Show the application's About box</source>
+        <source>Show the application&apos;s About box</source>
         <translation>Mostrar el diálogo Acerca de Yutovo</translation>
+    </message>
+    <message>
+        <source>&amp;What&apos;s New</source>
+        <translation>&amp;Novedades</translation>
+    </message>
+    <message>
+        <source>Show what&apos;s new in this version</source>
+        <translation>Mostrar las novedades de esta versión</translation>
     </message>
     <message>
         <source>Algebraic functions</source>
@@ -1682,6 +1690,25 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Thickness</source>
         <translation>Grosor</translation>
+    </message>
+</context>
+<context>
+    <name>WhatsNewDialog</name>
+    <message>
+        <source>What&apos;s New</source>
+        <translation>Novedades</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Aceptar</translation>
+    </message>
+    <message>
+        <source>Changelog not found.</source>
+        <translation>No se encontró el registro de cambios.</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Versión</translation>
     </message>
 </context>
 </TS>

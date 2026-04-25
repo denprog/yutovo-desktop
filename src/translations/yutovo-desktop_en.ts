@@ -266,6 +266,33 @@ You assume all responsibility and risk in relation to your use of this applicati
     <message>
         <source>Ω</source>
         <translation>Omega</translation>
-    </message>    
+    </message>
+    <message>
+        <source>&amp;What&apos;s New</source>
+        <translation>&amp;What&apos;s New</translation>
+    </message>
+    <message>
+        <source>Show what&apos;s new in this version</source>
+        <translation>Show what&apos;s new in this version</translation>
+    </message>
+</context>
+<context>
+    <name>WhatsNewDialog</name>
+    <message>
+        <source>What&apos;s New</source>
+        <translation>What&apos;s New</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Changelog not found.</source>
+        <translation>Changelog not found.</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Version</translation>
+    </message>
 </context>
 </TS>

@@ -5,30 +5,30 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-#ifndef __ABOUT_DIALOG_H__
-#define __ABOUT_DIALOG_H__
+#ifndef __WHATS_NEW_DIALOG_H__
+#define __WHATS_NEW_DIALOG_H__
 
 #include <QDialog>
 
 namespace Ui
 {
-class AboutDialog;
+class WhatsNewDialog;
 };
 
-static constexpr const char* APP_VERSION = "1.5.3";
-
-class AboutDialog : public QDialog
+class WhatsNewDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    AboutDialog();
+    WhatsNewDialog(const QString& language, QWidget* parent = nullptr);
 
 private slots:
     void OnOkClicked();
 
 private:
-    Ui::AboutDialog* form = nullptr;
+    Ui::WhatsNewDialog* form = nullptr;
+
+    QString ExtractCurrentVersion(const QString& text);
 };
 
 #endif

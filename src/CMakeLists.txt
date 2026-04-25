@@ -100,6 +100,9 @@ add_executable(${PROJECT_NAME} WIN32
     export_pdf_dialog.ui
     export_pdf_dialog.cpp
     prompt_form.cpp
+    whats_new_dialog.ui
+    whats_new_dialog.cpp
+    whats_new_dialog.h
 )
 
 if (NOT WIN32)

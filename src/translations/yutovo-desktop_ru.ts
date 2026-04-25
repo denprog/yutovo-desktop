@@ -813,6 +813,14 @@
         <translation>Показать диалог О программе</translation>
     </message>
     <message>
+        <source>&amp;What&apos;s New</source>
+        <translation>&amp;Что нового</translation>
+    </message>
+    <message>
+        <source>Show what&apos;s new in this version</source>
+        <translation>Показать, что нового в этой версии</translation>
+    </message>
+    <message>
         <source>Algebraic functions</source>
         <translation>Алгебраические функции</translation>
     </message>
@@ -1679,6 +1687,25 @@
     <message>
         <source>Thickness</source>
         <translation>Толщина</translation>
+    </message>
+</context>
+<context>
+    <name>WhatsNewDialog</name>
+    <message>
+        <source>What&apos;s New</source>
+        <translation>Что нового</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <source>Changelog not found.</source>
+        <translation>Список изменений не найден.</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Версия</translation>
     </message>
 </context>
 </TS>

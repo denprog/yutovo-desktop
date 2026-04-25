@@ -805,8 +805,16 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Mostrar o diálogo de Política de privacidade</translation>
     </message>
     <message>
-        <source>Show the application's About box</source>
+        <source>Show the application&apos;s About box</source>
         <translation>Mostrar o diálogo Sobre</translation>
+    </message>
+    <message>
+        <source>&amp;What&apos;s New</source>
+        <translation>&amp;Novidades</translation>
+    </message>
+    <message>
+        <source>Show what&apos;s new in this version</source>
+        <translation>Mostrar as novidades desta versão</translation>
     </message>
     <message>
         <source>Algebraic functions</source>
@@ -1682,6 +1690,25 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Thickness</source>
         <translation>Espessura</translation>
+    </message>
+</context>
+<context>
+    <name>WhatsNewDialog</name>
+    <message>
+        <source>What&apos;s New</source>
+        <translation>Novidades</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Changelog not found.</source>
+        <translation>Registro de alterações não encontrado.</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Versão</translation>
     </message>
 </context>
 </TS>

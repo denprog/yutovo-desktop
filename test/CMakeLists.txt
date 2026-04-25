@@ -41,6 +41,7 @@ set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/plot_format_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/export_pdf_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/prompt_form.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/whats_new_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/qt_window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/document_window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/command_map.cpp

@@ -22,6 +22,7 @@
 #include <QUrl>
 #include <QDesktopServices>
 #include <QTextDocument>
+#include <QTimer>
 #include <filesystem>
 #ifdef _WIN32
 #include <shlobj_core.h>
@@ -38,6 +39,7 @@
 #include "privacy_policy_dialog.h"
 #include "graph_settings_dialog.h"
 #include "export_pdf_dialog.h"
+#include "whats_new_dialog.h"
 
 //MainWindow
 
@@ -149,6 +151,8 @@ void MainWindow::Start(QString filename)
         else
             OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
+
+    QTimer::singleShot(0, this, &MainWindow::CheckVersionAndShowWhatsNew);
 
     logger->Info("Desktop start");
 }
@@ -719,6 +723,9 @@ void MainWindow::CreateActions()
     help_menu->setStatusTip(tr("Show the application's Privacy policy box"));
 
     help_menu->addSeparator();
+
+    action = help_menu->addAction(tr("&What's New"), this, &MainWindow::WhatsNew);
+    help_menu->setStatusTip(tr("Show what's new in this version"));
 
     action = help_menu->addAction(tr("&About"), this, &MainWindow::About);
     help_menu->setStatusTip(tr("Show the application's About box"));
@@ -1669,6 +1676,23 @@ void MainWindow::About()
 {
     AboutDialog about_dialog;
     about_dialog.exec();
+}
+
+void MainWindow::WhatsNew()
+{
+    WhatsNewDialog whats_new_dialog(LanguageToString(config.language), this);
+    whats_new_dialog.exec();
+}
+
+void MainWindow::CheckVersionAndShowWhatsNew()
+{
+    QString saved_version = settings.value("MainWindow/version").toString();
+    if (saved_version != APP_VERSION)
+    {
+        WhatsNewDialog dialog(LanguageToString(config.language), this);
+        dialog.exec();
+        settings.setValue("MainWindow/version", APP_VERSION);
+    }
 }
 
 void MainWindow::StandardToolbar()
@@ -2814,6 +2838,7 @@ void MainWindow::WriteSettings()
         return;
     settings.setValue("MainWindow/geometry", saveGeometry());
     settings.setValue("MainWindow/state", saveState());
+    settings.setValue("MainWindow/version", APP_VERSION);
     settings.setValue("MainWindow/standard_toolbar", standard_toolbar_action->isChecked());
     settings.setValue("MainWindow/format_toolbar", format_toolbar_action->isChecked());
     settings.setValue("MainWindow/algebra_toolbar", algebra_toolbar_action->isChecked());
@@ -3425,6 +3450,21 @@ void MainWindow::EnableButtons(bool enable)
     currency_toolbar->setEnabled(enable);
     graph_toolbar->setEnabled(enable);
     logical_toolbar->setEnabled(enable);
+}
+
+QString MainWindow::LanguageToString(yutovo_calculator::Language lang)
+{
+    switch (lang)
+    {
+    case yutovo_calculator::Language::Russian:
+        return "ru";
+    case yutovo_calculator::Language::Spanish:
+        return "es";
+    case yutovo_calculator::Language::BrazilianPortuguese:
+        return "pt_BR";
+    default:
+        return "en";
+    }
 }
 
 #ifdef REMOTE_SOLVER

@@ -110,6 +110,7 @@ private:
     void TermsOfUse();
     void PrivacyPolicy();
     void About();
+    void WhatsNew();
 
     void StandardToolbar();
     void FormatToolbar();
@@ -125,6 +126,7 @@ private:
     void StatusBar();
 
 private slots:
+    void CheckVersionAndShowWhatsNew();
     void OnNextEditorTab();
     void OnPrevEditorTab();
     void OnScaleChanged(const float scale);
@@ -259,6 +261,8 @@ private:
     void UpdateLocaleMessage();
 
     void EnableButtons(bool enable);
+
+    QString LanguageToString(yutovo_calculator::Language lang);
 
 #ifdef REMOTE_SOLVER
     void RestartService();

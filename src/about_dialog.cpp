@@ -30,7 +30,7 @@ AboutDialog::AboutDialog() :
     form->bug_tracker_link->setOpenExternalLinks(true);
     form->source_code_link->setText(tr("source_code_link_text"));
     form->source_code_link->setOpenExternalLinks(true);
-    form->version->setText(tr("version") + version + ".");
+    form->version->setText(tr("version") + APP_VERSION + ".");
 
     connect(form->ok, SIGNAL(clicked()), this, SLOT(OnOkClicked()));
 }
