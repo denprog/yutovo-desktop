@@ -537,6 +537,7 @@ void MainWindow::CreateActions()
     format_toolbar->addSeparator();
 
     paragraph_format_combo = new QComboBox;
+    paragraph_format_combo->setFixedWidth(120);
     format_toolbar->addWidget(paragraph_format_combo);
     connect(paragraph_format_combo, &QComboBox::currentTextChanged, this, &MainWindow::OnCurrentParagraphFormatChanged);
 
