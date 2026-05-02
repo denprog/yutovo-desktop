@@ -16,7 +16,11 @@ TermsOfUseDialog::TermsOfUseDialog() :
     form->setupUi(this);
 
     setFixedSize(width(), height());
-    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint
+#ifdef _WIN32
+        | Qt::WindowTitleHint
+#endif
+        );
     setWindowIcon(QIcon(":/icons/images/mainicon.png"));
 
     form->icon->setPixmap(QIcon(":/icons/images/mainicon.png").pixmap(64, 64));

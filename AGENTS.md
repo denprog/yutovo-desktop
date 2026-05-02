@@ -40,7 +40,9 @@ ctest -R <pattern>                       # run via CTest
 - Uses Qt5::Test; fixtures in `test/files.cpp`.
 
 ## Dependencies (must be pre-built)
-Internal libs from the yutovo monorepo — build these first and install into `$YUTOVO_DEPLOY`:
+Internal libs from the yutovo monorepo — build these first:
+- Linux: install into `$YUTOVO_DEPLOY`
+- Windows: install into vcpkg (`$VCPKG_ROOT/installed/x64-windows`)
 - **yutovo-logger**
 - **yutovo-calculator**
 - **yutovo-solver**

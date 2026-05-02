@@ -19,7 +19,11 @@ WhatsNewDialog::WhatsNewDialog(const QString& language, QWidget* parent) :
     form->setupUi(this);
 
     setFixedSize(width(), height());
-    setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint
+#ifdef _WIN32
+        | Qt::WindowTitleHint
+#endif
+        );
     setWindowIcon(QIcon(":/icons/images/mainicon.png"));
 
     QString suffix;
