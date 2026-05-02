@@ -10,6 +10,17 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Test)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS PrintSupport REQUIRED)
+
+if(WIN32)
+    add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /bigobj /EHsc /MP")
+    find_package(PkgConfig REQUIRED)
+    find_package(Boost REQUIRED COMPONENTS property_tree)
+    find_package(BZip2 REQUIRED)
+    find_package(RapidJSON CONFIG REQUIRED)
+    find_package(unofficial-libharu CONFIG REQUIRED)
+    pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
+endif()
 find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-calculator REQUIRED)
@@ -67,13 +78,27 @@ target_link_libraries(${PROJECT_NAME}_test PRIVATE
     Qt5::Widgets
     Qt5::Test
     Qt5::PrintSupport
-    z
-    fontconfig
     yutovo-logger
     yutovo-editor
     yutovo-calculator
     yutovo-solver
 )
+if(WIN32)
+    find_library(MGL_LIB NAMES mgld mgl PATHS ${INSTALL_PATH}/debug/lib ${INSTALL_PATH}/lib)
+    find_library(ZLIB_LIB NAMES zlibd zlib PATHS ${INSTALL_PATH}/debug/lib ${INSTALL_PATH}/lib)
+    target_link_libraries(${PROJECT_NAME}_test PRIVATE
+        ${MGL_LIB}
+        Boost::property_tree
+        BZip2::BZip2
+        unofficial::libharu::hpdf
+        ${ZLIB_LIB}
+    )
+else()
+    target_link_libraries(${PROJECT_NAME}_test PRIVATE
+        z
+        fontconfig
+    )
+endif()
 
 enable_testing()
 add_test(NAME files COMMAND files)
