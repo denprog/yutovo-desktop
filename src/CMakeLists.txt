@@ -43,7 +43,7 @@ if(WIN32)
     find_package(unofficial-libharu CONFIG REQUIRED)
     pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /bigobj /EHsc")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /bigobj /EHsc /MP")
 endif()
 
 if (Qt5Widgets_FOUND)
@@ -210,5 +210,18 @@ if(NOT WIN32)
         EXPORT ${PROJECT_NAME}
         DESTINATION ${INSTALL_PATH}/bin
         COMPONENT ${PROJECT_NAME}
+    )
+endif()
+
+if(WIN32)
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${INSTALL_PATH}/$<$<CONFIG:Debug>:debug/>plugins/platforms"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/platforms"
+    )
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${INSTALL_PATH}/$<$<CONFIG:Debug>:debug/>bin"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     )
 endif()

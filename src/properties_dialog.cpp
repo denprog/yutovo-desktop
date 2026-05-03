@@ -23,7 +23,11 @@ PropertiesDialog::PropertiesDialog(yutovo::Config& _config) :
 
     form->language->setCurrentIndex((int)config.language - 1);
 
-    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint
+#ifdef _WIN32
+        | Qt::WindowTitleHint
+#endif
+        );
     
     connect(form->includes, &QListWidget::itemChanged, this, &PropertiesDialog::IncludesItemChanged);
     connect(form->move_file_up, &QAbstractButton::clicked, this, &PropertiesDialog::OnMoveFileUp);

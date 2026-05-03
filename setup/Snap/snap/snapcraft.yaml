@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.5.2'
+version: '1.5.3'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -181,14 +181,14 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.3.7
+    source-tag: v1.3.8
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app
       mkdir -p $CRAFT_PART_INSTALL/app/lib
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake \
-        -DBUILD_TESTS=OFF
+        -DBUILD_TESTS=OFF -DBoost_INCLUDE_DIR=$CRAFT_STAGE/app/include -DBoost_NO_SYSTEM_PATHS=ON
       make -j$(nproc) && make install
     build-packages:
       - pkg-config
@@ -236,7 +236,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.5.2
+    source-tag: v1.5.3
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -253,15 +253,23 @@ parts:
     after: [yutovo-solver, mathgl, libharu, stb-image]
 
   yutovo-library:
-    plugin: dump
+    plugin: nil
     source: https://github.com/denprog/yutovo-library.git
     source-tag: desktop
     source-depth: 1
-    override-stage: |
+    override-build: | 
       set -e
       cd $CRAFT_PART_SRC
       ./pack.sh
-      cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin
+      if [ ! -d "library" ]; then
+        echo "Error: Expected 'library' directory not found after running pack.sh in $CRAFT_PART_SRC"
+        ls -la
+        exit 1
+      fi
+    override-stage: | 
+      set -e
+      mkdir -p $CRAFT_STAGE/app/bin
+      cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin/
 
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -286,7 +294,7 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.5.2
+    source-tag: v1.5.3
     build-packages:
       - rsync
       - qttools5-dev-tools
@@ -295,7 +303,7 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/app
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
       cmake $CRAFT_PART_SRC -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=$CRAFT_STAGE/app/lib \
-        -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake -DCMAKE_EXE_LINKER_FLAGS="-L$CRAFT_STAGE/app/lib"
+        -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake -DCMAKE_EXE_LINKER_FLAGS="-L$CRAFT_STAGE/app/lib" -DBUILD_TESTS=False
       make -j$(nproc) && make install
       cp $CRAFT_PART_SRC/setup/Snap/run.sh $CRAFT_STAGE/app/bin/
       cp $CRAFT_PART_SRC/setup/yutovo.desktop $CRAFT_STAGE/app/
