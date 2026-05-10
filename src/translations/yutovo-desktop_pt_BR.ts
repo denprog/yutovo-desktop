@@ -237,6 +237,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Complexos</translation>
     </message>
     <message>
+        <source>Symbolic</source>
+        <translation>Simbólicos</translation>
+    </message>
+    <message>
         <source>Set precision</source>
         <translation>Precisão</translation>
     </message>
@@ -1393,6 +1397,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Real</source>
         <translation>Reais</translation>
+    </message>
+    <message>
+        <source>Symbolic</source>
+        <translation>Simbólicos</translation>
     </message>
     <message>
         <source>Angle measure</source>

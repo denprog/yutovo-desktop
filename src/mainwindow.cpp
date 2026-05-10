@@ -3058,6 +3058,12 @@ void MainWindow::ReadSettings()
             results_order[i++] = ResultType::COMPLEX;
         if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order))
             results_order[i++] = ResultType::ARRAY_REAL;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_REAL) == std::end(results_order))
+            results_order[i++] = ResultType::SYMBOLIC_REAL;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_RATIONAL) == std::end(results_order))
+            results_order[i++] = ResultType::SYMBOLIC_RATIONAL;
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_COMPLEX) == std::end(results_order))
+            results_order[i++] = ResultType::SYMBOLIC_COMPLEX;
     }
 
     config.real_result.precision = settings.value("real_precision", 3).toInt();

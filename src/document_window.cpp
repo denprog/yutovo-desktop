@@ -115,11 +115,18 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             present_as_menu->addAction(present_as_integer);
             present_as_menu->addAction(present_as_rational);
             present_as_menu->addAction(present_as_complex);
+            present_as_symbolic_menu->addAction(present_as_symbolic_real);
+            present_as_symbolic_menu->addAction(present_as_symbolic_rational);
+            present_as_symbolic_menu->addAction(present_as_symbolic_complex);
+            present_as_menu->addMenu(present_as_symbolic_menu);
             present_as_auto->setChecked(false);
             present_as_real->setChecked(false);
             present_as_integer->setChecked(false);
             present_as_rational->setChecked(false);
             present_as_complex->setChecked(false);
+            present_as_symbolic_real->setChecked(false);
+            present_as_symbolic_rational->setChecked(false);
+            present_as_symbolic_complex->setChecked(false);
         };
 
     auto add_real_menu = 
@@ -241,6 +248,13 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             result_grad->setChecked(result_angle_measure == AngleMeasure::Grad);
         };
 
+    auto add_symbolic_menu =
+        [&](ElementId id)
+        {
+            menu.addSeparator();
+            menu.addAction(set_precision);
+        };
+
     auto add_array_real_menu = 
         [&](ElementId id)
         {
@@ -317,6 +331,11 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         case ResultType::ARRAY_REAL:
             add_array_real_menu(id);
             break;
+        case ResultType::SYMBOLIC_REAL:
+        case ResultType::SYMBOLIC_RATIONAL:
+        case ResultType::SYMBOLIC_COMPLEX:
+            add_symbolic_menu(id);
+            break;
         }
     }
     else
@@ -357,10 +376,40 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                     }
                     else
                     {
-                        id = document->FindCurrentParentByType(ElementType::ARRAY_REAL_RESULT);
+                        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
                         if (!id.empty())
                         {
-                            add_array_real_menu(id);
+                            add_present_as_menu();
+                            present_as_symbolic_real->setChecked(true);
+                            add_symbolic_menu(id);
+                        }
+                        else
+                        {
+                            id = document->FindCurrentParentByType(ElementType::SYMBOLIC_RATIONAL_RESULT);
+                            if (!id.empty())
+                            {
+                                add_present_as_menu();
+                                present_as_symbolic_rational->setChecked(true);
+                                add_symbolic_menu(id);
+                            }
+                            else
+                            {
+                                id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
+                                if (!id.empty())
+                                {
+                                    add_present_as_menu();
+                                    present_as_symbolic_complex->setChecked(true);
+                                    add_symbolic_menu(id);
+                                }
+                                else
+                                {
+                                    id = document->FindCurrentParentByType(ElementType::ARRAY_REAL_RESULT);
+                                    if (!id.empty())
+                                    {
+                                        add_array_real_menu(id);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -423,6 +472,24 @@ void DocumentWindow::CreateMenus()
     present_as_complex = new QAction(tr("Complex"), this);
     present_as_complex->setCheckable(true);
     connect(present_as_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsComplex);
+    if (present_as_symbolic_menu)
+        present_as_symbolic_menu->deleteLater();
+    present_as_symbolic_menu = new QMenu(tr("Symbolic"), this);
+    if (present_as_symbolic_real)
+        present_as_symbolic_real->deleteLater();
+    present_as_symbolic_real = new QAction(tr("Real"), this);
+    present_as_symbolic_real->setCheckable(true);
+    connect(present_as_symbolic_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsSymbolicReal);
+    if (present_as_symbolic_rational)
+        present_as_symbolic_rational->deleteLater();
+    present_as_symbolic_rational = new QAction(tr("Rational"), this);
+    present_as_symbolic_rational->setCheckable(true);
+    connect(present_as_symbolic_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsSymbolicRational);
+    if (present_as_symbolic_complex)
+        present_as_symbolic_complex->deleteLater();
+    present_as_symbolic_complex = new QAction(tr("Complex"), this);
+    present_as_symbolic_complex->setCheckable(true);
+    connect(present_as_symbolic_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsSymbolicComplex);
 
     if (set_precision)
         set_precision->deleteLater();
@@ -648,6 +715,21 @@ void DocumentWindow::OnPresentAsComplex()
     document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::COMPLEX, true);
 }
 
+void DocumentWindow::OnPresentAsSymbolicReal()
+{
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::SYMBOLIC_REAL, true);
+}
+
+void DocumentWindow::OnPresentAsSymbolicRational()
+{
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::SYMBOLIC_RATIONAL, true);
+}
+
+void DocumentWindow::OnPresentAsSymbolicComplex()
+{
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::SYMBOLIC_COMPLEX, true);
+}
+
 void DocumentWindow::OnSetPrecision()
 {
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
@@ -655,6 +737,12 @@ void DocumentWindow::OnSetPrecision()
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_RATIONAL_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
     if (id.empty())
         return;
     

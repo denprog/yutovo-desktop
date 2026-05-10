@@ -70,6 +70,9 @@ ResultSettingsForm::~ResultSettingsForm()
     config.auto_result.integer_result = config.integer_result;
     config.auto_result.rational_result = config.rational_result;
     config.auto_result.complex_result = config.complex_result;
+    config.auto_result.symbolic_real_result = config.real_result;
+    config.auto_result.symbolic_rational_result = config.rational_result;
+    config.auto_result.symbolic_complex_result = config.complex_result;
 
     delete ui;
 }
@@ -90,7 +93,7 @@ void ResultSettingsForm::OnUpResultOrderClicked()
 void ResultSettingsForm::OnDownResultOrderClicked()
 {
     int p = ui->auto_result_order->currentRow();
-    if (p >= 3)
+    if (p >= 5)
         return;
     auto& results_order = config.auto_result.results_order;
     auto r = results_order[p + 1];
@@ -122,6 +125,15 @@ void ResultSettingsForm::FillResultsOrder()
             break;
         case ResultType::ARRAY_REAL:
             ui->auto_result_order->addItem(tr("Array of real"));
+            break;
+        case ResultType::SYMBOLIC_REAL:
+            ui->auto_result_order->addItem(tr("Symbolic real"));
+            break;
+        case ResultType::SYMBOLIC_RATIONAL:
+            ui->auto_result_order->addItem(tr("Symbolic rational"));
+            break;
+        case ResultType::SYMBOLIC_COMPLEX:
+            ui->auto_result_order->addItem(tr("Symbolic complex"));
             break;
         default:
             break;

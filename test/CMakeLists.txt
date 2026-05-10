@@ -25,6 +25,7 @@ find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-calculator REQUIRED)
 find_package(yutovo-solver REQUIRED)
+find_package(SymEngine REQUIRED)
 
 set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/mainwindow.cpp
@@ -83,6 +84,7 @@ target_link_libraries(${PROJECT_NAME}_test PRIVATE
     yutovo-calculator
     yutovo-solver
 )
+
 if(WIN32)
     find_library(MGL_LIB NAMES mgld mgl PATHS ${INSTALL_PATH}/debug/lib ${INSTALL_PATH}/lib)
     find_library(ZLIB_LIB NAMES zlibd zlib PATHS ${INSTALL_PATH}/debug/lib ${INSTALL_PATH}/lib)

@@ -31,6 +31,7 @@ endif()
 find_package(yutovo-editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(MathGL2 REQUIRED PATHS ${INSTALL_PATH}/lib/cmake)
+find_package(SymEngine REQUIRED)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)

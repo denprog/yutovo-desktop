@@ -186,6 +186,10 @@
         <translation>Комплексные</translation>
     </message>
     <message>
+        <source>Symbolic</source>
+        <translation>Символьные</translation>
+    </message>
+    <message>
         <source>Set precision</source>
         <translation>Точность</translation>
     </message>
@@ -1397,6 +1401,10 @@
     <message>
         <source>Real</source>
         <translation>Вещественные</translation>
+    </message>
+    <message>
+        <source>Symbolic</source>
+        <translation>Символьные</translation>
     </message>
     <message>
         <source>Angle measure</source>

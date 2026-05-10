@@ -93,7 +93,13 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
         CommandContext::Formula);
     Add(QKeySequence(""), "\\eq_rat", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::RATIONAL, true)), 
         CommandContext::Formula);
-    Add(QKeySequence(""), "\\eq_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::COMPLEX, true)), 
+    Add(QKeySequence(""), "\\eq_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::COMPLEX, true)),
+        CommandContext::Formula);
+    Add(QKeySequence(""), "\\eq_sym_real", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::SYMBOLIC_REAL, true)),
+        CommandContext::Formula);
+    Add(QKeySequence(""), "\\eq_sym_rat", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::SYMBOLIC_RATIONAL, true)),
+        CommandContext::Formula);
+    Add(QKeySequence(""), "\\eq_sym_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::SYMBOLIC_COMPLEX, true)),
         CommandContext::Formula);
     Add(QKeySequence(""), '(', "\\open_round_bracket", std::function<void ()>(std::bind(&Document::InsertOpenRoundBracket, document.get(), true)), 
         CommandContext::Formula);
