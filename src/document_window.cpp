@@ -252,7 +252,11 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         [&](ElementId id)
         {
             menu.addSeparator();
-            menu.addAction(set_precision);
+            auto rt = document->GetResultType(id);
+            if (rt != ResultType::SYMBOLIC_RATIONAL)
+                menu.addAction(set_precision);
+            if (rt == ResultType::SYMBOLIC_REAL || rt == ResultType::SYMBOLIC_COMPLEX)
+                menu.addAction(set_exp);
         };
 
     auto add_array_real_menu = 
@@ -740,8 +744,6 @@ void DocumentWindow::OnSetPrecision()
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
     if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_RATIONAL_RESULT);
-    if (id.empty())
         id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
     if (id.empty())
         return;
@@ -760,6 +762,10 @@ void DocumentWindow::OnSetExp()
         id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
     if (id.empty())
         return;
     
