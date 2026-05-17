@@ -249,10 +249,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
         };
 
     auto add_symbolic_menu =
-        [&](ElementId id)
+        [&](ElementId id, ResultType rt)
         {
             menu.addSeparator();
-            auto rt = document->GetResultType(id);
             if (rt != ResultType::SYMBOLIC_RATIONAL)
                 menu.addAction(set_precision);
             if (rt == ResultType::SYMBOLIC_REAL || rt == ResultType::SYMBOLIC_COMPLEX)
@@ -336,9 +335,13 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             add_array_real_menu(id);
             break;
         case ResultType::SYMBOLIC_REAL:
+            add_symbolic_menu(id, ResultType::SYMBOLIC_REAL);
+            break;
         case ResultType::SYMBOLIC_RATIONAL:
+            add_symbolic_menu(id, ResultType::SYMBOLIC_RATIONAL);
+            break;
         case ResultType::SYMBOLIC_COMPLEX:
-            add_symbolic_menu(id);
+            add_symbolic_menu(id, ResultType::SYMBOLIC_COMPLEX);
             break;
         }
     }
@@ -385,7 +388,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                         {
                             add_present_as_menu();
                             present_as_symbolic_real->setChecked(true);
-                            add_symbolic_menu(id);
+                            add_symbolic_menu(id, ResultType::SYMBOLIC_REAL);
                         }
                         else
                         {
@@ -394,7 +397,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                             {
                                 add_present_as_menu();
                                 present_as_symbolic_rational->setChecked(true);
-                                add_symbolic_menu(id);
+                                add_symbolic_menu(id, ResultType::SYMBOLIC_RATIONAL);
                             }
                             else
                             {
@@ -403,7 +406,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                                 {
                                     add_present_as_menu();
                                     present_as_symbolic_complex->setChecked(true);
-                                    add_symbolic_menu(id);
+                                    add_symbolic_menu(id, ResultType::SYMBOLIC_COMPLEX);
                                 }
                                 else
                                 {
