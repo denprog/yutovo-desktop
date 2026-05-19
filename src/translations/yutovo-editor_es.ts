@@ -84,6 +84,14 @@
         <translation>Desbordamiento del argumento</translation>
     </message>
     <message>
+        <source>Function is not implemented</source>
+        <translation>Función no está implementada</translation>
+    </message>
+    <message>
+        <source>Data conversion error</source>
+        <translation>Error de conversión de datos</translation>
+    </message>
+    <message>
         <source>Units are incompatible</source>
         <translation>Las unidades no son compatibles</translation>
     </message>

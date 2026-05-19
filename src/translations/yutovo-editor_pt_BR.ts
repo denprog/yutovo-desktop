@@ -84,6 +84,14 @@
         <translation>Estouro do argumento</translation>
     </message>
     <message>
+        <source>Function is not implemented</source>
+        <translation>Função não está implementada.</translation>
+    </message>
+    <message>
+        <source>Data conversion error</source>
+        <translation>Erro de conversão de dados</translation>
+    </message>
+    <message>
         <source>Units are incompatible</source>
         <translation>As unidades são incompatíveis</translation>
     </message>

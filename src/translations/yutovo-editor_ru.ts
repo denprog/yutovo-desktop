@@ -84,6 +84,14 @@
         <translation>Переполнение аргумента</translation>
     </message>
     <message>
+        <source>Function is not implemented</source>
+        <translation>Функция не реализована</translation>
+    </message>
+    <message>
+        <source>Data conversion error</source>
+        <translation>Ошибка преобразования данных</translation>
+    </message>
+    <message>
         <source>Units are incompatible</source>
         <translation>Размерности несовместимы</translation>
     </message>
