@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>libraries_text</source>
-        <translation>Technologies and libraries used: C++, WebAssembly, Emscripten, boost, MPFR, GMP, JavaScript, Drogon, Quasar, jwt-cpp, spdlog, rapidjson, MathGL.</translation>
+        <translation>Technologies and libraries used: C++, WebAssembly, Emscripten, boost, MPFR, GMP, SymEngine, JavaScript, Drogon, Quasar, jwt-cpp, spdlog, rapidjson, MathGL.</translation>
     </message>
     <message>
         <source>web_link_text</source>
