@@ -453,6 +453,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
 <context>
     <name>MainWindow</name>
     <message>
+        <source>This document online</source>
+        <translation>Este documento online</translation>
+    </message>
+    <message>
         <source>Yutovo</source>
         <translation>Yutovo</translation>
     </message>

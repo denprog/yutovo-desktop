@@ -11,6 +11,7 @@
 #include <QMainWindow>
 #include <QComboBox>
 #include <QLabel>
+#include <QFrame>
 #include <QFontComboBox>
 #include <QSettings>
 #include <QTranslator>
@@ -259,6 +260,7 @@ private:
     void UpdateCaption(int tab = -1, bool update_title = true);
 
     void UpdateLocaleMessage();
+    void UpdateDocumentOnlineLink();
 
     void EnableButtons(bool enable);
 
@@ -385,6 +387,8 @@ private:
     QLabel* locale_status = nullptr;
 
     QLabel* link_label = nullptr;
+    QFrame* status_separator = nullptr;
+    QLabel* document_online_label = nullptr;
 
     Logger* logger = nullptr;
 };

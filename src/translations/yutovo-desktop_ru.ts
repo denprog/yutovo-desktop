@@ -453,6 +453,10 @@
 <context>
     <name>MainWindow</name>
     <message>
+        <source>This document online</source>
+        <translation>Этот документ онлайн</translation>
+    </message>
+    <message>
         <source>Yutovo</source>
         <translation>Ютово</translation>
     </message>

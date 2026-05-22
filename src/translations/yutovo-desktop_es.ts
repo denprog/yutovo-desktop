@@ -453,6 +453,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
 <context>
     <name>MainWindow</name>
     <message>
+        <source>This document online</source>
+        <translation>Este documento en línea</translation>
+    </message>
+    <message>
         <source>Yutovo</source>
         <translation>Yutovo</translation>
     </message>

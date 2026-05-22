@@ -170,6 +170,7 @@ void MainWindow::changeEvent(QEvent* event)
             link_label->setText(tr("yutovo_web_linux"));
 #endif
         }
+        UpdateDocumentOnlineLink();
         SetupGuiActions();
         UpdateRecentFiles();
     }
@@ -1120,6 +1121,21 @@ void MainWindow::CreateStatusBar()
     {
         locale_status = new QLabel("");
         statusBar()->addWidget(locale_status);
+    }
+    if (!status_separator)
+    {
+        status_separator = new QFrame();
+        status_separator->setFrameShape(QFrame::VLine);
+        status_separator->setFrameShadow(QFrame::Sunken);
+        statusBar()->addWidget(status_separator);
+    }
+    if (!document_online_label)
+    {
+        document_online_label = new QLabel("");
+        document_online_label->setTextFormat(Qt::RichText);
+        document_online_label->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        document_online_label->setOpenExternalLinks(true);
+        statusBar()->addWidget(document_online_label);
     }
 }
 
@@ -3407,10 +3423,51 @@ void MainWindow::UpdateLocaleMessage()
 {
     auto document = GetCurrentDocument();
     if (!document)
+    {
+        UpdateDocumentOnlineLink();
         return;
+    }
     Config c;
     document->GetConfig(c);
     locale_status->setText(tr("Locale: ") + (tr(yutovo_calculator::LanguageToString(c.language).c_str())));
+    UpdateDocumentOnlineLink();
+}
+
+void MainWindow::UpdateDocumentOnlineLink()
+{
+    if (!document_online_label)
+        return;
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w || w->path.isEmpty())
+    {
+        if (status_separator)
+            status_separator->hide();
+        document_online_label->clear();
+        document_online_label->hide();
+        return;
+    }
+    QString libDir = GetLibraryDir();
+    QFileInfo libFi(libDir);
+    QString canonicalLibDir = libFi.canonicalFilePath();
+    if (canonicalLibDir.isEmpty())
+        canonicalLibDir = libDir;
+    if (!canonicalLibDir.endsWith('/'))
+        canonicalLibDir += '/';
+    if (!w->path.startsWith(canonicalLibDir))
+    {
+        if (status_separator)
+            status_separator->hide();
+        document_online_label->clear();
+        document_online_label->hide();
+        return;
+    }
+    QString relPath = w->path.mid(canonicalLibDir.length());
+    QString domain = relPath.startsWith("ru/") ? "https://yutovo.ru" : "https://yutovo.com";
+    QUrl url(domain + "/library/" + relPath);
+    document_online_label->setText(QString("<a href=\"%1\">%2</a>").arg(url.toString(), tr("This document online")));
+    if (status_separator)
+        status_separator->show();
+    document_online_label->show();
 }
 
 void MainWindow::EnableButtons(bool enable)

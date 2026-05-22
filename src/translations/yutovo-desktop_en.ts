@@ -60,6 +60,10 @@ You assume all responsibility and risk in relation to your use of this applicati
 <context>
     <name>MainWindow</name>
     <message>
+        <source>This document online</source>
+        <translation>This document online</translation>
+    </message>
+    <message>
         <source>yutovo_web_linux</source>
         <translation>&lt;a href="https://yutovo.com/?ref=yutovo-desktop_linux"&gt;Yutovo online&lt;/a&gt;</translation>
     </message>
