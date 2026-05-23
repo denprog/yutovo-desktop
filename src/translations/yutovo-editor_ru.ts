@@ -64,6 +64,10 @@
         <translation>Ожидается выражение</translation>
     </message>
     <message>
+        <source>Incorrect identifier</source>
+        <translation>Некорректный идентификатор</translation>
+    </message>
+    <message>
         <source>Incorrect comparasion</source>
         <translation>Некорректное сравнение</translation>
     </message>

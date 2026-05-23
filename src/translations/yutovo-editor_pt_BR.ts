@@ -64,6 +64,10 @@
         <translation>Espera-se uma expressão</translation>
     </message>
     <message>
+        <source>Incorrect identifier</source>
+        <translation>Identificador incorreto</translation>
+    </message>
+    <message>
         <source>Incorrect comparasion</source>
         <translation>Comparação incorreta</translation>
     </message>
