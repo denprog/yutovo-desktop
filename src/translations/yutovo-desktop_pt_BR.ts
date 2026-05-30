@@ -1324,6 +1324,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Line graph</source>
         <translation>Gráfico linear</translation>
     </message>
+    <message>
+        <source>Infinity</source>
+        <translation>Infinito</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

@@ -9,7 +9,7 @@ License: GPL-3.0-only. Minimum Qt version: 5.14.
 export YUTOVO_DEPLOY=~/yutovo/deploy   # required; points to internal libs install
 mkdir -p build/debug && cd build/debug
 cmake -DCMAKE_BUILD_TYPE=Debug ../..
-make -sj && make install   # installs to $YUTOVO_DEPLOY/bin
+make -sj16 && make install   # installs to $YUTOVO_DEPLOY/bin
 ```
 - Debug binary: `build/debug/src/yutovo-desktopd` (note the `d` suffix)
 - C++17, CMake ≥ 3.17

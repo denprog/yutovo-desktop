@@ -826,6 +826,10 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnGrad);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/infinity.png"), tr("Infinity"), this);
+    connect(action, &QAction::triggered, this, &MainWindow::OnInfinity);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/assignment.png"), tr("Assignment") + " (:)", this);
     connect(action, &QAction::triggered, this, &MainWindow::OnAssignment);
     algebra_toolbar->addAction(action);
@@ -2317,6 +2321,13 @@ void MainWindow::OnUnit()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertUnit(true);
+}
+
+void MainWindow::OnInfinity()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertString("∞", true);
 }
 
 void MainWindow::OnSin()

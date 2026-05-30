@@ -1328,6 +1328,10 @@
         <source>Line graph</source>
         <translation>Линейный график</translation>
     </message>
+    <message>
+        <source>Infinity</source>
+        <translation>Бесконечность</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

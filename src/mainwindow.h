@@ -180,6 +180,7 @@ private slots:
     void OnAssignment();
     void OnUnit();
     void OnEquation();
+    void OnInfinity();
 
     void OnSin();
     void OnCos();
