@@ -1,8 +1,0 @@
- dpkg-buildpackage -us -uc -ui -S -sa
-dpkg-buildpackage: info: source package PACKAGE
-dpkg-buildpackage: info: source version 1.5.1-1~noble1ubuntu1
-dpkg-buildpackage: info: source distribution UNRELEASED
-dpkg-buildpackage: info: source changed by Denis Gordenin <support@yutovo.ru>
- dpkg-source --before-build .
-dpkg-source: error: source package name 'PACKAGE' is illegal: character 'P' not allowed
-dpkg-buildpackage: error: dpkg-source --before-build . subprocess returned exit status 25

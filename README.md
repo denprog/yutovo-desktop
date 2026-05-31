@@ -14,6 +14,7 @@ The base features are:
 * User variables and functions are supported
 * Units, unit systems and translating values between them are supported
 * Automatic recalculation of expressions
+* Symbolic calculations
 * Text editor with basic features
 * Include documents
 * Graphs of functions
@@ -39,6 +40,8 @@ The base features are:
 <img src="https://yutovo.com/screenshots/2025-12-23_17-20_1.png" width="500">
 
 <img src="https://yutovo.com/screenshots/2025-12-23_17-20.png" width="500">
+
+<img src="https://yutovo.com/screenshots/2026-05-31_21-21.png" width="500">
 
 ## Installing from Flathub
 [![Get it on Flathub](https://flathub.org/api/badge?locale=en)](https://flathub.org/en/apps/com.yutovo.yutovo)
