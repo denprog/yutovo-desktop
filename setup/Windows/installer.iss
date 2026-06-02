@@ -1,14 +1,14 @@
 [Setup]
 AppId={{bd041914-8896-43bc-b496-7aeb90887fff}}
 AppName=Yutovo
-AppVerName=Yutovo 1.5.3
+AppVerName=Yutovo 1.6.1
 AppPublisher=yutovo.com
 AppPublisherURL=https://yutovo.com/
 AppSupportURL=https://yutovo.com/
 AppUpdatesURL=https://yutovo.com/
 DefaultDirName={commonpf}\Yutovo
 DefaultGroupName=Yutovo
-OutputBaseFilename=yutovo-desktop_1.5.3-1_win10_amd64
+OutputBaseFilename=yutovo-desktop_1.6.1-1_win10_amd64
 Compression=lzma
 SolidCompression=yes
 ChangesAssociations=yes
@@ -22,10 +22,11 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}";
 
 [Files]
+[Files]
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\yutovo-desktop.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\*.qm"; DestDir: "{app}"; Flags: ignoreversion
-Source: "c:\Lang\Programs\yutovo\yutovo-library\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs; Attribs: readonly
+Source: "c:\Lang\Programs\yutovo\yutovo-library\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs overwritereadonly; Attribs: readonly
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\plugins\*"; DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\platforms\*"; DestDir: "{app}\platforms"; Flags: ignoreversion recursesubdirs
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\setup\Windows\fonts\*"; DestDir: "{app}\fonts"; Flags: ignoreversion recursesubdirs
