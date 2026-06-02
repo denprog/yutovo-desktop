@@ -3463,14 +3463,17 @@ void MainWindow::UpdateDocumentOnlineLink()
         document_online_label->hide();
         return;
     }
-    QString libDir = GetLibraryDir();
-    QFileInfo libFi(libDir);
-    QString canonicalLibDir = libFi.canonicalFilePath();
-    if (canonicalLibDir.isEmpty())
-        canonicalLibDir = libDir;
-    if (!canonicalLibDir.endsWith('/'))
-        canonicalLibDir += '/';
-    if (!w->path.startsWith(canonicalLibDir))
+    QString lib_dir = GetLibraryDir();
+    QFileInfo f(lib_dir);
+    QString canonical_lib_dir = f.canonicalFilePath();
+    if (canonical_lib_dir.isEmpty())
+        canonical_lib_dir = lib_dir;
+    canonical_lib_dir.replace('\\', '/');
+    if (!canonical_lib_dir.endsWith('/'))
+        canonical_lib_dir += '/';
+    QString doc_path = w->path;
+    doc_path.replace('\\', '/');
+    if (!doc_path.startsWith(canonical_lib_dir))
     {
         if (status_separator)
             status_separator->hide();
@@ -3478,9 +3481,9 @@ void MainWindow::UpdateDocumentOnlineLink()
         document_online_label->hide();
         return;
     }
-    QString relPath = w->path.mid(canonicalLibDir.length());
-    QString domain = relPath.startsWith("ru/") ? "https://yutovo.ru" : "https://yutovo.com";
-    QUrl url(domain + "/library/" + relPath);
+    QString p = doc_path.mid(canonical_lib_dir.length());
+    QString domain = p.startsWith("ru/") ? "https://yutovo.ru" : "https://yutovo.com";
+    QUrl url(domain + "/library/" + p);
     document_online_label->setText(QString("<a href=\"%1\">%2</a>").arg(url.toString(), tr("This document online")));
     if (status_separator)
         status_separator->show();
