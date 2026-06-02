@@ -1,3 +1,13 @@
+# 1.6.1
+- Cálculos simbólicos con documentación añadidos.
+- Selección dentro del bloque de código corregida.
+- Dibujo del contorno del bloque de código corregido.
+- Fuente después de pegar desde el portapapeles corregida.
+- Pegado desde el portapapeles para párrafos corregido.
+- Potenciación para números fraccionarios y complejos corregida.
+- Recálculo al guardar el documento eliminado.
+- Dibujo del subrayado corregido.
+
 # 1.5.3
 - Traducción al portugués brasileño añadida.
 - Selección de colores de página añadida.

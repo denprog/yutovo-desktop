@@ -1,3 +1,13 @@
+# 1.6.1
+- Added symbolic computations with documentation.
+- Fixed selection inside code block.
+- Fixed drawing of code block outline.
+- Fixed font after pasting from clipboard.
+- Fixed pasting from clipboard for paragraphs.
+- Fixed exponentiation for fractional and complex numbers.
+- Removed recalculation when saving document.
+- Fixed drawing of underline.
+
 # 1.5.3
 - Added Brazilian Portuguese translation.
 - Added page color selection.
