@@ -22,7 +22,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}";
 
 [Files]
-[Files]
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\yutovo-desktop.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "c:\Lang\Programs\yutovo\yutovo-desktop\build\release\src\Release\*.qm"; DestDir: "{app}"; Flags: ignoreversion
