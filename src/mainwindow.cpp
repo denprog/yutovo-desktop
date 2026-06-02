@@ -3239,77 +3239,83 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu, const QString start_topi
 
             std::vector<std::filesystem::path> sorted_dirs, others_dirs;
             std::vector<std::filesystem::path> sorted_files, others_files;
-            for (const auto& entry : std::filesystem::directory_iterator(path))
+            try
             {
-                if (entry.is_directory())
+                for (const auto& entry : std::filesystem::directory_iterator(path))
                 {
-                    int pos = -1;
-                    if (!order.empty())
-                    {
-#ifdef _WIN32
-                        std::string s = ToBasicString(entry.path().filename().wstring());
-#else
-                        std::string s = entry.path().filename().string();
-#endif
-                        if (s == except_topic.toUtf8().data())
-                            continue;
-                        
-                        auto it = std::find(order.begin(), order.end(), s);
-                        if (it != order.end())
-                            pos = std::distance(order.begin(), it);
-                        if (pos == -1)
-                            others_dirs.push_back(entry.path());
-                        else
-                        {
-                            if (pos < sorted_dirs.size())
-                            {
-                                sorted_dirs[pos] = entry.path();
-                            }
-                            else
-                            {
-                                for (int i = sorted_dirs.size(); i < pos; ++i)
-                                    sorted_dirs.push_back(std::filesystem::path());
-                                sorted_dirs.push_back(entry.path());
-                            }
-                        }
-                    }
-                    else
-                        sorted_dirs.push_back(entry.path());
-                }
-                else if (entry.is_regular_file())
-                {
-                    if (entry.path().stem() != ".order")
+                    if (entry.is_directory())
                     {
                         int pos = -1;
                         if (!order.empty())
                         {
 #ifdef _WIN32
-                            auto it = std::find(order.begin(), order.end(), ToBasicString(entry.path().filename().wstring()));
+                            std::string s = ToBasicString(entry.path().filename().wstring());
 #else
-                            auto it = std::find(order.begin(), order.end(), entry.path().filename().string());
+                            std::string s = entry.path().filename().string();
 #endif
+                            if (s == except_topic.toUtf8().data())
+                                continue;
+                            
+                            auto it = std::find(order.begin(), order.end(), s);
                             if (it != order.end())
                                 pos = std::distance(order.begin(), it);
                             if (pos == -1)
-                                others_files.push_back(entry.path());
+                                others_dirs.push_back(entry.path());
                             else
                             {
-                                if (pos < sorted_files.size())
+                                if (pos < sorted_dirs.size())
                                 {
-                                    sorted_files[pos] = entry.path();
+                                    sorted_dirs[pos] = entry.path();
                                 }
                                 else
                                 {
-                                    for (int i = sorted_files.size(); i < pos; ++i)
-                                        sorted_files.push_back(std::filesystem::path());
-                                    sorted_files.push_back(entry.path());
+                                    for (int i = sorted_dirs.size(); i < pos; ++i)
+                                        sorted_dirs.push_back(std::filesystem::path());
+                                    sorted_dirs.push_back(entry.path());
                                 }
                             }
                         }
                         else
-                            sorted_files.push_back(entry.path());
+                            sorted_dirs.push_back(entry.path());
+                    }
+                    else if (entry.is_regular_file())
+                    {
+                        if (entry.path().stem() != ".order")
+                        {
+                            int pos = -1;
+                            if (!order.empty())
+                            {
+#ifdef _WIN32
+                                auto it = std::find(order.begin(), order.end(), ToBasicString(entry.path().filename().wstring()));
+#else
+                                auto it = std::find(order.begin(), order.end(), entry.path().filename().string());
+#endif
+                                if (it != order.end())
+                                    pos = std::distance(order.begin(), it);
+                                if (pos == -1)
+                                    others_files.push_back(entry.path());
+                                else
+                                {
+                                    if (pos < sorted_files.size())
+                                    {
+                                        sorted_files[pos] = entry.path();
+                                    }
+                                    else
+                                    {
+                                        for (int i = sorted_files.size(); i < pos; ++i)
+                                            sorted_files.push_back(std::filesystem::path());
+                                        sorted_files.push_back(entry.path());
+                                    }
+                                }
+                            }
+                            else
+                                sorted_files.push_back(entry.path());
+                        }
                     }
                 }
+            }
+            catch (const std::filesystem::filesystem_error&)
+            {
             }
 
             sorted_dirs.insert(sorted_dirs.end(), others_dirs.begin(), others_dirs.end());
