@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.5.3'
+version: '1.6.1'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -93,17 +93,18 @@ parts:
       - -app/lib      
       
   gmp:
-    plugin: cmake
-    source: https://github.com/sethtroisi/libgmp.git
-    source-depth: 1
+    plugin: nil
+    source: https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
+    source-checksum: sha256/a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/include
       mkdir -p $CRAFT_PART_INSTALL/app/lib
+      mkdir -p $CRAFT_PART_INSTALL/app/bin
       cd $CRAFT_PART_SRC
-      ./.bootstrap
-      ./configure --enable-static --disable-shared --enable-cxx --libdir=$CRAFT_PART_INSTALL/app/lib/ --prefix=$CRAFT_PART_INSTALL/app/
+      ./configure --enable-shared --enable-static --enable-cxx --libdir=$CRAFT_PART_INSTALL/app/lib/ --prefix=$CRAFT_PART_INSTALL/app/
       make -j$(nproc) && make install
+      cp -P $CRAFT_PART_INSTALL/app/lib/libgmp.so* $CRAFT_PART_INSTALL/app/bin/
     build-packages:
       - build-essential
       - pkg-config
@@ -118,18 +119,18 @@ parts:
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
 
   mpfr:
-    plugin: cmake
-    source: https://gitlab.inria.fr/mpfr/mpfr.git
-    source-tag: 4.2.1
-    source-depth: 1
+    plugin: nil
+    source: https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.gz
+    source-checksum: sha256/116715552bd966c85b417c424db1bbdf639f53836eb361549d1f8d6ded5cb4c6
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/include
+      mkdir -p $CRAFT_PART_INSTALL/app/bin
       cd $CRAFT_PART_SRC
-      ./autogen.sh
-      ./configure --enable-static --disable-shared --prefix=$CRAFT_PART_INSTALL/app/ --with-gmp-include=$CRAFT_STAGE/app/include \
-        --with-gmp-lib=$CRAFT_STAGE/app/lib
+      ./configure --enable-shared --enable-static --enable-cxx --libdir=$CRAFT_PART_INSTALL/app/lib/ --prefix=$CRAFT_PART_INSTALL/app/ \
+        --with-gmp-include=$CRAFT_STAGE/app/include --with-gmp-lib=$CRAFT_STAGE/app/lib
       make -j$(nproc) && make install
+      cp -P $CRAFT_PART_INSTALL/app/lib/libmpfr.so* $CRAFT_PART_INSTALL/app/bin/
     build-packages:
       - pkg-config
       - build-essential
@@ -137,6 +138,54 @@ parts:
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
     after: [gmp]
+
+  mpc:
+    plugin: nil
+    source: https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
+    source-checksum: sha256/ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8
+    override-build: |
+      set -e
+      mkdir -p $CRAFT_PART_INSTALL/app/include
+      mkdir -p $CRAFT_PART_INSTALL/app/lib
+      mkdir -p $CRAFT_PART_INSTALL/app/bin
+      cd $CRAFT_PART_SRC
+      ./configure --enable-shared --enable-static --prefix=$CRAFT_PART_INSTALL/app/ --libdir=$CRAFT_PART_INSTALL/app/lib/ \
+        --with-gmp=$CRAFT_STAGE/app --with-mpfr=$CRAFT_STAGE/app
+      make -j$(nproc) && make install
+      cp -P $CRAFT_PART_INSTALL/app/lib/libmpc.so* $CRAFT_PART_INSTALL/app/bin/
+    build-packages:
+      - build-essential
+      - pkg-config
+    override-stage: |
+      set -e
+      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
+    after: [gmp, mpfr]
+
+  symengine:
+    plugin: cmake
+    source: https://github.com/symengine/symengine/archive/refs/tags/v0.14.0.tar.gz
+    source-checksum: sha256/11c5f64e9eec998152437f288b8429ec001168277d55f3f5f1df78e3cf129707
+    cmake-parameters:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_INSTALL_PREFIX=/app
+      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app
+      - -DBUILD_TESTING=OFF
+      - -DBUILD_BENCHMARKS=OFF
+      - -DWITH_MPFR=True
+      - -DWITH_MPC=True
+      - -DBUILD_SHARED_LIBS=False
+    override-build: |
+      set -e
+      mkdir -p $CRAFT_PART_INSTALL/app/include
+      mkdir -p $CRAFT_PART_INSTALL/app/lib
+      craftctl default
+    build-packages:
+      - pkg-config
+      - build-essential
+    override-stage: |
+      set -e
+      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
+    after: [mpfr, mpc]
 
   rapidjson:
     plugin: cmake
@@ -181,7 +230,10 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.3.8
+    source-tag: v1.4.1
+    override-pull: |
+      craftctl default
+      cd $CRAFT_PART_SRC
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app
@@ -196,12 +248,12 @@ parts:
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-    after: [mpfr, boost, yutovo-logger]
+    after: [mpfr, mpc, symengine, boost, yutovo-logger]
 
   yutovo-solver:
     plugin: cmake
     source: https://github.com/denprog/yutovo-solver.git
-    source-tag: v1.1.8
+    source-tag: v1.2.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -236,7 +288,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.5.3
+    source-tag: v1.6.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -294,7 +346,7 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.5.3
+    source-tag: v1.6.1
     build-packages:
       - rsync
       - qttools5-dev-tools

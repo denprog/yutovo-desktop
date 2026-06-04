@@ -166,6 +166,7 @@ else()
         Boost::property_tree
 		BZip2::BZip2
         unofficial::libharu::hpdf
+        ${SYMENGINE_LIBRARIES}
     )
 endif()
 

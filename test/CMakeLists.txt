@@ -94,6 +94,7 @@ if(WIN32)
         BZip2::BZip2
         unofficial::libharu::hpdf
         ${ZLIB_LIB}
+        ${SYMENGINE_LIBRARIES}
     )
 else()
     target_link_libraries(${PROJECT_NAME}_test PRIVATE
