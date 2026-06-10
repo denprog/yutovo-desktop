@@ -37,7 +37,7 @@ PromptForm::PromptForm(QWidget* parent) :
 
     setItemDelegate(new SubscriptDelegate(this));
 
-    connect(this, &PromptForm::itemActivated, this, &PromptForm::OnPromptActivated);
+    connect(this, &PromptForm::itemClicked, this, &PromptForm::OnPromptActivated);
 }
 
 PromptForm::~PromptForm()
@@ -97,7 +97,7 @@ bool PromptForm::eventFilter(QObject* obj, QEvent* event)
     if (event->type() == QEvent::MouseButtonPress)
     {
         auto* t = static_cast<QMouseEvent*>(event);
-        if (!this->geometry().contains(t->globalPos())) //click outside
+        if (!this->rect().contains(this->mapFromGlobal(t->globalPos())))
             hide();
     }
     return false;

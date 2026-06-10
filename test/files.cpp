@@ -1,4 +1,5 @@
 #include "files.h"
+#include <QDebug>
 #include <QLineEdit>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
@@ -128,6 +129,67 @@ void TestFiles::testOpenDocument()
 
     action->trigger();
     QTRY_VERIFY(window->GetCurrentDocument()->ToText() == U"12345");
+}
+
+void TestFiles::testPromptClick()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    auto* prompt = editor->findChild<PromptForm*>();
+    QVERIFY(prompt);
+
+    QTest::qWait(2000);
+    QTest::keyClicks(editor, "s");
+
+    QTRY_VERIFY(prompt->isVisible());
+    QTRY_VERIFY(prompt->count() > 0);
+
+    QListWidgetItem* sin_item = nullptr;
+    for (int i = 0; i < prompt->count(); ++i)
+    {
+        if (prompt->item(i)->text() == "sin")
+        {
+            sin_item = prompt->item(i);
+            break;
+        }
+    }
+    QVERIFY(sin_item);
+
+    QRect r = prompt->visualItemRect(sin_item);
+    QTest::mouseClick(prompt->viewport(), Qt::LeftButton, Qt::NoModifier, r.center());
+    QTest::qWait(200);
+
+    QTRY_VERIFY(!prompt->isVisible());
+
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    //qDebug() << "ToText:" << QString::fromUcs4(document->ToText().data(), document->ToText().size());
+    QCOMPARE(document->ToText(), U"sin");
+}
+
+void TestFiles::testPromptOutsideClick()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    auto* prompt = editor->findChild<PromptForm*>();
+    QVERIFY(prompt);
+
+    QTest::qWait(2000);
+    QTest::keyClicks(editor, "s");
+
+    QTRY_VERIFY(prompt->isVisible());
+    QTRY_VERIFY(prompt->count() > 0);
+
+    QRect r = prompt->visualItemRect(prompt->item(0));
+    QTest::mouseClick(prompt->viewport(), Qt::LeftButton, Qt::NoModifier, QPoint(r.left() - 50, r.top()));
+    QTest::qWait(200);
+
+    QTRY_VERIFY(!prompt->isVisible());
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    QCOMPARE(document->ToText(), U"s");
 }
 
 QTEST_MAIN(TestFiles)

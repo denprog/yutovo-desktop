@@ -24,6 +24,8 @@ private slots:
     void testNewDocument();
     void testChangeDocument();
     void testOpenDocument();
+    void testPromptClick();
+    void testPromptOutsideClick();
 
 private:
     MainWindow* window;
