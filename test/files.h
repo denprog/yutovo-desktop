@@ -28,6 +28,7 @@ private slots:
     void testPromptOutsideClick();
     void testLogicalOperators();
     void testPowerShortcut();
+    void testSaveAndCloseOnExit();
 
 private:
     MainWindow* window;

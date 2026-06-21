@@ -2696,12 +2696,13 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
     if (close_tab_after_save != -1)
     {
+        auto p = w->path;
         OnCloseEditorTab(close_tab_after_save);
         close_tab_after_save = -1;
         if (exit_after_save)
         {
-            if (!w->path.isEmpty() && last_documents.indexOf(w->path) == -1)
-                last_documents.push_back(w->path);
+            if (!p.isEmpty() && last_documents.indexOf(p) == -1)
+                last_documents.push_back(p);
             close();
         }
     }

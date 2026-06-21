@@ -236,4 +236,69 @@ void TestFiles::testPowerShortcut()
     QVERIFY(text.find(U"pow(2,3)") != std::u32string::npos);
 }
 
+void TestFiles::testSaveAndCloseOnExit()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QString path = QDir::tempPath() + "/test_save_and_close.yut";
+    QFile::remove(path);
+
+    QTest::keyClicks(editor, "abc");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QFileDialog* dialog = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                dialog = qobject_cast<QFileDialog*>(w);
+                if (dialog)
+                    break;
+            }
+
+            QVERIFY(dialog);
+            QTRY_VERIFY(dialog->isVisible());
+
+            auto line_edit = dialog->findChild<QLineEdit*>("fileNameEdit");
+            QVERIFY(line_edit);
+            line_edit->setFocus();
+            line_edit->setText(path);
+            QTest::qWait(200);
+            QTest::keyClick(line_edit, Qt::Key_Return);
+        });
+
+    window->SaveFileAsName();
+    QTRY_VERIFY(QFile::exists(path));
+    QTest::qWait(500);
+
+    QTest::keyClicks(editor, "changed");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QMessageBox* box = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                box = qobject_cast<QMessageBox*>(w);
+                if (box)
+                    break;
+            }
+
+            QVERIFY(box);
+            auto yes = box->button(QMessageBox::Yes);
+            QVERIFY(yes);
+            yes->click();
+        });
+
+    // Closing the window with unsaved changes triggers "Save?" -> Yes -> async save -> tab close.
+    // The fix copies path before OnCloseEditorTab, so this must not crash on a dangling DocumentWindow*.
+    window->close();
+    QTest::qWait(1500);
+
+    QVERIFY(QFile::exists(path));
+}
+
 QTEST_MAIN(TestFiles)
