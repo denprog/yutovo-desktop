@@ -1103,18 +1103,22 @@ void MainWindow::CreateLogicalToolbar()
     logical_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
     QAction* action = new QAction(QIcon(":/icons/images/logical/and.png"), tr("Logical AND"), this);
+    action->setObjectName("actionLogicalAnd");
     connect(action, &QAction::triggered, this, &MainWindow::OnAnd);
     logical_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/logical/or.png"), tr("Logical OR"), this);
+    action->setObjectName("actionLogicalOr");
     connect(action, &QAction::triggered, this, &MainWindow::OnOr);
     logical_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/logical/xor.png"), tr("Logical XOR"), this);
+    action->setObjectName("actionLogicalXor");
     connect(action, &QAction::triggered, this, &MainWindow::OnXor);
     logical_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/logical/not.png"), tr("Logical NOT"), this);
+    action->setObjectName("actionLogicalNot");
     connect(action, &QAction::triggered, this, &MainWindow::OnNot);
     logical_toolbar->addAction(action);
 }
@@ -2529,28 +2533,28 @@ void MainWindow::OnAnd()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertString("&", true);
+        document->InsertAnd(true);
 }
 
 void MainWindow::OnOr()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertString("|", true);
+        document->InsertOr(true);
 }
 
 void MainWindow::OnXor()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertString("^", true);
+        document->InsertXor(true);
 }
 
 void MainWindow::OnNot()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertString("!", true);
+        document->InsertNot(true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)

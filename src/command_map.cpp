@@ -75,13 +75,11 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
     Add(QKeySequence(""), '-', "\\minus", std::function<void ()>(std::bind(&Document::InsertMinus, document.get(), true, false)), CommandContext::Formula);
     Add(QKeySequence(""), '*', "\\times", std::function<void ()>(std::bind(&Document::InsertMultiply, document.get(), true, false)), CommandContext::Formula);
     Add(QKeySequence(""), '!', "\\excl", std::function<void ()>(std::bind(&Document::InsertExclamation, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence(""), '&', "\\and", std::function<void ()>(std::bind(&Document::InsertAnd, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence(""), '|', "\\or", std::function<void ()>(std::bind(&Document::InsertOr, document.get(), true)), CommandContext::Formula);
-    Add(QKeySequence(""), '^', "\\xor", std::function<void ()>(std::bind(&Document::InsertXor, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), '%', "\\percent", std::function<void ()>(std::bind(&Document::InsertPercent, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence(""), ',', "\\comma", std::function<void ()>(std::bind(&Document::InsertComma, document.get(), true)), CommandContext::Formula);
     Add(QKeySequence("/"), "\\div", std::function<void ()>(std::bind(&Document::InsertDivision, document.get(), true, false)), CommandContext::Formula);
     Add(QKeySequence("Ctrl+Shift+P"), "\\pow", std::function<void()>(std::bind(&Document::InsertPower, document.get(), true, false)), CommandContext::Formula);
+    Add(QKeySequence(""), '^', "\\pow", std::function<void()>(std::bind(&Document::InsertPower, document.get(), true, false)), CommandContext::Formula);
     Add(QKeySequence("Ctrl+Shift+S"), "\\sub", std::function<void ()>(std::bind(&Document::InsertSubscript, document.get(), true, false)), CommandContext::Formula);
     Add(QKeySequence("Ctrl+Shift+R"), "\\nth", std::function<void ()>(std::bind(&Document::InsertNthRoot, document.get(), true, false)));
     Add(QKeySequence("Ctrl+Shift+Q"), "\\sqrt", std::function<void ()>(std::bind(&Document::InsertSquareRoot, document.get(), true, false)));

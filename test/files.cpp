@@ -192,4 +192,48 @@ void TestFiles::testPromptOutsideClick()
     QCOMPARE(document->ToText(), U"s");
 }
 
+void TestFiles::testLogicalOperators()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto and_action = window->findChild<QAction*>("actionLogicalAnd");
+    QVERIFY(and_action);
+    and_action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"∧");
+
+    auto or_action = window->findChild<QAction*>("actionLogicalOr");
+    QVERIFY(or_action);
+    or_action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"∧∨");
+
+    auto xor_action = window->findChild<QAction*>("actionLogicalXor");
+    QVERIFY(xor_action);
+    xor_action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"∧∨⊕");
+
+    auto not_action = window->findChild<QAction*>("actionLogicalNot");
+    QVERIFY(not_action);
+    not_action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"∧∨⊕¬");
+}
+
+void TestFiles::testPowerShortcut()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QTest::keyClicks(editor, "2^3");
+    QTest::qWait(500);
+
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    auto text = document->ToText();
+    QVERIFY(text.find(U"pow(2,3)") != std::u32string::npos);
+}
+
 QTEST_MAIN(TestFiles)
