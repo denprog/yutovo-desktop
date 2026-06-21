@@ -30,6 +30,7 @@ private slots:
     void testPowerShortcut();
     void testSaveAndCloseOnExit();
     void testExportToPdf();
+    void testPdfExportErrorHandling();
     void testMenuRebuildDoesNotLeak();
 
 private:

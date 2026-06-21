@@ -355,6 +355,67 @@ void TestFiles::testExportToPdf()
     QVERIFY(pdf_text.contains("Yutovo"));
 }
 
+void TestFiles::testPdfExportErrorHandling()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QTest::keyClicks(editor, "1");
+    QTest::qWait(200);
+
+    //path inside a non-existent directory -> ofstream cannot open it
+    QString path = QDir::tempPath() + "/pdf_export_nonexistent_dir/test.pdf";
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QDialog* dialog = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                dialog = qobject_cast<QDialog*>(w);
+                if (dialog && dialog->windowTitle().contains("PDF"))
+                    break;
+            }
+
+            QVERIFY(dialog);
+            QTRY_VERIFY(dialog->isVisible());
+
+            auto line_edit = dialog->findChild<QLineEdit*>("filePath");
+            QVERIFY(line_edit);
+            line_edit->setText(path);
+            QTest::qWait(200);
+            dialog->accept();
+        });
+
+    //poll for the error QMessageBox and dismiss it
+    QTimer box_timer;
+    box_timer.setInterval(100);
+    QObject::connect(&box_timer, &QTimer::timeout,
+        [&]()
+        {
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                auto box = qobject_cast<QMessageBox*>(w);
+                if (box)
+                {
+                    auto button = box->button(QMessageBox::Ok);
+                    if (!button)
+                        button = box->button(QMessageBox::Close);
+                    if (button)
+                        button->click();
+                    box_timer.stop();
+                    return;
+                }
+            }
+        });
+    box_timer.start();
+
+    window->ExportToPdf();
+    QTest::qWait(2500);
+    box_timer.stop();
+
+    QVERIFY(!QFile::exists(path));
+}
+
 void TestFiles::testMenuRebuildDoesNotLeak()
 {
     const int c = window->menuBar()->actions().size();

@@ -2807,8 +2807,22 @@ void MainWindow::OnPdfExportResult(const std::vector<uint8_t>& pdf, const yutovo
     }
 
     std::ofstream file(dialog_file_name.toUtf8().data(), std::ios::binary);
+    if (!file.is_open())
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error exporting document") + QString(": ") + dialog_file_name);
+        QTimer::singleShot(0, this,
+            [this]()
+            {
+                pdf_window.reset();
+            });
+        return;
+    }
+
     file.write(reinterpret_cast<const char*>(pdf.data()), pdf.size());
-    QTimer::singleShot(0, this, 
+    if (file.fail())
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error exporting document") + QString(": ") + dialog_file_name);
+
+    QTimer::singleShot(0, this,
         [this]()
         {
             pdf_window.reset();
