@@ -2736,10 +2736,13 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     
     if (result != IOResult::Success)
     {
-        QString p = w->path;
-        recent_files.removeAll(w->path);
+        QString p;
         if (w)
+        {
+            p = w->path;
+            recent_files.removeAll(w->path);
             w->path = "";
+        }
         UpdateRecentFiles();
         UpdateCaption();
         QMessageBox::critical(this, tr("Yutovo"), tr("Error loading document") + QString(": ") + p);
