@@ -951,7 +951,7 @@ void MainWindow::CreateHyperbolicToolbar()
     hyperbolic_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/hyperbolic/arcosh.png"), tr("Hyperbolic arcosine"), this);
-    connect(action, &QAction::triggered, this, &MainWindow::OnArsinh);
+    connect(action, &QAction::triggered, this, &MainWindow::OnArcosh);
     hyperbolic_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/hyperbolic/artgh.png"), tr("Hyperbolic artangens"), this);
