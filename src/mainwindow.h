@@ -24,6 +24,8 @@
 #include <cstring>
 #include <sstream>
 
+class QMenu;
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -255,6 +257,8 @@ private:
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
     void UpdateLibraryMenu(QMenu* library_menu, const QString start_topic, const QString except_topic);
+    
+    static void ClearMenuActions(QMenu* menu);
 
     void InstallTranslation(const yutovo_calculator::Language language);
 

@@ -295,8 +295,8 @@ void TestFiles::testSaveAndCloseOnExit()
             yes->click();
         });
 
-    // Closing the window with unsaved changes triggers "Save?" -> Yes -> async save -> tab close.
-    // The fix copies path before OnCloseEditorTab, so this must not crash on a dangling DocumentWindow*.
+    //closing the window with unsaved changes triggers "Save?" -> Yes -> async save -> tab close
+    //the fix copies path before OnCloseEditorTab, so this must not crash on a dangling DocumentWindow*
     window->close();
     QTest::qWait(1500);
 
@@ -353,6 +353,17 @@ void TestFiles::testExportToPdf()
     QString pdf_text = QString::fromUtf8(pdftotext.readAllStandardOutput());
     QVERIFY(pdf_text.contains("2+2"));
     QVERIFY(pdf_text.contains("Yutovo"));
+}
+
+void TestFiles::testMenuRebuildDoesNotLeak()
+{
+    const int c = window->menuBar()->actions().size();
+    QVERIFY(c > 0);
+    for (int i = 0; i < 5; ++i)
+    {
+        window->SetupGuiActions();
+        QCOMPARE(window->menuBar()->actions().size(), c);
+    }
 }
 
 QTEST_MAIN(TestFiles)

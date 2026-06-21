@@ -286,9 +286,25 @@ void MainWindow::SetupGuiActions()
     currency_toolbar = nullptr;
     graph_toolbar = nullptr;
     logical_toolbar = nullptr;
-    
-    menuBar()->clear();
-    
+
+    //remove top-level menus and actions before recreating them to avoid leaks
+    {
+        QList<QAction*> top_level_actions = menuBar()->actions();
+        menuBar()->clear();
+        for (QAction* action : top_level_actions)
+        {
+            if (QMenu* menu = action->menu())
+            {
+                MainWindow::ClearMenuActions(menu);
+                delete menu;
+            }
+            else
+            {
+                delete action;
+            }
+        }
+    }
+
     CreateActions();
     addToolBarBreak();
     CreateAlgebraToolbar();
@@ -3196,6 +3212,27 @@ void MainWindow::UpdateCopyPaste()
     cut_action->setEnabled(editable && !window.editor_state.selection_state.IsEmpty());
 }
 
+void MainWindow::ClearMenuActions(QMenu* menu)
+{
+    if (!menu)
+        return;
+
+    for (QAction* action : menu->actions())
+    {
+        if (QMenu* sub_menu = action->menu())
+        {
+            ClearMenuActions(sub_menu);
+            delete sub_menu;
+        }
+        else
+        {
+            delete action;
+        }
+    }
+
+    menu->clear();
+}
+
 void MainWindow::UpdateRecentFiles(const QString add_file_name)
 {
     if (add_file_name != "")
@@ -3206,7 +3243,7 @@ void MainWindow::UpdateRecentFiles(const QString add_file_name)
         recent_files.push_front(add_file_name);
     }
 
-    recent_files_menu->clear();
+    ClearMenuActions(recent_files_menu);
     for (auto it = recent_files.begin(); it != recent_files.end(); ++it)
     {
         QAction* action = new QAction(*it, this);
@@ -3363,7 +3400,7 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu, const QString start_topi
             }
         };
     
-    library_menu->clear();
+    ClearMenuActions(library_menu);
 
     std::string dir = "en";
     switch (config.language)
