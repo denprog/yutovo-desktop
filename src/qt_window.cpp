@@ -363,6 +363,8 @@ Rect QtWindow::GetViewPort(const int pos)
     QRegion::const_iterator iter;
     int p = 0;
     for (iter = clip_region.begin(); p < pos && iter != clip_region.end(); ++p && ++iter);
+    if (iter == clip_region.end())
+        return Rect{};
     const QRect& rect = *iter;
     return Rect{rect.left(), rect.top(), rect.width(), rect.height()};
 }
