@@ -208,6 +208,8 @@ void QtWindow::DrawWavyLine(const int x1, const int y1, const int width, const i
 
 void QtWindow::DrawImage(const int x1, const int y1, const int width, const int height, const std::vector<unsigned char>& image)
 {
+    if (image.empty())
+        return;
     QImage picture;
     if (!picture.loadFromData(&image[0], image.size()))
     {
@@ -331,6 +333,8 @@ int QtWindow::GetFontAscent(const StringFormatPtr format)
 
 Size QtWindow::GetImageSize(const std::vector<unsigned char>& image)
 {
+    if (image.empty())
+        return Size{};
     QImage picture;
     picture.loadFromData(&image[0], image.size());
     return Size{picture.width(), picture.height()};
