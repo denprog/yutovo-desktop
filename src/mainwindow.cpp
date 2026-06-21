@@ -974,7 +974,7 @@ void MainWindow::CreateHyperbolicToolbar()
 void MainWindow::CreateFunctionsToolbar()
 {
     //functions toolbar
-    functions_toolbar = addToolBar(tr("Hyperbolic functions"));
+    functions_toolbar = addToolBar(tr("Functions"));
     functions_toolbar->setObjectName("functions_toolbar");
     functions_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
 
