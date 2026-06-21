@@ -3089,23 +3089,24 @@ void MainWindow::ReadSettings()
             config.auto_result.results_order[i++] = (ResultType)r.toInt();
     }
     auto& results_order = config.auto_result.results_order;
-    for (; i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]); ++i)
+    auto s = sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]);
+    for (; i < s; ++i)
     {
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::INTEGER) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::INTEGER) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::INTEGER;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::RATIONAL) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::RATIONAL) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::RATIONAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::COMPLEX;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::ARRAY_REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_REAL) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_REAL) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::SYMBOLIC_REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_RATIONAL) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_RATIONAL) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::SYMBOLIC_RATIONAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_COMPLEX) == std::end(results_order))
+        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_COMPLEX) == std::end(results_order) && i < s)
             results_order[i++] = ResultType::SYMBOLIC_COMPLEX;
     }
 
