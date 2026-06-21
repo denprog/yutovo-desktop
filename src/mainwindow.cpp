@@ -2782,13 +2782,21 @@ void MainWindow::OnPdfExportResult(const std::vector<uint8_t>& pdf, const yutovo
     if (result != PdfResult::Success)
     {
         QMessageBox::critical(this, tr("Yutovo"), tr("Error exporting document") + QString(": ") + dialog_file_name);
-        pdf_window.reset();
+        QTimer::singleShot(0, this, 
+            [this]()
+            {
+                pdf_window.reset();
+            });
         return;
     }
 
     std::ofstream file(dialog_file_name.toUtf8().data(), std::ios::binary);
     file.write(reinterpret_cast<const char*>(pdf.data()), pdf.size());
-    pdf_window.reset();
+    QTimer::singleShot(0, this, 
+        [this]()
+        {
+            pdf_window.reset();
+        });
 }
 
 #ifdef REMOTE_SOLVER

@@ -1,6 +1,8 @@
 #include "files.h"
 #include <QDebug>
 #include <QLineEdit>
+#include <QDialog>
+#include <QProcess>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
 
@@ -299,6 +301,58 @@ void TestFiles::testSaveAndCloseOnExit()
     QTest::qWait(1500);
 
     QVERIFY(QFile::exists(path));
+}
+
+void TestFiles::testExportToPdf()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QTest::keyClicks(editor, "2+2");
+    QTest::qWait(200);
+
+    QString path = QDir::tempPath() + "/test_export.pdf";
+    QFile::remove(path);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QDialog* dialog = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                dialog = qobject_cast<QDialog*>(w);
+                if (dialog && dialog->windowTitle().contains("PDF"))
+                    break;
+            }
+
+            QVERIFY(dialog);
+            QTRY_VERIFY(dialog->isVisible());
+
+            auto line_edit = dialog->findChild<QLineEdit*>("filePath");
+            QVERIFY(line_edit);
+            line_edit->setText(path);
+            QTest::qWait(200);
+            dialog->accept();
+        });
+
+    window->ExportToPdf();
+
+    QTRY_VERIFY(QFile::exists(path));
+    QTest::qWait(500);
+
+    QFile file(path);
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    QByteArray header = file.read(5);
+    QCOMPARE(header, QByteArray("%PDF-"));
+    QVERIFY(file.size() > 100);
+
+    QProcess pdftotext;
+    pdftotext.start("pdftotext", QStringList() << path << "-");
+    QVERIFY(pdftotext.waitForFinished(5000));
+    QCOMPARE(pdftotext.exitCode(), 0);
+    QString pdf_text = QString::fromUtf8(pdftotext.readAllStandardOutput());
+    QVERIFY(pdf_text.contains("2+2"));
+    QVERIFY(pdf_text.contains("Yutovo"));
 }
 
 QTEST_MAIN(TestFiles)

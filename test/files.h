@@ -29,6 +29,7 @@ private slots:
     void testLogicalOperators();
     void testPowerShortcut();
     void testSaveAndCloseOnExit();
+    void testExportToPdf();
 
 private:
     MainWindow* window;
