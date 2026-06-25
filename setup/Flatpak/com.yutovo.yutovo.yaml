@@ -126,7 +126,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.4.1
+        tag: v1.5.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -156,7 +156,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.2.1
+        tag: v1.2.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -219,7 +219,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.6.1
+        tag: v1.6.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -245,10 +245,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.6.1
+        tag: v1.6.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
     post-install:
       - mkdir -p /app/share/mime/packages
       - mkdir -p /app/share/metainfo
