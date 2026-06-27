@@ -1,7 +1,7 @@
 [Setup]
 AppId={{bd041914-8896-43bc-b496-7aeb90887fff}}
 AppName=Yutovo
-AppVerName=Yutovo 1.6.1
+AppVerName=Yutovo 1.6.2
 AppPublisher=yutovo.com
 AppPublisherURL=https://yutovo.com/
 AppSupportURL=https://yutovo.com/
