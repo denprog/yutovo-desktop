@@ -61,9 +61,13 @@ modules:
   - name: mpfr
     buildsystem: simple
     build-commands:
-      - install -Dm644 /usr/lib/x86_64-linux-gnu/libmpfr.so.6.2.1 /app/bin/libmpfr.so.6.2.1
-      - ln -s libmpfr.so.6.2.1 /app/bin/libmpfr.so.6
-      - ln -s libmpfr.so.6.2.1 /app/bin/libmpfr.so
+      - |
+        MPFR_SO=$(find /usr -name 'libmpfr.so.6*' -type f 2>/dev/null | head -n 1)
+        if [ -z "$MPFR_SO" ]; then
+          echo "libmpfr.so.6 not found in SDK" >&2
+          exit 1
+        fi
+        install -Dm644 "$MPFR_SO" /app/bin/libmpfr.so.6
 
   - name: mpc
     buildsystem: autotools
