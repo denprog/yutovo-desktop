@@ -11,6 +11,8 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QDebug>
+#include <QDir>
+#include <QFontDatabase>
 
 bool SendToRunningInstance(const QString& socket_name, const QString& path)
 {
@@ -24,7 +26,25 @@ bool SendToRunningInstance(const QString& socket_name, const QString& path)
     return true;
 }
 
-int main(int argc, char *argv[])
+#ifdef _WIN32
+void RegisterApplicationFonts()
+{
+    QDir fonts_dir(QCoreApplication::applicationDirPath() + "/fonts");
+    if (!fonts_dir.exists())
+        return;
+
+    QStringList filters;
+    filters << "*.ttf" << "*.TTF" << "*.otf" << "*.OTF";
+    for (const QString& file : fonts_dir.entryList(filters, QDir::Files))
+    {
+        QString path = fonts_dir.absoluteFilePath(file);
+        if (QFontDatabase::addApplicationFont(path) == -1)
+            qWarning() << "Failed to load font:" << path;
+    }
+}
+#endif
+
+int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     app.setOrganizationName("Yutovo");
@@ -38,10 +58,14 @@ int main(int argc, char *argv[])
 
     MainWindow w;
 
+#ifdef _WIN32
+    RegisterApplicationFonts();
+#endif
+
     QLocalServer s;
     s.removeServer(socket_name);
     s.listen(socket_name);
-    QObject::connect(&s, &QLocalServer::newConnection, 
+    QObject::connect(&s, &QLocalServer::newConnection,
         [&]()
         {
             QLocalSocket* c = s.nextPendingConnection();
