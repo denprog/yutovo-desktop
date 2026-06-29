@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
 
-project(yutovo-desktop
-    VERSION 0.1.0 
-    LANGUAGES CXX
-)
+project(yutovo-desktop LANGUAGES CXX C)
 
 set(PROJECT_LICENSE "GPL-3.0-only")
 message(STATUS "CXX Compiler ID: ${CMAKE_CXX_COMPILER_ID}")
