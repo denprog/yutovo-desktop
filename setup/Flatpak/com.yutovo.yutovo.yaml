@@ -58,33 +58,16 @@ modules:
       - install -d /app/include
       - cp -r boost /app/include/
 
-  - name: gmp
-    buildsystem: autotools
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
-        sha256: a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898
-    config-opts:
-      - --enable-shared
-      - --enable-static
-      - --enable-cxx
-      - --prefix=/app
-      - --libdir=/app/lib
-    post-install:
-      - mkdir -p /app/bin
-      - cp -P /app/lib/libgmp.so* /app/bin/
-
   - name: mpfr
     buildsystem: simple
-    sources:
-      - type: archive
-        url: https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.gz
-        sha256: 116715552bd966c85b417c424db1bbdf639f53836eb361549d1f8d6ded5cb4c6
     build-commands:
-      - ./configure --enable-shared --enable-static --enable-cxx --libdir=/app/lib/ --prefix=/app/
-      - make -sj && make install
-      - mkdir -p /app/bin
-      - cp -P /app/lib/libmpfr.so* /app/bin/
+      - |
+        MPFR_SO=$(find /usr -name 'libmpfr.so.6*' -type f 2>/dev/null | head -n 1)
+        if [ -z "$MPFR_SO" ]; then
+          echo "libmpfr.so.6 not found in SDK" >&2
+          exit 1
+        fi
+        install -Dm644 "$MPFR_SO" /app/bin/libmpfr.so.6
 
   - name: mpc
     buildsystem: autotools
@@ -97,8 +80,6 @@ modules:
       - --enable-static
       - --prefix=/app
       - --libdir=/app/lib
-      - --with-gmp=/app
-      - --with-mpfr=/app
     post-install:
       - mkdir -p /app/bin
       - cp -P /app/lib/libmpc.so* /app/bin/
@@ -126,7 +107,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.4.1
+        tag: v1.5.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -156,7 +137,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.2.1
+        tag: v1.2.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -219,7 +200,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.6.1
+        tag: v1.6.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -245,10 +226,11 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.6.1
+        tag: v1.6.2
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
     post-install:
       - mkdir -p /app/share/mime/packages
       - mkdir -p /app/share/metainfo

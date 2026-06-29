@@ -1,3 +1,19 @@
+# 1.6.2
+- Corregido pegar imagen desde otra aplicación.
+- Corregido cálculo con números reales grandes.
+- Corregido factorial con números simbólicos.
+- Corregida inserción de potenciación.
+- Corregido clic en la ventana de sugerencias.
+- Corregido cálculo incorrecto con infinitos.
+- Corregido pegado de texto grande.
+- Uso de '^' para insertar potenciación.
+- Operaciones lógicas cambiadas a las matemáticas generalmente aceptadas.
+- Añadida función gamma para resultado simbólico.
+- Corregida precisión de números complejos simbólicos.
+- Corregida potenciación para enteros.
+- Corregidas operaciones aritméticas con medidas de ángulos.
+- Corregidos cálculos trigonométricos.
+
 # 1.6.1
 - Cálculos simbólicos con documentación añadidos.
 - Selección dentro del bloque de código corregida.

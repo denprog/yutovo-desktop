@@ -15,7 +15,7 @@ namespace Ui
 class AboutDialog;
 };
 
-static constexpr const char* APP_VERSION = "1.6.1";
+static constexpr const char* APP_VERSION = "1.6.2";
 
 class AboutDialog : public QDialog
 {
