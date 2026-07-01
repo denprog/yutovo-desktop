@@ -78,6 +78,41 @@ cmake -DCMAKE_BUILD_TYPE=Debug ../..
 make -sj && make install
 ```
 
+## Building for Fedora
+
+### Install build dependencies
+
+```bash
+sudo dnf install -y rpmdevtools cmake gcc-c++ make pkgconf-pkg-config qt5-qtbase-devel qt5-qttools-devel qt5-qtbase-private-devel \
+    qt5-qtdeclarative-devel qt5-qtsvg-devel qt5-qtx11extras-devel gmp-devel mpfr-devel libmpc-devel boost-devel spdlog-devel \
+    symengine-devel rapidjson-devel desktop-file-utils libappstream-glib hicolor-icon-theme stb_image-devel stb_image_write-devel fontconfig-devel
+```
+
+### Download sources
+
+```bash
+cd src/setup
+spectool -g -R yutovo-desktop.spec
+```
+
+### Building
+
+```bash
+rpmbuild -ba yutovo-desktop.spec
+```
+
+### Installing
+
+```bash
+sudo rpm -Uvh ~/rpmbuild/RPMS/x86_64/yutovo-*.rpm
+```
+
+### Notes
+
+- Fedora 44 uses GCC 16 with C23 as default. The spec handles compatibility via `-std=gnu17` for bundled libraries (GMP, MPFR, MPC).
+- Bundled libraries built from source: `mathgl-8.0.3`, `libharu-2.4.4`, `gmp-6.3.0`, `mpfr-4.2.1`, `mpc-1.3.1`.
+- For OBS/Open Build Service automation see `src/setup/` directory.
+
 ## Building for Arch
 
 Install the base dependiences.
