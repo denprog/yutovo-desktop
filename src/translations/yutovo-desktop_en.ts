@@ -299,4 +299,98 @@ You assume all responsibility and risk in relation to your use of this applicati
         <translation>Version</translation>
     </message>
 </context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>Send &amp;Feedback...</source>
+        <translation>Send &amp;Feedback...</translation>
+    </message>
+    <message>
+        <source>Send feedback to the Yutovo team</source>
+        <translation>Send feedback to the Yutovo team</translation>
+    </message>
+</context>
+<context>
+    <name>FeedbackDialog</name>
+    <message>
+        <source>Send Feedback</source>
+        <translation>Send Feedback</translation>
+    </message>
+    <message>
+        <source>Your name</source>
+        <translation>Your name</translation>
+    </message>
+    <message>
+        <source>Email *</source>
+        <translation>Email *</translation>
+    </message>
+    <message>
+        <source>Topic *</source>
+        <translation>Topic *</translation>
+    </message>
+    <message>
+        <source>Bug report</source>
+        <translation>Bug report</translation>
+    </message>
+    <message>
+        <source>Feature request</source>
+        <translation>Feature request</translation>
+    </message>
+    <message>
+        <source>General feedback</source>
+        <translation>General feedback</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation>Other</translation>
+    </message>
+    <message>
+        <source>Message *</source>
+        <translation>Message *</translation>
+    </message>
+    <message>
+        <source>Attach file...</source>
+        <translation>Attach file...</translation>
+    </message>
+    <message>
+        <source>No file attached</source>
+        <translation>No file attached</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Clear</translation>
+    </message>
+    <message>
+        <source>Attach current document</source>
+        <translation>Attach current document</translation>
+    </message>
+    <message>
+        <source>Characters: %1 / %2</source>
+        <translation>Characters: %1 / %2</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Send</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <source>Feedback sent successfully</source>
+        <translation>Feedback sent successfully</translation>
+    </message>
+    <message>
+        <source>Failed to send feedback</source>
+        <translation>Failed to send feedback</translation>
+    </message>
+    <message>
+        <source>Please fill in all required fields</source>
+        <translation>Please fill in all required fields</translation>
+    </message>
+    <message>
+        <source>Please enter a valid email address</source>
+        <translation>Please enter a valid email address</translation>
+    </message>
+</context>
 </TS>

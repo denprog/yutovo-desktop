@@ -63,6 +63,7 @@ set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/command_map.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/document_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/qt_pdf_window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/feedback_dialog.cpp
 )
 
 add_executable(${PROJECT_NAME}_test
@@ -71,6 +72,10 @@ add_executable(${PROJECT_NAME}_test
 )
 
 target_compile_definitions(${PROJECT_NAME}_test PRIVATE TEST_APP)
+
+if(BUILD_TESTS)
+    target_compile_definitions(${PROJECT_NAME}_test PRIVATE BUILD_TESTS)
+endif()
 
 target_include_directories(${PROJECT_NAME}_test PRIVATE
     ${INSTALL_PATH}/include

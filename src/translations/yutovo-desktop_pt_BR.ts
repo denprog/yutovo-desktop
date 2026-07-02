@@ -1727,4 +1727,98 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Versão</translation>
     </message>
 </context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>Send &amp;Feedback...</source>
+        <translation>Enviar &amp;feedback...</translation>
+    </message>
+    <message>
+        <source>Send feedback to the Yutovo team</source>
+        <translation>Enviar feedback para a equipe Yutovo</translation>
+    </message>
+</context>
+<context>
+    <name>FeedbackDialog</name>
+    <message>
+        <source>Send Feedback</source>
+        <translation>Enviar feedback</translation>
+    </message>
+    <message>
+        <source>Your name</source>
+        <translation>Seu nome</translation>
+    </message>
+    <message>
+        <source>Email *</source>
+        <translation>E-mail *</translation>
+    </message>
+    <message>
+        <source>Topic *</source>
+        <translation>Assunto *</translation>
+    </message>
+    <message>
+        <source>Bug report</source>
+        <translation>Relatório de bug</translation>
+    </message>
+    <message>
+        <source>Feature request</source>
+        <translation>Solicitação de recurso</translation>
+    </message>
+    <message>
+        <source>General feedback</source>
+        <translation>Feedback geral</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation>Outro</translation>
+    </message>
+    <message>
+        <source>Message *</source>
+        <translation>Mensagem *</translation>
+    </message>
+    <message>
+        <source>Attach file...</source>
+        <translation>Anexar arquivo...</translation>
+    </message>
+    <message>
+        <source>No file attached</source>
+        <translation>Nenhum arquivo anexado</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Limpar</translation>
+    </message>
+    <message>
+        <source>Attach current document</source>
+        <translation>Anexar documento atual</translation>
+    </message>
+    <message>
+        <source>Characters: %1 / %2</source>
+        <translation>Caracteres: %1 / %2</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Enviar</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Cancelar</translation>
+    </message>
+    <message>
+        <source>Feedback sent successfully</source>
+        <translation>Feedback enviado com sucesso</translation>
+    </message>
+    <message>
+        <source>Failed to send feedback</source>
+        <translation>Falha ao enviar feedback</translation>
+    </message>
+    <message>
+        <source>Please fill in all required fields</source>
+        <translation>Por favor, preencha todos os campos obrigatórios</translation>
+    </message>
+    <message>
+        <source>Please enter a valid email address</source>
+        <translation>Por favor, insira um endereço de e-mail válido</translation>
+    </message>
+</context>
 </TS>

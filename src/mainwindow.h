@@ -47,6 +47,8 @@ public:
 
     void OpenFile(QString file_name);
 
+    QString GetCurrentDocumentPath() const;
+
 protected:
     void changeEvent(QEvent* event) override;
     void closeEvent(QCloseEvent *event) override;
@@ -114,6 +116,7 @@ private:
     void PrivacyPolicy();
     void About();
     void WhatsNew();
+    void Feedback();
 
     void StandardToolbar();
     void FormatToolbar();

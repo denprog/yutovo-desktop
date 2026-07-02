@@ -1724,4 +1724,98 @@
         <translation>Версия</translation>
     </message>
 </context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>Send &amp;Feedback...</source>
+        <translation>Отправить &amp;отзыв...</translation>
+    </message>
+    <message>
+        <source>Send feedback to the Yutovo team</source>
+        <translation>Отправить отзыв команде Yutovo</translation>
+    </message>
+</context>
+<context>
+    <name>FeedbackDialog</name>
+    <message>
+        <source>Send Feedback</source>
+        <translation>Отправить отзыв</translation>
+    </message>
+    <message>
+        <source>Your name</source>
+        <translation>Ваше имя</translation>
+    </message>
+    <message>
+        <source>Email *</source>
+        <translation>Электронная почта *</translation>
+    </message>
+    <message>
+        <source>Topic *</source>
+        <translation>Тема *</translation>
+    </message>
+    <message>
+        <source>Bug report</source>
+        <translation>Сообщение об ошибке</translation>
+    </message>
+    <message>
+        <source>Feature request</source>
+        <translation>Запрос функции</translation>
+    </message>
+    <message>
+        <source>General feedback</source>
+        <translation>Общий отзыв</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation>Другое</translation>
+    </message>
+    <message>
+        <source>Message *</source>
+        <translation>Сообщение *</translation>
+    </message>
+    <message>
+        <source>Attach file...</source>
+        <translation>Прикрепить файл...</translation>
+    </message>
+    <message>
+        <source>No file attached</source>
+        <translation>Файл не прикреплён</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Очистить</translation>
+    </message>
+    <message>
+        <source>Attach current document</source>
+        <translation>Прикрепить текущий документ</translation>
+    </message>
+    <message>
+        <source>Characters: %1 / %2</source>
+        <translation>Символов: %1 / %2</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Отправить</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Feedback sent successfully</source>
+        <translation>Отзыв успешно отправлен</translation>
+    </message>
+    <message>
+        <source>Failed to send feedback</source>
+        <translation>Не удалось отправить отзыв</translation>
+    </message>
+    <message>
+        <source>Please fill in all required fields</source>
+        <translation>Пожалуйста, заполните все обязательные поля</translation>
+    </message>
+    <message>
+        <source>Please enter a valid email address</source>
+        <translation>Пожалуйста, введите корректный адрес электронной почты</translation>
+    </message>
+</context>
 </TS>

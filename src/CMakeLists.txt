@@ -107,6 +107,9 @@ add_executable(${PROJECT_NAME} WIN32
     whats_new_dialog.ui
     whats_new_dialog.cpp
     whats_new_dialog.h
+    feedback_dialog.h
+    feedback_dialog.cpp
+    feedback_dialog.ui
 )
 
 if (NOT WIN32)
@@ -126,6 +129,10 @@ if(WIN32)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
+
+if(BUILD_TESTS)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE BUILD_TESTS)
+endif()
 
 if(NOT WIN32)
     target_compile_options(${PROJECT_NAME} PRIVATE -fPIC -static-libstdc++)
@@ -216,6 +223,9 @@ if(NOT WIN32)
         DESTINATION ${INSTALL_PATH}/bin
         COMPONENT ${PROJECT_NAME}
     )
+    install(FILES ${QM_FILES}
+        DESTINATION ${INSTALL_PATH}/bin
+        COMPONENT ${PROJECT_NAME})
 endif()
 
 if(WIN32)

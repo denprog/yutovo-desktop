@@ -40,6 +40,7 @@
 #include "graph_settings_dialog.h"
 #include "export_pdf_dialog.h"
 #include "whats_new_dialog.h"
+#include "feedback_dialog.h"
 
 //MainWindow
 
@@ -391,6 +392,14 @@ DocumentPtr MainWindow::GetCurrentDocument()
     return nullptr;
 }
 
+QString MainWindow::GetCurrentDocumentPath() const
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
+        return QString();
+    return w->path;
+}
+
 void MainWindow::CreateActions()
 {
     //file menu and toolbar
@@ -736,6 +745,9 @@ void MainWindow::CreateActions()
 
     action = help_menu->addAction(tr("&Terms of use"), this, &MainWindow::TermsOfUse);
     help_menu->setStatusTip(tr("Show the application's Terms of use box"));
+
+    action = help_menu->addAction(tr("Send &Feedback..."), this, &MainWindow::Feedback);
+    action->setStatusTip(tr("Send feedback to the Yutovo team"));
 
     action = help_menu->addAction(tr("&Privacy policy"), this, &MainWindow::PrivacyPolicy);
     help_menu->setStatusTip(tr("Show the application's Privacy policy box"));
@@ -1717,6 +1729,12 @@ void MainWindow::About()
 {
     AboutDialog about_dialog;
     about_dialog.exec();
+}
+
+void MainWindow::Feedback()
+{
+    FeedbackDialog dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::WhatsNew()
