@@ -1656,20 +1656,28 @@ void MainWindow::Link()
     document->InsertLink(dialog.text.toStdString(), dialog.url.toStdString(), true);
 }
 
-void MainWindow::Graph()
+void MainWindow::OnGraphFormat()
 {
     auto document = GetCurrentDocument();
     if (!document)
         return;
 
-    EditorState s = document->GetEditorState();
+    auto document_window = qobject_cast<DocumentWindow*>(ui->editor_tabs->currentWidget());
+    ElementId graph_id;
+    if (document_window)
+        graph_id = document_window->context_menu_graph_id;
+    if (graph_id.empty())
+        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+    if (graph_id.empty())
+        return;
+
     GraphFormat f;
-    if (!document->GetGraphFormat(yutovo::GetParent(s.caret_state.id), f))
+    if (!document->GetGraphFormat(graph_id, f))
         return;
     GraphSettingsDialog dialog(f);
     if (!dialog.exec())
         return;
-    document->SetGraphFormat(yutovo::GetParent(s.caret_state.id), f, true);
+    document->SetGraphFormat(graph_id, f, true);
 }
 
 void MainWindow::Undo()

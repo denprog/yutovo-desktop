@@ -294,17 +294,29 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     auto add_graph_menu = 
         [&]()
         {
-            EditorState s = document->GetEditorState();
-            if (s.caret_state.IsEmpty())
-                return;
-            
-            auto t = document->GetElementType(yutovo::GetParent(s.caret_state.id));
-            if (t != ElementType::GRAPH_LINE)
+            context_menu_graph_id = ElementId{};
+            QPoint doc_widget_pos = document_widget->mapFromParent(event->pos());
+            int x = doc_widget_pos.x() + document_widget->window.document_point.x;
+            int y = doc_widget_pos.y() + document_widget->window.document_point.y;
+            ElementId id_at_coords;
+            if (document->GetElementAtCoords(x, y, 0, id_at_coords))
+            {
+                auto el = document->GetElement(id_at_coords);
+                while (el && el->type != ElementType::GRAPH_LINE)
+                    el = document->GetParent(el->id);
+                if (el)
+                    context_menu_graph_id = el->id;
+            }
+            if (context_menu_graph_id.empty())
+                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+
+            if (context_menu_graph_id.empty())
                 return;
 
             if (!menu.isEmpty())
                 menu.addSeparator();
             menu.addAction(graph);
+            menu.addAction(copy_image);
         };
 
     add_copy_paste_menu();
@@ -614,8 +626,13 @@ void DocumentWindow::CreateMenus()
 
     if (graph)
         graph->deleteLater();
-    graph = new QAction(tr("Graph"), this);
-    connect(graph, &QAction::triggered, main_window, &MainWindow::Graph);
+    graph = new QAction(tr("Graph format"), this);
+    connect(graph, &QAction::triggered, main_window, &MainWindow::OnGraphFormat);
+
+    if (copy_image)
+        copy_image->deleteLater();
+    copy_image = new QAction(tr("Copy image"), this);
+    connect(copy_image, &QAction::triggered, this, &DocumentWindow::OnCopyImage);
 }
 
 void DocumentWindow::OnVerticalValueChanged(int value)
@@ -961,3 +978,37 @@ ElementId DocumentWindow::GetResultId()
         id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
     return id;
 }
+
+void DocumentWindow::OnCopyImage()
+{
+    if (QMenu* menu = qobject_cast<QMenu*>(QApplication::activePopupWidget()))
+        menu->close();
+
+    ElementId id = context_menu_graph_id;
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+    if (id.empty())
+        return;
+
+    std::vector<unsigned char> png;
+    if (!document->GetGraphImage(id, png) || png.empty())
+        return;
+
+    QImage image;
+    if (!image.loadFromData((const uchar*)png.data(), (int)png.size(), "PNG"))
+        return;
+
+    QByteArray arr((const char*)png.data(), (int)png.size());
+    QMimeData* mime_data = new QMimeData();
+    mime_data->setImageData(image);
+    mime_data->setData("image/png", arr);
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    clipboard->setMimeData(mime_data);
+}
+
+#ifdef TEST_APP
+QPoint DocumentWindow::GetDocumentPoint() const
+{
+    return QPoint(document_widget->window.document_point.x, document_widget->window.document_point.y);
+}
+#endif

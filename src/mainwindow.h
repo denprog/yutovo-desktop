@@ -103,7 +103,7 @@ private:
 
     void Link();
 
-    void Graph();
+    void OnGraphFormat();
 
     void Properties();
 

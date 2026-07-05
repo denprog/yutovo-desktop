@@ -32,6 +32,7 @@ private slots:
     void testExportToPdf();
     void testPdfExportErrorHandling();
     void testMenuRebuildDoesNotLeak();
+    void testCopyPasteGraph();
 
 private:
     MainWindow* window;

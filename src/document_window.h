@@ -82,6 +82,8 @@ private slots:
     void OnComplexFormTrigonometric();
     void OnComplexFormExponential();
 
+    void OnCopyImage();
+
 signals:
     void CaretMoved(const EditorState editor_state);
     void DocumentChanged(const bool changed);
@@ -99,6 +101,7 @@ private:
 
 #ifdef TEST_APP
 public:
+    QPoint GetDocumentPoint() const;
 #else
 private:
 #endif
@@ -162,6 +165,9 @@ private:
     QAction* complex_form_exponential = nullptr;
 
     QAction* graph = nullptr;
+    QAction* copy_image = nullptr;
+
+    ElementId context_menu_graph_id;
 };
 
 #endif

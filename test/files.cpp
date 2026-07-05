@@ -3,6 +3,12 @@
 #include <QLineEdit>
 #include <QDialog>
 #include <QProcess>
+#include <QClipboard>
+#include <QMimeData>
+#include <QImage>
+#include <QMenu>
+#include <QContextMenuEvent>
+#include <QPointer>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
 
@@ -425,6 +431,102 @@ void TestFiles::testMenuRebuildDoesNotLeak()
         window->SetupGuiActions();
         QCOMPARE(window->menuBar()->actions().size(), c);
     }
+}
+
+void TestFiles::testCopyPasteGraph()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    auto document_window = window->findChild<DocumentWindow*>();
+    QVERIFY(document_window);
+
+    auto clipboard = QGuiApplication::clipboard();
+    clipboard->clear();
+
+    document->WaitTask(document->InsertGraph(true), 5000);
+    QTest::qWait(500);
+    QTRY_VERIFY(document->FindByType(ElementId{0}, ElementType::GRAPH_LINE) != nullptr);
+
+    auto graph = document->FindByType(ElementId{0}, ElementType::GRAPH_LINE);
+    QVERIFY(graph);
+
+    auto copyGraphViaContextMenu = 
+        [&](const char* scenario)
+        {
+            Rect current_r;
+            QVERIFY2(document->GetElementRect(graph->id, current_r), scenario);
+
+            QPoint doc_point = document_window->GetDocumentPoint();
+            QPoint graph_point(current_r.left + 5 - doc_point.x(), current_r.top + current_r.height / 2 - doc_point.y());
+            QPoint global_pos = editor->mapToGlobal(graph_point);
+            QPoint window_pos = document_window->mapFromGlobal(global_pos);
+
+            QPointer<QMenu> menu;
+            std::atomic<bool> triggered{false};
+
+            QTimer::singleShot(100,
+                [&]()
+                {
+                    menu = qobject_cast<QMenu*>(QApplication::activePopupWidget());
+                    if (!menu)
+                        return;
+                    QAction* copy_action = nullptr;
+                    for (auto* a : menu->actions())
+                    {
+                        if (a->text() == "Copy image")
+                        {
+                            copy_action = a;
+                            break;
+                        }
+                    }
+                    if (copy_action)
+                    {
+                        menu->setActiveAction(copy_action);
+                        copy_action->trigger();
+                        triggered = true;
+                    }
+                    else
+                    {
+                        menu->close();
+                    }
+                });
+
+            QContextMenuEvent event(QContextMenuEvent::Mouse, window_pos, global_pos);
+            QApplication::sendEvent(document_window, &event);
+            QTest::qWait(200);
+
+            QVERIFY2(triggered.load(), scenario);
+        };
+
+    //caret is at the end of normal text, outside the graph
+    document->MoveCaretToDocumentEnd(false);
+    QTest::keyClicks(editor, "abc");
+    QTest::qWait(200);
+    QVERIFY(document->FindCurrentParentByType(ElementType::GRAPH_LINE).empty());
+    copyGraphViaContextMenu("scenario end-of-text");
+
+    auto mime_data = clipboard->mimeData();
+    QVERIFY(mime_data);
+    QVERIFY(mime_data->hasImage() || mime_data->hasFormat("image/png"));
+    QImage image = qvariant_cast<QImage>(mime_data->imageData());
+    QVERIFY(!image.isNull());
+    QVERIFY(image.width() > 0);
+    QVERIFY(image.height() > 0);
+
+    //caret is at the beginning of normal text, outside the graph
+    document->MoveCaretHome(false);
+    QVERIFY(document->FindCurrentParentByType(ElementType::GRAPH_LINE).empty());
+    copyGraphViaContextMenu("scenario beginning-of-text");
+
+    mime_data = clipboard->mimeData();
+    QVERIFY(mime_data);
+    QVERIFY(mime_data->hasImage() || mime_data->hasFormat("image/png"));
+    image = qvariant_cast<QImage>(mime_data->imageData());
+    QVERIFY(!image.isNull());
+    QVERIFY(image.width() > 0);
+    QVERIFY(image.height() > 0);
 }
 
 QTEST_MAIN(TestFiles)

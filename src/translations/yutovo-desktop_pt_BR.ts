@@ -337,8 +337,12 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Ordem do expoente</translation>
     </message>
     <message>
-        <source>Graph</source>
-        <translation>Gráfico</translation>
+        <source>Graph format</source>
+        <translation>Formato do gráfico</translation>
+    </message>
+    <message>
+        <source>Copy image</source>
+        <translation>Copiar imagem</translation>
     </message>
     <message>
         <source>Link</source>

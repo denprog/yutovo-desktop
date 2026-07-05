@@ -286,8 +286,12 @@
         <translation>Порядок экспоненты</translation>
     </message>
     <message>
-        <source>Graph</source>
-        <translation>График</translation>
+        <source>Graph format</source>
+        <translation>Формат графика</translation>
+    </message>
+    <message>
+        <source>Copy image</source>
+        <translation>Копировать изображение</translation>
     </message>
     <message>
         <source>Link</source>

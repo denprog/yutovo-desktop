@@ -337,8 +337,12 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Orden del exponente</translation>
     </message>
     <message>
-        <source>Graph</source>
-        <translation>Gráfico</translation>
+        <source>Graph format</source>
+        <translation>Formato del gráfico</translation>
+    </message>
+    <message>
+        <source>Copy image</source>
+        <translation>Copiar imagen</translation>
     </message>
     <message>
         <source>Link</source>
