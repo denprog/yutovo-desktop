@@ -1490,9 +1490,9 @@ void MainWindow::Print()
     print_config.pdf = true;
 
     QPageLayout layout = printer.pageLayout();
-    QMarginsF margins = layout.margins(QPageLayout::Millimeter);
     QRectF page_rect = layout.fullRect(QPageLayout::Point);
     const Size pdf_page_size{(int)page_rect.width(), (int)page_rect.height()};
+    QMarginsF margins = layout.margins(QPageLayout::Point);
 
     auto render_pdf = 
         [&](int first_page, int last_page)
@@ -1522,6 +1522,10 @@ void MainWindow::Print()
             QMetaObject::Connection timer_connection = connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
 
             Document pdf_document(print_window.get(), print_config, *w->document.get());
+            f.left_indent = (int)margins.left();
+            f.top_indent = (int)margins.top();
+            f.right_indent = (int)margins.right();
+            f.bottom_indent = (int)margins.bottom();
             pdf_document.Start(f);
             timer.start();
             loop.exec();
@@ -1539,7 +1543,7 @@ void MainWindow::Print()
 
     if (printer.printRange() == QPrinter::CurrentPage)
     {
-        std::unique_ptr<QtPdfWindow> measure_window(new QtPdfWindow(pdf_page_size));
+        std::unique_ptr<QtPdfWindow> print_window(new QtPdfWindow(pdf_page_size));
 
         bool finished = false;
         QEventLoop loop;
@@ -1554,11 +1558,11 @@ void MainWindow::Print()
                 loop.quit();
             };
 
-        QMetaObject::Connection result_connection = connect(measure_window.get(), &QtPdfWindow::PdfExportResult, this, on_result);
+        QMetaObject::Connection result_connection = connect(print_window.get(), &QtPdfWindow::PdfExportResult, this, on_result);
         QMetaObject::Connection timer_connection = connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
 
-        Document measure_document(measure_window.get(), print_config, *w->document.get());
-        measure_document.Start(f);
+        Document print_document(print_window.get(), print_config, *w->document.get());
+        print_document.Start(f);
         timer.start();
         loop.exec();
 
@@ -1571,8 +1575,8 @@ void MainWindow::Print()
             return;
         }
 
-        Rect caret_rect = measure_document.GetCaretRect(w->document_widget->current_editor_state.caret_state);
-        Rect view_port = measure_window->GetViewPort(0);
+        Rect caret_rect = print_document.GetCaretRect(w->document_widget->current_editor_state.caret_state);
+        Rect view_port = print_window->GetViewPort(0);
         int current_page = 1;
         if (view_port.height > 0)
             current_page = (caret_rect.top - view_port.top) / view_port.height + 1;
