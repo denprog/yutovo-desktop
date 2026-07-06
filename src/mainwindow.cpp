@@ -23,6 +23,11 @@
 #include <QDesktopServices>
 #include <QTextDocument>
 #include <QTimer>
+#include <QPrintDialog>
+#include <QPageLayout>
+#include <QTemporaryFile>
+#include <QEventLoop>
+#include <QDir>
 #include <filesystem>
 #ifdef _WIN32
 #include <shlobj_core.h>
@@ -468,6 +473,12 @@ void MainWindow::CreateActions()
     export_pdf_action->setStatusTip(tr("Export current document to PDF"));
     connect(export_pdf_action, &QAction::triggered, this, &MainWindow::ExportToPdf);
     file_menu->addAction(export_pdf_action);
+
+    print_action = new QAction(tr("&Print"), this);
+    print_action->setShortcuts(QKeySequence::Print);
+    print_action->setStatusTip(tr("Print current document"));
+    connect(print_action, &QAction::triggered, this, &MainWindow::Print);
+    file_menu->addAction(print_action);
 
     file_menu->addSeparator();
 
@@ -1451,6 +1462,186 @@ void MainWindow::ExportToPdf()
         Document pdf_document(pdf_window.get(), config, *w->document.get());
         pdf_document.Start(f);
     }
+}
+
+void MainWindow::Print()
+{
+    DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
+    if (!w)
+        return;
+
+    TextFormat f;
+    w->document->GetTextFormat(f);
+
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintDialog dialog(&printer, this);
+    dialog.setOptions(dialog.options() | QAbstractPrintDialog::PrintPageRange | QAbstractPrintDialog::PrintCurrentPage);
+
+    if (dialog.exec() != QDialog::Accepted)
+        return;
+
+    Config print_config;
+    w->document->GetConfig(print_config);
+    print_config.with_border = false;
+    print_config.code_block_border = true;
+    print_config.caret_visible = false;
+    print_config.hilight_caret_element = false;
+    print_config.draw_whole = true;
+    print_config.pdf = true;
+
+    QPageLayout layout = printer.pageLayout();
+    QMarginsF margins = layout.margins(QPageLayout::Millimeter);
+    QRectF page_rect = layout.fullRect(QPageLayout::Point);
+    const Size pdf_page_size{(int)page_rect.width(), (int)page_rect.height()};
+
+    auto render_pdf = 
+        [&](int first_page, int last_page)
+        {
+            std::unique_ptr<QtPdfWindow> print_window(new QtPdfWindow(pdf_page_size));
+            if (first_page > 0)
+                print_window->SetPageRange(first_page, last_page);
+
+            std::vector<uint8_t> pdf;
+            PdfResult pdf_result = PdfResult::Error;
+            bool finished = false;
+            QEventLoop loop;
+            QTimer timer;
+            timer.setSingleShot(true);
+            timer.setInterval(60000);
+
+            auto on_result =
+                [&](const std::vector<uint8_t>& p, const PdfResult r)
+                {
+                    pdf = p;
+                    pdf_result = r;
+                    finished = true;
+                    loop.quit();
+                };
+
+            QMetaObject::Connection result_connection = connect(print_window.get(), &QtPdfWindow::PdfExportResult, this, on_result);
+            QMetaObject::Connection timer_connection = connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+
+            Document pdf_document(print_window.get(), print_config, *w->document.get());
+            pdf_document.Start(f);
+            timer.start();
+            loop.exec();
+
+            disconnect(result_connection);
+            disconnect(timer_connection);
+
+            if (!finished)
+                return std::make_pair(std::vector<uint8_t>{}, PdfResult::Error);
+            return std::make_pair(pdf, pdf_result);
+        };
+
+    std::vector<uint8_t> pdf;
+    PdfResult pdf_result = PdfResult::Error;
+
+    if (printer.printRange() == QPrinter::CurrentPage)
+    {
+        std::unique_ptr<QtPdfWindow> measure_window(new QtPdfWindow(pdf_page_size));
+
+        bool finished = false;
+        QEventLoop loop;
+        QTimer timer;
+        timer.setSingleShot(true);
+        timer.setInterval(60000);
+
+        auto on_result =
+            [&](const std::vector<uint8_t>&, const PdfResult)
+            {
+                finished = true;
+                loop.quit();
+            };
+
+        QMetaObject::Connection result_connection = connect(measure_window.get(), &QtPdfWindow::PdfExportResult, this, on_result);
+        QMetaObject::Connection timer_connection = connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+
+        Document measure_document(measure_window.get(), print_config, *w->document.get());
+        measure_document.Start(f);
+        timer.start();
+        loop.exec();
+
+        disconnect(result_connection);
+        disconnect(timer_connection);
+
+        if (!finished)
+        {
+            QMessageBox::critical(this, tr("Yutovo"), tr("Timeout while preparing document for printing"));
+            return;
+        }
+
+        Rect caret_rect = measure_document.GetCaretRect(w->document_widget->current_editor_state.caret_state);
+        Rect view_port = measure_window->GetViewPort(0);
+        int current_page = 1;
+        if (view_port.height > 0)
+            current_page = (caret_rect.top - view_port.top) / view_port.height + 1;
+        if (current_page < 1)
+            current_page = 1;
+
+        std::tie(pdf, pdf_result) = render_pdf(current_page, current_page);
+    }
+    else if (printer.printRange() == QPrinter::PageRange)
+    {
+        std::tie(pdf, pdf_result) = render_pdf(printer.fromPage(), printer.toPage());
+    }
+    else
+    {
+        std::tie(pdf, pdf_result) = render_pdf(0, 0);
+    }
+
+    if (pdf_result != PdfResult::Success)
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error preparing document for printing"));
+        return;
+    }
+
+    QTemporaryFile temp(QDir::temp().filePath("yutovo_print_XXXXXX.pdf"));
+    if (!temp.open())
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error creating temporary file for printing"));
+        return;
+    }
+    temp.write(reinterpret_cast<const char*>(pdf.data()), pdf.size());
+    temp.flush();
+    QString file_name = temp.fileName();
+    temp.setAutoRemove(false);
+
+#ifdef _WIN32
+    HINSTANCE result = ShellExecuteW(nullptr, L"print", file_name.toStdWString().c_str(), nullptr, nullptr, SW_HIDE);
+    if ((intptr_t)result <= 32)
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Error printing document"));
+        QFile::remove(file_name);
+    }
+#else
+    QStringList args;
+    QString printer_name = printer.printerName();
+    if (!printer_name.isEmpty())
+        args << "-d" << printer_name;
+    int copies = printer.copyCount();
+    if (copies > 1)
+        args << "-n" << QString::number(copies);
+    args << file_name;
+
+    QProcess* process = new QProcess(this);
+    connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+        [this, process, file_name](int exit_code, QProcess::ExitStatus status)
+        {
+            QFile::remove(file_name);
+            if (status != QProcess::NormalExit || exit_code != 0)
+                QMessageBox::critical(this, tr("Yutovo"), tr("Error printing document"));
+            process->deleteLater();
+        });
+
+    process->start("lp", args);
+    if (!process->waitForStarted(5000))
+    {
+        QMessageBox::critical(this, tr("Yutovo"), tr("Could not start print process"));
+        QFile::remove(file_name);
+        process->deleteLater();
+    }
+#endif
 }
 
 void MainWindow::Settings()

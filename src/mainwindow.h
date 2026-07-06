@@ -16,6 +16,7 @@
 #include <QSettings>
 #include <QTranslator>
 #include <QProcess>
+#include <QPrinter>
 #include <QSortFilterProxyModel>
 #include <yutovo-editor/document.h>
 #include <yutovo-logger/logger.h>
@@ -94,6 +95,7 @@ private:
     void CloseOthers();
     void ExportToHtml();
     void ExportToPdf();
+    void Print();
     void Settings();
     void Exit();
 
@@ -337,6 +339,7 @@ private:
 
     QAction* export_html_action = nullptr;
     QAction* export_pdf_action = nullptr;
+    QAction* print_action = nullptr;
 
     QAction* undo_action = nullptr;
     QAction* redo_action = nullptr;

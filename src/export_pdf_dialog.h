@@ -31,6 +31,8 @@ public:
     QSizeF GetPageSize() const;
     QString FilePath() const;
 
+    void SetPrintMode(bool print_mode);
+
 public slots:
     void PageSizeChanged(int index);
     void OrientationChanged(int index);

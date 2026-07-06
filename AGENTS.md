@@ -63,3 +63,18 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 - Translations: 4 locales (en, ru, es, pt_BR); `.ts` → `.qm` via `lrelease` at build time — `lrelease` must be on PATH
 - Windows uses vcpkg; Linux uses `$YUTOVO_DEPLOY` for all deps
 - No CI, no pre-commit, no linting/formatting config in repo
+
+## Code style
+- Opening braces always on a new line (`K&R/Allman` style):
+  ```cpp
+  if (condition)
+  {
+      ...
+  }
+  ```
+- `return` statements always on their own line:
+  ```cpp
+  if (condition)
+      return;
+  ```
+  not `if (condition) return;`

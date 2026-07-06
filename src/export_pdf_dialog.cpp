@@ -62,6 +62,22 @@ QString ExportPdfDialog::FilePath() const
     return file_path;
 }
 
+void ExportPdfDialog::SetPrintMode(bool print_mode)
+{
+    if (print_mode)
+    {
+        setWindowTitle(tr("Print setup"));
+        ui->chooseFile->hide();
+        ui->filePath->hide();
+    }
+    else
+    {
+        setWindowTitle(tr("Export to PDF"));
+        ui->chooseFile->show();
+        ui->filePath->show();
+    }
+}
+
 void ExportPdfDialog::PageSizeChanged(int index)
 {
     UpdatePageDimensions();

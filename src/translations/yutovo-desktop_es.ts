@@ -154,6 +154,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
 <context>
     <name>ExportPdfDialog</name>
     <message>
+        <source>Print setup</source>
+        <translation>Configuración de impresión</translation>
+    </message>
+    <message>
         <source>Page settings</source>
         <translation>Configuración de página</translation>
     </message>
@@ -527,6 +531,34 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Export to PDF</source>
         <translation>Exportar a PDF</translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation>&amp;Imprimir</translation>
+    </message>
+    <message>
+        <source>Print current document</source>
+        <translation>Imprimir documento actual</translation>
+    </message>
+    <message>
+        <source>Timeout while preparing document for printing</source>
+        <translation>Tiempo de espera agotado al preparar el documento para imprimir</translation>
+    </message>
+    <message>
+        <source>Error preparing document for printing</source>
+        <translation>Error al preparar el documento para imprimir</translation>
+    </message>
+    <message>
+        <source>Error creating temporary file for printing</source>
+        <translation>Error al crear archivo temporal para imprimir</translation>
+    </message>
+    <message>
+        <source>Error printing document</source>
+        <translation>Error al imprimir el documento</translation>
+    </message>
+    <message>
+        <source>Could not start print process</source>
+        <translation>No se pudo iniciar el proceso de impresión</translation>
     </message>
     <message>
         <source>&amp;Settings</source>

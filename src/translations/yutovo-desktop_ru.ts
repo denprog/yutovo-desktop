@@ -406,6 +406,10 @@
 <context>
     <name>ExportPdfDialog</name>
     <message>
+        <source>Print setup</source>
+        <translation>Параметры печати</translation>
+    </message>
+    <message>
         <source>Page settings</source>
         <translation>Настройки страницы</translation>
     </message>
@@ -527,6 +531,34 @@
     <message>
         <source>Export to PDF</source>
         <translation>Экспорт в PDF</translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation>&amp;Печать</translation>
+    </message>
+    <message>
+        <source>Print current document</source>
+        <translation>Печать текущего документа</translation>
+    </message>
+    <message>
+        <source>Timeout while preparing document for printing</source>
+        <translation>Превышено время ожидания при подготовке документа к печати</translation>
+    </message>
+    <message>
+        <source>Error preparing document for printing</source>
+        <translation>Ошибка подготовки документа к печати</translation>
+    </message>
+    <message>
+        <source>Error creating temporary file for printing</source>
+        <translation>Ошибка создания временного файла для печати</translation>
+    </message>
+    <message>
+        <source>Error printing document</source>
+        <translation>Ошибка печати документа</translation>
+    </message>
+    <message>
+        <source>Could not start print process</source>
+        <translation>Не удалось запустить процесс печати</translation>
     </message>
     <message>
         <source>&amp;Settings</source>

@@ -58,6 +58,41 @@ You assume all responsibility and risk in relation to your use of this applicati
     </message>
 </context>
 <context>
+    <name>ExportPdfDialog</name>
+    <message>
+        <source>Print setup</source>
+        <translation>Print setup</translation>
+    </message>
+    <message>
+        <source>Page settings</source>
+        <translation>Page settings</translation>
+    </message>
+    <message>
+        <source>Format:</source>
+        <translation>Format:</translation>
+    </message>
+    <message>
+        <source>Orientation:</source>
+        <translation>Orientation:</translation>
+    </message>
+    <message>
+        <source>Margins (mm):</source>
+        <translation>Margins (mm):</translation>
+    </message>
+    <message>
+        <source>Width (mm):</source>
+        <translation>Width (mm):</translation>
+    </message>
+    <message>
+        <source>Height (mm):</source>
+        <translation>Height (mm):</translation>
+    </message>
+    <message>
+        <source>Choose file...</source>
+        <translation>Choose file...</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>This document online</source>
@@ -278,6 +313,34 @@ You assume all responsibility and risk in relation to your use of this applicati
     <message>
         <source>Show what&apos;s new in this version</source>
         <translation>Show what&apos;s new in this version</translation>
+    </message>
+    <message>
+        <source>&amp;Print</source>
+        <translation>&amp;Print</translation>
+    </message>
+    <message>
+        <source>Print current document</source>
+        <translation>Print current document</translation>
+    </message>
+    <message>
+        <source>Timeout while preparing document for printing</source>
+        <translation>Timeout while preparing document for printing</translation>
+    </message>
+    <message>
+        <source>Error preparing document for printing</source>
+        <translation>Error preparing document for printing</translation>
+    </message>
+    <message>
+        <source>Error creating temporary file for printing</source>
+        <translation>Error creating temporary file for printing</translation>
+    </message>
+    <message>
+        <source>Error printing document</source>
+        <translation>Error printing document</translation>
+    </message>
+    <message>
+        <source>Could not start print process</source>
+        <translation>Could not start print process</translation>
     </message>
 </context>
 <context>
