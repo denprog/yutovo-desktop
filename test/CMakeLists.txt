@@ -25,11 +25,11 @@ else()
     pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
     pkg_check_modules(gmp REQUIRED IMPORTED_TARGET gmp)
 endif()
+
 find_package(yutovo-logger REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-editor REQUIRED PATHS ${INSTALL_PATH}/lib/cmake/)
 find_package(yutovo-calculator REQUIRED)
 find_package(yutovo-solver REQUIRED)
-find_package(SymEngine REQUIRED)
 
 set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/mainwindow.cpp
@@ -51,11 +51,6 @@ set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/fonts_settings_form.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/computation_settings_form.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/properties_dialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/link_dialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/terms_of_use_dialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/privacy_policy_dialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/plot_format_dialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/export_pdf_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/prompt_form.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/whats_new_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/qt_window.cpp
@@ -103,7 +98,6 @@ if(WIN32)
         BZip2::BZip2
         unofficial::libharu::hpdf
         ${ZLIB_LIB}
-        ${SYMENGINE_LIBRARIES}
     )
 else()
     target_link_libraries(${PROJECT_NAME}_test PRIVATE
@@ -113,4 +107,4 @@ else()
 endif()
 
 enable_testing()
-add_test(NAME files COMMAND files)
+add_test(NAME files COMMAND ${PROJECT_NAME}_test)
