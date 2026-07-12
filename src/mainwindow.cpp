@@ -3143,6 +3143,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/greek_toolbar", greek_toolbar_action->isChecked());
     settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
     settings.setValue("MainWindow/graphs_toolbar", graph_toolbar_action->isChecked());
+    settings.setValue("MainWindow/logical_toolbar", logical_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
