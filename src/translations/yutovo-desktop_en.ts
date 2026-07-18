@@ -342,6 +342,14 @@ You assume all responsibility and risk in relation to your use of this applicati
         <source>Could not start print process</source>
         <translation>Could not start print process</translation>
     </message>
+    <message>
+        <source>Calculus</source>
+        <translation>Calculus</translation>
+    </message>
+    <message>
+        <source>Definite integral</source>
+        <translation>Definite integral</translation>
+    </message>
 </context>
 <context>
     <name>WhatsNewDialog</name>

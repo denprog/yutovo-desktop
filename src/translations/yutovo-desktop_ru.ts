@@ -1368,6 +1368,14 @@
         <source>Infinity</source>
         <translation>Бесконечность</translation>
     </message>
+    <message>
+        <source>Calculus</source>
+        <translation>Математический анализ</translation>
+    </message>
+    <message>
+        <source>Definite integral</source>
+        <translation>Определённый интеграл</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

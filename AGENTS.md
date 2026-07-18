@@ -78,3 +78,40 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
       return;
   ```
   not `if (condition) return;`
+
+Always place braces on their own line for control structures.
+
+### Parenthesized expressions
+Keep the contents of parentheses (function argument lists, conditions, initializers, etc.) on a single line when it fits. Only wrap to a new line if the expression would exceed **140 columns**.
+When a parenthesized expression is wrapped, each continuation line uses the normal **4-space indent**; do not align arguments with the opening parenthesis.
+```cpp
+// CORRECT
+void ShortFunction(int a, int b, int c);
+
+void LongFunctionName(const std::u32string& first_argument, const std::u32string& second_argument,
+    int third_argument);
+
+auto result = SomeFunction(first_argument, second_argument,
+    third_argument, fourth_argument);
+
+if (condition_a && condition_b)
+{
+    // ...
+}
+
+// WRONG
+void LongFunctionName(
+    const std::u32string& first_argument,
+    const std::u32string& second_argument,
+    int third_argument);
+
+void LongFunctionName(const std::u32string& first_argument,
+                      const std::u32string& second_argument,
+                      int third_argument);
+
+try {
+    // ...
+} catch (...) {
+    // ...
+}
+```

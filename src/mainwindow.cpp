@@ -115,6 +115,7 @@ void MainWindow::Start(QString filename)
     CreateCurrenciesToolbar();
     CreateGraphsToolbar();
     CreateLogicalToolbar();
+    CreateCalculusToolbar();
     CreateStatusBar();
 
     //restore toolbar positions now that they exist
@@ -292,6 +293,7 @@ void MainWindow::SetupGuiActions()
     currency_toolbar = nullptr;
     graph_toolbar = nullptr;
     logical_toolbar = nullptr;
+    calculus_toolbar = nullptr;
 
     //remove top-level menus and actions before recreating them to avoid leaks
     {
@@ -324,6 +326,7 @@ void MainWindow::SetupGuiActions()
     CreateCurrenciesToolbar();
     CreateGraphsToolbar();
     CreateLogicalToolbar();
+    CreateCalculusToolbar();
     
     if (!saved_state.isEmpty())
         restoreState(saved_state);
@@ -339,6 +342,7 @@ void MainWindow::SetupGuiActions()
     greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
     currency_toolbar_action->setChecked(settings.value("MainWindow/currency_toolbar", false).toBool());
     logical_toolbar_action->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
+    calculus_toolbar_action->setChecked(settings.value("MainWindow/calculus_toolbar", false).toBool());
     status_bar_action->setChecked(settings.value("MainWindow/status_bar", true).toBool());
 
     int i = ui->editor_tabs->currentIndex();
@@ -735,6 +739,12 @@ void MainWindow::CreateActions()
     logical_toolbar_action->setChecked(true);
     connect(logical_toolbar_action, &QAction::toggled, this, &MainWindow::LogicalToolbar);
     toolbars_menu->addAction(logical_toolbar_action);
+
+    calculus_toolbar_action = new QAction(tr("Calculus"), this);
+    calculus_toolbar_action->setCheckable(true);
+    calculus_toolbar_action->setChecked(true);
+    connect(calculus_toolbar_action, &QAction::toggled, this, &MainWindow::CalculusToolbar);
+    toolbars_menu->addAction(calculus_toolbar_action);
 
     status_bar_action = new QAction(tr("&Status bar"), this);
     status_bar_action->setCheckable(true);
@@ -1160,6 +1170,21 @@ void MainWindow::CreateLogicalToolbar()
     action->setObjectName("actionLogicalNot");
     connect(action, &QAction::triggered, this, &MainWindow::OnNot);
     logical_toolbar->addAction(action);
+}
+
+void MainWindow::CreateCalculusToolbar()
+{
+    //calculus toolbar
+    calculus_toolbar = addToolBar(tr("Calculus"));
+    calculus_toolbar->setObjectName("calculus_toolbar");
+    calculus_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* action = new QAction(QIcon(":/icons/images/calculus/definite_integral.png"), tr("Definite integral"), this);
+    action->setObjectName("actionDefiniteIntegral");
+    action->setToolTip(tr("Definite integral"));
+    action->setShortcut(QKeySequence(tr("Ctrl+Shift+I")));
+    connect(action, &QAction::triggered, this, &MainWindow::OnDefiniteIntegral);
+    calculus_toolbar->addAction(action);
 }
 
 void MainWindow::CreateStatusBar()
@@ -1703,6 +1728,7 @@ void MainWindow::Settings()
         graph_toolbar_action->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
         greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
         logical_toolbar_action->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
+        calculus_toolbar_action->setChecked(settings.value("MainWindow/calculus_toolbar", false).toBool());
 
         if (last_language != config.language)
         {
@@ -2015,6 +2041,12 @@ void MainWindow::LogicalToolbar()
 {
     logical_toolbar_action->isChecked() ? logical_toolbar->show() : logical_toolbar->hide();
     settings.setValue("MainWindow/logical_toolbar", logical_toolbar_action->isChecked());
+}
+
+void MainWindow::CalculusToolbar()
+{
+    calculus_toolbar_action->isChecked() ? calculus_toolbar->show() : calculus_toolbar->hide();
+    settings.setValue("MainWindow/calculus_toolbar", calculus_toolbar_action->isChecked());
 }
 
 void MainWindow::StatusBar()
@@ -2794,6 +2826,13 @@ void MainWindow::OnNot()
         document->InsertNot(true);
 }
 
+void MainWindow::OnDefiniteIntegral()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertDefiniteIntegral(true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -3144,6 +3183,7 @@ void MainWindow::WriteSettings()
     settings.setValue("MainWindow/currency_toolbar", currency_toolbar_action->isChecked());
     settings.setValue("MainWindow/graphs_toolbar", graph_toolbar_action->isChecked());
     settings.setValue("MainWindow/logical_toolbar", logical_toolbar_action->isChecked());
+    settings.setValue("MainWindow/calculus_toolbar", calculus_toolbar_action->isChecked());
     settings.setValue("MainWindow/status_bar", status_bar_action->isChecked());
     settings.setValue("MainWindow/language", (int)config.language);
 
@@ -3824,6 +3864,7 @@ void MainWindow::EnableButtons(bool enable)
     currency_toolbar->setEnabled(enable);
     graph_toolbar->setEnabled(enable);
     logical_toolbar->setEnabled(enable);
+    calculus_toolbar->setEnabled(enable);
 }
 
 QString MainWindow::LanguageToString(yutovo_calculator::Language lang)

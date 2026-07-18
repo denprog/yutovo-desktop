@@ -26,6 +26,9 @@ private slots:
     void testOpenDocument();
     void testPromptClick();
     void testPromptOutsideClick();
+    void testDefiniteIntegralPrompt();
+    void testIntegralPrompt();
+    void testIntegralPartialPrompt();
     void testLogicalOperators();
     void testPowerShortcut();
     void testSaveAndCloseOnExit();

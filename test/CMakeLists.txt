@@ -62,7 +62,9 @@ set(APP_SOURCES
 )
 
 add_executable(${PROJECT_NAME}_test
+    main.cpp
     files.cpp
+    toolbar.cpp
     ${APP_SOURCES}
 )
 

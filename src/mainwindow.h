@@ -77,6 +77,7 @@ private:
     void CreateCurrenciesToolbar();
     void CreateGraphsToolbar();
     void CreateLogicalToolbar();
+    void CreateCalculusToolbar();
     void CreateStatusBar();
 
     void SetFocus();
@@ -130,6 +131,7 @@ private:
     void CurrencyToolbar();
     void GraphToolbar();
     void LogicalToolbar();
+    void CalculusToolbar();
 
     void StatusBar();
 
@@ -233,6 +235,8 @@ private slots:
     void OnOr();
     void OnXor();
     void OnNot();
+    
+    void OnDefiniteIntegral();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);
@@ -381,6 +385,7 @@ private:
     QAction* status_bar_action = nullptr;
     QAction* graph_toolbar_action = nullptr;
     QAction* logical_toolbar_action = nullptr;
+    QAction* calculus_toolbar_action = nullptr;
 
     QToolBar* standard_toolbar = nullptr;
     QToolBar* format_toolbar = nullptr;
@@ -392,6 +397,7 @@ private:
     QToolBar* currency_toolbar = nullptr;
     QToolBar* graph_toolbar = nullptr;
     QToolBar* logical_toolbar = nullptr;
+    QToolBar* calculus_toolbar = nullptr;
 
     QList<QString> last_documents;
 

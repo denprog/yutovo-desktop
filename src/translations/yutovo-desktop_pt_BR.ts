@@ -1364,6 +1364,14 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Infinity</source>
         <translation>Infinito</translation>
     </message>
+    <message>
+        <source>Calculus</source>
+        <translation>Cálculo</translation>
+    </message>
+    <message>
+        <source>Definite integral</source>
+        <translation>Integral definida</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

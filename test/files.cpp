@@ -9,8 +9,10 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include <QPointer>
+#include <QListWidget>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
+#include "../src/prompt_form.h"
 
 void TestFiles::initTestCase()
 {
@@ -198,6 +200,104 @@ void TestFiles::testPromptOutsideClick()
     auto document = window->GetCurrentDocument();
     QVERIFY(document);
     QCOMPARE(document->ToText(), U"s");
+}
+
+void TestFiles::testDefiniteIntegralPrompt()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    auto* prompt = editor->findChild<PromptForm*>();
+    QVERIFY(prompt);
+
+    QTest::qWait(2000);
+    QTest::keyClicks(editor, "definite_integral");
+
+    QTRY_VERIFY(prompt->isVisible());
+    QTRY_VERIFY(prompt->count() > 0);
+
+    QListWidgetItem* integral_item = nullptr;
+    for (int i = 0; i < prompt->count(); ++i)
+    {
+        if (!prompt->item(i)->icon().isNull())
+        {
+            integral_item = prompt->item(i);
+            break;
+        }
+    }
+    QVERIFY(integral_item);
+
+    QRect r = prompt->visualItemRect(integral_item);
+    QTest::mouseClick(prompt->viewport(), Qt::LeftButton, Qt::NoModifier, r.center());
+    QTest::qWait(200);
+
+    QTRY_VERIFY(!prompt->isVisible());
+
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    QCOMPARE(document->ToText(), U"definite_integral(,,,)");
+}
+
+void TestFiles::testIntegralPrompt()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    auto* prompt = editor->findChild<PromptForm*>();
+    QVERIFY(prompt);
+
+    QTest::qWait(2000);
+    QTest::keyClicks(editor, "integral");
+
+    QTRY_VERIFY(prompt->isVisible());
+    QTRY_VERIFY(prompt->count() > 0);
+
+    QListWidgetItem* integral_item = nullptr;
+    for (int i = 0; i < prompt->count(); ++i)
+    {
+        if (!prompt->item(i)->icon().isNull())
+        {
+            integral_item = prompt->item(i);
+            break;
+        }
+    }
+    QVERIFY(integral_item);
+
+    QRect r = prompt->visualItemRect(integral_item);
+    QTest::mouseClick(prompt->viewport(), Qt::LeftButton, Qt::NoModifier, r.center());
+    QTest::qWait(200);
+
+    QTRY_VERIFY(!prompt->isVisible());
+
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    QCOMPARE(document->ToText(), U"definite_integral(,,,)");
+}
+
+void TestFiles::testIntegralPartialPrompt()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    auto* prompt = editor->findChild<PromptForm*>();
+    QVERIFY(prompt);
+
+    QTest::qWait(2000);
+    QTest::keyClicks(editor, "inte");
+
+    QTRY_VERIFY(prompt->isVisible());
+    QTRY_VERIFY(prompt->count() > 0);
+
+    QListWidgetItem* integral_item = nullptr;
+    for (int i = 0; i < prompt->count(); ++i)
+    {
+        if (!prompt->item(i)->icon().isNull())
+        {
+            integral_item = prompt->item(i);
+            break;
+        }
+    }
+    QVERIFY(integral_item);
 }
 
 void TestFiles::testLogicalOperators()
@@ -528,5 +628,3 @@ void TestFiles::testCopyPasteGraph()
     QVERIFY(image.width() > 0);
     QVERIFY(image.height() > 0);
 }
-
-QTEST_MAIN(TestFiles)

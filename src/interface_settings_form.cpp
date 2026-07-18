@@ -25,6 +25,7 @@ InterfaceSettingsForm::InterfaceSettingsForm(QHash<QString, QVariant>& _settings
     form->functions_toolbar->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
     form->graphs_toolbar->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
     form->logical_toolbar->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
+    form->calculus_toolbar->setChecked(settings.value("MainWindow/calculus_toolbar", false).toBool());
 }
 
 InterfaceSettingsForm::~InterfaceSettingsForm()
@@ -37,6 +38,7 @@ InterfaceSettingsForm::~InterfaceSettingsForm()
     settings["MainWindow/functions_toolbar"] = form->functions_toolbar->isChecked();
     settings["MainWindow/graphs_toolbar"] = form->graphs_toolbar->isChecked();
     settings["MainWindow/logical_toolbar"] = form->logical_toolbar->isChecked();
+    settings["MainWindow/calculus_toolbar"] = form->calculus_toolbar->isChecked();
 
     delete form;
 }

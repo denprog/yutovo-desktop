@@ -162,7 +162,8 @@ void DocumentWidget::OnPromptActivated(const IdentifierType id_type, const std::
         { "sqrt", &Document::InsertSquareRoot },
         { "sub", &Document::InsertSubscript },
         { "sum", &Document::InsertSum },
-        { "prod", &Document::InsertProduct }
+        { "prod", &Document::InsertProduct },
+        { "definite_integral", &Document::InsertDefiniteIntegral }
     };
 
     show_prompt = false;

@@ -22,7 +22,8 @@ const std::map<std::string, QString> PromptForm::icons =
     {"sqrt", ":/icons/images/algebra/sqrt.png"},
     {"sub", ":/icons/images/algebra/subscript.png"},
     {"sum", ":/icons/images/algebra/sum.png"},
-    {"prod", ":/icons/images/algebra/product.png"}
+    {"prod", ":/icons/images/algebra/product.png"},
+    {"definite_integral", ":/icons/images/calculus/definite_integral.png"}
 };
 
 PromptForm::PromptForm(QWidget* parent) : 
