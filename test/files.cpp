@@ -247,7 +247,7 @@ void TestFiles::testIntegralPrompt()
     QVERIFY(prompt);
 
     QTest::qWait(2000);
-    QTest::keyClicks(editor, "integral");
+    QTest::keyClicks(editor, "indefinite_integral");
 
     QTRY_VERIFY(prompt->isVisible());
     QTRY_VERIFY(prompt->count() > 0);
@@ -255,9 +255,10 @@ void TestFiles::testIntegralPrompt()
     QListWidgetItem* integral_item = nullptr;
     for (int i = 0; i < prompt->count(); ++i)
     {
-        if (!prompt->item(i)->icon().isNull())
+        auto* it = prompt->item(i);
+        if (it->data(Qt::UserRole).toString() == "indefinite_integral")
         {
-            integral_item = prompt->item(i);
+            integral_item = it;
             break;
         }
     }
@@ -271,7 +272,7 @@ void TestFiles::testIntegralPrompt()
 
     auto document = window->GetCurrentDocument();
     QVERIFY(document);
-    QCOMPARE(document->ToText(), U"definite_integral(,,,)");
+    QCOMPARE(document->ToText(), U"indefinite_integral(,)");
 }
 
 void TestFiles::testIntegralPartialPrompt()
@@ -283,7 +284,7 @@ void TestFiles::testIntegralPartialPrompt()
     QVERIFY(prompt);
 
     QTest::qWait(2000);
-    QTest::keyClicks(editor, "inte");
+    QTest::keyClicks(editor, "indefinite");
 
     QTRY_VERIFY(prompt->isVisible());
     QTRY_VERIFY(prompt->count() > 0);

@@ -1185,6 +1185,12 @@ void MainWindow::CreateCalculusToolbar()
     action->setShortcut(QKeySequence(tr("Ctrl+Shift+I")));
     connect(action, &QAction::triggered, this, &MainWindow::OnDefiniteIntegral);
     calculus_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/calculus/indefinite_integral.png"), tr("Indefinite integral"), this);
+    action->setObjectName("actionIndefiniteIntegral");
+    action->setToolTip(tr("Indefinite integral"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnIndefiniteIntegral);
+    calculus_toolbar->addAction(action);
 }
 
 void MainWindow::CreateStatusBar()
@@ -2833,6 +2839,13 @@ void MainWindow::OnDefiniteIntegral()
         document->InsertDefiniteIntegral(true);
 }
 
+void MainWindow::OnIndefiniteIntegral()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertIndefiniteIntegral(true);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -3483,8 +3496,8 @@ void MainWindow::UpdateCopyPaste()
     bool editable = window.parent_editable;
     copy_action->setEnabled(!window.editor_state.selection_state.IsEmpty());
     QClipboard* clipboard = QGuiApplication::clipboard();
-    const QMimeData* mime_data = clipboard->mimeData();
-    paste_action->setEnabled(editable && (mime_data->hasText() || mime_data->hasImage()));
+    const QMimeData* mime_data = clipboard ? clipboard->mimeData() : nullptr;
+    paste_action->setEnabled(editable && mime_data && (mime_data->hasText() || mime_data->hasImage()));
     cut_action->setEnabled(editable && !window.editor_state.selection_state.IsEmpty());
 }
 

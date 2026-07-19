@@ -1376,6 +1376,10 @@
         <source>Definite integral</source>
         <translation>Определённый интеграл</translation>
     </message>
+    <message>
+        <source>Indefinite integral</source>
+        <translation>Неопределённый интеграл</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

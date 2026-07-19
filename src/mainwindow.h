@@ -237,6 +237,7 @@ private slots:
     void OnNot();
     
     void OnDefiniteIntegral();
+    void OnIndefiniteIntegral();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);

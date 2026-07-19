@@ -16,6 +16,7 @@ private slots:
     void cleanup();
 
     void testCalculusToolbar();
+    void testIndefiniteIntegral();
 
 private:
     MainWindow* window;

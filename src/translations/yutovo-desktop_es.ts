@@ -1372,6 +1372,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Definite integral</source>
         <translation>Integral definida</translation>
     </message>
+    <message>
+        <source>Indefinite integral</source>
+        <translation>Integral indefinida</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

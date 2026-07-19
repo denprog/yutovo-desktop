@@ -350,6 +350,10 @@ You assume all responsibility and risk in relation to your use of this applicati
         <source>Definite integral</source>
         <translation>Definite integral</translation>
     </message>
+    <message>
+        <source>Indefinite integral</source>
+        <translation>Indefinite integral</translation>
+    </message>
 </context>
 <context>
     <name>WhatsNewDialog</name>

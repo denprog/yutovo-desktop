@@ -23,7 +23,8 @@ const std::map<std::string, QString> PromptForm::icons =
     {"sub", ":/icons/images/algebra/subscript.png"},
     {"sum", ":/icons/images/algebra/sum.png"},
     {"prod", ":/icons/images/algebra/product.png"},
-    {"definite_integral", ":/icons/images/calculus/definite_integral.png"}
+    {"definite_integral", ":/icons/images/calculus/definite_integral.png"},
+    {"indefinite_integral", ":/icons/images/calculus/indefinite_integral.png"}
 };
 
 PromptForm::PromptForm(QWidget* parent) : 
@@ -64,6 +65,7 @@ void PromptForm::Fill(std::vector<std::pair<IdentifierType, std::string>>&& _pro
             s.replace("}", "</sub>");
             item = new QListWidgetItem(s);
         }
+        item->setData(Qt::UserRole, QString::fromStdString(p.second));
         addItem(item);
     }
 

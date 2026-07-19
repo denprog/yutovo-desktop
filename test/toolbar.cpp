@@ -41,3 +41,16 @@ void TestToolbar::testCalculusToolbar()
     QTest::qWait(200);
     QCOMPARE(document->ToText(), U"definite_integral(,,,)");
 }
+
+void TestToolbar::testIndefiniteIntegral()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionIndefiniteIntegral");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"indefinite_integral(,)");
+}
