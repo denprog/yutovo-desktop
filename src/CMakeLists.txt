@@ -198,6 +198,7 @@ if(NOT LRELEASE_EXECUTABLE)
 endif()
 
 set(QM_FILES)
+
 foreach(TS_FILE ${TS_FILES})
     get_filename_component(TS_NAME ${TS_FILE} NAME_WE)
     set(QM_FILE ${CMAKE_CURRENT_BINARY_DIR}/${TS_NAME}.qm)
@@ -215,6 +216,8 @@ endforeach()
 add_custom_target(translate ALL
     DEPENDS ${QM_FILES}
 )
+
+set(QM_FILES ${QM_FILES} PARENT_SCOPE)
 
 if(NOT WIN32)
     install(

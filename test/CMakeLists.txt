@@ -66,6 +66,7 @@ add_executable(${PROJECT_NAME}_test
     files.cpp
     toolbar.cpp
     ${APP_SOURCES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/resources.qrc
 )
 
 target_compile_definitions(${PROJECT_NAME}_test PRIVATE TEST_APP)
@@ -106,6 +107,16 @@ else()
         z
         fontconfig
     )
+endif()
+
+if(QM_FILES)
+    add_custom_command(TARGET ${PROJECT_NAME}_test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${QM_FILES}
+            $<TARGET_FILE_DIR:${PROJECT_NAME}_test>
+        COMMENT "Copying .qm files to test output directory"
+    )
+    add_dependencies(${PROJECT_NAME}_test translate)
 endif()
 
 enable_testing()
