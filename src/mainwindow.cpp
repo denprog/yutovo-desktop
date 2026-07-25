@@ -3829,7 +3829,12 @@ void MainWindow::UpdateDocumentOnlineLink()
     }
     QString p = doc_path.mid(canonical_lib_dir.length());
     QString domain = p.startsWith("ru/") ? "https://yutovo.ru" : "https://yutovo.com";
-    QUrl url(domain + "/library/" + p);
+#ifdef _WIN32
+    QString ref = "?ref=yutovo-desktop_windows";
+#else
+    QString ref = "?ref=yutovo-desktop_linux";
+#endif
+    QUrl url(domain + "/library/" + p + ref);
     document_online_label->setText(QString("<a href=\"%1\">%2</a>").arg(url.toString(), tr("This document online")));
     if (status_separator)
         status_separator->show();
