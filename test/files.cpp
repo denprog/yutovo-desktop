@@ -10,6 +10,7 @@
 #include <QContextMenuEvent>
 #include <QPointer>
 #include <QListWidget>
+#include <QFileInfo>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
 #include "../src/prompt_form.h"
@@ -628,4 +629,43 @@ void TestFiles::testCopyPasteGraph()
     QVERIFY(!image.isNull());
     QVERIFY(image.width() > 0);
     QVERIFY(image.height() > 0);
+}
+
+void TestFiles::testCopyWrongParagraph()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QString path = QFileInfo(__FILE__).dir().filePath("tests/wrong_paragraph.yut");
+    QVERIFY(QFile::exists(path));
+
+    window->OpenFile(path);
+
+    auto document_window = qobject_cast<DocumentWindow*>(window->ui->editor_tabs->currentWidget());
+    QVERIFY(document_window);
+
+    QSignalSpy load_spy(document_window, &DocumentWindow::LoadResult);
+    QVERIFY(load_spy.wait(5000));
+    QCOMPARE(load_spy.count(), 1);
+
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    //OpenFile may replace the current editor tab, so re-find the widget
+    editor = document_window->findChild<DocumentWidget*>("document_widget");
+    QVERIFY(editor);
+
+    editor->setFocus();
+    QTest::qWait(500);
+
+    //move to the beginning of the document and select the first line
+    QTest::keyClick(editor, Qt::Key_Home, Qt::ControlModifier);
+    QTest::qWait(200);
+    QTest::keyClick(editor, Qt::Key_End, Qt::ShiftModifier);
+    QTest::qWait(200);
+
+    //copy the selection to the clipboard; this used to crash on wrong_paragraph.yut
+    QSignalSpy copy_spy(document_window, &DocumentWindow::ClipboardCopyResult);
+    window->Copy();
+    QVERIFY(copy_spy.wait(5000));
 }

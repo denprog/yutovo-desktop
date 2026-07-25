@@ -36,6 +36,7 @@ private slots:
     void testPdfExportErrorHandling();
     void testMenuRebuildDoesNotLeak();
     void testCopyPasteGraph();
+    void testCopyWrongParagraph();
 
 private:
     MainWindow* window;
