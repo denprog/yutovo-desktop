@@ -3760,6 +3760,7 @@ void MainWindow::UpdateCaption(int tab, bool update_title)
     {
         setWindowTitle(tr("Yutovo"));
         EnableButtons(false);
+        UpdateDocumentOnlineLink();
         return;
     }
     
@@ -3777,6 +3778,8 @@ void MainWindow::UpdateCaption(int tab, bool update_title)
         ui->editor_tabs->setTabToolTip(tab == -1 ? ui->editor_tabs->currentIndex() : tab, file_info.canonicalFilePath());
     if (update_title)
         setWindowTitle(file_name + " - " + tr("Yutovo"));
+    
+    UpdateDocumentOnlineLink();
 }
 
 void MainWindow::UpdateLocaleMessage()
