@@ -578,6 +578,7 @@ void MainWindow::CreateActions()
     format_toolbar->addSeparator();
 
     paragraph_format_combo = new QComboBox;
+    paragraph_format_combo->setObjectName("paragraph_format_combo");
     paragraph_format_combo->setFixedWidth(120);
     format_toolbar->addWidget(paragraph_format_combo);
     connect(paragraph_format_combo, &QComboBox::currentTextChanged, this, &MainWindow::OnCurrentParagraphFormatChanged);
@@ -3039,6 +3040,7 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     }
     UpdateRecentFiles(w->path);
     UpdateCaption(tab, ui->editor_tabs->currentIndex() == tab);
+    FillParagraphFormats();
     FillScales();
 }
 

@@ -58,6 +58,13 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 - Entry point: `src/main.cpp` — single-instance app via `QLocalServer`/`QLocalSocket`
 - Core windows: `mainwindow.cpp`, `document_widget.cpp`, `document_window.cpp`
 
+## Agent Rules
+
+- **Never delete files without explicit user permission.** Do not remove source files, test files, core dumps, logs, build artifacts, or any other files unless the user explicitly asks for it. When in doubt, leave the file in place and ask.
+- **Never create separate namespaces (such as `namespace detail` or anonymous namespaces) without explicit user permission.** Helper functions should be placed in the common `yutovo_calculator` namespace, for example in `utils.h/utils.cpp` or `giac_utils.h/giac_utils.cpp`, or as `static` methods of the appropriate class.
+- **Never commit without explicit user permission.** Do not run `git commit`, `git push`, `git reset`, `git rebase`, or any other git mutations unless explicitly asked to do so. Ask for confirmation each time when git mutations are needed.
+- **Never delete existing tests.** When fixing regressions or refactoring, update test expectations to match the new correct behavior, but do not remove tests. If `git checkout` or similar commands are used to revert a file, verify that no user-added tests were lost.
+
 ## Key conventions
 - `REMOTE_SOLVER` define (commented out in root CMakeLists.txt) switches from local yutovo-solver to remote
 - Translations: 4 locales (en, ru, es, pt_BR); `.ts` → `.qm` via `lrelease` at build time — `lrelease` must be on PATH

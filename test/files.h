@@ -37,7 +37,32 @@ private slots:
     void testMenuRebuildDoesNotLeak();
     void testCopyPasteGraph();
     void testCopyWrongParagraph();
+    void testUserInterfaceParagraphFormats();
 
 private:
     MainWindow* window;
+
+    class LanguageSettingGuard
+    {
+    public:
+        LanguageSettingGuard(int language)
+        {
+            settings = new QSettings("Yutovo", "Yutovo Desktop");
+            old_value = settings->value("MainWindow/language");
+            settings->setValue("MainWindow/language", language);
+        }
+
+        ~LanguageSettingGuard()
+        {
+            if (old_value.isValid())
+                settings->setValue("MainWindow/language", old_value);
+            else
+                settings->remove("MainWindow/language");
+            delete settings;
+        }
+
+    private:
+        QSettings* settings;
+        QVariant old_value;
+    };
 };

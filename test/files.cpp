@@ -11,9 +11,14 @@
 #include <QPointer>
 #include <QListWidget>
 #include <QFileInfo>
+#include <QSettings>
+#include <QComboBox>
+#include <QToolBar>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
 #include "../src/prompt_form.h"
+
+//TestFiles
 
 void TestFiles::initTestCase()
 {
@@ -668,4 +673,37 @@ void TestFiles::testCopyWrongParagraph()
     QSignalSpy copy_spy(document_window, &DocumentWindow::ClipboardCopyResult);
     window->Copy();
     QVERIFY(copy_spy.wait(5000));
+}
+
+void TestFiles::testUserInterfaceParagraphFormats()
+{
+    LanguageSettingGuard guard((int)yutovo_calculator::Language::English);
+
+    //recreate the main window so the interface is initialized in English
+    delete window;
+    window = nullptr;
+    window = new MainWindow();
+    window->Start("");
+    window->show();
+    QVERIFY(QTest::qWaitForWindowExposed(window));
+
+    QString path = QFileInfo(__FILE__).dir().filePath("tests/User interface.yut"); //document with Russian paragraph names
+    QVERIFY(QFile::exists(path));
+
+    window->OpenFile(path);
+
+    auto document_window = qobject_cast<DocumentWindow*>(window->ui->editor_tabs->currentWidget());
+    QVERIFY(document_window);
+
+    QSignalSpy load_spy(document_window, &DocumentWindow::LoadResult);
+    QVERIFY(load_spy.wait(5000));
+    QCOMPARE(load_spy.count(), 1);
+
+    QTest::qWait(500);
+
+    auto paragraph_format_combo = window->findChild<QComboBox*>("paragraph_format_combo");
+    QVERIFY(paragraph_format_combo);
+
+    QVERIFY2(paragraph_format_combo->findText("Основной текст") != -1, "Combo box does not contain 'Основной текст'");
+    QVERIFY2(paragraph_format_combo->findText("Заголовок 1") != -1, "Combo box does not contain 'Заголовок 1'");
 }
