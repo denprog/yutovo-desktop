@@ -123,11 +123,27 @@ void MainWindow::Start(QString filename)
     if (!state.isEmpty())
         restoreState(state);
 
-    AddEditorTab(tr("(No name)"), "");
+    //defer editor tab creation and document loading until the event loop has processed the initial show/resize, so the tab gets the correct geometry
+    startup_filename = filename;
+    startup_first_run = first_run;
+    QTimer::singleShot(0, this, &MainWindow::InitializeEditor);
 
     UpdateRecentFiles();
 
-    if (filename.isEmpty())
+    QTimer::singleShot(0, this, &MainWindow::CheckVersionAndShowWhatsNew);
+
+    logger->Info("Desktop start");
+}
+
+void MainWindow::InitializeEditor()
+{
+    if (startup_initialized)
+        return;
+    startup_initialized = true;
+
+    AddEditorTab(tr("(No name)"), "");
+
+    if (startup_filename.isEmpty())
     {
         settings.beginGroup("Documents");
         if (settings.value("load_last_documents").toBool())
@@ -143,12 +159,11 @@ void MainWindow::Start(QString filename)
     }
     else
     {
-        OpenFile(filename.toUtf8().data());
+        OpenFile(startup_filename.toUtf8().data());
     }
 
-    if (first_run)
+    if (startup_first_run)
     {
-        //it is the first run - open the hello document
         if (config.language == yutovo_calculator::Language::Russian)
             OpenFile(GetLibraryDir() + "ru/Другое/Первая страница.yut");
         else if (config.language == yutovo_calculator::Language::Spanish)
@@ -158,10 +173,6 @@ void MainWindow::Start(QString filename)
         else
             OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
-
-    QTimer::singleShot(0, this, &MainWindow::CheckVersionAndShowWhatsNew);
-
-    logger->Info("Desktop start");
 }
 
 void MainWindow::changeEvent(QEvent* event)

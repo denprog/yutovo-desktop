@@ -136,6 +136,7 @@ private:
     void StatusBar();
 
 private slots:
+    void InitializeEditor();
     void CheckVersionAndShowWhatsNew();
     void OnNextEditorTab();
     void OnPrevEditorTab();
@@ -308,6 +309,9 @@ private:
     QTranslator desktop_translator, editor_translator;
 
     QString dialog_file_name; //file name to be loaded/saved
+    QString startup_filename;
+    bool startup_first_run = false;
+    bool startup_initialized = false;
     std::map<uint, int> loading_files; //files being loaded by tabs
 
     std::u32string clipboard_json;
