@@ -130,7 +130,9 @@ void MainWindow::Start(QString filename)
 
     UpdateRecentFiles();
 
+#ifndef TEST_APP
     QTimer::singleShot(0, this, &MainWindow::CheckVersionAndShowWhatsNew);
+#endif
 
     logger->Info("Desktop start");
 }

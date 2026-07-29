@@ -19,6 +19,7 @@ class DocumentWindow : public QWidget
 
 public:
     DocumentWindow(yutovo::Config& _config, QSettings& _settings, QWidget* parent);
+    ~DocumentWindow();
 
     void CreateDocument();
 

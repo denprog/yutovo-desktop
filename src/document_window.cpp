@@ -57,6 +57,12 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QSettings& _settings, QW
     CreateMenus();
 }
 
+DocumentWindow::~DocumentWindow()
+{
+    if (document)
+        document->Stop();
+}
+
 void DocumentWindow::CreateDocument()
 {
     document = document_widget->CreateDocument(config);
