@@ -54,3 +54,42 @@ void TestToolbar::testIndefiniteIntegral()
     QTest::qWait(200);
     QCOMPARE(document->ToText(), U"indefinite_integral(,)");
 }
+
+void TestToolbar::testDerivative()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionDerivative");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"diff(,)");
+}
+
+void TestToolbar::testSecondDerivative()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionSecondDerivative");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"diff(diff(,),)");
+}
+
+void TestToolbar::testPartialDerivative()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionPartialDerivative");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"diff(,)");
+}

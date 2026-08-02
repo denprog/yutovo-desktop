@@ -164,7 +164,8 @@ void DocumentWidget::OnPromptActivated(const IdentifierType id_type, const std::
         { "sum", &Document::InsertSum },
         { "prod", &Document::InsertProduct },
         { "definite_integral", &Document::InsertDefiniteIntegral },
-        { "indefinite_integral", &Document::InsertIndefiniteIntegral }
+        { "indefinite_integral", &Document::InsertIndefiniteIntegral },
+        { "derivative", &Document::InsertDerivative }
     };
 
     show_prompt = false;

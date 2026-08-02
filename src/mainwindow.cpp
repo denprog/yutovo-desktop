@@ -1205,6 +1205,24 @@ void MainWindow::CreateCalculusToolbar()
     action->setToolTip(tr("Indefinite integral"));
     connect(action, &QAction::triggered, this, &MainWindow::OnIndefiniteIntegral);
     calculus_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/calculus/derivative.png"), tr("Derivative"), this);
+    action->setObjectName("actionDerivative");
+    action->setToolTip(tr("Derivative"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnDerivative);
+    calculus_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/calculus/derivative2.png"), tr("Second derivative"), this);
+    action->setObjectName("actionSecondDerivative");
+    action->setToolTip(tr("Second derivative"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnSecondDerivative);
+    calculus_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/calculus/partial_derivative.png"), tr("Partial derivative"), this);
+    action->setObjectName("actionPartialDerivative");
+    action->setToolTip(tr("Partial derivative"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnPartialDerivative);
+    calculus_toolbar->addAction(action);
 }
 
 void MainWindow::CreateStatusBar()
@@ -2858,6 +2876,27 @@ void MainWindow::OnIndefiniteIntegral()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertIndefiniteIntegral(true);
+}
+
+void MainWindow::OnDerivative()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertDerivative(U"d", 1, true);
+}
+
+void MainWindow::OnSecondDerivative()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertDerivative(U"d", 2, true);
+}
+
+void MainWindow::OnPartialDerivative()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertDerivative(U"∂", 1, true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)

@@ -239,6 +239,9 @@ private slots:
     
     void OnDefiniteIntegral();
     void OnIndefiniteIntegral();
+    void OnDerivative();
+    void OnSecondDerivative();
+    void OnPartialDerivative();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);

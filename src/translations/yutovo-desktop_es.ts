@@ -1376,6 +1376,18 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Indefinite integral</source>
         <translation>Integral indefinida</translation>
     </message>
+    <message>
+        <source>Derivative</source>
+        <translation>Derivada</translation>
+    </message>
+    <message>
+        <source>Second derivative</source>
+        <translation>Segunda derivada</translation>
+    </message>
+    <message>
+        <source>Partial derivative</source>
+        <translation>Derivada parcial</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>

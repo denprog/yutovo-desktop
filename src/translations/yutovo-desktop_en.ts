@@ -354,6 +354,10 @@ You assume all responsibility and risk in relation to your use of this applicati
         <source>Indefinite integral</source>
         <translation>Indefinite integral</translation>
     </message>
+    <message>
+        <source>Derivative</source>
+        <translation>Derivative</translation>
+    </message>
 </context>
 <context>
     <name>WhatsNewDialog</name>

@@ -17,6 +17,9 @@ private slots:
 
     void testCalculusToolbar();
     void testIndefiniteIntegral();
+    void testDerivative();
+    void testSecondDerivative();
+    void testPartialDerivative();
 
 private:
     MainWindow* window;

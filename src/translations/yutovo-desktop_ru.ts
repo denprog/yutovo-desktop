@@ -1380,6 +1380,18 @@
         <source>Indefinite integral</source>
         <translation>Неопределённый интеграл</translation>
     </message>
+    <message>
+        <source>Derivative</source>
+        <translation>Производная</translation>
+    </message>
+    <message>
+        <source>Second derivative</source>
+        <translation>Вторая производная</translation>
+    </message>
+    <message>
+        <source>Partial derivative</source>
+        <translation>Частная производная</translation>
+    </message>
 </context>
 <context>
     <name>PropertiesDialog</name>
