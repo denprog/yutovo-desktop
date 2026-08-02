@@ -65,7 +65,7 @@ void TestToolbar::testDerivative()
     QVERIFY(!action->icon().isNull());
     action->trigger();
     QTest::qWait(200);
-    QCOMPARE(document->ToText(), U"diff(,)");
+    QCOMPARE(document->ToText(), U"derivative(,)");
 }
 
 void TestToolbar::testSecondDerivative()
@@ -78,7 +78,7 @@ void TestToolbar::testSecondDerivative()
     QVERIFY(!action->icon().isNull());
     action->trigger();
     QTest::qWait(200);
-    QCOMPARE(document->ToText(), U"diff(diff(,),)");
+    QCOMPARE(document->ToText(), U"derivative(derivative(,),)");
 }
 
 void TestToolbar::testPartialDerivative()
@@ -91,5 +91,5 @@ void TestToolbar::testPartialDerivative()
     QVERIFY(!action->icon().isNull());
     action->trigger();
     QTest::qWait(200);
-    QCOMPARE(document->ToText(), U"diff(,)");
+    QCOMPARE(document->ToText(), U"derivative(,)");
 }
