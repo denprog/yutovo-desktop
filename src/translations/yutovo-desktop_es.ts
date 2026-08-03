@@ -1722,6 +1722,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Off</source>
         <translation>Apagado</translation>
     </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Buscar actualizaciones</translation>
+    </message>
 </context>
 <context>
     <name>SystemSettingsDialog</name>
@@ -1879,6 +1883,21 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Please enter a valid email address</source>
         <translation>Por favor, introduzca una dirección de correo electrónico válida</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateAvailableDialog</name>
+    <message>
+        <source>Update Available</source>
+        <translation>Actualización disponible</translation>
+    </message>
+    <message>
+        <source>A new version %1 is available.</source>
+        <translation>Hay una nueva versión %1 disponible.</translation>
+    </message>
+    <message>
+        <source>Download: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation>Descargar: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 </TS>

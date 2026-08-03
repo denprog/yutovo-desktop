@@ -46,6 +46,18 @@
 #include "export_pdf_dialog.h"
 #include "whats_new_dialog.h"
 #include "feedback_dialog.h"
+#include "update_available_dialog.h"
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QNetworkRequest>
+#include <QSysInfo>
+#include <QRegularExpression>
+
+#ifdef BUILD_TESTS
+#define UPDATES_SERVER_URL "http://localhost:9001/service/get-updates"
+#else
+#define UPDATES_SERVER_URL "https://yutovo.ru/service/get-updates"
+#endif
 
 //MainWindow
 
@@ -57,6 +69,13 @@ MainWindow::MainWindow(QWidget* parent) :
     settings(new QSettings("Yutovo", "Yutovo Desktop"))
 {
     ui->setupUi(this);
+
+    update_network_manager = new QNetworkAccessManager(this);
+    connect(update_network_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(OnUpdateReplyFinished(QNetworkReply*)));
+
+    update_timer = new QTimer(this);
+    update_timer->setInterval(24 * 60 * 60 * 1000);
+    connect(update_timer, SIGNAL(timeout()), this, SLOT(CheckForUpdates()));
 
     setWindowIcon(QIcon(":/icons/images/mainicon.png"));
 
@@ -132,6 +151,7 @@ void MainWindow::Start(QString filename)
 
 #ifndef TEST_APP
     QTimer::singleShot(0, this, &MainWindow::CheckVersionAndShowWhatsNew);
+    QTimer::singleShot(0, this, &MainWindow::CheckForUpdates);
 #endif
 
     logger->Info("Desktop start");
@@ -2019,6 +2039,107 @@ void MainWindow::CheckVersionAndShowWhatsNew()
         dialog.exec();
         settings.setValue("MainWindow/version", APP_VERSION);
     }
+}
+
+QString MainWindow::GetUpdateSystemString()
+{
+#ifdef Q_OS_WIN
+    return "Windows";
+#elif defined(Q_OS_MAC)
+    return "macOS";
+#elif defined(Q_OS_LINUX)
+    QString pretty = QSysInfo::prettyProductName();
+    if (pretty.contains("Ubuntu", Qt::CaseInsensitive))
+    {
+        QRegularExpression re("(\\d+)(?:\\.(\\d+))?");
+        QRegularExpressionMatch match = re.match(pretty);
+        if (match.hasMatch())
+            return "Ubuntu " + match.captured(1);
+    }
+    if (pretty.contains("Fedora", Qt::CaseInsensitive))
+    {
+        QRegularExpression re("(\\d+)");
+        QRegularExpressionMatch match = re.match(pretty);
+        if (match.hasMatch())
+            return "Fedora " + match.captured(1);
+    }
+    if (pretty.contains("AltLinux", Qt::CaseInsensitive) || pretty.contains("ALT", Qt::CaseInsensitive))
+    {
+        QRegularExpression re("(\\d+)(?:\\.(\\d+))?");
+        QRegularExpressionMatch match = re.match(pretty);
+        if (match.hasMatch())
+        {
+            QString version = match.captured(1);
+            if (!match.captured(2).isEmpty())
+                version += "." + match.captured(2);
+            return "AltLinux " + version;
+        }
+    }
+    if (pretty.contains("Arch", Qt::CaseInsensitive) || pretty.contains("Manjaro", Qt::CaseInsensitive))
+        return "Arch";
+    if (qEnvironmentVariableIsSet("FLATPAK_ID"))
+        return "Flatpak";
+    if (qEnvironmentVariableIsSet("SNAP"))
+        return "Snap";
+    return pretty;
+#else
+    return QSysInfo::prettyProductName();
+#endif
+}
+
+void MainWindow::CheckForUpdates()
+{
+    if (!settings.value("System/check_for_updates", true).toBool())
+        return;
+
+    QJsonObject json;
+    json["version"] = APP_VERSION;
+    json["system"] = GetUpdateSystemString();
+    json["language"] = LanguageToString(config.language);
+
+    QNetworkRequest request(QUrl(UPDATES_SERVER_URL));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    QJsonDocument doc(json);
+    update_network_manager->post(request, doc.toJson());
+
+    if (!update_timer->isActive())
+        update_timer->start();
+}
+
+void MainWindow::OnUpdateReplyFinished(QNetworkReply* reply)
+{
+    reply->deleteLater();
+
+    if (reply->error() != QNetworkReply::NoError)
+    {
+        logger->Warning("Update check failed: {}", reply->errorString().toStdString());
+        return;
+    }
+
+    int status = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    if (status != 200)
+    {
+        logger->Warning("Update check returned status: {}", status);
+        return;
+    }
+
+    QByteArray data = reply->readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(data);
+    if (!doc.isObject())
+        return;
+
+    QJsonObject response = doc.object();
+    if (!response.value("hasUpdate").toBool())
+        return;
+
+    QString version = response.value("version").toString();
+    QString url = response.value("url").toString();
+    if (version.isEmpty() || url.isEmpty())
+        return;
+
+    UpdateAvailableDialog dialog(version, url, this);
+    dialog.exec();
 }
 
 void MainWindow::StandardToolbar()

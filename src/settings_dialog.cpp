@@ -69,11 +69,11 @@ void SettingsDialog::OnSettingsTreeItemActivated(QTreeWidgetItem *item, int colu
     {
         QList<QTreeWidgetItem*> items = form->settings_tree->findItems(tr("System"), Qt::MatchExactly | Qt::MatchRecursive);
         form->settings_tree->setCurrentItem(*items.begin());
-        form->settings_page_layout->addWidget(new SystemSettingsForm(config));
+        form->settings_page_layout->addWidget(new SystemSettingsForm(config, settings));
     }
     else if (item->text(0) == tr("System"))
     {
-        form->settings_page_layout->addWidget(new SystemSettingsForm(config));
+        form->settings_page_layout->addWidget(new SystemSettingsForm(config, settings));
     }
     else if (item->text(0) == tr("Documents"))
     {

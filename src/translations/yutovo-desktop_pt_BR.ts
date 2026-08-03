@@ -1722,6 +1722,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Off</source>
         <translation>Desligado</translation>
     </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Verificar atualizações</translation>
+    </message>
 </context>
 <context>
     <name>SystemSettingsDialog</name>
@@ -1879,6 +1883,21 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Please enter a valid email address</source>
         <translation>Por favor, insira um endereço de e-mail válido</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateAvailableDialog</name>
+    <message>
+        <source>Update Available</source>
+        <translation>Atualização disponível</translation>
+    </message>
+    <message>
+        <source>A new version %1 is available.</source>
+        <translation>Uma nova versão %1 está disponível.</translation>
+    </message>
+    <message>
+        <source>Download: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation>Download: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 </TS>

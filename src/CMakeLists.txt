@@ -110,6 +110,9 @@ add_executable(${PROJECT_NAME} WIN32
     feedback_dialog.h
     feedback_dialog.cpp
     feedback_dialog.ui
+    update_available_dialog.h
+    update_available_dialog.cpp
+    update_available_dialog.ui
 )
 
 if (NOT WIN32)

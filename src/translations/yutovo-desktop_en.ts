@@ -472,4 +472,26 @@ You assume all responsibility and risk in relation to your use of this applicati
         <translation>Please enter a valid email address</translation>
     </message>
 </context>
+<context>
+    <name>SystemSettingsForm</name>
+    <message>
+        <source>Check for updates</source>
+        <translation>Check for updates</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateAvailableDialog</name>
+    <message>
+        <source>Update Available</source>
+        <translation>Update Available</translation>
+    </message>
+    <message>
+        <source>A new version %1 is available.</source>
+        <translation>A new version %1 is available.</translation>
+    </message>
+    <message>
+        <source>Download: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation>Download: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
+    </message>
+</context>
 </TS>

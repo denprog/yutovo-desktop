@@ -59,6 +59,7 @@ set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/document_widget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/qt_pdf_window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/feedback_dialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/update_available_dialog.cpp
 )
 
 add_executable(${PROJECT_NAME}_test

@@ -1726,6 +1726,10 @@
         <source>Off</source>
         <translation>Выключено</translation>
     </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Проверять обновления</translation>
+    </message>
 </context>
 <context>
     <name>GraphSettingsDialog</name>
@@ -1876,6 +1880,21 @@
     <message>
         <source>Please enter a valid email address</source>
         <translation>Пожалуйста, введите корректный адрес электронной почты</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateAvailableDialog</name>
+    <message>
+        <source>Update Available</source>
+        <translation>Доступно обновление</translation>
+    </message>
+    <message>
+        <source>A new version %1 is available.</source>
+        <translation>Доступна новая версия %1.</translation>
+    </message>
+    <message>
+        <source>Download: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</source>
+        <translation>Скачать: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;</translation>
     </message>
 </context>
 </TS>

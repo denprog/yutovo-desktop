@@ -18,6 +18,9 @@
 #include <QProcess>
 #include <QPrinter>
 #include <QSortFilterProxyModel>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QTimer>
 #include <yutovo-editor/document.h>
 #include <yutovo-logger/logger.h>
 #include "ui_mainwindow.h"
@@ -138,6 +141,8 @@ private:
 private slots:
     void InitializeEditor();
     void CheckVersionAndShowWhatsNew();
+    void CheckForUpdates();
+    void OnUpdateReplyFinished(QNetworkReply* reply);
     void OnNextEditorTab();
     void OnPrevEditorTab();
     void OnScaleChanged(const float scale);
@@ -284,6 +289,7 @@ private:
     void EnableButtons(bool enable);
 
     QString LanguageToString(yutovo_calculator::Language lang);
+    QString GetUpdateSystemString();
 
 #ifdef REMOTE_SOLVER
     void RestartService();
@@ -414,6 +420,9 @@ private:
     QLabel* link_label = nullptr;
     QFrame* status_separator = nullptr;
     QLabel* document_online_label = nullptr;
+
+    QNetworkAccessManager* update_network_manager = nullptr;
+    QTimer* update_timer = nullptr;
 
     Logger* logger = nullptr;
 };
