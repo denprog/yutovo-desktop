@@ -51,7 +51,7 @@ Features:
 - Graphical representation of mathematical formulas
 - Math WYSIWYG editor
 - Arbitrary precision numbers
-- Symbolic calculations (SymEngine)
+- Symbolic calculations (giac)
 - Units and unit conversion
 - Graphs of functions
 

@@ -21,7 +21,7 @@
     </message>
     <message>
         <source>libraries_text</source>
-        <translation>Tecnologias e bibliotecas utilizadas: C++, WebAssembly, Emscripten, boost, MPFR, GMP, SymEngine, JavaScript, Drogon, Quasar, jwt-cpp, spdlog, rapidjson, MathGL.</translation>
+        <translation>Tecnologias e bibliotecas utilizadas: C++, WebAssembly, Emscripten, boost, MPFR, GMP, giac, JavaScript, Drogon, Quasar, jwt-cpp, spdlog, rapidjson, MathGL.</translation>
     </message>
     <message>
         <source>web_link_text</source>
