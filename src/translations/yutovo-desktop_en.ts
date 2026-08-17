@@ -358,6 +358,14 @@ You assume all responsibility and risk in relation to your use of this applicati
         <source>Derivative</source>
         <translation>Derivative</translation>
     </message>
+    <message>
+        <source>Derivative at point</source>
+        <translation>Derivative at point</translation>
+    </message>
+    <message>
+        <source>Evaluate at point</source>
+        <translation>Evaluate at point</translation>
+    </message>
 </context>
 <context>
     <name>WhatsNewDialog</name>

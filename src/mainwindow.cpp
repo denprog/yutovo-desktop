@@ -889,6 +889,12 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnSquareBrackets);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/evalution_bar.png"), tr("Evaluate at point"), this);
+    action->setObjectName("actionEvalutionBar");
+    action->setToolTip(tr("Evaluate at point"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnEvalutionBar);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnRadian);
     algebra_toolbar->addAction(action);
@@ -1242,6 +1248,12 @@ void MainWindow::CreateCalculusToolbar()
     action->setObjectName("actionPartialDerivative");
     action->setToolTip(tr("Partial derivative"));
     connect(action, &QAction::triggered, this, &MainWindow::OnPartialDerivative);
+    calculus_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/calculus/derivative_at_point.png"), tr("Derivative at point"), this);
+    action->setObjectName("actionDerivativeAtPoint");
+    action->setToolTip(tr("Derivative at point"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnDerivativeAtPoint);
     calculus_toolbar->addAction(action);
 }
 
@@ -3018,6 +3030,20 @@ void MainWindow::OnPartialDerivative()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertDerivative(U"∂", 1, true);
+}
+
+void MainWindow::OnDerivativeAtPoint()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertDerivativeAtPoint(true);
+}
+
+void MainWindow::OnEvalutionBar()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertEvalutionBarSubscript(true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)

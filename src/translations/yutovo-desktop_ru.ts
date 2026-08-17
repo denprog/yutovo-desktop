@@ -1385,12 +1385,20 @@
         <translation>Производная</translation>
     </message>
     <message>
+        <source>Derivative at point</source>
+        <translation>Производная в точке</translation>
+    </message>
+    <message>
         <source>Second derivative</source>
         <translation>Вторая производная</translation>
     </message>
     <message>
         <source>Partial derivative</source>
         <translation>Частная производная</translation>
+    </message>
+    <message>
+        <source>Evaluate at point</source>
+        <translation>Вычислить в точке</translation>
     </message>
 </context>
 <context>

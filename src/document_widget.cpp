@@ -165,7 +165,9 @@ void DocumentWidget::OnPromptActivated(const IdentifierType id_type, const std::
         { "prod", &Document::InsertProduct },
         { "definite_integral", &Document::InsertDefiniteIntegral },
         { "indefinite_integral", &Document::InsertIndefiniteIntegral },
-        { "derivative", &Document::InsertDerivative }
+        { "derivative", &Document::InsertDerivative },
+        { "evalution_bar", &Document::InsertEvalutionBarSubscript },
+        { "derivative_at_point", &Document::InsertDerivativeAtPoint }
     };
 
     show_prompt = false;

@@ -1381,12 +1381,20 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Derivada</translation>
     </message>
     <message>
+        <source>Derivative at point</source>
+        <translation>Derivada en un punto</translation>
+    </message>
+    <message>
         <source>Second derivative</source>
         <translation>Segunda derivada</translation>
     </message>
     <message>
         <source>Partial derivative</source>
         <translation>Derivada parcial</translation>
+    </message>
+    <message>
+        <source>Evaluate at point</source>
+        <translation>Evaluar en un punto</translation>
     </message>
 </context>
 <context>
