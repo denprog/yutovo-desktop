@@ -152,23 +152,23 @@ void DocumentWidget::OnPromptActivated(const IdentifierType id_type, const std::
 {
     using InsertFunc = uint (Document::*)(bool, bool);
     static const std::map<std::string, InsertFunc> insert_map = 
-    {
-        { "plus", &Document::InsertPlus },
-        { "minus", &Document::InsertMinus },
-        { "mul", &Document::InsertMultiply },
-        { "div", &Document::InsertDivision },
-        { "power", &Document::InsertPower },
-        { "root", &Document::InsertNthRoot },
-        { "sqrt", &Document::InsertSquareRoot },
-        { "sub", &Document::InsertSubscript },
-        { "sum", &Document::InsertSum },
-        { "prod", &Document::InsertProduct },
-        { "definite_integral", &Document::InsertDefiniteIntegral },
-        { "indefinite_integral", &Document::InsertIndefiniteIntegral },
-        { "derivative", &Document::InsertDerivative },
-        { "evalution_bar", &Document::InsertEvalutionBarSubscript },
-        { "derivative_at_point", &Document::InsertDerivativeAtPoint }
-    };
+        {
+            { "plus", &Document::InsertPlus },
+            { "minus", &Document::InsertMinus },
+            { "mul", &Document::InsertMultiply },
+            { "div", &Document::InsertDivision },
+            { "power", &Document::InsertPower },
+            { "root", &Document::InsertNthRoot },
+            { "sqrt", &Document::InsertSquareRoot },
+            { "sub", &Document::InsertSubscript },
+            { "sum", &Document::InsertSum },
+            { "prod", &Document::InsertProduct },
+            { "definite_integral", &Document::InsertDefiniteIntegral },
+            { "indefinite_integral", &Document::InsertIndefiniteIntegral },
+            { "derivative", &Document::InsertDerivative },
+            { "evalution_bar", &Document::InsertEvalutionBarSubscript },
+            { "derivative_at_point", &Document::InsertDerivativeAtPoint }
+        };
 
     show_prompt = false;
     auto it = insert_map.find(id_str);
