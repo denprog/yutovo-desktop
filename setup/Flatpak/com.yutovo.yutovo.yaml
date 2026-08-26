@@ -7,6 +7,7 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --share=ipc
+  - --share=network
   - --device=dri
   - --filesystem=xdg-documents
 build-options:
@@ -68,36 +69,25 @@ modules:
           exit 1
         fi
         install -Dm644 "$MPFR_SO" /app/bin/libmpfr.so.6
+        GMP_SO=$(find /usr -name 'libgmp.so.10*' -type f 2>/dev/null | head -n 1)
+        if [ -z "$GMP_SO" ]; then
+          echo "libgmp.so.10 not found in SDK" >&2
+          exit 1
+        fi
+        install -Dm644 "$GMP_SO" /app/bin/libgmp.so.10
 
-  - name: mpc
-    buildsystem: autotools
+  - name: giac
+    buildsystem: simple
     sources:
       - type: archive
-        url: https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
-        sha256: ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8
-    config-opts:
-      - --enable-shared
-      - --enable-static
-      - --prefix=/app
-      - --libdir=/app/lib
-    post-install:
-      - mkdir -p /app/bin
-      - cp -P /app/lib/libmpc.so* /app/bin/
-
-  - name: symengine
-    buildsystem: cmake
-    sources:
-      - type: archive
-        url: https://github.com/symengine/symengine/archive/refs/tags/v0.14.0.tar.gz
-        sha256: 11c5f64e9eec998152437f288b8429ec001168277d55f3f5f1df78e3cf129707
-    config-opts:
-      - -DCMAKE_INSTALL_PREFIX=/app
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_TESTING=OFF
-      - -DBUILD_BENCHMARKS=OFF
-      - -DWITH_MPFR=True
-      - -DWITH_MPC=True
-      - -DBUILD_SHARED_LIBS=False
+        url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac_stable.tgz
+        sha256: 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
+      - type: patch
+        path: ./giac_config_h.diff
+      - type: file
+        path: ./build_giac.sh
+    build-commands:
+      - bash build_giac.sh
 
   - name: yutovo-calculator
     buildsystem: cmake
@@ -107,7 +97,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.5.1
+        tag: v1.6.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -124,6 +114,7 @@ modules:
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DRAPIDJSON_BUILD_DOC=OFF
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
@@ -134,13 +125,15 @@ modules:
     build-options:
       env:
         YUTOVO_DEPLOY: /app
+        LIBRARY_PATH: /app/lib
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.2.2
+        tag: v1.3.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_TESTS=OFF
 
   - name: mathgl
     buildsystem: cmake
@@ -152,6 +145,7 @@ modules:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_INSTALL_LIBDIR=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -Denable-openmp=False
       - -Denable-png=False
       - -Denable-opengl=False
@@ -168,6 +162,7 @@ modules:
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DBUILD_SHARED_LIBS=OFF
     post-install:
       - |
@@ -200,7 +195,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.6.2
+        tag: v1.7.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -226,7 +221,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.6.2
+        tag: v1.7.1
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -240,6 +235,7 @@ modules:
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-32.png /app/share/icons/hicolor/32x32/apps/yutovo.png
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-64.png /app/share/icons/hicolor/64x64/apps/yutovo.png
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo.png /app/share/icons/hicolor/256x256/apps/yutovo.png
+      - install -Dm644 /usr/share/icons/hicolor/index.theme /app/share/icons/hicolor/index.theme
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-16.png /app/share/icons/hicolor/16x16/mimetypes/application-x-yutovo.png
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-32.png /app/share/icons/hicolor/32x32/mimetypes/application-x-yutovo.png
       - install -Dm644 $FLATPAK_BUILDER_BUILDDIR/setup/yutovo-64.png /app/share/icons/hicolor/64x64/mimetypes/application-x-yutovo.png

@@ -85,8 +85,9 @@ make -sj && make install
 ```bash
 sudo dnf install -y rpmdevtools cmake gcc-c++ make pkgconf-pkg-config qt5-qtbase-devel qt5-qttools-devel qt5-qtbase-private-devel \
     qt5-qtdeclarative-devel qt5-qtsvg-devel qt5-qtx11extras-devel gmp-devel mpfr-devel libmpc-devel boost-devel spdlog-devel \
-    symengine-devel rapidjson-devel desktop-file-utils libappstream-glib hicolor-icon-theme stb_image-devel stb_image_write-devel fontconfig-devel
+    rapidjson-devel desktop-file-utils libappstream-glib hicolor-icon-theme stb_image-devel stb_image_write-devel fontconfig-devel
 ```
+Build and install giac: https://www-fourier.univ-grenoble-alpes.fr//~parisse/install_en.html.
 
 ### Download sources
 
