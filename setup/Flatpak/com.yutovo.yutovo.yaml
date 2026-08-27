@@ -206,7 +206,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-library.git
-        branch: library
+        tag: v1.1.1
+        commit: 370239adb54c3f81ebedf1136282f1158f359a23
     build-commands:
       - cd $FLATPAK_BUILDER_BUILDDIR
       - ./make_library.sh /app/bin ZIP
