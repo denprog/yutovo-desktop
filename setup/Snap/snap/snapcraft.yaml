@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.6.2'
+version: '1.7.1'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -39,6 +39,8 @@ parts:
     plugin: cmake
     source: https://github.com/gabime/spdlog.git
     source-tag: v1.15.3
+    build-environment:
+      - CMAKE_BUILD_PARALLEL_LEVEL: "8"
     cmake-parameters:
       - -DCMAKE_BUILD_TYPE=Release
       - -DCMAKE_INSTALL_PREFIX=/app
@@ -63,7 +65,7 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/app
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app
-      make -j$(nproc)
+      make -j8
       make install
     build-packages:
       - pkg-config
@@ -92,66 +94,45 @@ parts:
       - app/include/*
       - -app/lib      
 
-  mpc:
+  giac:
     plugin: nil
-    source: https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
-    source-checksum: sha256/ab642492f5cf882b74aa0cb730cd410a81edcdbec895183ce930e706c1c759b8
-    override-build: |
-      set -e
-      mkdir -p $CRAFT_PART_INSTALL/app/include
-      mkdir -p $CRAFT_PART_INSTALL/app/lib
-      mkdir -p $CRAFT_PART_INSTALL/app/bin
-      cd $CRAFT_PART_SRC
-      ./configure --enable-shared --enable-static --prefix=$CRAFT_PART_INSTALL/app/ --libdir=$CRAFT_PART_INSTALL/app/lib/ \
-        --with-gmp=/usr --with-mpfr=$CRAFT_STAGE/app
-      make -j$(nproc) && make install
-      cp -P $CRAFT_PART_INSTALL/app/lib/libmpc.so* $CRAFT_PART_INSTALL/app/bin/
+    source: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac_stable.tgz
+    source-checksum: sha256/3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
     build-packages:
-      - build-essential
-      - pkg-config
-      - libgmp-dev
-    override-stage: |
-      set -e
-      cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-
-  symengine:
-    plugin: cmake
-    source: https://github.com/symengine/symengine/archive/refs/tags/v0.14.0.tar.gz
-    source-checksum: sha256/11c5f64e9eec998152437f288b8429ec001168277d55f3f5f1df78e3cf129707
-    cmake-parameters:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DCMAKE_INSTALL_PREFIX=/app
-      - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app
-      - -DBUILD_TESTING=OFF
-      - -DBUILD_BENCHMARKS=OFF
-      - -DWITH_MPFR=True
-      - -DWITH_MPC=True
-      - -DBUILD_SHARED_LIBS=False
-    override-build: |
-      set -e
-      mkdir -p $CRAFT_PART_INSTALL/app/include
-      mkdir -p $CRAFT_PART_INSTALL/app/lib
-      craftctl default
-    build-packages:
-      - pkg-config
-      - build-essential
+      - g++
+      - make
+      - patch
       - libgmp-dev
       - libmpfr-dev
+    override-pull: |
+      craftctl default
+      cd $CRAFT_PART_SRC
+      patch -p1 < $CRAFT_PROJECT_DIR/snap/giac_config_h.diff
+    override-build: |
+      set -e
+      bash $CRAFT_PROJECT_DIR/snap/build_giac.sh $CRAFT_PART_SRC $CRAFT_PART_INSTALL/app
+      cp -P /usr/lib/x86_64-linux-gnu/libmpfr.so.6* $CRAFT_PART_INSTALL/app/lib/
+      cp -P /usr/lib/x86_64-linux-gnu/libgmp.so.10* $CRAFT_PART_INSTALL/app/lib/
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-    after: [mpc]
 
   rapidjson:
     plugin: cmake
     source: https://github.com/Tencent/rapidjson.git
     source-tag: v1.1.0
+    build-packages:
+      - patch
+    override-pull: |
+      craftctl default
+      cd $CRAFT_PART_SRC
+      patch -p1 < $CRAFT_PROJECT_DIR/snap/document.h.diff
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/include
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DRAPIDJSON_BUILD_TESTS=OFF \
         -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF -DRAPIDJSON_BUILD_DOC=OFF -DCMAKE_CXX_FLAGS="-Wno-class-memaccess -Wno-implicit-fallthrough"
-      make -j$(nproc) && make install
+      make -j8 && make install
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
@@ -164,7 +145,7 @@ parts:
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/include
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DBUILD_SHARED_LIBS=OFF
-      make -j$(nproc) && make install
+      make -j8 && make install
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
@@ -183,7 +164,7 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.5.1
+    source-tag: v1.6.1
     override-pull: |
       craftctl default
       cd $CRAFT_PART_SRC
@@ -194,7 +175,7 @@ parts:
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake \
         -DBUILD_TESTS=OFF -DBoost_INCLUDE_DIR=$CRAFT_STAGE/app/include -DBoost_NO_SYSTEM_PATHS=ON
-      make -j$(nproc) && make install
+      make -j8 && make install
     build-packages:
       - pkg-config
       - build-essential
@@ -203,18 +184,20 @@ parts:
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-    after: [mpc, symengine, boost, yutovo-logger]
+    after: [giac, boost, yutovo-logger]
 
   yutovo-solver:
     plugin: cmake
     source: https://github.com/denprog/yutovo-solver.git
-    source-tag: v1.2.2
+    source-tag: v1.3.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
-      cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake
-      make -j$(nproc) && make install
+      export LIBRARY_PATH=$CRAFT_STAGE/app/lib
+      cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake \
+        -DBUILD_TESTS=OFF
+      make -j8 && make install
     build-packages:
       - pkg-config
       - build-essential
@@ -234,7 +217,7 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/app/lib
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake \
         -Denable-openmp=False -Denable-png=False -Denable-opengl=False
-      make -j$(nproc) && make install
+      make -j8 && make install
     build-packages:
       - pkg-config
       - build-essential
@@ -245,17 +228,20 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.6.2
+    source-tag: v1.7.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
+      # The editor builds as C++20; giac's fraction.h constructor syntax is rejected by
+      # the default g++-13 of core24 in C++20 mode, so use g++-14 for this part.
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake \
-        -DBUILD_TESTS=OFF
-      make -j$(nproc) && make install
+        -DCMAKE_CXX_COMPILER=g++-14 -DBUILD_TESTS=OFF
+      make -j8 && make install
     build-packages:
       - pkg-config
       - build-essential
+      - g++-14
       - libgmp-dev
       - libmpfr-dev
     override-stage: |
@@ -266,21 +252,24 @@ parts:
   yutovo-library:
     plugin: nil
     source: https://github.com/denprog/yutovo-library.git
-    source-tag: desktop
+    source-branch: library
     source-depth: 1
-    override-build: | 
+    build-packages:
+      - gcc
+      - gzip
+    override-build: |
       set -e
       cd $CRAFT_PART_SRC
-      ./pack.sh
-      if [ ! -d "library" ]; then
-        echo "Error: Expected 'library' directory not found after running pack.sh in $CRAFT_PART_SRC"
-        ls -la
+      ./make_library.sh $CRAFT_PART_INSTALL/app/bin ZIP
+      if [ ! -d "$CRAFT_PART_INSTALL/app/bin/library" ]; then
+        echo "Error: Expected 'library' directory not found after running make_library.sh in $CRAFT_PART_SRC"
+        ls -la $CRAFT_PART_INSTALL/app/bin
         exit 1
       fi
-    override-stage: | 
+    override-stage: |
       set -e
       mkdir -p $CRAFT_STAGE/app/bin
-      cp -r $CRAFT_PART_SRC/library $CRAFT_STAGE/app/bin/
+      cp -r $CRAFT_PART_INSTALL/app/bin/library $CRAFT_STAGE/app/bin/
 
   desktop-qt5:
     source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
@@ -305,7 +294,7 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.6.2
+    source-tag: v1.7.1
     build-packages:
       - rsync
       - qttools5-dev-tools
@@ -315,7 +304,7 @@ parts:
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
       cmake $CRAFT_PART_SRC -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_BUILD_TYPE=Release -DCMAKE_LIBRARY_PATH=$CRAFT_STAGE/app/lib \
         -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake -DCMAKE_EXE_LINKER_FLAGS="-L$CRAFT_STAGE/app/lib" -DBUILD_TESTS=False
-      make -j$(nproc) && make install
+      make -j8 && make install
       cp $CRAFT_PART_SRC/setup/Snap/run.sh $CRAFT_STAGE/app/bin/
       cp $CRAFT_PART_SRC/setup/yutovo.desktop $CRAFT_STAGE/app/
       cp $CRAFT_PART_SRC/setup/yutovo.png $CRAFT_STAGE/app/application-x-yutovo.png
