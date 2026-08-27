@@ -243,4 +243,25 @@ if(WIN32)
             "${INSTALL_PATH}/$<$<CONFIG:Debug>:debug/>bin"
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     )
+else()
+    # Keep the calculator worker binary next to the application executable
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(CALCULATOR_WORKER_NAME yutovo-solver-calculator-workerd)
+    else()
+        set(CALCULATOR_WORKER_NAME yutovo-solver-calculator-worker)
+    endif()
+    set(CALCULATOR_WORKER_FILE "${INSTALL_PATH}/bin/${CALCULATOR_WORKER_NAME}")
+    if(EXISTS "${CALCULATOR_WORKER_FILE}")
+        add_custom_command(
+            OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${CALCULATOR_WORKER_NAME}"
+            COMMAND ${CMAKE_COMMAND} -E copy "${CALCULATOR_WORKER_FILE}" "${CMAKE_CURRENT_BINARY_DIR}/${CALCULATOR_WORKER_NAME}"
+            DEPENDS "${CALCULATOR_WORKER_FILE}"
+            COMMENT "Updating the calculator worker binary"
+            VERBATIM
+        )
+        add_custom_target(update_calculator_worker ALL
+            DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${CALCULATOR_WORKER_NAME}"
+        )
+        add_dependencies(${PROJECT_NAME} update_calculator_worker)
+    endif()
 endif()
