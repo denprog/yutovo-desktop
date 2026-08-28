@@ -12,7 +12,7 @@ Source1: https://github.com/denprog/yutovo-logger/archive/refs/tags/v1.0.6.tar.g
 Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.5.1.tar.gz#/yutovo-calculator-1.5.1.tar.gz
 Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.2.2.tar.gz#/yutovo-solver-1.2.2.tar.gz
 Source4: https://github.com/denprog/yutovo-editor/archive/refs/tags/v%{version}.tar.gz#/yutovo-editor-%{version}.tar.gz
-Source5: https://github.com/denprog/yutovo-library/archive/desktop.tar.gz#/yutovo-library-desktop.tar.gz
+Source5: https://github.com/denprog/yutovo-library/archive/library.tar.gz#/yutovo-library-library.tar.gz
 Source6: https://github.com/libharu/libharu/archive/refs/tags/v2.4.4.tar.gz#/libharu-2.4.4.tar.gz
 Source12: https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
 Source13: https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.gz
@@ -165,10 +165,9 @@ make %{?_smp_mflags}
 make install
 
 # Build yutovo-library
-cd %{_builddir}/submodules/yutovo-library-desktop
-./pack.sh
+cd %{_builddir}/submodules/yutovo-library-library
 mkdir -p ${YUTOVO_DEPLOY}/bin
-cp -r library ${YUTOVO_DEPLOY}/bin/
+./make_library.sh ${YUTOVO_DEPLOY}/bin ZIP
 
 # Build main application
 mkdir -p %{_builddir}/yutovo-desktop-%{version}/build
