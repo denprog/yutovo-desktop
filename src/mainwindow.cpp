@@ -53,7 +53,7 @@
 #include <QSysInfo>
 #include <QRegularExpression>
 
-#ifdef BUILD_TESTS
+#ifdef DEBUG
 #define UPDATES_SERVER_URL "http://localhost:9001/service/get-updates"
 #else
 #define UPDATES_SERVER_URL "https://yutovo.ru/service/get-updates"
