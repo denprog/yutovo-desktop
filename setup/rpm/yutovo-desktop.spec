@@ -1,7 +1,7 @@
 Name: yutovo
-Version: 1.6.2
+Version: 1.7.1
 Release: 1%{?dist}
-Summary: Powerful visual calculator with graphical representation of mathematical formulas
+Summary: Multifunctional visual calculator with graphical representation of mathematical formulas
 
 License: GPL-3.0-only
 URL: https://yutovo.com
@@ -9,15 +9,19 @@ Source0: https://github.com/denprog/yutovo-desktop/archive/refs/tags/v%{version}
 
 # Yutovo submodules
 Source1: https://github.com/denprog/yutovo-logger/archive/refs/tags/v1.0.6.tar.gz#/yutovo-logger-1.0.6.tar.gz
-Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.5.1.tar.gz#/yutovo-calculator-1.5.1.tar.gz
-Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.2.2.tar.gz#/yutovo-solver-1.2.2.tar.gz
+Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.6.1.tar.gz#/yutovo-calculator-1.6.1.tar.gz
+Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.3.1.tar.gz#/yutovo-solver-1.3.1.tar.gz
 Source4: https://github.com/denprog/yutovo-editor/archive/refs/tags/v%{version}.tar.gz#/yutovo-editor-%{version}.tar.gz
-Source5: https://github.com/denprog/yutovo-library/archive/desktop.tar.gz#/yutovo-library-desktop.tar.gz
+Source5: https://github.com/denprog/yutovo-library/archive/refs/tags/v1.1.1.tar.gz#/yutovo-library-1.1.1.tar.gz
 Source6: https://github.com/libharu/libharu/archive/refs/tags/v2.4.4.tar.gz#/libharu-2.4.4.tar.gz
-Source12: https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz
-Source13: https://www.mpfr.org/mpfr-4.2.1/mpfr-4.2.1.tar.gz
-Source14: https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz
+# giac 2.0.0, sha256 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
+Source7: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac_stable.tgz#/giac-2.0.0.tar.gz
+Source8: build_giac.sh
+# boost 1.83.0 headers, sha256 c86bd9d9eef795b4b0d3802279419fde5221922805b073b9bd822edecb1ca28e
+# (system boost 1.90 removed the boost::process v1 streams used by yutovo-solver)
+Source9: https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
 Source17: http://downloads.sourceforge.net/mathgl/mathgl-8.0.3.tar.gz
+Patch0: giac_config_h.diff
 
 BuildRequires: cmake >= 3.16
 BuildRequires: gcc-c++
@@ -31,7 +35,6 @@ BuildRequires: qt5-qtsvg-devel
 BuildRequires: qt5-qtx11extras-devel
 BuildRequires: boost-devel
 BuildRequires: spdlog-devel
-BuildRequires: symengine-devel
 BuildRequires: rapidjson-devel
 BuildRequires: desktop-file-utils
 BuildRequires: libappstream-glib
@@ -39,12 +42,16 @@ BuildRequires: hicolor-icon-theme
 BuildRequires: stb_image-devel
 BuildRequires: stb_image_write-devel
 BuildRequires: fontconfig-devel
+BuildRequires: gmp-devel
+BuildRequires: mpfr-devel
 
 Requires: qt5-qtbase-gui
 Requires: hicolor-icon-theme
+# formula symbols (integral, iteration, evaluation bar) are rendered in DejaVu Serif
+Requires: dejavu-serif-fonts
 
 %description
-Yutovo is a powerful calculator with graphical representation of mathematics
+Yutovo is a multifunctional calculator with graphical representation of mathematics
 operations inside a text editor. Based on Qt and written in C++.
 
 Features:
@@ -54,6 +61,7 @@ Features:
 - Symbolic calculations (giac)
 - Units and unit conversion
 - Graphs of functions
+- Symbolic calculations
 
 %prep
 mkdir -p %{_builddir}/%{name}-deploy
@@ -70,18 +78,18 @@ tar -xzf %{SOURCE5} -C %{_builddir}/submodules
 mkdir -p %{_builddir}/third_party
 tar -xzf %{SOURCE6} -C %{_builddir}/third_party
 tar -xzf %{SOURCE17} -C %{_builddir}/third_party
-tar -xJf %{SOURCE12} -C %{_builddir}/third_party
-tar -xzf %{SOURCE13} -C %{_builddir}/third_party
-tar -xzf %{SOURCE14} -C %{_builddir}/third_party
+tar -xzf %{SOURCE7} -C %{_builddir}/third_party
+unzip -q %{SOURCE9} -d %{_builddir}/third_party
+cd %{_builddir}/third_party/giac-2.0.0
+patch -p1 < %{PATCH0}
+cp %{SOURCE8} .
 
 %build
 export YUTOVO_DEPLOY=%{_builddir}/%{name}-deploy
-
-# Save RPM flags and use clean flags for autotools-based third-party libs
-# -std=gnu17 is required for GMP 6.3.0 with GCC 16 (C23 default)
-# LDFLAGS is cleared to avoid PIE/hardening conflicts with static-only builds
-export YUTOVO_THIRD_PARTY_CFLAGS="-O2 -g -std=gnu17 -fPIC"
-export YUTOVO_THIRD_PARTY_LDFLAGS=""
+# giac and the yutovo-* libraries live in the deploy dir; giac_imported and
+# libstdc++fs are resolved there via linker scripts installed by build_giac.sh
+export LIBRARY_PATH=${YUTOVO_DEPLOY}/lib
+export YUTOVO_MAKE_FLAGS="%{?_smp_mflags}"
 
 # Build yutovo-logger
 mkdir -p %{_builddir}/submodules/yutovo-logger-1.0.6/build
@@ -90,35 +98,32 @@ cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release
 make %{?_smp_mflags}
 make install
 
-# Build gmp
-cd %{_builddir}/third_party/gmp-6.3.0
-CFLAGS="${YUTOVO_THIRD_PARTY_CFLAGS}" LDFLAGS="${YUTOVO_THIRD_PARTY_LDFLAGS}" ./configure --enable-static --disable-shared --prefix=${YUTOVO_DEPLOY}
-CFLAGS="${YUTOVO_THIRD_PARTY_CFLAGS}" LDFLAGS="${YUTOVO_THIRD_PARTY_LDFLAGS}" make %{?_smp_mflags}
-make install
+# Build boost 1.83.0 headers
+cd %{_builddir}/third_party/boost_1_83_0
+./bootstrap.sh --prefix=${YUTOVO_DEPLOY}
+./b2 headers
+mkdir -p ${YUTOVO_DEPLOY}/include
+cp -r boost ${YUTOVO_DEPLOY}/include/
+# Prefer the bundled 1.83 headers over the system boost for the yutovo modules
+export CPATH=${YUTOVO_DEPLOY}/include
 
-# Build mpfr
-cd %{_builddir}/third_party/mpfr-4.2.1
-CFLAGS="${YUTOVO_THIRD_PARTY_CFLAGS}" LDFLAGS="${YUTOVO_THIRD_PARTY_LDFLAGS}" ./configure --enable-static --disable-shared --prefix=${YUTOVO_DEPLOY} --with-gmp=${YUTOVO_DEPLOY}
-CFLAGS="${YUTOVO_THIRD_PARTY_CFLAGS}" LDFLAGS="${YUTOVO_THIRD_PARTY_LDFLAGS}" make %{?_smp_mflags}
-make install
-
-# Build mpc
-cd %{_builddir}/third_party/mpc-1.3.1
-CFLAGS="${YUTOVO_THIRD_PARTY_CFLAGS}" LDFLAGS="${YUTOVO_THIRD_PARTY_LDFLAGS}" ./configure --enable-static --disable-shared --prefix=${YUTOVO_DEPLOY} --with-gmp=${YUTOVO_DEPLOY} --with-mpfr=${YUTOVO_DEPLOY}
-CFLAGS="${YUTOVO_THIRD_PARTY_CFLAGS}" LDFLAGS="${YUTOVO_THIRD_PARTY_LDFLAGS}" make %{?_smp_mflags}
-make install
+# Build giac (static, Release)
+cd %{_builddir}/third_party/giac-2.0.0
+bash build_giac.sh
+# yutovo-calculator requires both release and debug library names at configure time
+cp -f ${YUTOVO_DEPLOY}/lib/libgiac.a ${YUTOVO_DEPLOY}/lib/libgiacd.a
 
 # Build yutovo-calculator
-mkdir -p %{_builddir}/submodules/yutovo-calculator-1.5.1/build
-cd %{_builddir}/submodules/yutovo-calculator-1.5.1/build
-cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_C_COMPILER=gcc
+mkdir -p %{_builddir}/submodules/yutovo-calculator-1.6.1/build
+cd %{_builddir}/submodules/yutovo-calculator-1.6.1/build
+cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBoost_INCLUDE_DIR=${YUTOVO_DEPLOY}/include
 make %{?_smp_mflags}
 make install
 
 # Build yutovo-solver
-mkdir -p %{_builddir}/submodules/yutovo-solver-1.2.2/build
-cd %{_builddir}/submodules/yutovo-solver-1.2.2/build
-cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_C_COMPILER=gcc
+mkdir -p %{_builddir}/submodules/yutovo-solver-1.3.1/build
+cd %{_builddir}/submodules/yutovo-solver-1.3.1/build
+cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 make %{?_smp_mflags}
 make install
 
@@ -129,6 +134,7 @@ cmake .. \
     -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} \
     -DCMAKE_INSTALL_LIBDIR=${YUTOVO_DEPLOY} \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -Denable-openmp=False \
     -Denable-png=False \
     -Denable-opengl=False
@@ -142,12 +148,16 @@ cmake .. \
     -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} \
     -DCMAKE_INSTALL_LIBDIR=${YUTOVO_DEPLOY}/lib \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -DBUILD_SHARED_LIBS=OFF
 make %{?_smp_mflags}
 make install
+if [ -f ${YUTOVO_DEPLOY}/lib64/libhpdf.a ]; then
+    mv ${YUTOVO_DEPLOY}/lib64/libhpdf.a ${YUTOVO_DEPLOY}/lib/
+fi
 cd %{_builddir}
 
-# Патч: заменить путь к stb_image
+# Patch: replace stb_image include path with the Fedora stb layout
 find %{_builddir}/submodules/yutovo-editor-%{version} -name "*.cpp" -o -name "*.h" | \
     xargs sed -i 's|<stb_image/|<stb/|g'
 
@@ -158,11 +168,9 @@ cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DCM
 make %{?_smp_mflags}
 make install
 
-# Build yutovo-library
-cd %{_builddir}/submodules/yutovo-library-desktop
-./pack.sh
-mkdir -p ${YUTOVO_DEPLOY}/bin
-cp -r library ${YUTOVO_DEPLOY}/bin/
+# Generate yutovo library data (gzip-packed .yut files)
+cd %{_builddir}/submodules/yutovo-library-1.1.1
+./make_library.sh %{_builddir}/%{name}-library-out ZIP
 
 # Build main application
 mkdir -p %{_builddir}/yutovo-desktop-%{version}/build
@@ -185,6 +193,10 @@ make %{?_smp_mflags}
 # Install the actual binary from the build tree
 install -Dm755 %{_builddir}/%{name}-desktop-%{version}/build/src/%{name}-desktop \
     %{buildroot}%{_bindir}/%{name}-desktop
+
+# Calculator worker, expected next to the application binary
+install -Dm755 %{_builddir}/%{name}-deploy/bin/yutovo-solver-calculator-worker \
+    %{buildroot}%{_bindir}/yutovo-solver-calculator-worker
 
 # Create wrapper script expected by the desktop file
 install -Dm755 /dev/stdin %{buildroot}%{_bindir}/%{name} <<'EOF'
@@ -221,6 +233,16 @@ install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/yutovo-64.png \
 install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/yutovo.png \
     %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/yutovo.png
 
+# MIME type icons
+install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/yutovo-16.png \
+    %{buildroot}%{_datadir}/icons/hicolor/16x16/mimetypes/application-x-yutovo.png
+install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/yutovo-32.png \
+    %{buildroot}%{_datadir}/icons/hicolor/32x32/mimetypes/application-x-yutovo.png
+install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/yutovo-64.png \
+    %{buildroot}%{_datadir}/icons/hicolor/64x64/mimetypes/application-x-yutovo.png
+install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/yutovo.png \
+    %{buildroot}%{_datadir}/icons/hicolor/256x256/mimetypes/application-x-yutovo.png
+
 # AppData
 install -Dm644 %{_builddir}/%{name}-desktop-%{version}/setup/com.yutovo.yutovo.metainfo.xml \
     %{buildroot}%{_datadir}/metainfo/com.yutovo.yutovo.metainfo.xml
@@ -231,14 +253,14 @@ install -Dm644 %{_builddir}/%{name}-desktop-%{version}/LICENSE \
 install -Dm644 %{_builddir}/%{name}-desktop-%{version}/README.md \
     %{buildroot}%{_defaultdocdir}/%{name}/README.md
 
-# Translations
+# Translations (runtime lookup: /usr/share/yutovo/translations)
 mkdir -p %{buildroot}%{_datadir}/%{name}/translations
 install -Dm644 %{_builddir}/%{name}-desktop-%{version}/build/src/*.qm \
     %{buildroot}%{_datadir}/%{name}/translations/
 
-# Library files
+# Library files (runtime lookup: /usr/share/yutovo/library)
 mkdir -p %{buildroot}%{_datadir}/%{name}
-cp -r %{_builddir}/%{name}-deploy/bin/library %{buildroot}%{_datadir}/%{name}/
+cp -r %{_builddir}/%{name}-library-out/library %{buildroot}%{_datadir}/%{name}/
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/yutovo.desktop
@@ -257,13 +279,24 @@ update-mime-database %{_datadir}/mime &> /dev/null || :
 %doc %{_defaultdocdir}/%{name}/README.md
 %{_bindir}/%{name}
 %{_bindir}/%{name}-desktop
+%{_bindir}/yutovo-solver-calculator-worker
 %{_datadir}/applications/yutovo.desktop
 %{_datadir}/mime/packages/yutovo.xml
 %{_datadir}/icons/hicolor/*/apps/yutovo.png
+%{_datadir}/icons/hicolor/*/mimetypes/application-x-yutovo.png
 %{_datadir}/metainfo/com.yutovo.yutovo.metainfo.xml
 %{_datadir}/%{name}/
 
 %changelog
+* Mon Aug 31 2026 Denis Gordenin <denis@yutovo.com> - 1.7.1-1
+- Update to 1.7.1 (sync with com.yutovo.yutovo.yaml flatpak manifest):
+  yutovo-calculator 1.6.1, yutovo-solver 1.3.1, yutovo-library 1.1.1
+- Replace SymEngine with static giac 2.0.0 built from source,
+  drop bundled gmp/mpfr/mpc in favour of system libraries
+- Bundle boost 1.83.0 headers (system boost 1.90 dropped boost::process v1)
+- Bundle yutovo-solver-calculator-worker and MIME type icons
+- Require dejavu-serif-fonts: math formula symbols are drawn in DejaVu Serif
+  (flatpak runtime ships it; without it the integral sign renders as tofu)
 * Mon Jun 29 2026 Denis Gordenin <denis@yutovo.com> - 1.6.2-1
 - Build fixes for Fedora 44: libharu from source, GCC 16 / C23 compat,
   remove static libstdc++ linking, install wrapper and library correctly

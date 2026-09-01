@@ -23,6 +23,14 @@ if(WIN32)
 	set(CMAKE_PREFIX_PATH "${INSTALL_PATH}")
 endif()
 
+if(WIN32)
+    pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
+    find_package(Boost REQUIRED COMPONENTS property_tree iostreams filesystem)
+    find_package(BZip2 REQUIRED)
+    find_package(RapidJSON CONFIG REQUIRED)
+    find_package(unofficial-libharu CONFIG REQUIRED)
+endif()
+
 if(NOT REMOTE_SOLVER)
     find_package(yutovo-calculator REQUIRED)
     find_package(yutovo-solver REQUIRED)
@@ -37,11 +45,6 @@ find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS PrintSupport REQUIRED)
 
 if(WIN32)
-    find_package(Boost REQUIRED COMPONENTS property_tree)
-	find_package(BZip2 REQUIRED)
-    find_package(RapidJSON CONFIG REQUIRED)
-    find_package(unofficial-libharu CONFIG REQUIRED)
-    pkg_check_modules(mpfr REQUIRED IMPORTED_TARGET mpfr)
     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /bigobj /EHsc /MP")
 else()
@@ -243,4 +246,30 @@ if(WIN32)
             "${INSTALL_PATH}/$<$<CONFIG:Debug>:debug/>bin"
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     )
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            ${QM_FILES}
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    )
+else()
+    # Keep the calculator worker binary next to the application executable
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(CALCULATOR_WORKER_NAME yutovo-solver-calculator-workerd)
+    else()
+        set(CALCULATOR_WORKER_NAME yutovo-solver-calculator-worker)
+    endif()
+    set(CALCULATOR_WORKER_FILE "${INSTALL_PATH}/bin/${CALCULATOR_WORKER_NAME}")
+    if(EXISTS "${CALCULATOR_WORKER_FILE}")
+        add_custom_command(
+            OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/${CALCULATOR_WORKER_NAME}"
+            COMMAND ${CMAKE_COMMAND} -E copy "${CALCULATOR_WORKER_FILE}" "${CMAKE_CURRENT_BINARY_DIR}/${CALCULATOR_WORKER_NAME}"
+            DEPENDS "${CALCULATOR_WORKER_FILE}"
+            COMMENT "Updating the calculator worker binary"
+            VERBATIM
+        )
+        add_custom_target(update_calculator_worker ALL
+            DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${CALCULATOR_WORKER_NAME}"
+        )
+        add_dependencies(${PROJECT_NAME} update_calculator_worker)
+    endif()
 endif()

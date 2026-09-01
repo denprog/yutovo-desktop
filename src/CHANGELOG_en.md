@@ -1,3 +1,20 @@
+# 1.7.1
+- Added calculation of definite and indefinite integrals.
+- Added calculation of derivatives.
+- Added evaluation bar for derivatives.
+- Added printing of documents.
+- Added min and max functions.
+- Added feedback form.
+- Added checking for updates.
+- Added copying a graph as an image.
+- Fixed editing of an empty symbol.
+- Fixed paragraph names in the library.
+- Fixed interruption of long calculations.
+- Improved error messages.
+- Fixed underlining of errors.
+- Fixed calculations with complex numbers.
+- Fixed positions of toolbars at startup.
+
 # 1.6.2
 - Fixed pasting image from another application.
 - Fixed calculation with large real numbers.

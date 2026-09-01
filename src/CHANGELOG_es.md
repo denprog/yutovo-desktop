@@ -1,3 +1,20 @@
+# 1.7.1
+- Añadido cálculo de integrales definidas e indefinidas.
+- Añadido cálculo de derivadas.
+- Añadida barra de evaluación para derivadas.
+- Añadida impresión de documentos.
+- Añadidas funciones min y max.
+- Añadido formulario de comentarios.
+- Añadida comprobación de actualizaciones.
+- Añadido copiado de un gráfico como imagen.
+- Corregida edición de un símbolo vacío.
+- Corregidos nombres de los párrafos en la biblioteca.
+- Corregida interrupción de cálculos largos.
+- Mensajes de error mejorados.
+- Corregido subrayado de errores.
+- Corregidos cálculos con números complejos.
+- Corregidas posiciones de las barras de herramientas al inicio.
+
 # 1.6.2
 - Corregido pegar imagen desde otra aplicación.
 - Corregido cálculo con números reales grandes.

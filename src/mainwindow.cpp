@@ -889,10 +889,10 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnSquareBrackets);
     algebra_toolbar->addAction(action);
 
-    action = new QAction(QIcon(":/icons/images/algebra/evalution_bar.png"), tr("Evaluate at point"), this);
-    action->setObjectName("actionEvalutionBar");
+    action = new QAction(QIcon(":/icons/images/algebra/evaluation_bar.png"), tr("Evaluate at point"), this);
+    action->setObjectName("actionEvaluationBar");
     action->setToolTip(tr("Evaluate at point"));
-    connect(action, &QAction::triggered, this, &MainWindow::OnEvalutionBar);
+    connect(action, &QAction::triggered, this, &MainWindow::OnEvaluationBar);
     algebra_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
@@ -3039,11 +3039,11 @@ void MainWindow::OnDerivativeAtPoint()
         document->InsertDerivativeAtPoint(true);
 }
 
-void MainWindow::OnEvalutionBar()
+void MainWindow::OnEvaluationBar()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertEvalutionBarSubscript(true);
+        document->InsertEvaluationBarSubscript(true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)

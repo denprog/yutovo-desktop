@@ -27,7 +27,7 @@ const std::map<std::string, QString> PromptForm::icons =
     {"indefinite_integral", ":/icons/images/calculus/indefinite_integral.png"},
     {"derivative", ":/icons/images/calculus/derivative.png"},
     {"derivative_at_point", ":/icons/images/calculus/derivative_at_point.png"},
-    {"evalution_bar", ":/icons/images/algebra/evalution_bar.png"}
+    {"evaluation_bar", ":/icons/images/algebra/evaluation_bar.png"}
 };
 
 PromptForm::PromptForm(QWidget* parent) : 
