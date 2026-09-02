@@ -241,7 +241,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
             {
             case QMessageBox::Yes:
             {
-                close_tab_after_save = i;
+                close_tab_after_save = w;
                 exit_after_save = true;
                 SaveFile(i);
                 event->ignore();
@@ -1441,10 +1441,18 @@ void MainWindow::SaveFileAs(int index)
     save_dialog.setDefaultSuffix("yut");
     save_dialog.setAcceptMode(QFileDialog::AcceptSave);
     if (!save_dialog.exec())
+    {
+        close_tab_after_save = nullptr; //the save is cancelled: drop the pending close/exit intent
+        exit_after_save = false;
         return;
+    }
     QStringList file_names = save_dialog.selectedFiles();
     if (file_names.empty())
+    {
+        close_tab_after_save = nullptr;
+        exit_after_save = false;
         return;
+    }
     dialog_file_name = file_names[0];
     w->document->Save(file_names[0].toUtf8().data());
 
@@ -2270,7 +2278,7 @@ bool MainWindow::OnCloseEditorTab(int index)
         switch (r)
         {
         case QMessageBox::Yes:
-            close_tab_after_save = index;
+            close_tab_after_save = w;
             SaveFile(index);
             return true;
         case QMessageBox::No:
@@ -2286,6 +2294,8 @@ bool MainWindow::OnCloseEditorTab(int index)
     QWidget* tab_item = ui->editor_tabs->widget(index);
     if (tab_item)
     {
+        if (tab_item == close_tab_after_save)
+            close_tab_after_save = nullptr;
         ui->editor_tabs->removeTab(index);
         tab_item->setParent(nullptr);
         delete(tab_item);
@@ -3163,12 +3173,12 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
     {
         if (result == IOResult::PermissionDenied) //for read-only files call the SaveAs dialog
         {
-            SaveFileAsName();
+            SaveFileAs(close_tab_after_save ? ui->editor_tabs->indexOf(close_tab_after_save) : index);
             return;
         }
 
         exit_after_save = false;
-        close_tab_after_save = -1;
+        close_tab_after_save = nullptr;
         recent_files.removeAll(dialog_file_name);
         UpdateRecentFiles();
         UpdateCaption();
@@ -3178,17 +3188,28 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
     UpdateRecentFiles(dialog_file_name);
 
-    DocumentWindow* w = (close_tab_after_save != -1 ? (DocumentWindow*)ui->editor_tabs->widget(close_tab_after_save) : 
-        (DocumentWindow*)ui->editor_tabs->currentWidget());
+    //when a pending exit waits for a tab that is already closed, no tab path must be touched
+    DocumentWindow* w = nullptr;
+    if (close_tab_after_save)
+        w = close_tab_after_save;
+    else if (!exit_after_save)
+        w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (w)
         w->path = dialog_file_name;
 
-    if (close_tab_after_save != -1)
+    if (close_tab_after_save)
     {
+        //take the intent before acting: OnCloseEditorTab and close() below may re-enter these handlers and must not see the already consumed intent
         auto p = w->path;
-        OnCloseEditorTab(close_tab_after_save);
-        close_tab_after_save = -1;
-        if (exit_after_save)
+        DocumentWindow* tab_to_close = close_tab_after_save;
+        close_tab_after_save = nullptr;
+        const bool exit_after = exit_after_save;
+        exit_after_save = false;
+
+        int close_index = ui->editor_tabs->indexOf(tab_to_close);
+        if (close_index != -1)
+            OnCloseEditorTab(close_index);
+        if (exit_after)
         {
             if (!p.isEmpty() && last_documents.indexOf(p) == -1)
                 last_documents.push_back(p);
@@ -3197,9 +3218,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
     }
     else if (exit_after_save)
     {
-        if (!w->path.isEmpty() && last_documents.indexOf(w->path) == -1)
-            last_documents.push_back(w->path);
-        Close();
+        //the exit was waiting for is already closed; continue the exit
+        exit_after_save = false;
         close();
     }
 

@@ -32,6 +32,18 @@ private slots:
     void testLogicalOperators();
     void testPowerShortcut();
     void testSaveAndCloseOnExit();
+    void testCancelSaveAsOnExit();
+    void testCancelSaveAsOnTabClose();
+    void testCloseOnExitAnswerNo();
+    void testCloseOnExitAnswerCancel();
+    void testCloseUnchangedDocumentNoDialog();
+    void testCloseTabAnswerNo();
+    void testCloseTabAnswerCancel();
+    void testCloseOnExitSaveAsConfirmed();
+    void testCloseTabSaveAsConfirmedOtherTabsRemain();
+    void testExitWithTwoUnsavedTabs();
+    void testExitAfterCancelledSaveStillWorks();
+    void testSaveAllWithSaveAsDialog();
     void testExportToPdf();
     void testPdfExportErrorHandling();
     void testMenuRebuildDoesNotLeak();
@@ -41,6 +53,11 @@ private slots:
 
 private:
     MainWindow* window;
+
+    QMessageBox* FindMessageBox();
+    QFileDialog* FindFileDialog();
+    void ClickMessageBoxButton(QMessageBox::StandardButton button);
+    void AcceptFileDialogWithPath(const QString& path);
 
     class LanguageSettingGuard
     {

@@ -42,6 +42,53 @@ void TestFiles::cleanup()
     delete window;
 }
 
+QMessageBox* TestFiles::FindMessageBox()
+{
+    for (auto w : QApplication::topLevelWidgets())
+    {
+        auto box = qobject_cast<QMessageBox*>(w);
+        if (box)
+            return box;
+    }
+    return nullptr;
+}
+
+QFileDialog* TestFiles::FindFileDialog()
+{
+    for (auto w : QApplication::topLevelWidgets())
+    {
+        auto dialog = qobject_cast<QFileDialog*>(w);
+        if (dialog)
+            return dialog;
+    }
+    return nullptr;
+}
+
+void TestFiles::ClickMessageBoxButton(QMessageBox::StandardButton button)
+{
+    //wait for the box to appear: it may be created by an asynchronous save completion
+    QTRY_VERIFY(FindMessageBox() != nullptr);
+    QMessageBox* box = FindMessageBox();
+    auto b = box->button(button);
+    QVERIFY(b);
+    b->click();
+}
+
+void TestFiles::AcceptFileDialogWithPath(const QString& path)
+{
+    QTRY_VERIFY(FindFileDialog() != nullptr);
+    QFileDialog* dialog = FindFileDialog();
+    QTRY_VERIFY(dialog->isVisible());
+
+    auto line_edit = dialog->findChild<QLineEdit*>("fileNameEdit");
+    QVERIFY(line_edit);
+    line_edit->setFocus();
+    line_edit->setText(path);
+    QTest::qWait(200);
+    QTest::keyClick(line_edit, Qt::Key_Return);
+    QTest::qWait(200);
+}
+
 void TestFiles::testNewDocument()
 {
     auto button = window->findChild<QAction*>("actionNew");
@@ -414,6 +461,534 @@ void TestFiles::testSaveAndCloseOnExit()
     QTest::qWait(1500);
 
     QVERIFY(QFile::exists(path));
+}
+
+void TestFiles::testCancelSaveAsOnExit()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QTest::keyClicks(editor, "abc");
+    QTest::qWait(200);
+
+    const int tabs_before = window->ui->editor_tabs->count();
+    QVERIFY(tabs_before > 0);
+
+    //closing the window with an unsaved pathless document: "Save?" -> Yes opens "Save file as",
+    //which is then cancelled; the pending exit intent must be dropped
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QMessageBox* box = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                box = qobject_cast<QMessageBox*>(w);
+                if (box)
+                    break;
+            }
+
+            QVERIFY(box);
+            auto yes = box->button(QMessageBox::Yes);
+            QVERIFY(yes);
+            yes->click();
+
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    QFileDialog* dialog = nullptr;
+                    for (auto w : QApplication::topLevelWidgets())
+                    {
+                        dialog = qobject_cast<QFileDialog*>(w);
+                        if (dialog)
+                            break;
+                    }
+
+                    QVERIFY(dialog);
+                    QTRY_VERIFY(dialog->isVisible());
+                    dialog->reject();
+                });
+        });
+
+    window->close();
+    QTest::qWait(500);
+
+    //the exit is abandoned: the intent is cleared and the application keeps running
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+    QCOMPARE(window->ui->editor_tabs->count(), tabs_before);
+
+    //a later ordinary save must not close the tab or silently quit the application
+    QString path = QDir::tempPath() + "/test_cancel_save_as_on_exit.yut";
+    QFile::remove(path);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QFileDialog* dialog = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                dialog = qobject_cast<QFileDialog*>(w);
+                if (dialog)
+                    break;
+            }
+
+            QVERIFY(dialog);
+            QTRY_VERIFY(dialog->isVisible());
+
+            auto line_edit = dialog->findChild<QLineEdit*>("fileNameEdit");
+            QVERIFY(line_edit);
+            line_edit->setFocus();
+            line_edit->setText(path);
+            QTest::qWait(200);
+            QTest::keyClick(line_edit, Qt::Key_Return);
+            QTest::qWait(200);
+        });
+
+    auto action = window->findChild<QAction*>("actionSave");
+    QVERIFY(action);
+    action->trigger();
+
+    QTRY_VERIFY(QFile::exists(path));
+    QTest::qWait(500);
+
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->ui->editor_tabs->count(), tabs_before);
+}
+
+void TestFiles::testCancelSaveAsOnTabClose()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QTest::keyClicks(editor, "abc");
+    QTest::qWait(200);
+
+    const int tabs_before = window->ui->editor_tabs->count();
+    QVERIFY(tabs_before > 0);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QMessageBox* box = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                box = qobject_cast<QMessageBox*>(w);
+                if (box)
+                    break;
+            }
+
+            QVERIFY(box);
+            auto yes = box->button(QMessageBox::Yes);
+            QVERIFY(yes);
+            yes->click();
+
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    QFileDialog* dialog = nullptr;
+                    for (auto w : QApplication::topLevelWidgets())
+                    {
+                        dialog = qobject_cast<QFileDialog*>(w);
+                        if (dialog)
+                            break;
+                    }
+
+                    QVERIFY(dialog);
+                    QTRY_VERIFY(dialog->isVisible());
+                    dialog->reject();
+                });
+        });
+
+    //closing the tab with an unsaved pathless document: "Save?" -> Yes opens "Save file as",
+    //which is then cancelled; the pending tab-close intent must be dropped
+    emit window->ui->editor_tabs->tabCloseRequested(0);
+    QTest::qWait(500);
+
+    QVERIFY(window->close_tab_after_save == nullptr);
+    QCOMPARE(window->exit_after_save, false);
+    QCOMPARE(window->ui->editor_tabs->count(), tabs_before);
+    QVERIFY(window->GetCurrentDocument() != nullptr);
+}
+
+void TestFiles::testCloseOnExitAnswerNo()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "123");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::No);
+        });
+
+    window->close();
+    QTest::qWait(200);
+
+    //No: the changes are discarded, no file dialog appears and the application quits
+    QVERIFY(!window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+}
+
+void TestFiles::testCloseOnExitAnswerCancel()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "123");
+    QTest::qWait(200);
+
+    const int tabs_before = window->ui->editor_tabs->count();
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Cancel);
+        });
+
+    window->close();
+    QTest::qWait(200);
+
+    //Cancel: the application keeps running and the document stays unsaved
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->ui->editor_tabs->count(), tabs_before);
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    QVERIFY(document->IsChanged());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+}
+
+void TestFiles::testCloseUnchangedDocumentNoDialog()
+{
+    //a clean document must close immediately without any dialog
+    QTimer::singleShot(3000,
+        [&]()
+        {
+            //watchdog: if a dialog unexpectedly appears, dismiss it so the test fails instead of hanging
+            QMessageBox* box = FindMessageBox();
+            if (box)
+            {
+                auto cancel = box->button(QMessageBox::Cancel);
+                if (cancel)
+                    cancel->click();
+            }
+        });
+
+    window->close();
+
+    QVERIFY(!window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+}
+
+void TestFiles::testCloseTabAnswerNo()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "123");
+    QTest::qWait(200);
+
+    const int tabs_before = window->ui->editor_tabs->count();
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::No);
+        });
+
+    emit window->ui->editor_tabs->tabCloseRequested(0);
+    QTest::qWait(200);
+
+    //No: the tab is closed without saving, the application keeps running
+    QCOMPARE(window->ui->editor_tabs->count(), tabs_before - 1);
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+}
+
+void TestFiles::testCloseTabAnswerCancel()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "123");
+    QTest::qWait(200);
+
+    const int tabs_before = window->ui->editor_tabs->count();
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Cancel);
+        });
+
+    emit window->ui->editor_tabs->tabCloseRequested(0);
+    QTest::qWait(200);
+
+    //Cancel: the tab stays open with the unsaved document
+    QCOMPARE(window->ui->editor_tabs->count(), tabs_before);
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    QVERIFY(document->IsChanged());
+    QVERIFY(window->isVisible());
+}
+
+void TestFiles::testCloseOnExitSaveAsConfirmed()
+{
+    QString path = QDir::tempPath() + "/test_close_exit_saveas_confirmed.yut";
+    QFile::remove(path);
+
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "123");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Yes);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    AcceptFileDialogWithPath(path);
+                });
+        });
+
+    window->close();
+
+    //Yes + confirmed path: the document is saved and the application quits
+    QTRY_VERIFY(QFile::exists(path));
+    QTRY_VERIFY(!window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+}
+
+void TestFiles::testCloseTabSaveAsConfirmedOtherTabsRemain()
+{
+    QString path = QDir::tempPath() + "/test_close_tab_saveas_confirmed.yut";
+    QFile::remove(path);
+
+    //first tab: unsaved document without a path
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "111");
+    QTest::qWait(200);
+
+    //second tab
+    auto new_action = window->findChild<QAction*>("actionNew");
+    QVERIFY(new_action);
+    new_action->trigger();
+    QTest::qWait(200);
+
+    DocumentWindow* second_tab = qobject_cast<DocumentWindow*>(window->ui->editor_tabs->widget(1));
+    QVERIFY(second_tab);
+    auto second_editor = second_tab->findChild<DocumentWidget*>();
+    QVERIFY(second_editor);
+    QTest::keyClicks(second_editor, "222");
+    QTest::qWait(200);
+
+    QCOMPARE(window->ui->editor_tabs->count(), 2);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Yes);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    AcceptFileDialogWithPath(path);
+                });
+        });
+
+    emit window->ui->editor_tabs->tabCloseRequested(0);
+
+    //the first tab is saved and closed; the second tab must survive and the application must keep running
+    QTRY_VERIFY(QFile::exists(path));
+    QTest::qWait(500);
+
+    QCOMPARE(window->ui->editor_tabs->count(), 1);
+    QVERIFY(window->ui->editor_tabs->widget(0) == second_tab);
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    QCOMPARE(document->ToText(), U"222");
+}
+
+void TestFiles::testExitWithTwoUnsavedTabs()
+{
+    QString path = QDir::tempPath() + "/test_exit_two_tabs.yut";
+    QFile::remove(path);
+
+    //first tab: unsaved document without a path
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "111");
+    QTest::qWait(200);
+
+    //second tab: also unsaved
+    auto new_action = window->findChild<QAction*>("actionNew");
+    QVERIFY(new_action);
+    new_action->trigger();
+    QTest::qWait(200);
+    auto second_tab = qobject_cast<DocumentWindow*>(window->ui->editor_tabs->widget(1));
+    QVERIFY(second_tab);
+    auto second_editor = second_tab->findChild<DocumentWidget*>();
+    QVERIFY(second_editor);
+    QTest::keyClicks(second_editor, "222");
+    QTest::qWait(200);
+
+    QCOMPARE(window->ui->editor_tabs->count(), 2);
+
+    //the second tab is asked only after the first tab's asynchronous save completes,
+    //so it is answered by a polling timer instead of a chained single shot
+    QTimer second_box_timer;
+    second_box_timer.setInterval(100);
+    QObject::connect(&second_box_timer, &QTimer::timeout,
+        [&]()
+        {
+            QMessageBox* box = FindMessageBox();
+            if (box && box->isVisible())
+            {
+                auto no = box->button(QMessageBox::No);
+                if (no)
+                {
+                    no->click();
+                    second_box_timer.stop();
+                }
+            }
+        });
+
+    //closing the window asks for each unsaved tab: save the first one, discard the second one
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Yes);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    AcceptFileDialogWithPath(path);
+                    second_box_timer.start();
+                });
+        });
+
+    window->close();
+
+    QTRY_VERIFY(QFile::exists(path));
+    QTRY_VERIFY(!window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+    second_box_timer.stop();
+}
+
+void TestFiles::testExitAfterCancelledSaveStillWorks()
+{
+    QString path = QDir::tempPath() + "/test_exit_after_cancelled_save.yut";
+    QFile::remove(path);
+
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "123");
+    QTest::qWait(200);
+
+    //first exit attempt: answer Yes but cancel the "Save file as" dialog
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Yes);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    QTRY_VERIFY(FindFileDialog() != nullptr);
+                    FindFileDialog()->reject();
+                });
+        });
+
+    window->close();
+    QTest::qWait(300);
+
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+
+    //the second exit attempt after the cancelled one must work normally
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::Yes);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    AcceptFileDialogWithPath(path);
+                });
+        });
+
+    window->close();
+
+    QTRY_VERIFY(QFile::exists(path));
+    QTRY_VERIFY(!window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+}
+
+void TestFiles::testSaveAllWithSaveAsDialog()
+{
+    QString path0 = QDir::tempPath() + "/test_save_all_existing.yut";
+    QString path1 = QDir::tempPath() + "/test_save_all_dialog.yut";
+    QFile::remove(path0);
+    QFile::remove(path1);
+
+    //first tab: give it a path with an initial "Save as"
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    QTest::keyClicks(editor, "111");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path0);
+        });
+
+    window->SaveFileAsName();
+    QTRY_VERIFY(QFile::exists(path0));
+    QTest::qWait(300);
+
+    //second tab: unsaved document without a path
+    auto new_action = window->findChild<QAction*>("actionNew");
+    QVERIFY(new_action);
+    new_action->trigger();
+    QTest::qWait(200);
+    auto second_tab = qobject_cast<DocumentWindow*>(window->ui->editor_tabs->widget(1));
+    QVERIFY(second_tab);
+    auto second_editor = second_tab->findChild<DocumentWidget*>();
+    QVERIFY(second_editor);
+    QTest::keyClicks(second_editor, "222");
+    QTest::qWait(200);
+
+    QCOMPARE(window->ui->editor_tabs->count(), 2);
+
+    //"Save All": only the pathless second tab opens the dialog, the first one is saved silently
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path1);
+        });
+
+    window->SaveAll();
+
+    QTRY_VERIFY(QFile::exists(path1));
+    QTest::qWait(300);
+
+    //Save All must not close tabs or quit the application
+    QCOMPARE(window->ui->editor_tabs->count(), 2);
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
 }
 
 void TestFiles::testExportToPdf()

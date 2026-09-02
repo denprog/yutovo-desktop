@@ -29,6 +29,7 @@
 #include <sstream>
 
 class QMenu;
+class DocumentWindow;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -344,7 +345,7 @@ private:
     int last_font_size = 0;
 
     bool exit_after_save = false;
-    int close_tab_after_save = -1;
+    DocumentWindow* close_tab_after_save = nullptr; //tab to close after the pending save finishes; nullptr = no pending close
 
     std::map<uint, int> save_tasks;
 
