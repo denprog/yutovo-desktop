@@ -46,6 +46,7 @@ private slots:
     void testSaveAllWithSaveAsDialog();
     void testExportToPdf();
     void testPdfExportErrorHandling();
+    void testExportToPdfDefaultPath();
     void testMenuRebuildDoesNotLeak();
     void testCopyPasteGraph();
     void testCopyWrongParagraph();

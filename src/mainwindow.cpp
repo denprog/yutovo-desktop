@@ -1538,9 +1538,16 @@ void MainWindow::ExportToPdf()
     if (!w)
         return;
 
+    QString path;
+    if (!w->path.isEmpty())
+    {
+        QFileInfo file_info(w->path);
+        path = file_info.dir().filePath(file_info.completeBaseName() + ".pdf");
+    }
+
     TextFormat f;
     w->document->GetTextFormat(f);
-    ExportPdfDialog export_pdf_dialog({(qreal)f.left_indent, (qreal)f.top_indent, (qreal)f.right_indent, (qreal)f.bottom_indent});
+    ExportPdfDialog export_pdf_dialog({(qreal)f.left_indent, (qreal)f.top_indent, (qreal)f.right_indent, (qreal)f.bottom_indent}, path);
     if (export_pdf_dialog.exec() == QDialog::Accepted)
     {
         dialog_file_name = export_pdf_dialog.FilePath();

@@ -1104,6 +1104,49 @@ void TestFiles::testPdfExportErrorHandling()
     QVERIFY(!QFile::exists(path));
 }
 
+void TestFiles::testExportToPdfDefaultPath()
+{
+    //open a document from a known directory, then check the export dialog pre-fills
+    //that directory and the document name with the .pdf extension
+    QString path = QFileInfo(__FILE__).dir().filePath("tests/wrong_paragraph.yut");
+    QVERIFY(QFile::exists(path));
+
+    window->OpenFile(path);
+
+    auto document_window = qobject_cast<DocumentWindow*>(window->ui->editor_tabs->currentWidget());
+    QVERIFY(document_window);
+
+    QSignalSpy load_spy(document_window, &DocumentWindow::LoadResult);
+    QVERIFY(load_spy.wait(5000));
+
+    QString expected = QFileInfo(path).dir().filePath("wrong_paragraph.pdf");
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            QDialog* dialog = nullptr;
+            for (auto w : QApplication::topLevelWidgets())
+            {
+                dialog = qobject_cast<QDialog*>(w);
+                if (dialog && dialog->windowTitle().contains("PDF"))
+                    break;
+            }
+
+            QVERIFY(dialog);
+            QTRY_VERIFY(dialog->isVisible());
+
+            auto line_edit = dialog->findChild<QLineEdit*>("filePath");
+            QVERIFY(line_edit);
+            QCOMPARE(line_edit->text(), expected);
+            dialog->reject();
+        });
+
+    window->ExportToPdf();
+
+    QTest::qWait(200);
+    QVERIFY(!QFile::exists(expected));
+}
+
 void TestFiles::testMenuRebuildDoesNotLeak()
 {
     const int c = window->menuBar()->actions().size();
