@@ -1115,6 +1115,20 @@ void TestFiles::testSaveAsOverwriteDeclinedReopensDialog()
     QVERIFY(window->close_tab_after_save == nullptr);
     QTRY_VERIFY(window->GetCurrentDocument()->IsChanged());
 
+    //the tab still owns the file path, and OpenFile would just switch to it instead of
+    //loading the file from disk; discard the tab (answer No to "Save?") before reopening
+    QTimer::singleShot(0,
+        [&]()
+        {
+            ClickMessageBoxButton(QMessageBox::No);
+        });
+
+    auto close_action = window->findChild<QAction*>("actionClose");
+    QVERIFY(close_action);
+    close_action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(window->ui->editor_tabs->count(), 0);
+
     //the file on disk must keep the original content: reopen it in a new tab
     QTimer::singleShot(0,
         [&]()
@@ -1127,7 +1141,8 @@ void TestFiles::testSaveAsOverwriteDeclinedReopensDialog()
     open_action->trigger();
 
     QTRY_VERIFY(window->GetCurrentDocument()->ToText() == U"111");
-    QCOMPARE(window->ui->editor_tabs->count(), 2);
+    //the discarded tab is gone, only the reopened one remains
+    QCOMPARE(window->ui->editor_tabs->count(), 1);
 }
 
 void TestFiles::testExportToPdf()
