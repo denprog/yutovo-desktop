@@ -473,6 +473,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>O documento %1 não está salvo. Salvar?</translation>
     </message>
     <message>
+        <source>File %1 already exists. Overwrite?</source>
+        <translation>O arquivo %1 já existe. Deseja sobrescrevê-lo?</translation>
+    </message>
+    <message>
         <source>&amp;File</source>
         <translation>&amp;Arquivo</translation>
     </message>

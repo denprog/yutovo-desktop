@@ -991,6 +991,145 @@ void TestFiles::testSaveAllWithSaveAsDialog()
     QVERIFY(window->close_tab_after_save == nullptr);
 }
 
+void TestFiles::testSaveAsOverwriteConfirmed()
+{
+    QString path = QDir::tempPath() + "/test_saveas_overwrite_confirmed.yut";
+    QFile::remove(path);
+
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    //initial save: the file does not exist yet, no confirmation is expected
+    QTest::keyClicks(editor, "111");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path);
+        });
+
+    window->SaveFileAsName();
+    QTRY_VERIFY(QFile::exists(path));
+    QTRY_VERIFY(!window->GetCurrentDocument()->IsChanged());
+
+    //save under the same name again: the own overwrite confirmation must appear with No as the default button
+    QTest::keyClicks(editor, "222");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    QMessageBox* box = FindMessageBox();
+                    QTRY_VERIFY(box != nullptr);
+                    QVERIFY(box->defaultButton() == box->button(QMessageBox::No));
+                    ClickMessageBoxButton(QMessageBox::Yes);
+                });
+        });
+
+    window->SaveFileAsName();
+
+    //wait for the asynchronous overwrite to finish before reopening the document
+    QTRY_VERIFY(!window->GetCurrentDocument()->IsChanged());
+    QTest::qWait(200);
+
+    auto close_action = window->findChild<QAction*>("actionClose");
+    QVERIFY(close_action);
+    close_action->trigger();
+    QTest::qWait(200);
+
+    auto new_action = window->findChild<QAction*>("actionNew");
+    QVERIFY(new_action);
+    new_action->trigger();
+    QTest::qWait(200);
+    QTRY_VERIFY(window->GetCurrentDocument()->ToText() == U"");
+
+    //the reopened document must contain the overwritten content
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path);
+        });
+
+    auto open_action = window->findChild<QAction*>("actionOpen");
+    QVERIFY(open_action);
+    open_action->trigger();
+
+    QTRY_VERIFY(window->GetCurrentDocument()->ToText() == U"111222");
+}
+
+void TestFiles::testSaveAsOverwriteDeclinedReopensDialog()
+{
+    QString path = QDir::tempPath() + "/test_saveas_overwrite_declined.yut";
+    QFile::remove(path);
+
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+
+    QTest::keyClicks(editor, "111");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path);
+        });
+
+    window->SaveFileAsName();
+    QTRY_VERIFY(QFile::exists(path));
+    QTRY_VERIFY(!window->GetCurrentDocument()->IsChanged());
+
+    QTest::keyClicks(editor, "222");
+    QTest::qWait(200);
+
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path);
+            QTimer::singleShot(0,
+                [&]()
+                {
+                    ClickMessageBoxButton(QMessageBox::No);
+                    QTimer::singleShot(0,
+                        [&]()
+                        {
+                            //declining the overwrite must reopen the save dialog: cancel it with Escape
+                            QFileDialog* dialog = FindFileDialog();
+                            QTRY_VERIFY(dialog != nullptr);
+                            QTRY_VERIFY(dialog->isVisible());
+                            QTest::keyClick(dialog, Qt::Key_Escape);
+                        });
+                });
+        });
+
+    window->SaveFileAsName();
+
+    //the save is cancelled: the tab survives with unsaved changes and no close/exit intent is pending
+    QCOMPARE(window->ui->editor_tabs->count(), 1);
+    QVERIFY(window->isVisible());
+    QCOMPARE(window->exit_after_save, false);
+    QVERIFY(window->close_tab_after_save == nullptr);
+    QTRY_VERIFY(window->GetCurrentDocument()->IsChanged());
+
+    //the file on disk must keep the original content: reopen it in a new tab
+    QTimer::singleShot(0,
+        [&]()
+        {
+            AcceptFileDialogWithPath(path);
+        });
+
+    auto open_action = window->findChild<QAction*>("actionOpen");
+    QVERIFY(open_action);
+    open_action->trigger();
+
+    QTRY_VERIFY(window->GetCurrentDocument()->ToText() == U"111");
+    QCOMPARE(window->ui->editor_tabs->count(), 2);
+}
+
 void TestFiles::testExportToPdf()
 {
     auto editor = window->findChild<DocumentWidget*>();

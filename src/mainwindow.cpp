@@ -236,6 +236,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
             QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name),
                 QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+            m.setDefaultButton(QMessageBox::No);
             int r = m.exec();
             switch (r)
             {
@@ -1437,24 +1438,43 @@ void MainWindow::SaveFileAs(int index)
         w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (!w || !w->document)
         return;
-    QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
-    save_dialog.setDefaultSuffix("yut");
-    save_dialog.setAcceptMode(QFileDialog::AcceptSave);
-    if (!save_dialog.exec())
+    QString selected_file;
+    while (true)
     {
-        close_tab_after_save = nullptr; //the save is cancelled: drop the pending close/exit intent
-        exit_after_save = false;
-        return;
+        QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
+        save_dialog.setDefaultSuffix("yut");
+        save_dialog.setAcceptMode(QFileDialog::AcceptSave);
+        save_dialog.setOption(QFileDialog::DontConfirmOverwrite, true); //the overwrite is confirmed by the dialog below
+        if (!selected_file.isEmpty())
+        {
+            save_dialog.setDirectory(QFileInfo(selected_file).dir());
+            save_dialog.selectFile(QFileInfo(selected_file).fileName());
+        }
+        if (!save_dialog.exec())
+        {
+            close_tab_after_save = nullptr; //the save is cancelled: drop the pending close/exit intent
+            exit_after_save = false;
+            return;
+        }
+        QStringList file_names = save_dialog.selectedFiles();
+        if (file_names.empty())
+        {
+            close_tab_after_save = nullptr;
+            exit_after_save = false;
+            return;
+        }
+        selected_file = file_names[0];
+        if (!QFile::exists(selected_file))
+            break;
+        QMessageBox confirm(QMessageBox::Question, tr("Yutovo"), tr("File %1 already exists. Overwrite?").arg(QFileInfo(selected_file).fileName()),
+            QMessageBox::Yes | QMessageBox::No, this);
+        confirm.setDefaultButton(QMessageBox::No);
+        if (confirm.exec() == QMessageBox::Yes)
+            break;
+        //No: reopen the save dialog so that another name can be picked instead of silently dropping the save
     }
-    QStringList file_names = save_dialog.selectedFiles();
-    if (file_names.empty())
-    {
-        close_tab_after_save = nullptr;
-        exit_after_save = false;
-        return;
-    }
-    dialog_file_name = file_names[0];
-    w->document->Save(file_names[0].toUtf8().data());
+    dialog_file_name = selected_file;
+    w->document->Save(selected_file.toUtf8().data());
 
     UpdateCaption();
 }
@@ -2279,8 +2299,9 @@ bool MainWindow::OnCloseEditorTab(int index)
         else
             file_name = file_info.fileName();
 
-        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name), 
+        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name),
             QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+        m.setDefaultButton(QMessageBox::No);
         int r = m.exec();
         switch (r)
         {

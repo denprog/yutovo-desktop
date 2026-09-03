@@ -44,6 +44,8 @@ private slots:
     void testExitWithTwoUnsavedTabs();
     void testExitAfterCancelledSaveStillWorks();
     void testSaveAllWithSaveAsDialog();
+    void testSaveAsOverwriteConfirmed();
+    void testSaveAsOverwriteDeclinedReopensDialog();
     void testExportToPdf();
     void testPdfExportErrorHandling();
     void testExportToPdfDefaultPath();

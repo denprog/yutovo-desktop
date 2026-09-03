@@ -473,6 +473,10 @@
         <translation>Документ %1 не сохранен. Сохранить?</translation>
     </message>
     <message>
+        <source>File %1 already exists. Overwrite?</source>
+        <translation>Файл %1 уже существует. Перезаписать?</translation>
+    </message>
+    <message>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>

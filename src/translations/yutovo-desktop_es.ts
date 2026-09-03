@@ -473,6 +473,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>El documento %1 no está guardado. ¿Guardar?</translation>
     </message>
     <message>
+        <source>File %1 already exists. Overwrite?</source>
+        <translation>El archivo %1 ya existe. ¿Sobrescribirlo?</translation>
+    </message>
+    <message>
         <source>&amp;File</source>
         <translation>&amp;Archivo</translation>
     </message>
