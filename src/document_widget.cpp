@@ -25,10 +25,10 @@ DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettin
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
     connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);
-    connect(&window, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted);
-    connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
-    connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
-    connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
+    connect(&window, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted, Qt::QueuedConnection);
+    connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished, Qt::QueuedConnection);
+    connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted, Qt::QueuedConnection);
+    connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished, Qt::QueuedConnection);
 #ifdef REMOTE_SOLVER
     connect(&window, &QtWindow::ServiceStatus, this, &DocumentWidget::OnServiceStatus);
 #endif
