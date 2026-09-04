@@ -237,7 +237,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
             QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name),
                 QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-            m.setDefaultButton(QMessageBox::No);
+            m.setDefaultButton(QMessageBox::Yes);
             int r = m.exec();
             switch (r)
             {
