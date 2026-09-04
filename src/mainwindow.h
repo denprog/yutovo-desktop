@@ -318,7 +318,7 @@ private:
 
     std::unique_ptr<QProcess> service;
 
-    QTranslator desktop_translator, editor_translator;
+    QTranslator desktop_translator, editor_translator, qt_translator;
 
     QString dialog_file_name; //file name to be loaded/saved
     QString startup_filename;

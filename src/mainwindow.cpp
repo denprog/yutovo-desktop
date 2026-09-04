@@ -52,6 +52,7 @@
 #include <QNetworkRequest>
 #include <QSysInfo>
 #include <QRegularExpression>
+#include <QLibraryInfo>
 
 #ifdef DEBUG
 #define UPDATES_SERVER_URL "http://localhost:9001/service/get-updates"
@@ -3966,7 +3967,21 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 {
     qApp->removeTranslator(&desktop_translator);
     qApp->removeTranslator(&editor_translator);
-    
+    qApp->removeTranslator(&qt_translator);
+
+    //load the standard Qt translations, otherwise they are translated according to the system locale
+    QString qt_locale = "en";
+    if (language == yutovo_calculator::Language::Russian)
+        qt_locale = "ru";
+    else if (language == yutovo_calculator::Language::Spanish)
+        qt_locale = "es";
+    else if (language == yutovo_calculator::Language::BrazilianPortuguese)
+        qt_locale = "pt_BR";
+    if (qt_translator.load(QLocale(qt_locale), "qtbase", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+        qApp->installTranslator(&qt_translator);
+    else
+        logger->Error("Error loading translation: qtbase_" + qt_locale.toStdString());
+
     if (language == yutovo_calculator::Language::Russian)
     {
         if (!desktop_translator.load("yutovo-desktop_ru", GetTranslationDir("yutovo-desktop_ru.qm")))
