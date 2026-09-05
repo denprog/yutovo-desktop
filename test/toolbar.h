@@ -21,6 +21,10 @@ private slots:
     void testSecondDerivative();
     void testPartialDerivative();
 
+    void testTextBlock();
+    void testTextBlockNoCodeBlock();
+    void testTextBlockInText();
+
 private:
     MainWindow* window;
 };

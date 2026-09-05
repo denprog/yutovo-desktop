@@ -135,6 +135,14 @@
         <source>Formula frame</source>
         <translation>Рамка формулы</translation>
     </message>
+    <message>
+        <source>Text block background</source>
+        <translation>Фон текстового блока</translation>
+    </message>
+    <message>
+        <source>Text block frame</source>
+        <translation>Рамка текстового блока</translation>
+    </message>
 </context>
 <context>
     <name>ComputationSettingsForm</name>
@@ -647,6 +655,10 @@
     <message>
         <source>Insert calculator</source>
         <translation>Вставить калькулятор</translation>
+    </message>
+    <message>
+        <source>Insert text block</source>
+        <translation>Вставить текстовый блок</translation>
     </message>
     <message>
         <source>Bold</source>

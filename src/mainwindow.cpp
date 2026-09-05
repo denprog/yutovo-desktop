@@ -600,6 +600,12 @@ void MainWindow::CreateActions()
     connect(calculator_action, &QAction::triggered, this, &MainWindow::OnInsertCode);
     format_toolbar->addAction(calculator_action);
 
+    text_block_action = new QAction(QIcon(":/icons/images/format/text_block.png"), tr("Insert text block"), this);
+    text_block_action->setObjectName("text_block_action");
+    text_block_action->setStatusTip(tr("Insert text block"));
+    connect(text_block_action, &QAction::triggered, this, &MainWindow::OnInsertTextBlock);
+    format_toolbar->addAction(text_block_action);
+
     format_toolbar->addSeparator();
 
     scale_combo = new QComboBox;
@@ -2380,6 +2386,13 @@ void MainWindow::OnInsertCode()
         document->InsertCode(false, true);
 }
 
+void MainWindow::OnInsertTextBlock()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertTextBlock(true);
+}
+
 void MainWindow::OnCurrentScaleChanged(int index)
 {
     if (block_scale_slots)
@@ -3482,6 +3495,8 @@ void MainWindow::WriteSettings()
     settings.setValue("formula_frame_color", config.formula_frame_color.ToInt());
     settings.setValue("page_color", config.page_color.ToInt());
     settings.setValue("page_border_color", config.page_border_color.ToInt());
+    settings.setValue("text_block_background_color", config.text_block.background_color.ToInt());
+    settings.setValue("text_block_frame_color", config.text_block.frame_color.ToInt());
     settings.endGroup();
 
     settings.beginGroup("Fonts");
@@ -3631,6 +3646,9 @@ void MainWindow::ReadSettings()
     config.formula_frame_color = Color::FromInt(settings.value("formula_frame_color", Color::FromHex("#b8d3ff").ToInt()).toInt());
     config.page_color = Color::FromInt(settings.value("page_color", Color::White().ToInt()).toInt());
     config.page_border_color = Color::FromInt(settings.value("page_border_color", Color::Blue().ToInt()).toInt());
+    config.text_block.background_color = Color::FromInt(settings.value("text_block_background_color",
+        Color::FromHex("#f0f0c2").ToInt()).toInt());
+    config.text_block.frame_color = Color::FromInt(settings.value("text_block_frame_color", Color::White().ToInt()).toInt());
     settings.endGroup();
 
     settings.beginGroup("Calculator");
@@ -4124,6 +4142,7 @@ void MainWindow::EnableButtons(bool enable)
     properties_action->setEnabled(enable);
     recalculate_action->setEnabled(enable);
     calculator_action->setEnabled(enable);
+    text_block_action->setEnabled(enable);
     align_left_action->setEnabled(enable);
     align_right_action->setEnabled(enable);
     align_center_action->setEnabled(enable);

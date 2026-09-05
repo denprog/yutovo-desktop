@@ -135,6 +135,14 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Formula frame</source>
         <translation>Borda da fórmula</translation>
     </message>
+    <message>
+        <source>Text block background</source>
+        <translation>Fundo do bloco de texto</translation>
+    </message>
+    <message>
+        <source>Text block frame</source>
+        <translation>Moldura do bloco de texto</translation>
+    </message>
 </context>
 <context>
     <name>ComputationSettingsForm</name>
@@ -647,6 +655,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Insert calculator</source>
         <translation>Inserir calculadora</translation>
+    </message>
+    <message>
+        <source>Insert text block</source>
+        <translation>Inserir bloco de texto</translation>
     </message>
     <message>
         <source>Bold</source>

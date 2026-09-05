@@ -154,6 +154,8 @@ private slots:
 
     void OnInsertCode();
 
+    void OnInsertTextBlock();
+
     void OnCurrentScaleChanged(int index);
     void OnCurrentScaleEditingFinished();
     void OnCurrentParagraphFormatChanged(const QString& format);
@@ -372,6 +374,8 @@ private:
     QAction* properties_action = nullptr;
 
     QAction* calculator_action = nullptr;
+
+    QAction* text_block_action = nullptr;
 
     QAction* recalculate_action = nullptr;
 
