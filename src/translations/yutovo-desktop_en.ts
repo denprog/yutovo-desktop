@@ -363,6 +363,10 @@ You assume all responsibility and risk in relation to your use of this applicati
         <translation>Derivative at point</translation>
     </message>
     <message>
+        <source>Function at point</source>
+        <translation>Function at point</translation>
+    </message>
+    <message>
         <source>Evaluate at point</source>
         <translation>Evaluate at point</translation>
     </message>

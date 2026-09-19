@@ -251,6 +251,7 @@ private slots:
     void OnSecondDerivative();
     void OnPartialDerivative();
     void OnDerivativeAtPoint();
+    void OnFunctionAtPoint();
     void OnEvaluationBar();
 
     void OnCaretMoved(const EditorState editor_state);

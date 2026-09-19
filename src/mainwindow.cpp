@@ -903,6 +903,12 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnEvaluationBar);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/function_at_point.png"), tr("Function at point"), this);
+    action->setObjectName("actionFunctionAtPoint");
+    action->setToolTip(tr("Function at point"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnFunctionAtPoint);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnRadian);
     algebra_toolbar->addAction(action);
@@ -3089,6 +3095,13 @@ void MainWindow::OnDerivativeAtPoint()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertDerivativeAtPoint(true);
+}
+
+void MainWindow::OnFunctionAtPoint()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunctionAtPoint(true);
 }
 
 void MainWindow::OnEvaluationBar()

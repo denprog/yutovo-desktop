@@ -20,6 +20,8 @@ private slots:
     void testDerivative();
     void testSecondDerivative();
     void testPartialDerivative();
+    void testEvaluationBar();
+    void testFunctionAtPoint();
 
     void testTextBlock();
     void testTextBlockNoCodeBlock();

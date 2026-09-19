@@ -1409,6 +1409,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Derivada parcial</translation>
     </message>
     <message>
+        <source>Function at point</source>
+        <translation>Função em um ponto</translation>
+    </message>
+    <message>
         <source>Evaluate at point</source>
         <translation>Avaliar no ponto</translation>
     </message>

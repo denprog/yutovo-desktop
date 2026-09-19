@@ -96,6 +96,73 @@ void TestToolbar::testPartialDerivative()
     QCOMPARE(document->ToText(), U"derivative(,)");
 }
 
+void TestToolbar::testEvaluationBar()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionEvaluationBar");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+
+    document->InsertCode(false, true);
+    document->InsertString("x", true);
+    document->InsertPower(true);
+    document->InsertString("2", true);
+    document->MoveCaretRight(false); //move out of the exponent
+    QTest::qWait(200);
+
+    action->trigger();
+    QTest::qWait(200);
+    document->MoveCaretRight(false);
+    document->InsertString("x", true);
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->InsertString("3", true);
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"pow(x,2)[x=3]");
+}
+
+void TestToolbar::testFunctionAtPoint()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionFunctionAtPoint");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+
+    document->InsertCode(false, true);
+    document->InsertString("f", true);
+    document->InsertOpenRoundBracket(true);
+    document->InsertString("x", true);
+    document->InsertCloseRoundBracket(true);
+    document->InsertAssignment(true);
+    document->InsertString("x", true);
+    document->InsertMultiply(true);
+    document->WaitTask(document->InsertString("x", true));
+    QTest::qWait(1000);
+
+    document->WaitTask(document->InsertParagraph(true));
+
+    action->trigger();
+    QTest::qWait(200);
+    document->InsertString("f", true);
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("x", true));
+    for (int i = 0; i < 4; ++i)
+        document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("x", true));
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("3", true));
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(),
+        U"f(x)=x*x\n"
+        U"f(x)[x=3]");
+}
+
 void TestToolbar::testTextBlock()
 {
     auto document = window->GetCurrentDocument();

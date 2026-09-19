@@ -1413,6 +1413,10 @@
         <translation>Частная производная</translation>
     </message>
     <message>
+        <source>Function at point</source>
+        <translation>Функция в точке</translation>
+    </message>
+    <message>
         <source>Evaluate at point</source>
         <translation>Вычислить в точке</translation>
     </message>
