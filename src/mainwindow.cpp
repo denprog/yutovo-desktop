@@ -1196,6 +1196,11 @@ void MainWindow::CreateGraphsToolbar()
     QAction* action = new QAction(QIcon(":/icons/images/graphs/graph_line.png"), tr("Line graph"), this);
     connect(action, &QAction::triggered, this, &MainWindow::GraphLine);
     graph_toolbar->addAction(action);
+
+    QAction* surface_action = new QAction(QIcon(":/icons/images/graphs/graph_surface.png"), tr("Surface graph"), this);
+    surface_action->setObjectName("graph_surface_action");
+    connect(surface_action, &QAction::triggered, this, &MainWindow::GraphSurface);
+    graph_toolbar->addAction(surface_action);
 }
 
 void MainWindow::CreateLogicalToolbar()
@@ -3024,7 +3029,14 @@ void MainWindow::GraphLine()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertGraph(true);
+        document->InsertGraphLine(true);
+}
+
+void MainWindow::GraphSurface()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertGraphSurface(true);
 }
 
 void MainWindow::OnAnd()

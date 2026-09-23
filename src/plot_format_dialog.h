@@ -21,7 +21,7 @@ class PlotFormatDialog : public QDialog
     Q_OBJECT
 
 public:
-    PlotFormatDialog(yutovo::PlotFormat& _plot_format);
+    PlotFormatDialog(yutovo::PlotFormat& _plot_format, bool surface = false);
 
 private slots:
     void OnColorClicked();

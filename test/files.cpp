@@ -1324,7 +1324,7 @@ void TestFiles::testCopyPasteGraph()
     auto clipboard = QGuiApplication::clipboard();
     clipboard->clear();
 
-    document->WaitTask(document->InsertGraph(true), 5000);
+    document->WaitTask(document->InsertGraphLine(true), 5000);
     QTest::qWait(500);
     QTRY_VERIFY(document->FindByType(ElementId{0}, ElementType::GRAPH_LINE) != nullptr);
 

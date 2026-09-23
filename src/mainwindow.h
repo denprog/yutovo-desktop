@@ -239,6 +239,7 @@ private slots:
     void OnCurrency();
 
     void GraphLine();
+    void GraphSurface();
 
     void OnAnd();
     void OnOr();

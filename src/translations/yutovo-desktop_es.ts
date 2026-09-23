@@ -1377,6 +1377,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Gráfico lineal</translation>
     </message>
     <message>
+        <source>Surface graph</source>
+        <translation>Gráfico de superficie</translation>
+    </message>
+    <message>
         <source>Infinity</source>
         <translation>Infinito</translation>
     </message>
@@ -1798,6 +1802,30 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
     <message>
         <source>Thickness</source>
         <translation>Grosor</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>Estilo</translation>
+    </message>
+    <message>
+        <source>Color by height</source>
+        <translation>Relleno por altura</translation>
+    </message>
+    <message>
+        <source>Solid color</source>
+        <translation>Color sólido</translation>
+    </message>
+    <message>
+        <source>Color by height with mesh</source>
+        <translation>Relleno por altura con malla</translation>
+    </message>
+    <message>
+        <source>Wireframe</source>
+        <translation>Wireframe</translation>
+    </message>
+    <message>
+        <source>Points</source>
+        <translation>Puntos</translation>
     </message>
 </context>
 <context>

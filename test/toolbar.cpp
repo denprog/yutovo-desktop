@@ -163,6 +163,45 @@ void TestToolbar::testFunctionAtPoint()
         U"f(x)[x=3]");
 }
 
+void TestToolbar::testGraphSurface()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("graph_surface_action");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+
+    document->InsertCode(false, true);
+
+    action->trigger();
+    QTest::qWait(200);
+    //fields: y top, expression, y bottom, x left, x variable, x right, y variable
+    document->InsertString("2", true);
+    document->MoveCaretRight(false);
+    document->InsertString("x", true);
+    document->InsertPlus(true);
+    document->WaitTask(document->InsertString("y", true));
+    //the variable rows are prefilled with "x"/"y": entering a row stops before the string,
+    //so passing through it takes three MoveCaretRight calls (enter, cross the string, exit)
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->InsertMinus(true);
+    document->WaitTask(document->InsertString("2", true));
+    document->MoveCaretRight(false);
+    document->InsertMinus(true);
+    document->WaitTask(document->InsertString("4", true));
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("4", true));
+    document->WaitTask(document->MoveCaretRight(false));
+    QTest::qWait(3000);
+    QCOMPARE(document->ToText(), U"graph_surface(2,x+y,-2,-4,x,4,y)");
+}
+
 void TestToolbar::testTextBlock()
 {
     auto document = window->GetCurrentDocument();

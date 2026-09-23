@@ -1381,6 +1381,10 @@
         <translation>Линейный график</translation>
     </message>
     <message>
+        <source>Surface graph</source>
+        <translation>График поверхности</translation>
+    </message>
+    <message>
         <source>Infinity</source>
         <translation>Бесконечность</translation>
     </message>
@@ -1795,6 +1799,30 @@
     <message>
         <source>Thickness</source>
         <translation>Толщина</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>Стиль</translation>
+    </message>
+    <message>
+        <source>Color by height</source>
+        <translation>Заливка по высоте</translation>
+    </message>
+    <message>
+        <source>Solid color</source>
+        <translation>Однотонная заливка</translation>
+    </message>
+    <message>
+        <source>Color by height with mesh</source>
+        <translation>Заливка по высоте с сеткой</translation>
+    </message>
+    <message>
+        <source>Wireframe</source>
+        <translation>Каркас</translation>
+    </message>
+    <message>
+        <source>Points</source>
+        <translation>Точки</translation>
     </message>
 </context>
 <context>

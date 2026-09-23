@@ -312,7 +312,7 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
                     yutovo::PlotFormat f;
                     if (!document->GetPlotFormat(hold_id, f))
                         return;
-                    PlotFormatDialog dialog(f);
+                    PlotFormatDialog dialog(f, document->GetElementType(hold_id) == ElementType::GRAPH_SURFACE);
                     if (!dialog.exec())
                         return;
                     document->SetPlotFormat(hold_id, f, true);
@@ -390,7 +390,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    if (document->MouseMove(x, y))
+    if (document->MouseMove(x, y, (event->modifiers() & Qt::ShiftModifier) != 0))
         return;
     
     if (document->IsString(id))

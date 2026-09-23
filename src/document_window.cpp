@@ -308,13 +308,15 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (document->GetElementAtCoords(x, y, 0, id_at_coords))
             {
                 auto el = document->GetElement(id_at_coords);
-                while (el && el->type != ElementType::GRAPH_LINE)
+                while (el && el->type != ElementType::GRAPH_LINE && el->type != ElementType::GRAPH_SURFACE)
                     el = document->GetParent(el->id);
                 if (el)
                     context_menu_graph_id = el->id;
             }
             if (context_menu_graph_id.empty())
                 context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+            if (context_menu_graph_id.empty())
+                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
 
             if (context_menu_graph_id.empty())
                 return;
