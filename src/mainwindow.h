@@ -240,6 +240,7 @@ private slots:
 
     void GraphLine();
     void GraphSurface();
+    void GraphHistogram();
 
     void OnAnd();
     void OnOr();

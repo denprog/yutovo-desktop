@@ -23,6 +23,7 @@ private slots:
     void testEvaluationBar();
     void testFunctionAtPoint();
     void testGraphSurface();
+    void testGraphHistogram();
 
     void testTextBlock();
     void testTextBlockNoCodeBlock();

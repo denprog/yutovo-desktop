@@ -1201,6 +1201,11 @@ void MainWindow::CreateGraphsToolbar()
     surface_action->setObjectName("graph_surface_action");
     connect(surface_action, &QAction::triggered, this, &MainWindow::GraphSurface);
     graph_toolbar->addAction(surface_action);
+
+    QAction* histogram_action = new QAction(QIcon(":/icons/images/graphs/graph_histogram.png"), tr("Histogram"), this);
+    histogram_action->setObjectName("graph_histogram_action");
+    connect(histogram_action, &QAction::triggered, this, &MainWindow::GraphHistogram);
+    graph_toolbar->addAction(histogram_action);
 }
 
 void MainWindow::CreateLogicalToolbar()
@@ -2012,6 +2017,10 @@ void MainWindow::OnGraphFormat()
         graph_id = document_window->context_menu_graph_id;
     if (graph_id.empty())
         graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+    if (graph_id.empty())
+        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
+    if (graph_id.empty())
+        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
     if (graph_id.empty())
         return;
 
@@ -3037,6 +3046,13 @@ void MainWindow::GraphSurface()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertGraphSurface(true);
+}
+
+void MainWindow::GraphHistogram()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertGraphHistogram(true);
 }
 
 void MainWindow::OnAnd()

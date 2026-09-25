@@ -1385,6 +1385,10 @@
         <translation>График поверхности</translation>
     </message>
     <message>
+        <source>Histogram</source>
+        <translation>Гистограмма</translation>
+    </message>
+    <message>
         <source>Infinity</source>
         <translation>Бесконечность</translation>
     </message>
@@ -1823,6 +1827,34 @@
     <message>
         <source>Points</source>
         <translation>Точки</translation>
+    </message>
+    <message>
+        <source>Bars</source>
+        <translation>Столбики</translation>
+    </message>
+    <message>
+        <source>Bars with line</source>
+        <translation>Столбики с линией</translation>
+    </message>
+    <message>
+        <source>Bars without gaps</source>
+        <translation>Столбики без промежутков</translation>
+    </message>
+    <message>
+        <source>Stems</source>
+        <translation>Линии спектрограммы</translation>
+    </message>
+    <message>
+        <source>Area</source>
+        <translation>Область под линией</translation>
+    </message>
+    <message>
+        <source>Step</source>
+        <translation>Ступени</translation>
+    </message>
+    <message>
+        <source>Marks</source>
+        <translation>Метки</translation>
     </message>
 </context>
 <context>

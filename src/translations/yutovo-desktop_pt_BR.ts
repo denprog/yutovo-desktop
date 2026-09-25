@@ -1381,6 +1381,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Gráfico de superfície</translation>
     </message>
     <message>
+        <source>Histogram</source>
+        <translation>Histograma</translation>
+    </message>
+    <message>
         <source>Infinity</source>
         <translation>Infinito</translation>
     </message>
@@ -1826,6 +1830,34 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Points</source>
         <translation>Pontos</translation>
+    </message>
+    <message>
+        <source>Bars</source>
+        <translation>Barras</translation>
+    </message>
+    <message>
+        <source>Bars with line</source>
+        <translation>Barras com linha</translation>
+    </message>
+    <message>
+        <source>Bars without gaps</source>
+        <translation>Barras sem espaços</translation>
+    </message>
+    <message>
+        <source>Stems</source>
+        <translation>Linhas de espectrograma</translation>
+    </message>
+    <message>
+        <source>Area</source>
+        <translation>Área sob a linha</translation>
+    </message>
+    <message>
+        <source>Step</source>
+        <translation>Degraus</translation>
+    </message>
+    <message>
+        <source>Marks</source>
+        <translation>Marcas</translation>
     </message>
 </context>
 <context>

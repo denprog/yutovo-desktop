@@ -308,7 +308,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (document->GetElementAtCoords(x, y, 0, id_at_coords))
             {
                 auto el = document->GetElement(id_at_coords);
-                while (el && el->type != ElementType::GRAPH_LINE && el->type != ElementType::GRAPH_SURFACE)
+                while (el && el->type != ElementType::GRAPH_LINE && el->type != ElementType::GRAPH_SURFACE && el->type != ElementType::GRAPH_HISTOGRAM)
                     el = document->GetParent(el->id);
                 if (el)
                     context_menu_graph_id = el->id;
@@ -317,6 +317,8 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                 context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
             if (context_menu_graph_id.empty())
                 context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
+            if (context_menu_graph_id.empty())
+                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
 
             if (context_menu_graph_id.empty())
                 return;
@@ -995,6 +997,10 @@ void DocumentWindow::OnCopyImage()
     ElementId id = context_menu_graph_id;
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
     if (id.empty())
         return;
 

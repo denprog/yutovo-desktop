@@ -312,7 +312,8 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
                     yutovo::PlotFormat f;
                     if (!document->GetPlotFormat(hold_id, f))
                         return;
-                    PlotFormatDialog dialog(f, document->GetElementType(hold_id) == ElementType::GRAPH_SURFACE);
+                    const ElementType type = document->GetElementType(hold_id);
+                    PlotFormatDialog dialog(f, type == ElementType::GRAPH_SURFACE, type == ElementType::GRAPH_HISTOGRAM);
                     if (!dialog.exec())
                         return;
                     document->SetPlotFormat(hold_id, f, true);

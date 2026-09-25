@@ -21,7 +21,7 @@ class PlotFormatDialog : public QDialog
     Q_OBJECT
 
 public:
-    PlotFormatDialog(yutovo::PlotFormat& _plot_format, bool surface = false);
+    PlotFormatDialog(yutovo::PlotFormat& _plot_format, bool surface = false, bool histogram = false);
 
 private slots:
     void OnColorClicked();
@@ -30,6 +30,8 @@ private slots:
 private:
     Ui::PlotFormatDialog* form = nullptr;
     yutovo::PlotFormat& plot_format;
+    bool style_enabled = false;
+    bool histogram_style = false;
 };
 
 #endif

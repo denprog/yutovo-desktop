@@ -202,6 +202,30 @@ void TestToolbar::testGraphSurface()
     QCOMPARE(document->ToText(), U"graph_surface(2,x+y,-2,-4,x,4,y)");
 }
 
+void TestToolbar::testGraphHistogram()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("graph_histogram_action");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+
+    document->InsertCode(false, true);
+
+    action->trigger();
+    QTest::qWait(200);
+    //one field: the expressions block, one paragraph is one array of bars
+    document->InsertOpenSquareBracket(true);
+    document->InsertString("1", true);
+    document->InsertComma(true);
+    document->WaitTask(document->InsertString("5", true));
+    document->WaitTask(document->InsertCloseSquareBracket(true));
+    QTest::qWait(3000);
+    QCOMPARE(document->ToText(), U"graph_bar([1,5])");
+}
+
 void TestToolbar::testTextBlock()
 {
     auto document = window->GetCurrentDocument();
