@@ -1,0 +1,835 @@
+{
+    "file_guid": "38beca54-f583-42f1-84c6-a7ed247a0c86",
+    "config": {
+        "language": 4,
+        "use_tabs": true,
+        "tab_spaces": 4,
+        "scale": 1.0,
+        "real_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false
+        },
+        "integer_result": {
+            "result_notation": 2,
+            "default_notation": 2,
+            "show_notation": true
+        },
+        "rational_result": {
+            "fraction_form": 0
+        },
+        "complex_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false,
+            "form": 0,
+            "max_count": 10
+        },
+        "auto_result": {
+            "result_auto_advance": true,
+            "results_order": [
+                1,
+                2,
+                3,
+                4,
+                6
+            ],
+            "real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false
+            },
+            "integer_config": {
+                "result_notation": 2,
+                "default_notation": 2,
+                "show_notation": true
+            },
+            "rational_config": {
+                "fraction_form": 0
+            },
+            "complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false,
+                "form": 0,
+                "max_count": 10
+            },
+            "array_real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            }
+        },
+        "include_documents": []
+    },
+    "string_formats": [
+        {
+            "id": "82a56b8a-ca91-442f-8672-e26d87a558e7",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "0cb844af-2c53-40a5-93c7-d7d260d4e08a",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "77776285-1d3c-4c95-88a3-56ec99c51e07",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "90691fea-8c53-413f-8e49-d60f0db6e35c",
+            "family": "Arial",
+            "size": 30,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "fd9b73c0-b4d9-4dfc-a9b4-20a3b57633e7",
+            "family": "Arial",
+            "size": 26,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "f697e1df-40f3-402b-bb8a-1b221e173d3e",
+            "family": "Arial",
+            "size": 22,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "3ba16147-f226-4d88-b6f2-ea4c4f61e348",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "76356a14-f065-4049-9680-9f53df410d1f",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "6f4e4f39-85db-4830-81b9-87c296648f64",
+            "family": "Courier New",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        }
+    ],
+    "paragraph_formats": [
+        {
+            "name": "Corpo do texto",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "77776285-1d3c-4c95-88a3-56ec99c51e07"
+        },
+        {
+            "name": "Cabeçalho 1",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "90691fea-8c53-413f-8e49-d60f0db6e35c"
+        },
+        {
+            "name": "Cabeçalho 2",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "fd9b73c0-b4d9-4dfc-a9b4-20a3b57633e7"
+        },
+        {
+            "name": "Cabeçalho 3",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "f697e1df-40f3-402b-bb8a-1b221e173d3e"
+        },
+        {
+            "name": "Cabeçalho 4",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "3ba16147-f226-4d88-b6f2-ea4c4f61e348"
+        },
+        {
+            "name": "Exemplo",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "76356a14-f065-4049-9680-9f53df410d1f"
+        },
+        {
+            "name": "Monoespaçado",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "6f4e4f39-85db-4830-81b9-87c296648f64"
+        },
+        {
+            "name": "Código",
+            "alignment": 0,
+            "word_wrap": 0,
+            "line_spacing": 2,
+            "indent_before": 2,
+            "indent_after": 2,
+            "indent_first_line": 0,
+            "spacing_before": 2,
+            "spacing_after": 2,
+            "default_string_format": "5587a6ec-ded5-4512-a630-6781b5774c79"
+        }
+    ],
+    "text": {
+        "id": "0",
+        "type": 1,
+        "elements": [
+            {
+                "id": "0,0",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,0,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,0,0",
+                                "type": 4,
+                                "elements": "Se o resultado for complexo durante os cálculos, então no início ele tem forma algébrica",
+                                "format_id": "82a56b8a-ca91-442f-8672-e26d87a558e7"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,0,1",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,1,0",
+                                "type": 4,
+                                "elements": ". Em seguida, a forma pode ser alterada para trigonométrica ou exponen",
+                                "format_id": "82a56b8a-ca91-442f-8672-e26d87a558e7"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Corpo do texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,1",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,1,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,1,0,0",
+                                "type": 5,
+                                "elements": [
+                                    {
+                                        "id": "0,1,0,0,0",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,0,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,0,0,0",
+                                                        "type": 27,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "z",
+                                                                        "format_id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,0",
+                                                                        "type": 12,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,0,0",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,0,1",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": "-"
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,1",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,2",
+                                                                        "type": 12,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,2,0",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,2,1",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": "-"
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,3",
+                                                                        "type": 8,
+                                                                        "elements": "i",
+                                                                        "format_id": "0cb844af-2c53-40a5-93c7-d7d260d4e08a",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,4",
+                                                                        "type": 13,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,4,0",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,4,1",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": "·"
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,5",
+                                                                        "type": 16,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,5,0",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,5,1",
+                                                                                "type": 7,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,1,0,0,0,0,0,2,5,1,0",
+                                                                                        "type": 8,
+                                                                                        "elements": "3",
+                                                                                        "format_id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+                                                                                        "can_merge": true
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "auto_solve": true
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Código",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,1,0,0,1",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,1,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,1,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,1,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,1,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "z",
+                                                                        "format_id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,1,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,1,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,1,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4,
+                                                                            6
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        },
+                                                                        "array_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Código",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,1,0,0,2",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,2,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,2,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,2,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,2,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "z",
+                                                                        "format_id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,2,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,2,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,2,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4,
+                                                                            6
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false,
+                                                                            "form": 1,
+                                                                            "max_count": 10
+                                                                        },
+                                                                        "array_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Código",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,1,0,0,3",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,3,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,3,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,3,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,3,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "z",
+                                                                        "format_id": "5587a6ec-ded5-4512-a630-6781b5774c79",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,3,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,3,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,3,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4,
+                                                                            6
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false,
+                                                                            "form": 2,
+                                                                            "max_count": 10
+                                                                        },
+                                                                        "array_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Código",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Corpo do texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,2",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,2,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,0,0",
+                                "type": 4,
+                                "elements": "",
+                                "format_id": "77776285-1d3c-4c95-88a3-56ec99c51e07"
+                            }
+                        ],
+                        "format_name": "Corpo do texto"
+                    }
+                ],
+                "format_name": "Corpo do texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,3",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,3,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,3,0,0",
+                                "type": 39,
+                                "elements": "<- Mudança de sistema numérico",
+                                "format_id": "77776285-1d3c-4c95-88a3-56ec99c51e07",
+                                "url": "./Mudança de sistema numérico.yut"
+                            },
+                            {
+                                "id": "0,3,0,1",
+                                "type": 4,
+                                "elements": " ",
+                                "format_id": "77776285-1d3c-4c95-88a3-56ec99c51e07"
+                            },
+                            {
+                                "id": "0,3,0,2",
+                                "type": 39,
+                                "elements": "Documentos incluídos ->",
+                                "format_id": "77776285-1d3c-4c95-88a3-56ec99c51e07",
+                                "url": "./Documentos incluídos.yut"
+                            }
+                        ],
+                        "format_name": "Corpo do texto"
+                    }
+                ],
+                "format_name": "Corpo do texto",
+                "format_alignment": 0
+            }
+        ]
+    },
+    "caret": {
+        "id": "0,0,0,0"
+    },
+    "selection": []
+}

@@ -1,0 +1,884 @@
+{
+    "file_guid": "09c42099-a1cb-4238-956b-3b4a31713a63",
+    "config": {
+        "language": 3,
+        "use_tabs": true,
+        "tab_spaces": 4,
+        "scale": 1.0,
+        "real_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false
+        },
+        "integer_result": {
+            "result_notation": 2,
+            "default_notation": 2,
+            "show_notation": true
+        },
+        "rational_result": {
+            "fraction_form": 0
+        },
+        "complex_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false,
+            "form": 0,
+            "max_count": 10
+        },
+        "auto_result": {
+            "result_auto_advance": true,
+            "results_order": [
+                1,
+                2,
+                3,
+                4,
+                6,
+                7,
+                8,
+                9
+            ],
+            "real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false
+            },
+            "integer_config": {
+                "result_notation": 2,
+                "default_notation": 2,
+                "show_notation": true
+            },
+            "rational_config": {
+                "fraction_form": 0
+            },
+            "complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false,
+                "form": 0,
+                "max_count": 10
+            },
+            "array_real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            },
+            "symbolic_real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            },
+            "symbolic_rational_config": {
+                "fraction_form": 0
+            },
+            "symbolic_complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true,
+                "form": 0,
+                "max_count": 10
+            }
+        },
+        "include_documents": []
+    },
+    "string_formats": [
+        {
+            "id": "4645e773-42c1-4826-800b-fc40f2d33672",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "82324ebd-0bbc-4c00-91ad-c1a27af660c9",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "f9f9690e-044b-45cd-811b-048336c6f4ac",
+            "family": "Arial",
+            "size": 30,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "655be674-2bc3-4083-9ad4-1db04f87fab4",
+            "family": "Arial",
+            "size": 26,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "3e11b704-29d4-4200-822d-2370067d0f30",
+            "family": "Arial",
+            "size": 22,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "f8155074-21eb-4185-8af3-7479c5c62e54",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "8c0f030e-35f1-47a6-859e-7a3b1af4431c",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d5c97f07-4b5c-46ce-aa52-1059b2fc34d1",
+            "family": "Courier New",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "829b3c6a-acad-4699-89f8-44cc8cc2b751",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "327a2ce7-57ca-49c1-b9d1-7a09f1a3cbf8",
+            "family": "FreeMono",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        }
+    ],
+    "paragraph_formats": [
+        {
+            "name": "Cuerpo de texto",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "82324ebd-0bbc-4c00-91ad-c1a27af660c9"
+        },
+        {
+            "name": "Encabezado 1",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "f9f9690e-044b-45cd-811b-048336c6f4ac"
+        },
+        {
+            "name": "Encabezado 2",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "655be674-2bc3-4083-9ad4-1db04f87fab4"
+        },
+        {
+            "name": "Encabezado 3",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "3e11b704-29d4-4200-822d-2370067d0f30"
+        },
+        {
+            "name": "Encabezado 4",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "f8155074-21eb-4185-8af3-7479c5c62e54"
+        },
+        {
+            "name": "Ejemplo",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "8c0f030e-35f1-47a6-859e-7a3b1af4431c"
+        },
+        {
+            "name": "Monoespaciado",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "d5c97f07-4b5c-46ce-aa52-1059b2fc34d1"
+        },
+        {
+            "name": "Código",
+            "alignment": 0,
+            "word_wrap": 0,
+            "line_spacing": 2,
+            "indent_before": 2,
+            "indent_after": 2,
+            "indent_first_line": 0,
+            "spacing_before": 2,
+            "spacing_after": 2,
+            "default_string_format": "829b3c6a-acad-4699-89f8-44cc8cc2b751"
+        }
+    ],
+    "text": {
+        "id": "0",
+        "type": 1,
+        "elements": [
+            {
+                "id": "0,0",
+                "type": 2,
+                "level": 1,
+                "elements": [
+                    {
+                        "id": "0,0,0",
+                        "type": 3,
+                        "level": 1,
+                        "elements": [
+                            {
+                                "id": "0,0,0,0",
+                                "type": 4,
+                                "level": 1,
+                                "elements": "Cálculo de la segunda derivada de forma simbólica. Cambie la expresión de la función para obtener el resultado.",
+                                "format_id": "82324ebd-0bbc-4c00-91ad-c1a27af660c9"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,1",
+                "type": 2,
+                "level": 1,
+                "elements": [
+                    {
+                        "id": "0,1,0",
+                        "type": 3,
+                        "level": 1,
+                        "elements": [
+                            {
+                                "id": "0,1,0,0",
+                                "type": 5,
+                                "level": 1,
+                                "elements": [
+                                    {
+                                        "id": "0,1,0,0,0",
+                                        "type": 6,
+                                        "level": 1,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,0,0",
+                                                "type": 7,
+                                                "level": 1,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,0,0,0",
+                                                        "type": 27,
+                                                        "level": 1,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,0",
+                                                                "type": 7,
+                                                                "level": 1,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "level": 1,
+                                                                        "elements": "f",
+                                                                        "format_id": "829b3c6a-acad-4699-89f8-44cc8cc2b751",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,1",
+                                                                        "type": 19,
+                                                                        "level": 1,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,1,0",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,1,1",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,1,2",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,1,3",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": "("
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,2",
+                                                                        "type": 8,
+                                                                        "level": 1,
+                                                                        "elements": "x",
+                                                                        "format_id": "829b3c6a-acad-4699-89f8-44cc8cc2b751",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,3",
+                                                                        "type": 20,
+                                                                        "level": 1,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,3,0",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,3,1",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,3,2",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,0,3,3",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": ")"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,1",
+                                                                "type": 10,
+                                                                "level": 1,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,2",
+                                                                "type": 7,
+                                                                "level": 1,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,0",
+                                                                        "type": 8,
+                                                                        "level": 1,
+                                                                        "elements": "x",
+                                                                        "format_id": "829b3c6a-acad-4699-89f8-44cc8cc2b751",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,1",
+                                                                        "type": 13,
+                                                                        "level": 1,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,1,0",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,1,1",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,1,2",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,1,3",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,1,4",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": "·"
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,2",
+                                                                        "type": 15,
+                                                                        "level": 1,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,2,0",
+                                                                                "type": 7,
+                                                                                "level": 1,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,1,0,0,0,0,0,2,2,0,0",
+                                                                                        "type": 8,
+                                                                                        "level": 1,
+                                                                                        "elements": "e",
+                                                                                        "format_id": "829b3c6a-acad-4699-89f8-44cc8cc2b751",
+                                                                                        "can_merge": true
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,2,1",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,0,0,0,2,2,2",
+                                                                                "type": 7,
+                                                                                "level": 2,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,1,0,0,0,0,0,2,2,2,0",
+                                                                                        "type": 8,
+                                                                                        "level": 2,
+                                                                                        "elements": "x",
+                                                                                        "format_id": "327a2ce7-57ca-49c1-b9d1-7a09f1a3cbf8",
+                                                                                        "can_merge": true
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "auto_solve": true
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Código",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,1,0,0,1",
+                                        "type": 6,
+                                        "level": 1,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,1,0",
+                                                "type": 7,
+                                                "level": 1,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,1,0,0",
+                                                        "type": 18,
+                                                        "level": 1,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,1,0,0,0",
+                                                                "type": 7,
+                                                                "level": 1,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,1,0,0,0,0",
+                                                                        "type": 14,
+                                                                        "level": 1,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,1,0,0,1,0,0,0,0,0",
+                                                                                "type": 7,
+                                                                                "level": 1,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,0",
+                                                                                        "type": 15,
+                                                                                        "level": 1,
+                                                                                        "elements": [
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,0,0,0",
+                                                                                                "type": 7,
+                                                                                                "level": 1,
+                                                                                                "elements": [
+                                                                                                    {
+                                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,0,0,0",
+                                                                                                        "type": 8,
+                                                                                                        "level": 1,
+                                                                                                        "elements": "d",
+                                                                                                        "format_id": "4645e773-42c1-4826-800b-fc40f2d33672",
+                                                                                                        "can_merge": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,0,0,1",
+                                                                                                "type": 10,
+                                                                                                "level": 1,
+                                                                                                "elements": []
+                                                                                            },
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,0,0,2",
+                                                                                                "type": 7,
+                                                                                                "level": 2,
+                                                                                                "elements": [
+                                                                                                    {
+                                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,0,2,0",
+                                                                                                        "type": 8,
+                                                                                                        "level": 2,
+                                                                                                        "elements": "2",
+                                                                                                        "format_id": "327a2ce7-57ca-49c1-b9d1-7a09f1a3cbf8",
+                                                                                                        "can_merge": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,1",
+                                                                                        "type": 8,
+                                                                                        "level": 1,
+                                                                                        "elements": "f",
+                                                                                        "format_id": "4645e773-42c1-4826-800b-fc40f2d33672",
+                                                                                        "can_merge": false
+                                                                                    },
+                                                                                    {
+                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,2",
+                                                                                        "type": 19,
+                                                                                        "level": 1,
+                                                                                        "elements": [
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,0,2,0",
+                                                                                                "type": 10,
+                                                                                                "level": 1,
+                                                                                                "elements": []
+                                                                                            }
+                                                                                        ],
+                                                                                        "symbol": "("
+                                                                                    },
+                                                                                    {
+                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,3",
+                                                                                        "type": 8,
+                                                                                        "level": 1,
+                                                                                        "elements": "x",
+                                                                                        "format_id": "4645e773-42c1-4826-800b-fc40f2d33672",
+                                                                                        "can_merge": true
+                                                                                    },
+                                                                                    {
+                                                                                        "id": "0,1,0,0,1,0,0,0,0,0,4",
+                                                                                        "type": 20,
+                                                                                        "level": 1,
+                                                                                        "elements": [
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,0,4,0",
+                                                                                                "type": 10,
+                                                                                                "level": 1,
+                                                                                                "elements": []
+                                                                                            }
+                                                                                        ],
+                                                                                        "symbol": ")"
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,1,0,0,0,0,1",
+                                                                                "type": 10,
+                                                                                "level": 1,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,1,0,0,1,0,0,0,0,2",
+                                                                                "type": 7,
+                                                                                "level": 1,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,1,0,0,1,0,0,0,0,2,0",
+                                                                                        "type": 15,
+                                                                                        "level": 1,
+                                                                                        "elements": [
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,2,0,0",
+                                                                                                "type": 7,
+                                                                                                "level": 1,
+                                                                                                "elements": [
+                                                                                                    {
+                                                                                                        "id": "0,1,0,0,1,0,0,0,0,2,0,0,0",
+                                                                                                        "type": 8,
+                                                                                                        "level": 1,
+                                                                                                        "elements": "d",
+                                                                                                        "format_id": "4645e773-42c1-4826-800b-fc40f2d33672",
+                                                                                                        "can_merge": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "id": "0,1,0,0,1,0,0,0,0,2,0,0,1",
+                                                                                                        "type": 8,
+                                                                                                        "level": 1,
+                                                                                                        "elements": "x",
+                                                                                                        "format_id": "4645e773-42c1-4826-800b-fc40f2d33672",
+                                                                                                        "can_merge": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,2,0,1",
+                                                                                                "type": 10,
+                                                                                                "level": 1,
+                                                                                                "elements": []
+                                                                                            },
+                                                                                            {
+                                                                                                "id": "0,1,0,0,1,0,0,0,0,2,0,2",
+                                                                                                "type": 7,
+                                                                                                "level": 2,
+                                                                                                "elements": [
+                                                                                                    {
+                                                                                                        "id": "0,1,0,0,1,0,0,0,0,2,0,2,0",
+                                                                                                        "type": 8,
+                                                                                                        "level": 2,
+                                                                                                        "elements": "2",
+                                                                                                        "format_id": "327a2ce7-57ca-49c1-b9d1-7a09f1a3cbf8",
+                                                                                                        "can_merge": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,1,0,0,1",
+                                                                "type": 10,
+                                                                "level": 1,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,1,0,0,2",
+                                                                "type": 7,
+                                                                "level": 1,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,1,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4,
+                                                                            6,
+                                                                            7,
+                                                                            8,
+                                                                            9
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": false,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        },
+                                                                        "array_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        },
+                                                                        "symbolic_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        },
+                                                                        "symbolic_rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "symbolic_complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Código",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            }
+        ]
+    },
+    "caret": {
+        "id": "0,0,0,0"
+    },
+    "selection": []
+}

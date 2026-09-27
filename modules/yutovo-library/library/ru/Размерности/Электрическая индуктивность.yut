@@ -1,0 +1,983 @@
+{
+    "file_guid": "30629f9e-7773-4eae-aea5-e84e7e6caf43",
+    "config": {
+        "language": 2,
+        "use_tabs": true,
+        "tab_spaces": 4,
+        "code_block_border_color": -16776961,
+        "numbers_color": -16776961,
+        "variables_color": -43649,
+        "functions_color": -43776,
+        "units_color": -16755456,
+        "shapes_color": -16777216,
+        "error_marks_color": -65536,
+        "formula_bg_color": -1,
+        "bg_selection_color": -16776961,
+        "real_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": true
+        },
+        "integer_result": {
+            "result_notation": 2,
+            "default_notation": 2,
+            "show_notation": true
+        },
+        "rational_result": {
+            "fraction_form": 1
+        },
+        "complex_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": true,
+            "form": 0,
+            "max_count": 10
+        },
+        "auto_result": {
+            "result_auto_advance": true,
+            "results_order": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            },
+            "integer_config": {
+                "result_notation": 2,
+                "default_notation": 2,
+                "show_notation": true
+            },
+            "rational_config": {
+                "fraction_form": 1
+            },
+            "complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true,
+                "form": 0,
+                "max_count": 10
+            }
+        },
+        "include_documents": []
+    },
+    "string_formats": [
+        {
+            "id": "0882480a-cbcf-4ee3-95a9-643d193597b9",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "165673db-fc4d-4036-ab47-826a14bbd57a",
+            "family": "Arial",
+            "size": 30,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "93242ff9-62e9-41f5-86b0-421e69d07036",
+            "family": "Arial",
+            "size": 26,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "5b790a01-9f8e-4e50-ab91-27fe87717517",
+            "family": "Arial",
+            "size": 22,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "01c4e387-f136-4e87-9512-83f125c9d758",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "359ae92f-21f2-45ca-b8ef-4632adec99ab",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "aaaedf22-3793-43b6-84f6-2e2138190646",
+            "family": "FreeMono",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d5049a57-dc1f-4060-a0c5-7bbc35f3cacb",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "b5a9f903-b431-43c5-942d-cf47b5adc6c4",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "00240c87-11cd-4efe-a368-5c47bf5ab21c",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "a1562d86-f05e-4c97-8398-2d39f0c83e08",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        }
+    ],
+    "paragraph_formats": [
+        {
+            "name": "Основной текст",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "0882480a-cbcf-4ee3-95a9-643d193597b9"
+        },
+        {
+            "name": "Заголовок 1",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "165673db-fc4d-4036-ab47-826a14bbd57a"
+        },
+        {
+            "name": "Заголовок 2",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "93242ff9-62e9-41f5-86b0-421e69d07036"
+        },
+        {
+            "name": "Заголовок 3",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "5b790a01-9f8e-4e50-ab91-27fe87717517"
+        },
+        {
+            "name": "Заголовок 4",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "01c4e387-f136-4e87-9512-83f125c9d758"
+        },
+        {
+            "name": "Пример",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "359ae92f-21f2-45ca-b8ef-4632adec99ab"
+        },
+        {
+            "name": "Моноширинный",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "aaaedf22-3793-43b6-84f6-2e2138190646"
+        },
+        {
+            "name": "Код",
+            "alignment": 0,
+            "word_wrap": 0,
+            "line_spacing": 2,
+            "indent_before": 2,
+            "indent_after": 2,
+            "indent_first_line": 0,
+            "spacing_before": 2,
+            "spacing_after": 2,
+            "default_string_format": "d5049a57-dc1f-4060-a0c5-7bbc35f3cacb"
+        }
+    ],
+    "text": {
+        "id": "0",
+        "type": 1,
+        "elements": [
+            {
+                "id": "0,0",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,0,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,0,0",
+                                "type": 4,
+                                "elements": "Для перевода размерности отредактируйте выражение и выберите нужную размерность в контексном меню ",
+                                "format_id": "b5a9f903-b431-43c5-942d-cf47b5adc6c4"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,0,1",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,1,0",
+                                "type": 4,
+                                "elements": "результата:",
+                                "format_id": "b5a9f903-b431-43c5-942d-cf47b5adc6c4"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Основной текст",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,1",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,1,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,1,0,0",
+                                "type": 5,
+                                "elements": [
+                                    {
+                                        "id": "0,1,0,0,0",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,0,0,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,0,0,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "00240c87-11cd-4efe-a368-5c47bf5ab21c",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,0,1",
+                                                                        "type": 8,
+                                                                        "elements": "Гн",
+                                                                        "format_id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,0,0,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,0,0,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 1
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Код",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Основной текст",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,2",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,2,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,0,0",
+                                "type": 4,
+                                "elements": "Встроенные размерности электрической индуктивности:",
+                                "format_id": "b5a9f903-b431-43c5-942d-cf47b5adc6c4"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Основной текст",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,3",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,3,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,3,0,0",
+                                "type": 5,
+                                "elements": [
+                                    {
+                                        "id": "0,3,0,0,0",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,0,0,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,0,0,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,0,0,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "a1562d86-f05e-4c97-8398-2d39f0c83e08",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,3,0,0,0,0,0,0,1",
+                                                                        "type": 8,
+                                                                        "elements": "пГн",
+                                                                        "format_id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,0,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,0,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,0,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 1,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Код",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,3,0,0,1",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,0,1,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,0,1,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,0,1,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,1,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "a1562d86-f05e-4c97-8398-2d39f0c83e08",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,3,0,0,1,0,0,0,1",
+                                                                        "type": 8,
+                                                                        "elements": "нГн",
+                                                                        "format_id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,1,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,1,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,1,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 1,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Код",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,3,0,0,2",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,0,2,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,0,2,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,0,2,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,2,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "a1562d86-f05e-4c97-8398-2d39f0c83e08",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,3,0,0,2,0,0,0,1",
+                                                                        "type": 8,
+                                                                        "elements": "мкГн",
+                                                                        "format_id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,2,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,2,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,2,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 1,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Код",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,3,0,0,3",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,0,3,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,0,3,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,0,3,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,3,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "a1562d86-f05e-4c97-8398-2d39f0c83e08",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,3,0,0,3,0,0,0,1",
+                                                                        "type": 8,
+                                                                        "elements": "мГн",
+                                                                        "format_id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,3,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,3,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,3,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 1,
+                                                                            "unit": "(Гн)"
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Код",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,3,0,0,4",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,0,4,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,0,4,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,0,4,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,4,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "a1562d86-f05e-4c97-8398-2d39f0c83e08",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,3,0,0,4,0,0,0,1",
+                                                                        "type": 8,
+                                                                        "elements": "Гн",
+                                                                        "format_id": "20369c54-2e0a-4ff5-aaab-0aa84c317b2e",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,4,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,0,4,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,0,4,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 1
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Код",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Основной текст",
+                "format_alignment": 0
+            }
+        ]
+    },
+    "caret": {
+        "id": "0,0,0,0"
+    },
+    "selection": []
+}

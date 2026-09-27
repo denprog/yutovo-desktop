@@ -1,0 +1,762 @@
+{
+    "file_guid": "de951d88-377b-42e2-ba13-faaa006332f1",
+    "config": {
+        "language": 3,
+        "use_tabs": true,
+        "tab_spaces": 4,
+        "scale": 1.0,
+        "real_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false
+        },
+        "integer_result": {
+            "result_notation": 2,
+            "default_notation": 2,
+            "show_notation": true
+        },
+        "rational_result": {
+            "fraction_form": 0
+        },
+        "complex_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false,
+            "form": 0,
+            "max_count": 10
+        },
+        "auto_result": {
+            "result_auto_advance": true,
+            "results_order": [
+                1,
+                2,
+                3,
+                4,
+                6
+            ],
+            "real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false
+            },
+            "integer_config": {
+                "result_notation": 2,
+                "default_notation": 2,
+                "show_notation": true
+            },
+            "rational_config": {
+                "fraction_form": 0
+            },
+            "complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false,
+                "form": 0,
+                "max_count": 10
+            },
+            "array_real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            }
+        },
+        "include_documents": []
+    },
+    "string_formats": [
+        {
+            "id": "5f2218a2-0eb8-4685-a94f-5d38a765a736",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "42b6feb5-e063-4876-84f1-515a5360136d",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "20fedaa1-4eb7-4a46-b29e-da10a360324f",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "35940bcb-eb3c-4143-af54-55d1b78caa28",
+            "family": "Arial",
+            "size": 30,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "a170b94d-41d5-4864-a879-e478fceb57b3",
+            "family": "Arial",
+            "size": 26,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "512f5167-8adc-4fff-86ce-66b96c082c98",
+            "family": "Arial",
+            "size": 22,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "554f5cb8-78c1-4517-80de-f373ae481793",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "3373fe6f-4828-4e11-bd6a-81b40a07f70b",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d7a4f015-9cc5-4a26-9950-da6f718285ee",
+            "family": "FreeMono",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "cae9b58b-f38f-401a-a90d-ab6a98195631",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "ba029626-373b-4237-a9c4-82b2d5361daa",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "487901ec-7161-4565-a4af-41f29241ca5c",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d338b315-a9b4-4a00-8a75-7f4d6e02c9b0",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": true,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190335,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d7dbc119-d4ee-4a78-8699-7002385c3e62",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        }
+    ],
+    "paragraph_formats": [
+        {
+            "name": "Cuerpo de texto",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "20fedaa1-4eb7-4a46-b29e-da10a360324f"
+        },
+        {
+            "name": "Encabezado 1",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "35940bcb-eb3c-4143-af54-55d1b78caa28"
+        },
+        {
+            "name": "Encabezado 2",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "a170b94d-41d5-4864-a879-e478fceb57b3"
+        },
+        {
+            "name": "Encabezado 3",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "512f5167-8adc-4fff-86ce-66b96c082c98"
+        },
+        {
+            "name": "Encabezado 4",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "554f5cb8-78c1-4517-80de-f373ae481793"
+        },
+        {
+            "name": "Ejemplo",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "3373fe6f-4828-4e11-bd6a-81b40a07f70b"
+        },
+        {
+            "name": "Monoespaciado",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "d7a4f015-9cc5-4a26-9950-da6f718285ee"
+        },
+        {
+            "name": "Código",
+            "alignment": 0,
+            "word_wrap": 0,
+            "line_spacing": 2,
+            "indent_before": 2,
+            "indent_after": 2,
+            "indent_first_line": 0,
+            "spacing_before": 2,
+            "spacing_after": 2,
+            "default_string_format": "cae9b58b-f38f-401a-a90d-ab6a98195631"
+        }
+    ],
+    "text": {
+        "id": "0",
+        "type": 1,
+        "elements": [
+            {
+                "id": "0,0",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,0,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,0,0",
+                                "type": 4,
+                                "elements": "Barra de herramientas estándar",
+                                "format_id": "42b6feb5-e063-4876-84f1-515a5360136d"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,1",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,1,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,1,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "iVBORw0KGgoAAAANSUhEUgAABPEAAAAaCAIAAABZ816dAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAgAElEQVR4nO2dd1xTZxfHnwxMCCGEEYaGPSWWVbWiVII4EKvUhRYFLUbFggPRCqLyIiJaDVAFURkCjloUEKmKqEBUBFulagVFsYKAAmGEsBKz3j+upinLTFfz/YNPuOPc597k3vv8nnOec2ACgQAoUaJEHtTV1RkbG3/qh1A0n8EpiIlAIGCxWGw2G4VCqaqqir/jf+cSifJ53D6f5Xf3WZ6UEiVKlCgC5QPzQ4H80A1QokR6KisrAQBwONzMzIzH49XX13O5XBQKZWxsrKKi8qFbp+Tjgs/nMxgMFos1zDYjR46U4xEbGxuLiopYLBYSiXRzczM1NZWjcSVKlChRokSJEiUQSk2r5BPGw8MDAACDwUgkkqam5quXLzW1tIyMjLZv366trf2hW6fkI4LD4Zw+ffrx48c8Hm+Yzfbs2SPHg+bl5VlYWIwdO7a6urq4uFhfX18ib60SJUqUKFHynsnJyaHRaGw2m0gkrlmzRtmbUvKp8EbT0ul0KpX622+/MZlMKBqZy+XS6fQdO3aEhISoqal90Ea+GxaL1dHRMXxvFYVCaWtrw+Hwj9C+grh169bVq1d37NgBAFi7du369euTkpJevnz54MEDFxcXf3//nTt3Ojo67tq1CwBQVFQ0e/bsnp4e0b3Ex8PDw8jIiE6nz5w5c9WqVR4eHsbGxq9fvx4xYgSVSsVisdASAMDcuXMhLSo79fX10Ievv/766dOnmZmZEydOlNQIj8drbW3lcDjQv52dnT4+Pm1tbTAYTCAQWFpaUqlUXV1daC0CgdDR0VGEEzgvL8/e3t7ExER2U9AtDIPBZDclPnw+X5YfP4/He/jwYVFRUWtrq7a2tqurq729PRI55KAbn8/v6+tTVVUV56B8Pv/06dMMBmPjxo2Kez339PQUFRVVVFT09PQI21ZfX19cXAxtEBkZ2dnZicVisVisnZ3dtGnTsFisghrzmSEQCF6+fEmj0ZqbmwUCwYwZM0gkknDtw4cPCwsLYTCYnp6eq6vryJEj3/OPX4kSJVLQ7+ULoaKioqOjg0AgpDb76tWroV7TPB6PwWDg8XhZ7EN0dXXV1NSUlpY+f/4cADBq1ChnZ2dra2stLS0ZLX9wuru7Z82axWAwioqKfvvtt2XLln3oFn0mdHR0SLQ9AoHAYrHi96yU9pEAABaLFRsb29raevjwYU1NTWjFs2fPVq9efffuXSqVKqOs5fF4jY2NXV1dwiWWlpYjRoyQ2mA/6HR6XFzckydP/v77bxMTExQKJbqWzWbX1tZaWFjweLwNGzZ8/fXXH5v9obh37x4MBrO3t5eXQQAAlUr9+++/qVRqYmIiAACPxz948EAgEMBgsLNnz44fP14W40ePHhUIBC4uLqtWrQIAHDlyBABQWFgYGRm5b98+4RJFQKFQbt686ejoKMW+dDp9w4YNXC4XegW2t7fPnj174cKFSCSSw+Hk5eVFRUWh0WhoY+g2MTc3l2frAQAAnDt3TkNDQ3ZNKxAIamtrW1pavvrqK3m0Syx4PB6NRjM3N5d6Dkl5efnNmzfd3d319fWbm5vLysoAAF9++eVQ2//111/V1dWzZs0S59HEYDAeP34cHBys0PHma9eutba2+vj48Hi8wsLC6dOn43C4ftvExcUtXbpUTU0NGjmaNWuWMkheHKqqqtauXWtlZaWvrw+DwRgMhujazs7Orq4ugUDw9OnT1NTUAwcOiCpeJUqUSASHw6mrq2Oz2dC/cDhcT09PEVKNwWDs37+/oaGBw+E0NTUZGBggkUgikRgaGirLs9rPz2+o1zSdTt+/f/+mTZv09fVlaDj4+++/o6OjaTSara2tgYEBDAa7detWamqqpaVlVFTUF198IYvxD46fnx/04caNG93d3TJaKy0tBQBMmjRJ1maJR3V1dXp6elRU1DBj4h+K7OxsibbX1NT08PAQX38p7SMBAB0dHU+fPo2Ojra2thaugMFgKioqcXFxGzZsiI2N3b59u0RHEtLb2xsYGEij0USH4hYsWLB37155yVpIkEdHR7u5ue3bt0/0LAAA1dXVvr6+586dy8nJWbVqVXp6uqR9fUXbH4q8vDwAgIyatri4GHIv3759e+BaLpfr4uJSWlrq5OTE4XAwGIwsx+JyuQ8ePNDR0RFdOH369OjoaOgzn88HACjIlY3FYqV7hHE4HDabvXXrVgMDA2iJjo6OUMRaW1t3dHRALQcATJw4UfimFx8ajVZSUjLoKgcHBy8vL+hzRkYGjUaDPpPJZFdXV0kPBACg0+lnz551c3OTYl+pgcPhSCQyIyNj2bJlUsjanp6ea9euLVy40MbGBgaDjRo1CgBAo9GG0rT37t3Lzc2dN2+emKG8LBaLx+P1+2XKnbt37/r5+Zmbm3d0dKiqqurp6QmHCIUgEAhdXV0DAwMsFpuXl9fb26uhoaHQVn0eFBYWjhkz5qeffhLemKJMmjQJ6jCxWKwff/yxsLBQqWmVKJGa1tbWgICA6upq6F8YDIbH49evX+/n5yffMTg8Hr9p0yYOh/Po0aNDhw5FRkbicDgVFRU8Hi+L2erq6qFe0xwO58WLF/08w5LS19d38ODBmpqavLy8kSNHotFoGAzGZrPb29tDQkISExOpVOrHH974TnJzczkcjuwd2tzcXBaL9X40bXV1NZlMbmpq6u7uPnjw4Hs4okTMnz9fou0RCIRE85WU9pEAAC6XC4fDB9UzZmZme/fuhcZsQkJCJNU8PB4vMDCQTqdfu3bNxMQEigd7+fIlpGmlMDgoeXl5KSkp1tbWCARCX1+fSCSKru3s7EQgEEZGRuvWrevt7V2+fPnRo0cnTZokvrJStH2FMm7cuDVr1gAAGhoaBq4VCAQ+Pj4xMTH19fXffvst5LyVmnXr1hGJxLS0tH6HEH4ODAwEAAQEBIgp1DkcTmtr6zAh36KRwN3d3Y2NjUJZK36QMBKJbGtrc3Z2FmraQYGi8b/88ksplLOxsfFQAlV0tNje3t7BwUG4i6RHEQgEdDo9LS1t7Nix0rmspQYGg02ePJnP5+fm5i5atGj4KzmQ7u7uvr4+S0tL6BEBBZG2tbUN3JLP5//111+5ublz586Verinp6enuLj4zp07Q+WLQqPRDg4OU6dOlSg2mM1mQw80OBze3d29d+/egdtoaGhATwYUCgWDwYRjJYqFy3hUfDI16dSjcQnZYY7otwv/PL5t075TRU/7TJ3nB4ZFBc40RQMAuK+KYoKCDuQ8YmiOdvMJ2btrhSMecBl/Jget2HmR8YX//kO75lkMIiyHgc/nv2pqNtDXk/qpyGQyTUxMBhW0oqDRaBMTEyaTKd1RIKqrq48fP/79998bGRnJ3YvOrM5LTsq6XFZR06tBclkYuCnIwxz17t0guPSCLQtiwMaze70IH4kHgksv2bHA/3S96DLDpWn5O8g4aVvIrkrxX7S74outZ5MpJBFdwK4+7r8gosw8JP9kIOmT1gs99WUXs47nVhDXJW2d0D+Ug34tYsmaLMKW/LQVFmL/MuQMj8cjEAjp6elQb4fP5xcVFW3fvp1AIMyZM0eOB0IgEHp6egCAzMzMCRMm2NjYfCQdp+Fpb2//448/EhISRMfO0Gi0hobGrl27wsPDe3p6pNO0T548OXPmzA8//DBwPLSjoyMhIWHJkiVmZmZSt/z58+cnTpwICgoayv7SpUuhXIZ5eXmXL1/+6quvxo4dK/XhAAANDQ2WlpYMBqOhoaFf51nuVFdXUyiUpqYmLBa7aNEiKSwIBIKurq6enh5htxOKhAcAiAbJIxAINTU1dXV1SSe5DLzs8kVpHwkAgL1l0C1Gjx6dmZm5ZcsWKAhZIhXa0NBAo9GKi4tFO+gjR45MT08PCwujUqnz5s3rt4uamhqRSJRINnR1dYnj64DD4aGhoRgMJj4+3sbGhkAgfCT2FQoWi4VU01BfHJFIbGlpOX/+/PHjx2XUtIcOHRq48Pz588I5rklJSRIZfPHiRUBAwDAdWW1t7YiICOgRXFJS0tfXB/2Me3t7mUymmEHCOjo64eHhy5cvLygoGGazmpqagICAzMxMKdSmiYmJOEHFDg4OZDJZUuMQUMjxqVOnDA0NLSwsmpubRdcikUg8Hi/HgH82m81gMPoNN5iamjY0NJw8eXLhwoUSXSV1dXUMBvP48eMxY8YAAAQCQVNT06Bu1b/++qukpGTevHmyxC8UFxe3tLQsXbp0qJuir69PlthgLBa7ZMkSLpc7cBUCgXjP+TYYN6gr/Lfl1LAAAI7/BMSxnh9fMf/H51N++u1vN3Bxx9JN/pvwxSdX2KBf5W6mHGqal1Z1zfJ54qql28NHT8wJNH2Uui0Xv634rv6lTZtjLzofmGfQWpSaDzy/n2IgxqO6u7s7fMfOA7F7BwZjf4TweLzMzMzS0tJZs2YtX75cju59dkNexMrgApQHZe2eQGRDWe7x4CAmOi2SLNkQ0EcHzs43MthD960CQ+mTpBa0Qth/FpQ88yXZCWUdu4ZWUNEjq9kPDbvydGhwdF5NDwDA0PeHAevby5Ljsmq44KPoPbwFDoe7u7u3t7f//PPP8tW0ECwW68KFC/v37/8kBC0AgMPhDOVMNjMzi4mJkdrPfObMmfr6eqizLdq/7+jooFKpdDr9l19+CQ8Pl7LdAJw6daqxsTE2Nnbjxo397MfGxtLp9FOnToWHh584ceLmzZva2tpGRkalpaWyuFgzMjICAwNZLFZiYmJUVJTUdt5JdXV1QkJCcXGxm5tbTEyMi4uLpBZ6e3tzcnLy8/P//vtvNpsN+WMsLS2TkpIEAkFAQMCzZ88AADAYDIVCmZubz5kzZ+7cuRL5IV++fDnMWiQSqa2tLftMbwAAj8dra2sbphMir8Bs+Z7R8NbEsT/kWWEwGAQC0djYOGrUqNGjR8fFxQUHB1OpVImCkHt6erhc7sDeraWlZUxMDOTS7LdKRUXFw8Nj9+7dMgafDAocDp83b96tW7ekCB/9GOwrCE9Pz3v37on+xM+ePfvo0SMYDHbq1Cmpza5evZrFYmGx2P3790tngc1mV1dXX79+fagNhKO8AAA7O7sdO3ZAg6OvXr2aN2+emN+CioqKoaGhiorK8PGKUDR+v8hzObJixQoLCwupd2exWEVFRfX19QwGo6qqqt9aGAyGRqPHjh1LJpNljIlis9nXrl27c+dOX1/fwOrWHA6np6cnJyfnhx9+6DfzfBgwGMzUqVOzsrIAADY2Nk+fPr106ZKzs3O/ze7fv5+TkzNv3jwZZyvduXNn6dKlw19tNTU1qWODoQBjGRooX/BOG7O3zcRf9Fvwz1QV1vOcX8rQC1P2+07EI8GKHeFFxdHFf3WsMGFdPHMLPTdh28zReOToTWE+Oatyip6umNfwnKU/0dHCVHPsaHTx86ZuxqOD0TnoqPkfibdQARw4cCAmJiY7O3vv3r2TJ0+Wh0lm5emUAp5HZHKctwkKAODlTkL5hSbnezuvIn0oj5xcQGtaOE1wNpTXOSAAwOAMQU1xYaWvndObUZCempJrzzSIuiw59Pc+IGyAsvDee3aGeU2Ef8qAtcyKk9TzvSQng5oP0LRhgcFg1tbWUDIkuVNYWAiHw52cnBRhXBGMGDGCy+W2tLQMHKpGo9E2NjZSWw4MDIyLi2tubo6Li9u4cSPUDWYwGJDg1NPTg4LdZLcfHx8fHBwstB8XFye0z2azb968CQBoa2s7c+YMFouVWtOyWKy+vj7oKK2trSwW652xNtIBCdq4uLjIyEjpBC0AIDIyMikpqaurC4PB4PF4yEHS2dnJ5/MFAkFnZyeUwUggEDAYjDt37ly6dKmyslI4t04cDhw4MMxaPT09f39/uUxH6u7uPnnyZD/fBoSGhoa/v7+w5ywj8j2j4a2JY3/ILomxsTGZTA4ODo6KilJTU0OhUEFBQRQKBQ6Hb968WUaHDwwGs7KyunXr1sBVL1682LhxY3x8/P/+9z8pLL8zoS4cDpdlFETR9uXLxIkThT5S4dQCMzMzoT8WUhHff/899O/FixehvR48eCDpsfo5OQf6PIf3gg6DmGmTcDjcqFGjIMEmddbTqqoqDw+PFy9eDLNERpqamp49ezbwJSHdU1iIqqqqu7t7Q0ODq6vrpEmT+nkX2Wx2TU1NUVFRbW3twoULpVZcdDo9MzMTjUbPnz9/YKY3Lpd7/fr1W7dufffdd+ILWghIwebm5vb29qqqqhoaGt64cYNIJFpZWcHhcD6fX1lZee7cufnz59vZ2UnXeCEsFuud8SYoFAqBQLyn2GBFgv96RfjXAHT/eVF0KdJ0XvTZKQZOeCQAAKDRmqpoALgAsF49qgWm00ajkQAAgLd0NEUWPW9laeoYgIaK562erIePOrCe4K9E6h+OgZkT5T/uOBgcDqezs1NMz7+mpmZjYyPkSJHloF988cWxY8dSUlJWr169cOHClStXEolEmdIp99SX/VGv6xLoRnx7axCcfNdSSgD0L7vmYkriiaziOy1oc+eFwVuDpkOhp+x6WkrEnuSSWkAiezn1sIUuPOaDrISk4+dv1rD0nX03RwZNl5uolB12bdaaJYnA1Yl5rZg9N+lkqDMYtLXs+pKMxOQzBRVNaJJn4NYtvk5QHiKUoZMLruJmQaW/k7MWAAAwnxQUvyKSnUGJUO5B++YWVNQCw3FegaEhXrY40FOZ6P9DsSPF+dnx47R69Bdegdu2+jriAACAXnH8UELWxbJKtq7TDMrWTb5OH8AZiiPNDSQBAGoHUa3sqizqGfaMYAoqNabyvbdseKAEbFKnABwGHo937NgxX19fSV8ZHxBtbW0XFxcKhXL48GESiYTD4eSVaB2PxwcHB8fGxjY3N0PeVABAbGxsS0uLnp6eUOXKxT7kqQIAxMXFQfaFKvfw4cNyOZ1ff/118eLF0OdFixb9+uuvikihLCpoZ8yYIV1XKisra9++fUZGRklJSYsXLx7YjRfWLwAA8Hi8U6dObdu2LSYmxtHRccGCBWIeRb7FAodBQ0MD+nIVjXzPSHZrQ2paGAz2008/UanU8PBwYefA1NT06NGjCxcutLKykvHAQ2FkZLR27dq1a9dKoWmlVk0fif33DJSOSLpERB+D/U+Ux48fZ2RkKCJfgomJybJly3Jzc3k83uTJk0X79CgUikQiWVhYXLlyJSsry9/fX4qp7G1tbZmZmba2tmQyeWC8jUAguH79+qNHj/z8/KRLKens7Gxvb9/V1YXFYjEYzL179/Ly8qZPn25vb19VVUWj0WT30Cp5AxJtOu6fqlfPi3NuAcddzpqAVcboBpr4t2PpaE1NJKuptQ89N3D/wk0rHA0YXwTu3+t0KybIYOUJT5nyhkrA3bt3q6qqKBSKOBuPHz/+119/raiokD21CQqFCgwMdHNzO3LkyMqVKxcvXjx37lzpB9HZzBYmIBgbisTl4iw8KVC0ALOcGrzlPG7Vnnwq8dnZiA3rV9CpZ/d4EtjP8iJCqBXmvlt3O6GqshJTWwAU+/mqYPfWxBb3sNRwErssZfeeUA1iGsVWHFXAbb/3W9rpWy2DDdeoW8/wW+xuLJfZqj31JX84hWyKdx5Hwr0qCB2ktaAyIzTioiEl6uwezYbz+3eH7iec3OmB4wEAAGGcB6k8q+AvprMrDgBm5bUSurmXr37BW03LrkwN3XCU7b37bLwtPW9vaPD39exTSd76AHBbKk4eN1xFiZzNrjybSN1lSDoW6ISqz9rxw+5acmTydTdQTA2J8F/PPHk4kCRWLPx7uWLsmryDx+kuYXtcNI6nSrSnQpoHBUl1dnYCAPh8fnV19bFjx374YWC0tKxUV1fX1dVJmhvmQ8HhcLKzs1taWgQCQUtLi6en59SpU8eNG4fH4+FwODSJD/pgZmb29ddfS6F18Xj8unXr4uPjIdnJ5/NbWloIBIJQcMqIqKyNj48XCATNzc26urobNmyQe3Tkw4cPhSKWTCZ///33cte0chG0vb298fHxampq27ZtgwQtm81uaGgYGLuLRCINDQ1HjBjh4+PT19cXEhISHx8/a9YsZeX5jwQkAEDwln7rCATCzp0729vbRb/XiRMnDhqiLUd0dHT6lWoQE0Xnunw/uTRXrlzp4eEh+ojPzs4uKChITk6W74GgTLyK05yKtv8Jcf/+/Xv37kGfHz9+LFxeWlpaUzN4mJmDg4MUU0ZNTEyg0VAkEjnwyqNQqGnTph05coRGo82cOVMiywKB4M6dO7q6utOmTRs4E0MgEBQUFECJfw0NDSVtthAMBiMU2w4ODhgM5ty5c6qqqgKBgEwm29raSm35M6C07PbFS5eHWus5c8YkZ2lUHOuv1E07Lhr4/+ZpggYNgCWaEBT6nrkAIPGOa1Iq1qQAAJ7/QklE+iTMNBW/tTw+HwCw+6dYxNv5cmK29ubNm8nJybdv3167dq2lpaU4p2NlZTV79uxly5Z99dVXFApF9uJqtra2MTExFRUV4eHheXl5VCpVyhwtPDabjcbhBpOdXPqt3Mt0R0qcP9lQDRj6bw0qW5KSX1w/3Yt9M68C4xFJjfQiAjB7Io6+IBYBAAD1N89X4LzjVnmQ1ACYS/EuWpp1rcbXVpwYZqSWwzf+AAxUQVLrnxZahOvoiDf/mPue/DXSCQCgZuG7LTLQFQcAqD8zWGuJ7LzLdKdV8b4TCABY+K66VbD18l26hxsAgAcAwWmGY0ri5Qr6JDKBWVlcwiQtdTakvx1Wbq/Iu1hpuDQtyNMCByx8twRWLNqdd63eawkAAGWxODJyrTMOgIlqlZcjK+uZgMS8nFWB89od4m1HAMA7ZHNF2Y8FBdW+pHHiiFr5X7EBsOsvJqbUOAUmuxmiKiTcVyHNq62t9fX1FXqroIIu3377rTS2huX69euurq7yzTIA1ZYfZq3UbtXe3t69e/dCs3t4PB6Px8vOzs7Ly0MikcIEh9Bfe3v7a9euSRdqq6Ojs379+p9//rmpqQkAoKuru27dOjmm59HU1Ny4cWNsbKzQfnBwsNzT/5SXl/cbWBw7dmx5efmECRPkdQi5CFoAwMuXL1++fKmtrU0mk6HffF1dnZ+f36tXr/ptaWBgcOLECQsLCwQC4erqqqWl1djY+OrVK1kSdymRI++YDjVixAgZq3hJgexRHO3t7QcPHoQCa729vdeuXSvf0moKtb9s2bLZs2cL/83OzqZQKPn5+fKyr+T9IzpmJPquHXQsaeBmEjFy5Mi5c+cOFSyNQqHc3d2zs7OnTp0qUXBmX19fXV2dh4fHoKkF+Hw+l8ulUChyfFzAYDALC4sxY8akpaX5+/tDQcjyMi6Ew+EIuyP/RZqKdq3eXPZF1IXgiXgw4IUAjV6K9sqaLiYeezUlLPBRzKxZh8rws6MSYgMnKrJGkhRfDXTvyNJz7QcGg3FxcUlNTV25cuU333xTUFBgZGQksRUEQCFYTOZgk/x76ytr2ER3Z0NIfqhZODtbJFyrp/ey2Q10tIkb6W2ULOqNxGA2VNXUlBfM/oIqtKGLqWdySeLlQ0ZqOXzjDwdpp2+1vB2gVrf+xm/xZOn0z79yRGGIJBwAUObpYVtLf0WvfFZTFvRVnnApyukZne2GBIDLBkjdiTOcE/cV3KU7f/mkoITtFDjBEJxlQ5nK2fSayg5dZxcLSJKiDJydbdHHGxrYPAJAonFvRw5QKBSKx2JzQUtNJV2NRLF9cx0JX5CdcCXPGjqBWJpW/lesP6+KE1MrLFakepiggDRJu+XfPGtr6/PnzwsT1XK53MLCwuDg4BEjRvj5+cnrzurq6rp9+/bKlSvlYk0IgUCg0+mDrurr6+Pz+VLPntPQ0CgrK2ttbeW/hcfjQa7U06dPX7hwAYlE7t2719jYmEgkyjJ3FA6Hi/YBPpXsWaIcOXJk6dKlwvKEAAAikZiYmCgvTSsvQTsoAoEA+n4HLhd+hu4CibpqoaGhEjVD0vmoSvufZ4oPqHTYkSNHAABHjhw5ePBgRETEO/eSzv7hw4f37du3e/du6Pfd3Nzc0tLS1tYmddZyFxeX/Pz82bNnQ5kG4uPj8/Pz5Xi7KtoP/N78zJ8QDg4OwiI9JSUlGRkZ0GcXFxf5Poghhk+zbGZmxmKxOjs7JUro+vr1awDAUPmlEAiE6ECMvHj48GFNTY2rq6swCFkur3Y9PT1Imb9+/ZpGo40aNeqT8ABPcv5KOk/skLCen/qRcojlc+JQoCNUtAiN19cEjxgsFqRkuaw+gDfFC6OqGLeSE/8cF5jASA16NPHEn/ubDgRFH5uYvdlxYN9NtLVMJnPdxi1bf9woad5j6Aa5fft2RESEm5ubOF/TkydPfvvtt8zMzPHjx0t0rGHo7e29cOFCZmamlZXV/v37pRG0AAAU0ZAAShroTC54qzzZNRePlwBnbxcA+hUsQwA0Ao1CADYChUIN8O3yAJvNxtlRIoPd/sk2TBBT0EIgtezeOve4QN32G79Fk42ljZ4bmCPqX8KdO0RruVkAZegRGuZr97ZHgsARzVGgDgAA2FwUwdHDGRlxubwS/FEG7DZONED9q2TQQBAoMFQuCx4bANS/+jtIFAolkeSQ5xX7N+x6WlZBVT1z6/SCrW+XVU0ffTEkP1P8qkWKax4AACCRSE9PTwBAWFjYnDlz5OXTa25uZrFY4pQnkAh3d/cbN24MzCsBACgoKCASibIkYEej0QN7d9bW1pMmTVq5cmVERERJScnevXtlKVTZ0dERFxfX2tqqq6sLg8FaWlri4uL6ZUKWBWGWY8i+cO6uHF21TU1NeDwegUCISj5IezQ1Nck+9i1fQTty5EgDA4PKysrr16+bmpoiEAgTE5Pjx48PFXsMAODxeDQarb293c7OTvzihevWrZOoYUgkUqKCgkr7n6emzcrKOnLkiPBXvnr1avlqWlH7XC53xYoVmzdv1tLSqq2tDQ0NLSsr2759+9GjR6W+byFZC0WHXrNnoEUAABIgSURBVLp0Sb6yR9F+YKWfeXhsbGxWrFjxARsAyULp/MDv058pzHI8ZswYCwsLKAhZupSSKBQKDoczGAxovpC/vz/0HEQikQQCISsry9vb+5OQtfKEy7gVR9lUPDo8Z5ensIeGNjDVYV3841HH96YGSMCor2pStZ1v+maSFeuvk9Rig8C0iSA3EYz2sTUZbepsmnjleQfXUZyKPlLj5ORka2v7+++/i/Md/f777yQSSY71mZuamn788cdHjx7t3LnTxcVFXV1dSkNquk5OhtTzebeanL2gNFHMyqyjKRXuTr7TDUnmqPNPat44WtktNVV0nDVJF4XDmRiC8ho6G0CKkc0DAAEAAkU0IaIfAN0vnKEUSoDNZiMkTbGD1LL7xh+OvPAQN8Vr8ijFTQdDDt5aVIeFIY7dgrFwmvCmECu7B6DURPSwppPHBFzwiYR6OnDa9iUBBYSaFkWwIGkya6pb2BNwKAAA81llE8rCk4gbwsupa04isIufNTABAQcAYDZU1nCJXiaSChsFXTGUrvvWtFMr35w4s/L4noR6l61bF7hZSOZlVfgX6u7uzmAw6HS6vMRPSUmJmZmZ3MubLVu2LCAgYPr06f1iX0tKSg4fPpyWlqaI7LtwONzBwWH79u2bN2/u7OyUWtOKCs6QkBAAgDBlVEhICPQKy8nJKSsrYzKZ5ubmFApFojhB0SzHwhxR/TIhy05GRsaWLVsG9oGxWGxqaqos5YiAAjy0GAxm7dq1S5cujYqKwmKx8+fPR6FQwxS54PF4Z8+ejY6O7unpWb9+vfiTaUeOHCljU5X2h+fz1LTvE/hbampq1q1bV1RUxOfzL1y4EBsbu2fPHjHdSunp6RkZGaJ51VxcXC5dugQGpMN1c3NbtmzZ8uXLJWqkqP3h/cAfof3GxsahViEQCB0dHcjnxmAwamtrIUfioBnMPxL09fWFD/rS0lJ7e3uJxrFkp6amRlVVVdKB6hEjRsBgMCaTKd8wfiE8Hu/hw4dFRUV0Ol1HR8fU1PT+/fvCLMdWVlbTp0//5ZdfvvvuOymCkLW0tKysrLKysry8vKCoMybzTd/X2NjYxcUlPT192bJlo0eP/hRDvKTjee4mSuwrz0MXQsaJdGLQpp5zHbevCwqyTNnlAS7GneoYu9/tjeJlPbr5yOD7EE8T/Ct9zY4bf75i2L669xxtaqqp4NeIioqKhoZGe3u7OBt3dHTgcDgZkx4DAAQCAZPJvHz58q5duyZPnlxYWChzPx5HmuvrlhsaGgAals0g6bIrT8dm9ZAjZ5NQSNSXc2agQhJ3n9bdOIPYcDE28QHRO8GJgATAZQbpUMzug6TIJSR6/u6Y8/VgDgAAZejuZZsRERFtGLmWTHh2PjEuj70sNW6hpKmPkVpjvvEdI9tpvZshWjvXyYtM8D8YkaC11duWXXaSmvKAFJm09Z+KLkgcaYYzLiOlwtw3aCzhX95fLZLHDKJ/RmyKyUZvc2bxUWoZZs4ed0MABk8YjLKe4WV7PDEu2TzU70twNznuPHAJ87KSItGuQq4YimDhRHhbWowJijHoTmMnJzuC5O1T4BcqEAhu3LihoaEhe8XmhoYG6MOZM2cWLVrU1NQEvcplv20hbGxsVq1aRaFQAgICpk2bpqqq2tfXd+nSpcOHD2/fvl322Ne+vr7KykoSiTRQzEAvVqkT5kNle1paWiBBCylMKGVUS0sLVLcWj8c3NzdPmTKFyWQWFRVdunRpyZIl4tsfmOW4XyZk2WUtl8ttaGgY1KkzduzY6OhoLpcrdX1UBYUc+/j43L17Nzk5edGiRRoaGsJwVmtr64yMDIFA4OvrK8x+wmAwmEymurr6pk2bvL29xT8KVA1oKBAIBBaLlUsnhM/nd3d383i8gavgcDgWi5VXfRb5ntHw1sSx/3lqWm9vbygwGABw5MgRiX5zktpPSUlZsGBBR0dHZGTk/fv3obojCAQCjUbL6NRSRFSq0LLi/MBytA8NlQ0TYa+lpbV582YoEOj333/ftGkT9KDk8XjW1tYff22AlJSUiIiI96lp+/r6iouLx48fL+nFQaPRJiYmNBrN0NBQEdWqysvLb9686e7urq+v39zcfOXKFXt7e2HZHhgMBgVvSxeEDIPB5s+ff+XKldzc3EFfpVAQsqmpqSwBY58S3Odlv+Q8au145G32T45Vx/DSol0Tv9u/70/K9h/dbX9ynPd9+Mkf5731waId1yQkAAAAMJ32w/xjC5wMN6maLknIGa2QgoMfmps3b6ampvb09MTExEydOlUuDxOUuXdcGooanZi8I4+JNHRy945PppBNUAAAgmvIoR1gd9Ia1x1MQHAO3B3va4cDAACiR1hUQ8SeiNmpTKBFcrbTbUC8MRWfjKLuSVwzJYIJUKS5W/e4f0S1fPoxeGuRwHlTWprm7t3RCxJfsYGBc2CEr5MWAE3/7Iiz9ZhhlwXGeTj1H0nDOa2Kiwcx1K2zqa/YODvfSGqQsxYAPUO1wMJ7dxx7PzVmUWJ9D8pi7ta4UA9JQrX/c4jmPQYA8Hi8x48fx8XFrV+/XvZhzc2bN0Mf2tra8vPzr1y5oq2tHRYWNmrUKBktQ8Dh8O+++87Q0DAnJ6e4uBiJRPJ4PCKRmJqaKqxuKAvt7e0hISFRUVEDK1eXlJSoq6tLnQU3ISEBErSiZXt0dHSCg4MhLZqYmBgeHr5mzRpo1Y0bN1pbW8W3n5iYODDLsWgm5KSkpLCwMOkaLyQ7O3uYRNbz58/Py8uTOtN1VFRUenq6IubQRkVF2dnZnT9//tmzZ2z2mxE0qCcPg8FUVVWF3QNNTU0LC4s5c+aIX8UHIjs7e5i1mpqaHh4eQ83wkoi+vr4rV64MKhHV1NQ8PDzkFWoh3zMa3po49hX7UMdgMAgEorGxUaJHVUdHh/TxXQAAANauXXvw4MHVq1eDtzmcZLE2vP2FCxf6+PiEh4dXVVXFxcUdOXLk+vXr3t7eQUFBH3PimaH8wB+VfSMjo8zMzEGHmiCgwV3o88yZM0XrTomu+uDU1dXV1tYK/9XX1xeGtdy+fbuurm7gLiYmJnIvBsjlcouLizkcDplMlnRfOBw+fvz4pKSkCxcuzJo1S76ytqen59q1awsXLrSxsYHBYNDjQjS3BHgra4WZkCUNQlZXV58zZ05vb+/An9Pdu3efPHni6uqqoHLwHwVYx/DrL/+J90Ka+uS0+wy+6egVh0pXHBrWms7E8MKX4kePYbHY6J073nM8gowEBASsW7duwYIF8g2MRFl7bc302jrYGos5W9PmDFyDMnQNTHMNHLgDztYrMtMrUo6NkwIkgbybVj5gMcrEO630X0PJg7cWRXD+IS7/h7h/LbSlnLz9tm4Tzink3L2Qt1s7bcq/98++huS1h8j93u1qpMBfy4UXC+cSWVj6z6Eoe89S9op9agplwPX5B5zz1t8GXtH3Tb+8xwgEwtzcPCwsTNKE+YOyb9++fkvk/r6G0tJOmDChs7MTqlaNw+Hk9YTX0dEZO3bsmjVrdu7cOX36dHV1dYFAUF9fn5qampaWFhERIbWrc8mSJSdOnAgKCuonObS1tUNCQhISEnx8/nlsX716lcPhQKXdxeS77747depUYGBgP/tQJuSEhIRFixZJ13JRhjeydOlSWYwbGhqGhYV5eXnJve+KwWB8fX29vLx6enqEnnYVFRUCgQAASE5OFk6vhVyd6urqkvpUh1fyCARCXjWBVFVVp02bNoyfVi5HAfI+I0lHOgbaRwJJ5shJOgfP2NiYTCYHBwdHRUWJqdS7u7uPHTsmUcp4HA7XbzRCS0srIiJi0Dm0PT09HA5Hoh758Pabm5tDQ0PLy8ujo6N1dXXr6+utra3/97//6erqin+ICRMmrFmzxs3N7Z1blpeXJyUliW/5k7avoqIi/uR7dXV1IpEoS/CSQCBAIpH9jihcInUiYgBAbW0tVNkIwsHBQahpy8vLB33/kclk6TRtZ2cnFFgi+qOFAlFoNFpbW5ufn590TicNDQ0KhZKamspgMFxdXUVDPqAIEABAX1+fqqqqpA/67u7uvr4+S0tLYSEEPT29gcPPMBhMliBkJBIJBYYJLxGfz3/w4MHNmzeXL18ul/m0svxIPmPgcPiokeLeyIOCw+Hq6upYLNbwvVIWi1VbWytjWQUVFRUPD48tW7bIPXWNEiWfBEQisaJC0pJCktlXnHFRUCiURD0x8c2GhoZ2dHSsX7+ew+FgsVg+n9/b24vD4cLCwpYvXy51+Kipqen27dsHXaWpqSm66tatW9nZ2V999ZVEyfDMzMy2bdsmjv2PlpiYGMUZh8PheDx+0C6Z+H3RYZB7waShgMPhsiRCEx/5npHs1pAAACgwo6+v751b19XVIZFI8Z2oMBjsp59+olKpog604eFyudbW1tDMdTERRgK/83IwGIz09HQrKyuJLtzw9vPz8/Pz8ykUCo/H27hxY319/YYNGyR9ZNvY2Pz555/l5e8enU1KSpIiTc6nbl8chMOxUuyLxWKRSOSLFy+MjY0zMzNFVwmXtLW1iZ+RvB+urq5D1eldv379MDmKpeDixYszZ87E4/GiURx8Ph8Gg5mamn7zzTeyRI7p6OgEBAT88ccfhYWFAoFA+OaGIkAAAFD1OUmDZ9TV1TEYzOPHj8eMGQMAEAgETU1N0OBoP2QMQoY4duyYj4+Prq4ul8ul0+nyShClqqra0zNU7GN/Xr9+zefz/zvTd2Vk+vTp69ev37Bhg76+PgwGmzp16qRJk4RrS0tLr169Cv1snj59GhAQIMuxTExMkpKSFBFgr0SJEoXCZrNra2sHpqsdCIlEkuVABAIhOTm5srKypqamvb0dBoONHDnS3t5e0Ul0IM6dO3fp0iVtbW1jY+PS0lLRh6GSj5mXL19KtD0SidTW1hb/ZaS0jwRvQ8MjIiLi4uKGSdVbW1sbGBg4ZcoUiW5aAoGwc+fO9vZ2cZ4yUBM1NTUl8iMJI4GFeV8GBQaDqaure3l5bdy4UaIQlOHtd3d3d3V1paenczgcgUCwbt26kJAQKUJcbGxsFCT2Pg/7w8BgMPbt29fc3Ozm5ubu7i7pXQQAGDVqFJlMDgoKSkxM7JfsDprT29jYePDgwXnz5sm35d9++6280gwK8fT0hFymolEcMBhsxIgRqqqqssfDa2hoTJkyhcVivX79WuiWFEaATJgwQYrgGQwGM3XqVKjgs42NzdOnT69duwaJ5IEIg5BpNJqZmZkUAw0MBqOrq0tXV3fEiBFkMnnQGbY8Ho/D4UikOR0cHEpKSggEwju/087OzvPnz+vq6spl5sx/AVtb24yMDBqN1tzcLBAI+l1hDQ0NdXV1yI2/fft2GbuV8kpUo0SJkvdMXV2dn5+fOD3j+vp3VIZ6JwgEws7OTpj04b3BZrOhiV1tbW1ZWVlYLPYj0bT3799nMBgS7YLH4+3t7RXUno+QAwcOSLS9pPVdlfZhUK+0ubl58+bNN27cGEZ5qqiouLm5JSQkyCvg+/Pg6NGjkZGRPB7P3t7+559//lC67r8JJDJbW1vV1NQ0NTVLS0v5fL6VldWJEyckDRTp7e0NDAyk0WgcDmfgWigcMSYmZvibs66uTu6TYN//IRTNUKdQVlZ29erV3t5eVVVVd3f3CRMmKMhXlpub293dPW3atKHGzng83uXLl1VVVefMmSN+esbe3t7c3NyqqqphZoBDwOFwKyur+fPnDxXz8hl8y1Lwedw+n+V391melBIlSuSIm5ub6BwrcSCTyaL1Pj4blA/MD8Wb7pqenl56evqLFy+GiZ1TV1cfNWqUMiKrH56enpCOHTVqlKmp6Yduzn+LqKgo8DZ9BY/Hq6ur43K5KBRKimwTGAwmJSWlsbGxq6tr4Fo1NTUikSh19nkl4uDs7Gxvb9/V1YXFYhXqwJw2bdrVq1fz8vKGeppxOBw9Pb2hXLhDgcFgFi9ezGAwhCkThwKFQmlpaX3MOeSUKFGiRImSj4RBU2mKiVJe/nf4p8cGh8PlO6/vPwKRSHxvCQ+U9EN0SoyKisowNbLFAYFAGBkZydwoJdKDwWDeQzUdLBY7a9as3t7eoaoIwuFwNTU1KYYwEAiEfNPkKlGiRIkSJf9xZJEnytyN/x2UficlSpT851BRUZE645cSJUqUKFGiRBSFRhErdakScVBm3VSiRIkSJUqUKFGiRIkSJZ8q/wfjUH2NnUJAAAAAAABJRU5ErkJggg=="
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,2",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,2,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,0,0",
+                                "type": 4,
+                                "elements": "Esta herramienta está diseñada para trabajar con archivos y editar texto. Abrir, guardar, descargar, renombrar y eliminar archivos solo está disponible después de iniciar sesión. El botón \"Configuración\" ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,2,1",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,1,0",
+                                "type": 4,
+                                "elements": "permite configurar los parámetros de cálculo de expresiones, el idioma del documento y los documentos incluidos. El idioma del documento determina el conjunto de variables, funciones y unidades ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,2,2",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,2,0",
+                                "type": 4,
+                                "elements": "integradas utilizadas. Puede cambiar la escala del documento con el control de zoom: ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            },
+                            {
+                                "id": "0,2,2,1",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "iVBORw0KGgoAAAANSUhEUgAAAEYAAAATCAIAAACiD+yXAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADc0lEQVRIie1XX2gTdxz/Jp7wK/hwVzqWAx/6Kx0sAR8uWEZPIphRpden3vDF2Y0tLVtJXzTpwxbpg0YF6Z8HE2SSKmxEQW2EsUbGaApjlzKERMjIPVTyE+ySDAt3wUJ+0HjnQ08XNbVGg1Lx83R8v9/7/D4ffl8+3NlM04T3C/Z3LaD1+GBpO6B5SzVd/SMalPcNnM3SumL28tjnrnbbzrau/UenbhGrVSulTn3h+shm29nuOjg2m9Wt4QtH3Xx718Fg4i5teMhLYBjGv8WSYRibTpjNQPtzUu5GGy8KE5mqVa4WLsm4Q/BdUgpEiQxh5JBjatU0zeK1L7FDDPyaL6rzIQ/H90fyVbOamZT6/HNqQZmWxdG54rpplhZiFxeK66+koVKpfO37vlKpbDbQ7C2x7uNzGaKEPfz/NUoSV5fQ4fDkkIg7Rd9ESGKyizkNKEleT6PB0Il+J/+pFPzhCJtLpJaptkKoQxS6sWuvE62Q8pqeOn86UUZtTLMX1hjN0bAeX8gDsJZNPsOB5dM3vLybZQAAEOLaEEANgJbUe4D7nIgBAGA/ETCTIquU6+BhJUNWJfqPqu2SIBedui34fxbZ1jhqSTwwCPeIwm5rIcliIg2C1MsBLetrwLHIaiCOY2h5tYp6/JOH9aDAD9zEJ8bd6fNJfsQvOVogxJITmjj5YlXqP7Sv97PXoKO52eBEkv/2N6kTwQrQ9fqjAACgBsCwwmgsMxoDAHJ1OMocifTjl9MqS38nb/2+8fzIMADgzLnpHXZ7Q7UtDfFyKvzd+NKeU5FjIgsvLHUNAABQ/XwyernkHRHVswNdXLv7q2h6tRUymko8Cw8zYQ9fl3hW7MWHMCf45+8/qWgLgR4sXSxYYyQudwuBlPa0rZyUvD/O5xN+72BYIfm5Y17p3LOcbyXxNkFNT88MBxedoZ/C0u4nRcTjDkpuq1oNAEC/ny+3udzYSgGai08t8v4REe4RcB5wdTp7ezFdJhvDb4LWWCI3g8PTJWk6Euipyy2EpUGh/MvY2ExKzaVmZ65oe+UDlmGq/qXy3wSkThY5OE3NlnRdvUMQxtybR3kLFm+9EB/knucVQopmmg/zsVGRB4AOQR6PZR40YnughPt4tAtxe3zx5S33buvFs5nb7efCMIxS+T/e8bHd3njFtp+lLfHhS3w74DEbWP2j8YCeTgAAAABJRU5ErkJggg=="
+                            },
+                            {
+                                "id": "0,2,2,2",
+                                "type": 4,
+                                "elements": ". También es posible cambiar la escala con la rueda del mouse con la tecla Ctrl presionada. El botón ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,2,3",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,3,0",
+                                "type": 4,
+                                "elements": "\"Recalcular documento\" recalcula todas las expresiones del documento. Los botones para seleccionar el formato de párrafo, la fuente, el tamaño de fuente y el estilo son equivalentes a los del editor ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,2,4",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,4,0",
+                                "type": 4,
+                                "elements": "estándar.",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,3",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,3,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,3,0,0",
+                                "type": 4,
+                                "elements": "Panel de expresiones matemáticas",
+                                "format_id": "42b6feb5-e063-4876-84f1-515a5360136d"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,4",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,4,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,4,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "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"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,5",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,5,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,5,0,0",
+                                "type": 4,
+                                "elements": "Diseñado para editar expresiones matemáticas y calcularlas.",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+#ifdef WEB
+            {
+                "id": "0,6",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,6,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,6,0,0",
+                                "type": 4,
+                                "elements": "Panel de Documentos",
+                                "format_id": "42b6feb5-e063-4876-84f1-515a5360136d"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,7",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,7,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,7,0,0",
+                                "type": 4,
+                                "elements": "Ubicado a la izquierda, este panel contiene los documentos del usuario actual. Aparece después de iniciar sesión. Al hacer clic en un documento, este se carga y se calculan sus expresiones matemáticas.",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,8",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,8,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,8,0,0",
+                                "type": 4,
+                                "elements": "Panel de Biblioteca",
+                                "format_id": "42b6feb5-e063-4876-84f1-515a5360136d"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,9",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,9,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,9,0,0",
+                                "type": 4,
+                                "elements": "Ubicado a la izquierda, este panel contiene ejemplos de uso, información de referencia e información auxiliar diversa. Los documentos cargados desde la biblioteca se pueden editar, pero solo se pueden ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,9,1",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,9,1,0",
+                                "type": 4,
+                                "elements": "guardar en sus documentos después de iniciar sesión.",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,10",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,10,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,10,0,0",
+                                "type": 4,
+                                "elements": "Panel de notación",
+                                "format_id": "487901ec-7161-4565-a4af-41f29241ca5c"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,11",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,11,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,11,0,0",
+                                "type": 4,
+                                "elements": "Contiene variables, funciones y unidades integradas y definidas por el usuario, ordenadas alfabéticamente y por significado físico (unidades). Los identificadores definidos por el usuario aparecen en este ",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "0,11,1",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,11,1,0",
+                                "type": 4,
+                                "elements": "panel a medida que los introduce en el documento actual.",
+                                "format_id": "5f2218a2-0eb8-4685-a94f-5d38a765a736"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+#else
+#endif
+            {
+                "id": "0,12",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,12,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,12,0,0",
+                                "type": 4,
+                                "elements": "",
+                                "format_id": "ba029626-373b-4237-a9c4-82b2d5361daa"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,13",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,13,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,13,0,0",
+                                "type": 39,
+                                "elements": "<- Introducción/Política de privacidad",
+                                "format_id": "d338b315-a9b4-4a00-8a75-7f4d6e02c9b0",
+                                "url": "../Introducción/Política de privacidad.yut"
+                            },
+                            {
+                                "id": "0,13,0,1",
+                                "type": 4,
+                                "elements": "  ",
+                                "format_id": "d7dbc119-d4ee-4a78-8699-7002385c3e62"
+                            },
+                            {
+                                "id": "0,13,0,2",
+                                "type": 39,
+                                "elements": "Bloque de calculadora ->",
+                                "format_id": "d338b315-a9b4-4a00-8a75-7f4d6e02c9b0",
+                                "url": "./Bloque de calculadora.yut"
+                            }
+                        ]
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            }
+        ]
+    },
+    "caret": {
+        "id": "0,0,0,0"
+    },
+    "selection": []
+}
