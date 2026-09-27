@@ -1,0 +1,30 @@
+when:
+  - event: [push, manual]
+    branch: develop
+
+steps:
+  - name: build
+    image: ubuntu:22.04
+    commands:
+      - export DEBIAN_FRONTEND=noninteractive
+      - apt update && apt install -y build-essential cmake pkg-config libgtest-dev libgmock-dev qtbase5-dev libqt5widgets5 libmpfr-dev
+      - export YUTOVO_DEPLOY=/home/denis/programs/Math/yutovo/deploy
+      - mkdir build && cd build
+      - cmake -DCMAKE_BUILD_TYPE=Debug ..
+      - make -sj4 && make install
+
+  - name: build_web
+    image: emscripten/emsdk:3.0.1
+    commands:
+      - apt update && apt install -y build-essential pkg-config
+      - apt remove -y cmake
+      - mkdir /opt/cmake
+      - wget https://github.com/Kitware/CMake/releases/download/v3.30.2/cmake-3.30.2-linux-x86_64.sh
+      - chmod +x cmake-3.30.2-linux-x86_64.sh
+      - ./cmake-3.30.2-linux-x86_64.sh --skip-license --prefix=/opt/cmake
+      - ln -s /opt/cmake/bin/cmake /usr/local/bin
+
+      - export YUTOVO_DEPLOY=/home/denis/programs/Math/yutovo/deploy
+      - mkdir build_web && cd build_web
+      - emcmake cmake -DCMAKE_BUILD_TYPE=Debug ..
+      - make -sj4 && make install
