@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Exact bounds for complex roots of a polynomial</title>
+</head>
+<body >
+<a href="cascmd_en377.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en379.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec844" class="subsection">11.3.6  Exact bounds for complex roots of a polynomial</h3>
+<p>The <span style="font-family:monospace">complexroot</span><a id="hevea_default648"></a>
+command finds bounds for the complex roots of a polynomial.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">complexroot</span> takes two mandatory arguments and two
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">P</span>, a polynomial.
+</li><li class="li-itemize">ε, a postive real number.
+</li><li class="li-itemize">Optionally, α, β, two complex numbers.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">complexroot(</span><span style="font-style:italic">P</span>,ε<span style="font-family:monospace">)</span>
+returns a list of vectors, where the elements of each vector are one
+of:
+<ul class="itemize"><li class="li-itemize">
+an interval (the
+boundaries of this interval are the opposite vertices of a rectangle with sides
+parallel to the axis and containing a complex root of the polynomial) and the
+multiplicity of this root.<p>Suppose the interval is [<span style="font-style:italic">a</span><sub>1</sub>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span><sub>2</sub>]
+then |<span style="font-style:italic">a</span><sub>1</sub>−<span style="font-style:italic">a</span><sub>2</sub>|&lt;ε, |<span style="font-style:italic">b</span><sub>1</sub>−<span style="font-style:italic">b</span><sub>2</sub>|&lt;ε and the root <span style="font-style:italic">a</span>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span>
+satisfies <span style="font-style:italic">a</span><sub>1</sub>≤ <span style="font-style:italic">a</span> ≤ <span style="font-style:italic">a</span><sub>2</sub> and <span style="font-style:italic">b</span><sub>1</sub>≤ <span style="font-style:italic">b</span> ≤ <span style="font-style:italic">b</span><sub>2</sub>.
+</p></li><li class="li-itemize">the value of an exact complex root of the polynomial and the
+multiplicity of this root.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">complexroot(</span><span style="font-style:italic">P</span>,ε,α,β<span style="font-family:monospace">)</span> 
+returns a list of vectors as above, but only for the roots lying in
+the rectangle with sides parallel to the axis having α,β as
+opposite vertices.
+</li></ul><h4 id="sec845" class="subsubsection">Examples</h4>
+<p>
+Find the roots of <span style="font-style:italic">x</span><sup>3</sup>+1.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">complexroot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+1,0.1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">    −1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">    </span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.499999046325680..0.500000953674320</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.866024494171135..0.866026401519779</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">    </span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.499999046325680..0.500000953674320</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.866024494171135..0.866026401519779</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1
+</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Hence, for <span style="font-style:italic">x</span><sup>3</sup>+1, −1 is a root of multiplicity 1,
+<span style="font-style:italic">a</span>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span> is a root of multiplicity 1 with 
+0.499999046325680 ≤ <span style="font-style:italic">a</span> ≤ 0.500000953674320 and
+−0.866026401519779 ≤ <span style="font-style:italic">b</span> ≤ −0.866024494171135, and
+<span style="font-style:italic">c</span>+<span style="font-style:italic">i</span><span style="font-style:italic">d</span> is a root of multiplicity 1 with
+0.499999046325680 ≤ <span style="font-style:italic">c</span> ≤ 0.500000953674320 and
+0.866024494171135 ≤ <span style="font-style:italic">d</span> ≤ 0.866026401519779.</p><p>Find the roots of <span style="font-style:italic">x</span><sup>3</sup>+1 lying inside the rectangle
+with opposite vertices −1,1+2<span style="font-style:italic">i</span>.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">complexroot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+1,0.1,-1,1+2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">    −1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">    </span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.499999046325680..0.500000953674320</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.866024494171135..0.866026401519779</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1
+</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en377.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en379.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

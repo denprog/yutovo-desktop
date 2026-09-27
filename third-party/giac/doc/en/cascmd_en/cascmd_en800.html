@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Using giac inside a C++ program</title>
+</head>
+<body >
+<a href="cascmd_en799.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en801.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2069" class="subsection">25.7.1  Using <span style="font-family:monospace">giac</span> inside a C++ program</h3>
+<p>To use <span style="font-family:monospace">giac</span> inside of a C++ program, put
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> <span style="color:#0000CC"><span style="font-weight:bold">#include</span></span> &lt;giac/giac.h&gt;</td></tr>
+</table><p>at the beginning of the file. To compile the file, use
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> c++ -g progname.cc -lgiac -lgmp</td></tr>
+</table><p>After compiling, there will be a file <span style="font-family:monospace">a.out</span> which can be run
+with the command
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> ./a.out</td></tr>
+</table><p>As an example,
+put the following program in a file named <span style="font-family:monospace">pgcd.cc</span>.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-size:small"> </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">giac</span><span style="font-size:small">/</span><span style="font-size:small">config</span><span style="font-size:small">.</span><span style="font-size:small">h</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">giac</span><span style="font-size:small">/</span><span style="font-size:small">giac</span><span style="font-size:small">.</span><span style="font-size:small">h</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">using</span></span></span><span style="font-size:small"> </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">namespace</span></span></span><span style="font-size:small"> </span><span style="font-size:small">std</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">using</span></span></span><span style="font-size:small"> </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">namespace</span></span></span><span style="font-size:small"> </span><span style="font-size:small">giac</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">pgcd</span><span style="font-size:small">(</span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">a</span><span style="font-size:small">,</span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">b</span><span style="font-size:small">) {</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">q</span><span style="font-size:small">,</span><span style="font-size:small">r</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">for</span></span></span><span style="font-size:small"> (;</span><span style="font-size:small">b</span><span style="font-size:small">!=0;) {</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small">r</span><span style="font-size:small">=</span><span style="font-size:small">irem</span><span style="font-size:small">(</span><span style="font-size:small">a</span><span style="font-size:small">,</span><span style="font-size:small">b</span><span style="font-size:small">,</span><span style="font-size:small">q</span><span style="font-size:small">);</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small">a</span><span style="font-size:small">=</span><span style="font-size:small">b</span><span style="font-size:small">; </span><span style="font-size:small">b</span><span style="font-size:small">=</span><span style="font-size:small">r</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  }</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">return</span></span></span><span style="font-size:small"> </span><span style="font-size:small">a</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">}</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">int</span></span></span><span style="font-size:small"> </span><span style="font-size:small">main</span><span style="font-size:small">() {</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">cout</span><span style="font-size:small"> &lt;&lt; </span><span style="font-size:small"><span style="color:#006600"><span style="font-size:small">"Enter 2 integers "</span></span></span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">a</span><span style="font-size:small">,</span><span style="font-size:small">b</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">cin</span><span style="font-size:small"> &gt;&gt; </span><span style="font-size:small">a</span><span style="font-size:small"> &gt;&gt; </span><span style="font-size:small">b</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">cout</span><span style="font-size:small"> &lt;&lt; </span><span style="font-size:small">pgcd</span><span style="font-size:small">(</span><span style="font-size:small">a</span><span style="font-size:small">,</span><span style="font-size:small">b</span><span style="font-size:small">) &lt;&lt; </span><span style="font-size:small">endl</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">return</span></span></span><span style="font-size:small"> 0;</span><span style="font-size:small">
+ </span><span style="font-size:small">}</span></td></tr>
+</table><p>After compiling this with
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> c++ -g pgcd.cc -lgiac -lgmp</td></tr>
+</table><p>and running it with
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> ./a.out</td></tr>
+</table><p>a prompt will appear:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> Enter 2 integers</td></tr>
+</table><p>After entering two integers, such as
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> Enter 2 integers  30 36</td></tr>
+</table><p>the result will appear:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> 6</td></tr>
+</table>
+<hr>
+<a href="cascmd_en799.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en801.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

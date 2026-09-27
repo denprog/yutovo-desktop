@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Right triangles in space</title>
+</head>
+<body >
+<a href="cascmd_en942.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en944.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:3dright" class="subsection">27.6.3  Right triangles in space</h3>
+<p>See Section <a href="cascmd_en843.html#ssec%3A2dright">26.7.3</a> for right triangles in the plane.</p><p>The <span style="font-family:monospace">right_triangle</span><a id="hevea_default1856"></a>
+command returns and draws a right triangle.
+It can take its arguments in two different ways.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+<span style="font-weight:bold">Three points.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">right_triangle</span> takes three mandatory arguments and
+one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">P</span>, three points.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">var</span>, a variable name.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">right_triangle(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">P</span> ⟨,<span style="font-style:italic">var</span>⟩<span style="font-family:monospace">)</span>
+returns and draws the right triangle <span style="font-style:italic">BAC</span> in plane <span style="font-style:italic">ABP</span> with the
+right angle at vertex <span style="font-style:italic">A</span>. The triangle is oriented so that the angle
+<span style="font-style:italic">BAC</span> is positive. The length of <span style="font-style:italic">AC</span> equals the length of <span style="font-style:italic">AP</span>.<p>If the variable name <span style="font-style:italic">var</span> is given, it will be assigned to
+the vertex <span style="font-style:italic">C</span>.
+</p></li></ul>
+</li><li class="li-enumerate"><span style="font-weight:bold">Three points and a real number.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">right_triangle</span> takes mandatory three arguments and
+one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>, two points.
+</li><li class="li-itemize">[<span style="font-style:italic">P</span>,<span style="font-style:italic">k</span>], a list consisting of a point <span style="font-style:italic">P</span> and a real number
+<span style="font-style:italic">k</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">var</span>, a variable name.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">right_triangle(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,[<span style="font-style:italic">P</span>,<span style="font-style:italic">k</span>] ⟨,<span style="font-style:italic">var</span>⟩<span style="font-family:monospace">)</span>
+returns and draws the right triangle <span style="font-style:italic">BAC</span> in plane <span style="font-style:italic">ABP</span> with the
+right angle at vertex <span style="font-style:italic">A</span>, and the length of <span style="font-style:italic">AC</span> equals |<span style="font-style:italic">k</span>| times
+the length of <span style="font-style:italic">AP</span>. Angles <span style="font-style:italic">BAC</span> and <span style="font-style:italic">BAP</span> have the same
+orientation if <span style="font-style:italic">k</span> is positive; they have opposite orientation if
+<span style="font-style:italic">k</span> is negative. So, if β is the angle <span style="font-style:italic">ABC</span>, then
+tan(β)=<span style="font-style:italic">k</span>.<p>If the variable name <span style="font-style:italic">var</span> is given, it will be assigned to
+the vertex <span style="font-style:italic">C</span>.
+</p></li></ul>
+</li></ol><h4 id="sec2382" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">P</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,0,0),</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3,3,3),</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,0,3);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">right_triangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">P</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en380.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">right_triangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">P</span></span><span style="font-weight:bold"><span style="color:#BF0000">,2])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en381.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">right_triangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">P</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-2])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en382.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">right_triangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">P</span></span><span style="font-weight:bold"><span style="color:#BF0000">,2],</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">coordinates</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−3 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,−3 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,6 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en942.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en944.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

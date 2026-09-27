@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Exemples d’intégrales</title>
+</head>
+<body >
+<a href="casexo023.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo025.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec404" class="chapter">Chapitre 24  Exemples d’intégrales</h1>
+<h2 id="sec405" class="section">24.1  Des calculs d’intégrales</h2>
+<p>
+On tape :
+</p><pre class="verbatim">integrate(1/(x^4-1)^10,x);
+integrate((x^4+4*x^2+6*x+4)/(x+1)^2,x);
+integrate(x/((x-1)*(x+1)^2),x);
+integrate(x/((x+1)*(x^4-1)),x);
+integrate(1/(3*x*(x^2+x+1)*(x-1)^3),x);
+integrate(1/(x^4-1)^2,x);
+integrate(1/(x^4+1)^2,x);
+integrate(1/(x^4+1)^4,x);
+integrate(x^7/((x^4-1)*(x^2+3)),x);
+integrate(((1+x)/(1-x))^(1/3),x);
+integrate((sin(2*x)+1)/(cos(2*x)),x);
+integrate((2*sin(x)+1)/(2*sin(x)-1),x);
+integrate(exp(x)/(3+2*exp(x)),x);
+integrate(sin(x)^2*cos(x)^4,x);
+integrate(sin(x)/(sin(x)^3+cos(x)^3),x);
+integrate(1/sqrt(2*x*t)*exp(-t^2/2),x);
+integrate(sin(3*x)^4/exp((3*x+1)/cos(t)),x);
+integrate(2*x/sqrt(x^2-1),x);
+integrate((sin(x)+cos(x))/(sin(x)-cos(x)),x);
+integrate(sin(pi/2-2*x),x);
+integrate(tan(x)+tan(x)^3,x);
+integrate((exp(x)-exp(-x))/(exp(x)+exp(-x)),x);
+integrate(1/cos(x)^25,x);
+integrate(1/(sin(x)-1)^3,x);
+integrate(1/(sin(x)+1)^3,x);
+integrate(ln(x+sqrt(1+x^2)),x);
+integrate(atan(2*x/(1+x^2)),x);
+integrate(x*sqrt(1+x^2),x);
+integrate(sin(x)/cos(x)^2,x);
+integrate(exp(x)/(1+exp(2*x)),x);
+integrate(cos(x/2)^2/(x+sin(x)),x);
+integrate(x/sqrt(x+1),x);
+integrate(exp(x)/((3+exp(x))*sqrt(exp(x)-1)),x);
+integrate(sqrt(x)/sqrt(a^3-x^3),x);
+integrate(sqrt(a-x)/sqrt(x),x);
+integrate(sqrt(x^2+a^2),x);
+integrate(sin(2*x)*cos(x),x);
+integrate(x*atan(x),x);
+integrate(sinh(x)*cos(x),x);
+integrate(atan(x)/x,x);
+integrate(1/(sin(x)-2)^3,x);
+integrate((2*x^2+1)*exp(x^2),x);
+integrate(1/(1+sqrt(1-x^2)),x);
+integrate(sin(3*x)/sin(x),x);
+integrate(1/(t*ln(t)^2),t,2,x);
+integrate(ln(1+2/(n*(n+3))),n,1,+infinity);
+integrate((pi*t-t^2)*sin(n*t),t,0,pi);
+integrate(exp(t)*cos(n*t),t,-pi,pi);
+integrate(exp(x)*sin(x),x,0,t);
+integrate(cos(x)/exp(x),x,0,+infinity);
+integrate((t^4+t+1)/(t^6+t^3+2),t,1,+infinity);
+integrate(1/(t^4+t^2),t,2,+infinity);
+integrate(x*exp(1/2*abs(ln(x^2))),x,2,t);
+integrate(1/sqrt(2*x*t)*exp(-t^2/2),x,a,b);
+integrate((x^2*(1-x))^(1/3),x,0,1);
+integrate((a*t+5)/((t-1)^3*(t-2)^2),t,3,x);
+integrate(atan(sqrt(1-x^2)),x,0,1);
+integrate(ln(x^2+t^2)/(1+t^2),t,0,+infinity);
+</pre>
+<h2 id="sec406" class="section">24.2  Intégrale de exp(<span style="font-style:italic">x</span>)*polynôme</h2>
+<p>
+On tape :<br>
+<span style="font-family:monospace">integrate(e</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">x*sin(2*x),x,0,pi)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-2/5*exp(pi)--2/5</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*e</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(i*x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-(2*i)*x+2)/(-i)*exp((i)*x)</span><br>
+On obtient avec <span style="font-family:monospace">normal</span> :<br>
+<span style="font-family:monospace">(-i)*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*exp((i)*x)+2*x*exp((i)*x)+(2*i)*exp((i)*x)</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate((1+x)*cos(x)*e</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">x)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">exp(x)*((-((x+1)/-2))*cos(x)-(x*sin(x))/-2)</span>
+</p>
+<h2 id="sec407" class="section">24.3  Changements de variables</h2>
+<p>
+On tape :<br>
+<span style="font-family:monospace">integrate(x*exp(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+On obtient (à la main on pose <span style="font-style:italic">u</span>=<span style="font-style:italic">x</span><sup>2</sup>) :<br>
+<span style="font-family:monospace">(exp(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))/2</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(ln(x)/x,x,e,e</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+On obtient (à la main on pose <span style="font-style:italic">u</span>=<span style="font-style:italic">ln</span>(<span style="font-style:italic">x</span>)):<br>
+<span style="font-family:monospace">3/2</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate((2*x+1)/sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x+1))</span><br>
+On obtient (à la main on pose <span style="font-style:italic">u</span>=<span style="font-style:italic">sqrt</span>(<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">x</span>+1)) :<br>
+<span style="font-family:monospace">2*sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x+1)</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(sqrt(1+x),x,1,2)</span><br>
+On obtient (à la main on pose <span style="font-style:italic">u</span>=1+<span style="font-style:italic">x</span>) et <br>
+<span style="font-family:monospace">diff(2/3*u</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(3/2)=u</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(1/2)</span>) :<br>
+<span style="font-family:monospace">2*sqrt(3)-(4*sqrt(2))/3</span></p>
+<h2 id="sec408" class="section">24.4  Intégration par parties</h2>
+<p>
+Calculer : ∫ln(<span style="font-style:italic">x</span>)<span style="font-style:italic">dx</span><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(ln(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x*log(x)-x</span><br>
+Donc ∫ln(<span style="font-style:italic">x</span>)<span style="font-style:italic">dx</span><br>
+
+Calculer : ∫ln(<span style="font-style:italic">x</span>)<sup>2</sup><span style="font-style:italic">dx</span><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(ln(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(log(x))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x+(-(2*log(x)))*x+2*x</span><br>
+Donc ∫ln(<span style="font-style:italic">x</span>)<sup>2</sup><span style="font-style:italic">dx</span>=(ln(<span style="font-style:italic">x</span>))<sup>2</sup>*<span style="font-style:italic">x</span>+(−(2*ln(<span style="font-style:italic">x</span>)))*<span style="font-style:italic">x</span>+2*<span style="font-style:italic">x</span><br>
+
+Calculer : ∫cos(<span style="font-style:italic">x</span>)*ln(1+cos(<span style="font-style:italic">x</span>))<span style="font-style:italic">dx</span><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(cos(x)*ln(1+cos(x)))</span><br>
+On obtient une expression en termes d’exponentielles complexes qu’il
+est possible mais difficile de simplifier.<br>
+On tape :<br>
+<span style="font-family:monospace">ibpu(cos(x)*log(1+cos(x)),log(1+cos(x)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[sin(x)*log(1+cos(x)),((sin(x))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(cos(x)+1)]</span><br>
+On tape :<br>
+<span style="font-family:monospace">ibpu([sin(x)*log(1+cos(x)),((sin(x))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(cos(x)+1)],0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*((tan(x/2))/(-tan(x/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)+x/2)+sin(x)*ln(1+cos(x))</span>
+On peut encore simplifier en sélectionnant la partie en <span style="font-family:monospace">tan(x/2)</span> 
+en utilisant la fonction <span style="font-family:monospace">tan2sincos2</span>
+puis <span style="font-family:monospace">simplify</span>, au final on obtient :<br>
+<span style="font-family:monospace">2*(-1/2*sin(x)+x/2)+sin(x)*ln(1+cos(x))</span><br>
+Ou encore on tape pour intégrer <span style="font-style:italic">sin</span>(<span style="font-style:italic">x</span>)<sup>2</sup>/(<span style="font-style:italic">cos</span>(<span style="font-style:italic">x</span>)+1) :<br>
+<span style="font-family:monospace">integrate(trigcos(sin(x)2/(cos(x)+1)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-sin(x)+x</span><br>
+Donc ∫cos(<span style="font-style:italic">x</span>)*ln(1+cos(<span style="font-style:italic">x</span>))<span style="font-style:italic">dx</span>=sin(<span style="font-style:italic">x</span>)*ln(1+cos(<span style="font-style:italic">x</span>))−sin(<span style="font-style:italic">x</span>)+<span style="font-style:italic">x</span>
+</p>
+<h2 id="sec409" class="section">24.5  Intégrale de fractions rationnelles</h2>
+<p>
+Calculer :<br>
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">2<span style="font-style:italic">x</span>+1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span><sup>2</sup>−9</td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">dx</span></td></tr>
+</table><p>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">partfrac((2x+1)/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-9))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">5/(6*(x+3))+7/(6*(x-3))</span><br>
+On tape :<br>
+<span style="font-family:monospace">int((2x+1)/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-9))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(7*log(abs(x-3)))/6+(5*log(abs(x+3)))/6</span><br>
+
+</p>
+<h2 id="sec410" class="section">24.6  Intégrale de polnômes en sin et cos</h2>
+<p>
+On linéarise
+On tape :<br>
+<span style="font-family:monospace">int(sin(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-cos(x)-(cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)/-3+sin(x)-(sin(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)/3</span><br>
+On tape :<br>
+<span style="font-family:monospace">int(sin(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4+cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(3*x)/8-(sin(2*x))/4-(sin(4*x))/-32+x/2-(sin(2*x))/-4</span><br>
+
+</p>
+<h2 id="sec411" class="section">24.7  Intégrale de fractions rationnelles en sin, cos ou sinh, cosh</h2>
+<p>
+Théoriquement, on pose <span style="font-style:italic">t</span>=tan(<span style="font-style:italic">x</span>/2) et on obtient une fraction rationnelle 
+en <span style="font-style:italic">t</span>.<br>
+Pratiquement, on applique les règles de Bioche :
+</p><ul class="itemize"><li class="li-itemize">
+si lorsqu’on change <span style="font-style:italic">x</span> en −<span style="font-style:italic">x</span> et <span style="font-style:italic">dx</span> en −<span style="font-style:italic">dx</span>, l’expression totale 
+à intéger ne change pas, on pose cos(<span style="font-style:italic">x</span>)=<span style="font-style:italic">t</span> 
+</li><li class="li-itemize">si lorsqu’on change <span style="font-style:italic">x</span> en π−<span style="font-style:italic">x</span> et <span style="font-style:italic">dx</span> en −<span style="font-style:italic">dx</span>, l’expression totale 
+à intéger ne change pas, on pose sin(<span style="font-style:italic">x</span>)=<span style="font-style:italic">t</span> 
+</li><li class="li-itemize">si lorsqu’on change <span style="font-style:italic">x</span> en π+<span style="font-style:italic">x</span> et <span style="font-style:italic">dx</span> en <span style="font-style:italic">dx</span>, l’expression totale
+à intéger ne change pas, on pose tan(<span style="font-style:italic">x</span>)=<span style="font-style:italic">t</span> 
+</li></ul><p>
+On tape :<br>
+<span style="font-family:monospace">int(sin(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3/cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(3*cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)*(-(1/(cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*3)))</span><br>
+On tape :<br>
+<span style="font-family:monospace">int(1/(5+3*cos(x)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(2*(atan((tan(x/2))/2)+pi*floor(x/(pi*2)+1/2)))/4</span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(int(1/(sin(x)+cos(x)),x,0,pi/2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(sqrt(2))/2*ln(2*sqrt(2)+3)</span><br>
+On a 2*√<span style="text-decoration:overline">2</span>+3=(√<span style="text-decoration:overline">2</span>+1)<sup>2</sup> donc <br>
+<span style="font-family:monospace">(sqrt(2))/2*ln(2*sqrt(2)+3)=sqrt(2)*ln(sqrt(2)+1)</span>
+</p>
+<h2 id="sec412" class="section">24.8  Intégrale d’expressions trigonométriques</h2>
+<p> 
+On essaye de poser <span style="font-style:italic">t</span>=tan(<span style="font-style:italic">x</span>/2) et on obtient une fonction de <span style="font-style:italic">t</span>.<br>
+Avec <span style="font-family:monospace">Xcas</span> on transforme l’expression en tan(<span style="font-style:italic">x</span>/2) avec la commande 
+<span style="font-family:monospace">halftan</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">int(halftan(sqrt(1+sin(x))),x,0,pi)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4</span>
+On tape :<br>
+<span style="font-family:monospace">int(halftan(sqrt(sin(x))/(sqrt(sin(x))+sqrt(cos(x)))),x,0,pi/2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">pi/4</span>
+</p>
+<h2 id="sec413" class="section">24.9  Intégrale de la racine carrée de trinômes de degré 2</h2>
+<p>
+On met le trinôme de degré 2 sous sa forme canonique sous la forme :<br>
+<span style="font-style:italic">u</span><sup>2</sup>+1 ou <span style="font-style:italic">u</span><sup>2</sup>−1 ou 1−<span style="font-style:italic">u</span><sup>2</sup>. Puis, on pose <span style="font-style:italic">u</span>=cos(<span style="font-style:italic">t</span>) ou <span style="font-style:italic">u</span>=sin(<span style="font-style:italic">t</span>) ou 
+<span style="font-style:italic">u</span>=cosh(<span style="font-style:italic">t</span>) ou <span style="font-style:italic">u</span>=sinh(<span style="font-style:italic">t</span>) <br>
+On tape :<br>
+<span style="font-family:monospace">int(sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x+1),x,-2,2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">3/8*ln(2*sqrt(3)+3)+(-3)/8*ln(2*sqrt(7)-5)+(12*sqrt(3)+20*sqrt(7))/16</span><br>
+
+</p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo023.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo025.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

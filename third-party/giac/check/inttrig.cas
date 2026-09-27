@@ -1,0 +1,23 @@
+I:=i:; cd("trig"):; LST:=sort(ls()):; cd(".."):;
+Agrade:=0:; Bgrade:=0:; Cgrade:=0:; Fgrade:=0:; FAILINT:=0:; FAILSIMP:=0:; TIMEOUT:=0:; NINT:=0:;TIMINGS:=[]:; 
+for NUMBER from 0 to size(LST)-1 do
+  print("\n====\nFile number "+NUMBER);
+  testname:=LST[NUMBER]; xcas_mode(1); filetestname:="trig/"+testname; read(filetestname); print("\nEnd reading"+filetestname); xcas_mode(0); read("chkint.cas");
+  Agrade+=agrade; Bgrade+=bgrade; Cgrade+=cgrade; Fgrade+=fgrade; FAILINT+=size(failint); FAILSIMP+=size(failsimp); TIMEOUT+=size(timeouts); NINT+=tsts; TIMINGS:=concat(TIMINGS,timings);
+od:;       
+report:= "\n===="+
+  "\ntime list with timeouts:"+TIMINGS+
+  "\ntests: "+NINT+
+  "\nsolved: "+(Agrade+Bgrade+Cgrade)+" "+round(100.0*(Agrade+Bgrade+Cgrade)/NINT,2)+"%"+
+  "\nA: "+Agrade+" "+round(100.0*Agrade/NINT,2)+"%"+
+  "\nB: "+Bgrade+" "+round(100.0*Bgrade/NINT,2)+"%"+
+  "\nC: "+Cgrade+" "+round(100.0*Cgrade/NINT,2)+"%"+
+  "\nF: "+Fgrade+" "+round(100.0*Fgrade/NINT,2)+"%"+
+  "\nintegration failures: "+FAILINT+
+  "\nsimplification failures: "+FAILSIMP+
+  "\ntimeouts: " +TIMEOUT
+  :;        
+file:=fopen("inttrig.tst");
+fprint(file,report);
+fclose(file);
+print(report);

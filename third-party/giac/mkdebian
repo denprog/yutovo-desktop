@@ -1,0 +1,26 @@
+#! /bin/sh
+# sudo apt-get install gcc g++ libgmp-dev libmpfr-dev libmpfi-dev libpari-dev libgsl0-dev libxext-dev libpng-dev libjpeg-dev libreadline-dev libncurses5-dev mesa-common-dev libx11-dev libxt-dev libxft-dev libntl-dev libgl1-mesa-dev libgl-dev libao-dev hevea debhelper libfltk1.3-dev 
+/bin/rm libmicropython.a
+/bin/rm micropython-1.12/xcas/libmicropython.a
+/bin/rm doc/en/cascmd_en.ps
+/bin/rm doc/en/cascmd_en.dvi
+make clean
+export CC=/usr/bin/gcc # set to gcc-4.7 if gcc-4.4 avail, also in micropython/xcas/Makefile
+export CXX=/usr/bin/g++
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/ # see mkdebian32 for i386
+#cd ~/tmp
+#rm -rf giac-0.6.1
+#tar xvfz ~/giac/giac-1.1.4.tar.gz
+#cd debian
+#cp -f rules.pari rules
+#cd ..
+#export CXXFLAGS='-g -L/usr/local/lib'
+#export CXXFLAGS='-DSMARTPTR64 -D_I386_ -O2'
+#mv debian debiannew
+#mv debianold debian
+#mv debiannew debianold
+dpkg-buildpackage --no-sign  -rfakeroot
+#mv debian debiannew
+#mv debianold debian
+#mv debiannew debianold
+#dpkg-buildpackage -us -uc -rfakeroot

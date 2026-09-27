@@ -1,0 +1,15 @@
+# Maple integration test file: "4 Trig functions\4.3b Cosecant\4.3.1.2 (d csc)^n (a+b csc)^m.txt"
+
+lst:=[
+[csc(x)^5/(a+a*csc(x)),x,6,3/2*arctanh(cos(x))/a-4*cot(x)/a-4/3*cot(x)^3/a+3/2*cot(x)*csc(x)/a+cot(x)*csc(x)^3/(a+a*csc(x))],
+[sin(x)^2/(a+a*csc(x)),x,5,3/2*x/a+2*cos(x)/a-3/2*cos(x)*sin(x)/a+cos(x)*sin(x)/(a+a*csc(x))],
+[1/(a+a*csc(x))^(3/2),x,6,-2*arctan(cot(x)*sqrt(a)/sqrt(a+a*csc(x)))/a^(3/2)+1/2*cot(x)/(a+a*csc(x))^(3/2)+5/2*arctan(cot(x)*sqrt(a)/(sqrt(2)*sqrt(a+a*csc(x))))/(a^(3/2)*sqrt(2))],
+[1/(a+a*csc(x))^(5/2),x,7,-2*arctan(cot(x)*sqrt(a)/sqrt(a+a*csc(x)))/a^(5/2)+1/4*cot(x)/(a+a*csc(x))^(5/2)+11/16*cot(x)/(a*(a+a*csc(x))^(3/2))+43/16*arctan(cot(x)*sqrt(a)/(sqrt(2)*sqrt(a+a*csc(x))))/(a^(5/2)*sqrt(2))],
+[sqrt(csc(e+f*x))*sqrt(a+a*csc(e+f*x)),x,2,-2*arcsinh(cot(e+f*x)*sqrt(a)/sqrt(a+a*csc(e+f*x)))*sqrt(a)/f],
+[csc(c+d*x)^(2/3)*sqrt(a+a*csc(c+d*x)),x,5,6*a*cot(c+d*x)/(d*(1-csc(c+d*x)^(1/3)+sqrt(3))*sqrt(a+a*csc(c+d*x)))+2*3^(3/4)*a^2*cot(c+d*x)*(1-csc(c+d*x)^(1/3))*EllipticF((1-csc(c+d*x)^(1/3)-sqrt(3))/(1-csc(c+d*x)^(1/3)+sqrt(3)),sqrt(-7-4*sqrt(3)))*sqrt(2)*sqrt((1+csc(c+d*x)^(1/3)+csc(c+d*x)^(2/3))/(1-csc(c+d*x)^(1/3)+sqrt(3))^2)/(d*(a-a*csc(c+d*x))*sqrt(a+a*csc(c+d*x))*sqrt((1-csc(c+d*x)^(1/3))/(1-csc(c+d*x)^(1/3)+sqrt(3))^2))-3*3^(1/4)*a^2*cot(c+d*x)*(1-csc(c+d*x)^(1/3))*EllipticE((1-csc(c+d*x)^(1/3)-sqrt(3))/(1-csc(c+d*x)^(1/3)+sqrt(3)),sqrt(-7-4*sqrt(3)))*sqrt(2-sqrt(3))*sqrt((1+csc(c+d*x)^(1/3)+csc(c+d*x)^(2/3))/(1-csc(c+d*x)^(1/3)+sqrt(3))^2)/(d*(a-a*csc(c+d*x))*sqrt(a+a*csc(c+d*x))*sqrt((1-csc(c+d*x)^(1/3))/(1-csc(c+d*x)^(1/3)+sqrt(3))^2))],
+[csc(c+d*x)^n*sqrt(a+a*csc(c+d*x)),x,2,-2*a*cot(c+d*x)*hypergeom([1/2,1-n],[3/2],1-csc(c+d*x))/(d*sqrt(a+a*csc(c+d*x)))],
+[csc(c+d*x)^n*sqrt(a-a*csc(c+d*x)),x,3,-2*a*cos(c+d*x)*csc(c+d*x)^(1+n)*hypergeom([1/2,1-n],[3/2],1+csc(c+d*x))/(d*(-csc(c+d*x))^n*sqrt(a-a*csc(c+d*x)))],
+[csc(e+f*x)^3*(a+a*csc(e+f*x))^m,x,5,cot(e+f*x)*(a+a*csc(e+f*x))^m/(f*(2+3*m+m^2))-cot(e+f*x)*(a+a*csc(e+f*x))^(1+m)/(a*f*(2+m))-2^(1/2+m)*(1+m+m^2)*cot(e+f*x)*(1+csc(e+f*x))^(-1/2-m)*(a+a*csc(e+f*x))^m*hypergeom([1/2,1/2-m],[3/2],1/2*(1-csc(e+f*x)))/(f*(1+m)*(2+m))],
+[(a+a*csc(e+f*x))^m,x,3,-AppellF1(1/2+m,1/2,1,3/2+m,1/2*(1+csc(e+f*x)),1+csc(e+f*x))*cot(e+f*x)*(a+a*csc(e+f*x))^m*sqrt(2)/(f*(1+2*m)*sqrt(1-csc(e+f*x)))],
+[sin(x)/(a+b*csc(x)),x,6,-b*x/a^2-cos(x)/a-2*b^2*arctanh((a+b*tan(1/2*x))/sqrt(a^2-b^2))/(a^2*sqrt(a^2-b^2))],
+[(a+b*csc(e+f*x))^m*sin(e+f*x),x,0,Integral((a+b*csc(e+f*x))^m*sin(e+f*x),x)]]:

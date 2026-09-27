@@ -1,0 +1,13 @@
+# Maple integration test file: "4 Trig functions\4.3a Secant\4.3.10 (c+d x)^m (a+b sec)^n.txt"
+
+lst:=[
+[(c+d*x)^3*(a+a*sec(e+f*x)),x,11,1/4*a*(c+d*x)^4/d-2*I*a*(c+d*x)^3*arctan(exp(I*(e+f*x)))/f+3*I*a*d*(c+d*x)^2*polylog(2,-I*exp(I*(e+f*x)))/f^2-3*I*a*d*(c+d*x)^2*polylog(2,I*exp(I*(e+f*x)))/f^2-6*a*d^2*(c+d*x)*polylog(3,-I*exp(I*(e+f*x)))/f^3+6*a*d^2*(c+d*x)*polylog(3,I*exp(I*(e+f*x)))/f^3-6*I*a*d^3*polylog(4,-I*exp(I*(e+f*x)))/f^4+6*I*a*d^3*polylog(4,I*exp(I*(e+f*x)))/f^4],
+[(c+d*x)*(a+a*sec(e+f*x))^2,x,9,1/2*a^2*(c+d*x)^2/d-4*I*a^2*(c+d*x)*arctan(exp(I*(e+f*x)))/f+a^2*d*log(cos(e+f*x))/f^2+2*I*a^2*d*polylog(2,-I*exp(I*(e+f*x)))/f^2-2*I*a^2*d*polylog(2,I*exp(I*(e+f*x)))/f^2+a^2*(c+d*x)*tan(e+f*x)/f],
+[(c+d*x)^2/(a+a*sec(e+f*x))^2,x,17,5/3*I*(c+d*x)^2/(a^2*f)+1/3*(c+d*x)^3/(a^2*d)-20/3*d*(c+d*x)*log(1+exp(I*(e+f*x)))/(a^2*f^2)+20/3*I*d^2*polylog(2,-exp(I*(e+f*x)))/(a^2*f^3)-1/3*d*(c+d*x)*sec(1/2*e+1/2*f*x)^2/(a^2*f^2)+2/3*d^2*tan(1/2*e+1/2*f*x)/(a^2*f^3)-5/3*(c+d*x)^2*tan(1/2*e+1/2*f*x)/(a^2*f)+1/6*(c+d*x)^2*sec(1/2*e+1/2*f*x)^2*tan(1/2*e+1/2*f*x)/(a^2*f)],
+[(c+d*x)/(a+a*sec(e+f*x))^2,x,9,1/2*(c+d*x)^2/(a^2*d)-10/3*d*log(cos(1/2*e+1/2*f*x))/(a^2*f^2)-1/6*d*sec(1/2*e+1/2*f*x)^2/(a^2*f^2)-5/3*(c+d*x)*tan(1/2*e+1/2*f*x)/(a^2*f)+1/6*(c+d*x)*sec(1/2*e+1/2*f*x)^2*tan(1/2*e+1/2*f*x)/(a^2*f)],
+[1/((c+d*x)*(a+a*sec(e+f*x))^2),x,0,Integral(1/((c+d*x)*(a+a*sec(e+f*x))^2),x)],
+[(c+d*x)^2*(a+b*sec(e+f*x)),x,9,1/3*a*(c+d*x)^3/d-2*I*b*(c+d*x)^2*arctan(exp(I*(e+f*x)))/f+2*I*b*d*(c+d*x)*polylog(2,-I*exp(I*(e+f*x)))/f^2-2*I*b*d*(c+d*x)*polylog(2,I*exp(I*(e+f*x)))/f^2-2*b*d^2*polylog(3,-I*exp(I*(e+f*x)))/f^3+2*b*d^2*polylog(3,I*exp(I*(e+f*x)))/f^3],
+[(a+b*sec(e+f*x))/(c+d*x)^2,x,0,Integral((a+b*sec(e+f*x))/(c+d*x)^2,x)],
+[(c+d*x)^2*(a+b*sec(e+f*x))^2,x,14,-I*b^2*(c+d*x)^2/f+1/3*a^2*(c+d*x)^3/d-4*I*a*b*(c+d*x)^2*arctan(exp(I*(e+f*x)))/f+2*b^2*d*(c+d*x)*log(1+exp(2*I*(e+f*x)))/f^2+4*I*a*b*d*(c+d*x)*polylog(2,-I*exp(I*(e+f*x)))/f^2-4*I*a*b*d*(c+d*x)*polylog(2,I*exp(I*(e+f*x)))/f^2-I*b^2*d^2*polylog(2,-exp(2*I*(e+f*x)))/f^3-4*a*b*d^2*polylog(3,-I*exp(I*(e+f*x)))/f^3+4*a*b*d^2*polylog(3,I*exp(I*(e+f*x)))/f^3+b^2*(c+d*x)^2*tan(e+f*x)/f],
+[(a+b*sec(e+f*x))^2/(c+d*x)^2,x,0,Integral((a+b*sec(e+f*x))^2/(c+d*x)^2,x)],
+[(c+d*x)^m*(a+b*sec(e+f*x)),x,0,Integral((c+d*x)^m*(a+b*sec(e+f*x)),x)]]:

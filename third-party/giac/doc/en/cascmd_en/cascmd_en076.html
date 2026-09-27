@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Reading CSV data</title>
+</head>
+<body >
+<a href="cascmd_en075.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en077.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:csv2gen" class="subsection">4.1.4  Reading CSV data</h3>
+<p>
+CSV data is textual data formatted into <span style="font-style:italic">m</span> lines separated by
+a character <span style="font-family:monospace">linesep</span>, each of which contains <span style="font-style:italic">n</span> elements
+separated by a character <span style="font-family:monospace">sep</span>. Usually, <span style="font-family:monospace">linesep</span> is
+the newline character and <span style="font-family:monospace">sep</span> is the comma or tab character.</p><p>The <span style="font-family:monospace">csv2gen</span> command converts CSV data from files and strings
+to <span style="font-variant:small-caps">Xcas</span> matrices.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">csv2gen</span> takes one mandatory argument and up to five
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">data</span>, a string containing either CSV data or
+the path to a CSV file.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">sep</span>, a string specifying the character
+<span style="font-family:monospace">sep</span>.
+Note that <span style="font-variant:small-caps">Xcas</span> will use only the first character in <span style="font-style:italic">sep</span>.
+By default, <span style="font-style:italic">sep</span>=<span style="font-family:monospace">";"</span>. (Note that the tab character
+is entered as <span style="font-family:monospace">\t</span>.)
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">linesep</span>, a string specifying the character
+<span style="font-family:monospace">linesep</span>.
+Note that <span style="font-variant:small-caps">Xcas</span> will use only the first character in <span style="font-style:italic">linesep</span>.
+By default, <span style="font-style:italic">linesep</span>=<span style="font-family:monospace">"\n"</span> (line feed).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">decsep</span>, a string specifying the character
+used as the decimal point.
+Note that <span style="font-variant:small-caps">Xcas</span> will use only the first character in <span style="font-style:italic">decsep</span>.
+By default, <span style="font-style:italic">decsep</span>=<span style="font-family:monospace">","</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">eof</span>, a string or character specifying the end
+of CSV data. Note that <span style="font-variant:small-caps">Xcas</span> will use only the first character in <span style="font-style:italic">eof</span>
+if it is a string. By default, <span style="font-style:italic">eof</span>=0 (the EOF character).
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">string</span>, the symbol specifying that <span style="font-style:italic">data</span>
+is CSV data and not a file name. This argument may always be appended to the input
+sequence regardless of omitting some or all of the optional arguments above.
+By default, <span style="font-style:italic">data</span> is interpreted as the file name.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">csv2gen(</span><span style="font-style:italic">data</span>, 
+⟨,<span style="font-style:italic">sep</span> ⟨,<span style="font-style:italic">linesep</span> ⟨,<span style="font-style:italic">decsep</span> ⟨,<span style="font-style:italic">eof</span>
+ ⟩⟩⟩⟩ ⟨,<span style="font-family:monospace">string</span> ⟩<span style="font-family:monospace">)</span> returns
+a matrix with <span style="font-style:italic">m</span> rows and <span style="font-style:italic">n</span> columns containing the CSV data. Numbers and other <span style="font-family:monospace">giac</span>
+expressions are automatically converted from strings.
+</li><li class="li-itemize">if <span style="font-style:italic">decsep</span> is given, then it is replaced by <span style="font-family:monospace">"."</span> in the
+imported matrix prior to stringnumber conversion. If your data
+is using <span style="font-family:monospace">"."</span> as the decimal point already (as is the <span style="font-variant:small-caps">Xcas</span> standard)
+and you have specified <span style="font-style:italic">sep</span>=<span style="font-family:monospace">","</span>, then you do not have to set
+<span style="font-style:italic">decsep</span> explicitly since there is no commas left after importing and attempting
+to replace them will have no effect.
+</li><li class="li-itemize">If <span style="font-style:italic">eof</span> is given, then importing will stop as soon as the specified
+character is read (it is subsequently discarded and therefore does not appear in the result).
+</li><li class="li-itemize">If there is some data missing in some line, i.e. when there are less than <span style="font-style:italic">n</span>
+elements in a line, then <span style="font-variant:small-caps">Xcas</span> will append zeros to the corresponding row of the output matrix.
+</li><li class="li-itemize"><span style="font-family:monospace">csv2gen</span> skips empty lines; they will not be included in the result.
+</li><li class="li-itemize">Using <span style="font-family:monospace">csv2gen</span> is a simple way to import data to <span style="font-variant:small-caps">Xcas</span> from text files.
+Equivalently, you can create a spreadsheet entry and use <span style="font-family:sans-serif">Table</span> ▸ <span style="font-family:sans-serif">Insert CSV</span>
+from its menu bar (see Section <a href="index.html#sec%3Aspreadsheet">2.10</a>).
+</li></ul><h4 id="sec119" class="subsubsection">Examples</h4>
+<p>
+To convert <span style="font-variant:small-caps">Matlab</span> array syntax to a <span style="font-family:monospace">giac</span> matrix:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">csv2gen</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"1 2 3; 4 5 6"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">" "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">";"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">string</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Assuming that the file <span style="font-family:monospace">hooke.csv</span> (containing Hooke’s Law demo data) is downloaded
+from <a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html">here</a> to the
+<span style="font-family:monospace">Downloads</span> folder, you can load it by typing e.g.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">hooke</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">csv2gen</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/hooke.csv"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">","</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">“Index”</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">“Mass (kg)”</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">“Spring 1 (m)”</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">“Spring 2 (m)”</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.05</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.05</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.49</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.066</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.066</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.98</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.087</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.08</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1.47</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.116</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.108</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1.96</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.142</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.138</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2.45</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.166</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.158</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">7</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2.94</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.193</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.174</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">8</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3.43</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.204</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.192</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">9</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3.92</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.226</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.205</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">10</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4.41</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.238</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.232</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The command
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tail</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">hooke</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>is a convenient way to obtain the table with the header row removed (see Section <a href="cascmd_en111.html#ssec%3Atail">6.1.5</a>).</p><h4 id="sec120" class="subsubsection">Application: loading and sorting real-world data</h4>
+<p>
+Assume that you require global annual mean temperature anomaly data for
+the last two of centuries (it has been recorded since 1880).
+The corresponding CSV file can be found
+<a href="https://datahub.io/core/global-temp#data">here</a>. The file can
+be imported in <span style="font-variant:small-caps">Xcas</span> by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">csv2gen</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/annual_csv.csv"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">","</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">header</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">[0]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">“Source”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“Year”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“Mean”</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+There are three columns in the obtained table: <span style="font-family:sans-serif">Source</span>, <span style="font-family:sans-serif">Year</span>,
+and <span style="font-family:sans-serif">Mean</span>. The last column contains the mean anomalities
+in degrees Celsius. To collect different data sources, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">sources</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">set</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">op</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tail</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0)))]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+⟦</span><span style="color:#0000CC">“GCAG”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“GISTEMP”</span><span style="color:#0000CC">⟧
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+There are two sources of data: <span style="font-family:sans-serif">GCAG</span> and <span style="font-family:sans-serif">GISTEMP</span>,
+and the corresponding entries are interleaved. To sort data by source, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">table</span></span><span style="font-weight:bold"><span style="color:#BF0000">():;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">for</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">src</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">in</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">sources</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">do</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">  </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">src</span></span><span style="font-weight:bold"><span style="color:#BF0000">]=&lt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">sort</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">select</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">[0]==</span></span><span style="font-weight:bold"><span style="color:#BF0000">src</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">),1..2)]));</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">od</span></span><span style="font-weight:bold"><span style="color:#BF0000">:;</span></span></td></tr>
+</table><p>Indeed, <span style="font-family:monospace">select</span> selects the <span style="font-family:monospace">data</span> rows in which the first element
+is the source <span style="font-family:monospace">src</span>; <span style="font-family:monospace">col</span> returns a sequence containing the
+second and third column, which is converted into a two-row matrix by using the
+<span style="font-family:monospace">[]</span> delimiters; <span style="font-family:monospace">tran</span> transposes the matrix, returning
+the desired list of pairs; finally, <span style="font-family:monospace">sort</span> sorts the list according
+to the lexicographic order (effectively along the first column, i.e. the time axis).</p><p>For instance, to plot the <span style="font-family:sans-serif">GCAG</span> data, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">gcag</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"GCAG"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">labels</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"year"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"°C"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">];</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">title</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Annual mean temperature anomalies [°C]"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">gcag</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en009.png">
+
+</div>
+<hr>
+<a href="cascmd_en075.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en077.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

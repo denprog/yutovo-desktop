@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Tangent field</title>
+</head>
+<body >
+<a href="cascmd_en634.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en636.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:plotfield" class="subsection">19.9.1  Tangent field</h3>
+<p>The <span style="font-family:monospace">plotfield</span><a id="hevea_default1234"></a>
+or <span style="font-family:monospace">fieldplot</span><a id="hevea_default1235"></a>
+command draws the tangent field of a differential equation or a vector field.</p><ul class="itemize"><li class="li-itemize">
+To draw the tangent field of a differential equation,
+<span style="font-family:monospace">plotfield</span> takes two mandatory arguments and one
+optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression depending on two variables, a
+time variable and a dependent variable.
+</li><li class="li-itemize"><span style="font-style:italic">vars</span>, a list of the two variables [<span style="font-style:italic">t</span>,<span style="font-style:italic">y</span>], where
+<span style="font-style:italic">t</span> is the time variable and <span style="font-style:italic">y</span> is the dependent variable. The
+variables can optionally include their ranges; [<span style="font-style:italic">t</span>=<span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>,<span style="font-style:italic">y</span>=<span style="font-style:italic">c</span><span style="font-family:monospace">..</span><span style="font-style:italic">d</span>].
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">ystep=</span><span style="font-style:italic">n</span> to specify the discretization.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">plotfield(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">vars</span> ⟨,<span style="font-family:monospace">ystep=</span><span style="font-style:italic">n</span> ⟩<span style="font-family:monospace">)</span>
+draws the tangent field of the differential equation <span style="font-style:italic">y</span>′=<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>,<span style="font-style:italic">y</span>).
+</li><li class="li-itemize">To draw a vector field <span style="font-family:monospace">plotfield</span> takes two mandatory arguments and two
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">V</span>, a list of two expressions involving two variables.
+</li><li class="li-itemize"><span style="font-style:italic">vars</span>, a list of the two variables. The
+variables can optionally include their ranges <span style="font-style:italic">var=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">xstep=</span><span style="font-style:italic">n</span> to specify the discretization
+of the first variable.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">ystep=</span><span style="font-style:italic">m</span> to specify the discretization
+of the second variable.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">plotfield(</span><span style="font-style:italic">V</span>,<span style="font-style:italic">vars</span> ⟨,<span style="font-family:monospace">xstep=</span><span style="font-style:italic">n</span>,<span style="font-family:monospace">ystep=</span><span style="font-style:italic">m</span> ⟩<span style="font-family:monospace">)</span>
+draws the vector field given by <span style="font-style:italic">V</span>.
+</li></ul><h4 id="sec1551" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotfield</span></span><span style="font-weight:bold"><span style="color:#BF0000">(4*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">),[</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-3..7])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en119.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotfield</span></span><span style="font-weight:bold"><span style="color:#BF0000">(5*[-</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">],[</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-1..1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-1..1])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en120.png">
+
+</div>
+<hr>
+<a href="cascmd_en634.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en636.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Les complexes</title>
+</head>
+<body >
+<a href="casexo022.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo024.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec397" class="chapter">Chapitre 23  Les complexes</h1>
+<h2 id="sec398" class="section">23.1  Module et argument </h2>
+<h3 id="sec399" class="subsection">23.1.1  L’énoncé</h3>
+<p>
+Soit <span style="font-style:italic">z</span><sub>1</sub>=√<span style="text-decoration:overline">2</span>+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">6</span> et <span style="font-style:italic">z</span><sub>2</sub>=2+2<span style="font-style:italic">i</span>.<br>
+On pose  <span style="font-style:italic">Z</span>=<span style="font-style:italic">z</span><sub>1</sub>/<span style="font-style:italic">z</span><sub>2</sub>.<br>
+Calculer le module et l’argument de <span style="font-style:italic">z</span><sub>1</sub>,<span style="font-style:italic">z</span><sub>2</sub>,<span style="font-style:italic">Z</span>.<br>
+En déduire cos(π/12) et sin(π/12).<br>
+Calculer <span style="font-style:italic">Z</span><sup>2009</sup>
+</p>
+<h3 id="sec400" class="subsection">23.1.2  La correction avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On tape :<br>
+<span style="font-family:monospace">z1:=sqrt(2)+i*sqrt(6)</span><br>
+<span style="font-family:monospace">z2:=2+2*i</span><br>
+<span style="font-family:monospace">Z:=z1/z2</span><br>
+On tape pour avoir les modules :<br>
+<span style="font-family:monospace">simplify(abs(z1,z2,Z))</span><br>
+On obtient : <span style="font-family:monospace">2*sqrt(2),2*sqrt(2),1</span><br>
+On tape pour avoir les arguments :<br>
+<span style="font-family:monospace">simplify(arg(z1,z2,Z)</span><br>
+On obtient : <span style="font-family:monospace">[pi/3,pi/4,pi/12]</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(re(Z),im(Z))</span><br>
+On obtient : <span style="font-family:monospace">(sqrt(2)+sqrt(6))/4,(-sqrt(2)+sqrt(6))/4</span><br>
+Donc 
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">cos(</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">π</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">12</td></tr>
+</table></td><td class="dcell">)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >2</td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >6</td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">4</td></tr>
+</table></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">sin(</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">π</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">12</td></tr>
+</table></td><td class="dcell">)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell">−</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >2</td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >6</td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">4</td></tr>
+</table></td></tr>
+</table><p>
+Puisque <span style="font-style:italic">Z</span> a comme module 1 et comme argument π/12,, on sait que le module
+de <span style="font-style:italic">P</span>=<span style="font-style:italic">Z</span><sup>2009</sup> est 1 et que son argument vaut 2009π/12.<br>
+On tape :<br>
+<span style="font-family:monospace">iquorem(2009,24)</span><br>
+On obtient : <span style="font-family:monospace">[83,17]</span> i.e. 2009=24*83+17.<br>
+Donc puisque 2009π/12=83*2π+17π/12, l’argument de <span style="font-style:italic">P</span> est :<br>
+17π/12 mod2π
+ou encore pour être dans ]−π;π],
+l’argument de <span style="font-style:italic">P</span> est :<br>
+−7π/12=−π/2−π/12.<br>
+Pour avoir la partie réelle et la partie imaginaire de <span style="font-style:italic">P</span> on calcule :<br>
+cos(−π/2−π/12)=−sin(π/12)= √<span style="text-decoration:overline">2</span>−√<span style="text-decoration:overline">6</span>/4 et<br>
+sin(−π/2−π/12)=−cos(π/12)=−√<span style="text-decoration:overline">2</span>+√<span style="text-decoration:overline">6</span>/4<br>
+Ou on tape :<br>
+<span style="font-family:monospace">P:=simplify(Z</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2009)</span><br>
+On obtient : <span style="font-family:monospace">(sqrt(2)+(-i)*sqrt(6))/(2+2*i)</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(re(P),im(P))</span><br>
+On obtient : <span style="font-family:monospace">(sqrt(2)-sqrt(6))/4,(-sqrt(2)-sqrt(6))/4</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(abs(P),arg(P))</span><br>
+On obtient : <span style="font-family:monospace">1,(-7*pi)/12</span><br>
+
+</p>
+<h2 id="sec401" class="section">23.2  Une transformation</h2>
+<h3 id="sec402" class="subsection">23.2.1  L’énoncé</h3>
+<p>
+Soit  <span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>)=1/2(<span style="font-style:italic">z</span>+1/<span style="font-style:italic">z</span>).<br>
+On note <span style="font-style:italic">M</span> le point d’affixe <span style="font-style:italic">z</span> et <span style="font-style:italic">N</span> le point d’affixe <span style="font-style:italic">Z</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>).<br>
+On note <span style="font-style:italic">A</span> le point d’affixe −1 et <span style="font-style:italic">B</span> le point d’affixe 1.
+</p><ul class="itemize"><li class="li-itemize">
+Calculer <span style="font-style:italic">f</span>(−<span style="font-style:italic">i</span>) et résoudre l’équation <span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>)=2.
+</li><li class="li-itemize">Résoudre l’équation <span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>)=<span style="font-style:italic">z</span>
+</li><li class="li-itemize">Calculer pour <span style="font-style:italic">Z</span> ≠ 1,  <span style="font-style:italic">Z</span>+1/<span style="font-style:italic">Z</span>−1 et en déduire
+que si <span style="font-style:italic">N</span>≠ <span style="font-style:italic">B</span>:
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">NA</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">NB</span></td></tr>
+</table></td><td class="dcell">=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">MA</span><sup>2</sup></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">MB</span><sup>2</sup></td></tr>
+</table></td></tr>
+</table>.
+</li><li class="li-itemize">Trouver le lieu de <span style="font-style:italic">N</span> lorsque <span style="font-style:italic">M</span> se déplace sur la médiatrice du 
+segment <span style="font-style:italic">AB</span>.
+</li><li class="li-itemize">Trouver le lieu de <span style="font-style:italic">N</span> lorsque <span style="font-style:italic">M</span> se déplace sur le cercle de 
+diamètre <span style="font-style:italic">AB</span>.
+</li></ul>
+<h3 id="sec403" class="subsection">23.2.2  La correction avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On coche <span style="font-family:monospace">Complexe</span> dans la configuration 
+du CAS et si on coche <span style="font-family:monospace">Variables_complexes</span> on est obligé de mettre
+<span style="font-family:monospace">assume Y,real)</span> si on veut que la variable <span style="font-family:monospace">Y</span> soit réelle.<br>
+Dans ce qui suit on suppose que l’on a coché <span style="font-family:monospace">Variables_complexes</span>
+(si ce n’est pas le cas on peut enlever toutes les commandes <span style="font-family:monospace">assume</span>).<br>
+On tape :<br>
+<span style="font-family:monospace">f(z):=1/2*(z+1/z)</span>
+</p><ul class="itemize"><li class="li-itemize">
+Calcul de <span style="font-style:italic">f</span>(−<span style="font-style:italic">i</span>) et résolution de l’équation <span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>)=2.
+On tape :<br>
+<span style="font-family:monospace">f(-i)</span><br>
+On obtient : <span style="font-family:monospace">0</span><br>
+On tape :<br>
+<span style="font-family:monospace">csolve(f(z)=2,z)</span><br>
+On obtient : <span style="font-family:monospace">[-sqrt(3)+2,sqrt(3)+2]</span><br>
+donc le point d’affixe 2 a deux antécédents : 
+les points d’affixe −√<span style="text-decoration:overline">3</span>+2 et √<span style="text-decoration:overline">3</span>+2
+</li><li class="li-itemize">Réslution de l’équation <span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>)=<span style="font-style:italic">z</span>
+On tape :<br>
+<span style="font-family:monospace">csolve(f(z)=z,z)</span><br>
+On obtient : <span style="font-family:monospace">[-1,1]</span><br>
+donc les points doubles de <span style="font-style:italic">f</span> sont les points <span style="font-style:italic">A</span> et <span style="font-style:italic">B</span>.
+</li><li class="li-itemize">Calcul pour <span style="font-style:italic">Z</span>!=1 de <span style="font-style:italic">Z</span>+1/<span style="font-style:italic">Z</span>−1
+On tape :<br>
+<span style="font-family:monospace">factor((f(z)+1)/(f(z)-1))</span><br>
+On obtient : <span style="font-family:monospace">((z+1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/((z-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+donc <span style="font-style:italic">NA</span>/<span style="font-style:italic">NB</span>=(<span style="font-style:italic">MA</span>/<span style="font-style:italic">MB</span>)<sup>2</sup>
+</li><li class="li-itemize">Lorsque <span style="font-style:italic">M</span> se déplace sur la médiatrice du 
+segment <span style="font-style:italic">AB</span> on a <span style="font-style:italic">MA</span>=<span style="font-style:italic">MB</span> ou encore |<span style="font-style:italic">z</span>+1|=|<span style="font-style:italic">z</span>−1|.<br>
+Donc d’aprés ce qui précéde on a 
+|<span style="font-style:italic">Z</span>+1|/|<span style="font-style:italic">Z</span>−1|=1 donc <span style="font-style:italic">N</span> se déplace sur la médiatrice du 
+segment <span style="font-style:italic">AB</span>.<br>
+Réciproquement, si |<span style="font-style:italic">Z</span>+1|=|<span style="font-style:italic">Z</span>−1| on en déduit que
+|<span style="font-style:italic">z</span>+1|<sup>2</sup>=|<span style="font-style:italic">z</span>−1|<sup>2</sup> donc que <span style="font-style:italic">M</span> se déplace sur la médiatrice 
+du segment <span style="font-style:italic">AB</span>.<br>
+On tape puisque la médiatrice de <span style="font-style:italic">AB</span> est l’axe des <span style="font-style:italic">y</span> :<br>
+<span style="font-family:monospace">assume(y,real)</span><br>
+<span style="font-family:monospace">simplify(f(i*y))</span><br>
+On obtient : 
+<span style="font-family:monospace">((i)*y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-i)/(2*y)</span><br>
+On tape :<br>
+<span style="font-family:monospace">re(f(i*y))</span><br>
+On obtient : <span style="font-family:monospace">0</span><br>
+On tape :<br>
+<span style="font-family:monospace">re(f(i*y))</span><br>
+On obtient : <span style="font-family:monospace">0</span><br>
+Pour la réciproque , on tape :<br>
+<span style="font-family:monospace">assume(Y,real)</span><br>
+<span style="font-family:monospace">sol:=simplify(csolve(f(z)=i*Y,z))</span><br>
+On obtient : 
+<span style="font-family:monospace">[(i)*Y+sqrt(-Y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1),(i)*Y-sqrt(-Y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)]</span><br>
+On tape :<br>
+<span style="font-family:monospace">real(sol)</span><br>
+On obtient : <span style="font-family:monospace">[0,0]</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(im(sol))</span><br>
+On obtient : <span style="font-family:monospace">[Y+sqrt(Y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1),Y-sqrt(Y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)]</span><br>
+
+</li><li class="li-itemize"><span style="font-style:italic">M</span> se déplace sur le cercle de 
+diamètre <span style="font-style:italic">AB</span> qui est aussi le cercle de centre <span style="font-style:italic">O</span> et de rayon 1. Donc
+<span style="font-style:italic">z</span>=<span style="font-style:italic">e</span><sup><span style="font-style:italic">it</span></sup> avec 0≤ <span style="font-style:italic">t</span>≤ 2*π.<br>
+Donc d’aprés ce qui précéde on a :<br>
+ <span style="font-style:italic">Z</span>+1/<span style="font-style:italic">Z</span>−1=(<span style="font-style:italic">z</span>+1/<span style="font-style:italic">z</span>−1)<sup>2</sup>
+donc <span style="font-family:monospace">arg((Z+1)/(Z-1))=2*arg((z+1)/(z-1))</span>.<br>
+On a <span style="font-family:monospace">arg((z+1)/(z-1))=arg(z+1)-arg(z-1)</span> et cela est la mesure de 
+l’angle (<span style="font-style:italic">MB</span>,<span style="font-style:italic">MA</span>) qui vaut 
++/−π/2 car <span style="font-style:italic">M</span> se déplace sur le cercle de diamètre <span style="font-style:italic">AB</span>.
+Donc <span style="font-family:monospace">arg((Z+1)/(Z-1))=pi</span> et <span style="font-style:italic">N</span> se déplace sur la droite <span style="font-style:italic">AB</span>.
+On sait d’après la question 1 que le point d’affixe 2 ne fait pas partie du 
+lieu, donc on fait une réciproque. Pour cela on résout <span style="font-style:italic">f</span>(<span style="font-style:italic">z</span>)=<span style="font-style:italic">X</span> i.e.
+<span style="font-style:italic">z</span><sup>2</sup>−2<span style="font-style:italic">Xz</span>+1=0 le discriminant vaut <span style="font-style:italic">X</span><sup>2</sup>−1 donc si <span style="font-style:italic">X</span>&lt;1 ou si <span style="font-style:italic">X</span>&gt;−1 les 
+solutions sont réelles et l’anrécédent de <span style="font-style:italic">N</span> ne se trouve pas sur le 
+cercle de diamètre <span style="font-style:italic">AB</span>. Si −1≤ <span style="font-style:italic">X</span> ≤ 1 les solutions sont :
+<span style="font-style:italic">z</span>=<span style="font-style:italic">X</span>+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">X</span></span><sup><span style="text-decoration:overline">2</span></sup> et <span style="font-style:italic">z</span>=<span style="font-style:italic">X</span>−<span style="font-style:italic">i</span>√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">X</span></span><sup><span style="text-decoration:overline">2</span></sup> qui sont les affixes de 2 points du cercle de centre <span style="font-style:italic">O</span> et de rayon 1 (|<span style="font-style:italic">z</span>|<sup>2</sup>=<span style="font-style:italic">X</span><sup>2</sup>+(1−<span style="font-style:italic">X</span><sup>2</sup>)=1). 
+On tape avec <span style="font-family:monospace">Xcas</span> :<br>
+<span style="font-family:monospace">assume(t,real)</span><br>
+<span style="font-family:monospace">simplify(exp2trig(f(exp(i*t))))</span><br>
+On obtient : 
+<span style="font-family:monospace">cos(t)</span><br>
+donc <span style="font-style:italic">N</span> se déplace sur le segment <span style="font-style:italic">AB</span> on a <span style="font-style:italic">Z</span>=<span style="font-style:italic">cos</span>(<span style="font-style:italic">t</span>) avec 
+0≤ <span style="font-style:italic">t</span>≤ 2*π.<br>
+Pour la réciproque, <span style="font-style:italic">N</span> se déplace sur le segment <span style="font-style:italic">AB</span> donc <span style="font-style:italic">Z</span>=<span style="font-style:italic">cos</span>(<span style="font-style:italic">t</span>) 
+avec 0≤ <span style="font-style:italic">t</span>≤ 2*π.<br>
+On tape :<br>
+<span style="font-family:monospace">sol:=csolve(f(z)=cos(t),z)</span><br>
+On obtient : 
+<span style="font-family:monospace">[sqrt(cos(t)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)+cos(t),-sqrt(cos(t)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)+cos(t)]</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(trig2exp(sol))</span><br>
+On obtient : 
+<span style="font-family:monospace">[exp((i)*t),1/(exp((i)*t))]</span>
+Donc <span style="font-style:italic">M</span> se trouve sur le cercle de centre <span style="font-style:italic">O</span> et de rayon 1.
+</li></ul>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo022.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo024.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

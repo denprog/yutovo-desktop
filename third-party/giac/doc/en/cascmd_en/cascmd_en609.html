@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Colors and color functions</title>
+</head>
+<body >
+<a href="cascmd_en608.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en610.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:colors" class="subsection">19.1.3  Colors and color functions</h3>
+<p>
+<a id="hevea_default1162"></a></p><p><span style="font-variant:small-caps">Xcas</span> uses RGB565 color encoding from <span style="font-variant:small-caps">FLTK</span> and is therefore able to
+use at most 65536 RGB colors in graphs.
+In RGB565 encoding, there are only 32 values for the red and blue
+channels and 64 values for the green channel.
+The alpha channel (transparency) is not used.</p><p>Colors in <span style="font-variant:small-caps">Xcas</span> are nonnegative integers with a dedicated subtype. They
+are evaluated to small colored squares in command line entries.
+</p><ul class="itemize"><li class="li-itemize">
+Colors from 0 to 255 correspond to indices in the FLTK colormap
+(see <a href="https://www.fltk.org/doc-1.3/fltk-colormap.png">here</a>).
+</li><li class="li-itemize">Colors from 256 to 381 belong to the default <span style="font-variant:small-caps">Xcas</span>
+rainbow colormap (see Section <a href="cascmd_en811.html#ssec%3Afeatparam">26.3.2</a>).
+</li><li class="li-itemize">Values from 382 to 511 are not assigned.
+</li><li class="li-itemize">Values from 512 to 65535 are RGB colors with channel values
+stored in the index. The red channel is read from the upper 5 bits,
+the green channel is read from the middle 6 bits and the blue
+channel is read from the lower 5 bits.
+</li></ul><p>You can use either one of the predefined colors (see Section <a href="cascmd_en608.html#ssec%3Aindattr">19.1.2</a>)
+or create color(s) by using the <span style="font-family:monospace">rgb</span>, <span style="font-family:monospace">hsv</span> and
+<span style="font-family:monospace">colormap</span> commands (see below).</p><p>For example, to show all predefined colors, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">white</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">grey</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">olive</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">teal</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">cyan</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">green</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">brown</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">orange</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">gold</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">yellow</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">pink</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">magenta</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">purple</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">violet</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">navy</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">black</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en052.png">
+
+</div><p>
+
+The above colors are portable since they are defined in the <span style="font-variant:small-caps">FLTK</span> colormap.</p>
+<h4 id="sec1481" class="subsubsection">RGB and HSV colors</h4>
+<p>
+The <span style="font-family:monospace">rgb</span><a id="hevea_default1163"></a> command converts between
+color objects and their RGB (Red, Green, Blue) specifications.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">rgb</span> can take either
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">col</span>, a color object,
+</li><li class="li-itemize"><span style="font-style:italic">ind</span>, a nonnegative integer, or
+</li><li class="li-itemize"><span style="font-style:italic">rgb</span>, a RGB color specification given as either
+<ul class="itemize"><li class="li-itemize">
+a vector of three integers between 0 and 255,
+</li><li class="li-itemize">a vector of three real numbers between 0 and 1,
+</li><li class="li-itemize">a hexadecimal number <span style="font-family:monospace">0xrrggbb</span>, or
+</li><li class="li-itemize">a hexadecimal string (optionally with the leading <span style="font-family:monospace">#</span> character).
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">rgb(</span><span style="font-style:italic">col</span><span style="font-family:monospace">)</span> returns the RGB specification
+of <span style="font-style:italic">col</span> in form of a vector with three integers between 0 and 255.
+</li><li class="li-itemize"><span style="font-family:monospace">rgb(</span><span style="font-style:italic">ind</span><span style="font-family:monospace">)</span> returns the color object
+corresponding to the index <span style="font-style:italic">ind</span>, which may be any number
+between 0 and 65535 (for unassigned indices, <span style="font-family:monospace">rgb</span> returns
+the black color).
+</li><li class="li-itemize"><span style="font-family:monospace">rgb(</span><span style="font-style:italic">rgb</span><span style="font-family:monospace">)</span> returns the color object which
+is closest to the given RGB specification.
+</li></ul><p>The <span style="font-family:monospace">hsv</span><a id="hevea_default1164"></a> command converts between color
+objects and their HSV (Hue, Saturation, Value) specifications.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">hsv</span> takes either <span style="font-style:italic">col</span>, a color object,
+or <span style="font-style:italic">hsv</span>, a vector containing either
+<ul class="itemize"><li class="li-itemize">
+three real numbers in [0,1], or
+</li><li class="li-itemize">three integers <span style="font-style:italic">h</span>, <span style="font-style:italic">s</span> and <span style="font-style:italic">v</span> such that 0≤ <span style="font-style:italic">h</span>≤ 360 and
+0≤ <span style="font-style:italic">s</span>,<span style="font-style:italic">v</span>≤ 100 (if other values are given, then <span style="font-style:italic">h</span>mod360,
+min{100,max{0,<span style="font-style:italic">s</span>}} and min{100,max{0,<span style="font-style:italic">v</span>}} are used).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">hsv(</span><span style="font-style:italic">col</span><span style="font-family:monospace">)</span> returns the HSV specification
+of <span style="font-style:italic">col</span> as a vector [<span style="font-style:italic">h</span>,<span style="font-style:italic">s</span>,<span style="font-style:italic">v</span>] of integers.
+</li><li class="li-itemize"><span style="font-family:monospace">hsv(</span><span style="font-style:italic">hsv</span><span style="font-family:monospace">)</span> returns the color object closest
+to the given HSV specification.
+</li></ul><p>You can convert from RGB to HSV and vice versa by using the
+<span style="font-family:monospace">rgb2hsv</span><a id="hevea_default1165"></a> and
+<span style="font-family:monospace">hsv2rgb</span><a id="hevea_default1166"></a> commands.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">rgb2hsv</span> takes <span style="font-style:italic">rgb</span>, a vector of three
+integers between 0 and 255 or three real numbers between 0 and 1.
+</li><li class="li-itemize"><span style="font-family:monospace">rgb2hsv(</span><span style="font-style:italic">rgb</span><span style="font-family:monospace">)</span> returns the HSV specification
+equivalent to <span style="font-style:italic">rgb</span> as a vector [<span style="font-style:italic">h</span>,<span style="font-style:italic">s</span>,<span style="font-style:italic">v</span>] of integers between
+0 and 360 for <span style="font-style:italic">h</span> resp. 0 and 100 for <span style="font-style:italic">s</span> and <span style="font-style:italic">v</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">hsv2rgb</span> takes <span style="font-style:italic">hsv</span>, a vector of three
+integers between 0 and 360 for <span style="font-style:italic">h</span> resp. 0 and 100 for <span style="font-style:italic">s</span> and <span style="font-style:italic">v</span>, 
+or three real numbers between 0 and 1.
+</li><li class="li-itemize"><span style="font-family:monospace">hsv2rgb(</span><span style="font-style:italic">hsv</span><span style="font-family:monospace">)</span> returns the RGB specification
+equivalent to <span style="font-style:italic">hsv</span> as a vector [<span style="font-style:italic">r</span>,<span style="font-style:italic">g</span>,<span style="font-style:italic">b</span>] of integers between 0 and 255.
+</li></ul><h4 id="sec1482" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"#cf3f00"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0</span></span><span style="font-weight:bold"><span style="color:#BF0000">x00f3fc</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en053.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">(216); </span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">(255,0,0); </span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0.0,1.0,0.0]);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en054.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spec</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,0,255</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb2hsv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">spec</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">240,100,100</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">seq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">hsv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(15*</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">,100,80),</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..20)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en055.png">
+
+</div>
+<h4 id="ssec:colormap" class="subsubsection">Colormaps</h4>
+<p>
+The <span style="font-family:monospace">colormap</span><a id="hevea_default1167"></a> command returns built-in
+continuous/discrete colormaps or individual colors from the corresponding palettes.
+Note that the colors obtained this way are not guaranteed to be portable.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">colormap</span> takes one to three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">"</span><span style="font-style:italic">pal</span><span style="font-family:monospace">"</span>, where <span style="font-style:italic">pal</span> is the colormap name.
+The following continous colormaps are emulated from the <span style="font-family:monospace">pals</span>
+package in R: <span style="font-family:monospace">magma</span>, <span style="font-family:monospace">inferno</span>, <span style="font-family:monospace">plasma</span>, <span style="font-family:monospace">viridis</span>, <span style="font-family:monospace">jet</span>,
+<span style="font-family:monospace">parula</span>, <span style="font-family:monospace">gnuplot</span>, <span style="font-family:monospace">cividis</span>, <span style="font-family:monospace">cubehelix</span>, <span style="font-family:monospace">cyclic1</span>,
+<span style="font-family:monospace">cyclic2</span>, <span style="font-family:monospace">cyclic3</span>, <span style="font-family:monospace">cyclic4</span>, <span style="font-family:monospace">phase</span>, <span style="font-family:monospace">isoluminant</span>,
+<span style="font-family:monospace">cubic</span>, <span style="font-family:monospace">coolwarm</span>, <span style="font-family:monospace">haline</span>, <span style="font-family:monospace">blues</span>, <span style="font-family:monospace">greens</span>,
+<span style="font-family:monospace">greys</span>, <span style="font-family:monospace">oranges</span>, <span style="font-family:monospace">reds</span>, and <span style="font-family:monospace">spectral</span>.
+<span style="font-family:monospace">cyclic1</span>-<span style="font-family:monospace">cyclic4</span> and <span style="font-family:monospace">phase</span> are cyclic palettes.
+Only one discrete colormap is implemented: <span style="font-family:monospace">polychrome</span> (alias <span style="font-family:monospace">discrete</span>), which
+contains 36 colors listed in Table <a href="#tab%3Apolychrome">19.1</a>. The default <span style="font-variant:small-caps">Xcas</span> rainbow
+colormaps are named <span style="font-family:monospace">default</span> (cyclic) and <span style="font-family:monospace">rainbow</span> (non-cyclic).<p>Instead of <span style="font-family:monospace">"blues"</span>, <span style="font-family:monospace">"greens"</span>, <span style="font-family:monospace">"greys"</span>, <span style="font-family:monospace">"oranges"</span> or
+<span style="font-family:monospace">"reds"</span>, you can pass <span style="font-family:monospace">blue</span>, <span style="font-family:monospace">green</span>, <span style="font-family:monospace">grey</span>,
+<span style="font-family:monospace">orange</span> or <span style="font-family:monospace">red</span> as the first argument, respectively.
+</p><blockquote class="table"><div class="center"><hr style="width:80%;height:2"></div><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">dark purplish gray</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">purplish white</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid red</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid purple</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">vivid yellowish green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">strong purplish blue</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid orange yellow</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid purplish red</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">brilliant green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid yellow green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid blue</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">brilliant purple</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">vivid violet</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">strong pink</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">strong blue</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">strong reddish orange</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">vivid green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">light olive brown</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid reddish purple</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid greenish yellow</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">vivid yellowish green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid red</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid purplish red</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">pale yellow</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">strong reddish purple</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid violet</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid yellow green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">very light blue</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">strong reddish brown</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">very light yellowish green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">very light bluish green</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">deep greenish blue</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"> </span><span style="font-size:small"><span style="font-family:monospace">vivid purple</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">deep purple</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">brilliant blue</span></span></td><td style="text-align:left;white-space:nowrap" ><span style="font-size:small"><span style="font-family:monospace">vivid violet</span></span></td></tr>
+</table><span style="font-size:small">
+</span><div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="vertical-align:top;text-align:left;" ><span style="font-size:small">Table 19.1: Colors in the </span><span style="font-size:small"><span style="font-family:monospace">polychrome</span></span><span style="font-size:small"> palette</span><a id="tab:polychrome"></a></td></tr>
+</table></div><span style="font-size:small">
+</span><div class="center"><hr style="width:80%;height:2"></div></blockquote></li><li class="li-itemize">Optionally, <span style="font-style:italic">modifiers</span>, a sequence that can
+contain <span style="font-family:monospace">inv</span> and/or <span style="font-family:monospace">reverse</span> symbols
+for inverting/reversing the colormap colors. This can be used only with continuous colormaps.
+</li><li class="li-itemize">Optionally, either <span style="font-style:italic">n</span>, a nonnegative integer, <span style="font-style:italic">t</span>, a real
+number in [0,1], or <span style="font-family:monospace">"</span><span style="font-style:italic">str</span><span style="font-family:monospace">"</span>, a string.
+The latter can be used only with the discrete colormap <span style="font-family:monospace">polychrome</span>.
+The string <span style="font-style:italic">str</span> is a color name or a string which is searched for among
+color names.<p>Alternatively, if <span style="font-style:italic">pal</span> specifies a continuous colormap,
+the last argument can be the symbol <span style="font-family:monospace">display</span>, in which case the colormap is
+drawn. In this case <span style="font-style:italic">pal</span> can also be a list of colormap names, resulting
+in the specified colormaps drawn one above another in the same picture.
+</p></li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">colormap(</span><span style="font-style:italic">pal</span> ⟨,<span style="font-style:italic">modifiers</span> ⟩<span style="font-family:monospace">)</span> returns the
+colormap index if <span style="font-style:italic">pal</span> is a continuous colormap or the list of all colors in the palette
+if <span style="font-style:italic">pal</span> is a discrete colormap. The colormap index is used by commands such as
+<span style="font-family:monospace">plotfunc</span> (see Section <a href="cascmd_en610.html#ssec%3Aplotfunc">19.2.1</a>), <span style="font-family:monospace">plotdensity</span>
+(see Section <a href="cascmd_en626.html#ssec%3Aplotdensity">19.5.2</a>) and <span style="font-family:monospace">hht</span> (see Section <a href="cascmd_en722.html#ssec%3Ahht">21.4.9</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">colormap(</span><span style="font-style:italic">pal</span> ⟨,<span style="font-style:italic">modifiers</span> ⟩,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns
+<span style="font-style:italic">n</span> equally spaced colors from a continuous colormap <span style="font-style:italic">pal</span>.
+If <span style="font-style:italic">pal</span> is a discrete colormap, then the <span style="font-style:italic">n</span>th color is returned (<span style="font-style:italic">n</span> is wrapped around
+if it exceeds the number of colors in the palette).
+</li><li class="li-itemize"><span style="font-family:monospace">colormap(</span><span style="font-style:italic">pal</span> ⟨,<span style="font-style:italic">modifiers</span> ⟩,<span style="font-style:italic">t</span><span style="font-family:monospace">)</span> returns
+the color of a continuous colormap <span style="font-style:italic">pal</span> which corresponds to the value <span style="font-style:italic">t</span> assuming
+that the first and last colors are mapped to 0 and 1, respectively.
+</li><li class="li-itemize"><span style="font-family:monospace">colormap(</span><span style="font-style:italic">pal</span> ⟨,<span style="font-style:italic">modifiers</span> ⟩,<span style="font-style:italic">str</span><span style="font-family:monospace">)</span>
+returns the list of colors of a discrete colormap <span style="font-style:italic">pal</span> containing <span style="font-style:italic">str</span> in their names
+(whole-word search is used). If <span style="font-style:italic">str</span> is a full color name, only that color is returned.
+</li></ul><h4 id="sec1484" class="subsubsection">Examples</h4>
+<p>
+To visualize some colormaps, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"inferno"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"viridis"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"phase"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"cubic"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"jet"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en056.png">
+
+</div><p>
+
+The above colormaps do not appear perfectly seamless; this is due to the 16-bit color
+coding in <span style="font-variant:small-caps">Xcas</span> instead of 24-bit RGB888 (which would allow for
+millions of colors). Note that clamping colors to 16 bits, which results in a
+slight <em>posterization effect</em>, pertains only to <span style="font-variant:small-caps">Xcas</span> graphic commands,
+while images are displayed with exact colors (see Section <a href="cascmd_en1011.html#ssec%3Aviewing-images">28.1.4</a>).</p><p>You can invert and/or reverse colors in a colormap, obtaining a new one.
+A color is inverted by subtracting its R, G and B values from 255.
+For example, to obtain a “frozen” version of the <span style="font-family:monospace">inferno</span> colormap, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"inferno"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">inv</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">reverse</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en057.png">
+
+</div><p>
+
+To get a single color from a colormap, enter e.g.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"viridis"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,0.8)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en058.png">
+
+</div><p>
+
+To get a list of uniformly spaced colors, enter e.g.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"blues"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">reverse</span></span><span style="font-weight:bold"><span style="color:#BF0000">,20)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en059.png">
+
+</div><p>
+
+To display the discrete colormap, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">axes</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0; </span></span><span style="font-weight:bold"><span style="color:#BF0000">gl_ortho</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">seq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">rectangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1,2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">filled</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"discrete"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..35)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en060.png">
+
+</div><p>
+
+Useful color combinations can be generated from the discrete colormap
+by filtering out groups of similar colors. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"discrete"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"vivid"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en061.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"discrete"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"strong"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en062.png">
+
+</div><p>
+
+You could also try passing e.g. <span style="font-family:monospace">"very light"</span>, <span style="font-family:monospace">"brilliant"</span>, <span style="font-family:monospace">"reddish"</span>,
+<span style="font-family:monospace">"green"</span>, <span style="font-family:monospace">"deep"</span> etc. as the second argument (see Table <a href="#tab%3Apolychrome">19.1</a>).
+These and similar color combinations can be useful for categorical data visualization techniques
+such as bar plots, pie charts, clustering etc.</p>
+<h4 id="ssec:color-interp" class="subsubsection">Color interpolation and RGB to XYZ conversion</h4>
+<p>The <span style="font-family:monospace">interp</span><a id="hevea_default1168"></a> command interpolates between
+given colors in the CIE 1931 XYZ color space with the sRGB gamut
+(see <a href="https://en.wikipedia.org/wiki/CIE_1931_color_space">here</a> for details).
+In XYZ space, the Euclidean distance between two colors is roughly proportional to their
+perceived difference. Such interpolation is called <em>perceptually uniform</em>.</p><p>See Section <a href="cascmd_en597.html#ssec%3Alagrange">17.1.1</a>, Section <a href="cascmd_en598.html#ssec%3Afast-interp">17.1.2</a> and Section <a href="cascmd_en1017.html#ssec%3Aimage-interp">28.1.10</a> for
+other uses of <span style="font-family:monospace">interp</span>.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">interp</span> takes two or three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">colors</span>, which may be either
+<ul class="itemize"><li class="li-itemize">
+a sequence of two color objects <span style="font-style:italic">c</span><sub>1</sub> and <span style="font-style:italic">c</span><sub>2</sub>,
+</li><li class="li-itemize">a list of <span style="font-style:italic">m</span> colors objects <span style="font-style:italic">c</span><sub>1</sub>,…,<span style="font-style:italic">c</span><sub><span style="font-style:italic">m</span></sub>, or
+</li><li class="li-itemize">a matrix of integers with <span style="font-style:italic">m</span> rows and three columns in which
+each row defines a RGB color.
+</li></ul>
+</li><li class="li-itemize">Either <span style="font-style:italic">n</span>, a nonnegative integer, or <span style="font-style:italic">t</span>, a real number or a list of
+real numbers in [0,1].
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">interp(</span><span style="font-style:italic">colors</span>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns <span style="font-style:italic">n</span> equally spaced colors
+on a 3D Bézier curve defined by the XYZ color space equivalents <span style="font-style:italic">d</span><sub>1</sub>,…,<span style="font-style:italic">d</span><sub><span style="font-style:italic">m</span></sub>
+of colors <span style="font-style:italic">c</span><sub>1</sub>,…,<span style="font-style:italic">c</span><sub><span style="font-style:italic">m</span></sub>
+(see <a href="http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html">here</a> for
+the details on conversion). The output does not include boundary colors <span style="font-style:italic">c</span><sub>1</sub> and <span style="font-style:italic">c</span><sub><span style="font-style:italic">m</span></sub>.
+For instance, for <span style="font-style:italic">n</span>=1 you obtain the single color at the middle of the curve, while
+for <span style="font-style:italic">n</span>=2 you obtain the colors at one-third resp. two-thirds into the curve.
+</li><li class="li-itemize"><span style="font-family:monospace">interp(</span><span style="font-style:italic">colors</span>,<span style="font-style:italic">t</span><span style="font-family:monospace">)</span> returns the color(s) on the
+parametrized Bézier curve corresponding to value(s) of <span style="font-style:italic">t</span> such that <span style="font-style:italic">t</span>=0 resp. <span style="font-style:italic">t</span>=1
+results in <span style="font-style:italic">c</span><sub>1</sub> resp. <span style="font-style:italic">c</span><sub><span style="font-style:italic">m</span></sub>.
+</li><li class="li-itemize">The type of input matches the type of output.
+You cen specify the input as a list of either color objects or RGB triples.
+Beware that, if you input color objects, you will get color objects in the output, which are
+clamped to 16 bits in order to fit the RGB565 encoding. With a RGB input, <span style="font-family:monospace">interp</span>
+returns a RGB matrix which defines a list of RGB888 colors, thus avoiding the loss of
+channel information.
+</li></ul><p>You can access the routines for <span style="font-style:italic">RGB</span>↔<span style="font-style:italic">XYZ</span> conversion by using the
+<span style="font-family:monospace">rgb2xyz</span><a id="hevea_default1169"></a> and
+<span style="font-family:monospace">xyz2rgb</span><a id="hevea_default1170"></a> commands which take a
+list or sequence of three real numbers in [0,1] representing the RGB or XYZ triple
+and return the other color specification in the same form. The <span style="font-family:monospace">rgb2xyz</span> command
+can also take color objects as inputs. These routines apply chromatic adaptation with
+Bradford’s method to make the white color in <span style="font-variant:small-caps">Xcas</span> the reference white (the default sRGB
+reference white is D65); thus the white color corresponds to [1.0,1.0,1.0] and black color
+to [0.0,0.0,0.0] in both RGB and XYZ.</p><h4 id="sec1486" class="subsubsection">Examples</h4>
+<p>
+To demonstrate the conversion between RGB and XYZ, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb2xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,255,255)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb2xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0.0,1.0,1.0)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb2xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">cyan</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.561504215261,0.777146370045,0.982679191019</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xyz2rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">xyz</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,255,255</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>To demonstrate color interpolation, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">yellow</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">green</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">cyan</span></span><span style="font-weight:bold"><span style="color:#BF0000">]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,20)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en063.png">
+
+</div><p>
+
+The above list consists of RGB565 colors.
+To visualize a perceptually seamless transition from red to cyan passing
+through yellows and greens, you should convert <span style="font-style:italic">c</span> to a
+RGB matrix, which can be done by using <span style="font-family:monospace">apply</span> and <span style="font-family:monospace">rgb</span>. Enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">res</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">rgb</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">),1000):;</span></span></td></tr>
+</table><p>The output is a 1000× 3 RGB matrix from which you can
+create an image by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">res</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0)</span></span><span style="font-weight:bold"><span style="color:#BF0000">$100</span></span><span style="font-weight:bold"><span style="color:#BF0000">],[</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">res</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1)</span></span><span style="font-weight:bold"><span style="color:#BF0000">$100</span></span><span style="font-weight:bold"><span style="color:#BF0000">],[</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">res</span></span><span style="font-weight:bold"><span style="color:#BF0000">,2)</span></span><span style="font-weight:bold"><span style="color:#BF0000">$100</span></span><span style="font-weight:bold"><span style="color:#BF0000">]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 1000×100 (RGB)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To display the result with RGB888 colors, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en064.png">
+
+</div>
+<hr>
+<a href="cascmd_en608.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en610.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

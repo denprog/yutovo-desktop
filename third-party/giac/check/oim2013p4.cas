@@ -1,0 +1,17 @@
+A:=point(0);
+B:=point(1);
+assume(a=[0.6,-5,5,0.1]);
+assume(b=[0.4,-5,5,0.1]);
+C:=point(a,b);
+triangle(A,B,C);
+assume(c=[0.25,0,1,0.05]);
+W:=C+c*(B-C);
+M:=projection(line(A,C),B);
+N:=projection(line(A,B),C);
+O1:=circumcircle(B,W,N);
+X:=reflection(center(O1),W);
+O2:=circumcircle(C,W,M);
+Y:=reflection(center(O2),W);
+H:=orthocenter(A,B,C);
+
+r:=(H-Y)/(H-X):; normal(im(r));

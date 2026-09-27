@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Determinant of a matrix with coefficients in ℤ/pℤ</title>
+</head>
+<body >
+<a href="cascmd_en423.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en425.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec947" class="subsection">11.9.5  Determinant of a matrix with coefficients in ℤ/<span style="font-style:italic">p</span>ℤ</h3>
+<p>In <span style="font-variant:small-caps">Xcas</span> mode, <span style="font-family:monospace">Det</span> is simply the inert form of
+<span style="font-family:monospace">det</span>; namely, it gives the determinant of a matrix without
+evaluating it. (See Section <a href="cascmd_en522.html#ssec%3Adet">15.1.4</a>.)
+In <span style="font-variant:small-caps">Maple</span> mode, the <span style="font-family:monospace">Det</span><a id="hevea_default709"></a> command
+can additionally be used in conjunction with <span style="font-family:monospace">mod</span> to
+find the determinant of a matrix whose elements are in
+ℤ/<span style="font-style:italic">p</span>ℤ.
+</p><ul class="itemize"><li class="li-itemize">
+In <span style="font-variant:small-caps">Maple</span> mode, <span style="font-family:monospace">Det</span> takes
+<span style="font-style:italic">A</span>, a matrix with elements in ℤ/<span style="font-style:italic">p</span>ℤ.
+</li><li class="li-itemize"><span style="font-family:monospace">Det(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span> returns the determinant of <span style="font-style:italic">A</span>.
+</li></ul><h4 id="sec948" class="subsubsection">Example</h4>
+<p>
+Input in <span style="font-variant:small-caps">Xcas</span> mode:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Det</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2,9] </span></span><span style="font-weight:bold"><span style="color:#BF0000">mod</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 13,[3,10,0] </span></span><span style="font-weight:bold"><span style="color:#BF0000">mod</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 13,[3,11,1] </span></span><span style="font-weight:bold"><span style="color:#BF0000">mod</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 13])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">det</span></span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">      1%13</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2%13</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−4</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">%13</span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">      3%13</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−3</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">%13</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0%13</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">      3%13</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−2</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">%13</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1%13
+</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎠</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To find the value of the determinant, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">eval</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">())</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+5%13
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Hence, in ℤ/13ℤ, the determinant of
+<span style="font-style:italic">A</span>=[[1, 2, 9],[3,10,0],[3,11,1]] is 5%13 (in ℤ, <span style="font-family:monospace">det(A)=31</span>).</p><p>Input in <span style="font-variant:small-caps">Maple</span> mode:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Det</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2,9],[3,10,0],[3,11,1]]) </span></span><span style="font-weight:bold"><span style="color:#BF0000">mod</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 13</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+5
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en423.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en425.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

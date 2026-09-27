@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.29+5 of 2017-05-18">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Mixing audio clips together</title>
+</head>
+<body >
+<a href="cascmd_en1037.html"><img src="previous_motif.gif" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.gif" alt="Up"></a>
+<hr>
+<h3 id="ssec:mixdown" class="subsection">27.2.18  Mixing audio clips together</h3>
+<p>The <span style="font-family:monospace">mixdown</span><a id="hevea_default1962"></a> command
+is used for mixing several audio clips down together into one clip.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">mixdown</span> takes an even number of arguments. Each pair of
+consecutive arguments is a sequence consisting of the following:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a stereo or mono audio clip.
+</li><li class="li-itemize"><span style="font-style:italic">parm</span>, which is either a nonnegative real number or a list consisting
+of at most five elements. In the first case, <span style="font-style:italic">parm</span> is the offset
+at which <span style="font-style:italic">A</span> is mixed in, and in the second case <span style="font-style:italic">parm</span> consists of
+zero to five elements in the following order:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">offset</span>, a nonnegative real number representing the
+clip offset in seconds (by default 0).
+</li><li class="li-itemize"><span style="font-style:italic">gain</span>, a real number representing the clip gain in
+dB (by default 0).
+</li><li class="li-itemize"><span style="font-style:italic">pan</span>, a real number in [−1,1] (by default 0).
+</li><li class="li-itemize"><span style="font-style:italic">fadein</span>, a nonnegative real number representing the
+fade-in length in seconds (by default 0).
+</li><li class="li-itemize"><span style="font-style:italic">fadeout</span>, a nonnegative real number representing
+the fade-out length in seconds (by default 0).
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">mixdown(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">parm</span> ⟨,… ⟩<span style="font-family:monospace">)</span>
+returns an audio clip which is the mix of the given clips.
+The audio is not automatically normalized, so calling <span style="font-family:monospace">normalize</span>
+(see Section <a href="cascmd_en1035.html#ssec%3Anormalize-audio">27.2.15</a>) may be required
+afterwards. If clipping occurs while mixing, a warning is printed in the message area.
+</li><li class="li-itemize">All audio clips involved in the mix must have the same sample rate,
+but may have different bit depths. The largest bit depth is selected for the
+resulting audio. If at least one of the clips is a stereo (two-channel) sound,
+then the entire mix is a stereo sound as well, otherwise it is a mono
+(single-channel) sound.
+</li><li class="li-itemize">Each of the <span style="font-style:italic">offset</span>, <span style="font-style:italic">fadein</span> and <span style="font-style:italic">fadeout</span> parameters
+must be entered either as a nonnegative integer or as a floating-point number.
+In the first case the value is assumed to be in sample units, while in the second case
+it is assumed to be in seconds.
+</li><li class="li-itemize">The <span style="font-style:italic">gain</span> parameter is entered in decibels (dB) with negative
+values resulting in a softer mix, and positive values resulting in a louder mix.
+</li><li class="li-itemize">If <span style="font-style:italic">fadein</span> and/or <span style="font-style:italic">fadeout</span> parameters are larger than zero,
+linear fade-in/out is applied to the respective clip while mixing.
+</li><li class="li-itemize">If clipping occurs, try mixing again with lower gain values.
+</li></ul><h4 id="sec2576" class="subsubsection">Example</h4>
+<p>
+In the following example we create a music track with six individual tones. First we write
+a function for creating tones with vibrato.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> vibrato:=<span style="color:#0000CC"><span style="font-weight:bold">proc</span></span>(f,t)
+   <span style="color:#0000CC"><span style="font-weight:bold">local</span></span> f1,f2,dl,dr,s;
+   purge(s);
+   f1:=rand(0.5,2.0);
+   f2:=rand(0.5,2.0);
+   dl:=[];
+   dr:=[];
+   <span style="color:#0000CC"><span style="font-weight:bold">for</span></span> s <span style="color:#0000CC"><span style="font-weight:bold">in</span></span> t <span style="color:#0000CC"><span style="font-weight:bold">do</span></span>
+     dl.append(sin(2*pi*(f+0.2*sin(2*pi*f1*s))*s));
+     dr.append(sin(2*pi*(f+5+0.2*sin(2*pi*f1*s))*s));
+   <span style="color:#0000CC"><span style="font-weight:bold">od</span></span>;
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> createwav([dl,dr]);
+ <span style="color:#0000CC"><span style="font-weight:bold">end</span></span>:;</td></tr>
+</table><p>Now create several tones of different lengths…
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2.0^(1/12):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vibrato</span></span><span style="font-weight:bold"><span style="color:#BF0000">(880,</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(7.5)):;     </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vibrato</span></span><span style="font-weight:bold"><span style="color:#BF0000">(880*</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(5)):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip3</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vibrato</span></span><span style="font-weight:bold"><span style="color:#BF0000">(880/</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2.5)):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip4</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vibrato</span></span><span style="font-weight:bold"><span style="color:#BF0000">(880/</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(6)):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip5</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vibrato</span></span><span style="font-weight:bold"><span style="color:#BF0000">(880/</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">^11,</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(6)):;  </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip6</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vibrato</span></span><span style="font-weight:bold"><span style="color:#BF0000">(880/(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">^7),</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(6)):;</span></span></td></tr>
+</table><p>… and mix them down at different positions.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=-6:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">mix</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">mixdown</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-0.3,2.0,0.2],    </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[5.0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0.7,0.5,2.0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">             </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip3</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[7.3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-0.3,0.2,0.2],  </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip4</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[9.6,</span></span><span style="font-weight:bold"><span style="color:#BF0000">g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-0.3,0.2,3.0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">             </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip5</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[9.8,-6.0,0.0,0.5,4.0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip6</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[10.0,-8.0,0.15,0.5,2.0])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 705600 samples at 44100 Hz (16 bit, stereo)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Finally, play the music:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">playsnd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">normalize</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">mix</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-1))</span></span></td></tr>
+</table><p>Output: a 16 seconds of synthesized music.</p><p><a id="chap:index"></a>
+</p><hr>
+<a href="cascmd_en1037.html"><img src="previous_motif.gif" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.gif" alt="Up"></a>
+</body>
+</html>

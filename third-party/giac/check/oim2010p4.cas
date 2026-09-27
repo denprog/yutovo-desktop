@@ -1,0 +1,17 @@
+A:=point(0);
+B:=point(1);
+assume(a=[0.3,-5,5,0.1]);
+assume(b=[0.7,-5,5,0.1]);
+C:=point(a,b);
+G:=circumcircle(A,B,C); g:=center(G);
+assume(c=[0.4,-5,5,0.1]);
+assume(d=[0.2,-5,5,0.1]);
+P:=point(c,d);
+triangle(A,B,C);
+K:=reflection(projection(A,P,g),A);
+L:=reflection(projection(B,P,g),B);
+M:=reflection(projection(C,P,g),C);
+T:=tangent(G,C);
+S:=single_inter(T,line(A,B));
+factor(distance2(S,P)-distance2(S,C));
+factor(distance2(M,K)-distance2(M,L));

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Contour lines</title>
+</head>
+<body >
+<a href="cascmd_en624.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en626.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:plotcontour" class="subsection">19.5.1  Contour lines</h3>
+<p>The <span style="font-family:monospace">plotcontour</span><a id="hevea_default1209"></a>
+or <span style="font-family:monospace">DrwCtour</span><a id="hevea_default1210"></a>
+or <span style="font-family:monospace">contourplot</span><a id="hevea_default1211"></a>
+command draws contour lines for functions of two variables.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">plotcontour</span> takes two mandatory arguments and one
+optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression involving two variables.
+</li><li class="li-itemize"><span style="font-style:italic">vars</span>, a list of the two variables.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">values</span>, a list of values of the contour
+lines to draw; <span style="font-style:italic">expr=value</span>, for <span style="font-style:italic">value</span> in
+<span style="font-style:italic">values</span> (by default, [−10,−8,…,8,10]).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">plotcontour(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">vars</span> ⟨,<span style="font-style:italic">values</span> ⟩<span style="font-family:monospace">)</span>
+draws the contour lines
+<span style="font-style:italic">expr=value</span> for <span style="font-style:italic">value</span> in <span style="font-style:italic">values</span>.
+</li></ul><h4 id="sec1525" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotcontour</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-3..3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-3..3],[1,2,3],</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">green</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">black</span></span><span style="font-weight:bold"><span style="color:#BF0000">]+[</span></span><span style="font-weight:bold"><span style="color:#BF0000">filled$3</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en098.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotcontour</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2-</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en099.png">
+
+</div><p>If you want to draw the surface in 3D representation, use
+<span style="font-family:monospace">plotfunc</span> (see Section <a href="cascmd_en611.html#ssec%3Aplotfunc3">19.2.2</a>).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotfunc</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2-</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en100.png">
+
+</div>
+<hr>
+<a href="cascmd_en624.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en626.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

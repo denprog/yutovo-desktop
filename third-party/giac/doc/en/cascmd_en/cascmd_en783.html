@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>For loop</title>
+</head>
+<body >
+<a href="cascmd_en782.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en784.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:for" class="subsection">25.3.3  For loop</h3>
+<p>The for-loop has three different forms, each of which uses an
+index variable. If the for-loop is used in a program, the
+index variable should be declared as a local variable. (Recall that
+<span style="font-family:monospace">i</span> represents the imaginary unit, and so cannot be used as the
+index.)</p>
+<h5 id="sec2021" class="paragraph">The first form.</h5>
+<p>
+For the first form, the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span><a id="hevea_default1609"></a> keyword is
+followed by the starting value for the index, the end condition, and
+the increment step, separated by semicolons and in parentheses.
+Afterwards is a block of code to be executed for each iteration,
+where <span style="font-style:italic">j</span> is the index and <span style="font-style:italic">j</span><sub>0</sub> is the starting value of <span style="font-style:italic">j</span>:
+</p><div class="center">
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span> <span style="font-family:monospace">(</span><span style="font-style:italic">j</span><span style="font-family:monospace">:=</span><span style="font-style:italic">j</span><sub>0</sub><span style="font-family:monospace">; </span><span style="font-style:italic">end_cond</span><span style="font-family:monospace">; </span><span style="font-style:italic">increment_step</span><span style="font-family:monospace">)</span> <span style="font-style:italic">block</span>
+</div><h4 id="sec2022" class="subsubsection">Example</h4>
+<p>
+To add the even numbers less than 100, you can start by setting the
+running total to 0:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=0</span></span></td></tr>
+</table><p>Then use a <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span> loop to do the summation:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">for</span></span><span style="font-weight:bold"><span style="color:#BF0000"> (</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=0;</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">&lt;100;</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2) { </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000"> }</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+2450
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec2023" class="paragraph">The second form.</h5>
+<p>
+The second form of a for-loop has a fixed increment for the index.
+It is written out with the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span><a id="hevea_default1610"></a> keyword
+followed by the index, then <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">from</span></span></span><a id="hevea_default1611"></a>,
+the initial value,
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">to</span></span></span><a id="hevea_default1612"></a>, the ending value,
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">step</span></span></span><a id="hevea_default1613"></a>, the size of the
+increment, and finally the statements to be executed between
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">do</span></span></span> and <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end_for</span></span></span>:
+</p><div class="center">
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span> <span style="font-style:italic">j</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">from</span></span></span> <span style="font-style:italic">j</span><sub>0</sub> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">to</span></span></span> <span style="font-style:italic">j</span><sub><span style="font-style:italic">max</span></sub> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">step</span></span></span> <span style="font-style:italic">k</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">do</span></span></span> <span style="font-style:italic">statements</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end_for</span></span></span>
+</div><p>
+where <span style="font-style:italic">j</span> is the index, <span style="font-style:italic">j</span><sub>0</sub> is the initial value of <span style="font-style:italic">j</span>, <span style="font-style:italic">j</span><sub><span style="font-style:italic">max</span></sub>
+is the ending value of <span style="font-style:italic">j</span>, <span style="font-style:italic">k</span> is the step size of <span style="font-style:italic">j</span>, and
+<span style="font-style:italic">statements</span> are executed for each value of <span style="font-style:italic">j</span>.</p><h4 id="sec2024" class="subsubsection">Example</h4>
+<p>
+Again, to add the even numbers less than 100, you can start by setting the
+running total to 0:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=0</span></span></td></tr>
+</table><p>then use the second form of the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span> loop to do the summation:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">for</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">from</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 2 </span></span><span style="font-weight:bold"><span style="color:#0000CC">to</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 98 </span></span><span style="font-weight:bold"><span style="color:#0000CC">step</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 2 </span></span><span style="font-weight:bold"><span style="color:#0000CC">do</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">; </span></span><span style="font-weight:bold"><span style="color:#0000CC">end_for</span></span></td></tr>
+</table><p>or (a French version of this syntax):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">pour</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">de</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 2 </span></span><span style="font-weight:bold"><span style="color:#0000CC">jusque</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 98 </span></span><span style="font-weight:bold"><span style="color:#0000CC">pas</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 2 </span></span><span style="font-weight:bold"><span style="color:#0000CC">faire</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">; </span></span><span style="font-weight:bold"><span style="color:#0000CC">fpour</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+2450
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec2025" class="paragraph">The third form.</h5>
+<p>
+The third form of a for-loop lets you iterate over the values in a
+list (or a set or a range). In this form, the
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span><a id="hevea_default1614"></a> keyword is followed by the index, then
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">in</span></span></span><a id="hevea_default1615"></a>, the list, and then the instructions between
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">do</span></span></span><a id="hevea_default1616"></a>
+and <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end_for</span></span></span><a id="hevea_default1617"></a> or
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">od</span></span></span><a id="hevea_default1618"></a>:
+</p><div class="center">
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span> <span style="font-style:italic">j</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">in</span></span></span> <span style="font-style:italic">L</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">do</span></span></span> <span style="font-style:italic">statements</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end_for</span></span></span>
+</div><p>
+where <span style="font-style:italic">j</span> is the index and <span style="font-style:italic">L</span> is the list to iterate over.</p><h4 id="sec2026" class="subsubsection">Example</h4>
+<p>
+To add all integers from 1 to 100, you can again set the running total
+<span style="font-family:monospace">S</span> to 0:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=0</span></span></td></tr>
+</table><p>then use the third form of the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">for</span></span></span> loop to add the integers:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">for</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">in</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 1..100 </span></span><span style="font-weight:bold"><span style="color:#0000CC">do</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">; </span></span><span style="font-weight:bold"><span style="color:#0000CC">end_for</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">pour</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">in</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 1..100 </span></span><span style="font-weight:bold"><span style="color:#0000CC">faire</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">; </span></span><span style="font-weight:bold"><span style="color:#0000CC">fpour</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+5050
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en782.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en784.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

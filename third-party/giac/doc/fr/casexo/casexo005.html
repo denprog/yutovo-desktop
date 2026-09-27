@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Matrices en terminale scientifique</title>
+</head>
+<body >
+<a href="casexo004.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo006.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec51" class="chapter">Chapitre 5  Matrices en terminale scientifique</h1>
+<h2 id="sec52" class="section">5.1  Les matrices de rotation</h2>
+<p>
+Étant donné <span style="font-style:italic">t</span>∈ ℝ on considère :<br>
+<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)=(
+</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  cos(<span style="font-style:italic">t</span>)</td><td style="text-align:center;white-space:nowrap" >−sin(<span style="font-style:italic">t</span>)</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  sin(<span style="font-style:italic">t</span>)</td><td style="text-align:center;white-space:nowrap" >cos(<span style="font-style:italic">t</span>)
+</td></tr>
+</table><p>
+)<br>
+Calculer <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup><span style="font-style:italic">n</span></sup> pour <span style="font-style:italic">n</span>∈ ℕ.<br>
+Calculer <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup>2</sup>−2cos(<span style="font-style:italic">t</span>)<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)+<span style="font-style:italic">I</span> où <span style="font-style:italic">I</span> est la matrice identité d’odre 2.<br>
+En déduire que <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>) est inversible et que <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup>−1</sup>=<span style="font-style:italic">A</span>(−<span style="font-style:italic">t</span>).<br>
+Calculer <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup><span style="font-style:italic">n</span></sup> pour <span style="font-style:italic">n</span>∈ ℤ.<br>
+Montrer que dans un repère orthonormé (<span style="font-style:italic">O</span>;<span style="font-style:italic">i</span>,<span style="font-style:italic">j</span>), la matrice <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>) est la matrice de la rotation de centre <span style="font-style:italic">O</span> et d’angle <span style="font-style:italic">t</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">A(t):=[[cos(t),-sin(t)],[sin(t),cos(t)]]</span><br>
+<span style="font-family:monospace">tlin(A(t)*A(t))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[cos(2*t),-sin(2*t)],[sin(2*t),cos(2*t)]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">assume(n,integer)</span><br>
+<span style="font-family:monospace">An(t):=[[cos(n*t),-sin(n*t)],[sin(n*t),cos(n*t)]]</span><br>
+<span style="font-family:monospace">tlin(An(t)*A(t))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[cos(n*t+t),-sin(n*t+t)],[sin(n*t+t),cos(n*t+t)]]</span><br>
+Donc on a montré par récurrence que :<br>
+<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup><span style="font-style:italic">n</span></sup>=<span style="font-style:italic">A</span>(<span style="font-style:italic">nt</span>).<br>
+On tape :<br>
+<span style="font-family:monospace">tlin(A(t)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*cos(t)*A(t)+idn(2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[0,0],[0,0]]</span><br>
+On en déduit que :<br>
+<span style="font-style:italic">A</span>(2cos(<span style="font-style:italic">t</span>)*<span style="font-style:italic">I</span>−<span style="font-style:italic">A</span>)=<span style="font-style:italic">I</span>
+On tape :<br>
+<span style="font-family:monospace">B(t):=normal(2*cos(t)*idn(2)-A(t))</span><br>
+<span style="font-family:monospace">B(t)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[cos(t),sin(t)],[-sin(t),cos(t)]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">B(t)-A(-t)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[0,0],[0,0]]</span><br>
+Donc pour tout <span style="font-style:italic">n</span>∈ ℕ, on a <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup>−1</sup>=<span style="font-style:italic">A</span>(−<span style="font-style:italic">t</span>) et <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup>−<span style="font-style:italic">n</span></sup>=<span style="font-style:italic">A</span>(−<span style="font-style:italic">t</span>)<sup><span style="font-style:italic">n</span></sup>=<span style="font-style:italic">A</span>(−<span style="font-style:italic">nt</span>).<br>
+Donc pour tout <span style="font-style:italic">n</span>∈ ℤ, on a <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<sup><span style="font-style:italic">n</span></sup>=<span style="font-style:italic">A</span>(<span style="font-style:italic">nt</span>).<br>
+Dans la rotation <span style="font-style:italic">r</span> de centre <span style="font-style:italic">O</span> et d’angle <span style="font-style:italic">t</span> :<br>
+le vecteur <span style="font-style:italic">i</span> se transforme en le vecteur :
+<span style="font-style:italic">r</span>(<span style="font-style:italic">i</span>)=cos(<span style="font-style:italic">t</span>)<span style="font-style:italic">i</span>+sin(<span style="font-style:italic">t</span>)<span style="font-style:italic">j</span><br>
+le vecteur <span style="font-style:italic">j</span> se transforme en le vecteur :
+<span style="font-style:italic">r</span>(<span style="font-style:italic">j</span>)=−<span style="font-style:italic">sin</span>(<span style="font-style:italic">t</span>)<span style="font-style:italic">i</span>+cos(<span style="font-style:italic">t</span>)<span style="font-style:italic">j</span><br>
+Donc :<br>
+<span style="font-style:italic">r</span>(<span style="font-style:italic">x</span><span style="font-style:italic">i</span>+<span style="font-style:italic">y</span><span style="font-style:italic">j</span>)=<span style="font-style:italic">xr</span>(<span style="font-style:italic">i</span>)+<span style="font-style:italic">yr</span>(<span style="font-style:italic">j</span>)=(<span style="font-style:italic">x</span>cos(<span style="font-style:italic">t</span>)−<span style="font-style:italic">y</span>sin(<span style="font-style:italic">t</span>))<span style="font-style:italic">i</span>+(<span style="font-style:italic">x</span>sin(<span style="font-style:italic">t</span>)+<span style="font-style:italic">y</span>cos(<span style="font-style:italic">t</span>))<span style="font-style:italic">j</span><br>
+c’est à dire :<br>
+<span style="font-style:italic">r</span>(</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">x</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">y</span>
+</td></tr>
+</table><p>)=(
+</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  cos(<span style="font-style:italic">t</span>)</td><td style="text-align:center;white-space:nowrap" >−sin(<span style="font-style:italic">t</span>)</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  sin(<span style="font-style:italic">t</span>)</td><td style="text-align:center;white-space:nowrap" >cos(<span style="font-style:italic">t</span>)
+</td></tr>
+</table><p>
+)(</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">x</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">y</span>
+</td></tr>
+</table><p>)=
+<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)(</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">x</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">y</span>
+</td></tr>
+</table><p>)<br>
+On tape :<br>
+<span style="font-family:monospace">coordonnees(rotation(0,t,x+i*y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[cos(t)*x-sin(t)*y,cos(t)*y+x*sin(t)]</span>
+</p>
+<h2 id="sec53" class="section">5.2  Les matrices magiques d’odre 3</h2>
+<h3 id="sec54" class="subsection">5.2.1  Résultat préliminaire</h3>
+<p>
+Soit <span style="font-style:italic">A</span> la matrice :<br>
+<span style="font-style:italic">A</span>=[[<span style="font-style:italic">a</span><sub>00</sub>,<span style="font-style:italic">a</span><sub>01</sub>,<span style="font-style:italic">a</span><sub>02</sub>],[<span style="font-style:italic">a</span><sub>10</sub>,<span style="font-style:italic">a</span><sub>11</sub>,<span style="font-style:italic">a</span><sub>12</sub>],[<span style="font-style:italic">a</span><sub>20</sub>,<span style="font-style:italic">a</span><sub>21</sub>,<span style="font-style:italic">a</span><sub>22</sub>]]
+Montrer que :<br>
+<span style="font-style:italic">B</span>=1/2*(<span style="font-style:italic">A</span>+tran(<span style="font-style:italic">A</span>)) est une matrice symértrique et<br>
+<span style="font-style:italic">C</span>=1/2*(<span style="font-style:italic">A</span>−tran(<span style="font-style:italic">A</span>)) est une matrice antisymértrique.<br>
+En déduire que toute matrice se décompose de façon unique en la somme 
+d’une matrice symétrique et d’une matrice antisymétrique.<br>
+On tape :<br>
+<span style="font-family:monospace">A:=[[a00,a01,a02],[a10,a11,a12],[a20,a21,a22]]</span><br>
+<span style="font-family:monospace">B:=1/2*(A+tran(A));C:=1/2*(A-tran(A))</span><br>
+<span style="font-family:monospace">normal(B-tran(B)),normal(C+tran(C))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[0,0,0],[0,0,0],[0,0,0]],[[0,0,0],[0,0,0],[0,0,0]]</span><br>
+Si <span style="font-style:italic">A</span>=<span style="font-style:italic">M</span>+<span style="font-style:italic">N</span> avec tran(<span style="font-style:italic">M</span>)=<span style="font-style:italic">M</span> et tran(<span style="font-style:italic">N</span>)=−<span style="font-style:italic">N</span> alors tran(<span style="font-style:italic">A</span>)=<span style="font-style:italic">M</span>−<span style="font-style:italic">N</span> donc <br>
+<span style="font-style:italic">M</span>=1/2*(<span style="font-style:italic">A</span>+tran(<span style="font-style:italic">A</span>))=<span style="font-style:italic">B</span> et <span style="font-style:italic">N</span>=1/2*(<span style="font-style:italic">A</span>−tran(<span style="font-style:italic">A</span>))=<span style="font-style:italic">C</span> d’où l’unicité.
+</p>
+<h3 id="sec55" class="subsection">5.2.2  Les matrices magiques d’odre 3</h3>
+<p>
+Une matrice <span style="font-style:italic">A</span>=(<span style="font-style:italic">a</span><sub><span style="font-style:italic">j</span>,<span style="font-style:italic">k</span></sub>) d’ordre 3 est une matrice magique de somme <span style="font-style:italic">s</span> lorsque
+les 8 sommes :<br>
+∑<sub><span style="font-style:italic">j</span>=0</sub><sup>2</sup><span style="font-style:italic">a</span><sub><span style="font-style:italic">j</span>,<span style="font-style:italic">k</span></sub>=<span style="font-style:italic">s</span> pour <span style="font-style:italic">k</span>=0,1,2 (somme de chaque colonne)<br>
+∑<sub><span style="font-style:italic">k</span>=0</sub><sup>2</sup><span style="font-style:italic">a</span><sub><span style="font-style:italic">j</span>,<span style="font-style:italic">k</span></sub>=<span style="font-style:italic">s</span> pour <span style="font-style:italic">j</span>=0,1,2 (somme de chaque ligne)<br>
+∑<sub><span style="font-style:italic">j</span>=0</sub><sup>2</sup><span style="font-style:italic">a</span><sub><span style="font-style:italic">j</span>,<span style="font-style:italic">j</span></sub>=<span style="font-style:italic">a</span><sub>1,3</sub>+<span style="font-style:italic">a</span><sub>2,2</sub>+<span style="font-style:italic">a</span><sub>3,1</sub>=<span style="font-style:italic">s</span> (somme de chaque diagonale).<br>
+Déterminer les matrices magiques d’ordre 3 qui sont antisymétriques.<br>
+Déterminer les matrices magiques d’ordre 3 qui sont symétriques de somme 
+<span style="font-style:italic">s</span>=0.<br>
+Déterminer une matrice magique d’ordre 3, symétrique, de somme <span style="font-style:italic">s</span> et la plus simple possible.<br>
+Montrer que la différence de 2 matrices symétriques magiques de somme <span style="font-style:italic">s</span> est une matrices symétriques magiques de somme <span style="font-style:italic">s</span>=0.<br>
+En déduire toutes les matrices magiques d’ordre 3, symétriques de somme <span style="font-style:italic">s</span>.<br>
+Trouver toutes les matrices magiques d’ordre 3 de somme <span style="font-style:italic">s</span>=3. <br>
+Trouver toutes les matrices magiques d’ordre 3 de somme <span style="font-style:italic">s</span>=9. <br>
+Les matrices magiques d’ordre 3 qui sont antisymétriques sont de somme <span style="font-style:italic">s</span>=0 
+car la diagonale principale ne contient que des 0.<br>
+Soit <span style="font-style:italic">A</span> une matrice antisymétrique d’ordre 3 et magique de somme <span style="font-style:italic">s</span>=0.<br>
+On tape :<br>
+<span style="font-family:monospace">A:=[[0,a,b],[-a,0,c],[-b,-c,0]]</span><br>
+<span style="font-family:monospace">linsolve([a+b=0,-a+c=0,b+c=0],[a,b,c])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[c,-c,c]</span><br>
+Donc les matrices magiques <span style="font-style:italic">A</span> d’ordre 3 qui sont antisymétriques sont :<br>
+<span style="font-style:italic">A</span>=(
+</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  0</td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">c</span></td><td style="text-align:center;white-space:nowrap" >−<span style="font-style:italic">c</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  −<span style="font-style:italic">c</span></td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">c</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">c</span></td><td style="text-align:center;white-space:nowrap" >−<span style="font-style:italic">c</span></td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table><p>
+)=<span style="font-style:italic">c</span>(
+</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  0</td><td style="text-align:center;white-space:nowrap" >1</td><td style="text-align:center;white-space:nowrap" >−1</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  −1</td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >1</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  1</td><td style="text-align:center;white-space:nowrap" >−1</td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table><p>
+)
+<br>
+On tape :<br>
+<span style="font-family:monospace">A:=c*[[0,1,-1],[-1,0,1],[1,-1,0]]</span><br>
+Soit <span style="font-style:italic">S</span> une matrice symétrique d’ordre 3 et magique de somme <span style="font-style:italic">s</span>=0.<br>
+On tape :<br>
+<span style="font-family:monospace">S:=[[a,b,c],[b,d,e],[c,e,f]]</span><br>
+<span style="font-family:monospace">linsolve([a+b+c,a+d+f,b+d+e,c+e+f,2c+d],[a,b,c,d,e,f])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-f,f,0,0,-f,f]</span><br>
+Donc les matrices magiques <span style="font-style:italic">S</span> d’ordre 3 qui sont symétriques de somme <span style="font-style:italic">s</span>=0 
+sont :<br>
+<span style="font-style:italic">S</span>=(
+</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  −<span style="font-style:italic">f</span></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">f</span></td><td style="text-align:center;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  <span style="font-style:italic">f</span></td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >−<span style="font-style:italic">f</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  0</td><td style="text-align:center;white-space:nowrap" >−<span style="font-style:italic">f</span></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">f</span>
+</td></tr>
+</table><p>
+)=<span style="font-style:italic">f</span>(
+</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >  −1</td><td style="text-align:center;white-space:nowrap" >1</td><td style="text-align:center;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  1</td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >−1</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >  0</td><td style="text-align:center;white-space:nowrap" >−1</td><td style="text-align:center;white-space:nowrap" >1
+</td></tr>
+</table><p>
+)
+<br>
+Soit <span style="font-style:italic">S</span><sub>0</sub> une matrice symétrique d’ordre 3 et magique de somme <span style="font-style:italic">s</span> la plus simple possible.<br>
+On tape :<br>
+<span style="font-family:monospace">S0:=s/3*[[1,1,1],[1,1,1],[1,1,1]]</span><br>
+Donc les matrices magiques <span style="font-style:italic">S</span> d’ordre 3 qui sont symétriques de somme <span style="font-style:italic">s</span> 
+sont <span style="font-style:italic">B</span>:=<span style="font-style:italic">S</span>+<span style="font-style:italic">S</span><sub>0</sub>:<br>
+On tape :<br>
+<span style="font-family:monospace">B:=f*[[-1,1,0],[1,0,-1],[0,-1,1]]+<br>
+s/3*[[1,1,1],[1,1,1],[1,1,1]]</span><br>
+
+Donc les matrices magiques <span style="font-style:italic">M</span> d’ordre 3 qui sont de somme <span style="font-style:italic">s</span>=3 (resp <span style="font-style:italic">s</span>=12)
+sont <span style="font-style:italic">M</span>:=<span style="font-style:italic">A</span>+<span style="font-style:italic">S</span>+<span style="font-style:italic">S</span><sub>0</sub> et elles dépendent de 2 paramètres <span style="font-style:italic">c</span> et <span style="font-style:italic">f</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">M:=c*[[0,1,-1],[-1,0,1],[1,-1,0]]+<br>
+ f*[[-1,1,0],[1,0,-1],[0,-1,1]]+[[1,1,1],[1,1,1],[1,1,1]]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-f+1,c+f+1,-c+1],[-c+f+1,1,c-f+1],[c+1,-c-f+1,f+1]]</span>
+Par exemple <span style="font-style:italic">f</span>=1,<span style="font-style:italic">c</span>=0, on obtient 
+<span style="font-family:monospace">[[0,2,1],[2,1,0],[1,0,2]]</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">M:=c*[[0,1,-1],[-1,0,1],[1,-1,0]]+<br>
+ f*[[-1,1,0],[1,0,-1],[0,-1,1]]+4*[[1,1,1],[1,1,1],[1,1,1]]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-f+4,c+f+4,-c+4],[-c+f+4,4,c-f+4],[c+4,-c-f+4,f+4]]</span><br>
+Par exemple <span style="font-style:italic">f</span>=1,<span style="font-style:italic">c</span>=3, on obtient 
+<span style="font-family:monospace">[[3,8,1],[2,4,6],[7,0,5]]</span>
+</p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo004.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo006.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Uniform distribution
+</title>
+</head>
+<body >
+<a href="cascmd_en670.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en672.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:uniform" class="subsection">20.4.2  Uniform distribution
+</h3>
+<h5 id="sec1664" class="paragraph">The probability density function for the uniform distribution.</h5>
+<p>
+Given two values <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span> with <span style="font-style:italic">a</span> &lt; <span style="font-style:italic">b</span>, the uniform distribution on
+[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] has density function 1/(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>) for <span style="font-style:italic">x</span> in [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]. The
+<span style="font-family:monospace">uniform</span><a id="hevea_default1331"></a>
+(or <span style="font-family:monospace">uniformd</span><a id="hevea_default1332"></a>) command
+computes this density function.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">uniform</span> (or <span style="font-family:monospace">uniformd</span>) takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>, real numbers with <span style="font-style:italic">a</span>&lt;<span style="font-style:italic">b</span>.
+</li><li class="li-itemize"><span style="font-style:italic">x</span>, a real number.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">uniform(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">x</span><span style="font-family:monospace">)</span> (or <span style="font-family:monospace">uniformd(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">x</span><span style="font-family:monospace">)</span>)
+returns the value of the probability density function for the
+uniform distribution from <span style="font-style:italic">a</span> to <span style="font-style:italic">b</span>, namely 1/(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>).
+</li></ul><h4 id="sec1665" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">uniform</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2.2,3.5,2.8)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.769230769231
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1666" class="paragraph">The cumulative distribution function for the uniform distribution.</h5>
+<p>
+The <span style="font-family:monospace">uniform_cdf</span><a id="hevea_default1333"></a>
+or <span style="font-family:monospace">uniformd_cdf</span><a id="hevea_default1334"></a>
+command finds the cumulative distribution
+function for the uniform distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">uniform_cdf</span> takes three mandatory arguments and one
+optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>, real numbers with <span style="font-style:italic">a</span>&lt;<span style="font-style:italic">b</span>.
+</li><li class="li-itemize"><span style="font-style:italic">x</span>, a real number.
+</li><li class="li-itemize">Optionally <span style="font-style:italic">y</span>, a real number. 
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">uniform_cdf(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">x</span><span style="font-family:monospace">)</span> returns the value of the
+cumulative distribution function for the uniform distribution from
+<span style="font-style:italic">a</span> to <span style="font-style:italic">b</span>, which in this case will be (<span style="font-style:italic">x</span>−<span style="font-style:italic">a</span>)/(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>).
+</li><li class="li-itemize"><span style="font-family:monospace">uniform_cdf(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span><span style="font-family:monospace">)</span> returns
+<span style="font-family:monospace">Prob</span>(<span style="font-style:italic">x</span> ≤ <span style="font-style:italic">X</span> ≤ <span style="font-style:italic">y</span>), which in this case will be
+(<span style="font-style:italic">y</span>−<span style="font-style:italic">x</span>)/(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>).
+</li></ul><h4 id="sec1667" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">uniform_cdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2,4,3.2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.6
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">uniform_cdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2,4,3,3.2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1668" class="paragraph">The inverse distribution function for the uniform distribution.</h5>
+<p>
+The <span style="font-family:monospace">uniform_icdf</span><a id="hevea_default1335"></a>
+or <span style="font-family:monospace">uniformd_icdf</span><a id="hevea_default1336"></a>
+command computes the inverse distribution
+for the uniform distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">uniform_icdf</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>, real numbers with <span style="font-style:italic">a</span>&lt;<span style="font-style:italic">b</span>.
+</li><li class="li-itemize"><span style="font-style:italic">h</span>, a real number between 0 and 1.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">uniform_icdf(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">h</span><span style="font-family:monospace">)</span> returns the value of the
+inverse distribution function to the uniform distribution from <span style="font-style:italic">a</span>
+to <span style="font-style:italic">b</span>; namely the value of <span style="font-style:italic">x</span> for which <span style="font-style:italic">h</span>=Prob(<span style="font-style:italic">X</span> ≤ <span style="font-style:italic">x</span><sub>)</sub>.
+</li></ul><h4 id="sec1669" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">uniform_icdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2,3,.6)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+2.6
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en670.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en672.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Integration by parts</title>
+</head>
+<body >
+<a href="cascmd_en453.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en455.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1017" class="subsection">13.3.5  Integration by parts</h3>
+<p>Recall the integration by parts formula: </p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>) <span style="font-style:italic">d</span><span style="font-style:italic">x</span>=
+<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)−</td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">u</span>′(<span style="font-style:italic">x</span>) <span style="font-style:italic">d</span><span style="font-style:italic">x</span>.  </td></tr>
+</table><p> If you want to integrate a function
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) by parts, you need to specify how to write <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) as
+<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), which you can do by either specifying <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>) or <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>).
+The result will be in the form <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)+∫<span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">d</span><span style="font-style:italic">x</span>, where
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>) and <span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">u</span>′(<span style="font-style:italic">x</span>).</p><p>In some cases, to finish an integral you need to integrate by parts
+more than once. After one integrating by parts once and getting
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)+∫<span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">d</span><span style="font-style:italic">x</span>, you may have to integrate ∫<span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">d</span><span style="font-style:italic">x</span> by
+parts and add <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>) to the result.</p><p><span style="font-variant:small-caps">Xcas</span> has two commands for integrating by parts:
+<span style="font-family:monospace">ibpdv</span> (where you specify <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)) and <span style="font-family:monospace">ibpu</span> (where you
+specify <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)), both of which return the result as a list
+[<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>),<span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>)]. Both of these commands allow you to keep track of the
+function <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>) you may need to add to the result of a subsequent
+integration by parts.</p><p>The <span style="font-family:monospace">ibpdv</span><a id="hevea_default752"></a> command finds
+the primitive of an expression written as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>) by specifying <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">ibpdv</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">uvprime</span>, an expression which you can think of as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)
+<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), or
+[<span style="font-style:italic">Fexpr</span>,<span style="font-style:italic">uvprime</span>], a list of two expressions,
+where again you can think of <span style="font-style:italic">uvprime</span> as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), and
+<span style="font-style:italic">Fexpr</span> represents the function <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>) that you can add to the
+result of integrating by parts.
+</li><li class="li-itemize"><span style="font-style:italic">vexpr</span>, an expression you can think of as <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>). If
+<span style="font-style:italic">vexpr</span> is <span style="font-family:monospace">0</span>, then instead of integrating by parts,
+the expression <span style="font-style:italic">uvprime</span> is integrated as a whole (this can
+be useful for finishing a multi-step integration by parts problem).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">ibpdv(</span><span style="font-style:italic">uvprime</span>,<span style="font-style:italic">vexpr</span><span style="font-family:monospace">)</span> or
+<span style="font-family:monospace">ibpdv(</span>[<span style="font-style:italic">Fexpr</span>,<span style="font-style:italic">uvprime</span>],<span style="font-style:italic">vexpr</span><span style="font-family:monospace">)</span> returns
+<ul class="itemize"><li class="li-itemize">
+if <span style="font-style:italic">vexpr</span>≠ 0:<p>[<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>),−<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">u</span>′(<span style="font-style:italic">x</span>)] (or [<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>),−<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">u</span>′(<span style="font-style:italic">x</span>)] if the
+first argument is a list).
+</p></li><li class="li-itemize">if <span style="font-style:italic">vexpr</span>=0:<p><span style="font-style:italic">G</span>(<span style="font-style:italic">x</span>) (or <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">G</span>(<span style="font-style:italic">x</span>), if the first argument is a list), where
+<span style="font-style:italic">G</span>(<span style="font-style:italic">x</span>) is a primitive of <span style="font-style:italic">uvprime</span>.
+</p></li></ul>
+</li></ul><p>
+Hence, <span style="font-family:monospace">ibpdv</span> returns the terms computed in an integration by parts,
+with the possibility of doing several <span style="font-family:monospace">ibpdv</span>s successively.</p><p>When the answer of
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)*</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">'(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><p>is computed, to obtain a
+primitive of <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), it remains to
+compute the integral of the second term of this answer and then to sum this
+integral with the first term of this answer: to do this, just use
+<span style="font-family:monospace">ibpdv</span> command with the answer as first argument and
+a new <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>) (or 0 to terminate the integration) as second argument.</p><p>The <span style="font-family:monospace">ibpu</span><a id="hevea_default753"></a> command finds
+the primitive of an expression written as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>) by specifying <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">ibpu</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">uvprime</span>, an expression which you can think of as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)
+<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), or
+[<span style="font-style:italic">Fexpr</span>,<span style="font-style:italic">uvprime</span>], a list of two expressions,
+where again you can think of <span style="font-style:italic">uvprime</span> as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), and
+<span style="font-style:italic">Fexpr</span> represents the function <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>) that you can add to the
+result of integrating by parts.
+</li><li class="li-itemize"><span style="font-style:italic">uexpr</span>, an expression you can think of as <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>). If
+<span style="font-style:italic">uexpr</span> is <span style="font-family:monospace">0</span>, then instead of integrating by parts,
+the expression <span style="font-style:italic">uvprime</span> is integrated as a whole (this can
+be useful for finishing a multi-step integration by parts problem).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">ibpu(</span><span style="font-style:italic">uvprime</span>,<span style="font-style:italic">uexpr</span><span style="font-family:monospace">)</span> or
+<span style="font-family:monospace">ibpu(</span>[<span style="font-style:italic">Fexpr</span>,<span style="font-style:italic">uvprime</span>],<span style="font-style:italic">uexpr</span><span style="font-family:monospace">)</span> returns
+<ul class="itemize"><li class="li-itemize">
+if <span style="font-style:italic">uexpr</span>≠ 0:<p>[<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>),−<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">u</span>′(<span style="font-style:italic">x</span>)] (or [<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>),−<span style="font-style:italic">v</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">u</span>′(<span style="font-style:italic">x</span>)] if the
+first argument is a list).
+</p></li><li class="li-itemize">if <span style="font-style:italic">uexpr</span>=0:<p><span style="font-style:italic">G</span>(<span style="font-style:italic">x</span>) (or <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">G</span>(<span style="font-style:italic">x</span>), if the first argument is a list), where
+<span style="font-style:italic">G</span>(<span style="font-style:italic">x</span>) is a primitive of <span style="font-style:italic">uvprime</span>.
+</p></li></ul>
+</li></ul><p>
+Hence, <span style="font-family:monospace">ibpu</span> returns the terms computed in an integration by parts,
+with the possibility of doing several <span style="font-family:monospace">ibpu</span>s successively.</p><p>When the answer of
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)*</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">'(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><p>is computed, to obtain a
+primitive of <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">v</span>′(<span style="font-style:italic">x</span>), it remains to
+compute the integral of the second term of this answer and then to sum this
+integral with the first term of this answer: to do this, just use the
+<span style="font-family:monospace">ibpu</span> command with the answer as first argument and
+a new <span style="font-style:italic">u</span>(<span style="font-style:italic">x</span>) (or 0 to terminate the integration) as second argument.</p><h4 id="sec1018" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,−1</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+then:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),-1],0)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">(),0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>When the first argument of <span style="font-family:monospace">ibpdv</span> is a list of two elements,
+<span style="font-family:monospace">ibpdv</span> works only on the last element of this list and adds
+the integrated term to the first element of this list. (therefore it
+is possible to do several <span style="font-family:monospace">ibpdv</span>s successively).</p><p>For example, to evaluate ∫ln(<span style="font-style:italic">x</span>)<sup>2</sup> <span style="font-style:italic">d</span><span style="font-style:italic">x</span>, input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">((</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,−2 </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+It remains to integrate −2ln<span style="font-style:italic">x</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2,-2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">log</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)],</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">(),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,2</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+And now it remains to integrate 2:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*(-2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">log</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)),2],0)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpdv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">(),0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,−1</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+then:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),-1],0)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">(),0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>When the first argument of <span style="font-family:monospace">ibpu</span> is a list of two elements,
+<span style="font-family:monospace">ibpu</span> works only on the last element of this list and adds the
+integrated term to the first element of this list. Therefore it is
+possible to do several <span style="font-family:monospace">ibpu</span>s successively, similarly to how
+you can do several <span style="font-family:monospace">ibpdv</span>s successively.</p><p>For example, to evaluate ∫ln(<span style="font-style:italic">x</span>)<sup>2</sup> <span style="font-style:italic">d</span><span style="font-style:italic">x</span>, input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">((</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2,(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,−2 </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+It remains to integrate −2ln<span style="font-style:italic">x</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2,-2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)],</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">(),</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,2</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Finally, it remains to integrate 2:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*(-2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)),2],0)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ibpu</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ans</span></span><span style="font-weight:bold"><span style="color:#BF0000">(),0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">ln</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en453.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en455.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

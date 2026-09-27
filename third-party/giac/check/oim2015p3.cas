@@ -1,0 +1,25 @@
+other(c1,c2,A):={ 
+    local l,m;
+    l:=radical_axis(c1,c2);
+    m:=single_inter(l,line(center(c1),center(c2)));
+    return reflection(m,A);
+}:;
+gamma:=circle(0,1,display=hidden_name);
+A:=point(-1);
+assume(b=[0.5,-5,5,0.1]);
+assume(c=[-1.0,-5,5,0.1]);
+B:=point((1+i*b)/(1-i*b));
+C:=point((1+i*c)/(1-i*c));
+H:=orthocenter(A,B,C); triangle(A,B,C);
+F:=projection(line(B,C),A);
+M:=midpoint(B,C);
+Q:=other(circle(H,A),gamma,A);
+K:=other(circle(H,Q),gamma,Q);
+O:=circumcircle(K,Q,H);
+OO:=circumcircle(F,K,M);
+
+eq:=normal((x+y+z)*(x-y+z)*(x-y-z)*(x+y-z));
+eq2:=x^2+y^2+z^2-2*x*y-2*x*z-2*y*z;
+d:=normal(distance2(center(O),center(OO))); r1:=normal(radius(O)^2); r2:=normal(radius(OO)^2);
+normal(subst(eq2,[x,y,z],[d,r1,r2]));
+

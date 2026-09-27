@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>B-splines</title>
+</head>
+<body >
+<a href="cascmd_en602.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en604.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:b-splines" class="subsection">17.2.3  B-splines</h3>
+<h5 id="sec1457" class="paragraph">Finding B-splines from control points.</h5>
+<p>
+The command <span style="font-family:monospace">bspline</span><a id="hevea_default1079"></a> finds a B-spline
+with a given list of control points and, optionally, a list of breakpoints.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">bspline</span> takes one mandatory argument and up to three optional argument(s):
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">cpts</span>, a list of <span style="font-style:italic">m</span> control points in ℝ<sup><span style="font-style:italic">d</span></sup> which may be given
+either as vectors of (Cartesian) coordinates, 2D or 3D points (graphic objects), or
+(complex) affixes of 2D points.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">var</span>, a variable specification which can be one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">x</span>, an identifier (by default <span style="font-family:monospace">x</span>).
+</li><li class="li-itemize"><span style="font-style:italic">x</span><span style="font-family:monospace">=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>, where <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span> are real numbers
+such that <span style="font-style:italic">a</span>&lt;<span style="font-style:italic">b</span> (by default, <span style="font-style:italic">a</span>=0 and <span style="font-style:italic">b</span>=1).
+</li><li class="li-itemize"><span style="font-style:italic">x</span><span style="font-family:monospace">=[</span><span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">x</span><sub>1</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub><span style="font-family:monospace">]</span>, where <span style="font-style:italic">n</span>=<span style="font-style:italic">m</span>−<span style="font-style:italic">p</span>+1 and <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> are
+real numbers for <span style="font-style:italic">i</span>=0,1,…,<span style="font-style:italic">n</span> given in strictly ascending order (by default,
+<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span></sub>=<span style="font-style:italic">a</span>+<span style="font-style:italic">k</span>/<span style="font-style:italic">n</span>(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>) for <span style="font-style:italic">k</span>=0,1,…,<span style="font-style:italic">n</span>).
+</li></ul>
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">p</span>, a positive integer corresponding to the spline degree
+(by default, <span style="font-style:italic">p</span>=3, which produces a cubic B-spline).
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">piecewise</span>, the symbol.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">bspline(</span><span style="font-style:italic">cpts</span> ⟨,<span style="font-style:italic">var</span>,<span style="font-style:italic">p</span> ⟩ ⟨,<span style="font-family:monospace">piecewise</span> ⟩<span style="font-family:monospace">)</span>
+returns a matrix with <span style="font-style:italic">n</span>−1 rows and <span style="font-style:italic">d</span> columns in which the <span style="font-style:italic">k</span>th row represents a parametric
+definition of the B-spline with parameter <span style="font-style:italic">x</span> such that <span style="font-style:italic">x</span>∈[<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span></sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>+1</sub>⟩, or,
+if <span style="font-family:monospace">piecewise</span> is given, a parametric representation of the entire spline in
+which each component is piecewise-defined.
+</li><li class="li-itemize">The points <span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">x</span><sub>1</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub> are called <em>breakpoints</em>. B-spline is a piecewise
+parametric function with parts joining at these points. If no breakpoints are given,
+a uniform subdivision of the specified segment [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] (by default [0,1]) is used. Note
+that the relation 2≤ <span style="font-style:italic">n</span>=<span style="font-style:italic">m</span>−<span style="font-style:italic">p</span>+1 must hold, which implies <span style="font-style:italic">m</span>≥ <span style="font-style:italic">p</span>+1.
+</li><li class="li-itemize">B-splines are useful for curve-fitting and numerical differentiation of data.
+</li></ul><h4 id="sec1458" class="subsubsection">Example</h4>
+<p>
+To define a sequence of control points, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1-2</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,5-</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,6-4</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,8+2</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,5+</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">:;</span></span></td></tr>
+</table><p>Now compute the B-spline defined by the above points and uniform knots,
+with parameter <span style="font-style:italic">t</span>∈[0,1]:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">bs</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">bspline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">99 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+27 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+9 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">567 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">243 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">−36 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+2</span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">63 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">−54 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+36 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−3</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">297 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">189 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+36 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−6</span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">−117 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+243 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−162 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+41</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">−162 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+378 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−279 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+64</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To plot the result with alternating red-blue color for spline pieces and
+green control points, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">polygon</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">open</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotparam</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">bs</span></span><span style="font-weight:bold"><span style="color:#BF0000">[0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..1/3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">line_width_2</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotparam</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">bs</span></span><span style="font-weight:bold"><span style="color:#BF0000">[1],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1/3..2/3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">line_width_2</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotparam</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">bs</span></span><span style="font-weight:bold"><span style="color:#BF0000">[2],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=2/3..1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">line_width_2</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_point</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_width_3</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">green</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en040.png">
+
+</div><p>
+
+Sometimes it is useful to return the result in a piecewise form. Enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">bs</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">bspline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">piecewise</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎧<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎨<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎩</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">99</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+27 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+9 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">≥ 0∧ </span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">&gt;</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">63</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">−54 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+36 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−3,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">&gt;</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">−117 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+243 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−162 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+41,</span></td><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">1≥ </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎧<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎨<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎩</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">567</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">243</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−36 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+2,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">≥ 0∧ </span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">&gt;</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">297</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">189</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+36 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−6,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">&gt;</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">−162 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+378 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−279 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+64,</span></td><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">1≥ </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The result is a list of components of the spline function.
+Now, for example, the command line
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotparam</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">bs</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..1)</span></span></td></tr>
+</table><p>draws the entire spline.</p><h5 id="sec1459" class="paragraph">Fitting B-splines to data.</h5>
+<p>
+The <span style="font-family:monospace">fitspline</span><a id="hevea_default1080"></a> command fits
+B-splines to (multidimensional) time-stamped data in the least-squares sense.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">fitspline</span> takes two mandatory arguments and a sequence of optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">data</span>, a list of time-stamped locations in ℝ<sup><span style="font-style:italic">d</span></sup> given either as
+[<span style="font-style:italic">t</span><sub><span style="font-style:italic">k</span></sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>1</sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>2</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">kd</span></sub>] or as [<span style="font-style:italic">t</span><sub><span style="font-style:italic">k</span></sub>,[<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>1</sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>2</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">kd</span></sub>]] for
+<span style="font-style:italic">k</span>=1,2,…,<span style="font-style:italic">m</span>, where <span style="font-style:italic">m</span>≥ 2 and <span style="font-style:italic">d</span>≥ 1.
+</li><li class="li-itemize"><span style="font-style:italic">var</span>, which is either a variable or a vector of real numbers.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">opts</span>, a sequence of options each of which may be one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">brkpts</span>, which is either a positive integer <span style="font-style:italic">n</span> specifying the number of
+spline pieces (by default, <span style="font-style:italic">n</span>=⌊√<span style="text-decoration:overline"><span style="font-style:italic">m</span></span>+1/2⌋), or
+<span style="font-family:monospace">breakpoint=[</span><span style="font-style:italic">b</span><sub>0</sub>,<span style="font-style:italic">b</span><sub>2</sub>,…,<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub><span style="font-family:monospace">]</span> which specifies the breakpoints
+<span style="font-style:italic">b</span><sub>0</sub>,…,<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>∈ℝ explicitly (and not necessarily in an ascending order).
+Note that min<sub><span style="font-style:italic">i</span></sub><span style="font-style:italic">b</span><sub><span style="font-style:italic">i</span></sub>≤ <span style="font-style:italic">t</span><sub>1</sub>&lt;<span style="font-style:italic">t</span><sub><span style="font-style:italic">m</span></sub>≤ max<sub><span style="font-style:italic">j</span></sub><span style="font-style:italic">b</span><sub><span style="font-style:italic">j</span></sub> must hold. If <span style="font-style:italic">brkpts</span>=<span style="font-style:italic">n</span>, then <span style="font-style:italic">n</span>+1
+uniformly spaces breakpoints are automatically generated in the segment [<span style="font-style:italic">t</span><sub>1</sub>,<span style="font-style:italic">t</span><sub><span style="font-style:italic">m</span></sub>].
+</li><li class="li-itemize"><span style="font-family:monospace">degree=</span><span style="font-style:italic">p</span>, where <span style="font-style:italic">p</span> is a positive integer (spline degree, by default <span style="font-style:italic">p</span>=3).
+</li><li class="li-itemize"><span style="font-family:monospace">piecewise</span>, the symbol.
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">fitspline(</span><span style="font-style:italic">data</span>,<span style="font-style:italic">var</span> ⟨,<span style="font-style:italic">opts</span> ⟩<span style="font-family:monospace">)</span> returns
+<ul class="itemize"><li class="li-itemize">
+the list of spline points at elements of <span style="font-style:italic">var</span> if the latter is a vector,
+</li><li class="li-itemize">the spline as returned by <span style="font-family:monospace">bspline</span> for the variable <span style="font-style:italic">var</span> and optionally
+<span style="font-family:monospace">piecewise</span>, if <span style="font-style:italic">var</span> is an identifier.
+</li></ul>
+The resulting spline (of degree <span style="font-style:italic">p</span>) is computed from a sequence of <span style="font-style:italic">n</span>+1 breakpoints (either
+automatically generated or explicitly given) and <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span> control points obtained by minimizing
+squared distances between spline points at values <span style="font-style:italic">t</span><sub><span style="font-style:italic">k</span></sub> and data points
+(<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>1</sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span>2</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">kd</span></sub>) for <span style="font-style:italic">k</span>=1,2,…,<span style="font-style:italic">m</span>.
+</li><li class="li-itemize">The number <span style="font-style:italic">m</span> of data samples must be larger than the number <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span> of control points.
+Furthermore, it is recommended that <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>≤ <span style="font-style:italic">m</span>/2 is satisfied when uniformly spaced breakpoints
+are used; otherwise the spline could easily overfit on the noise resulting in large oscillations
+(this is essentially a Nyquist-frequency argument). If the above inequality does not hold,
+a warning is printed.
+</li><li class="li-itemize">You should specify the breakpoints explicitly in cases when data has significant
+changes in curvature; it is a good idea to provide more resp. less breakpoints for intervals
+in which the curvature is large resp. small.
+</li><li class="li-itemize">Note that <span style="font-family:monospace">fitspline</span> operates exclusively in floating-point arithmetic.
+If <span style="font-style:italic">var</span> is a vector, then GSL fitting routines are used if available.
+</li></ul><h4 id="sec1460" class="subsubsection">Examples</h4>
+<p>
+To generate some synthetic data with noise, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,15,200):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)*</span></span><span style="font-weight:bold"><span style="color:#BF0000">exp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-0.1*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)*(1+</span></span><span style="font-weight:bold"><span style="color:#BF0000">randnorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,0.1)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>The following command line computes <span style="font-style:italic">y</span>-values of a B-spline fit:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ys</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">fitspline</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)]):;</span></span></td></tr>
+</table><p>Essentially, <span style="font-family:monospace">ys</span> is the result of “snapping” <span style="font-family:monospace">y</span>
+to a smooth curve. Now visualize the result by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">ys</span></span><span style="font-weight:bold"><span style="color:#BF0000">]))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en041.png">
+
+</div><p>You can use B-spline to trace a sequence of points in time. For example,
+generate a list of 2D locations by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,10,50):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">)+</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1)/(1+</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sqrt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">))+</span></span><span style="font-weight:bold"><span style="color:#BF0000">randnorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,0.1),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">)-</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1)/(1+</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sqrt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">))+</span></span><span style="font-weight:bold"><span style="color:#BF0000">randnorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,0.1),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>The underlying smooth path of these “footsteps” can be approximated like this:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,10,500):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">fitspline</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">,20)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en042.png">
+
+</div><p>
+
+Such approximation is useful for estimating the total distance traveled or
+the velocity at a certain point in time, assuming that data represents a
+discretized trajectory of a moving object, such as e.g. a series of GPS positions would.</p><p>By setting the number of spline pieces (which is 20 in the above graph) to a value that is
+close to 50 (the number of samples), the resulting spline exhibits large oscillations
+near the beginning and end of the curve, reminiscent of Runge’s phenomenon:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">fitspline</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">,45)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+Warning: too many control points
+</span></span></span></p><div class="center">
+
+<img src="cascmd_en043.png">
+
+</div><p>
+
+Note that using Chebyshev nodes as breakpoints, which would be beneficial in the case of
+polynomial interpolation, does not make much difference here.</p>
+<hr>
+<a href="cascmd_en602.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en604.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

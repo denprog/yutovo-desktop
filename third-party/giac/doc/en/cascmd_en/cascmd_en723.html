@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Discrete wavelet transform</title>
+</head>
+<body >
+<a href="cascmd_en722.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en724.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:dwt" class="subsection">21.4.10  Discrete wavelet transform</h3>
+<p>The <span style="font-family:monospace">dwt</span><a id="hevea_default1454"></a> and
+<span style="font-family:monospace">idwt</span><a id="hevea_default1455"></a> commands are used for computing the discrete
+wavelet transform (DWT) of a signal and for computing the inverse transformation,
+i.e. reconstructing the original signal from the transform. These commands require
+the GSL library.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">dwt</span> and <span style="font-family:monospace">idwt</span> both take one mandatory argument and up to four
+optional arguments (the order of optional arguments is irrelevant):
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">data</span>, a numeric vector of length <span style="font-style:italic">n</span> or matrix with dimensions <span style="font-style:italic">m</span>× <span style="font-style:italic">n</span>.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">"</span><span style="font-style:italic">wtype</span><span style="font-family:monospace">"</span>,
+a string which defines the wavelet family.
+Supported values of <span style="font-style:italic">wtype</span> are:
+<span style="font-family:monospace">daubechies</span> (the default), <span style="font-family:monospace">haar</span> and <span style="font-family:monospace">bspline</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">k</span>, a positive integer which selects the specified member of
+the wavelet family. For the Daubechies wavelet family, <span style="font-style:italic">k</span>∈{4,8,…,20} (even numbers).
+For the Haar wavelet, only <span style="font-style:italic">k</span>=2 is supported. For the biorthogonal B-spline wavelet family,
+the implemented values of <span style="font-style:italic">k</span> are 103, 105, 202, 204, 206, 208, 301, 303, 305 307 and 309.
+By default, <span style="font-style:italic">k</span>=4 is selected for the Daubechies wavelet, <span style="font-style:italic">k</span>=2 for the Haar wavelet and
+<span style="font-style:italic">k</span>=103 for the B-spline wavelet.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">center</span>, the symbol which makes use of the centered forms
+of the wavelets which align the coefficients of the various sub-bands on edges,
+making the resulting visualization of the coefficients of the wavelet transform in the
+phase plane easier to understand.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">image</span>, the symbol which specifies the “non-standard”
+form of the 2D DWT.
+</li></ul>
+Note that the input array <span style="font-style:italic">data</span> will be enlarged, if necessary, such that its size
+is a power of two. If <span style="font-style:italic">data</span> is a matrix, it is augmented to a square matrix of
+size equal to the first power of 2 not smaller than max{<span style="font-style:italic">m</span>,<span style="font-style:italic">n</span>}.
+Input data is extended by zero-padding.
+</li><li class="li-itemize">If <span style="font-style:italic">data</span> is a vector, then
+<span style="font-family:monospace">dwt(</span><span style="font-style:italic">data</span> ⟨,<span style="font-style:italic">options</span> ⟩<span style="font-family:monospace">)</span>
+returns the list of length <span style="font-style:italic">n</span> which
+contains the DWT of the signal <span style="font-style:italic">data</span>, packed in a triangular storage layout:
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">s</span><sub>−1,0</sub>,<span style="font-style:italic">d</span><sub>0,0</sub>,<span style="font-style:italic">d</span><sub>1,0</sub>,<span style="font-style:italic">d</span><sub>1,1</sub>,<span style="font-style:italic">d</span><sub>2,0</sub>,<span style="font-style:italic">d</span><sub>2,1</sub>,<span style="font-style:italic">d</span><sub>2,2</sub>,…,<span style="font-style:italic">d</span><sub><span style="font-style:italic">i</span>,<span style="font-style:italic">j</span></sub>,…,<span style="font-style:italic">d</span><sub><span style="font-style:italic">N</span>−1,2<sup><span style="font-style:italic">N</span>−1</sup>−1</sub></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">, </td></tr>
+</table>
+where <span style="font-style:italic">i</span>=0,…,<span style="font-style:italic">N</span>−1 is the level index, <span style="font-style:italic">j</span>=0,…,2<sup><span style="font-style:italic">i</span></sup>−1 is the index of the
+coefficient within each level, and <span style="font-style:italic">N</span>=log<sub>2</sub>(<span style="font-style:italic">n</span>). The first element <span style="font-style:italic">s</span><sub>−1,0</sub> is the
+smoothing coefficient, which is followed by detail coefficients <span style="font-style:italic">d</span><sub><span style="font-style:italic">i</span>,<span style="font-style:italic">j</span></sub> for each level <span style="font-style:italic">i</span>.
+</li><li class="li-itemize">If <span style="font-style:italic">data</span> is a matrix, then the “non-standard” 2D DWT is performed in interleaved
+passes on the rows and columns for each level of the transform. The non-standard
+form of DWT is typically used in image analysis. By default, the “standard” form is used,
+which performs a complete DWT on the rows of the matrix, followed by a separate complete
+DWT on the columns of the resulting row-transformed matrix.
+</li><li class="li-itemize"><span style="font-family:monospace">idwt</span> takes the DWT and returns the original data. The
+<span style="font-style:italic">data</span> parameter may be modified prior to calling <span style="font-family:monospace">idwt</span> for the sake
+of e.g. signal smoothing or data compression.
+</li></ul><h4 id="sec1874" class="subsubsection">Examples</h4>
+<h5 id="sec1875" class="paragraph">Signal compression.</h5>
+<p>
+In the first example (adapted from GSL documentation), we load a sample of size 256 from the
+MIT-BIH Arrhythmia Database (see <a href="https://physionet.org/content/mitdb/1.0.0/">here</a>)
+and attempt to remove the noisy information.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">mid</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">csv2gen</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Documents/MIT-BIH.csv"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"\t"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">),2),300,256):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en192.png">
+
+</div><p>
+
+Now we transform the signal by using <span style="font-family:monospace">dwt</span> and select the 20 largest components.
+We set other elements to zero and transform the result back using <span style="font-family:monospace">idwt</span>.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">dwt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">p</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">reverse</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sortperm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">))):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">for</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">from</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 20 </span></span><span style="font-weight:bold"><span style="color:#0000CC">to</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 255 </span></span><span style="font-weight:bold"><span style="color:#0000CC">do</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">p</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">]]:=0; </span></span><span style="font-weight:bold"><span style="color:#0000CC">od</span></span><span style="font-weight:bold"><span style="color:#BF0000">:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">res</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">idwt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">res</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en193.png">
+
+</div><p>
+
+As you can see, the fast, low-amplitude oscillations are gone,
+but important features such as the spike are left practically intact.
+As a beneficial side-effect of denoising, you get the signal compressed
+by, in this case, about 92% in terms of memory usage.</p>
+<h5 id="sec1876" class="paragraph">Noise reduction in images.</h5>
+<p>
+Assuming that an image <span style="font-family:monospace">noisy.jpg</span> is stored in <span style="font-family:monospace">Pictures</span>
+folder, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Pictures/noisy.jpg"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)(</span></span><span style="font-weight:bold"><span style="color:#BF0000">grey</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 300×300 (grayscale)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Use DWT to transform the image matrix and subsequently replace each component smaller
+than 55 (by absolute value) in the resulting matrix to zero, before transforming
+it back to obtain a noise-reduced image. (The threshold value was obtained by
+trial and error.) Note that <span style="font-family:monospace">dwt</span> enlarges the input matrix to the size
+512× 512, so be sure to crop the output of <span style="font-family:monospace">idwt</span> back to 300× 300.
+To make sure that no component gets below zero or above 255,
+use the <span style="font-family:monospace">threshold</span> command (see Section <a href="cascmd_en713.html#ssec%3Athreshold">21.3.4</a>).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">dwt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">[0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">sdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">threshold</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">,55.0=0,'&lt;=',</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#0000CC">true</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">nr</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">threshold</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">round</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">subMat</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">idwt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">),0,0,299,299)),[0,255]))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 300×300 (grayscale)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To display the original image and the processed image next to each other for comparison, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0); </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">nr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,320);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-20</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"original"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(320-20</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"denoised"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en194.png">
+
+</div>
+<hr>
+<a href="cascmd_en722.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en724.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

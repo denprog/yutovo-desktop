@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>La géométrie dans l’espace</title>
+</head>
+<body >
+<a href="casexo019.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo021.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec331" class="chapter">Chapitre 20  La géométrie dans l’espace</h1>
+<h2 id="sec332" class="section">20.1  Le plan</h2>
+<p>
+L’équation cartésienne d’un plan quelconque est :<br>
+<span style="font-style:italic">ax</span>+<span style="font-style:italic">by</span>+<span style="font-style:italic">cz</span>+<span style="font-style:italic">d</span>=0 : son vecteur normal est [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>] et il passe par le point 
+[−<span style="font-style:italic">d</span>/<span style="font-style:italic">a</span>,0,0] si <span style="font-style:italic">a</span>≠ 0 ou par le point [0,−<span style="font-style:italic">d</span>/<span style="font-style:italic">b</span>,0] si <span style="font-style:italic">b</span>≠ 0 ou par le 
+point [0,0,−<span style="font-style:italic">d</span>/<span style="font-style:italic">c</span>] si <span style="font-style:italic">c</span>≠ 0 (on suppose <span style="font-style:italic">a</span>*<span style="font-style:italic">b</span>*<span style="font-style:italic">c</span> ≠ 0).<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape pour dessiner le plan d’équation 2<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>−2<span style="font-style:italic">z</span>−1=0 :<br>
+<span style="font-family:monospace">plan(2*x+y-2*z-1=0)</span></p><p>L’équation cartésienne d’un plan passant par les points <span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>],
+<span style="font-style:italic">B</span>=[<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">y</span><sub>1</sub>,<span style="font-style:italic">z</span><sub>1</sub>], <span style="font-style:italic">C</span>=[<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">y</span><sub>2</sub>,<span style="font-style:italic">z</span><sub>2</sub>] est :<br>
+<span style="font-family:monospace">det([</span>[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>,1],[<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">y</span><sub>1</sub>,<span style="font-style:italic">z</span><sub>1</sub>,1],[<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">y</span><sub>2</sub>,<span style="font-style:italic">z</span><sub>2</sub>,1],[<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>,1]<span style="font-family:monospace">])=0</span>.<br>
+Par exemple le plan d’équation <span style="font-style:italic">x</span>/<span style="font-style:italic">a</span>+<span style="font-style:italic">y</span>/<span style="font-style:italic">b</span>+<span style="font-style:italic">z</span>/<span style="font-style:italic">c</span>=1 passe par les points :<br>
+<span style="font-style:italic">A</span>=[<span style="font-style:italic">a</span>,0,0],<span style="font-style:italic">B</span>=[0,<span style="font-style:italic">b</span>,0] et <span style="font-style:italic">C</span>=[0,0,<span style="font-style:italic">c</span>] (on suppose <span style="font-style:italic">a</span> ≠ 0 <span style="font-style:italic">b</span> ≠ 0 et
+<span style="font-style:italic">c</span> ≠ 0).<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On définit 3 points <span style="font-family:monospace">A</span>,<span style="font-family:monospace">B</span>,<span style="font-family:monospace">C</span>.<br>
+On tape pour dessiner la plan passant par ces 3 points :<br>
+<span style="font-family:monospace">plan(A,B,C)</span><br>
+On tape pour avoir son équation cartésienne :<br>
+<span style="font-family:monospace">equation(plan(A,B,C))</span></p><p>L’équation cartésienne d’un plan passant par le point <span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] et
+parallèle aux vecteurs <span style="font-style:italic">U</span>=[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>] et <span style="font-style:italic">V</span>=[<span style="font-style:italic">d</span>,<span style="font-style:italic">e</span>,<span style="font-style:italic">f</span>] est :<br>
+<span style="font-style:italic">h</span>*(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)+<span style="font-style:italic">k</span>*(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)+<span style="font-style:italic">l</span>*(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)=0 avec [<span style="font-style:italic">h</span>,<span style="font-style:italic">k</span>,<span style="font-style:italic">l</span>]=<span style="font-style:italic">W</span>=<span style="font-style:italic">U</span>∧ <span style="font-style:italic">V</span>=<span style="font-family:monospace">cross(U,V)</span>.</p><p>L’équation paramétrique d’un plan passant par le point <span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] et
+parallèle aux vecteurs <span style="font-style:italic">U</span>=[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>] et <span style="font-style:italic">V</span>=[<span style="font-style:italic">d</span>,<span style="font-style:italic">e</span>,<span style="font-style:italic">f</span>] est :<br>
+<span style="font-style:italic">x</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">x</span><sub>0</sub>+<span style="font-style:italic">a</span>+<span style="font-style:italic">d</span>,<br>
+<span style="font-style:italic">y</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">y</span><sub>0</sub>+<span style="font-style:italic">b</span>+<span style="font-style:italic">e</span>,<br>
+<span style="font-style:italic">y</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">y</span><sub>0</sub>+<span style="font-style:italic">c</span>+<span style="font-style:italic">f</span>,<br>
+(on suppose <span style="font-style:italic">a</span>*<span style="font-style:italic">b</span>*<span style="font-style:italic">c</span> ≠ 0 et <span style="font-style:italic">d</span>*<span style="font-style:italic">e</span>*<span style="font-style:italic">f</span> ≠ 0).<br>
+
+</p>
+<h2 id="sec333" class="section">20.2  La sphère</h2>
+<p>
+La sphère de centre <span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] et de rayon <span style="font-style:italic">R</span> a pour équation 
+cartésienne :<br>
+(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)<sup>2</sup>+(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)<sup>2</sup>+(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)<sup>2</sup>=<span style="font-style:italic">R</span><sup>2</sup>.<br>
+De façon générale, une sphère de centre <span style="font-style:italic">A</span>=[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>]
+est l’ensemble des points <span style="font-style:italic">M</span>=[<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>]
+qui vérifient une équation de la forme :<br>
+<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">z</span><sup>2</sup>−2<span style="font-style:italic">ax</span>−2<span style="font-style:italic">by</span>−2<span style="font-style:italic">cz</span>+<span style="font-style:italic">d</span>=0<br>
+L’équation paramétrique d’une sphère de centre <span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] et de 
+rayon <span style="font-style:italic">R</span> est :<br>
+<span style="font-style:italic">x</span>=<span style="font-style:italic">x</span><sub>0</sub>+<span style="font-style:italic">R</span>cos(θ)cos(λ),<br>
+ <span style="font-style:italic">y</span>=<span style="font-style:italic">y</span><sub>0</sub>+<span style="font-style:italic">R</span>sin(θ)cos(λ),<br>
+<span style="font-style:italic">z</span>=<span style="font-style:italic">z</span><sub>0</sub>+<span style="font-style:italic">R</span>sin(λ)<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape dans un écran de géométrie 3D:<br>
+<span style="font-family:monospace">A:=point(1,0,1)</span><br>
+<span style="font-family:monospace">S:=sphere(A,2)</span><br>
+<span style="font-family:monospace">equation(S)</span><br>
+Ou on tape :<br>
+<span style="font-family:monospace">sphere(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+z</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*x-2*z-2=0)</span><br>
+</p>
+<h2 id="sec334" class="section">20.3  L’ellipsoïde</h2>
+<p>
+L’équation cartésienne d’un ellipsoïde centrée en 
+<span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] 
+et de demi-axes de longueur |<span style="font-style:italic">a</span>|, |<span style="font-style:italic">b</span>| et |<span style="font-style:italic">c</span>| est :<br>
+ (<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">a</span><sup>2</sup>+(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">b</span><sup>2</sup>+(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">c</span><sup>2</sup>=1 <br>
+
+</p>
+<h2 id="sec335" class="section">20.4  L’hyperboloïde</h2>
+<h3 id="sec336" class="subsection">20.4.1  L’hyperboloïde à une nappe</h3>
+<p>
+L’équation cartésienne d’une hyperboloïde centrée en 
+<span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>]
+et de demi-axes de longueur |<span style="font-style:italic">a</span>|,|<span style="font-style:italic">b</span>| et |<span style="font-style:italic">c</span>| est :<br>
+ (<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">a</span><sup>2</sup>+(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">b</span><sup>2</sup>−(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">c</span><sup>2</sup>=1 
+</p>
+<h3 id="sec337" class="subsection">20.4.2  L’hyperboloïde à deux nappes</h3>
+<p>
+L’équation cartésienne d’une hyperboloïde centrée en 
+<span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>]
+et de demi-axes de longueur |<span style="font-style:italic">a</span>|,|<span style="font-style:italic">b</span>| et |<span style="font-style:italic">c</span>| est :<br>
+ (<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">a</span><sup>2</sup>+(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">b</span><sup>2</sup>−(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">c</span><sup>2</sup>=−1 </p>
+<h2 id="sec338" class="section">20.5  Le paraboloïde</h2>
+<h3 id="sec339" class="subsection">20.5.1  Le paraboloïde elliptique</h3>
+<p>
+L’équation cartésienne d’un paraboloïde elliptique
+centrée en 
+<span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] 
+et de demi-axes de longueur |<span style="font-style:italic">a</span>|, |<span style="font-style:italic">b</span>| et |<span style="font-style:italic">c</span>| est :<br>
+ (<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">a</span><sup>2</sup>+(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">b</span><sup>2</sup>−(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)/<span style="font-style:italic">c</span>=0 </p>
+<h3 id="sec340" class="subsection">20.5.2  Le paraboloïde hyperbolique</h3>
+<p>
+L’équation cartésienne d’un paraboloïde hyperbolique
+centrée en 
+<span style="font-style:italic">A</span>=[<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">z</span><sub>0</sub>] 
+et de demi-axes de longueur |<span style="font-style:italic">a</span>|, |<span style="font-style:italic">b</span>| et |<span style="font-style:italic">c</span>| est :<br>
+
+(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">a</span><sup>2</sup>−(<span style="font-style:italic">y</span>−<span style="font-style:italic">y</span><sub>0</sub>)<sup>2</sup>/<span style="font-style:italic">b</span><sup>2</sup>−(<span style="font-style:italic">z</span>−<span style="font-style:italic">z</span><sub>0</sub>)/<span style="font-style:italic">c</span>=0 
+</p>
+<h2 id="sec341" class="section">20.6  Le ruban de Mœbius</h2>
+<p><a id="hevea_default3"></a>
+On cherche tout d’abord l’équation paramétrique du ruban de Mœbius<br>
+<span class="textboxed"><img src="casexo103.png"></span></p><p>Pour cela on considère :
+</p><ul class="itemize"><li class="li-itemize">
+un repère orthonormé <span style="font-style:italic">Oxy</span>, avec <span style="font-style:italic">i</span> (resp 
+<span style="font-style:italic">j</span>, <span style="font-style:italic">k</span>) le vecteur unitaire de <span style="font-style:italic">Ox</span> (resp 
+<span style="font-style:italic">Oy</span>,<span style="font-style:italic">Oz</span>), 
+</li><li class="li-itemize">le cercle de centre <span style="font-style:italic">O</span> et de rayon <span style="font-style:italic">R</span> dans le plan <span style="font-style:italic">Oxy</span>,
+</li><li class="li-itemize">un point <span style="font-style:italic">M</span> sur ce cercle tel que l’angle
+(<span style="font-style:italic">i</span>,<span style="font-style:italic">OM</span>)=<span style="font-style:italic">u</span>, 
+</li><li class="li-itemize">dans le plan normal au cercle (contenant <span style="font-style:italic">O</span><span style="font-style:italic">k</span>), un
+segment <span style="font-style:italic">BA</span> de milieu <span style="font-style:italic">M</span>, de longueur 2<span style="font-style:italic">l</span>, tel que l’angle 
+(<span style="font-style:italic">M</span><span style="font-style:italic">k</span>,<span style="font-style:italic">MA</span>)=<span style="font-style:italic">u</span>/2 (on oriente le plan normal 
+avec la tangente au cercle).
+</li></ul><p>
+Lorsque <span style="font-style:italic">u</span> varie de 0 à 2π le segment <span style="font-style:italic">BA</span> engendre le ruban de Moebius 
+(ou la bande de Moebius) car le point <span style="font-style:italic">M</span> revient à son point de départ, le
+point <span style="font-style:italic">A</span> se trouve en <span style="font-style:italic">B</span> et le point <span style="font-style:italic">B</span> se trouve en <span style="font-style:italic">A</span>.<br>
+On a :<br>
+<span style="font-style:italic">OM</span>=[<span style="font-style:italic">R</span>cos(<span style="font-style:italic">u</span>),<span style="font-style:italic">R</span>sin(<span style="font-style:italic">u</span>),0]<br>
+<span style="font-style:italic">n</span>=cos(<span style="font-style:italic">u</span>),sin(<span style="font-style:italic">u</span>),0] est le vecteur normal au cercle<br>
+<span style="font-style:italic">MA</span>=<span style="font-style:italic">l</span> cos(<span style="font-style:italic">u</span>/2+π/2)<span style="font-style:italic">n</span>+<span style="font-style:italic">l</span>sin(<span style="font-style:italic">u</span>/2+π/2)<span style="font-style:italic">k</span>=−<span style="font-style:italic">l</span>sin(<span style="font-style:italic">u</span>/2)<span style="font-style:italic">n</span>+<span style="font-style:italic">l</span>cos(<span style="font-style:italic">u</span>/2)<span style="font-style:italic">k</span><br>
+donc <br>
+<span style="font-style:italic">MA</span>=[−<span style="font-style:italic">l</span>sin(<span style="font-style:italic">u</span>/2)cos(<span style="font-style:italic">u</span>),−<span style="font-style:italic">l</span> sin(<span style="font-style:italic">u</span>/2)sin(<span style="font-style:italic">u</span>),<span style="font-style:italic">l</span>*cos(<span style="font-style:italic">u</span>/2)]<br>
+Lorsque <span style="font-style:italic">N</span> se trouve sur le segment <span style="font-style:italic">AB</span> on a :<br>
+<span style="font-style:italic">MN</span>=<span style="font-style:italic">v</span>*<span style="font-style:italic">MA</span> pour <span style="font-style:italic">v</span>=−1..+1 donc <br>
+<span style="font-style:italic">ON</span>=<span style="font-style:italic">OM</span>+<span style="font-style:italic">MN</span>=<span style="font-style:italic">OM</span>+<span style="font-style:italic">v</span>*<span style="font-style:italic">MA</span><br>
+<span style="font-style:italic">ON</span>=[<span style="font-style:italic">R</span>cos(<span style="font-style:italic">u</span>),<span style="font-style:italic">R</span> sin(<span style="font-style:italic">u</span>),0]−<span style="font-style:italic">v</span>[<span style="font-style:italic">l</span> sin(<span style="font-style:italic">u</span>/2)cos(<span style="font-style:italic">u</span>),−<span style="font-style:italic">l</span> sin(<span style="font-style:italic">u</span>/2)sin(<span style="font-style:italic">u</span>),<span style="font-style:italic">l</span> cos(<span style="font-style:italic">u</span>/2)]<br>
+donc <br>
+<span style="font-style:italic">ON</span>=[<span style="font-style:italic">R</span>cos(<span style="font-style:italic">u</span>)−<span style="font-style:italic">lv</span>sin(<span style="font-style:italic">u</span>/2)cos(<span style="font-style:italic">u</span>),<span style="font-style:italic">R</span> sin(<span style="font-style:italic">u</span>)−<span style="font-style:italic">lv</span> sin(<span style="font-style:italic">u</span>/2)sin(<span style="font-style:italic">u</span>),<span style="font-style:italic">lv</span> cos(<span style="font-style:italic">u</span>/2)]<br>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">f(u,v,R,l):=R*cos(u)-l*v*cos(u)*sin(u/2)</span><br>
+<span style="font-family:monospace">g(u,v,R,l):=R*sin(u)-l*v*sin(u)*sin(u/2)</span><br>
+<span style="font-family:monospace">h(u,v,l):=l*v*cos(u/2)</span><br>
+On ouvre un écran de géométrie 3d et on tape :<br>
+<span style="font-family:monospace">plotparam([f(u,v,4,1),g(u,v,4,1),h(u,v,1)],[u=0..2*pi, v=-1..1], ustep=0.1,vstep=0.2)</span><br>
+<span style="font-family:monospace">affichage(cercle(point(4,0,0),point(-4,0,0),point(0,4,0)),1)</span>
+On obtient :<br>
+
+<span class="textboxed"><img src="casexo104.png"></span></p><p>Ou bien pour avoir dela couleur, on tape dans un éditeur de programmes:
+</p><pre class="verbatim">mobcolor():={
+local L,j;
+L:=NULL;
+pour j de 0 jusque 9  faire 
+L:=L,affichage(plotparam([f(u,v,4,1),g(u,v,4,1),h(u,v,1)],
+[u=0..2*pi, v=-1+j*0.1..-1+0.1*j+0.1], ustep=0.1,vstep=0.1),
+ 168+j);
+L:=L,affichage(plotparam([f(u,v,4,1),g(u,v,4,1),h(u,v,1)],
+[u=0..2*pi, v=1-j*0.1-0.1..1-j*0.1], ustep=0.1,vstep=0.1),
+168+j);
+//pour le second dessin
+//168+j+9);
+fpour;
+retourne L;
+}:;
+</pre><p>
+Puis on ouvre un écran de géométrie 3d et on tape :<br>
+<span style="font-family:monospace">mobcolor()</span><br>
+On obtient :</p><p> <img src="casexo105.png">
+<img src="casexo106.png"></p>
+<h2 id="sec342" class="section">20.7  Le cube</h2>
+<h3 id="sec343" class="subsection">20.7.1  L’énoncé</h3>
+<p>
+On veut trouver les intersections du cube avec un plan passant par les milieux
+de ses côtés.<br>
+Soient <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span>,<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>,<span style="font-style:italic">G</span>,<span style="font-style:italic">H</span> les sommets du cube (<span style="font-style:italic">ABCD</span> et <span style="font-style:italic">EFGH</span> sont deux faces 
+parallèles du cube et <span style="font-style:italic">AE</span> en est un côté), <span style="font-style:italic">M</span> le milieu de <span style="font-style:italic">AB</span>, et <span style="font-style:italic">N</span>
+le milieu de <span style="font-style:italic">AD</span>.<br>
+On cherche l’intersection du cube avec le plan <span style="font-style:italic">MNP</span> avec <span style="font-style:italic">P</span> le milieu de
+l’un des 10 autres côtés.<br>
+Au cube on associe le repère orthonormé 
+<span style="font-style:italic">AM</span>,<span style="font-style:italic">AN</span>,<span style="font-style:italic">AE</span>/2
+</p>
+<h3 id="sec344" class="subsection">20.7.2  La solution</h3>
+<h4 id="sec345" class="subsubsection"><span style="font-style:italic">P</span> milieu de <span style="font-style:italic">BC</span> ou <span style="font-style:italic">DC</span></h4>
+<p>
+Ici la solution est évidente car <span style="font-style:italic">P</span> se trouve dans le plan <span style="font-style:italic">ABCD</span>.<br>
+L’intersection du cube avec le plan <span style="font-style:italic">MNP</span> est donc le carré <span style="font-style:italic">ABCD</span> 
+Le plan <span style="font-style:italic">MNP</span> a pour équation <span style="font-style:italic">z</span>=0<br>
+On note <span style="font-style:italic">P</span>0 le milieu de <span style="font-style:italic">BC</span> et <span style="font-style:italic">P</span>1 le milieu de <span style="font-style:italic">DC</span>. 
+</p>
+<h4 id="sec346" class="subsubsection"><span style="font-style:italic">P</span> milieu de <span style="font-style:italic">AE</span></h4>
+<p>
+Les trois segments <span style="font-style:italic">MN</span>, <span style="font-style:italic">MP</span>, <span style="font-style:italic">NP</span> se trouvent chacun sur une des faces du 
+cube.<br>
+L’intersection du cube avec le plan <span style="font-style:italic">MNP</span> est donc le triangle <span style="font-style:italic">MNP</span>.<br>
+Le plan <span style="font-style:italic">MNP</span> a pour équation <span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span>=1.<br>
+On note <span style="font-style:italic">P</span>2 le milieu de <span style="font-style:italic">AE</span>.
+</p>
+<h4 id="sec347" class="subsubsection"><span style="font-style:italic">P</span> milieu de <span style="font-style:italic">EF</span> ou <span style="font-style:italic">EH</span></h4>
+<p>
+Si <span style="font-style:italic">P</span>3 est le milieu de <span style="font-style:italic">EF</span> et si <span style="font-style:italic">P</span>4 est le milieu de <span style="font-style:italic">EH</span>, les segments
+<span style="font-style:italic">MP</span>3 et <span style="font-style:italic">NP</span>4 sont parallèles, donc <span style="font-style:italic">M</span>,<span style="font-style:italic">N</span>,<span style="font-style:italic">P</span>3,<span style="font-style:italic">P</span>4 sont dans le même plan.<br>
+Les segments <span style="font-style:italic">MP</span>3 et <span style="font-style:italic">NP</span>4 se trouvent chacun sur une des faces du 
+cube et dans le plan <span style="font-style:italic">MNP</span>3<span style="font-style:italic">P</span>4.<br>
+Donc, le plan <span style="font-style:italic">MNP</span>3 (resp <span style="font-style:italic">MNP</span>4) contient <span style="font-style:italic">P</span>4 (resp <span style="font-style:italic">P</span>3) et coupe le 
+cube selon le rectangle <span style="font-style:italic">MP</span>3<span style="font-style:italic">P</span>4<span style="font-style:italic">N</span>.<br>
+Le plan <span style="font-style:italic">MNP</span> a pour équation <span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>=1.
+</p>
+<h4 id="sec348" class="subsubsection"><span style="font-style:italic">P</span> milieu de <span style="font-style:italic">BF</span> ou <span style="font-style:italic">FG</span> ou <span style="font-style:italic">GH</span> ou <span style="font-style:italic">DH</span></h4>
+<p>
+Si <span style="font-style:italic">P</span>5 est le milieu de <span style="font-style:italic">BF</span>, si <span style="font-style:italic">P</span>6 est le milieu de <span style="font-style:italic">FG</span>, si <span style="font-style:italic">P</span>7 est le 
+milieu de <span style="font-style:italic">GH</span> et si <span style="font-style:italic">P</span>8 est le milieu de <span style="font-style:italic">DH</span>, les segments <span style="font-style:italic">P</span>5<span style="font-style:italic">P</span>8, <span style="font-style:italic">P</span>6<span style="font-style:italic">P</span>7
+<span style="font-style:italic">BD</span> et <span style="font-style:italic">MN</span> sont parallèles. Le milieu de <span style="font-style:italic">P</span>5<span style="font-style:italic">P</span>8 est le centre du cube et 
+c’est aussi le milieu de <span style="font-style:italic">MP</span>7 et de <span style="font-style:italic">NP</span>6. Donc <span style="font-style:italic">N</span>,<span style="font-style:italic">M</span>,<span style="font-style:italic">P</span>5,<span style="font-style:italic">P</span>6,<span style="font-style:italic">P</span>7,<span style="font-style:italic">P</span>8 sont dans 
+un même plan. 
+L’intersection du cube avec le plan <span style="font-style:italic">MNP</span> est donc l’hexagone <span style="font-style:italic">NMP</span>5<span style="font-style:italic">P</span>6<span style="font-style:italic">P</span>7<span style="font-style:italic">P</span>8.<br>
+Le plan <span style="font-style:italic">MNP</span> a pour équation <span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>=1.
+</p>
+<h4 id="sec349" class="subsubsection"><span style="font-style:italic">P</span> milieu de <span style="font-style:italic">CG</span></h4>
+<p>
+Si <span style="font-style:italic">MN</span> coupe <span style="font-style:italic">BC</span> en <span style="font-style:italic">I</span> et <span style="font-style:italic">DC</span> en <span style="font-style:italic">J</span>.<br>
+<span style="font-style:italic">PI</span> coupe <span style="font-style:italic">BF</span> en <span style="font-style:italic">Q</span> et <span style="font-style:italic">PJ</span> coupe <span style="font-style:italic">DH</span> en <span style="font-style:italic">R</span>.<br>
+On a <span style="font-style:italic">BQ</span>=<span style="font-style:italic">BF</span>/6 et <span style="font-style:italic">DR</span>=<span style="font-style:italic">DH</span>/6.<br>
+Les segments <span style="font-style:italic">MN</span>,<span style="font-style:italic">MQ</span>,<span style="font-style:italic">QP</span>,<span style="font-style:italic">PR</span>,<span style="font-style:italic">RN</span> se trouvent chacun sur une des faces du 
+cube et dans le plan <span style="font-style:italic">MNP</span>.<br>
+L’intersection du cube avec le plan <span style="font-style:italic">MNP</span> est donc le pentagone <span style="font-style:italic">NMQPR</span>.<br>
+Le plan <span style="font-style:italic">MNP</span> a pour équation <span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>−3<span style="font-style:italic">z</span>=1.<br>
+On note <span style="font-style:italic">P</span>9 le milieu de <span style="font-style:italic">CG</span>.
+</p>
+<h3 id="sec350" class="subsection">20.7.3  Visualisation de l’hexagone avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On peut se servir du bouton du milieu de la souris pour modifier les unités 
+de l’axe des <span style="font-style:italic">z</span>.<br>
+On tape :
+</p><pre class="verbatim">A:=point(0,0,0);
+B:=point(2,0,0);
+C:=point(2,2,0);
+E:=point(0,0,2);
+M:=point(1,0,0);
+N:=point(0,1,0);
+P0:=point(2,1,0);
+P1:=point(1,2,0);
+P2:=point(0,0,1);
+P3:=point(1,0,2);
+P4:=point(0,1,2);
+P5:=point(2,0,1);
+P6:=point(2,1,2);
+P7:=point(1,2,2);
+P8:=point(0,2,1);
+P9:=point(2,2,1);
+cube(A,B,C);
+polygone(N,M,P5,P6,P7,P8);
+plan(M,N,P0);
+plan(M,N,P2);
+plan(M,N,P3);
+equation(plan(M,N,P5));
+equation(plan(M,N,P9));
+</pre><p>
+On peut aussi visualiser tous les résultats précédents.<br>
+Si vous voulez voir même les lignes cachées il faut décocher
+<span style="font-family:monospace">hidden3d</span> dans la configuration du graphique.
+</p>
+<h2 id="sec351" class="section">20.8  Exercice sur plans et droites</h2>
+<h3 id="sec352" class="subsection">20.8.1  L’énoncé</h3>
+<p>
+Soient <span style="font-style:italic">A</span>=(1,0,0), <span style="font-style:italic">B</span>=(0,1,0) et <span style="font-style:italic">C</span>=(0,0,1) trois points de ℝ<sup>3</sup>.</p><p>1/ Déterminer l’équation du plan <span style="font-style:italic">P</span> passant par <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>.
+Donner un vecteur normal au plan <span style="font-style:italic">P</span>.</p><p>2/ Soit <span style="font-style:italic">D</span><sub>0</sub> la droite perpendiculaire à <span style="font-style:italic">P</span> passant par l’origine.<br>
+Déterminer une équation paramétrique de <span style="font-style:italic">D</span><sub>0</sub>.<br>
+Calculer les coordonnées du point <span style="font-style:italic">J</span> intersection de <span style="font-style:italic">P</span> et <span style="font-style:italic">D</span><sub>0</sub>.</p><p>3/ Déterminer les équations paramétriques de la droite <span style="font-style:italic">D</span><sub>1</sub> passant par 
+<span style="font-style:italic">A</span> et <span style="font-style:italic">J</span> et de la droite <span style="font-style:italic">D</span><sub>2</sub> passant par <span style="font-style:italic">B</span> et <span style="font-style:italic">C</span>.<br>
+Montrer que <span style="font-style:italic">D</span><sub>1</sub> et <span style="font-style:italic">D</span><sub>2</sub> se coupent au milieu <span style="font-style:italic">M</span> de <span style="font-style:italic">BC</span>. On precisera les 
+coordonnées de <span style="font-style:italic">M</span>.
+</p>
+<h3 id="sec353" class="subsection">20.8.2  La solution avec l’aide de <span style="font-family:monospace">Xcas</span></h3>
+<p>
+1/ L’équation du plan <span style="font-style:italic">P</span> est de la forme :<span style="font-style:italic">ax</span>+<span style="font-style:italic">by</span>+<span style="font-style:italic">cz</span>+<span style="font-style:italic">d</span>=0.<br>
+<span style="font-style:italic">P</span> passe par <span style="font-style:italic">A</span> donc : <span style="font-style:italic">a</span>+<span style="font-style:italic">d</span>=0<br>
+<span style="font-style:italic">P</span> passe par <span style="font-style:italic">B</span> donc : <span style="font-style:italic">b</span>+<span style="font-style:italic">d</span>=0<br>
+<span style="font-style:italic">P</span> passe par <span style="font-style:italic">C</span> donc : <span style="font-style:italic">c</span>+<span style="font-style:italic">d</span>=0<br>
+donc <span style="font-style:italic">a</span>=<span style="font-style:italic">b</span>=<span style="font-style:italic">c</span>=−<span style="font-style:italic">d</span> et une équation du plan <span style="font-style:italic">P</span> est <span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span>=1.<br>
+Un vecteur normal au plan <span style="font-style:italic">P</span> est donc (<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>)=(1,1,1).<br>
+Ou encore on a :<br>
+<span style="font-style:italic">n</span>=<span style="font-style:italic">AB</span>∧<span style="font-style:italic">AC</span><br>
+On a :<br>
+<span style="font-style:italic">AB</span>=(−1,1,0) et <span style="font-style:italic">AC</span>=(−1,0,1)<br>
+On tape :<br>
+<span style="font-family:monospace">cross([-1,1,0],[-1,0,1])</span><br>
+On obtient un vecteur normal <span style="font-style:italic">n</span> au plan <span style="font-style:italic">P</span> :<br>
+<span style="font-family:monospace">[1,1,1]</span><br>
+Si <span style="font-style:italic">M</span>=(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>) est un point du plan <span style="font-style:italic">P</span>, l’équation du plan <span style="font-style:italic">P</span> est :<br>
+<span style="font-style:italic">n</span> · <span style="font-style:italic">AM</span>=0.<br>
+On tape :<br>
+<span style="font-family:monospace">dot([1,1,1],[x-1,y,z])=0</span><br>
+On obtient une équation du plan <span style="font-style:italic">P</span> :
+<span style="font-family:monospace">(x-1+y+z)=0</span></p><p>2/ Si <span style="font-style:italic">M</span>=(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>) est un point de <span style="font-style:italic">D</span><sub>0</sub>, <span style="font-style:italic">OM</span> est parallèle
+à <span style="font-style:italic">n</span> donc :<br>
+<span style="font-style:italic">OM</span>=λ · <span style="font-style:italic">n</span> 
+avec λ ∈ ℝ.<br>
+Ou on tape :<br>
+<span style="font-family:monospace">cross([x,y,z],[1,1,1])=[0,0,0]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[y-z,z-x,x-y]=[0,0,0]</span><br>
+L’équation de <span style="font-style:italic">D</span><sub>0</sub> est donc : <br>
+<span style="font-style:italic">x</span>=<span style="font-style:italic">y</span>=<span style="font-style:italic">z</span> ou encore :<br>
+<span style="font-style:italic">x</span>=λ,<span style="font-style:italic">y</span>=λ,<span style="font-style:italic">z</span>=λ avec λ ∈ ℝ.<br>
+Pour obtenir l’intersection de <span style="font-style:italic">P</span> et <span style="font-style:italic">D</span><sub>0</sub>, on tape :<br>
+<span style="font-family:monospace">solve([y-z,z-x,x-y,x-1+y+z],[x,y,z])</span><br>
+On obtient les coordonnées de <span style="font-style:italic">J</span> :<br>
+<span style="font-family:monospace">[[1/3,1/3,1/3]]</span></p><p>3/ Pour obtenir l’équation de <span style="font-style:italic">D</span><sub>1</sub> on a :<br>
+<span style="font-style:italic">AM</span>=λ ·<span style="font-style:italic">AJ</span> donc :<br>
+[<span style="font-style:italic">x</span>−1=(−2)/3,<span style="font-style:italic">y</span>=λ/3,<span style="font-style:italic">z</span>=λ/3]<br>
+Ou on tape :<br>
+<span style="font-family:monospace">cross([x-1,y,z],[-2/3,1/3,1/3])=[0,0,0]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[y/3-z/3,(z*-2)/3-(x-1)/3,(x-1)/3-(y*-2)/3]=[0,0,0]</span><br>
+On tape :<br>
+<span style="font-family:monospace">solve([y/3-z/3,(z*-2)/3-(x-1)/3,(x-1)/3-(y*-2)/3],[x,y,z])</span><br>
+et on obtient : <span style="font-family:monospace">[[x,(x-1)/-2,(x-1)/-2]]</span><br>
+donc <span style="font-family:monospace">x=x,y=(x-1)/-2,z=(x-1)/-2</span> est l’équation paramétrique de <span style="font-style:italic">D</span><sub>1</sub> 
+de paramètre <span style="font-family:monospace">x</span>.</p><p>Pour obtenir l’équation de <span style="font-style:italic">D</span><sub>2</sub> on a :<br>
+<span style="font-style:italic">BM</span>=λ ·<span style="font-style:italic">BC</span> donc :<br>
+<span style="font-style:italic">x</span>=0, <span style="font-style:italic">y</span>−1=−λ, <span style="font-style:italic">z</span>=λ<br>
+Ou on tape :<br>
+<span style="font-family:monospace">cross([x,y-1,z],[0,-1,1])=[0,0,0]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[y-1+z,-x,-x]=[0,0,0]</span><br>
+donc <span style="font-family:monospace">x=0, y=y, z=1-y</span> est l’équation paramétrique de <span style="font-style:italic">D</span><sub>2</sub> de 
+paramètre <span style="font-family:monospace">y</span>.</p><p>Pour avoir l’intersection de <span style="font-style:italic">D</span><sub>1</sub> et de <span style="font-style:italic">D</span><sub>2</sub>, on tape :<br>
+<span style="font-family:monospace">solve([ x=x,y=(x-1)/-2,z=(x-1)/-2, x=0,y=y,z=1-y],[x,y,z])</span><br>
+On obtient les coordonnées de <span style="font-style:italic">M</span> :<br>
+<span style="font-family:monospace">[[0,1/2,1/2]]</span><br>
+Ce point est bien le milieu de <span style="font-style:italic">BC</span> puisque :<br>
+2*<span style="font-style:italic">OM</span>=<span style="font-style:italic">OB</span>+<span style="font-style:italic">OC</span>.</p>
+<h2 id="sec354" class="section">20.9  Le problème des quatre cônes</h2>
+<p>
+Ce problème aète donné aux olympiades académiques de 2005.<br>
+Quatre cônes opaques sont posés sur le sol.<br>
+Les trois cônes <span style="font-style:italic">K</span><sub>1</sub>,<span style="font-style:italic">K</span><sub>2</sub>,<span style="font-style:italic">K</span><sub>3</sub> sont identiques : leur hauteur est égale au 
+rayon <span style="font-style:italic">r</span> de leurs cercles de base et les centres de ces cercles sont les 
+sommets d’un triangle équilatèral de côté 1.<br>
+Le cône <span style="font-style:italic">K</span><sub>4</sub> a une hauteur égale au diamètre de son cercle de base et 
+celui-ci est tangent extérieurement aux cercles de base des trois autres 
+cônes.<br>
+Quelle condition doit vérifier <span style="font-style:italic">r</span> pour que, depuis le sommet de chacun des 
+quatre cônes, les trois autres sommets soient visibles ?
+</p>
+<h3 id="sec355" class="subsection">20.9.1  La modélisation avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+Pour tracer on cône, ayant un sommet et une base , il faut utiliser la 
+commande <span style="font-family:monospace">demi_cone</span> de <span style="font-family:monospace">Xcas</span> qui a comme patramètres :<br>
+son sommet, la direction de son axe, son demi-angle au sommet et,
+sa hauteur algégrique.<br>
+Le rayon des cercles de base des cônes <span style="font-style:italic">K</span><sub>1</sub>,<span style="font-style:italic">K</span><sub>2</sub>,<span style="font-style:italic">K</span><sub>3</sub> vaut <span style="font-style:italic">r</span> avec 
+0 ≤ <span style="font-style:italic">r</span>≤ 0.5.<br>
+Le rayon du cercle de base du cône <span style="font-style:italic">K</span><sub>4</sub> vaut <span style="font-style:italic">R</span>=√<span style="text-decoration:overline">3</span>/3−<span style="font-style:italic">r</span>, et son 
+demi-angle au sommet a pour tangente 1/2.<br>
+On appelle <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> les sommets des cônes <span style="font-style:italic">K</span><sub>1</sub>,<span style="font-style:italic">K</span><sub>2</sub>,<span style="font-style:italic">K</span><sub>3</sub>,<span style="font-style:italic">K</span><sub>4</sub>.<br>
+On tape ou on exécute <span style="font-family:monospace">cones.xws</span> :
+</p><pre class="verbatim">r:=element(0 .. 0.5,0.19);
+A:=point([0,0,r]):;
+B:=point(1,0,r):;
+C:=point(1/2,sqrt(3)/2,r):;
+demi_cone(A,[0,0,1],pi/4,-r);
+demi_cone(B,[0,0,1],pi/4,-r);
+demi_cone(C,[0,0,1],pi/4,-r);
+R:=sqrt(3)/3-r;
+D:=point(1/2,sqrt(3)/6,2*R):;
+K4:=affichage(demi_cone(D,[0,0,1],atan(0.5),-2*R),rempli+bleu);
+segment(A,B,couleur=rouge);
+segment(C,B,couleur=rouge);
+segment(C,A,couleur=rouge);
+affichage(inter(plan(A,B,C),K4),vert);
+evalf(sqrt(3)/9);
+</pre><p>
+On peut faire varier <span style="font-style:italic">r</span> et voir qu’il faut choisir <span style="font-style:italic">r</span>&gt;<span style="font-style:italic">a</span> avec <span style="font-style:italic">a</span>≃ 0.2.<br>
+Le cas limite étant que les segments <span style="font-style:italic">AB</span>, <span style="font-style:italic">BC</span> et <span style="font-style:italic">AC</span> doivent être 
+tangent au cercle <span style="font-style:italic">C</span><sub>4</sub> qui est l’intersection du cône <span style="font-style:italic">K</span><sub>4</sub> et du plan 
+<span style="font-style:italic">ABC</span>.<br>
+Il est interessant de regarder la vue de dessus (<span style="font-family:monospace">Menu-&gt;3-d</span>) pour voir comment évolue l’intersection du cône <span style="font-style:italic">K</span><sub>4</sub> avec le plan <span style="font-style:italic">ABC</span>.</p>
+<h3 id="sec356" class="subsection">20.9.2  Le raisonnement</h3>
+<p>
+Il est évident que depuis <span style="font-style:italic">D</span> on peut toujours voir les points <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span> et 
+inversement d’un des points <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span> on peut toujours voir le point <span style="font-style:italic">D</span>.<br>
+Pour que l’on puisse voir <span style="font-style:italic">B</span> et <span style="font-style:italic">C</span> depuis le point <span style="font-style:italic">A</span> il ne faut pas que le
+cercle <span style="font-style:italic">C</span><sub>4</sub>, intersection du cône <span style="font-style:italic">K</span><sub>4</sub> avec le plan <span style="font-style:italic">ABC</span> coupe les 
+segments <span style="font-style:italic">AB</span> et <span style="font-style:italic">AC</span>. Pour que l’on puisse voir <span style="font-style:italic">C</span> depuis le point <span style="font-style:italic">B</span> il ne 
+faut pas que le cercle <span style="font-style:italic">C</span><sub>4</sub> coupe le segments <span style="font-style:italic">BC</span>.
+IL faut donc chercher l’intersection <span style="font-style:italic">C</span><sub>4</sub>, du cône <span style="font-style:italic">K</span><sub>4</sub> avec le plan <span style="font-style:italic">ABC</span>,
+à savoir son centre et son rayon. Son centre a pour coordonnées
+1/2,√<span style="text-decoration:overline">3</span>/6,<span style="font-style:italic">r</span>. <br>
+Si son rayon vaut <span style="font-style:italic">r</span>1, on sait que la hauteur du cône <span style="font-style:italic">K</span><sub>4</sub> vaut 2*<span style="font-style:italic">R</span> et 
+Comme le demi-angle au sommet du cône <span style="font-style:italic">K</span><sub>4</sub>
+a pour tangente 1/2, la distance du centre de <span style="font-style:italic">C</span><sub>4</sub> au sommet de <span style="font-style:italic">K</span><sub>4</sub> est
+égale au double du rayon du cercle <span style="font-style:italic">C</span><sub>4</sub> donc :<br>
+2*<span style="font-style:italic">R</span>=<span style="font-style:italic">r</span>+2*<span style="font-style:italic">r</span>1 or <span style="font-style:italic">R</span>=√<span style="text-decoration:overline">3</span>/3−<span style="font-style:italic">r</span> donc :<br>
+ 2*<span style="font-style:italic">R</span>=2*√<span style="text-decoration:overline">3</span>/3−2*<span style="font-style:italic">r</span>=<span style="font-style:italic">r</span>+2*<span style="font-style:italic">r</span>1
+<span style="font-style:italic">r</span>1=√<span style="text-decoration:overline">3</span>/3−3*<span style="font-style:italic">r</span>/2.<br>
+Pour tracer ce cercle en vert il faut taper :<br>
+<span style="font-family:monospace">r1:=sqrt(3)/3-3*r/2</span><br>
+<span style="font-family:monospace">affichage(cercle([1/2,sqrt(3)/6,r],[r1,0,0],A),vert)</span><br>
+
+Lorsque ce cercle est tangent aux segments <span style="font-style:italic">AB</span>,
+<span style="font-style:italic">BC</span> et <span style="font-style:italic">AC</span> il est facile de trouver son rayon car c’est donc le cercle 
+inscrit au triangle <span style="font-style:italic">ABC</span>. Comme le 
+triangle <span style="font-style:italic">ABC</span> est équilatéral, son rayon vaut √<span style="text-decoration:overline">3</span>/6. 
+donc 2*<span style="font-style:italic">R</span>=<span style="font-style:italic">r</span>+√<span style="text-decoration:overline">3</span>/3 
+0n a donc, le cercle <span style="font-style:italic">C</span><sub>4</sub> est tangent aux segments <span style="font-style:italic">AB</span>, <span style="font-style:italic">BC</span> et <span style="font-style:italic">AC</span> :<br>
+<span style="font-style:italic">r</span>1=√<span style="text-decoration:overline">3</span>/3−3*<span style="font-style:italic">r</span>=√<span style="text-decoration:overline">3</span>/6, <br>
+c’est à dire :<br>
+<span style="font-style:italic">r</span>=√<span style="text-decoration:overline">3</span>/9=<span style="font-style:italic">a</span> et <span style="font-family:monospace">evalf(sqrt(3)/9)=0.19245008973</span>.<br>
+Si <span style="font-style:italic">r</span>&lt;<span style="font-style:italic">a</span> chaque segment <span style="font-style:italic">AB</span>, <span style="font-style:italic">BC</span> et <span style="font-style:italic">AC</span> coupent le cône <span style="font-style:italic">K</span><sub>4</sub> en 2 points
+et si <span style="font-style:italic">r</span> ≥ <span style="font-style:italic">a</span> les segments sont tangents ou extérieurs au cône <span style="font-style:italic">K</span><sub>4</sub>. </p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo019.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo021.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

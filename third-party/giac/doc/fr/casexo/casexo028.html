@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Les équations différentielles résolubles</title>
+</head>
+<body >
+<a href="casexo027.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo029.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec447" class="chapter">Chapitre 28  Les équations différentielles résolubles</h1>
+<h2 id="sec448" class="section">28.1  Équation linéaire à coefficients constant du 2ième ordre</h2>
+<p>
+Ce sont les équations de la forme <span style="font-style:italic">ay</span>″+<span style="font-style:italic">by</span>′+<span style="font-style:italic">cy</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)</p>
+<h2 id="sec449" class="section">28.2  Équation linéaire en <span style="font-style:italic">y</span> et <span style="font-style:italic">y</span>′ du 1ier ordre</h2>
+<p>
+La solution générale de l’équation complète est égale à la somme
+solution générale de l’équation sans second membre et d’une solution 
+particulière.
+</p><ul class="itemize"><li class="li-itemize">
+Résoudre :<br>
+2<span style="font-style:italic">xy</span>′+<span style="font-style:italic">y</span>−3<span style="font-style:italic">x</span><sup>2</sup>=0<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(2*x*y’+y-3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">((5*sqrt(x)*c_0+3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)*1/5)/x </span><br>
+</li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">y</span>′*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>−<span style="font-style:italic">y</span>=<span style="font-style:italic">x</span>+√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+On résoud l’équation sans second membre :<br>
+<span style="font-style:italic">y</span>′/<span style="font-style:italic">y</span>=1/√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+On trouve :<br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">c</span>*exp(  asinh (<span style="font-style:italic">x</span>))=<span style="font-style:italic">c</span>*(√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>+<span style="font-style:italic">x</span>)
+Puis on fait varier la constante <span style="font-style:italic">c</span> :<br>
+<span style="font-style:italic">y</span>′=<span style="font-style:italic">c</span>′*exp(  asinh (<span style="font-style:italic">x</span>))+<span style="font-style:italic">c</span>*exp(  asinh (<span style="font-style:italic">x</span>))*1/√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+donc :<br>
+<span style="font-style:italic">y</span>′*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>−<span style="font-style:italic">y</span>=<span style="font-style:italic">c</span>′*exp(  asinh (<span style="font-style:italic">x</span>))*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>=<span style="font-style:italic">c</span>′*(<span style="font-style:italic">x</span>+√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>)*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+On obtient <span style="font-style:italic">c</span>′ :
+<span style="font-style:italic">c</span>′=(<span style="font-style:italic">x</span>+√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>)*exp(−  asinh (<span style="font-style:italic">x</span>))/√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>=1/√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>
+donc :<br>
+<span style="font-style:italic">c</span>′=1/√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+On intègre :<br>
+<span style="font-style:italic">c</span>=  asinh (<span style="font-style:italic">x</span>)+<span style="font-style:italic">k</span>=−(ln(√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>−<span style="font-style:italic">x</span>))+<span style="font-style:italic">k</span><br>
+On a donc :<br>
+<span style="font-style:italic">y</span>=(  asinh (<span style="font-style:italic">x</span>)+<span style="font-style:italic">k</span>)*(√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>+<span style="font-style:italic">x</span>)=(−ln(√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>−<span style="font-style:italic">x</span>)+<span style="font-style:italic">k</span>)*(√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>+<span style="font-style:italic">x</span>)<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(y’*sqrt(1+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)-y=x+sqrt(1+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)+x)*c_0+(-sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)-x)*<br>
+ln(abs(sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)-x))</span>
+</li></ul>
+<h2 id="sec450" class="section">28.3  Équation du 1ier ordre avec facteur intégrant</h2>
+<p>
+Ce sont les équations différentielles qui peuvent être multipliées
+par <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) de façon à obtenir une différentielle totale.
+</p><ul class="itemize"><li class="li-itemize">
+Résoudre :<br>
+<span style="font-style:italic">xy</span>′−<span style="font-style:italic">y</span>=0 soit <span style="font-style:italic">xdy</span>−<span style="font-style:italic">ydx</span>=0<br>
+On multiplie par <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=1/<span style="font-style:italic">x</span><sup>2</sup> pour que l’équation différentielle soit la
+différentielle totale de la fonction <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=<span style="font-style:italic">y</span>/<span style="font-style:italic">x</span>.<br>
+Donc <span style="font-style:italic">y</span>=<span style="font-style:italic">kx</span>.<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(x*y’-y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">c_0*x</span><br>
+
+</li><li class="li-itemize">Résoudre :<br>
+2<span style="font-style:italic">xyy</span>′+<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">a</span><sup>2</sup>=0<br>
+On multiplie par <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) pour que l’équation différentielle soit la
+différentielle totale de la fonction <span style="font-style:italic">F</span>. La fonction
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) doit vérifier pour cela :<br>
+<span style="font-style:italic">d</span>(2<span style="font-style:italic">xyf</span>(<span style="font-style:italic">x</span>))/<span style="font-style:italic">dx</span>=<span style="font-style:italic">d</span>((<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">a</span><sup>2</sup>)<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>))/<span style="font-style:italic">dy</span><br>
+cela donne :<br>
+2<span style="font-style:italic">yf</span>(<span style="font-style:italic">x</span>)+2<span style="font-style:italic">xyf</span>′(<span style="font-style:italic">x</span>)=<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)(−2<span style="font-style:italic">y</span>)<br>
+ou encore :<br>
+<span style="font-style:italic">xf</span>′(<span style="font-style:italic">x</span>)+2<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=0<br>
+donc <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=1/<span style="font-style:italic">x</span><sup>2</sup> est un facteur integrant et l’équation différentielle 
+est la differentielle totale de <span style="font-style:italic">F</span> qui vérifie :<br>
+<span style="font-style:italic">dF</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)/<span style="font-style:italic">dy</span>=2<span style="font-style:italic">y</span>/<span style="font-style:italic">x</span>.<br>
+ Donc <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=<span style="font-style:italic">y</span><sup>2</sup>/<span style="font-style:italic">x</span>+<span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>) et<br>
+−<span style="font-style:italic">y</span><sup>2</sup>/<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">g</span>′(<span style="font-style:italic">x</span>)=(<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">a</span><sup>2</sup>)/<span style="font-style:italic">x</span><sup>2</sup><br>
+donc <span style="font-style:italic">g</span>′(<span style="font-style:italic">x</span>)=1+<span style="font-style:italic">a</span><sup>2</sup>/<span style="font-style:italic">x</span><sup>2</sup> soit <span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span>−<span style="font-style:italic">a</span><sup>2</sup>/<span style="font-style:italic">x</span><br>
+Puisque <span style="font-style:italic">dF</span>=0, on en déduit que :<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=<span style="font-style:italic">y</span><sup>2</sup>/<span style="font-style:italic">x</span>+<span style="font-style:italic">x</span>−<span style="font-style:italic">a</span><sup>2</sup>/<span style="font-style:italic">x</span>=(<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">a</span><sup>2</sup>)/<span style="font-style:italic">x</span>=<span style="font-style:italic">c</span>_0<br>
+Donc les solutions sont :<br>
+<span style="font-style:italic">y</span>=√<span style="text-decoration:overline">(</span>−<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">c</span>_0*<span style="font-style:italic">x</span>) et <span style="font-style:italic">y</span>=−√<span style="text-decoration:overline">(</span>−<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">c</span>_0*<span style="font-style:italic">x</span>)<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(exp2pow(desolve(2*x*y*y’+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[sqrt(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-c_1*x-x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),-(sqrt(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-c_1*x-x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))]</span></li></ul>
+<h2 id="sec451" class="section">28.4  Équation homogène du premier ordre résoluble en <span style="font-style:italic">y</span>′</h2>
+<p>
+Pour les équations homogènes du premier ordre non résoluble en <span style="font-style:italic">y</span> voir
+<a href="#sec%3Ahomog">28.7</a>.<br>
+Les équations homogènes du premier ordre résoluble en <span style="font-style:italic">y</span> sont de la 
+forme <span style="font-style:italic">a</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)*<span style="font-style:italic">y</span>′=<span style="font-style:italic">b</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) où <span style="font-style:italic">a</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) et <span style="font-style:italic">b</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) sont des fonctions 
+homogènes de même degré <span style="font-style:italic">p</span> (<span style="font-style:italic">a</span>(<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>,<span style="font-style:italic">t</span>*<span style="font-style:italic">y</span>)=<span style="font-style:italic">t</span><sup><span style="font-style:italic">p</span></sup>*<span style="font-style:italic">a</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) et 
+<span style="font-style:italic">b</span>(<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>,<span style="font-style:italic">t</span>*<span style="font-style:italic">y</span>)=<span style="font-style:italic">t</span><sup><span style="font-style:italic">p</span></sup>*<span style="font-style:italic">b</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)).<br>
+Pour résoudre les équations homogènes on pose <span style="font-style:italic">y</span>/<span style="font-style:italic">x</span>=<span style="font-style:italic">t</span>. 
+</p><ul class="itemize"><li class="li-itemize"> 
+Résoudre :<br>
+2<span style="font-style:italic">xyy</span>′+<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">y</span><sup>2</sup>=0<br>
+On pose <span style="font-style:italic">y</span>=<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>.<br>
+On a : <span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>+<span style="font-style:italic">t</span> donc :<br>
+2*<span style="font-style:italic">t</span>*(<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>+<span style="font-style:italic">t</span>)+1−<span style="font-style:italic">t</span><sup>2</sup>=0 soit à résoudre :<br>
+2*<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>+(1+<span style="font-style:italic">t</span><sup>2</sup>)<span style="font-style:italic">dx</span>=0<br>
+On obtient une équation à variables séparées :<br>
+2*<span style="font-style:italic">t</span>*<span style="font-style:italic">dt</span>/(1+<span style="font-style:italic">t</span><sup>2</sup>)=−<span style="font-style:italic">dx</span>/<span style="font-style:italic">x</span>.<br>
+Donc <span style="font-style:italic">x</span>=<span style="font-style:italic">k</span>/(<span style="font-style:italic">t</span><sup>2</sup>+1) et <span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>*<span style="font-style:italic">t</span>/(<span style="font-style:italic">t</span><sup>2</sup>+1).<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(2*x*y*y’+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-i)*x,(i)*x,pnt[c_0/(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1),(‘ t‘*c_0)/(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)]]</span><br>
+où ‘ t‘ est le paramétrage.<br>
+
+</li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">xy</span>′−<span style="font-style:italic">y</span>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">y</span></span><sup><span style="text-decoration:overline">2</span></sup>=0
+On pose <span style="font-style:italic">y</span>=<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>.
+On a : <span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>+<span style="font-style:italic">t</span> donc :<br>
+<span style="font-style:italic">x</span><sup>2</sup>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>+<span style="font-style:italic">x</span>*<span style="font-style:italic">t</span>−<span style="font-style:italic">x</span>*<span style="font-style:italic">t</span>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>=0 <br>
+√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>=|<span style="font-style:italic">x</span>|*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup> soit à résoudre :<br>
+<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>−√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>*<span style="font-style:italic">dx</span>=0 si <span style="font-style:italic">x</span>&gt;0<br>
+<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>+√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>*<span style="font-style:italic">dx</span>=0 si <span style="font-style:italic">x</span>&lt;0<br>
+ou encore <br>
+|<span style="font-style:italic">x</span>|<span style="font-style:italic">t</span>′=√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup> <br>
+donc =<span style="font-style:italic">dx</span>/|<span style="font-style:italic">x</span>|=<span style="font-style:italic">signe</span>(<span style="font-style:italic">x</span>)*<span style="font-style:italic">dx</span>/<span style="font-style:italic">x</span>=<span style="font-style:italic">dt</span>/√<span style="text-decoration:overline">(</span>1+<span style="font-style:italic">t</span><sup>2</sup>)<br>
+Donc :<br>
+Si <span style="font-style:italic">x</span>&gt;0 on a : <span style="font-style:italic">x</span>=<span style="font-style:italic">k</span>*(<span style="font-style:italic">t</span>+√<span style="text-decoration:overline">(</span>1+<span style="font-style:italic">t</span><sup>2</sup>)); <span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>*<span style="font-style:italic">t</span>*(<span style="font-style:italic">t</span>+√<span style="text-decoration:overline">(</span>1+<span style="font-style:italic">t</span><sup>2</sup>)) avec <span style="font-style:italic">k</span>&gt;0<br>
+Si <span style="font-style:italic">x</span>&lt;0 on a : <span style="font-style:italic">x</span>=<span style="font-style:italic">k</span>/(<span style="font-style:italic">t</span>+√<span style="text-decoration:overline">(</span>1+<span style="font-style:italic">t</span><sup>2</sup>)); <span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>*<span style="font-style:italic">t</span>/(<span style="font-style:italic">t</span>+√<span style="text-decoration:overline">(</span>1+<span style="font-style:italic">t</span><sup>2</sup>)) avec <span style="font-style:italic">k</span>&lt;0<br>
+Si <span style="font-style:italic">x</span>&gt;0 on a : (<span style="font-style:italic">x</span>/<span style="font-style:italic">k</span>−<span style="font-style:italic">t</span>)<sup>2</sup>=1+<span style="font-style:italic">t</span><sup>2</sup><br>
+ 2<span style="font-style:italic">kxt</span>=<span style="font-style:italic">k</span><sup>2</sup>*<span style="font-style:italic">x</span><sup>2</sup>−1 ou encore <br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">kx</span><sup>2</sup>/2−1/(2<span style="font-style:italic">k</span>)
+Si <span style="font-style:italic">x</span>&lt;0 on a : (<span style="font-style:italic">k</span>/<span style="font-style:italic">x</span>−<span style="font-style:italic">t</span>)<sup>2</sup>=1+<span style="font-style:italic">t</span><sup>2</sup><br>
+2<span style="font-style:italic">kt</span>/<span style="font-style:italic">x</span>=<span style="font-style:italic">k</span><sup>2</sup>/<span style="font-style:italic">x</span><sup>2</sup>−1 ou encore <br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>/2−<span style="font-style:italic">x</span><sup>2</sup>/(2<span style="font-style:italic">k</span>)<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(x*y’-y-sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-i)*x,(i)*x,pnt[(sqrt(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)+‘ t‘)*c_0,(‘ t‘*sqrt(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)+‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)*c_0]]</span><br>
+où ‘ t‘ est le paramétrage. 
+</li><li class="li-itemize">Résoudre :<br>
+3<span style="font-style:italic">x</span><sup>3</sup><span style="font-style:italic">y</span>′−(3<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">y</span><sup>2</sup>)<span style="font-style:italic">y</span>=0<br>
+On pose <span style="font-style:italic">t</span>=<span style="font-style:italic">y</span>/<span style="font-style:italic">x</span> et on obtient :<br>
+<span style="font-style:italic">y</span>′=<span style="font-style:italic">t</span>−<span style="font-style:italic">t</span><sup>3</sup>/3=<span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">t</span>+<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span> donc :<br>
+<span style="font-style:italic">dx</span>/<span style="font-style:italic">x</span>=−3*<span style="font-style:italic">dt</span>/(<span style="font-style:italic">t</span><sup>3</sup>) et <span style="font-style:italic">y</span>=<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>
+<span style="font-style:italic">x</span>=<span style="font-style:italic">k</span>*exp(3/(2*<span style="font-style:italic">t</span><sup>2</sup>)) <span style="font-style:italic">et</span> <span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>*<span style="font-style:italic">t</span>*exp(3/(2*<span style="font-style:italic">t</span><sup>2</sup>))<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*diff(y)=((3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)*y),y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[0,pnt[c_0*exp(3/(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*2)),‘ t‘*c_0*exp(3/(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*2))]]</span><br>
+où ‘ t‘ est le paramétrage. </li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>*<span style="font-style:italic">y</span>′=√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">y</span></span><sup><span style="text-decoration:overline">2</span></sup>
+On pose :<br>
+<span style="font-style:italic">t</span>=<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup><br>
+On a :<br>
+<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>=2<span style="font-style:italic">x</span>+2<span style="font-style:italic">ydy</span>/<span style="font-style:italic">dx</span> donc<br>
+<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>=2√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><br>
+donc <span style="font-style:italic">dx</span>=<span style="font-style:italic">dt</span>/(2√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span>)<br>
+<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>=√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span>, <span style="font-style:italic">y</span>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">2*</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><span style="text-decoration:overline">*√</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><sup><span style="text-decoration:overline">2</span></sup> avec <span style="font-style:italic">s</span>=± 1.<br>
+On a donc :<br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">2*</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><span style="text-decoration:overline">*(</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><span style="text-decoration:overline">)−</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><sup><span style="text-decoration:overline">2</span></sup>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">2*</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><sup><span style="text-decoration:overline">2</span></sup> avec <span style="font-style:italic">s</span>=± 1, <span style="font-style:italic">k</span>+2<span style="font-style:italic">x</span>&gt;0 et 
+<span style="font-style:italic">k</span>+<span style="font-style:italic">x</span>&gt;0,<br>
+
+Ou bien on pose <span style="font-style:italic">y</span>/<span style="font-style:italic">x</span>=<span style="font-style:italic">t</span> donc <span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">t</span>+<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span><br>
+On a <span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>*<span style="font-style:italic">y</span>′=√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">y</span></span><sup><span style="text-decoration:overline">2</span></sup> :<br>
+<span style="font-style:italic">x</span>+<span style="font-style:italic">tx</span>(<span style="font-style:italic">t</span>+<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>)=|<span style="font-style:italic">x</span>|*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+Après simplification par <span style="font-style:italic">x</span> :<br>
+<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>*<span style="font-style:italic">dt</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>−1−<span style="font-style:italic">t</span><sup>2</sup><br>
+<span style="font-style:italic">tdt</span>/(<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">1+</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>−(1+<span style="font-style:italic">t</span><sup>2</sup>))=<span style="font-style:italic">dx</span>/<span style="font-style:italic">x</span><br>
+Pour <span style="font-style:italic">x</span>&gt;0, <span style="font-style:italic">s</span>=1 et on a<br>
+ln((−4<span style="font-style:italic">t</span><sup>2</sup>−8−8√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>)/(2<span style="font-style:italic">t</span><sup>2</sup>))=ln(<span style="font-style:italic">x</span>/<span style="font-style:italic">k</span>)<br>
+Donc :<br>
+<span style="font-style:italic">x</span>=<span style="font-style:italic">k</span>(−4<span style="font-style:italic">t</span><sup>2</sup>−8−8√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>)/(2<span style="font-style:italic">t</span><sup>2</sup>)<br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>(−4<span style="font-style:italic">t</span><sup>2</sup>−8−8√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>)/(2<span style="font-style:italic">t</span>)<br>
+Pour <span style="font-style:italic">x</span>&lt;0, <span style="font-style:italic">s</span>=−1 et on a<br>
+ln((−4<span style="font-style:italic">t</span><sup>2</sup>−8+8√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>)/(2<span style="font-style:italic">t</span><sup>2</sup>))=ln(<span style="font-style:italic">x</span>/<span style="font-style:italic">k</span>)<br>
+Donc :<br>
+<span style="font-style:italic">x</span>=<span style="font-style:italic">k</span>(−4<span style="font-style:italic">t</span><sup>2</sup>−8+8√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>)/(2<span style="font-style:italic">t</span><sup>2</sup>)<br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>(−4<span style="font-style:italic">t</span><sup>2</sup>−8+8√<span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>)/(2<span style="font-style:italic">t</span>)<br>
+<p><span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve(x+y*y’=sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),y)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(i)*x,(-i)*x,0,pnt[c_0/(sqrt(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)-1),(‘ t‘*c_0)/(sqrt(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)-1)]]</span><br>
+où ‘ t‘ est le paramétrage. 
+</p></li></ul>
+<h2 id="sec452" class="section">28.5  Équation de Bernoulli</h2>
+<p>
+Les équations de Bernoulli sont de la forme <span style="font-style:italic">a</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">y</span>′+<span style="font-style:italic">b</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">y</span>=<span style="font-style:italic">c</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">y</span><sup><span style="font-style:italic">n</span></sup> et se 
+résolvent en posant <span style="font-style:italic">u</span>=1/<span style="font-style:italic">y</span><sup><span style="font-style:italic">n</span>−1</sup>
+</p><ul class="itemize"><li class="li-itemize">
+Résoudre :<br>
+<span style="font-style:italic">xy</span>′+2<span style="font-style:italic">y</span>+<span style="font-style:italic">xy</span><sup>2</sup><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(desolve(x*y’+2*y+x*y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*c_0-x)]</span></li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">xy</span>′−2<span style="font-style:italic">y</span>=<span style="font-style:italic">xy</span><sup>3</sup><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(desolve(x*diff(y)-2*y=(x*y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3),y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*sqrt(-10*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5+25*c_0)))/(2*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5-5*c_0)]</span>
+</li></ul>
+<h2 id="sec453" class="section">28.6  Équation à variables séparées</h2>
+<p>
+Les équations à variables séparées sont de la forme <span style="font-style:italic">a</span>(<span style="font-style:italic">y</span>)<span style="font-style:italic">dy</span>=<span style="font-style:italic">b</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">dx</span> et 
+se résolvent en intégrant chaque membre.
+</p><ul class="itemize"><li class="li-itemize">
+Résoudre :<br>
+<span style="font-style:italic">x</span>*<span style="font-style:italic">y</span>′*ln(<span style="font-style:italic">x</span>)−(3*ln(<span style="font-style:italic">x</span>)+1)*<span style="font-style:italic">y</span><br>
+On a :<br>
+<span style="font-style:italic">dy</span>/<span style="font-style:italic">y</span>=(3*ln(<span style="font-style:italic">x</span>)+1)<span style="font-style:italic">dx</span>/(ln(<span style="font-style:italic">x</span>)*<span style="font-style:italic">x</span>)=3/<span style="font-style:italic">x</span>+1/(ln(<span style="font-style:italic">x</span>)*<span style="font-style:italic">x</span>) et<br>
+ln(<span style="font-style:italic">y</span>/<span style="font-style:italic">k</span>)=3*ln(<span style="font-style:italic">x</span>)+ln(ln(<span style="font-style:italic">x</span>))=ln(<span style="font-style:italic">x</span><sup>3</sup>*ln(<span style="font-style:italic">x</span>))<br>
+donc<br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">k</span>*<span style="font-style:italic">x</span><sup>3</sup>*ln(<span style="font-style:italic">x</span>) <br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(desolve(x*y’*log(x)-(3*log(x)+1)*y,y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">c_0*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*ln(x)</span><br>
+
+</li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">y</span>′=2*√<span style="text-decoration:overline"><span style="font-style:italic">y</span></span><br>
+On a :<br>
+<span style="font-style:italic">dy</span>/(2√<span style="text-decoration:overline">)</span> <span style="font-style:italic">y</span>=<span style="font-style:italic">dx</span><br>
+donc <br>
+√<span style="text-decoration:overline"><span style="font-style:italic">y</span></span>=<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span><br>
+ou encore :<br>
+<span style="font-style:italic">y</span>=(<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>)<sup>2</sup><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve(y’=2*sqrt(y),y)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[((2*x-c_0)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/4]</span>
+</li></ul>
+<h2 id="sec454" class="section">28.7  Équation non résoluble en <span style="font-style:italic">y</span>′</h2>
+<p><a id="sec:homog"></a>
+On sait résoudre si l’équation est : 
+</p><ul class="itemize"><li class="li-itemize">
+incomplète en <span style="font-style:italic">x</span><br>
+c’est à dire l’équation est de la forme <span style="font-style:italic">F</span>(<span style="font-style:italic">y</span>,<span style="font-style:italic">y</span>′)=0
+</li><li class="li-itemize">incomplète en <span style="font-style:italic">y</span><br>
+c’est à dire l’équation est de la forme <span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>′)=0
+</li><li class="li-itemize">homogéne en <span style="font-style:italic">x</span> et <span style="font-style:italic">y</span> et non résoluble en <span style="font-style:italic">y</span>′<br>
+c’est à dire l’équation est de la forme <span style="font-style:italic">F</span>(<span style="font-style:italic">y</span>/<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>′)=0 aprés division par 
+une puissance convenable de <span style="font-style:italic">x</span>.
+</li><li class="li-itemize">de la forme <span style="font-style:italic">y</span>=<span style="font-style:italic">x</span>*<span style="font-style:italic">y</span>′+<span style="font-style:italic">f</span>(<span style="font-style:italic">y</span>′) c’est à dire est une équation de 
+Clairaut : pour la résolution voir <a href="#sec%3AClairaut">28.8</a>
+</li></ul><p>
+On sait résoudre ces équations à condition de trouver un paramétrage de
+de la courbe <span style="font-style:italic">F</span>(<span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span>)=0 par <span style="font-style:italic">X</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>),<span style="font-style:italic">Y</span>=<span style="font-style:italic">g</span>(<span style="font-style:italic">t</span>).<br>
+On pose alors :
+</p><ul class="itemize"><li class="li-itemize">
+Équation incomplète en <span style="font-style:italic">x</span><br>
+ <span style="font-style:italic">y</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>),<span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">g</span>(<span style="font-style:italic">t</span>)
+</li><li class="li-itemize">Équation incomplète en <span style="font-style:italic">y</span><br>
+<span style="font-style:italic">x</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>),<span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">g</span>(<span style="font-style:italic">t</span>)
+</li><li class="li-itemize">Équation homogéne en <span style="font-style:italic">x</span> et <span style="font-style:italic">y</span> et non résoluble en <span style="font-style:italic">y</span>′<br>
+<span style="font-style:italic">y</span>/<span style="font-style:italic">x</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>),<span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">g</span>(<span style="font-style:italic">t</span>)
+</li></ul><ul class="itemize"><li class="li-itemize">
+Résoudre :<br>
+<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">y</span>′<sup>2</sup>=1<br>
+On pose :<br>
+<span style="font-style:italic">y</span>′=<span style="font-style:italic">t</span> <span style="font-style:italic">et</span> <span style="font-style:italic">y</span>=√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup> ou <span style="font-style:italic">y</span>=−√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+<span style="font-style:italic">dy</span>=−<span style="font-style:italic">s</span>*<span style="font-style:italic">t</span>*<span style="font-style:italic">dt</span>/√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup> avec <span style="font-style:italic">s</span>=± 1<br>
+<span style="font-style:italic">dx</span>=<span style="font-style:italic">dy</span>/<span style="font-style:italic">t</span>=−<span style="font-style:italic">s</span>*<span style="font-style:italic">dt</span>/√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+<span style="font-style:italic">x</span>=−<span style="font-style:italic">s</span>*  asin (<span style="font-style:italic">t</span>)+<span style="font-style:italic">k</span> avec <span style="font-style:italic">k</span>=<span style="font-style:italic">cste</span> donc<br>
+<span style="font-style:italic">s</span>*<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>=  asin (<span style="font-style:italic">t</span>) et sin(<span style="font-style:italic">s</span>*<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>)=<span style="font-style:italic">t</span><br>
+<span style="font-style:italic">y</span>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup> donc <span style="font-style:italic">y</span>=<span style="font-style:italic">s</span>*√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline">sin</span><span style="text-decoration:overline">(</span><span style="text-decoration:overline"><span style="font-style:italic">s</span></span><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">k</span></span><span style="text-decoration:overline">)</span><sup><span style="text-decoration:overline">2</span></sup>=± cos(<span style="font-style:italic">s</span>*<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>)<sup>2</sup>)<br>
+les solutions sont donc :<br>
+ [cos(<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span><sub>1</sub>),−cos(<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span><sub>2</sub>)]
+</li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">y</span><sup>2</sup>+<span style="font-style:italic">y</span>′<sup>2</sup>=1,<span style="font-style:italic">y</span>(0)=1/2 <br>
+si <span style="font-style:italic">y</span>(0)=1/2 on a <span style="font-style:italic">k</span>=<span style="font-style:italic">pi</span>/3 et cos(<span style="font-style:italic">x</span>+<span style="font-style:italic">pi</span>/3)=sin(<span style="font-style:italic">pi</span>/6−<span style="font-style:italic">x</span>)<br>
+les solutions sont donc :<br>
+ [cos(<span style="font-style:italic">x</span>+<span style="font-style:italic">pi</span>/3)=sin(<span style="font-style:italic">pi</span>/6−<span style="font-style:italic">x</span>),−cos(<span style="font-style:italic">x</span>+2*<span style="font-style:italic">pi</span>/3)=sin(<span style="font-style:italic">pi</span>/6+<span style="font-style:italic">x</span>)]<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve(y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y’</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2=1,y)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[sin(-c_0+x),sin(-c_0-x)]</span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve([y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y’</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2=1,y(0)=1/2],y)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[sin(pi/6+x),sin(pi/6-x)]</span><br>
+
+</li><li class="li-itemize">Résoudre :<br>
+(<span style="font-style:italic">y</span>+<span style="font-style:italic">y</span>′)<sup>4</sup>+<span style="font-style:italic">y</span>′+3*<span style="font-style:italic">y</span><br>
+On pose :<br>
+<span style="font-style:italic">y</span>+<span style="font-style:italic">y</span>′=2<span style="font-style:italic">t</span> ce qui donne :<br>
+<span style="font-style:italic">y</span>=−<span style="font-style:italic">t</span>−8<span style="font-style:italic">t</span><sup>4</sup> et <span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=2<span style="font-style:italic">t</span>−<span style="font-style:italic">y</span>=3<span style="font-style:italic">t</span>+8<span style="font-style:italic">t</span><sup>4</sup> soit <span style="font-style:italic">dx</span>=<span style="font-style:italic">dy</span>/(3<span style="font-style:italic">t</span>+8<span style="font-style:italic">t</span><sup>4</sup>)<br>
+on a donc :<br>
+<span style="font-style:italic">dy</span>/<span style="font-style:italic">dt</span>=−1−32<span style="font-style:italic">t</span><sup>3</sup> et <span style="font-style:italic">dx</span>=(−1−32<span style="font-style:italic">t</span><sup>3</sup>)/(3<span style="font-style:italic">t</span>+8<span style="font-style:italic">t</span><sup>4</sup>) <span style="font-style:italic">dt</span><br>
+On tape :<br>
+<span style="font-family:monospace">int((-1-32*t</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)/(3*t+8*t</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4),t)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(ln(1/(abs(t)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*abs(8*t</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+3)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">11)))/9</span><br>
+donc <br>
+<span style="font-style:italic">x</span>=−(<span style="font-style:italic">ln</span>(<span style="font-style:italic">abs</span>(<span style="font-style:italic">t</span>)<sup>3</sup>*<span style="font-style:italic">abs</span>(8*<span style="font-style:italic">t</span><sup>3</sup>+3)<sup>1</sup>1))/9+<span style="font-style:italic">k</span> et<br>
+<span style="font-style:italic">y</span>=−<span style="font-style:italic">t</span>−8*<span style="font-style:italic">t</span><sup>4</sup><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve((y+diff(y))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4+diff(y)+3*y,y)</span><br>
+Mais on n’obtient pas de résultat.</li><li class="li-itemize">Résoudre :<br>
+<span style="font-style:italic">y</span>′<sup>2</sup>=4*<span style="font-style:italic">sqrt</span>(<span style="font-style:italic">y</span>)<br>
+On a :<br>
+<span style="font-style:italic">y</span>′=2*<span style="font-style:italic">y</span><sup>1/4</sup><br>
+2*<span style="font-style:italic">y</span><sup>(3/4)</sup>/3=<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>
+Donc :<br>
+<span style="font-style:italic">y</span>=(3(<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>)/2)<sup>(4/3)</sup>=exp(4/3*ln(3(<span style="font-style:italic">x</span>+<span style="font-style:italic">k</span>)/2))<br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve((diff(y))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2=(4*sqrt(y)),y)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[exp(4*ln(((-48*c_0+96*x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(1/3))/4)),...]</span>
+</li></ul>
+<h2 id="sec455" class="section">28.8  Équation de Clairaut</h2>
+<p> <a id="sec:Clairaut"></a>
+C’est une équation de la forme <span style="font-style:italic">y</span>=<span style="font-style:italic">x</span>*<span style="font-style:italic">y</span>′+<span style="font-style:italic">f</span>(<span style="font-style:italic">y</span>′) que l’on résout en posant 
+<span style="font-style:italic">y</span>′=<span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">t</span>. On a donc <span style="font-style:italic">y</span>=<span style="font-style:italic">t</span>*<span style="font-style:italic">x</span>+<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>),(<span style="font-style:italic">x</span>+<span style="font-style:italic">f</span>′(<span style="font-style:italic">t</span>))*<span style="font-style:italic">dt</span>=0.<br>
+Donc l’intégrale générale est <span style="font-style:italic">t</span>=<span style="font-style:italic">m</span>=<span style="font-style:italic">cste</span> et <span style="font-style:italic">x</span>=−<span style="font-style:italic">f</span>′(<span style="font-style:italic">t</span>),<span style="font-style:italic">y</span>=−<span style="font-style:italic">t</span>*<span style="font-style:italic">f</span>′(<span style="font-style:italic">t</span>)+<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>).<br>
+Cela définit une infinité de droites <span style="font-style:italic">D</span><sub><span style="font-style:italic">m</span></sub> d’équation <span style="font-style:italic">y</span>=<span style="font-style:italic">mx</span>+<span style="font-style:italic">f</span>(<span style="font-style:italic">m</span>) 
+(<span style="font-style:italic">m</span>∈ ℝ) et l’intégrale singulière <span style="font-style:italic">x</span>=−<span style="font-style:italic">f</span>′(<span style="font-style:italic">t</span>),<span style="font-style:italic">y</span>=−<span style="font-style:italic">t</span>*<span style="font-style:italic">f</span>′(<span style="font-style:italic">t</span>)+<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>)
+qui est l’enveloppe des droites <span style="font-style:italic">D</span><sub><span style="font-style:italic">m</span></sub>.<br>
+Résoudre :<br>
+<span style="font-style:italic">y</span>−<span style="font-style:italic">xy</span>′=√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">y</span></span><span style="text-decoration:overline">′</span><sup><span style="text-decoration:overline">2</span></sup><br>
+On pose <span style="font-style:italic">y</span>′=<span style="font-style:italic">dy</span>/<span style="font-style:italic">dx</span>=<span style="font-style:italic">t</span> et <span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>)=√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>.<br>
+On a :<br>
+<span style="font-style:italic">f</span>′(<span style="font-style:italic">t</span>)=<span style="font-style:italic">b</span><sup>2</sup>*<span style="font-style:italic">t</span>/√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup> <br>
+donc comme solution les droites :
+<span style="font-style:italic">y</span>=<span style="font-style:italic">m</span>*<span style="font-style:italic">x</span>+√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">m</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+et comme intégrale singulière :<br>
+<span style="font-style:italic">x</span>=−<span style="font-style:italic">b</span><sup>2</sup>*<span style="font-style:italic">t</span>/√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>,<span style="font-style:italic">y</span>=−<span style="font-style:italic">b</span><sup>2</sup>*<span style="font-style:italic">t</span><sup>2</sup>/√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup>+√<span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">*</span><span style="text-decoration:overline"><span style="font-style:italic">t</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">desolve(y-x*diff(y)=sqrt(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*diff(y)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),y)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[c_0*x+sqrt(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*c_0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),
+[-((sqrt(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)*‘ t‘*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(‘
+t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)), (sqrt(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(‘ t‘</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)]] </span><br>
+On peut dessiner les solutions avec <span style="font-family:monospace">Xcas</span>, on tape :
+</p><pre class="verbatim">assume(a=[1,0,5]);
+assume(b=[1,0,5]);
+assume(m=[1,-5,5]);
+droite(y=m*x+sqrt(a^2+b^2*m^2));
+plotparam(-b^2*t/sqrt(a^2+b^2*t^2)+
+  i*(-b^2*t^2/sqrt(a^2+b^2*t^2)+sqrt(a^2+b^2*t^2)),t);
+</pre>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo027.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo029.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,25 @@
+X:=point(-1);
+assume(a=[0.6,-5,5,0.1]);
+Y:=point((1+i*a)/(1-i*a));
+assume(b=[0.4,-5,5,0.1]);
+Z:=point((1+i*b)/(1-i*b));
+assume(c=[-4.0,-5,5,0.1]);
+W:=point((1+i*c)/(1-i*c));
+circle(0,1);
+A:=single_inter(rotation(X,pi/2,line(0,X)), rotation(Z,pi/2,line(0,Z)));
+B:=single_inter (rotation(W,pi/2,line(0,W)), rotation(Z,pi/2,line(0,Z)));
+D:=single_inter( rotation(X,pi/2,line(0,X)), rotation(Y,pi/2,line(0,Y)));
+C:=single_inter(rotation(W,pi/2,line(0,W)), rotation(Y,pi/2,line(0,Y)));
+triangle(A,B,C); triangle(A,D,C);
+w1:=incircle(triangle(A,B,C),display=hidden_name);
+I1:=center(w1);
+w2:=incircle(triangle(A,D,C),display=hidden_name);
+I2:=center(w2);
+d:=line(I1,I2,display=hidden_name);
+equation(d);
+eq:=subst(x^2+y^2-1,equation(d));
+S:=solve(eq);
+evalf(S);
+X:=S[0]; Y:=right(normal(subst(equation(d),x=X)));
+normal(distance2(I1,point(X,Y))*radius2(w2)-distance2(I2,point(X,Y))*radius2(w1));
+

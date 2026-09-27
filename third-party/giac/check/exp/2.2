@@ -1,0 +1,21 @@
+# Maple integration test file: "2 Exponentials\2.2 (c+d x)^m (F^(g (e+f x)))^n (a+b (F^(g (e+f x)))^n)^p.txt"
+
+lst:=[
+[1/((a+b*exp(c+d*x))*x),x,0,Integral(1/((a+b*exp(c+d*x))*x),x)],
+[1/(a+b*exp(c+d*x)),x,4,x/a-log(a+b*exp(c+d*x))/(a*d)],
+[1/((a+b*exp(c+d*x))^2*x),x,0,Integral(1/((a+b*exp(c+d*x))^2*x),x)],
+[1/(a+b*exp(-c-d*x))^2,x,3,(-1)/(a*d*(a+b*exp(-c-d*x)))+x/a^2+log(a+b*exp(-c-d*x))/(a^2*d)],
+[1/((a+b*exp(c+d*x))^3*x),x,0,Integral(1/((a+b*exp(c+d*x))^3*x),x)],
+[1/(a+b*exp(c+d*x))^3,x,3,1/2/(a*d*(a+b*exp(c+d*x))^2)+1/(a^2*d*(a+b*exp(c+d*x)))+x/a^3-log(a+b*exp(c+d*x))/(a^3*d)],
+[x^2/(a+b*exp(c+d*x))^3,x,20,x/(a^3*d^2)-x/(a^2*d^2*(a+b*exp(c+d*x)))+1/2*x^2/(a*d*(a+b*exp(c+d*x))^2)+x^2/(a^2*d*(a+b*exp(c+d*x)))+3*x*log(1+a*exp(-c-d*x)/b)/(a^3*d^2)-x^2*log(1+a*exp(-c-d*x)/b)/(a^3*d)-log(a+b*exp(c+d*x))/(a^3*d^3)-3*polylog(2,-a*exp(-c-d*x)/b)/(a^3*d^3)+2*x*polylog(2,-a*exp(-c-d*x)/b)/(a^3*d^2)+2*polylog(3,-a*exp(-c-d*x)/b)/(a^3*d^3)],
+[a+b*(F^(g*(e+f*x)))^n,x,2,a*x+b*(F^(g*(e+f*x)))^n/(f*g*n*log(F))],
+[(a+b*(F^(g*(e+f*x)))^n)^3*(c+d*x),x,8,1/2*a^3*(c+d*x)^2/d-3*a^2*b*d*(F^(e*g+f*g*x))^n/(f^2*g^2*n^2*log(F)^2)-3/4*a*b^2*d*(F^(e*g+f*g*x))^(2*n)/(f^2*g^2*n^2*log(F)^2)-1/9*b^3*d*(F^(e*g+f*g*x))^(3*n)/(f^2*g^2*n^2*log(F)^2)+3*a^2*b*(F^(e*g+f*g*x))^n*(c+d*x)/(f*g*n*log(F))+3/2*a*b^2*(F^(e*g+f*g*x))^(2*n)*(c+d*x)/(f*g*n*log(F))+1/3*b^3*(F^(e*g+f*g*x))^(3*n)*(c+d*x)/(f*g*n*log(F))],
+[(c+d*x)^3/(a+b*(F^(g*(e+f*x)))^n),x,5,-(c+d*x)^3*log(1+a/(b*(F^(g*(e+f*x)))^n))/(a*f*g*n*log(F))+3*d*(c+d*x)^2*polylog(2,-a/(b*(F^(g*(e+f*x)))^n))/(a*f^2*g^2*n^2*log(F)^2)+6*d^2*(c+d*x)*polylog(3,-a/(b*(F^(g*(e+f*x)))^n))/(a*f^3*g^3*n^3*log(F)^3)+6*d^3*polylog(4,-a/(b*(F^(g*(e+f*x)))^n))/(a*f^4*g^4*n^4*log(F)^4)],
+[(c+d*x)^2/(a+b*(F^(g*(e+f*x)))^n),x,4,-(c+d*x)^2*log(1+a/(b*(F^(g*(e+f*x)))^n))/(a*f*g*n*log(F))+2*d*(c+d*x)*polylog(2,-a/(b*(F^(g*(e+f*x)))^n))/(a*f^2*g^2*n^2*log(F)^2)+2*d^2*polylog(3,-a/(b*(F^(g*(e+f*x)))^n))/(a*f^3*g^3*n^3*log(F)^3)],
+[1/(a+b*(F^(g*(e+f*x)))^n)^3,x,4,x/a^3+1/2/(a*f*(a+b*(F^(g*(e+f*x)))^n)^2*g*n*log(F))+1/(a^2*f*(a+b*(F^(g*(e+f*x)))^n)*g*n*log(F))-log(a+b*(F^(g*(e+f*x)))^n)/(a^3*f*g*n*log(F))],
+[(a+b*(F^(g*(e+f*x)))^n)^p*(c+d*x)^m,x,1,Integral((a+b*(F^(e*g+f*g*x))^n)^p*(c+d*x)^m,x)],
+[F^(c+d*x)*x^2/(a+b*F^(c+d*x)),x,4,x^2*log(1+b*F^(c+d*x)/a)/(b*d*log(F))+2*x*polylog(2,-b*F^(c+d*x)/a)/(b*d^2*log(F)^2)-2*polylog(3,-b*F^(c+d*x)/a)/(b*d^3*log(F)^3)],
+[F^(c+d*x)*x^2/(a+b*F^(c+d*x))^2,x,4,-x^2/(b*d*(a+b*F^(c+d*x))*log(F))-2*x*log(1+a*F^(-c-d*x)/b)/(a*b*d^2*log(F)^2)+2*polylog(2,-a*F^(-c-d*x)/b)/(a*b*d^3*log(F)^3)],
+[F^(c+d*x)/((a+b*F^(c+d*x))^2*x^2),x,1,(-1)/(b*d*(a+b*F^(c+d*x))*x^2*log(F))-2*Integral(1/((a+b*F^(c+d*x))*x^3),x)/(b*d*log(F))],
+[F^(c+d*x)*x/(a+b*F^(c+d*x))^3,x,4,1/2/(a*b*d^2*(a+b*F^(c+d*x))*log(F)^2)+1/2*x/(a^2*b*d*log(F))-1/2*x/(b*d*(a+b*F^(c+d*x))^2*log(F))-1/2*log(a+b*F^(c+d*x))/(a^2*b*d^2*log(F)^2)],
+[F^(c+d*x)/((a+b*F^(c+d*x))^3*x^2),x,1,(-1/2)/(b*d*(a+b*F^(c+d*x))^2*x^2*log(F))-Integral(1/((a+b*F^(c+d*x))^2*x^3),x)/(b*d*log(F))]]:

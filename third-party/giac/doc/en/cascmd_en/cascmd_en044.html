@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Export to presentation or content MathML
+</title>
+</head>
+<body >
+<a href="cascmd_en043.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en045.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:exportMathML" class="subsection">2.7.7  Export to presentation or content <span style="font-variant:small-caps">MathML</span>
+</h3>
+<p>You can translate the result of an expression into various
+types of <span style="font-variant:small-caps">MathML</span><a id="hevea_default36"></a> with the
+<span style="font-family:monospace">export_mathml</span><a id="hevea_default37"></a> command.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">export_mathml</span> takes one mandatory argument and one optional
+argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">format</span>, which can be <span style="font-family:monospace">content</span> or
+<span style="font-family:monospace">display</span>, specifying the output format.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">export_mathml(</span><span style="font-style:italic">expr</span> ⟨,<span style="font-style:italic">format</span> ⟩<span style="font-family:monospace">)</span>
+returns the result of evaluating <span style="font-style:italic">expr</span> written in <span style="font-variant:small-caps">MathML</span>, with a single
+<span style="font-family:monospace">math</span> block which will be a <span style="font-family:monospace">semantics</span> block.
+Choices for the second argument are:
+<ul class="itemize"><li class="li-itemize">
+None: the <span style="font-family:monospace">semantics</span> block will
+contain both presentation and content <span style="font-variant:small-caps">MathML</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">content</span>: the
+<span style="font-family:monospace">semantics</span> block will contain only the content <span style="font-variant:small-caps">MathML</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">display</span>: the
+<span style="font-family:monospace">semantics</span> block will contain only the presentation <span style="font-variant:small-caps">MathML</span>.
+</li></ul>
+</li></ul><h4 id="sec62" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xml_print</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">export_mathml</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> &lt;math mode='display' xmlns='http://www.w3.org/1998/Math/MathML'&gt;
+   &lt;semantics&gt;
+     &lt;mrow xref='id5'&gt;
+       &lt;mi xref='id1'&gt;a&lt;/mi&gt;
+       &lt;mo&gt;+&lt;/mo&gt;
+       &lt;mrow xref='id4'&gt;
+         &lt;mn xref='id2'&gt;2&lt;/mn&gt;
+         &lt;mo&gt;&amp;it;&lt;/mo&gt;
+         &lt;mi xref='id3'&gt;b&lt;/mi&gt;
+       &lt;/mrow&gt;
+     &lt;/mrow&gt;
+     &lt;annotation-xml encoding='MathML-Content'&gt;
+       &lt;apply id='id5'&gt;
+         &lt;plus/&gt;
+         &lt;ci id='id1'&gt;a&lt;/ci&gt;
+         &lt;apply id='id4'&gt;
+           &lt;times/&gt;
+           &lt;cn id='id2' type='integer'&gt;2&lt;/cn&gt;
+           &lt;ci id='id3'&gt;b&lt;/ci&gt;
+         &lt;/apply&gt;
+       &lt;/apply&gt;
+     &lt;/annotation-xml&gt;
+     &lt;annotation encoding='giac'&gt;a+2*b&lt;/annotation&gt;
+   &lt;/semantics&gt;
+ &lt;/math&gt;</td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xml_print</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">export_mathml</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">content</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> &lt;math mode='display' xmlns='http://www.w3.org/1998/Math/MathML'&gt;
+   &lt;apply id='id5'&gt;
+     &lt;plus/&gt;
+     &lt;ci id='id1'&gt;a&lt;/ci&gt;
+     &lt;apply id='id4'&gt;
+       &lt;times/&gt;
+       &lt;cn id='id2' type='integer'&gt;2&lt;/cn&gt;
+       &lt;ci id='id3'&gt;b&lt;/ci&gt;
+     &lt;/apply&gt;
+   &lt;/apply&gt;
+ &lt;/math&gt;</td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xml_print</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">export_mathml</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> &lt;math mode='display' xmlns='http://www.w3.org/1998/Math/MathML'&gt;
+   &lt;mrow&gt;
+     &lt;mi&gt;a&lt;/mi&gt;
+     &lt;mo&gt;+&lt;/mo&gt;
+     &lt;mrow&gt;
+       &lt;mn&gt;2&lt;/mn&gt;
+       &lt;mo&gt;&amp;it;&lt;/mo&gt;
+       &lt;mi&gt;b&lt;/mi&gt;
+     &lt;/mrow&gt;
+   &lt;/mrow&gt;
+ &lt;/math&gt;</td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">export_mathml</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+1),</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">xml_print</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> &lt;math mode='display' xmlns='http://www.w3.org/1998/Math/MathML'&gt;
+   &lt;mfrac&gt;
+     &lt;mn&gt;1&lt;/mn&gt;
+     &lt;mrow&gt;
+       &lt;msup&gt;
+         &lt;mi&gt;x&lt;/mi&gt;
+         &lt;mn&gt;2&lt;/mn&gt;
+       &lt;/msup&gt;
+       &lt;mo&gt;+&lt;/mo&gt;
+       &lt;mn&gt;1&lt;/mn&gt;
+     &lt;/mrow&gt;
+   &lt;/mfrac&gt;
+ &lt;/math&gt;</td></tr>
+</table>
+<hr>
+<a href="cascmd_en043.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en045.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

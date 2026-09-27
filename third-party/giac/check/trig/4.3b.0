@@ -1,0 +1,17 @@
+# Maple integration test file: "4 Trig functions\4.3b Cosecant\4.3.0 (a csc)^m (b trg)^n.txt"
+
+lst:=[
+[csc(a+b*x),x,1,-arctanh(cos(a+b*x))/b],
+[csc(a+b*x)^4,x,2,-cot(a+b*x)/b-1/3*cot(a+b*x)^3/b],
+[1/csc(a+b*x)^(3/2),x,3,-2/3*cos(a+b*x)/(b*sqrt(csc(a+b*x)))+2/3*sqrt(cos(1/2*(a-1/2*Pi+b*x))^2)/cos(1/2*(a-1/2*Pi+b*x))*EllipticF(sin(1/2*(a-1/2*Pi+b*x)),sqrt(2))*sqrt(csc(a+b*x))*sqrt(sin(a+b*x))/b],
+[1/csc(a+b*x)^(7/2),x,4,-2/7*cos(a+b*x)/(b*csc(a+b*x)^(5/2))-10/21*cos(a+b*x)/(b*sqrt(csc(a+b*x)))+10/21*sqrt(cos(1/2*(a-1/2*Pi+b*x))^2)/cos(1/2*(a-1/2*Pi+b*x))*EllipticF(sin(1/2*(a-1/2*Pi+b*x)),sqrt(2))*sqrt(csc(a+b*x))*sqrt(sin(a+b*x))/b],
+[1/(c*csc(a+b*x))^(5/2),x,3,-2/5*cos(a+b*x)/(b*c*(c*csc(a+b*x))^(3/2))+6/5*sqrt(cos(1/2*(a-1/2*Pi+b*x))^2)/cos(1/2*(a-1/2*Pi+b*x))*EllipticE(sin(1/2*(a-1/2*Pi+b*x)),sqrt(2))/(b*c^2*sqrt(c*csc(a+b*x))*sqrt(sin(a+b*x)))],
+[csc(a+b*x)^(4/3),x,2,-3*cos(a+b*x)*csc(a+b*x)^(1/3)*hypergeom([-1/6,1/2],[5/6],sin(a+b*x)^2)/(b*sqrt(cos(a+b*x)^2))],
+[1/csc(a+b*x)^(1/3),x,2,3/4*cos(a+b*x)*hypergeom([1/2,2/3],[5/3],sin(a+b*x)^2)/(b*csc(a+b*x)^(4/3)*sqrt(cos(a+b*x)^2))],
+[1/csc(a+b*x)^(2/3),x,2,3/5*cos(a+b*x)*hypergeom([1/2,5/6],[11/6],sin(a+b*x)^2)/(b*csc(a+b*x)^(5/3)*sqrt(cos(a+b*x)^2))],
+[(c*csc(a+b*x))^n,x,2,c*cos(a+b*x)*(c*csc(a+b*x))^(-1+n)*hypergeom([1/2,1/2*(1-n)],[1/2*(3-n)],sin(a+b*x)^2)/(b*(1-n)*sqrt(cos(a+b*x)^2))],
+[1/(csc(x)^2)^(7/2),x,5,-1/7*cot(x)/(csc(x)^2)^(7/2)-6/35*cot(x)/(csc(x)^2)^(5/2)-8/35*cot(x)/(csc(x)^2)^(3/2)-16/35*cot(x)/sqrt(csc(x)^2)],
+[(a*csc(x)^3)^(5/2),x,7,-154/585*a^2*cot(x)*sqrt(a*csc(x)^3)-22/117*a^2*cot(x)*csc(x)^2*sqrt(a*csc(x)^3)-2/13*a^2*cot(x)*csc(x)^4*sqrt(a*csc(x)^3)-154/195*a^2*cos(x)*sin(x)*sqrt(a*csc(x)^3)+154/195*a^2*sqrt(cos(1/4*Pi-1/2*x)^2)/cos(1/4*Pi-1/2*x)*EllipticE(sin(1/4*Pi-1/2*x),sqrt(2))*sin(x)^(3/2)*sqrt(a*csc(x)^3)],
+[(a*csc(x)^3)^(3/2),x,5,-10/21*a*cos(x)*sqrt(a*csc(x)^3)-2/7*a*cot(x)*csc(x)*sqrt(a*csc(x)^3)-10/21*a*sqrt(cos(1/4*Pi-1/2*x)^2)/cos(1/4*Pi-1/2*x)*EllipticF(sin(1/4*Pi-1/2*x),sqrt(2))*sin(x)^(3/2)*sqrt(a*csc(x)^3)],
+[1/(a*csc(x)^3)^(5/2),x,7,-26/77*cot(x)/(a^2*sqrt(a*csc(x)^3))-26/77*sqrt(cos(1/4*Pi-1/2*x)^2)/cos(1/4*Pi-1/2*x)*EllipticF(sin(1/4*Pi-1/2*x),sqrt(2))/(a^2*sin(x)^(3/2)*sqrt(a*csc(x)^3))-78/385*cos(x)*sin(x)/(a^2*sqrt(a*csc(x)^3))-26/165*cos(x)*sin(x)^3/(a^2*sqrt(a*csc(x)^3))-2/15*cos(x)*sin(x)^5/(a^2*sqrt(a*csc(x)^3))],
+[(a*csc(e+f*x))^m*(b*csc(e+f*x))^n,x,3,a*cos(e+f*x)*(a*csc(e+f*x))^(-1+m)*(b*csc(e+f*x))^n*hypergeom([1/2,1/2*(1-m-n)],[1/2*(3-m-n)],sin(e+f*x)^2)/(f*(1-m-n)*sqrt(cos(e+f*x)^2))]]:

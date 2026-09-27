@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.1a Sine\4.1.8 (a+b sin)^m (c+d trig)^n.txt"
+
+lst:=[
+[(A+B*cos(x))/(a+b*sin(x)),x,7,B*log(a+b*sin(x))/b+2*A*arctan((b+a*tan(1/2*x))/sqrt(a^2-b^2))/sqrt(a^2-b^2)],
+[(A+B*cos(x))/(1-sin(x)),x,5,-B*log(1-sin(x))+A*cos(x)/(1-sin(x))],
+[(b+c+cos(x))/(a-b*sin(x)),x,7,-log(a-b*sin(x))/b-2*(b+c)*arctan((b-a*tan(1/2*x))/sqrt(a^2-b^2))/sqrt(a^2-b^2)],
+[(A+B*cot(x))/(a+b*sin(x)),x,9,B*log(sin(x))/a-B*log(a+b*sin(x))/a+2*A*arctan((b+a*tan(1/2*x))/sqrt(a^2-b^2))/sqrt(a^2-b^2)],
+[(A+B*csc(x))/(a+b*sin(x)),x,6,-B*arctanh(cos(x))/a+2*(a*A-b*B)*arctan((b+a*tan(1/2*x))/sqrt(a^2-b^2))/(a*sqrt(a^2-b^2))]]:

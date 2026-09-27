@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Exercices sur les suites</title>
+</head>
+<body >
+<a href="casexo025.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo027.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec435" class="chapter">Chapitre 26  Exercices sur les suites</h1>
+<p>
+La commande <span style="font-family:monospace">limite</span> de <span style="font-family:monospace">Xcas</span> donne la limite d’une suite losqu’elle existe !<br>
+La commande <span style="font-family:monospace">seqsolve</span> de <span style="font-family:monospace">Xcas</span> donne la valeur d’une suite 
+récurrente de la forme <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>) ou <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+2</sub>=<span style="font-style:italic">f</span>(,<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>,<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>,...) ou 
+d’un système de suites récurrentes.<br>
+Par exemple :<br>
+Pour trouver la limite quand <span style="font-style:italic">n</span> tend vers +∞ de la suite <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> 
+définie par :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>, on tape :<br>
+<span style="font-family:monospace">limite(sum(1/((n+p)),p=1..n),n,inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">ln(2)</span><br>
+Pour trouver la valeur de la suite <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> définie par :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+2</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+2<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">n</span>+1 <span style="font-style:italic">u</span><sub>0</sub>=0, <span style="font-style:italic">u</span><sub>1</sub>=1, on tape :<br>
+<span style="font-family:monospace">seqsolve(x+2*y+n+1,[x,y,n],[0,1])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-4*n-(sqrt(2)+1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(-sqrt(2)*3-2)-(-(sqrt(2))+1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(sqrt(2)*3-2)-4)/8</span><br>
+Pour trouver la valeur des suite <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub> définies par :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+2<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">n</span>+1 <span style="font-style:italic">u</span><sub>0</sub>=0, <span style="font-style:italic">v</span><sub>0</sub>=1, on tape :<br>
+<span style="font-family:monospace">seqsolve([x+2*y,n+1+x],[x,y,n],[0,1])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-2*n-(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*4-3)/2,((-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-1)/2]</span><br>
+
+<span style="font-weight:bold">Exercices</span>
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Soient <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> les suites définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>, <span style="font-style:italic">b</span><sub>0</sub> ((<span style="font-style:italic">a</span><sub>0</sub>,<span style="font-style:italic">b</span><sub>0</sub>)≠ (0,0)),<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>/<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>,<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>/<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>,<br>
+Calculer les 4 premiers termes de ces suites pour <span style="font-style:italic">a</span><sub>0</sub>=<span style="font-style:italic">a</span>, <span style="font-style:italic">b</span><sub>0</sub>=<span style="font-style:italic">b</span>,<br>
+On utilise le tableur pour avoir les valeurs des termes de ces suites.<br>
+On tape pour :<br>
+<span style="font-family:monospace">A0</span> <span style="font-family:monospace">1</span> (ou <span style="font-family:monospace">a</span>)<br>
+<span style="font-family:monospace">B0</span> <span style="font-family:monospace">3</span> (ou <span style="font-family:monospace">b</span>)<br>
+<span style="font-family:monospace">A1</span> <span style="font-family:monospace">=simplfy(A0/(A0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+B0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+<span style="font-family:monospace">B1</span> <span style="font-family:monospace">=simplfy(B0/(A0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+B0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+Puis on remplit vers le bas.
+On obtient commes valeurs dans la colonne <span style="font-family:monospace">A</span> :<br>
+<span style="font-family:monospace">a, a/(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2), a, a/(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2) ...</span><br>
+On obtient commes valeurs dans la colonne <span style="font-family:monospace">B</span> :<br>
+<span style="font-family:monospace">b, b/(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2), b, b/(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2) ...</span><br>
+Soit la fonction de ℝ<sup>2</sup> dans ℝ<sup>2</sup> : <br>
+<span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=(<span style="font-style:italic">x</span>/(<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>),<span style="font-style:italic">y</span>/(<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>))
+Montrons avec <span style="font-family:monospace">Xcas</span> que <span style="font-style:italic">g</span>∘ <span style="font-style:italic">g</span>=<span style="font-style:italic">id</span><br>
+On tape :<br>
+<span style="font-family:monospace">g(x,y):=(x/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),y/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+<span style="font-family:monospace">simplify((g@g)(x,y))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x,y</span><br>
+La fonction <span style="font-style:italic">g</span> transforme un vecteur <span style="font-style:italic">V</span> de ℝ<sup>2</sup> en <span style="font-style:italic">W</span>=<span style="font-style:italic">V</span>/<span style="font-style:italic">norm</span>(<span style="font-style:italic">V</span>)<sup>2</sup>.
+On a <span style="font-style:italic">norm</span>(<span style="font-style:italic">W</span>)=1/<span style="font-style:italic">norm</span>(<span style="font-style:italic">V</span>) donc <span style="font-style:italic">g</span> transforme <span style="font-style:italic">W</span> en <span style="font-style:italic">W</span>/<span style="font-style:italic">norm</span>(<span style="font-style:italic">W</span>)<sup>2</sup>=<span style="font-style:italic">V</span>.</li><li class="li-enumerate">Soient <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> les suites définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=1, <span style="font-style:italic">b</span><sub>0</sub>=3 et <span style="font-style:italic">c</span><sub>0</sub>=8,<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>),<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>),<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>),<br>
+Calculer les 4 premiers termes de ces suites,<br>
+Montrer que <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> est constant.<br>
+Exprimer <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub> en fonction de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>,<br>
+Montrer que pour <span style="font-style:italic">n</span>≥ 1, 2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>.<br>
+En déduire une expression de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span>.<br>
+Étudier la convergence de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>.<br>
+
+On peut faire le calcul des 4 premiers termes avec le tableur, on obtient :
+<span style="font-family:monospace">A:=(1,11/2,13/4,35/8,61/16)</span> pour les premiers termes de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-family:monospace">B:=(3,9/2,15/4,33/8,63/16)</span> pour les premiers termes de <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-family:monospace">C:=(8,2,5,7/2,17/4)</span> pour les premiers termes de <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+On tape :<br>
+<span style="font-family:monospace">[A]+[B]+[C]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[12,12,12,12,12]</span><br>
+On a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>
+Donc on montre par récurrence que <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=12
+On a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>)=−1/2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)<br>
+2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>+1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>−1</sub>)=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub><br>
+Donc on peut définir <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=1,<span style="font-style:italic">a</span><sub>1</sub>=11/2 et la relation de récurrence 2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>.<br>
+L’ensemble <span style="font-style:italic">E</span> des suites réelles <span style="font-style:italic">u</span> qui vérifient la relation de 
+récurrence :<br>
+2<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> pour <span style="font-style:italic">n</span>&gt;0<br>
+forment un espace vectoriel sur ℝ de dimension 2.<br>
+En effet <span style="font-style:italic">E</span> est un espace vectoriel sur ℝ et l’application :<br>
+<span style="font-style:italic">f</span> de <span style="font-style:italic">E</span> dans ℝ<sup>2</sup> qui à <span style="font-style:italic">u</span>∈ <span style="font-style:italic">E</span> fait correspondre (<span style="font-style:italic">u</span><sub>0</sub>,<span style="font-style:italic">u</span><sub>1</sub>) est un 
+isomorphisme d’espaces vectoriels.<br>
+On cherche les progressions géométriques <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub>0</sub><span style="font-style:italic">r</span><sup><span style="font-style:italic">n</span></sup> qui vérifient :<br>
+2<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> ont pour raison <span style="font-style:italic">r</span>=1 ou <span style="font-style:italic">r</span>=−1/2 donc <br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=α+β(−1/2)<sup><span style="font-style:italic">n</span></sup> avec :<br>
+α+β=1 et α−β/2=11/2<br>
+On tape :<br>
+<span style="font-family:monospace">solve([x+y=1,x-y/2=11/2],[x,y])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[4,-3]]</span><br>
+Donc <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=4−3(−1/2)<sup><span style="font-style:italic">n</span></sup>
+De même :<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=α+β(−1/2)<sup><span style="font-style:italic">n</span></sup> avec :<br>
+α+β=3 et α−β/2=19/2<br>
+On tape :<br>
+<span style="font-family:monospace">solve([x+y=3,x-y/2=9/2],[x,y])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[4,-1]]</span><br>
+Donc <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=4−(−1/2)<sup><span style="font-style:italic">n</span></sup>
+et,<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=α+β(−1/2)<sup><span style="font-style:italic">n</span></sup> avec :<br>
+α+β=8 et α−β/2=2<br>
+On tape :<br>
+<span style="font-family:monospace">solve([x+y=8,x-y/2=2],[x,y])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[4,4]]</span><br>
+Donc <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=4+4(−1/2)<sup><span style="font-style:italic">n</span></sup>
+On vérifie, on tape :<br>
+<span style="font-family:monospace">seqsolve([(b+c)/2,(c+a)/2,(a+b)/2],[a,b,c,n],[1,3,8])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-3*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+4,-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+4,4*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+4]</span><br>
+Quand <span style="font-style:italic">n</span> tend vers +∞ on a (−1/2)<sup><span style="font-style:italic">n</span></sup> tend vers 0 donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> tend vers 4 quand <span style="font-style:italic">n</span> tend vers +∞<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> tend vers 4 quand <span style="font-style:italic">n</span> tend vers +∞<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> tend vers 4 quand <span style="font-style:italic">n</span> tend vers +∞
+<span style="font-weight:bold">Prolongement : cas général</span>
+Soient <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> les suites définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>, <span style="font-style:italic">b</span><sub>0</sub> et <span style="font-style:italic">c</span><sub>0</sub>,<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>),<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>),<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>),<br>
+On a toujours :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>
+On a toujours :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>)=−1/2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)<br>
+2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>+1/2(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>−1</sub>)=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub><br>
+Donc <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> est définie par :<br>
+2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">a</span><sub>0</sub> et <span style="font-style:italic">a</span><sub>1</sub>=1/2(<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)<br>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=α+β(−1/2)<sup><span style="font-style:italic">n</span></sup> avec :<br>
+α+β=<span style="font-style:italic">a</span><sub>0</sub> et α−β/2=1/2(<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)<br>
+On tape :<br>
+<span style="font-family:monospace">solve([x+y=a0,x-y/2=1/2*(b0+c0)],[x,y])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[a0/3+b0/3+c0/3,2*a0/3-b0/3-c0/3]]</span><br>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=−1/3(<span style="font-style:italic">a</span>0+<span style="font-style:italic">b</span>0+<span style="font-style:italic">c</span>0)+(2<span style="font-style:italic">a</span>0−<span style="font-style:italic">b</span>0−<span style="font-style:italic">c</span>0)(−1/2)<sup><span style="font-style:italic">n</span></sup>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=−1/3(<span style="font-style:italic">a</span>0+<span style="font-style:italic">b</span>0+<span style="font-style:italic">c</span>0)+(2<span style="font-style:italic">b</span>0−<span style="font-style:italic">c</span>0−<span style="font-style:italic">ca</span>0)(−1/2)<sup><span style="font-style:italic">n</span></sup>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=−1/3(<span style="font-style:italic">a</span>0+<span style="font-style:italic">b</span>0+<span style="font-style:italic">c</span>0)+(2<span style="font-style:italic">c</span>0−<span style="font-style:italic">a</span>0−<span style="font-style:italic">b</span>0)(−1/2)<sup><span style="font-style:italic">n</span></sup>
+On vérifie, on tape :<br>
+<span style="font-family:monospace">seqsolve([(b+c)/2,(c+a)/2,(a+b)/2],[a,b,c,n],[a0,b0,c0])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(2*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*a0+a0-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*b0+b0-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*c0+c0)/3, 
+(-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*a0+a0+2*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*b0+b0-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*c0+c0)/3,
+(-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*a0+a0-(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*b0+b0+2*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*c0+c0)/3]</span><br>
+On applique la commande <span style="font-family:monospace">factor</span> et on obtient :<br>
+<span style="font-family:monospace">[((2*a0-b0-c0)*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+a0+b0+c0)/3,
+((-a0+2*b0-c0)*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+a0+b0+c0)/3,
+((-a0-b0+2*c0)*(-1/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+a0+b0+c0)/3]</span></li><li class="li-enumerate">Soient <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> les suites définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=1, <span style="font-style:italic">b</span><sub>0</sub>=0 et <span style="font-style:italic">c</span><sub>0</sub>=0,<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>,<br>
+Calculer les 4 premiers termes de ces suites,<br>
+Montrer que pour tout <span style="font-style:italic">n</span> <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub><br>
+Calculer <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>.<br>
+On a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)=2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>)<br>
+donc:<br>
+<span style="font-style:italic">a</span><sub>1</sub>+<span style="font-style:italic">b</span><sub>1</sub>+<span style="font-style:italic">c</span><sub>1</sub>=2(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)<br>
+<span style="font-style:italic">a</span><sub>2</sub>+<span style="font-style:italic">b</span><sub>2</sub>+<span style="font-style:italic">c</span><sub>2</sub>=2(<span style="font-style:italic">a</span><sub>1</sub>+<span style="font-style:italic">b</span><sub>1</sub>+<span style="font-style:italic">c</span><sub>1</sub>)=2<sup>2</sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)<br>
+etc...
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)
+On en déduit que :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+2<sup><span style="font-style:italic">n</span></sup>
+donc <br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span>−1</sup>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>=2<sup><span style="font-style:italic">n</span>−1</sup>+2<sup><span style="font-style:italic">n</span>−2</sup>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−2</sub>=..=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>2<sup><span style="font-style:italic">k</span></sup>=
+<span style="font-weight:bold">Prolongement : cas général</span>
+Soient <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> les suites définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>, <span style="font-style:italic">b</span><sub>0</sub> et <span style="font-style:italic">c</span><sub>0</sub>,<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>,<br>
+On a toujours :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>)<br>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)
+On n’a plus <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> mais
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=−(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>),<br>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=(−1)<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>−<span style="font-style:italic">b</span><sub>0</sub>),<br>
+De même :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=(−1)<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>−<span style="font-style:italic">c</span><sub>0</sub>),<br>
+On a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=1/3((<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>)+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>)<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=1/3(2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)+(−1)<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>−<span style="font-style:italic">b</span><sub>0</sub>)+(−1)<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>−<span style="font-style:italic">c</span><sub>0</sub>)<br>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=1/3(2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)+(−1)<sup><span style="font-style:italic">n</span></sup>(2<span style="font-style:italic">a</span><sub>0</sub>−<span style="font-style:italic">b</span><sub>0</sub>−<span style="font-style:italic">c</span><sub>0</sub>)<br>
+De même :<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=1/3(2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)+(−1)<sup><span style="font-style:italic">n</span></sup>(2<span style="font-style:italic">b</span><sub>0</sub>−<span style="font-style:italic">c</span><sub>0</sub>−<span style="font-style:italic">a</span><sub>0</sub>)<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=1/3(2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)+(−1)<sup><span style="font-style:italic">n</span></sup>(2<span style="font-style:italic">c</span><sub>0</sub>−<span style="font-style:italic">b</span><sub>0</sub>−<span style="font-style:italic">a</span><sub>0</sub>)<br>
+On vérifie, on tape :<br>
+<span style="font-family:monospace">seqsolve([b+c,c+a,a+b],[a,b,c,n],[a0,b0,c0])</span><br>
+On obtient après avoir fait agir la commande <span style="font-family:monospace">factor</span> :<br>
+<span style="font-family:monospace">[((-b0-c0+2*a0)*(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(b0+c0+a0))/3,
+((-a0-c0+2*b0)*(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(a0+c0+b0))/3,((-a0-b0+2*c0)*(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n(a0+b0+c0))/3]</span>
+</li><li class="li-enumerate">Explicitez <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> les suites définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>, <span style="font-style:italic">b</span><sub>0</sub> et <span style="font-style:italic">c</span><sub>0</sub>,<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>,<br>
+
+On a toujours :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=2(<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>)<br>
+Donc :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>0</sub>)
+On a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=2<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=2<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>
+Malheureusement, on a moins de chances que dans l’exercice précédent...<br>
+On va donc utiliser une solution matricielle.<br>
+Soit :<br>
+<span style="font-family:monospace">A:=[[1,0,1],[1,1,0],[0,1,1]]</span>
+On a :<br>
+<span style="font-family:monospace">[an,bn,cn]=A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*[a0,b0,c0]</span><br>
+Il faut donc calculer <span style="font-style:italic">A</span><sup><span style="font-style:italic">n</span></sup>.<br>
+On tape :<br>
+<span style="font-family:monospace">P,B:=jordan(A)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1,sqrt(3)*(-i)-1,sqrt(3)*(i)-1],[1,sqrt(3)*(i)-1,sqrt(3)*(-i)-1],[1,2,2]],[[2,0,0],[0,(sqrt(3)*(i)+1)/2,0],[0,0,(sqrt(3)*(-i)+1)/2]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">P1:=simplify(inv(P))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1/3,1/3,1/3],[((i)*sqrt(3)-1)/12,((-i)*sqrt(3)-1)/12,1/6],[((-i)*sqrt(3)-1)/12,((i)*sqrt(3)-1)/12,1/6]]</span>
+On tape :<br>
+<span style="font-family:monospace">An:=factor(simplify(exp2trig(pow2exp(P*Bn*P1))))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2*cos(n*pi/3))/3, (2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)-sqrt(3)*sin(n*pi/3))/3, (2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n+1)-2*cos(n*pi/3)+sin(n*pi/3)*2*sqrt(3))/6],</span><br>
+<span style="font-family:monospace">[(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)+sqrt(3)*sin(n*pi/3))/3, (2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2*cos(n*pi/3))/3, (2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n+1)-2*cos(n*pi/3)-2*sqrt(3)*sin(n*pi/3))/6],</span><br>
+<span style="font-family:monospace">[(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)-sqrt(3)*sin(n*pi/3))/3, (2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)+sqrt(3)*sin(n*pi/3))/3, (2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n+1)+4*cos(n*pi/3))/6]]</span><br>
+On tape :<br>
+<br>
+On obtient :<br>
+<br>
+On tape en mode complexe :<br>
+<span style="font-family:monospace">simplify(exp2trig(pow2exp(seqsolve([x+z,y+x,z+y],[x,y,z,n],[a0,b0,c0]))))</span><br>
+On obtient après avoir utilisé <span style="font-family:monospace">factor</span>:<br>
+<span style="font-family:monospace">((a0+b0+c0)*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+cos(n*pi/3)*(2*a0-b0-c0)+sqrt(3)*sin(n*pi/3)*(-b0+c0))/3,</span><br>
+<span style="font-family:monospace">((a0+b0+c0)*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)*(a0-2*b0+c0)+sqrt(3)*(a0-c0)*sin(n*pi/3))/3</span><br>
+<span style="font-family:monospace">((a0+b0+c0)*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)*(a0+b0-2*c0)+sqrt(3)*(-a0+b0)*sin(n*pi/3))/3</span><br>
+Si on pose :<br>
+<span style="font-style:italic">j</span>=(<span style="font-style:italic">sqrt</span>(3)*(<span style="font-style:italic">i</span>)−1)/2 on a <span style="font-style:italic">j</span><sup>2</sup>=(−<span style="font-style:italic">sqrt</span>(3)*(<span style="font-style:italic">i</span>)−1)/2.<br>
+Donc :<br>
+<span style="font-style:italic">B</span>=[[2,0,0],[0,−<span style="font-style:italic">j</span><sup>2</sup>,0],[0,0,−<span style="font-style:italic">j</span>]]<br>
+<span style="font-style:italic">P</span>=[[1,2<span style="font-style:italic">j</span><sup>2</sup>,2<span style="font-style:italic">j</span>],[1,2<span style="font-style:italic">j</span>,2<span style="font-style:italic">j</span><sup>2</sup>],[1,2,2]]<br>
+<span style="font-style:italic">P</span>1=<span style="font-style:italic">P</span><sup>−1</sup><br>
+On peux faire les calculs à la main.... :<br>
+<span style="font-family:monospace">B:=[[2,0,0],[0,-j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,0],[0,0,-j]]</span><br>
+<span style="font-family:monospace">Bn:=matpow(B,n)</span><br>
+<span style="font-family:monospace">Bn:=[[2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0,0],[0,(-j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0],[0,0,(-j)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n]]</span><br>
+<span style="font-family:monospace">P:=[[1,2j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,2j],[1,2j,2j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2],[1,2,2]]</span><br>
+<span style="font-family:monospace">P1:=[[1/3,1/3,1/3],[j/6,j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2/6,1/6],[j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2/6,j/6,1/6]]</span><br>
+<span style="font-family:monospace">An:=P*Bn*P1</span><br>
+On obtient pour <span style="font-family:monospace">An</span> après simplification à la main :<br>
+<span style="font-family:monospace">[[u(n),w(n),v(n)],[v(n),u(n),w(n)],[w(n),v(n),u(n)]]</span><br>
+avec :<br>
+<span style="font-family:monospace">u(n):=1/3*(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+(-j)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+(-j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n])</span><br>
+<span style="font-family:monospace">v(n):=1/3*(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+j*(-j)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(-j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n)</span><br>
+<span style="font-family:monospace">w(n):=1/3*(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(-j)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+j*(-j</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n)</span><br>
+Donc on a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>0*<span style="font-style:italic">u</span>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">b</span>0*<span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">c</span>0*<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>)<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>0*<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">b</span>0*<span style="font-style:italic">u</span>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">c</span>0*<span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>)<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>0*<span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">b</span>0*<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">c</span>0*<span style="font-style:italic">u</span>(<span style="font-style:italic">n</span>)
+</li></ol><p>
+<span style="font-weight:bold">Prolongements</span><br>
+Soit <span style="font-style:italic">E</span> un ensemble fini de cardinal <span style="font-style:italic">n</span>.<br>
+Soit <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> le nombre de parties de <span style="font-style:italic">E</span> de cardinal congru à 0mod3,<br>
+Soit <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> le nombre de parties de <span style="font-style:italic">E</span> de cardinal congru à 1mod3,<br>
+Soit <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> le nombre de parties de <span style="font-style:italic">E</span> de cardinal congru à 2mod3,<br>
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Montrer que :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>.
+</li><li class="li-enumerate">Montrer que :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=1+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,6)+...
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,1)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,4)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,7)+...
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=1+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,2)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,5)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,8)+...
+</li><li class="li-enumerate">En développant (1+<span style="font-style:italic">X</span>)<sup><span style="font-style:italic">n</span></sup> successivement pour <span style="font-style:italic">X</span>=1, <span style="font-style:italic">X</span>=<span style="font-style:italic">j</span>, <span style="font-style:italic">X</span>=<span style="font-style:italic">j</span><sup>2</sup>, 
+calculer <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>.
+</li><li class="li-enumerate">Donner la valeur de <span style="font-style:italic">a</span><sub>0</sub>, <span style="font-style:italic">b</span><sub>0</sub> et <span style="font-style:italic">c</span><sub>0</sub>.
+Calculer:<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub> en fonction de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub> en fonction de <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub> en fonction de <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>
+Et faire le lien avec l’exercice précédent.<br>
+</li></ol><ol class="enumerate" type=1><li class="li-enumerate">
+Soit <span style="font-style:italic">n</span>=3<span style="font-style:italic">q</span>+<span style="font-style:italic">r</span> avec 0≤ <span style="font-style:italic">r</span>&lt;3.<br>
+Le nombre de parties de <span style="font-style:italic">E</span> est 2<sup><span style="font-style:italic">n</span></sup> donc <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>.
+</li><li class="li-enumerate">Les parties de <span style="font-style:italic">E</span> de cardinal congru à 0mod3 sont de cardinal <span style="font-style:italic">p</span>
+avec <span style="font-style:italic">p</span>∈ (0,3,6..3<span style="font-style:italic">q</span>)
+Les parties de <span style="font-style:italic">E</span> de cardinal congru à 1mod3 sont de cardinal <span style="font-style:italic">p</span>
+avec <span style="font-style:italic">p</span>∈ (1,4,7..3<span style="font-style:italic">q</span>−2) si <span style="font-style:italic">r</span>=0 ou <span style="font-style:italic">p</span>∈ (1,4,7..3<span style="font-style:italic">q</span>+1) si 0&lt;<span style="font-style:italic">r</span>&lt;3
+Les parties de <span style="font-style:italic">E</span> de cardinal congru à 2mod3 sont de cardinal <span style="font-style:italic">p</span>
+avec <span style="font-style:italic">p</span>∈ (2,5,8..3<span style="font-style:italic">q</span>−1) si <span style="font-style:italic">r</span>=0 ou <span style="font-style:italic">r</span>=1 ou <span style="font-style:italic">p</span>∈ (2,5,8..3<span style="font-style:italic">q</span>+2) si <span style="font-style:italic">r</span>=2
+Donc
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=1+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,6)+...<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3<span style="font-style:italic">q</span>)
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,1)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,4)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,7)+...+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3<span style="font-style:italic">q</span>−2)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3<span style="font-style:italic">q</span>+1)
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=1+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,2)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,5)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,8)+...+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3<span style="font-style:italic">q</span>−1)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3<span style="font-style:italic">q</span>+2)
+</li><li class="li-enumerate">On a :<br>
+(1+1)<sup><span style="font-style:italic">n</span></sup>)=1+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,1)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,2)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3)+....+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">n</span>)<br>
+(1+<span style="font-style:italic">j</span>)<sup><span style="font-style:italic">n</span></sup>)=1+<span style="font-style:italic">j</span>*<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,1)+<span style="font-style:italic">j</span><sup>2</sup>*<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,2)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3)+....+<span style="font-style:italic">j</span><sup><span style="font-style:italic">n</span></sup>*<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">n</span>)<br>
+(1+<span style="font-style:italic">j</span><sup>2</sup>)<sup><span style="font-style:italic">n</span></sup>)=1+<span style="font-style:italic">j</span><sup>2</sup>*<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,1)+<span style="font-style:italic">j</span>*<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,2)+<span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,3)+....+<span style="font-style:italic">j</span><sup>2<span style="font-style:italic">n</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">n</span>)<br>
+On additionne ces égalités après les avoir mulltiplié successivement 
+par : <br>
+(1,1,1) puis par (1,<span style="font-style:italic">j</span><sup>2</sup>,<span style="font-style:italic">j</span>) puis par (1,<span style="font-style:italic">j</span>,<span style="font-style:italic">j</span><sup>2</sup>).
+On obtient (puisque <span style="font-style:italic">j</span><sup>3</sup>=1 et 1+<span style="font-style:italic">j</span>+<span style="font-style:italic">j</span><sup>2</sup>=0) :<br>
+3<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>+(1+<span style="font-style:italic">j</span>)<sup><span style="font-style:italic">n</span></sup>+(1+<span style="font-style:italic">j</span><sup>2</sup>)<sup><span style="font-style:italic">n</span></sup><br>
+3<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">j</span><sup>2</sup>(1+<span style="font-style:italic">j</span>)<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">j</span>(1+<span style="font-style:italic">j</span><sup>2</sup>)<sup><span style="font-style:italic">n</span></sup><br>
+3<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>=2<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">j</span>(1+<span style="font-style:italic">j</span>)<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">j</span><sup>2</sup>(1+<span style="font-style:italic">j</span><sup>2</sup>)<sup><span style="font-style:italic">n</span></sup><br>
+</li><li class="li-enumerate">On a :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=1, <span style="font-style:italic">b</span><sub>0</sub>=<span style="font-style:italic">c</span><sub>0</sub>=0<br>
+Quand on rajoute un élément α à <span style="font-style:italic">E</span> :<br>
+parmi les sous-ensembles de cardinal congru à 0mod3, il y en a <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> 
+qui ne 
+contiennent pas α et <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> qui contiennent α donc <br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+parmi les sous-ensembles de cardinal congru à 1mod3 il y en a <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> qui
+ne contiennent pas α et <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> qui contiennent α donc <br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+parmi les sous-ensembles de cardinal congru à 2mod3 il y en a <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> qui
+ne contiennent pas α et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> qui contiennent α donc <br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>,<br>
+Donc <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub> sont définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=1, <span style="font-style:italic">b</span><sub>0</sub>=<span style="font-style:italic">c</span><sub>0</sub>=0<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<br>
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(exp2trig(pow2exp(seqsolve([x+z,y+x,z+y],[x,y,z,n],[1,0,0]))))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+2*cos(n*pi/3))/3,</span><br>
+<span style="font-family:monospace">(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)+(sqrt(3))*sin(n*pi/3))/3),</span><br>
+<span style="font-family:monospace">(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-cos(n*pi/3)+(-(sqrt(3))*sin(n*pi/3))/3]</span><br>
+</li><li class="li-enumerate">On tape :<br>
+<br>
+On obtient :<br>
+<br>
+</li><li class="li-enumerate">On tape :<br>
+<br>
+On obtient :<br>
+<br>
+<br>
+</li></ol>
+<h2 id="sec436" class="section">26.1  Exercices sur les séries</h2>
+<p>
+La commande <span style="font-family:monospace">sum</span> de <span style="font-family:monospace">Xcas</span> calcule les sommes de certaines séries.<br>
+Voici queques exemples :<br>
+On tape :<br>
+<span style="font-family:monospace">sum(1/2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,n=0..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">sum(n/2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,n=0..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">sum(1/(n*(n+1)),n=1..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1</span><br>
+On tape :<br>
+<span style="font-family:monospace">sum(1/((2n+1)*(2n-1)),n=1..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/2</span><br>
+On tape :<br>
+<span style="font-family:monospace">sum(1/n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,n=1..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">pi</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2/6</span><br>
+On tape :<br>
+<span style="font-family:monospace">sum((-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n+1)/n,n=1..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">ln(2)</span><br>
+On tape :<br>
+<span style="font-family:monospace">sum((-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n/(2n+1),n=0..inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">pi/4</span><br>
+<span style="font-weight:bold">Exercices</span>
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Montrer que :<br>
+(1−<span style="font-style:italic">x</span>)*∑<span style="font-style:italic">k</span>=0<sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">x</span><sup><span style="font-style:italic">k</span></sup>=1−<span style="font-style:italic">x</span><sup><span style="font-style:italic">n</span>+1</sup>
+En déduire que :
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∑</span><span style="font-style:italic">k</span>=<span style="font-style:italic">p</span><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">x</span><sup><span style="font-style:italic">k</span></sup>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1−<span style="font-style:italic">x</span><sup><span style="font-style:italic">n</span>+1</sup></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">1−<span style="font-style:italic">x</span></td></tr>
+</table></td></tr>
+</table>
+Montrer que :
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∑</span><span style="font-style:italic">k</span>=<span style="font-style:italic">p</span><sup><span style="font-style:italic">inf</span></sup><span style="font-style:italic">x</span><sup><span style="font-style:italic">k</span></sup>=<span style="font-style:italic">x</span><sup><span style="font-style:italic">p</span></sup></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">1−<span style="font-style:italic">x</span></td></tr>
+</table></td></tr>
+</table>
+Application :<br>
+Calculer : ∑<span style="font-style:italic">k</span>=0<sup><span style="font-style:italic">inf</span></sup>2<sup>−<span style="font-style:italic">k</span></sup>,∑<span style="font-style:italic">k</span>=0<sup><span style="font-style:italic">inf</span></sup>3−<span style="font-style:italic">k</span> 
+</li><li class="li-enumerate">Soit <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>/2<sup><span style="font-style:italic">n</span></sup>. Monter que :<br>
+4<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>&lt;3<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> lorsque <span style="font-style:italic">n</span>&gt;2<br>
+En déduire que <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> tend vers 0 quand <span style="font-style:italic">n</span> tend vers +∞.
+</li><li class="li-enumerate">pour ceux qui connaissent le critére de d’Alembert sur les séries 
+à termes positifs,<br>
+Calculer <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> (pour ceux qui connaissent le critére de 
+d’Alembert sur les séries à termes positifs).<br>
+En déduire que la série de terme général <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> est convergente.
+</li><li class="li-enumerate">pour ceux qui ne connaissent pas le critére de d’Alembert,<br>
+Montrer que lim<sub><span style="font-style:italic">N</span>−&gt;∞</sub>∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">N</span></sup><span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> existe et calculer sa valeur.
+</li><li class="li-enumerate">Calculer la somme ∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">N</span></sup><span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>.<br>
+</li></ol><p>
+On tape :<br>
+<span style="font-family:monospace">u(n):=n/2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n</span><br>
+<span style="font-family:monospace">factor(simplify(4u(n+1)-3u(n)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-n+2)/2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n</span><br>
+On a donc :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>&lt;3/4<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>+1/2<span style="font-style:italic">n</span><br>
+Donc <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> tend vers 1/2 quand <span style="font-style:italic">n</span> tend vers 
++∞.<br>
+On tape :<br>
+<span style="font-family:monospace">limit(u(n+1)/u(n),n,inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/2</span><br>
+Calcul de <span style="font-style:italic">S</span><sub><span style="font-style:italic">N</span></sub>=∑<span style="font-style:italic">n</span>=0<sup><span style="font-style:italic">N</span></sup> <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub><br>
+<span style="font-style:italic">S</span><sub><span style="font-style:italic">N</span></sub>=0+∑<span style="font-style:italic">n</span>=1<sup><span style="font-style:italic">N</span></sup> 1/2<sup><span style="font-style:italic">n</span></sup>+∑<span style="font-style:italic">n</span>=2<sup><span style="font-style:italic">N</span></sup> 1/2<sup><span style="font-style:italic">n</span></sup>+...∑<span style="font-style:italic">n</span>=<span style="font-style:italic">k</span><sup><span style="font-style:italic">N</span></sup> 1/2<sup><span style="font-style:italic">n</span></sup>+..∑<span style="font-style:italic">n</span>=<span style="font-style:italic">N</span><sup><span style="font-style:italic">N</span></sup> 1/2<sup><span style="font-style:italic">n</span></sup>.<br>
+Donc<br>
+<span style="font-style:italic">S</span><sub><span style="font-style:italic">N</span></sub>=1+1/2<sup><span style="font-style:italic">N</span></sup>+1/2+1/2<sup><span style="font-style:italic">N</span></sup>+..1/2<sup><span style="font-style:italic">k</span></sup>+1/2<sup><span style="font-style:italic">N</span></sup>+1/2<sup><span style="font-style:italic">N</span></sup><br>
+<span style="font-style:italic">S</span><sub><span style="font-style:italic">N</span></sub>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">N</span></sup>1/2<sup><span style="font-style:italic">k</span></sup>+<span style="font-style:italic">N</span>/2<sup><span style="font-style:italic">N</span></sup><br>
+Comme <span style="font-style:italic">N</span>/2<sup><span style="font-style:italic">N</span></sup> tend vers 0 quand <span style="font-style:italic">N</span> tend vers +∞, on en déduit
+que :<br>
+<span style="font-style:italic">S</span><sub><span style="font-style:italic">N</span></sub> tend vers ∑<sub><span style="font-style:italic">k</span>=0</sub><sup>∞</sup>1/2<sup><span style="font-style:italic">k</span></sup>=2.</p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo025.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo027.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

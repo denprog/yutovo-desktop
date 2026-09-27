@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Writing an integer in an arbitrary base
+</title>
+</head>
+<body >
+<a href="cascmd_en105.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en107.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:convertbase" class="subsection">5.4.2  Writing an integer in an arbitrary base
+</h3>
+<p>The <span style="font-family:monospace">convert</span><a id="hevea_default189"></a> or
+<span style="font-family:monospace">convertir</span><a id="hevea_default190"></a>
+command does various kinds of conversions depending on the option
+given as the second argument (see Section <a href="cascmd_en295.html#ssec%3Aconvert">10.1.10</a>). </p><p>One thing that <span style="font-family:monospace">convert</span> can do is to
+convert integers to arbitrary bases and back to the default base, both
+with the option <span style="font-family:monospace">base</span><a id="hevea_default191"></a>.</p>
+<h5 id="sec189" class="paragraph">Conversion from base 10.</h5>
+<p>
+An integer can be converted into a list of digits in base <span style="font-style:italic">b</span> by
+using the <span style="font-family:monospace">convert</span> command.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">convert</span> takes three
+arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">n</span>, an integer.
+</li><li class="li-itemize"><span style="font-family:monospace">base</span>, the symbol verbatim.
+</li><li class="li-itemize"><span style="font-style:italic">b</span>, a positive integer, the value of the base.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">convert(</span><span style="font-style:italic">n</span><span style="font-family:monospace">,base,</span><span style="font-style:italic">b</span><span style="font-family:monospace">)</span> returns the list of
+digits of the integer <span style="font-style:italic">n</span> when written in base <span style="font-style:italic">b</span>. The
+list of digits will start with the 1s term, then the
+<span style="font-style:italic">b</span>s term, the <span style="font-style:italic">b</span><sup>2</sup> term, etc.
+</li></ul><h4 id="sec190" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(123,</span></span><span style="font-weight:bold"><span style="color:#BF0000">base</span></span><span style="font-weight:bold"><span style="color:#BF0000">,8)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">3,7,1</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To verify, input <span style="font-family:monospace">0173</span> (see Section <a href="cascmd_en105.html#ssec%3Abinocthex">5.4.1</a>) or
+<span style="font-family:monospace">horner(revlist([3,7,1]),8)</span> (see Section <a href="cascmd_en344.html#ssec%3Ahorner">11.1.13</a> and
+Section <a href="cascmd_en133.html#ssec%3Arlst">6.3.14</a>) or <span style="font-family:monospace">convert([3,7,1],base,8)</span> which all return 123.</p><p>The base used for <span style="font-family:monospace">convert</span> can be any integer greater than 1.
+For example, input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(142,</span></span><span style="font-weight:bold"><span style="color:#BF0000">base</span></span><span style="font-weight:bold"><span style="color:#BF0000">,12)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">10,11</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec191" class="paragraph">Conversion from an arbitrary base <span style="font-style:italic">b</span>.</h5>
+<p>
+A number written in base <span style="font-style:italic">b</span> can be converted into a base 10 integer
+by using the <span style="font-family:monospace">convert</span> command.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">convert</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>, a list of integers representing the digits of the
+integer in base <span style="font-style:italic">b</span>, assumed to go in order of increasing
+significance.
+</li><li class="li-itemize"><span style="font-family:monospace">base</span>, the symbol verbatim.
+</li><li class="li-itemize"><span style="font-style:italic">b</span>, a positive integer, the value of the base.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">convert(</span><span style="font-style:italic">L</span><span style="font-family:monospace">,base,</span><span style="font-style:italic">b</span><span style="font-family:monospace">)</span> returns the integer which, in
+base <span style="font-style:italic">b</span>, has the digits given in <span style="font-style:italic">L</span>.
+</li></ul><h4 id="sec192" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,7,1],</span></span><span style="font-weight:bold"><span style="color:#BF0000">base</span></span><span style="font-weight:bold"><span style="color:#BF0000">,8)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+123
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">([10,11],</span></span><span style="font-weight:bold"><span style="color:#BF0000">base</span></span><span style="font-weight:bold"><span style="color:#BF0000">,12)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+142
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en105.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en107.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

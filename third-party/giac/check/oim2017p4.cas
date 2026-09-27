@@ -1,0 +1,16 @@
+Omega:=circle(0,1,display=hidden_name);
+R:=point(-1);
+assume(s=[0.3,-5,5,0.1]);
+S:=point((1+i*s)/(1-i*s));
+l:=tangent(Omega,R);
+T:=reflection(S,R);
+assume(c=[1.4,-5,5,0.1]);
+J:=point((1+i*c)/(1-i*c));
+C:=circumcircle(J,S,T);
+A:=inter(C,l,R);
+OO:=projection(line(A,J),0):;
+K:=reflection(OO,J);
+L:=center(C);
+segment(K,T);
+
+normal(dot(T-K,T-L));

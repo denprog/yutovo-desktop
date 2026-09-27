@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Access to PARI/GP commands</title>
+</head>
+<body >
+<a href="cascmd_en207.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en209.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:pari" class="subsection">7.2.10  Access to <span style="font-variant:small-caps">PARI/GP</span> commands</h3>
+<p><span style="font-variant:small-caps">PARI/GP</span><sup><a id="text5" href="cascmd_en238.html#note5">2</a></sup> is a computer algebra
+system which focuses on number theory. <span style="font-variant:small-caps">Xcas</span> can use the
+<span style="font-variant:small-caps">PARI/GP</span> functions with the <span style="font-family:monospace">pari</span> command.</p><p>The arguments of <span style="font-family:monospace">pari</span><a id="hevea_default344"></a> depends
+on the <span style="font-variant:small-caps">PARI/GP</span> function it is using.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">pari</span> with a string as first argument (the PARI command name)
+executes the corresponding PARI command with the remaining arguments.
+For example <span style="font-family:monospace">pari("weber",1+i)</span> executes the PARI command
+<span style="font-family:monospace">weber(1+i)</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">pari</span> without any argument exports all <span style="font-variant:small-caps">PARI/GP</span> functions to
+<span style="font-variant:small-caps">Xcas</span> with the prefix <span style="font-family:monospace">pari_</span>. If the name of a
+PARI function is not also the name of an <span style="font-variant:small-caps">Xcas</span> command, that
+function will also be exported without the prefix.
+</li></ul><p>
+For example, after calling <span style="font-family:monospace">pari()</span>, the commands
+<span style="font-family:monospace">pari_weber(1+i)</span> and <span style="font-family:monospace">weber(1+i)</span> will execute the PARI
+command <span style="font-family:monospace">weber(1+i)</span>.</p><p>The documentation of <span style="font-variant:small-caps">PARI/GP</span> is available with the menu
+<span style="font-family:sans-serif">Help</span> ▸ <span style="font-family:sans-serif">Manuals</span>.</p>
+<hr>
+<a href="cascmd_en207.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en209.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

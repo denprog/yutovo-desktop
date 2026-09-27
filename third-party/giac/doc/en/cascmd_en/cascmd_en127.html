@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Removing elements from a list</title>
+</head>
+<body >
+<a href="cascmd_en126.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en128.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec244" class="subsection">6.3.8  Removing elements from a list</h3>
+<p>Elements can be removed from a list by using either the
+<span style="font-family:monospace">suppress</span><a id="hevea_default225"></a>
+command (which removes a single element) or the
+<span style="font-family:monospace">remove</span><a id="hevea_default226"></a> command
+(which removes all elements meeting a given conditions).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">suppress</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>, a list.
+</li><li class="li-itemize"><span style="font-style:italic">i</span>, a nonnegative integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">suppress(</span><span style="font-style:italic">L</span>,<span style="font-style:italic">i</span><span style="font-family:monospace">)</span> returns the list <span style="font-style:italic">L</span>
+with the element at index <span style="font-style:italic">i</span> removed.
+</li><li class="li-itemize"><span style="font-family:monospace">remove</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">f</span>, a boolean function.
+</li><li class="li-itemize"><span style="font-style:italic">L</span>, a list.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">remove(</span><span style="font-style:italic">f</span>,<span style="font-style:italic">L</span><span style="font-family:monospace">)</span> returns the sublist of <span style="font-style:italic">L</span> with the
+elements <span style="font-style:italic">c</span> such that <span style="font-style:italic">f</span>(<span style="font-style:italic">c</span>)<span style="font-family:monospace">==true</span> removed.
+</li></ul><h4 id="sec245" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">suppress</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,4,2],1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">3,2</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">remove</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;=2),[0,1,2,3,1,5])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,1,1</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>You can use <span style="font-family:monospace">remove</span> to remove
+characters from a string. For example, to remove all instances of
+a given letter from a string, enter the following code in a program
+editor level (see Section <a href="cascmd_en765.html#ssec%3Afuncs">25.1.2</a> for writing functions):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> f(s,c):={
+   <span style="color:#0000CC"><span style="font-weight:bold">local</span></span> ordc,l,r,x,k;
+   ordc:=ord(c);
+   l:=length(s)-1;
+   purge(x,k);
+   r:=remove(x-&gt;(ord(x)==ordc),seq(s[k],k,0,l));
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> char(ord(r));
+ }</td></tr>
+</table><p>Here <span style="font-family:monospace">s</span> is the input string an <span style="font-family:monospace">c</span> is the letter
+to be removed. Now, for example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"abracadabra"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"a"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“brcdbr”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en126.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en128.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Visualizing waveforms</title>
+</head>
+<body >
+<a href="cascmd_en1028.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1030.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:plotwav" class="subsection">28.2.12  Visualizing waveforms</h3>
+<p>The <span style="font-family:monospace">plotwav</span><a id="hevea_default1959"></a>
+command displays the waveform of an audio clip.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">plotwav</span> takes one mandatory argument and
+a sequence of optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an audio clip.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">opts</span>, a sequence of options each of which is one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">tstep=</span><span style="font-style:italic">dt</span>, where <span style="font-style:italic">dt</span> is the size
+(in seconds) of intervals at which the nodes of the polygonal waveform
+representation will be computed (by default, <span style="font-style:italic">dt</span>=<span style="font-family:monospace">duration(</span>A<span style="font-family:monospace">)</span>/500).
+</li><li class="li-itemize"><span style="font-style:italic">range</span>, which may be one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">range=[</span><span style="font-style:italic">offset</span>,<span style="font-style:italic">length</span><span style="font-family:monospace">]</span>
+for integers <span style="font-style:italic">offset</span> and <span style="font-style:italic">length</span> (in samples).
+</li><li class="li-itemize"><span style="font-family:monospace">range=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span> for floating point numbers <span style="font-style:italic">a</span> and
+<span style="font-style:italic">b</span> (in seconds).
+</li></ul>
+</li><li class="li-itemize"><span style="font-style:italic">color</span>, which may be one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">color=[</span><span style="font-style:italic">outercolor</span>,<span style="font-style:italic">innercolor</span><span style="font-family:monospace">]</span>, where
+<span style="font-style:italic">outercolor</span> and <span style="font-style:italic">innercolor</span> are <span style="font-variant:small-caps">Xcas</span> colors (by default,
+<span style="font-style:italic">outercolor</span>=216 and <span style="font-style:italic">innercolor</span>=218).
+</li><li class="li-itemize"><span style="font-family:monospace">color=</span><span style="font-style:italic">col</span>, where <span style="font-style:italic">col</span> is a single color specifying
+the value for both <span style="font-style:italic">outercolor</span> and <span style="font-style:italic">innercolor</span>.
+</li></ul>
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">plotwav(</span><span style="font-style:italic">A</span> ⟨,<span style="font-style:italic">opts</span> ⟩<span style="font-family:monospace">)</span>
+displays the waveform <span style="font-style:italic">A</span>, in its entirety or over the optional specified range.
+If more than one channel is present, they are drawn individually and stacked upon
+one another from top to bottom.
+If <span style="font-style:italic">A</span> is a stereo clip, then the upper waveform belongs to the left
+channel and the lower waveform to the right channel. The <span style="font-style:italic">t</span>-axis unit is equal to one second.
+</li><li class="li-itemize"><span style="font-family:monospace">plotwav</span> computes the maximum amplitude and the mean amplitude for positive and
+negative signal values in intervals of size <span style="font-style:italic">dt</span>. The obtained points are connected
+into polygons which are drawn on screen. The maximum amplitude is colored with
+<span style="font-style:italic">outercolor</span> and the mean amplitude with <span style="font-style:italic">innercolor</span>.
+</li></ul><h4 id="sec2571" class="subsubsection">Examples</h4>
+<p>
+With the file <span style="font-family:monospace">gs-16b-2c-44100hz.wav</span> downloaded from
+<a href="https://espressif-docs.readthedocs-hosted.com/projects/esp-adf/en/latest/design-guide/audio-samples.html">here</a> (an excerpt from a piece of band music):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/gs-16b-2c-44100hz.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 698194 samples at 44100 Hz (16 bit, stereo)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">duration</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+15.8320634921
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+<span style="font-family:monospace">plotwav</span> draws the waveform of each channel separately by going from top to bottom:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.5..12.5)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en458.png">
+
+</div><p>
+
+With the file <span style="font-family:monospace">gettysburg10.wav</span> downloaded from
+<a href="https://www2.cs.uic.edu/~i101/SoundFiles/">here</a>
+(a 10 seconds speech):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">normalize</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/gettysburg10.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">),-1):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.0..5.5)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en459.png">
+
+</div><p>
+
+You can choose different colors for the waveform, for example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.0..5.5,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">purple</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">magenta</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en460.png">
+
+</div><p>
+
+By setting the <span style="font-family:monospace">tstep</span> option you can control the “resolution”
+at which the waveform is displayed. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.0..5.5,</span></span><span style="font-weight:bold"><span style="color:#BF0000">tstep</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.1)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en461.png">
+
+</div><p>
+
+To “zoom-in” the waveform, use the <span style="font-family:monospace">range</span> option rather than
+the mouse wheel:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.5..0.55)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en462.png">
+
+</div>
+<hr>
+<a href="cascmd_en1028.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1030.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+Omega:=circle(0,1,display=hidden_name);
+A:=point(-1);
+assume(b=[0.6,-5,5,0.1]);
+assume(c=[-0.5,-5,5,0.1]);
+B:=point((1+i*b)/(1-i*b));
+C:=point((1+i*c)/(1-i*c));
+//H:=orthocenter(A,B,C); triangle(A,B,C);
+assume(a=[0.42,0,0.5,0.01]);
+D:=B+a*(C-B); 
+E:=reflection(perpendicular(A,line(B,C)),D);
+gamma:=circle(A,D-A,display=hidden_name);
+F,G:=inter(gamma,Omega);
+c1:=circumcircle(B,D,F);
+K:=reflection(projection(A,B,center(c1)),B);
+c2:=circumcircle(C,G,E);
+L:=reflection(projection(A,C,center(c2)),C);
+X:=single_inter(line(F,K),line(G,L));
+
+normal(ordinate(X));

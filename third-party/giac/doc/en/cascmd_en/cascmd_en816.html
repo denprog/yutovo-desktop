@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Difference and sum of two points in the plane</title>
+</head>
+<body >
+<a href="cascmd_en815.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en817.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2107" class="subsection">26.5.3  Difference and sum of two points in the plane</h3>
+<p>Let <span style="font-style:italic">A</span> and <span style="font-style:italic">B</span> be two points in the plane, with affixes
+<span style="font-style:italic">a</span><sub>1</sub>+<span style="font-style:italic">i</span><span style="font-style:italic">a</span><sub>2</sub> and <span style="font-style:italic">b</span><sub>1</sub>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span><sub>2</sub> respectively.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1+2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3+4*</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>Then:
+</p><ul class="itemize"><li class="li-itemize">
+The difference <span style="font-style:italic">B</span>−<span style="font-style:italic">A</span><a id="hevea_default1704"></a> returns the affix
+(<span style="font-style:italic">b</span><sub>1</sub>−<span style="font-style:italic">a</span><sub>1</sub>)+<span style="font-style:italic">i</span>(<span style="font-style:italic">b</span><sub>2</sub>−<span style="font-style:italic">a</span><sub>2</sub>), which represents the vector <span style="font-style:italic">AB</span>.
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0),</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en244.png">
+
+</div></li><li class="li-itemize">The sum <span style="font-style:italic">B</span>+<span style="font-style:italic">A</span><a id="hevea_default1705"></a> returns the affix
+(<span style="font-style:italic">b</span><sub>1</sub>+<span style="font-style:italic">a</span><sub>1</sub>)+<span style="font-style:italic">i</span>(<span style="font-style:italic">b</span><sub>2</sub>+<span style="font-style:italic">a</span><sub>2</sub>). If <span style="font-family:monospace">D:=point(B+A)</span>, then
+<span style="font-family:monospace">BD=OA</span>.
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">segment</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">segment</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0),</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en245.png">
+
+</div></li></ul><p>Note that −<span style="font-style:italic">A</span> is the point symmetrical to <span style="font-style:italic">A</span> with
+respect to the origin.</p><p>The sum of three points <span style="font-style:italic">A</span>+<span style="font-style:italic">B</span>+<span style="font-style:italic">C</span> can be viewed as the
+translate of <span style="font-style:italic">C</span> by the vector <span style="font-style:italic">A</span>+<span style="font-style:italic">B</span>. So if <span style="font-style:italic">A</span>
+or <span style="font-style:italic">B</span> contains parameters, you should write this as
+<span style="font-style:italic">C</span>+(<span style="font-style:italic">A</span>+<span style="font-style:italic">B</span>) or <span style="font-family:monospace">evalc</span>(<span style="font-style:italic">A</span>+<span style="font-style:italic">B</span>)+<span style="font-style:italic">C</span>.</p>
+<hr>
+<a href="cascmd_en815.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en817.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

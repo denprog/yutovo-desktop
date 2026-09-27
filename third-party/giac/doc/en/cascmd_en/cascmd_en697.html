@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Testing the mean with the T test</title>
+</head>
+<body >
+<a href="cascmd_en696.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en698.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1798" class="subsection">20.5.3  Testing the mean with the T test</h3>
+<p>The <span style="font-family:monospace">studentt</span><a id="hevea_default1413"></a>
+command examines whether data conforms to
+Student’s distribution. For small sample sizes, the <span style="font-family:monospace">studentt</span>
+test is preferable to <span style="font-family:monospace">normalt</span> (see Section <a href="cascmd_en696.html#ssec%3Anormalt">20.5.2</a>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">studentt</span> command takes four mandatory arguments and
+one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>, a list, which can be one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>=[<span style="font-style:italic">n</span><sub><span style="font-style:italic">s</span></sub>,<span style="font-style:italic">n</span><sub><span style="font-style:italic">e</span></sub>] for the sample data information, where
+<span style="font-style:italic">n</span><sub><span style="font-style:italic">s</span></sub> is the the number of successes and <span style="font-style:italic">n</span><sub><span style="font-style:italic">e</span></sub> is the number of trials
+<span style="font-style:italic">n</span><sub><span style="font-style:italic">e</span></sub>.
+</li><li class="li-itemize"><span style="font-style:italic">L</span>=[<span style="font-style:italic">m</span>,<span style="font-style:italic">t</span>], where <span style="font-style:italic">m</span> is the mean and <span style="font-style:italic">t</span> is the sample size.
+</li><li class="li-itemize"><span style="font-style:italic">L</span>, a data list from a control sample.
+</li></ul>
+</li><li class="li-itemize">µ, the mean of the population to or a data list from a control sample.
+</li><li class="li-itemize">σ, the standard deviation of the population. If the
+data list from a control sample is provided, then this argument is unnecessary.
+</li><li class="li-itemize"><span style="font-style:italic">test</span>, the type of test, one of <span style="font-family:monospace">!=</span>, <span style="font-family:monospace">&lt;</span> or <span style="font-family:monospace">&gt;</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">c</span>, the confidence level (by default 0.05).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">studentt(</span><span style="font-style:italic">L</span>,σ,<span style="font-style:italic">test</span> ⟨,<span style="font-style:italic">c</span> ⟩<span style="font-family:monospace">)</span>
+returns the result of a T test. It
+will return 0 if the test fails, 1 if the test succeeds, and it will
+display a summary of the test.
+</li></ul><h4 id="sec1799" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">studentt</span></span><span style="font-weight:bold"><span style="color:#BF0000">([10,20],0.5,0.02,'!=',0.1)</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+*** TEST RESULT 0 ***<br>
+ Summary T-Test null hypothesis H0 mu1=mu2, alt. hyp. H1 mu1!=mu2.</span></span></span></p><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">Test returns 0 if probability to observe data is less than 0.1<br>
+ (null hyp. mu1=mu2 rejected with less than alpha probability error)<br>
+ Test returns 1 otherwise (cannot reject null hypothesis)<br>
+ Data mean mu1=10, population mean mu2=0.5, degrees of freedom 20<br>
+ alpha level 0.1, multiplier*stddev/sqrt(sample size)=1.32534*0.02/4.47214
+</span></span></span></p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">studentt</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0.48,20],0.5,0.1,'&lt;')</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+*** TEST RESULT 1 ***<br>
+ Summary T-Test null hypothesis H0 mu1=mu2, alt. hyp. H1 mu1&lt;mu2.</span></span></span></p><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">Test returns 0 if probability to observe data is less than 0.05<br>
+ (null hyp. mu1=mu2 rejected with less than alpha probability error)<br>
+ Test returns 1 otherwise (cannot reject null hypothesis)<br>
+ Data mean mu1=0.48, population mean mu2=0.5, degrees of freedom 20<br>
+ alpha level 0.05, multiplier*stddev/sqrt(sample size)=1.72472*0.1/4.47214
+</span></span></span></p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en696.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en698.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

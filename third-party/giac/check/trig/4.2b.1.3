@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.2b Cotangent\4.2.1.3 (d cos)^m (a+b cot)^n.txt"
+
+lst:=[
+[cos(x)^4/(I+cot(x)),x,5,-1/16*I*x+1/32/(I-cot(x))^2+1/8*I/(I-cot(x))+(-1/24*I)/(I+cot(x))^3+5/32/(I+cot(x))^2+3/16*I/(I+cot(x))],
+[cos(x)/(I+cot(x)),x,8,-1/3*cos(x)^3-1/3*I*sin(x)^3],
+[sec(x)/(I+cot(x)),x,8,-I*arctanh(sin(x))-cos(x)+I*sin(x)],
+[cos(x)^4/(a+b*cot(x)),x,8,1/8*a*(3*a^4-6*a^2*b^2-b^4)*x/(a^2+b^2)^3-a^4*b*log(b*cos(x)+a*sin(x))/(a^2+b^2)^3+1/8*(4*b*(2*a^2+b^2)+a*(5*a^2+b^2)*cot(x))*sin(x)^2/(a^2+b^2)^2-1/4*(b+a*cot(x))*sin(x)^4/(a^2+b^2)],
+[sec(x)/(1+2*cot(x)),x,6,arctanh(sin(x))+2*arctanh((cos(x)-2*sin(x))/sqrt(5))/sqrt(5)]]:

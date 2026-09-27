@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Concatenation of a list of strings</title>
+</head>
+<body >
+<a href="cascmd_en091.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en093.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec156" class="subsection">5.2.7  Concatenation of a list of strings</h3>
+<p>The <span style="font-family:monospace">concat</span><a id="hevea_default163"></a> and <span style="font-family:monospace">sum</span><a id="hevea_default164"></a>
+commands concatenate elements of a list of strings together into a single string.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">concat</span> and <span style="font-family:monospace">sum</span> both take <span style="font-style:italic">L</span>, a list of strings.
+</li><li class="li-itemize"><span style="font-family:monospace">concat(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> and <span style="font-family:monospace">sum(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span>
+both return the string obtained by <span style="font-style:italic">lst</span> concatenating strings from <span style="font-style:italic">L</span>
+together in the given order.
+</li></ul><p>The <span style="font-family:monospace">join</span><a id="hevea_default165"></a> command concatenates a list of strings
+after inserting a specified separator string between adjacent elements.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">join</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">sep</span>, a string specifying the separator.
+</li><li class="li-itemize"><span style="font-style:italic">L</span>, a list of strings <span style="font-style:italic">s</span><sub>1</sub>,<span style="font-style:italic">s</span><sub>2</sub>,…,<span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub>.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">join(</span><span style="font-style:italic">sep</span>,<span style="font-style:italic">L</span><span style="font-family:monospace">)</span> returns the string
+<span style="font-family:monospace">s1+sep+s2+sep+..+sn</span>.
+</li></ul><p>The <span style="font-family:monospace">cumSum</span><a id="hevea_default166"></a>
+command works on strings like it does on expressions by doing partial
+concatenation (see Section <a href="cascmd_en145.html#ssec%3Acumsum">6.3.26</a>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">cumSum</span> takes
+<span style="font-style:italic">L</span>, a list of strings.
+</li><li class="li-itemize"><span style="font-family:monospace">cumSum(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> returns a sequence of strings where the element
+of index <span style="font-style:italic">k</span> is the concatenation of the strings in <span style="font-style:italic">L</span> with indices 0
+to <span style="font-style:italic">k</span>.
+</li></ul><h4 id="sec157" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">sum</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Hello, "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"is "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"that "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"you?"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“Hello, is that you?”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">join</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">" "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Hello,"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"is"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"that"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"you?"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“Hello, is that you?”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cumSum</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Hello, "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"is "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"that "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"you?"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“Hello, ”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“Hello, is ”</span><span style="color:#0000CC">,
+</span><span style="color:#0000CC">“Hello, is that ”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“Hello, is that you?”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en091.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en093.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

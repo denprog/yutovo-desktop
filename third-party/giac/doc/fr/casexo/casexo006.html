@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Dénombrement</title>
+</head>
+<body >
+<a href="casexo005.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo007.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec56" class="chapter">Chapitre 6  Dénombrement</h1>
+<h2 id="sec57" class="section">6.1  Nombre d’applications d’un ensemble fini dans un ensemble fini</h2>
+<p>
+Soient deux ensembles <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> de cardinaux respectifs <span style="font-style:italic">n</span> et <span style="font-style:italic">p</span>.
+Soit <span style="color:red"><span style="font-style:italic">A</span></span>(<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>) l’ensemble des applications de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>.
+Soit <span style="font-style:italic">u</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">n</span>) le nombre d’applications de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>.
+On a :
+<span style="font-style:italic">u</span>(<span style="font-style:italic">p</span>,1)=<span style="font-style:italic">p</span> car si <span style="font-style:italic">E</span>=<span style="font-style:italic">a</span> et <span style="font-style:italic">F</span>=<span style="font-style:italic">b</span><sub>1</sub>,<span style="font-style:italic">b</span><sub>2</sub>..<span style="font-style:italic">b</span><sub><span style="font-style:italic">p</span></sub> les applications de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>
+sont définies par :<br>
+<span style="font-style:italic">f</span><sub><span style="font-style:italic">j</span></sub>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">b</span><sub><span style="font-style:italic">j</span></sub>) avec 1≤ <span style="font-style:italic">j</span>≤ <span style="font-style:italic">p</span><br>
+On montre par récurrence que <span style="font-style:italic">u</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">n</span>)=<span style="font-style:italic">p</span>*<span style="font-style:italic">u</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">n</span>−1).<br>
+En effet :<br>
+si <span style="font-style:italic">E</span>=<span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>...<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">E</span><sub>1</sub>=<span style="font-style:italic">a</span><sub>2</sub>...<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>, une application de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> 
+est définie par une application de <span style="font-style:italic">E</span><sub>1</sub> dans <span style="font-style:italic">F</span> et par <span style="font-style:italic">f</span>(<span style="font-style:italic">a</span><sub>1</sub>)=<span style="font-style:italic">b</span><sub><span style="font-style:italic">j</span></sub> pour
+1≤ <span style="font-style:italic">j</span>≤ <span style="font-style:italic">p</span>.<br>
+Donc <span style="font-style:italic">u</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">n</span>)=<span style="font-style:italic">p</span><sup><span style="font-style:italic">n</span></sup></p>
+<h2 id="sec58" class="section">6.2  Nombre d’injections d’un ensemble fini dans un ensemble fini : les arrangements</h2>
+<p><a id="hevea_default0"></a>
+Soient deux ensembles <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> de cardinaux respectifs <span style="font-style:italic">p</span> et <span style="font-style:italic">n</span> avec 
+<span style="font-style:italic">n</span>≥ <span style="font-style:italic">p</span>.<br>
+Soit <span style="color:red"><span style="font-style:italic">I</span></span>(<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>) l’ensemble des injections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>.
+Soit <span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) le nombre injections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>.
+On a :
+<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,1)=<span style="font-style:italic">n</span> car si <span style="font-style:italic">E</span>=<span style="font-style:italic">a</span> et <span style="font-style:italic">F</span>=<span style="font-style:italic">b</span><sub>1</sub>,<span style="font-style:italic">b</span><sub>2</sub>..<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> les injections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>
+sont définies par :<br>
+<span style="font-style:italic">f</span><sub><span style="font-style:italic">j</span></sub>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">b</span><sub><span style="font-style:italic">j</span></sub>) avec 1≤ <span style="font-style:italic">j</span>≤ <span style="font-style:italic">n</span><br>
+On montre par récurrence que <span style="font-style:italic">v</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">n</span>)=(<span style="font-style:italic">n</span>−<span style="font-style:italic">p</span>+1)*<span style="font-style:italic">v</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">n</span>−1).<br>
+En effet :<br>
+si <span style="font-style:italic">E</span>=<span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>...<span style="font-style:italic">a</span><sub><span style="font-style:italic">p</span></sub> et <span style="font-style:italic">E</span><sub>1</sub>=<span style="font-style:italic">a</span><sub>2</sub>...<span style="font-style:italic">a</span><sub><span style="font-style:italic">p</span></sub>, une injection de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> 
+est définie par une injection de <span style="font-style:italic">f</span> de <span style="font-style:italic">E</span><sub>1</sub> dans <span style="font-style:italic">F</span> et par 
+<span style="font-style:italic">f</span>(<span style="font-style:italic">a</span><sub>1</sub>)∈ <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span><sub>1</sub>).<br>
+Comme <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span><sub>1</sub>) a pour cardinal <span style="font-style:italic">n</span>−(<span style="font-style:italic">p</span>−1)=<span style="font-style:italic">n</span>−<span style="font-style:italic">p</span>+1 on a :<br>
+<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=(<span style="font-style:italic">n</span>−<span style="font-style:italic">p</span>+1)*<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)
+Donc <span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,1)=<span style="font-style:italic">n</span>,<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,2)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>−1),...,<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>−1)...(<span style="font-style:italic">n</span>−<span style="font-style:italic">p</span>+1)<br>
+En utilisant la notation factorielle on a donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span>!</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>−<span style="font-style:italic">p</span>)!</td></tr>
+</table></td></tr>
+</table><p>
+<span style="font-weight:bold">Définition</span> 
+<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) est le nombre d’arrangements sans répétition de <span style="font-style:italic">p</span> objets pris 
+parmi <span style="font-style:italic">n</span> objets (<span style="font-style:italic">p</span>≤ <span style="font-style:italic">n</span>).<br>
+Avec <span style="font-family:monospace">Xcas</span> <span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) se note <span style="font-family:monospace">perm(n,p)</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">perm(n,p)</span><br>
+On obtient :
+<span style="font-family:monospace">(n!)/((n-p)!)</span><br>
+On tape :<br>
+<span style="font-family:monospace">perm(6,3)</span><br>
+On obtient :
+<span style="font-family:monospace">120</span>
+</p>
+<h2 id="sec59" class="section">6.3  Nombre de bijections d’un ensemble fini dans un ensemble fini : la factorielle </h2>
+<p><a id="hevea_default1"></a>
+Soient deux ensembles <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> de même cardinaux <span style="font-style:italic">n</span>.<br>
+Le nombre de bijections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> est égal au nombre d’injections de <span style="font-style:italic">E</span>
+dans <span style="font-style:italic">F</span> car <span style="font-style:italic">E</span> et <span style="font-style:italic">F</span> ont le même nombre déléments.<br>
+Le nombre de bijections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> est donc 1*2*..*<span style="font-style:italic">n</span> =<span style="font-style:italic">n</span>!
+Avec <span style="font-family:monospace">Xcas</span> <span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) se note <span style="font-family:monospace">perm(n,p)</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">6!</span><br>
+On obtient :
+<span style="font-family:monospace">720</span><br>
+On tape :<br>
+<span style="font-family:monospace">3!</span><br>
+On obtient :
+<span style="font-family:monospace">6</span>
+</p>
+<h2 id="sec60" class="section">6.4  Nombre de parties à <span style="font-style:italic">p</span> éléments d’un ensemble à <span style="font-style:italic">n</span> éléments : les combinaisons</h2>
+<p><a id="hevea_default2"></a>
+Soit un ensemble <span style="font-style:italic">E</span> de cardinal <span style="font-style:italic">n</span> (<span style="font-style:italic">n</span>≥ 1) et soit un entier <span style="font-style:italic">p</span>≤ <span style="font-style:italic">n</span>.<br>
+Soit <span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) le nombre de parties de <span style="font-style:italic">E</span> ayant <span style="font-style:italic">p</span> éléments.<br>
+Soit <span style="font-style:italic">f</span> une injection de <span style="font-style:italic">I</span>=[1,<span style="font-style:italic">p</span>] dans <span style="font-style:italic">E</span> dans <span style="font-style:italic">f</span>(<span style="font-style:italic">I</span>) est une partie de <span style="font-style:italic">E</span>
+qui a <span style="font-style:italic">p</span> éléments.<br>
+Soit <span style="font-style:italic">F</span> l’application qui a une injection <span style="font-style:italic">f</span> de <span style="font-style:italic">I</span>=[1,<span style="font-style:italic">p</span>] dans <span style="font-style:italic">E</span> fait 
+correspondre <span style="font-style:italic">f</span>(<span style="font-style:italic">M</span>) i.e. <span style="font-style:italic">F</span>(<span style="font-style:italic">f</span>)=<span style="font-style:italic">f</span>(<span style="font-style:italic">M</span>).<br>
+<span style="font-style:italic">F</span> est surjective mais n’est pas injective car si:<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">f</span><sub>1</sub>)=<span style="font-style:italic">F</span>(<span style="font-style:italic">f</span><sub>2</sub>) cela entraine <span style="font-style:italic">f</span><sub>1</sub>(<span style="font-style:italic">M</span>)=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">M</span>).<br>
+Soit <span style="font-style:italic">f</span><sub>1</sub> une injection de <span style="font-style:italic">I</span>=[1,<span style="font-style:italic">p</span>] dans <span style="font-style:italic">E</span> et <span style="font-style:italic">F</span>=<span style="font-style:italic">f</span><sub>1</sub>(<span style="font-style:italic">M</span>). Donc <span style="font-style:italic">I</span> et <span style="font-style:italic">F</span> 
+sont de cardinal <span style="font-style:italic">p</span>.<br>
+D’après le paragraphe précédent, le nombre d’injections <span style="font-style:italic">f</span> de 
+<span style="font-style:italic">I</span>=[1,<span style="font-style:italic">m</span>] dans <span style="font-style:italic">E</span> tel que <span style="font-style:italic">f</span>(<span style="font-style:italic">M</span>)=<span style="font-style:italic">F</span> est <span style="font-style:italic">p</span>! car ces injections sont des 
+bijection de <span style="font-style:italic">I</span> dans <span style="font-style:italic">F</span>.
+Donc le nombre de parties de <span style="font-style:italic">E</span> ayant <span style="font-style:italic">p</span> éléments est égal au nombre d’injection de <span style="font-style:italic">I</span> dans <span style="font-style:italic">E</span> divisé par <span style="font-style:italic">p</span>!.<br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span>!</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>−<span style="font-style:italic">p</span>)!<span style="font-style:italic">p</span>!</td></tr>
+</table></td></tr>
+</table><p>
+On remarquera que la formule est encore valable pour <span style="font-style:italic">n</span>=<span style="font-style:italic">p</span>=0 puisque <span style="font-style:italic">w</span>(0,0)=1
+<span style="font-weight:bold">Définition</span> 
+<span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) est le nombre de combinaisons sans répétition de <span style="font-style:italic">p</span> objets pris 
+parmi <span style="font-style:italic">n</span> objets (<span style="font-style:italic">p</span>≤ <span style="font-style:italic">n</span>).<br>
+Avec <span style="font-family:monospace">Xcas</span> <span style="font-style:italic">w</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) se note <span style="font-family:monospace">comb(n,p)</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">simplify(comb(n,p))</span><br>
+On obtient :
+<span style="font-family:monospace">(n!)/((n-p)!*p!)</span><br>
+On tape :<br>
+<span style="font-family:monospace">comb(6,3)</span><br>
+On obtient :
+<span style="font-family:monospace">20</span>
+</p>
+<h2 id="sec61" class="section">6.5  Les combinaisons avec répétition</h2>
+<h3 id="sec62" class="subsection">6.5.1  La définition</h3>
+<p> 
+<span style="font-weight:bold">Définition</span><br>
+Soit un ensemble <span style="font-style:italic">E</span> de cardinal <span style="font-style:italic">n</span> (<span style="font-style:italic">n</span>≥ 1) et soit un entier <span style="font-style:italic">p</span>.<br>
+Le nombre d’ensemble ayant <span style="font-style:italic">p</span> éléments de <span style="font-style:italic">E</span>, chaque élément pouvant 
+être est appelé combinaison avec répétition de <span style="font-style:italic">p</span> éléments pris 
+parmi <span style="font-style:italic">n</span>.<br>
+</p>
+<h3 id="sec63" class="subsection">6.5.2  Une démonstration</h3>
+<p>
+Soit <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) le nombre de combinaisons avec répétition de <span style="font-style:italic">p</span> éléments 
+pris parmi <span style="font-style:italic">n</span>.<br>
+On va montrer que l’on a : <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=<span style="font-family:monospace">comb(n+p-1,n-1)=comb(n+p-1,p)</span> à 
+l’aide de l’exercice suivant.<br>
+<span style="font-weight:bold">Enoncé</span><br>
+Soient <span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> 2 points tels que <span style="font-style:italic">OA</span>=<span style="font-style:italic">p</span>.<br>
+1/ On suppose <span style="font-style:italic">p</span>≥ <span style="font-style:italic">n</span>. De combien de manières peut-on placer entre <span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> (<span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> exclus) <span style="font-style:italic">n</span>−1 points d’abscisse entière ?<br>
+2/ <span style="font-weight:bold">Application</span> Nombre de solutions de l’équation <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> :<br>
+a/ lorsque les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> sont des entiers &gt;0 et <span style="font-style:italic">p</span>≥ <span style="font-style:italic">n</span>.<br>
+b/ lorsque les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> sont des entiers ≥ 0<br>
+3/ En déduire la valeur de <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)<br>
+<span style="font-weight:bold">Solution</span><br>
+1/ Entre <span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> (<span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> exclus) il y a <span style="font-style:italic">p</span>−1 points.<br>
+Donc on peut placer <span style="font-style:italic">n</span>−1 points d’abscisse entière de <span style="font-family:monospace">comb(p-1,n-1)</span>
+manières différentes.<br>
+2/ a/ Pour résoudre <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> lorsque les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> sont des entiers &gt;0,
+on place <span style="font-style:italic">n</span>−1 points <span style="font-style:italic">M</span><sub>1</sub>,<span style="font-style:italic">M</span><sub>2</sub>..<span style="font-style:italic">M</span><sub><span style="font-style:italic">n</span>−1</sub> 
+d’abscisse entière <span style="font-style:italic">m</span><sub>1</sub>,<span style="font-style:italic">m</span><sub>2</sub>..<span style="font-style:italic">m</span><sub><span style="font-style:italic">n</span>−1</sub> entre <span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> et on pose :<br>
+<span style="font-style:italic">x</span><sub>1</sub>=<span style="font-style:italic">m</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>=<span style="font-style:italic">m</span><sub>2</sub>−<span style="font-style:italic">m</span><sub>1</sub>,....<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">m</span><sub><span style="font-style:italic">n</span>−1</sub><span style="font-style:italic">m</span><sub><span style="font-style:italic">n</span>−2</sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span>−<span style="font-style:italic">m</span><sub><span style="font-style:italic">n</span>−1</sub><br>
+On a alors <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span>.<br>
+Réciproquement à chaque solution <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,...,<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub> de <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> 
+lorsque les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> sont des entiers &gt;0, il
+correspond <span style="font-style:italic">n</span>−1 points d’abscisse entière entre <span style="font-style:italic">O</span> et <span style="font-style:italic">A</span> ce sont :<br>
+<span style="font-style:italic">M</span><sub>1</sub>,<span style="font-style:italic">M</span><sub>2</sub>..<span style="font-style:italic">M</span><sub><span style="font-style:italic">n</span>−1</sub> d’abscisse respective <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>,...,∑<sub><span style="font-style:italic">i</span>=..<span style="font-style:italic">n</span>−1</sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>.<br>
+Le nombre de solution est donc <span style="font-family:monospace">comb(p-1,n-1)</span>
+b/ Pour résoudre <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> lorsque les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> sont des entiers 
+≥ 0, on se raméne au cas précédent en posant :<br>
+<span style="font-style:italic">y</span><sub><span style="font-style:italic">i</span></sub>=<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>+1 (si <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> est un entier ≥ 0, <span style="font-style:italic">y</span><sub><span style="font-style:italic">i</span></sub> est un entier &gt;0).<br>
+À chaque solution de <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> où les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> sont des entiers 
+≥ 0 correspond une solution de <span style="font-style:italic">y</span><sub>1</sub>+<span style="font-style:italic">y</span><sub>2</sub>+...<span style="font-style:italic">y</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span> où les <span style="font-style:italic">y</span><sub><span style="font-style:italic">i</span></sub> sont 
+des entiers &gt;0 et on a <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>≥ <span style="font-style:italic">n</span>.<br>
+Donc le nombre de solutions de l’équation <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">x</span><sub>2</sub>+...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> lorsque les <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>
+sont des entiers ≥ 0 est <span style="font-family:monospace">comb(n+p-1,n-1)=comb(n+p-1,p)</span>.<br>
+3/ <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) est le nombre de combinaisons avec répétition de <span style="font-style:italic">p</span> 
+éléments pris parmi <span style="font-style:italic">n</span>.
+Soient <span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>,...<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> les <span style="font-style:italic">n</span> élements de <span style="font-style:italic">E</span>. Chaque combinaison avec 
+répétition de <span style="font-style:italic">p</span> éléments pris parmi ces <span style="font-style:italic">n</span> élements est 
+À chaque solution de <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> avec <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> ≥ 0 pour <span style="font-style:italic">i</span>=1..<span style="font-style:italic">n</span> 
+il correspond une combinaison avec répétition de <span style="font-style:italic">p</span> éléments pris 
+parmi ces <span style="font-style:italic">n</span> élements <span style="font-style:italic">a</span><sub><span style="font-style:italic">i</span></sub> à savoir on a la combinaison qui correspond aux
+<span style="font-style:italic">p</span> élements :<br>
+<span style="font-style:italic">x</span><sub>1</sub> fois <span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub> fois <span style="font-style:italic">a</span><sub>2</sub>,...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub> fois <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> (il y bien <span style="font-style:italic">p</span> élements
+puisque <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span>. 
+Réciproquement à chaque combinaison avec 
+répétition de <span style="font-style:italic">p</span> éléments pris parmi <span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>,...<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> il correspond
+une solution de <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,...<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">p</span> avec <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> ≥ 0 pour <span style="font-style:italic">i</span>=1..<span style="font-style:italic">n</span>.
+Donc <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=<span style="font-family:monospace">comb(n+p-1,n-1)=comb(n+p-1,p)</span> 
+</p>
+<h3 id="sec64" class="subsection">6.5.3  Autre démonstration</h3>
+<p>
+Soient <span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>,...<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> les <span style="font-style:italic">n</span> élements de <span style="font-style:italic">E</span>.<br>
+1/ On cherche combien de fois l’élément <span style="font-style:italic">a</span><sub>1</sub> figure dans les <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) 
+combinaisons avec répétition de <span style="font-style:italic">p</span> éléments pris parmi ces <span style="font-style:italic">n</span> 
+élements <span style="font-style:italic">a</span><sub><span style="font-style:italic">i</span></sub> (<span style="font-style:italic">i</span>=1..<span style="font-style:italic">n</span>).<br>
+Dans chaque combinaison il y a <span style="font-style:italic">p</span> éléments donc en tout il y a :<br>
+<span style="font-style:italic">p</span>*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) éléments.<br>
+Les <span style="font-style:italic">n</span> éléments figurent le même nombre de fois donc :<br>
+l’élément <span style="font-style:italic">a</span><sub>1</sub> figure <span style="font-style:italic">p</span>*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)/<span style="font-style:italic">n</span> fois dans les <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) combinaisons<br>
+et de même pour tout <span style="font-style:italic">i</span>=1..<span style="font-style:italic">n</span>, <br>
+l’élément <span style="font-style:italic">a</span><sub><span style="font-style:italic">i</span></sub> figure <span style="font-style:italic">p</span>*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)/<span style="font-style:italic">n</span> fois dans les <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) combinaisons.<br>
+2/ Cherchons une relation entre <span style="font-style:italic">p</span>*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)/<span style="font-style:italic">n</span> et <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)
+Parmi les combinaisons à répétition, il y en a :<br>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">p</span>)=<span style="font-family:monospace">comb(n+p-2,p)</span> qui ne contiennent pas <span style="font-style:italic">a</span><sub>1</sub>.<br>
+Parmi les combinaisons à répétition, il y en a :<br>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)=<span style="font-family:monospace">comb(n+p-2,p-1)</span> qui contiennent <span style="font-style:italic">a</span><sub>1</sub> au moins une fois
+(car on a <span style="font-family:monospace">comb(n+p-2,p-1)+comb(n+p-2,p)=comb(n+p-1,p)</span>)<br>
+D’après 1/ l’élément <span style="font-style:italic">a</span><sub>1</sub> figure (<span style="font-style:italic">p</span>−1)*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)/<span style="font-style:italic">n</span> fois dans les 
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1) combinaisons<br>
+Donc dans les <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) combinaisons il y a <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1) combinaisons qui 
+contiennent <span style="font-style:italic">a</span><sub>1</sub> au moins une fois.
+Cherchons le nombre de fois où apparait <span style="font-style:italic">a</span><sub>1</sub> parmi les combinaisons qui 
+contiennent <span style="font-style:italic">a</span><sub>1</sub> au moins une fois. Ces combinaisons sont au nombre de 
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1). Si on enlève <span style="font-style:italic">a</span><sub>1</sub> de ces combinaisons il reste une combinaison 
+avec répétition de <span style="font-style:italic">p</span>−1 éléments pris parmi ces <span style="font-style:italic">n</span> 
+élements <span style="font-style:italic">a</span><sub><span style="font-style:italic">i</span></sub> (<span style="font-style:italic">i</span>=1..<span style="font-style:italic">n</span>). On sait d’apr‘es 1/ que 
+<span style="font-style:italic">a</span><sub>1</sub> figure (<span style="font-style:italic">p</span>−1)*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1))/<span style="font-style:italic">n</span> fois dans les <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1) combinaisons.
+Donc l’élément <span style="font-style:italic">a</span><sub>1</sub> figure <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)+(<span style="font-style:italic">p</span>−1)*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)/<span style="font-style:italic">n</span> fois dans les 
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) combinaisons.<br>
+On a donc la relation :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">p</span>*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span></td></tr>
+</table></td><td class="dcell">=<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">p</span>−1)*<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span></td></tr>
+</table></td><td class="dcell">=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span></td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)</td></tr>
+</table><p>
+Donc puisque <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,1)=<span style="font-style:italic">n</span> :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">p</span></td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−1)=...</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1)..(<span style="font-style:italic">n</span>+1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">p</span>!</td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,1)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1)..(<span style="font-style:italic">n</span>+1)<span style="font-style:italic">n</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">p</span>!</td></tr>
+</table></td><td class="dcell">=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1)!</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>−1)!<span style="font-style:italic">p</span>!</td></tr>
+</table></td></tr>
+</table><p>
+donc on en déduit que :<br>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=<span style="font-family:monospace">comb(n+p-1,p)= comb(n+p-1,n-1)</span><br>
+<span style="font-weight:bold">Remarque</span><br>
+On a <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,0)+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,1)+...+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>+1,<span style="font-style:italic">p</span>)<br>
+On tape :<br>
+<span style="font-family:monospace">sum(comb(n+k-1,n-1),k=0..p)-comb(n+p,n)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+Par récurrence sur <span style="font-style:italic">p</span> on a :<br>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,0)+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,1)=1+<span style="font-style:italic">n</span>=<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>+1,1)<br>
+si <span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,0)+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,1)+...+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>+1,<span style="font-style:italic">p</span>) alors<br>
+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,0)+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,1)+...+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>+1)=<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>+1,<span style="font-style:italic">p</span>)+<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>+1)=<br>
+<span style="font-family:monospace">comb(n+p,p)+comb(n+p,p+1)=comb(n+p+1,p+1)</span>=<span style="font-style:italic">c</span>(<span style="font-style:italic">n</span>+1,<span style="font-style:italic">p</span>+1)<br>
+ En effet proriété de <span style="font-family:monospace">comb</span> :<br>
+<span style="font-family:monospace">comb(n,p)=comb(n-1,p)+comb(n-1,p-1)</span> pour tout <span style="font-style:italic">n</span> et <span style="font-style:italic">p</span>≤ <span style="font-style:italic">n</span> donc<br>
+<span style="font-family:monospace">comb(n+p,p)=comb(n+p-1,p)+comb(n+p-1,p-1)</span></p>
+<h3 id="sec65" class="subsection">6.5.4  Exercice</h3>
+<p>
+Dans une patisserie il y 10 sortes de gateaux.<br>
+De combien de manières peut-on en choisir 6 :<br>
+a/ de sortes différentes,<br>
+b/ de même sorte ou de sortes différentes,
+c/ de même sorte ou de sortes différentes dans le cas ou il ne reste que 3 gateaux d’une certaine sorte.
+<span style="font-weight:bold">Solution</span><br>
+a/ Il y a <span style="font-family:monospace">comb(10,6)=210</span> de choisir 6 gateaux de sortes différentes parmi 
+10 sortes.<br>
+b/ Il y a <span style="font-family:monospace">comb(15,6)=5005</span> de choisir 6 gateaux de même sorte ou sortes 
+différentes parmi 10 sortes car ici <span style="font-style:italic">n</span>=10 et <span style="font-style:italic">p</span>=6.<br>
+c/ si il ne este que 3 gateaux de la sorte <span style="font-style:italic">a</span><sub>1</sub>, il y a 
+<span style="font-family:monospace">comb(14,6)=3003</span> manières de prendre 6 gateaux sans la sorte <span style="font-style:italic">a</span><sub>1</sub> 
+(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=6 et <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1=14 i.e 9 sortes et 6 gateaux)<br>
+<span style="font-family:monospace">comb(13,5)=1287</span> manières de prendre 6 gateaux dont 1 gateau de la sorte 
+<span style="font-style:italic">a</span><sub>1</sub>,(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=5 et <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1=13)<br>
+<span style="font-family:monospace">comb(12,4)=495</span> manières de prendre 6 gateaux dont 2 gateaux de la sorte 
+<span style="font-style:italic">a</span><sub>1</sub>,(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=4 et <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1=12)<br>
+<span style="font-family:monospace">comb(11,3)=165</span> manières de prendre 6 gateaux dont 3 gateaux de la sorte 
+<span style="font-style:italic">a</span><sub>1</sub>,(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=3 et <span style="font-style:italic">n</span>+<span style="font-style:italic">p</span>−1=11)<br>
+Donc il y a 3003+1287+495+165=4950 manières de prendre 6 gateaux de même sorte ou de sortes différentes dans le cas ou il ne reste que 3 gateaux d’une certaine sorte.<br>
+Vérifions :<br>
+On a <span style="font-family:monospace">comb(10,2)=45</span> manières de prendre 6 gateaux dont 4 gateaux de la 
+sorte <span style="font-style:italic">a</span><sub>1</sub>,(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=2)<br>
+On a <span style="font-family:monospace">comb(9,1)=9</span> manières de prendre 6 gateaux dont 5 gateaux de la 
+sorte <span style="font-style:italic">a</span><sub>1</sub>,(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=1)<br>
+On a <span style="font-family:monospace">comb(9,0)=1</span> manières de prendre 6 gateaux dont 6 gateaux de la 
+sorte <span style="font-style:italic">a</span><sub>1</sub>,(<span style="font-style:italic">n</span>=9, <span style="font-style:italic">p</span>=0)<br>
+et on a bien : 4950 +55=5005.
+</p>
+<h2 id="sec66" class="section">6.6  Nombre de surjections d’un ensemble fini dans un ensemble fini</h2>
+<p>
+<span style="font-weight:bold">Exercice 1</span>
+Soient <span style="font-style:italic">E</span> un ensemble ayant <span style="font-style:italic">p</span> éléments et <span style="font-style:italic">F</span> un ensemble ayant <span style="font-style:italic">q</span> 
+éléments. On cherche le nombre de surjections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Calculer ∑<sub><span style="font-style:italic">A</span>⊂ <span style="font-style:italic">E</span></sub>(−1)<sup><span style="font-style:italic">Card</span>(<span style="font-style:italic">A</span>)</sup>
+</li><li class="li-enumerate">Soient <span style="font-style:italic">f</span> une application de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> et <span style="font-style:italic">B</span> une partie de 
+<span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>).<br>
+On pose : <span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=∑<sub><span style="font-style:italic">B</span>⊂ <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>)</sub>(−1)<sup><span style="font-style:italic">Card</span>(<span style="font-style:italic">B</span>)</sup><br>
+Montrer que :<br>
+<span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=1 si <span style="font-style:italic">f</span> est surjective et <span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=0 si <span style="font-style:italic">f</span> n’est pas surjective. 
+</li><li class="li-enumerate">En déduire le nombre de surjections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>
+</li></ol><p>
+<span style="font-weight:bold">La solution</span>
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Si <span style="font-style:italic">p</span>=0 alors <span style="font-style:italic">E</span>=∅ donc ∑<sub><span style="font-style:italic">A</span>⊂ <span style="font-style:italic">E</span></sub>(−1)<sup><span style="font-style:italic">Card</span>(<span style="font-style:italic">A</span>)</sup>=(−1)<sup>0</sup>=1<br>
+Si <span style="font-style:italic">p</span>≠ 0 alors il y a <span style="font-family:monospace">comb(p,k)</span> sous-ensemble <span style="font-style:italic">A</span> de <span style="font-style:italic">E</span> qui ont <span style="font-style:italic">k</span> 
+éléments <span style="font-style:italic">A</span>, 
+donc <br>
+∑<sub><span style="font-style:italic">A</span>⊂ <span style="font-style:italic">E</span></sub>(−1)<sup><span style="font-style:italic">Card</span>(<span style="font-style:italic">A</span>)</sup>=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">p</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">k</span>)(−1)<sup><span style="font-style:italic">k</span></sup>=(1−1)<sup><span style="font-style:italic">p</span></sup>=0 d’après
+la formule du binôme.
+</li><li class="li-enumerate">Si <span style="font-style:italic">f</span> est surjective <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>)=∅ donc <span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=1 d’après ce
+qui précéde.<br>
+Si <span style="font-style:italic">f</span> n’est pas surjective <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>)≠ ∅ donc <span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=0 
+d’après ce qui précéde.<br>
+</li><li class="li-enumerate">Soit A(<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>) l’ensemble des applications de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>.<br>
+D’après ce qui précède le nombre de surjections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> 
+est :<br>
+∑<sub><span style="font-style:italic">f</span>∈ A(<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>)</sub><span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=∑<sub><span style="font-style:italic">f</span>∈ A(<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>)</sub>∑<sub><span style="font-style:italic">B</span>⊂ <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>)</sub>(−1)<sup><span style="font-style:italic">Card</span>(<span style="font-style:italic">B</span>)</sup><br>
+Puisque <span style="font-style:italic">B</span>⊂ <span style="font-style:italic">F</span>∖ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>) est équivalent à 
+<span style="font-style:italic">B</span>∩ <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>)=∅ donc est équivalent à <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>)⊂ <span style="font-style:italic">F</span>∖ <span style="font-style:italic">B</span> 
+donc le nombre de surjections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> est :<br>
+∑<sub><span style="font-style:italic">B</span>⊂ <span style="font-style:italic">F</span></sub>∑<sub><span style="font-style:italic">f</span>∈A(<span style="font-style:italic">E</span>,<span style="font-style:italic">F</span>∖ <span style="font-style:italic">B</span>)</sub> (−1)<sup><span style="font-style:italic">Card</span>(<span style="font-style:italic">B</span>)</sup>=<br>
+∑<sub><span style="font-style:italic">B</span>⊂ <span style="font-style:italic">F</span> &amp;&amp;   <span style="font-style:italic">Card</span>(<span style="font-style:italic">B</span>)=<span style="font-style:italic">k</span></sub>(<span style="font-style:italic">q</span>−<span style="font-style:italic">k</span>)<sup><span style="font-style:italic">p</span></sup>(−1)<sup><span style="font-style:italic">k</span></sup>=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">q</span></sup> <span style="font-style:italic">comb</span>(<span style="font-style:italic">q</span>,<span style="font-style:italic">k</span>)(<span style="font-style:italic">q</span>−<span style="font-style:italic">k</span>)<sup><span style="font-style:italic">p</span></sup>(−1)<sup><span style="font-style:italic">k</span></sup><br>
+En effet si <span style="font-style:italic">Card</span>(<span style="font-style:italic">B</span>)=<span style="font-style:italic">k</span>. Il y a (<span style="font-style:italic">q</span>−<span style="font-style:italic">k</span>)<sup><span style="font-style:italic">p</span></sup> applications des <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>∖ <span style="font-style:italic">B</span> et il y a <span style="font-style:italic">comb</span>(<span style="font-style:italic">q</span>,<span style="font-style:italic">k</span>) sous-ensemble de <span style="font-style:italic">F</span> qui contient <span style="font-style:italic">k</span> éléments.<br>
+ Donc :
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">S</span>(<span style="font-style:italic">f</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">q</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=0</td></tr>
+</table></td><td class="dcell">(−1)<sup><span style="font-style:italic">k</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">q</span>,<span style="font-style:italic">k</span>)(<span style="font-style:italic">q</span>−<span style="font-style:italic">k</span>)<sup><span style="font-style:italic">p</span></sup></td></tr>
+</table>
+</li></ol><p>
+<span style="font-weight:bold">Exercice 2</span>
+1a/ Montrer que pour tout <span style="font-style:italic">j</span>=1..<span style="font-style:italic">k</span> on a :<br>
+<span style="font-family:monospace">comb(p,j)*comb(p-j,k-j)=comb(p,k)*comb(k,j)</span><br>
+1b/ En déduire que :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">j</span>=0</td></tr>
+</table></td><td class="dcell">(−1)<sup><span style="font-style:italic">j</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">j</span>)*<span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>−<span style="font-style:italic">j</span>,<span style="font-style:italic">k</span>−<span style="font-style:italic">j</span>)=0</td></tr>
+</table><p>
+2/ Soit <span style="font-style:italic">S</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) le nombre de surjections d’un ensemble à <span style="font-style:italic">n</span> éléments 
+sur un ensemble à <span style="font-style:italic">p</span> éléments.<br>
+En raisonnant, pour une application <span style="font-style:italic">f</span> de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span>, sur le cardinal de 
+<span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>), établir :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">p</span><sup><span style="font-style:italic">n</span></sup>=<span style="font-style:italic">S</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">p</span>−1</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=1</td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">k</span>)*<span style="font-style:italic">S</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>−<span style="font-style:italic">k</span>)</td></tr>
+</table><p>
+3/ En déduire que :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">S</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">p</span>−1</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=0</td></tr>
+</table></td><td class="dcell">(−1)<sup><span style="font-style:italic">k</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">k</span>)*(<span style="font-style:italic">p</span>−<span style="font-style:italic">k</span>)<sup><span style="font-style:italic">n</span></sup></td></tr>
+</table><p>
+4/ En utilisant φ(<span style="font-style:italic">f</span>) = {<span style="font-style:italic">f</span><sup>−1</sup>({<span style="font-style:italic">y</span>}) , <span style="font-style:italic">y</span> ∈ <span style="font-style:italic">F</span> } de l’ensemble des 
+surjections de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> dans l’ensemble des partitions de <span style="font-style:italic">E</span> ayant <span style="font-style:italic">p</span>
+parties, déterminer le nombre de partitions
+d’un ensemble à <span style="font-style:italic">n</span> éléments en <span style="font-style:italic">p</span> parties (1 ≤ <span style="font-style:italic">p</span> ≤ <span style="font-style:italic">n</span>), noté
+<span style="font-style:italic">Pi</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>).</p><p><span style="font-weight:bold">La solution</span>
+1a/ On développe les combinaisons ou on tape :<br>
+<span style="font-family:monospace">normal(comb(p,j)*comb(p-j,k-j)-comb(p,k)*comb(k,j))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+1b/ On remplace les combinaisons à l’aide de 1a/ et on écrit le 
+développement de (1−1)<sup><span style="font-style:italic">k</span></sup> avec la formule du binôme et on obtient :<br>
+0=(1−1)<sup><span style="font-style:italic">k</span></sup>=∑<sub><span style="font-style:italic">j</span>=0</sub><sup><span style="font-style:italic">k</span></sup>(−1)<sup><span style="font-style:italic">j</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">k</span>,<span style="font-style:italic">j</span>) donc<br>
+<span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">k</span>)∑<sub><span style="font-style:italic">j</span>=0</sub><sup><span style="font-style:italic">k</span></sup>(−1)<sup><span style="font-style:italic">j</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">k</span>,<span style="font-style:italic">j</span>)=∑<sub><span style="font-style:italic">j</span>=0</sub><sup><span style="font-style:italic">k</span></sup>(−1)<sup><span style="font-style:italic">j</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">k</span>)<span style="font-style:italic">comb</span>(<span style="font-style:italic">k</span>,<span style="font-style:italic">j</span>)=∑<sub><span style="font-style:italic">j</span>=0</sub><sup><span style="font-style:italic">k</span></sup>(−1)<sup><span style="font-style:italic">j</span></sup><span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>,<span style="font-style:italic">j</span>)*<span style="font-style:italic">comb</span>(<span style="font-style:italic">p</span>−<span style="font-style:italic">j</span>,<span style="font-style:italic">k</span>−<span style="font-style:italic">j</span>)<br>
+2/ Il y a <span style="font-style:italic">p</span><sup><span style="font-style:italic">n</span></sup> applications de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> et si <span style="font-style:italic">f</span> est une application de 
+<span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> on note <span style="font-style:italic">k</span> le cardinal de <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>). Pour <span style="font-style:italic">k</span> fixé <span style="font-style:italic">f</span> est alors 
+une surjection de <span style="font-style:italic">E</span> dans <span style="font-style:italic">f</span>(<span style="font-style:italic">E</span>) et il a <span style="font-family:monospace">S(n,k)</span> surjections<br>
+il y a <span style="font-family:monospace">comb(p,1)*S(n,1)</span> applications de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> qui sont telles que 
+<span style="font-style:italic">k</span>=1 <br>
+il y a <span style="font-family:monospace">comb(p,2)*S(n,2)</span> applications qui sont telles que <span style="font-style:italic">k</span>=2 <br>
+....
+il y a <span style="font-family:monospace">comb(p,k)*S(n,k)</span> applications qui sont telles que <span style="font-style:italic">k</span>=<span style="font-style:italic">k</span><br>
+...
+il y a <span style="font-family:monospace">comb(p,p)*S(n,p)</span> applications qui sont telles que <span style="font-style:italic">k</span>=<span style="font-style:italic">p</span><br>
+d’où la formule
+<span style="font-style:italic">p</span><sup><span style="font-style:italic">n</span></sup>=<span style="font-family:monospace">sum( comb(p,k)*S(n,k),k=1..p)=S(n,p)+sum(comb(p,k)*S(n,k),k=1..p-1)</span> <br>
+3/ On va faire une combinaison de lignes qui fera disparaitre les <br>
+<span style="font-family:monospace">S(n,k)</span> pour k!=p en se servant de 1b/ :<br>
+<span style="font-family:monospace">sum(</span>(−1)<sup><span style="font-style:italic">i</span></sup><span style="font-family:monospace">comb(p,i)comb(p-i,k-i),i=0..k)=0</span><br>
+Les coefficients de S(n,p-k) sont si la 1iere ligne est la ligne 0:<br>
+ligne 0 : <span style="font-family:monospace">comb(p,k)</span>,<br>
+ligne 1 : <span style="font-family:monospace">comb(p-1,k-1)</span><br>
+ligne 2 : <span style="font-family:monospace">comb(p-2,k-2)</span><br>
+...<br>
+ligne i : <span style="font-family:monospace">comb(p-i,k-i)</span>,<br>
+....<br>
+ligne k : <span style="font-family:monospace">1</span><br>
+on multiplie donc <br>
+la ligne 0 par 1=(−1)<sup>0</sup>*<span style="font-family:monospace">comb(p,0)</span> <br>
+la ligne 1 par -1*<span style="font-family:monospace">comb(p,1)</span> <br>
+la ligne 2 par (−1)<sup>2</sup>*<span style="font-family:monospace">comb(p,2)</span><br>
+....<br>
+la ligne k par (−1)<sup><span style="font-style:italic">k</span></sup><span style="font-family:monospace">comb(p,k)</span><br>
+...<br>
+la ligne p-1 par (−1)<sup><span style="font-style:italic">p</span>−1</sup><span style="font-family:monospace">comb(p,p-1)</span><br>
+Puis on somme toutes les lignes et on obtient :<br>
+<span style="font-family:monospace">sum(</span>(−1)<sup><span style="font-style:italic">k</span></sup><span style="font-family:monospace">comb(p,k)</span>(<span style="font-style:italic">p</span>−<span style="font-style:italic">k</span>)<sup><span style="font-style:italic">n</span></sup><span style="font-family:monospace">,k=0..p-1)=S(n,p)</span> 
+4/ Chaque surjection de <span style="font-style:italic">E</span> dans <span style="font-style:italic">F</span> donne une partition de <span style="font-style:italic">E</span> ayant <span style="font-style:italic">p</span> 
+parties. Mais une partition de <span style="font-style:italic">E</span> ayant <span style="font-style:italic">p</span> parties définit <span style="font-style:italic">p</span>! surjections
+donc le nombre de partitions de <span style="font-style:italic">E</span> ayant <span style="font-style:italic">p</span> éléments est <span style="font-family:monospace">S(n,p)/p!</span><br>
+Vérifions <br>
+<span style="font-family:monospace">S(n,2)</span>=2<sup><span style="font-style:italic">n</span></sup>−2 et il y a 2<sup><span style="font-style:italic">n</span>−1</sup>−1 partitions de <span style="font-style:italic">E</span> ayant p parties.</p>
+<h2 id="sec67" class="section">6.7  Les nombres d’applications de E dans F</h2>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo005.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo007.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

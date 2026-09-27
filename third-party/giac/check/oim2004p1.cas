@@ -1,0 +1,16 @@
+B:=point(1);
+C:=point(-1);
+O:=midpoint(B,C);
+c:=circle(B,C);
+assume(a=[0.3,-5,5,0.1]);
+assume(b=[0.5,-5,5,0.1]);
+A:=point(a,b);
+M:=reflection(projection(A,B,O),B);
+N:=reflection(projection(A,C,O),C);
+mon:=bisector(O,M,N,display=hidden_name);
+bac:=bisector(A,B,C,display=hidden_name);
+R:=single_inter(bac,mon);
+c1:=circumcircle(B,M,R,display=red);
+c2:=circumcircle(C,N,R,display=red);
+P,Q:=inter(c1,c2);
+simplify(ordinate(P)); simplify(ordinate(Q));

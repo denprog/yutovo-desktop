@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Polygonal paths</title>
+</head>
+<body >
+<a href="cascmd_en656.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en658.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1602" class="subsection">20.2.3  Polygonal paths</h3>
+<p>The <span style="font-family:monospace">polygonplot</span><a id="hevea_default1288"></a>
+or <span style="font-family:monospace">ligne_polygonale</span><a id="hevea_default1289"></a>
+command draws a polygonal path through given points.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">polygonplot</span> takes one mandatory argument and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+Optionally, <span style="font-style:italic">xcoords</span>, a list of <span style="font-style:italic">x</span>-coordinates.
+By default, the <span style="font-style:italic">x</span>-coordinates will be a list of integers
+starting at 0.
+</li><li class="li-itemize"><span style="font-style:italic">ycoords</span>, a list of <span style="font-style:italic">y</span>-coordinates.
+</li></ul>
+You can combine two arguments into a matrix with two columns (each
+list becomes a column of the matrix).
+</li><li class="li-itemize"><span style="font-family:monospace">polygonplot(</span>⟨<span style="font-style:italic">xcoords</span>,⟩<span style="font-style:italic">ycoords</span><span style="font-family:monospace">)</span>
+draws the polygonal path through the given points, from left to right
+(so the points are automatically ordered by increasing <span style="font-style:italic">x</span>-coordinate).
+</li></ul><h4 id="sec1603" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">polygonplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,4,9,16])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">polygonplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2,3,4],[0,1,4,9,16])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">polygonplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[0,0],[1,1],[2,4],[3,9],[4,16]])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">polygonplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[2,4],[0,0],[3,9],[1,1],[4,16]])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en153.png">
+
+</div><p>The <span style="font-family:monospace">listplot</span><a id="hevea_default1290"></a>
+or <span style="font-family:monospace">plotlist</span><a id="hevea_default1291"></a>
+draws a polygonal path, but in an order determined by you.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">plotlist</span> takes
+<span style="font-style:italic">L</span>, a list of points or a list of numbers (which will be taken as
+<span style="font-style:italic">y</span>-coordinates, with the <span style="font-style:italic">x</span>-coordinates being the integers
+starting at 0).
+</li><li class="li-itemize"><span style="font-family:monospace">plotlist(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> draws a polygonal path through the
+points in the order given by the list.
+</li></ul><p>
+Unlike <span style="font-family:monospace">polygonplot</span>, the <span style="font-family:monospace">listplot</span> command
+cannot be given two lists of numbers as arguments.</p><h4 id="sec1604" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[2,4],[0,0],[3,9],[1,1],[4,16]])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en154.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,4,9,16])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en155.png">
+
+</div><p>If you want to get coordinates on the polygonal path, use the
+The <span style="font-family:monospace">linear_interpolate</span><a id="hevea_default1292"></a>
+command will find coordinates on the
+polygonal path.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">linear_interpolate</span> takes four arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">M</span>, a two-row matrix consisting of the <span style="font-style:italic">x</span>-coordinates and the
+<span style="font-style:italic">y</span>-coordinates.
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sub><span style="font-style:italic">min</span></sub>, the minimum value of <span style="font-style:italic">x</span> that you are
+interested in.
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sub><span style="font-style:italic">max</span></sub>, the maximum value of <span style="font-style:italic">x</span>.
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sub><span style="font-style:italic">step</span></sub>, the step size that you want.
+</li></ul>
+The values of <span style="font-style:italic">x</span><sub><span style="font-style:italic">min</span></sub> and <span style="font-style:italic">x</span><sub><span style="font-style:italic">max</span></sub> must
+be between the smallest and largest <span style="font-style:italic">x</span>-coordinates of the points.
+</li><li class="li-itemize"><span style="font-family:monospace">linear_interpolate(</span><span style="font-style:italic">M</span>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">min</span></sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">max</span></sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">step</span></sub><span style="font-family:monospace">)</span>
+returns a matrix with two rows, the first row will be
+[<span style="font-style:italic">x</span><sub><span style="font-style:italic">min</span></sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">min</span></sub>+<span style="font-style:italic">x</span><sub><span style="font-style:italic">step</span></sub>,<span style="font-style:italic">x</span><sub><span style="font-style:italic">min</span></sub>+2<span style="font-style:italic">x</span><sub><span style="font-style:italic">step</span></sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">max</span></sub>]
+and the second row will be the corresponding <span style="font-style:italic">y</span>-coordinates of the
+points on the polygonal path.
+</li></ul><h4 id="sec1605" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">linear_interpolate</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2,6,9],[3,4,6,12]],2,7,1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">7.0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4.5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5.5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">8.0</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en656.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en658.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

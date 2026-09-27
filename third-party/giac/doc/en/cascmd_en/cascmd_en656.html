@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Scatterplots</title>
+</head>
+<body >
+<a href="cascmd_en655.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en657.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1600" class="subsection">20.2.2  Scatterplots</h3>
+<p>A scatter plot is simply a set of points plotted on axes. 
+The <span style="font-family:monospace">scatterplot</span><a id="hevea_default1285"></a>
+or <span style="font-family:monospace">nuage_points</span><a id="hevea_default1286"></a>
+command draws scatter plots.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">scatterplot</span> takes two arguments:
+<span style="font-style:italic">xcoords</span> and <span style="font-family:monospace">ycoords</span>, a list of <span style="font-style:italic">x</span>-coordinates and
+<span style="font-style:italic">y</span>-coordinates. You can also combine them into a matrix with two
+columns (each list becomes a column of the matrix).
+</li><li class="li-itemize"><span style="font-family:monospace">scatterplot(</span><span style="font-style:italic">xcoords</span>,<span style="font-style:italic">ycoords</span><span style="font-family:monospace">)</span>
+draws the points with the given coordinates.
+</li></ul><p>The <span style="font-family:monospace">batons</span><a id="hevea_default1287"></a>
+command will also draw a collection of points, but each point will be
+connected to the <span style="font-style:italic">x</span>-axis with a vertical line segment.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">batons</span> takes two arguments:
+<span style="font-style:italic">xcoords</span> and <span style="font-family:monospace">ycoords</span>, a list of <span style="font-style:italic">x</span>-coordinates and
+<span style="font-style:italic">y</span>-coordinates. You can also combine them into a matrix with two
+columns (each list becomes a column of the matrix).
+</li><li class="li-itemize"><span style="font-family:monospace">batons(</span><span style="font-style:italic">xcoords</span>,<span style="font-style:italic">ycoords</span><span style="font-family:monospace">)</span>
+draws the points with the given coordinates and connects them to the
+<span style="font-style:italic">x</span>-axis with vertical line segments.
+</li></ul><h4 id="sec1601" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[0,0],[1,1],[2,4],[3,9],[4,16]],</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_width_3</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_point</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2,3,4],[0,1,4,9,16],</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_width_3</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_point</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en150.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">batons</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[0,0],[1,1],[2,4],[3,9],[4,16]])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en151.png">
+
+</div><p>As a practical example, assume that a model of the growth of a sunflower
+is given by the formula:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">h</span>(<span style="font-style:italic">t</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">256</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">1+23<span style="font-style:italic">e</span><sup>−0.093<span style="font-style:italic">t</span></sup></td></tr>
+</table></td><td class="dcell">, </td></tr>
+</table><p>
+where <span style="font-style:italic">t</span> is time in days and <span style="font-style:italic">h</span> is plant height in centimeters.
+The measured height is given in the following table:
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">t</span> (days)</td><td style="text-align:center;white-space:nowrap" >10</td><td style="text-align:center;white-space:nowrap" >20</td><td style="text-align:center;white-space:nowrap" >30</td><td style="text-align:center;white-space:nowrap" >40</td><td style="text-align:center;white-space:nowrap" >50</td><td style="text-align:center;white-space:nowrap" >60</td><td style="text-align:center;white-space:nowrap" >70</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">h</span> (cm)</td><td style="text-align:center;white-space:nowrap" >23</td><td style="text-align:center;white-space:nowrap" >56</td><td style="text-align:center;white-space:nowrap" >112</td><td style="text-align:center;white-space:nowrap" >160</td><td style="text-align:center;white-space:nowrap" >203</td><td style="text-align:center;white-space:nowrap" >239</td><td style="text-align:center;white-space:nowrap" >246</td></tr>
+</table>
+</div><p>
+To define the function <span style="font-style:italic">h</span>, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):=256/(1+23*</span></span><span style="font-weight:bold"><span style="color:#BF0000">exp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-0.093*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)):;</span></span></td></tr>
+</table><p>To load the data, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[10,20,30,40,50,60,70]:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">hdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[23,56,112,160,203,239,246]:;</span></span></td></tr>
+</table><p>To display the model together with data, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">title</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"*Sunflower growth model*"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">labels</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"t"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"h"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">];</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"days"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"cm"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">];</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotfunc</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=5..75,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">quadrant4</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"model"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">hdata</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">star_point</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_width_2</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">quadrant4</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"data"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en152.png">
+
+</div>
+<hr>
+<a href="cascmd_en655.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en657.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

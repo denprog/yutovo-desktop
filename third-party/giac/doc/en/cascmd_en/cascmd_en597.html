@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Lagrange polynomial</title>
+</head>
+<body >
+<a href="cascmd_en596.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en598.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:lagrange" class="subsection">17.1.1  Lagrange polynomial</h3>
+<p>The <span style="font-family:monospace">lagrange</span><a id="hevea_default1071"></a> command
+finds the Lagrange polynomial which interpolates given data.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">lagrange</span> takes two mandatory
+arguments and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">l</span><sub>1</sub> and <span style="font-style:italic">l</span><sub>2</sub>, two lists of the same size. These can
+be given as a matrix with two rows.<p>The first list (resp. row) corresponds to the abscissa values <span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span></sub>
+(<span style="font-style:italic">k</span>=1,…,<span style="font-style:italic">n</span>), and the second list (resp. row) corresponds to ordinate
+values <span style="font-style:italic">y</span><sub><span style="font-style:italic">k</span></sub> (<span style="font-style:italic">k</span>=1,…,<span style="font-style:italic">n</span>).
+</p></li><li class="li-itemize">Optionally <span style="font-style:italic">x</span>, the name of a variable (by default
+<span style="font-family:monospace">x</span>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">lagrange(</span><span style="font-style:italic">l</span><sub>1</sub>,<span style="font-style:italic">l</span><sub>2</sub>  ⟨,<span style="font-style:italic">x</span>⟩<span style="font-family:monospace">)</span>
+returns a polynomial expression <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>) of degree <span style="font-style:italic">n</span>−1
+such that <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>)=<span style="font-style:italic">y</span><sub><span style="font-style:italic">i</span></sub>.
+</li></ul><p>
+You can use the <span style="font-family:monospace">interp</span> command as a synonym for <span style="font-family:monospace">lagrange</span>.</p><h4 id="sec1433" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">lagrange</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,3],[0,1]])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">lagrange</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,3],[0,1])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since <span style="font-style:italic">x</span>−1/2=0 for <span style="font-style:italic">x</span>=1 and <span style="font-style:italic">x</span>−1/2=1 for <span style="font-style:italic">x</span>=3.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">factor</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">lagrange</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,2,3,4],[1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-2</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−4</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">9 </span><span style="color:#0000CC"><span style="font-style:italic">a</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−30 </span><span style="color:#0000CC"><span style="font-style:italic">a</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+21 </span><span style="color:#0000CC"><span style="font-style:italic">a</span></span><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+5 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−6</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">6</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="sec1434" class="paragraph">Remark.</h5>
+<p>
+An attempted function definition such as
+<span style="font-family:monospace">f:=lagrange([1,2],[3,4],y)</span> does not return a function but an
+expression with respect to <span style="font-style:italic">y</span>. To define <span style="font-style:italic">f</span> as a function, input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">unapply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">lagrange</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,2],[3,4],</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>Avoid <span style="font-family:monospace">f(x):=lagrange([1,2],[3,4],x)</span> since then
+the Lagrange polynomial would be computed each time <span style="font-family:monospace">f</span> is called
+(indeed in a function definition, the second member of the assignment
+is not evaluated).
+Note also that <span style="font-family:monospace">g(x):=lagrange([1,2],[3,4])</span> would not work
+since the default argument of <span style="font-family:monospace">lagrange</span>
+would be global, hence not the same as the local
+variable used for the definition of <span style="font-family:monospace">g</span>.</p>
+<hr>
+<a href="cascmd_en596.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en598.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

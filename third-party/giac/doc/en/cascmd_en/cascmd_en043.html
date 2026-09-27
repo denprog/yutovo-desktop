@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Indent an XML string</title>
+</head>
+<body >
+<a href="cascmd_en042.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en044.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:xmlpr" class="subsection">2.7.6  Indent an <span style="font-variant:small-caps">XML</span> string</h3>
+<p>The <span style="font-family:monospace">xml_print</span><a id="hevea_default35"></a>
+command formats an <span style="font-variant:small-caps">XML</span> string.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">xml_print</span> takes
+<span style="font-style:italic">str</span>, a string, assumed to contain <span style="font-variant:small-caps">XML</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">xml_print(</span><span style="font-style:italic">str</span><span style="font-family:monospace">)</span> returns a string with the <span style="font-variant:small-caps">XML</span> code
+indented for better readability. The default indentation is two spaces.
+</li></ul><h4 id="sec60" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">xml_print</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"&lt;?xml version='1.0'?&gt;&lt;r&gt;&lt;c1&gt;bla&lt;/c1&gt;&lt;c2&gt;&lt;/c2&gt;&lt;c3/&gt;&lt;/r&gt;"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> &lt;?xml version='1.0'?&gt;
+ &lt;r&gt;
+   &lt;c1&gt;bla&lt;/c1&gt;
+   &lt;c2&gt;&lt;/c2&gt;
+   &lt;c3/&gt;
+ &lt;/r&gt;</td></tr>
+</table>
+<hr>
+<a href="cascmd_en042.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en044.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

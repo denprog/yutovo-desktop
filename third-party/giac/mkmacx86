@@ -1,0 +1,59 @@
+#! /bin/bash
+# Install brew then install compiler and libraries with 
+# arch -x86_64 /usr/local/bin/brew install fltk mpfi readline libxft fontconfig jpeg gsl glpk libsamplerate autoconf automake pari libao libusb
+# run mkosx, then click Applications, then usr, then bin, then xcas
+# archive with cd / ; tar cvfz ~/xcas_osx14.tgz Applications/usr
+# scp ~/xcas_osx14.tgz malherbe:public_html/giac
+# OR
+# cd 
+# dylibbundler -od -b -x ./xcas.app/Contents/MacOS/xcas -d ./xcas.app/Contents/libs/
+# pkgbuild --install-location /Applications --identifier xcas.pkg.app --root xcas.app Downloads/Xcas.pkg 
+# productbuild --sign Xcas --component /Applications/xcas.app/ xcas.pkg
+# should reconfigure for x86_64 arch, compile, then call dylibbundler then call lipo
+#export CC=gcc-13
+#export CXX=g++-13
+cd ~/giac-2.0.0
+./mkosx
+cd ~/x86_64/giac-2.0.0
+export CFLAGS='-arch x86_64 -I/usr/local/include -fPIC -g -O2'
+export CFLAGS_EXTRA='-arch x86_64 -I/usr/local/include -fPIC -g -O2'
+export CXXFLAGS='-std=c++11 -arch x86_64 -I/usr/local/include -I/usr/local/opt/readline/include -I/usr/local/opt/jpeg/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -fPIC -g -O2'
+export CPPFLAGS='-arch x86_64 -I/usr/local/include -I/usr/local/Cellar/fltk/1.3.9/include -I/usr/local/opt/readline/include -I/usr/local/opt/jpeg/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -fPIC -g -O2'
+export LDFLAGS='-arch x86_64 -L/usr/local/lib -L/usr/local/Cellar/fltk/1.3.9/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/jpeg/lib'
+#./configure --disable-gettext --prefix=/Applications/usr
+# set -e
+arch -x86_64 ./configure --prefix=/Applications/usr/x86_64 --disable-gettext --host=x86_64-apple-darwin
+#/bin/cp config.h.osx config.h
+#/bin/cp config.h.osx src/config.h
+cd micropython-1.12/xcas
+make clean
+make -j4
+cd ../..
+make -j4
+cd src
+g++ -arch x86_64 -r -keep_private_externs -nostdlib -o .libs/libgiac.0.dylib-master.o  .libs/input_lexer.o .libs/sym2poly.o .libs/gausspol.o .libs/threaded.o .libs/moyal.o .libs/maple.o .libs/ti89.o .libs/mathml.o .libs/misc.o .libs/permu.o .libs/quater.o .libs/desolve.o .libs/input_parser.o .libs/symbolic.o .libs/index.o .libs/modpoly.o .libs/modfactor.o .libs/ezgcd.o .libs/derive.o .libs/solve.o .libs/intg.o .libs/intgab.o .libs/risch.o .libs/lin.o .libs/series.o .libs/subst.o .libs/vecteur.o .libs/sparse.o .libs/csturm.o .libs/tex.o .libs/global.o .libs/ifactor.o .libs/alg_ext.o .libs/gauss.o .libs/isom.o .libs/plot.o .libs/plot3d.o .libs/rpn.o .libs/prog.o .libs/pari.o .libs/cocoa.o .libs/unary.o .libs/usual.o .libs/identificateur.o .libs/gen.o .libs/tinymt32.o .libs/first.o .libs/TmpLESystemSolver.o .libs/TmpFGLM.o .libs/help.o .libs/lpsolve.o .libs/optimization.o .libs/signalprocessing.o .libs/graphe.o .libs/graphtheory.o .libs/nautywrapper.o .libs/markup.o .libs/kdisplay.o .libs/kadd.o .libs/caseval.o .libs/cutils.o .libs/graphic.o .libs/libbf.o .libs/libregexp.o .libs/libunicode.o .libs/qjsgiac.o .libs/quickjs.o .libs/quickjs-libc.o .libs/js.o .libs/qrcodegen.o
+
+g++ -arch x86_64 -mmacosx-version-min=15.5 -I/usr/local/include -I/usr/local/opt/readline/include -I/usr/local/opt/jpeg/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -fPIC -g -O2 -U_GLIBCXX_ASSERTIONS -DUSE_OBJET_BIDON -fno-strict-aliasing -DGIAC_GENERIC_CONSTANTS -DTIMEOUT -DHAVE_LIBMICROPYTHON -fpermissive -DQUICKJS -arch x86_64 -o .libs/icas icas.o -Wl,-bind_at_load  -L/usr/local/lib -L/usr/local/Cellar/fltk/1.3.9/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/jpeg/lib -L/Users/parisse/x86_64/giac-2.0.0/src -L/Users/parisse/x86_64/giac-2.0.0 ./.libs/libxcas.a /Users/parisse/x86_64/giac-2.0.0/src/.libs/libgiac.a -lmicropython -lpari -lfltk_images -ljpeg -lpng -lz -lfltk -lfltk_gl -lXrender -lXext -lXft -lfontconfig -lXinerama -lXfixes -lXcursor -lX11 -lnauty -lreadline -lncurses -lgsl -lgslcblas -lpthread -lusb-1.0 -lcurl -lsamplerate -lglpk -lao -llapack -lblas -ldl -lpng16 -lm -lntl -lmpfi -lmpfr -lgmp -lintl
+
+g++ -arch x86_64 -I/usr/local/include -I/usr/local/opt/readline/include -I/usr/local/opt/jpeg/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -fPIC -g -O2 -U_GLIBCXX_ASSERTIONS -DUSE_OBJET_BIDON -fno-strict-aliasing -DGIAC_GENERIC_CONSTANTS -DTIMEOUT -DHAVE_LIBMICROPYTHON -fpermissive -DQUICKJS -arch x86_64 -o .libs/xcas xcas.o -Wl,-bind_at_load  -L/usr/local/lib -L/usr/local/Cellar/fltk/1.3.9/lib -L/usr/local/opt/readline/lib -L/usr/local/opt/jpeg/lib -L/Users/parisse/x86_64/giac-2.0.0/src -L/Users/parisse/x86_64/giac-2.0.0 ./.libs/libxcas.a /Users/parisse/x86_64/giac-2.0.0/src/.libs/libgiac.a -lmicropython -lpari -lfltk_images -ljpeg -lpng -lz -lfltk -lfltk_gl -lXrender -lXext -lXft -lfontconfig -lXinerama -lXfixes -lXcursor -lX11 -lnauty -lreadline -lncurses -lgsl -lgslcblas -lpthread -lusb-1.0 -lcurl -lsamplerate -lglpk -lao -llapack -lblas -ldl -lpng16 -lm -lntl -lmpfi -lmpfr -lgmp -lintl
+
+g++ -arch x86_64 -I/usr/local/include -I/usr/local/opt/readline/include -I/usr/local/opt/jpeg/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -fPIC -g -O2 -U_GLIBCXX_ASSERTIONS -DUSE_OBJET_BIDON -fno-strict-aliasing -DGIAC_GENERIC_CONSTANTS -DTIMEOUT -DHAVE_LIBMICROPYTHON -fpermissive -DQUICKJS -arch x86_64 -o hevea2mml hevea2mml.o lex_yy.o y_tab.o
+
+dylibbundler -od -b -x ~/giac-2.0.0/src/.libs/xcas -d ~/pkgdir/xcas.app/Contents/libs_arm64/ -p @executable_path/../libs_arm64/
+dylibbundler -od -b -x ~/x86_64/giac-2.0.0/src/.libs/xcas -d ~/pkgdir/xcas.app/Contents/libs_x86_64/ -p @executable_path/../libs_x86_64/
+
+dylibbundler -od -b -x ~/giac-2.0.0/src/.libs/icas -d ~/tmp/libs_arm64/ -p @executable_path/../libs_arm64/
+dylibbundler -od -b -x ~/x86_64/giac-2.0.0/src/.libs/icas -d ~/tmp/libs_x86_64/ -p @executable_path/../libs_x86_64/
+
+/Library/Developer/CommandLineTools/usr/bin/lipo -create ~/x86_64/giac-2.0.0/src/.libs/xcas ~/giac-2.0.0/src/.libs/xcas -output ~/pkgdir/xcas.app/Contents/MacOS/xcas
+/Library/Developer/CommandLineTools/usr/bin/lipo -create ~/x86_64/giac-2.0.0/src/.libs/icas ~/giac-2.0.0/src/.libs/icas -output ~/pkgdir/usr/bin/icas
+cd ~/giac-2.0.0/src
+g++ -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -fPIC -g -O2 -U_GLIBCXX_ASSERTIONS -DUSE_OBJET_BIDON -fno-strict-aliasing -DGIAC_GENERIC_CONSTANTS -DTIMEOUT -DHAVE_LIBMICROPYTHON -fpermissive -DQUICKJS -o hevea2mml hevea2mml.o lex_yy.o y_tab.o
+/Library/Developer/CommandLineTools/usr/bin/lipo -create ~/x86_64/giac-2.0.0/src/hevea2mml ~/giac-2.0.0/src/hevea2mml -output ~/pkgdir/usr/bin/hevea2mml
+
+cd
+pkgbuild --install-location /Applications --identifier xcas.pkg.app --root ~/pkgdir Downloads/Xcas.pkg
+echo "open Disk utility, File menu, New image, empty, name xcas_mac
+300Mo, then cp ~/Downloads/Xcas.pkg /Volumes/xcas_mac"
+# eject disk, gzip ~/Documents/xcas_mac.dmg 
+#make install

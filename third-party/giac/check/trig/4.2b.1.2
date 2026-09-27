@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.2b Cotangent\4.2.1.2 (d csc)^m (a+b cot)^n.txt"
+
+lst:=[
+[sin(x)^4/(I+cot(x)),x,4,-5/16*I*x+1/32/(I-cot(x))^2+(-1/8*I)/(I-cot(x))+(-1/24*I)/(I+cot(x))^3+(-3/32)/(I+cot(x))^2+3/16*I/(I+cot(x))],
+[csc(x)/(I+cot(x)),x,1,I*csc(x)/(I+cot(x))],
+[csc(x)^7/(I+cot(x)),x,4,3/8*I*arctanh(cos(x))+3/8*I*cot(x)*csc(x)+1/4*I*cot(x)*csc(x)^3-1/5*csc(x)^5],
+[sin(x)^2/(a+b*cot(x)),x,7,1/2*a*(a^2+3*b^2)*x/(a^2+b^2)^2-b^3*log(b*cos(x)+a*sin(x))/(a^2+b^2)^2-1/2*(b+a*cot(x))*sin(x)^2/(a^2+b^2)],
+[(a+b*cot(x))^n*csc(x)^2,x,2,-(a+b*cot(x))^(1+n)/(b*(1+n))]]:

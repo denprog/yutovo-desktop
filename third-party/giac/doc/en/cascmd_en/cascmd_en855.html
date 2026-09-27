@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Circles and arcs in the plane</title>
+</head>
+<body >
+<a href="cascmd_en854.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en856.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:2dcircles" class="subsection">26.10.1  Circles and arcs in the plane</h3>
+<p>See also Section <a href="cascmd_en856.html#ssec%3A2darcs">26.10.2</a>.</p><p>See Section <a href="cascmd_en954.html#sec%3A3dcircles">27.9.1</a> for circles in space.</p><p>The <span style="font-family:monospace">circle</span><a id="hevea_default1749"></a>
+command creates circles and arcs. You can specify the
+circle in different ways.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">circle</span> can take one argument:
+<span style="font-style:italic">eqn</span>, the equation of a circle with variables <span style="font-style:italic">x</span> and
+<span style="font-style:italic">y</span> (or an expression assumed to be set to 0).<p><span style="font-family:monospace">circle(</span><span style="font-style:italic">eqn</span><span style="font-family:monospace">)</span> returns and draws the circle. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">circle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2-2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en295.png">
+
+</div></li><li class="li-itemize"><span style="font-family:monospace">circle</span> can take two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">P</span>, a point.
+</li><li class="li-itemize">α, a complex number.
+</li></ul>
+<span style="font-family:monospace">circle(</span><span style="font-style:italic">P</span>,α<span style="font-family:monospace">)</span> returns and draws the circle centered
+at <span style="font-style:italic">P</span> and whose radius is |α|. For example:
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">circle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en296.png">
+
+</div></li><li class="li-itemize"><span style="font-family:monospace">circle</span> can take two arguments:
+<span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>, two points (where <span style="font-style:italic">B</span> must be the value of
+<span style="font-family:monospace">point</span> and not simply the affix).<p><span style="font-family:monospace">circle(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">B</span><span style="font-family:monospace">)</span> returns and draws the circle whose
+diameter is <span style="font-style:italic">AB</span>. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">circle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en297.png">
+
+</div></li><li class="li-itemize"><span style="font-family:monospace">circle</span> can take four mandatory arguments and two
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">C</span>, a point.
+</li><li class="li-itemize"><span style="font-style:italic">r</span>, a complex number.
+</li><li class="li-itemize"><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>, two real numbers.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">var</span><sub>1</sub>,<span style="font-style:italic">var</span><sub>2</sub>, variable names.
+</li></ul>
+<span style="font-family:monospace">circle(</span><span style="font-style:italic">C</span>,<span style="font-style:italic">r</span>,<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span><span style="font-family:monospace">)</span> returns and draws an arc of the
+circle with center <span style="font-style:italic">C</span> and radius |<span style="font-style:italic">r</span>|, with central angles <span style="font-style:italic">a</span>
+and <span style="font-style:italic">b</span>. The angles start on the axis defined by <span style="font-style:italic">C</span> and <span style="font-style:italic">C</span>+<span style="font-style:italic">r</span>.<p>If the arguments <span style="font-style:italic">var</span><sub>1</sub> and <span style="font-style:italic">var</span><sub>2</sub> are given,
+they will be assigned to the ends of the arc.</p><p>For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">circle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1,1,0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/4)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en298.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">circle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">),0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/4)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en299.png">
+
+</div></li></ul>
+<hr>
+<a href="cascmd_en854.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en856.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

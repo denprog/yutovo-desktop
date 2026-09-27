@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Drawing a line</title>
+</head>
+<body >
+<a href="cascmd_en614.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en616.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:doite" class="subsection">19.3.1  Drawing a line</h3>
+<p>The <span style="font-family:monospace">line</span><a id="hevea_default1180"></a>
+command draws and finds lines in ℝ<sup>2</sup> and ℝ<sup>3</sup>.</p><ul class="itemize"><li class="li-itemize">
+For a line in ℝ<sup>2</sup>, <span style="font-family:monospace">line</span> takes
+<span style="font-style:italic">eqn</span>, a linear equation in the variables <span style="font-family:monospace">x</span> and
+<span style="font-family:monospace">y</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">line(</span><span style="font-style:italic">eqn</span><span style="font-family:monospace">)</span> draws and returns the
+line given by the equation.
+</li><li class="li-itemize">For a line in ℝ<sup>3</sup>, <span style="font-family:monospace">line</span> takes two arguments:
+<span style="font-style:italic">eqn1</span> and <span style="font-style:italic">eqn2</span>, two linear equations in the
+variables <span style="font-family:monospace">x</span>, <span style="font-family:monospace">y</span> and <span style="font-family:monospace">z</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">line(</span><span style="font-style:italic">eqn1</span>,<span style="font-style:italic">eqn2</span><span style="font-family:monospace">)</span> draws and returns
+the line which is the intersection of the planes given by the
+equations.
+</li></ul><h4 id="sec1503" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1=0)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en083.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en084.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en085.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1=0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">=2)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en086.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en087.png">
+
+</div><h5 id="sec1504" class="paragraph">Remark.</h5>
+<p>
+<span style="font-family:monospace">line</span> defines an oriented line:
+</p><ul class="itemize"><li class="li-itemize">
+When a 2D line is given by an equation, it is rewritten
+as <span style="font-style:italic">lhs</span>−<span style="font-style:italic">rhs</span>=<span style="font-style:italic">ax</span>+<span style="font-style:italic">by</span>+<span style="font-style:italic">c</span>=0, this determines
+its normal vector [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] and the orientation is given by the vector
+[<span style="font-style:italic">b</span>,−<span style="font-style:italic">a</span>].
+</li><li class="li-itemize">When a 3D line is given by two plane equations, its
+direction is defined by the cross product of the normals to the planes.<p>When the plane equation is rewritten as
+<span style="font-style:italic">lhs</span>−<span style="font-style:italic">rhs</span>=<span style="font-style:italic">ax</span>+<span style="font-style:italic">by</span>+<span style="font-style:italic">cz</span>+<span style="font-style:italic">d</span>=0, then
+the normal is [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>].
+For example, <span style="font-family:monospace">line(x=y,y=z)</span> draws the line <span style="font-style:italic">x</span>−<span style="font-style:italic">y</span>=0,<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>=0 and its
+direction is:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    [1,−1,0]× [0,1,−1]=[1,1,1]
+</td></tr>
+</table></li></ul>
+<hr>
+<a href="cascmd_en614.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en616.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

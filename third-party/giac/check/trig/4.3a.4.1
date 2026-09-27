@@ -1,0 +1,17 @@
+# Maple integration test file: "4 Trig functions\4.3a Secant\4.3.4.1 (a+b sec)^m (A+B sec+C sec^2).txt"
+
+lst:=[
+[sec(c+d*x)^6*(A+C*sec(c+d*x)^2),x,3,1/7*(7*A+6*C)*tan(c+d*x)/d+1/7*C*sec(c+d*x)^6*tan(c+d*x)/d+2/21*(7*A+6*C)*tan(c+d*x)^3/d+1/35*(7*A+6*C)*tan(c+d*x)^5/d],
+[sec(c+d*x)^3*(A+C*sec(c+d*x)^2),x,3,1/8*(4*A+3*C)*arctanh(sin(c+d*x))/d+1/8*(4*A+3*C)*sec(c+d*x)*tan(c+d*x)/d+1/4*C*sec(c+d*x)^3*tan(c+d*x)/d],
+[sec(c+d*x)^m*(-C*m/(1+m)+C*sec(c+d*x)^2),x,1,C*sec(c+d*x)^(1+m)*sin(c+d*x)/(d*(1+m))],
+[(b*sec(c+d*x))^(5/2)*(A+C*sec(c+d*x)^2),x,4,2/21*b*(7*A+5*C)*(b*sec(c+d*x))^(3/2)*sin(c+d*x)/d+2/21*b^2*(7*A+5*C)*sqrt(cos(1/2*(c+d*x))^2)/cos(1/2*(c+d*x))*EllipticF(sin(1/2*(c+d*x)),sqrt(2))*sqrt(cos(c+d*x))*sqrt(b*sec(c+d*x))/d+2/7*C*(b*sec(c+d*x))^(5/2)*tan(c+d*x)/d],
+[(A+C*sec(c+d*x)^2)/(b*sec(c+d*x))^(9/2),x,4,2/45*(7*A+9*C)*sin(c+d*x)/(b^3*d*(b*sec(c+d*x))^(3/2))+2/15*(7*A+9*C)*sqrt(cos(1/2*(c+d*x))^2)/cos(1/2*(c+d*x))*EllipticE(sin(1/2*(c+d*x)),sqrt(2))/(b^4*d*sqrt(cos(c+d*x))*sqrt(b*sec(c+d*x)))+2/9*A*tan(c+d*x)/(d*(b*sec(c+d*x))^(9/2))],
+[sec(e+f*x)^m*(m-(1+m)*sec(e+f*x)^2),x,1,-sec(e+f*x)^(1+m)*sin(e+f*x)/f],
+[sec(e+f*x)^3*(3-4*sec(e+f*x)^2),x,1,-sec(e+f*x)^3*tan(e+f*x)/f],
+[sec(e+f*x)^2*(2-3*sec(e+f*x)^2),x,1,-sec(e+f*x)^2*tan(e+f*x)/f],
+[sec(c+d*x)^2*(B*sec(c+d*x)+C*sec(c+d*x)^2),x,6,1/2*B*arctanh(sin(c+d*x))/d+C*tan(c+d*x)/d+1/2*B*sec(c+d*x)*tan(c+d*x)/d+1/3*C*tan(c+d*x)^3/d],
+[cos(c+d*x)^6*(B*sec(c+d*x)+C*sec(c+d*x)^2),x,7,3/8*C*x+B*sin(c+d*x)/d+3/8*C*cos(c+d*x)*sin(c+d*x)/d+1/4*C*cos(c+d*x)^3*sin(c+d*x)/d-2/3*B*sin(c+d*x)^3/d+1/5*B*sin(c+d*x)^5/d],
+[sec(c+d*x)^3*(A+B*sec(c+d*x)+C*sec(c+d*x)^2),x,6,1/8*(4*A+3*C)*arctanh(sin(c+d*x))/d+B*tan(c+d*x)/d+1/8*(4*A+3*C)*sec(c+d*x)*tan(c+d*x)/d+1/4*C*sec(c+d*x)^3*tan(c+d*x)/d+1/3*B*tan(c+d*x)^3/d],
+[sec(c+d*x)^2*(A+B*sec(c+d*x)+C*sec(c+d*x)^2),x,6,1/2*B*arctanh(sin(c+d*x))/d+1/3*(3*A+2*C)*tan(c+d*x)/d+1/2*B*sec(c+d*x)*tan(c+d*x)/d+1/3*C*sec(c+d*x)^2*tan(c+d*x)/d],
+[cos(c+d*x)^2*(A+B*sec(c+d*x)+C*sec(c+d*x)^2),x,4,1/2*(A+2*C)*x+B*sin(c+d*x)/d+1/2*A*cos(c+d*x)*sin(c+d*x)/d],
+[(A+B*sec(c+d*x)+C*sec(c+d*x)^2)/(b*sec(c+d*x))^(7/2),x,8,2/5*B*sin(c+d*x)/(b^2*d*(b*sec(c+d*x))^(3/2))+2/21*(5*A+7*C)*sin(c+d*x)/(b^3*d*sqrt(b*sec(c+d*x)))+6/5*B*sqrt(cos(1/2*(c+d*x))^2)/cos(1/2*(c+d*x))*EllipticE(sin(1/2*(c+d*x)),sqrt(2))/(b^3*d*sqrt(cos(c+d*x))*sqrt(b*sec(c+d*x)))+2/21*(5*A+7*C)*sqrt(cos(1/2*(c+d*x))^2)/cos(1/2*(c+d*x))*EllipticF(sin(1/2*(c+d*x)),sqrt(2))*sqrt(cos(c+d*x))*sqrt(b*sec(c+d*x))/(b^4*d)+2/7*A*tan(c+d*x)/(d*(b*sec(c+d*x))^(7/2))]]:

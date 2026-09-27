@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Configuring markup export</title>
+</head>
+<body >
+<a href="cascmd_en044.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en046.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec63" class="subsection">2.7.8  Configuring markup export</h3>
+<p>Export to L<sup>A</sup>T<sub>E</sub>X, <span style="font-variant:small-caps">MathML</span> and <span style="font-variant:small-caps">TeXmacs</span> Scheme has
+some configuration options that can be set by using the <span style="font-family:monospace">markup_cfg</span>
+command. This applies to <span style="font-family:monospace">latex</span> and <span style="font-family:monospace">export_mathml</span> commands
+as well as to <span style="font-variant:small-caps">TeXmacs</span> sessions (note that <span style="font-family:monospace">mathml</span> command does
+not support this configuration).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">markup_cfg</span> takes a sequence of one or more arguments,
+each of which being one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">simplify=[</span><span style="font-style:italic">simp</span><span style="font-family:monospace">]</span>, where <span style="font-style:italic">simp</span> is
+a sequence containing one or more of the following: <span style="font-family:monospace">product</span>,
+<span style="font-family:monospace">apply</span>, or <span style="font-family:monospace">pow</span>. If <span style="font-style:italic">simp</span> has only one element,
+square brackets may be omitted.
+</li><li class="li-itemize"><span style="font-family:monospace">mathml=[</span><span style="font-style:italic">comp</span><span style="font-family:monospace">]</span>, where <span style="font-family:monospace">comp</span> is
+a sequence of one or more of the following: <span style="font-family:monospace">display</span> or
+<span style="font-family:monospace">content</span>. If <span style="font-style:italic">comp</span> has only one element,
+square brackets may be omitted.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">markup_cfg</span> returns 1 if the configuration is successful,
+else it returns 0.
+</li><li class="li-itemize">The <span style="font-family:monospace">simplify</span> argument refers to enabling/disabling automatic
+simplification of mathematical notation. Precisely:
+<ul class="itemize"><li class="li-itemize">
+Multiplication is made implicit where possible,
+hence the export commands favor e.g. 2<span style="font-style:italic">x</span> instead of 2· <span style="font-style:italic">x</span>.
+If <span style="font-style:italic">simp</span> contains <span style="font-family:monospace">product</span>, then
+implicit multiplication is allowed, else it is not allowed (in that case
+the · symbol is always inserted).
+</li><li class="li-itemize">Parentheses are omitted from function application when possible,
+i.e. when the argument is sufficiently simple. Therefore the
+export commands favor e.g. sin<span style="font-style:italic">x</span> instead of sin(<span style="font-style:italic">x</span>).
+If <span style="font-style:italic">simp</span> contains <span style="font-family:monospace">apply</span>, then parentheses may be
+omitted when appropriate, otherwise they are always present.
+</li><li class="li-itemize">Elementary function powers are simplified according to the
+traditional way of writing where the exponent moves between the function
+name and its argument; export commands therefore favor e.g. sin<sup>2</sup> <span style="font-style:italic">x</span>
+instead of sin(<span style="font-style:italic">x</span>)<sup>2</sup>.
+If <span style="font-style:italic">simp</span> contains <span style="font-family:monospace">pow</span>, then exponents may be moved,
+else this feature is disabled (by default it is eanbled).
+</li></ul>
+</li><li class="li-itemize">The <span style="font-family:monospace">mathml</span> argument specifies which <span style="font-variant:small-caps">MathML</span>
+components should be included in the output by default.
+If the sequence <span style="font-style:italic">comp</span>
+contains <span style="font-family:monospace">display</span>, the presentation markup block will be
+present, and if <span style="font-style:italic">comp</span> contains <span style="font-family:monospace">content</span>, then the
+content block will be present in the output. If one of these is not
+specified, the corresponding block will not appear in the <span style="font-variant:small-caps">MathML</span>
+output. Note that you have to specify at least one component (by
+default, both are enabled).
+</li></ul><h4 id="sec64" class="subsubsection">Examples</h4>
+<p>
+With default configuration:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">latex</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">x </span><span style="color:#0000CC">\</span><span style="color:#0000CC">sin ^{2}x</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+which is <span style="font-style:italic">x</span>sin<sup>2</sup><span style="font-style:italic">x</span> when typeset.</p><p>To enable only implicit multiplication, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">markup_cfg</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">simplify</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">product</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Then:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">latex</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">x </span><span style="color:#0000CC">\</span><span style="color:#0000CC">sin </span><span style="color:#0000CC">\</span><span style="color:#0000CC">left(x</span><span style="color:#0000CC">\</span><span style="color:#0000CC">right)^{2}</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+which is <span style="font-style:italic">x</span> sin(<span style="font-style:italic">x</span>)<sup>2</sup> when typeset.</p><p>The command
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">markup_cfg</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">simplify</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">product</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">mathml</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>enables only implicit multiplication and function application; additionally, it prevents
+content <span style="font-variant:small-caps">MathML</span> from appearing in the output of <span style="font-family:monospace">export_mathml</span>.</p>
+<hr>
+<a href="cascmd_en044.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en046.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

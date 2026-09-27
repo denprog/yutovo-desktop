@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Writing output to a file</title>
+</head>
+<body >
+<a href="cascmd_en073.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en075.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec114" class="subsection">4.1.2  Writing output to a file</h3>
+<p><span style="font-variant:small-caps">Xcas</span> has a basic file I/O support in form of three commands:
+<span style="font-family:monospace">fopen</span>, <span style="font-family:monospace">fprint</span> and <span style="font-family:monospace">fclose</span>. Note that
+reading from files is not supported.</p><p>The <span style="font-family:monospace">fopen</span><a id="hevea_default110"></a>
+command creates and opens a file to write into.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">fopen</span> takes
+<span style="font-style:italic">filename</span>, a string.
+</li><li class="li-itemize"><span style="font-family:monospace">fopen(</span><span style="font-style:italic">filename</span><span style="font-family:monospace">)</span> creates a file
+named <span style="font-style:italic">filename</span> (and erases it if it already exists).
+</li></ul><p>
+To use this, you need to associate it with a variable
+<span style="font-style:italic">var</span><span style="font-family:monospace">:=fopen(</span><span style="font-style:italic">filename</span><span style="font-family:monospace">)</span>
+which use to refer to the file when printing to it.</p><p>The <span style="font-family:monospace">fprint</span><a id="hevea_default111"></a>
+command writes to a file.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">fprint</span> takes two mandatory arguments and one optional
+argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">var</span>, a variable name associated with a file through
+<span style="font-family:monospace">fopen</span>.
+</li><li class="li-itemize">Optionally,
+<span style="font-family:monospace">Unquoted</span><a id="hevea_default112"></a>, the symbol.
+</li><li class="li-itemize"><span style="font-style:italic">info</span>, a list of what you want to write to the file.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">fprint(</span><span style="font-style:italic">var</span> ⟨,<span style="font-family:monospace">Unquote</span> ⟩,<span style="font-style:italic">info</span><span style="font-family:monospace">)</span> writes
+<span style="font-style:italic">info</span> into the file given by <span style="font-style:italic">var</span>. 
+By default, strings in <span style="font-style:italic">info</span> are written with their
+quotation marks, with the option <span style="font-family:monospace">Unquoted</span>, <span style="font-family:monospace">fprint</span>
+will print them with the quotation marks.
+</li></ul><p>The <span style="font-family:monospace">fclose</span><a id="hevea_default113"></a>
+command closes a previously opened file.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">fclose</span> takes
+<span style="font-style:italic">var</span>, a variable assigned to a file with <span style="font-family:monospace">fopen</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">fclose(</span><span style="font-style:italic">var</span><span style="font-family:monospace">)</span> closes the file given
+by <span style="font-style:italic">var</span> to further writing.
+</li></ul><h4 id="sec115" class="subsubsection">Example</h4>
+<p>
+To write contents to a file, you first need to open the file and
+associate it with a variable.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">fopen</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"bar"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>This creates a file named “bar” (and so erase it if it already
+exists). To write to the file:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=9:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">fprint</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"x+1 is "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1)</span></span></td></tr>
+</table><p>This puts
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> <span style="color:#006600">"x+1 is "</span>10</td></tr>
+</table><p>in the file. Note that the quotation marks are not inserted if you use the
+<span style="font-family:monospace">Unquoted</span> argument:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=9:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">fprint</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">Unquoted</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"x+1 is "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1)</span></span></td></tr>
+</table><p>This puts
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> x+1 is 10</td></tr>
+</table><p>in the file. Finally, after you have finished writing what you want
+into the file, you close the file with the <span style="font-family:monospace">fclose</span> command:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fclose</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>This returns 1 on success and <span style="font-family:monospace">0</span> on failure.</p>
+<hr>
+<a href="cascmd_en073.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en075.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Simplex algorithm</title>
+</head>
+<body >
+<a href="cascmd_en585.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en588.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1375" class="subsection">16.1.1  Simplex algorithm</h3>
+<p><a id="hevea_default1004"></a></p>
+<h5 id="sec1376" class="paragraph">The simple case.</h5>
+<p>
+Linear programming problem in its simplest form
+is to find the maximum of an objective function
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">z</span>(<span style="font-style:italic">x</span><sub>1</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">c</span><sub>1</sub><span style="font-style:italic">x</span><sub>1</sub>+ ⋯+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>
+</td></tr>
+</table><p>
+subject to constraints (where <span style="font-style:italic">b</span><sub><span style="font-style:italic">i</span></sub>≥ 0, <span style="font-style:italic">i</span>=1,…,<span style="font-style:italic">m</span>):
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">  <a id="eq:simplexconstraints"> </a>
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >    <span style="font-style:italic">a</span><sub>11</sub><span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">a</span><sub>12</sub><span style="font-style:italic">x</span><sub>2</sub>+⋯+<span style="font-style:italic">a</span><sub>1<span style="font-style:italic">n</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub></td><td style="text-align:left;white-space:nowrap" >≤ <span style="font-style:italic">b</span><sub>1</sub></td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >⋮</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >    <span style="font-style:italic">a</span><sub><span style="font-style:italic">m</span>1</sub><span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">a</span><sub><span style="font-style:italic">m</span>2</sub><span style="font-style:italic">x</span><sub>2</sub>+⋯+<span style="font-style:italic">a</span><sub><span style="font-style:italic">mn</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub></td><td style="text-align:left;white-space:nowrap" >≤ <span style="font-style:italic">b</span><sub><span style="font-style:italic">m</span></sub>
+</td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >    (1)</td></tr>
+</table></td></tr>
+</table><p>
+and
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>≥ 0   <span style="font-style:italic">i</span>=1,…,<span style="font-style:italic">n</span>.
+</td></tr>
+</table><p>
+This can be abbreviated as
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  max(<span style="font-style:italic">c</span> <span style="font-style:italic">x</span>),    <span style="font-style:italic">Ax</span> ≤ <span style="font-style:italic">b</span>, <span style="font-style:italic">x</span> ≥ 0, <span style="font-style:italic">b</span>≥ 0,
+</td></tr>
+</table><p>
+where the vector inequalities mean term-by-term inequalities.
+The constraints determine a simplex in ℝ<sup><span style="font-style:italic">n</span></sup> and the
+standard approach to solving this problem is called the <em>simplex method</em>.</p>
+<h5 id="sec1377" class="paragraph">The simplex method.</h5>
+<p>
+<span style="font-variant:small-caps">Xcas</span> can apply the simplex method for you, but
+it can still help to get a rough idea of how it works.
+(You can search the Internet for “simplex method” to get more details.)</p><p>The constraint inequalities (<a href="#eq%3Asimplexconstraints">1</a>) can be
+turned into equalities by adding an auxiliary (surplus) variable for
+each inequality. The constraints are equivalent to:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">a</span><sub>11</sub><span style="font-style:italic">x</span><sub>1</sub>+ <span style="font-style:italic">a</span><sub>12</sub><span style="font-style:italic">x</span><sub>2</sub>+⋯+<span style="font-style:italic">a</span><sub>1<span style="font-style:italic">n</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">s</span><sub>1</sub>
++0+⋯+0</td><td style="text-align:left;white-space:nowrap" >=<span style="font-style:italic">b</span><sub>1</sub></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >⋮</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">m</span>1</sub><span style="font-style:italic">x</span><sub>1</sub>+ <span style="font-style:italic">a</span><sub><span style="font-style:italic">m</span>2</sub><span style="font-style:italic">x</span><sub>2</sub>+⋯+<span style="font-style:italic">a</span><sub><span style="font-style:italic">mn</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>+0
++⋯ +0+<span style="font-style:italic">s</span><sub><span style="font-style:italic">m</span></sub></td><td style="text-align:left;white-space:nowrap" >=<span style="font-style:italic">b</span><sub><span style="font-style:italic">m</span></sub>
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+for some <span style="font-style:italic">s</span><sub>1</sub>,…,<span style="font-style:italic">s</span><sub><span style="font-style:italic">m</span></sub>≥ 0. The straightforward solution to
+this system of equations, namely <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>=0 for <span style="font-style:italic">i</span>=1,…,<span style="font-style:italic">n</span> and
+<span style="font-style:italic">s</span><sub><span style="font-style:italic">j</span></sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">j</span></sub> for <span style="font-style:italic">j</span>=1,…,<span style="font-style:italic">m</span>, will be the initial solution. The
+objective function 
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">z</span></td><td style="text-align:left;white-space:nowrap" >=<span style="font-style:italic">c</span><sub>1</sub><span style="font-style:italic">x</span><sub>1</sub>+⋯+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=<span style="font-style:italic">c</span><sub>1</sub><span style="font-style:italic">x</span><sub>1</sub>+⋯+<span style="font-style:italic">c</span><sub><span style="font-style:italic">n</span></sub><span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>+0<span style="font-style:italic">s</span><sub>1</sub>+⋯+0<span style="font-style:italic">s</span><sub><span style="font-style:italic">m</span></sub> 
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+will be zero at this solution. If one of the coefficients
+of the objective function is positive, you can find a larger value of
+<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> that will also be a solution of the equations (by making one
+of the <span style="font-style:italic">s</span><sub><span style="font-style:italic">j</span></sub> smaller) and will give a larger value of <span style="font-style:italic">z</span>.</p><p>The mechanics of this process involves writing the given information
+in a matrix. The matrix of the system of equalities including the
+surplus variables is (<span style="font-style:italic">A</span> <span style="font-style:italic">I</span><sub><span style="font-style:italic">m</span></sub><span style="font-style:italic">b</span>); the simplex method begins with this
+matrix above a row beginning with −<span style="font-style:italic">c</span> followed by
+zeros.
+The last element of the last row is the value of the objective
+function at the current solution. The resulting matrix (the
+<em>simplex tableau</em>) looks like
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  </td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎡<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >    <span style="font-style:italic">A</span></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">I</span><sub><span style="font-style:italic">m</span></sub></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">b</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    −<span style="font-style:italic">c</span></td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table></td><td class="dcell">⎤<br>
+⎥<br>
+⎦</td></tr>
+</table></td></tr>
+</table><p>The simplex method involves doing a specific series of row operations
+that effectively determine a new solution to the constraints that
+increase the values of the current values of the variables <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> and
+so increase the value of the objective function. The method ends when
+there are no negative values left in the bottom row.</p><p>The <span style="font-family:monospace">simplex_reduce</span><a id="hevea_default1005"></a>
+command performs the simplex method on a
+linear programming problem of the form, for <span style="font-style:italic">b</span>≥ 0, <span style="font-style:italic">Ax</span> ≤ <span style="font-style:italic">b</span> with
+<span style="font-style:italic">x</span>≥ 0.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">simplex_reduce</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, <span style="font-style:italic">b</span> and <span style="font-style:italic">c</span> from the problem.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">simplex_reduce(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span><span style="font-family:monospace">)</span> returns a sequence
+consisting of:
+<ul class="itemize"><li class="li-itemize">
+The maximum value of the objective function.
+</li><li class="li-itemize">The solution of <span style="font-style:italic">x</span> (augmented since the algorithm works by
+adding auxiliary variables).
+</li><li class="li-itemize">The reduced matrix.
+</li></ul>
+</li></ul><p>
+Alternatively, you could combine the arguments <span style="font-style:italic">A</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> into the matrix
+that begins the algorithm:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  </td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎡<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >    <span style="font-style:italic">A</span></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">I</span><sub><span style="font-style:italic">m</span></sub></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">b</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    −<span style="font-style:italic">c</span></td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table></td><td class="dcell">⎤<br>
+⎥<br>
+⎦</td></tr>
+</table></td></tr>
+</table><p>
+which you can construct with the following command lines:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">augment</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">idn</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">));</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">border</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">append</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0</span></span><span style="font-weight:bold"><span style="color:#BF0000">$</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1));</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">augment</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">]);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">simplex_reduce</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>
+The above matrix is obtained as <span style="font-style:italic">D</span> and passed
+to <span style="font-family:monospace">simplex_reduce</span>.</p><h4 id="sec1378" class="subsubsection">Example</h4>
+<p>
+Maximize <span style="font-style:italic">X</span>+2<span style="font-style:italic">Y</span> subject to
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  −3<span style="font-style:italic">X</span> +2<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≤ 3,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">X</span> +<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≤ 4,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≥ 0.
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">simplex_reduce</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[-3,2],[1,1]],[3,4],[1,2])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+7,</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1,3,0,0</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">8</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">7</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+This means that the maximum of <span style="font-style:italic">X</span>+2<span style="font-style:italic">Y</span> under these conditions
+is 7, it is obtained for <span style="font-style:italic">X</span>=1,<span style="font-style:italic">Y</span>=3
+because [1,3,0,0] is the augmented solution and the reduced matrix is:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  </td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >1</td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">3</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >3</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >1</td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">2</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >1</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">8</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >7</td></tr>
+</table></td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table></td></tr>
+</table><p>
+Notice that the (non-zero) values of the solution have columns of the
+<span style="font-style:italic">m</span>× <span style="font-style:italic">m</span> identity matrix above them.</p>
+<h5 id="sec1379" class="paragraph">Reducing a more complicated case to the simple case.</h5>
+<p>
+With the former call of <span style="font-family:monospace">simplex_reduce</span>, you have to:
+</p><ul class="itemize"><li class="li-itemize">
+rewrite constraints to the form <span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span></sub> ≥ 0,
+</li><li class="li-itemize">remove variables without constraints,
+</li><li class="li-itemize">add variables such that all the constraints have positive components.
+</li></ul><p>
+For example, minimize 2<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>+4 subject to
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" > ≤ 1, </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">y</span></td><td style="text-align:left;white-space:nowrap" > ≥ 2, </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">x</span>+3<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span></td><td style="text-align:left;white-space:nowrap" >=2, </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+2<span style="font-style:italic">x</span>−<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span></td><td style="text-align:left;white-space:nowrap" > ≤ 8,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+−<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span></td><td style="text-align:left;white-space:nowrap" > ≤ 5.
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Let <span style="font-style:italic">x</span>=1−<span style="font-style:italic">X</span>, <span style="font-style:italic">y</span>=<span style="font-style:italic">Y</span>+2, <span style="font-style:italic">z</span>=5−<span style="font-style:italic">X</span>+3<span style="font-style:italic">Y</span>.
+The problem is equivalent to finding the minimum of
+−2<span style="font-style:italic">X</span>+<span style="font-style:italic">Y</span>−(5−<span style="font-style:italic">X</span>+3<span style="font-style:italic">Y</span>)+8 under conditions
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  2(1−<span style="font-style:italic">X</span>)−(<span style="font-style:italic">Y</span>+2)+ 5−<span style="font-style:italic">X</span>+3<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≤ 8,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+−(1−<span style="font-style:italic">X</span>) +(<span style="font-style:italic">Y</span>+2)</td><td style="text-align:left;white-space:nowrap" > ≤ 5,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≥ 0.
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+or to find the minimum of (−<span style="font-style:italic">X</span>−2<span style="font-style:italic">Y</span>+3) subject to
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  −3<span style="font-style:italic">X</span>+2<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≤ 3,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">X</span> +<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≤ 4,</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span></td><td style="text-align:left;white-space:nowrap" > ≥ 0.
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+i.e. to find the maximum of −(−<span style="font-style:italic">X</span>−2<span style="font-style:italic">Y</span>+3)=<span style="font-style:italic">X</span>+2<span style="font-style:italic">Y</span>−3
+under the same conditions, hence it is the same problem as
+to find the maximum of <span style="font-style:italic">X</span>+2<span style="font-style:italic">Y</span> seen before. You found that the previous
+problem had a maximum of 7, hence the result here is 7−3=4.</p>
+<h5 id="sec1380" class="paragraph">The general case.</h5>
+<p>
+A linear programming problem may not in
+general be directly reduced like above to the simple case. The reason
+is that a starting solution must be found before applying the simplex
+algorithm.</p><p>The standard form of a linear programming problem is similar to the
+simplest case above, but with <span style="font-style:italic">Ax</span>=<span style="font-style:italic">b</span> (instead of <span style="font-style:italic">Ax</span>≤ <span style="font-style:italic">b</span>) for <span style="font-style:italic">b</span>
+≥ 0 under the conditions <span style="font-style:italic">x</span>≥ 0. In this case, there is no
+straightforward solution. So the first problem is to find an <span style="font-style:italic">x</span> with
+<span style="font-style:italic">x</span>≥ 0 and <span style="font-style:italic">Ax</span>=<span style="font-style:italic">b</span>.</p>
+<h5 id="sec1381" class="paragraph">Finding an initial solution.</h5>
+<p>
+Let <span style="font-style:italic">m</span> be the number of rows of <span style="font-style:italic">A</span>. Add artificial variables
+<span style="font-style:italic">s</span><sub>1</sub>,…,<span style="font-style:italic">s</span><sub><span style="font-style:italic">m</span></sub> and maximize −∑<span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub> under the conditions <span style="font-style:italic">Ax</span>=<span style="font-style:italic">b</span>,
+<span style="font-style:italic">x</span> ≥ 0, <span style="font-style:italic">s</span> ≥ 0 starting with initial value 0 for <span style="font-style:italic">x</span> variables
+and <span style="font-style:italic">y</span>=<span style="font-style:italic">b</span>. If a solution exists and is 0, then the <span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub> must all
+be 0 and so <span style="font-style:italic">x</span> will be solution of <span style="font-style:italic">Ax</span>=<span style="font-style:italic">b</span>, <span style="font-style:italic">x</span>≥ 0.</p><p>You can solve this with <span style="font-family:monospace">simplex_reduce</span> by calling
+it with a single matrix argument:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  </td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎡<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >    <span style="font-style:italic">A</span></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">I</span><sub><span style="font-style:italic">m</span></sub></td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">b</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    0</td><td style="text-align:center;white-space:nowrap" >1</td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table></td><td class="dcell">⎤<br>
+⎥<br>
+⎦</td></tr>
+</table></td></tr>
+</table><p>For example, to find the minimum of 2<span style="font-style:italic">x</span>+3<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>+<span style="font-style:italic">t</span> with
+<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>,<span style="font-style:italic">t</span>≥ 0 and:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  −<span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >−    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">y</span></td><td style="text-align:left;white-space:nowrap" >    </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >+    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">t</span></td><td style="text-align:left;white-space:nowrap" >=    </td><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">y</span></td><td style="text-align:left;white-space:nowrap" >−    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">z</span></td><td style="text-align:left;white-space:nowrap" >+    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">t</span></td><td style="text-align:left;white-space:nowrap" >=    </td><td style="text-align:right;white-space:nowrap" >3
+</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+you would start by finding a solution of
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  −<span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >−    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">y</span></td><td style="text-align:left;white-space:nowrap" >    </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >+    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">t</span></td><td style="text-align:left;white-space:nowrap" >+    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">s</span><sub>1</sub></td><td style="text-align:left;white-space:nowrap" >    </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=    </td><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">y</span></td><td style="text-align:left;white-space:nowrap" >−    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">z</span></td><td style="text-align:left;white-space:nowrap" >+    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">t</span></td><td style="text-align:left;white-space:nowrap" >    </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >+    </td><td style="text-align:right;white-space:nowrap" > <span style="font-style:italic">s</span><sub>2</sub></td><td style="text-align:left;white-space:nowrap" >=    </td><td style="text-align:right;white-space:nowrap" >3
+</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+as mentioned above.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">simplex_reduce</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[-1,-1,0,1,1,0,1],[0,1,-1,1,0,1,3],[0,0,0,0,1,1,0]])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+0,</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,1,0,2,0,0</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Since the solution (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>,<span style="font-style:italic">t</span>,<span style="font-style:italic">s</span><sub>1</sub>,<span style="font-style:italic">s</span><sub>2</sub>)=(0,1,0,2,0,0) has
+<span style="font-style:italic">s</span><sub>1</sub>=<span style="font-style:italic">s</span><sub>2</sub>=0, a non-negative solution of the equalities in <span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>
+and <span style="font-style:italic">t</span> is (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">z</span>,<span style="font-style:italic">t</span>)=(0,1,0,2).</p>
+<h5 id="sec1382" class="paragraph">Finding a solution of the LP problem.</h5>
+<p>
+Now you can make a second call to <span style="font-family:monospace">simplex_reduce</span>
+with the reduced matrix (less the columns
+corresponding to the variables <span style="font-style:italic">s</span><sub>1</sub> and <span style="font-style:italic">s</span><sub>2</sub>) and the usual <span style="font-style:italic">c</span>.
+In this case, finding the requested minimum means finding the maximum
+of −2<span style="font-style:italic">x</span>−3<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span>−<span style="font-style:italic">t</span>, so <span style="font-style:italic">c</span>=(−2,−3,1,−1).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">simplex_reduce</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[-1/2,0,-1/2,1,2],[1/2,1,-1/2,0,1],[2,3,-1,1,0]])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+−5,</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,1,0,2</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">−5</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+This maximum is −5, so the requested minimum is −(−5)=5
+at (0,1,0,2) (<span style="font-style:italic">x</span>=0, <span style="font-style:italic">y</span>=1, <span style="font-style:italic">z</span>=0 and <span style="font-style:italic">t</span>=2).</p>
+<hr>
+<a href="cascmd_en585.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en588.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

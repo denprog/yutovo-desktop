@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Poisson distribution</title>
+</head>
+<body >
+<a href="cascmd_en674.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en676.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:poisson" class="subsection">20.4.6  Poisson distribution</h3>
+<h5 id="sec1687" class="paragraph">The probability density function for the Poisson distribution.</h5>
+<p>
+Recall that for the Poisson distribution with parameter λ, the
+probability of a non-negative integer <span style="font-style:italic">k</span> is <span style="font-style:italic">e</span><sup>−λ</sup>λ<sup><span style="font-style:italic">k</span></sup>/<span style="font-style:italic">k</span>!. This
+distribution has mean λ and variance λ. </p><p>The <span style="font-family:monospace">poisson</span><a id="hevea_default1344"></a>
+command gives the density function for the Poisson distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">poisson</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+λ, a real number.
+</li><li class="li-itemize"><span style="font-style:italic">k</span>, a non-negative integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">poisson(</span>λ,<span style="font-style:italic">k</span><span style="font-family:monospace">)</span> returns the value of the Poisson
+probability density function with parameter λ at <span style="font-style:italic">x</span>, namely
+<span style="font-style:italic">e</span><sup>−λ</sup>λ<sup><span style="font-style:italic">k</span></sup>/<span style="font-style:italic">k</span>!.
+</li></ul><h4 id="sec1688" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">poisson</span></span><span style="font-weight:bold"><span style="color:#BF0000">(10.0,9)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.125110035721
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1689" class="paragraph">The cumulative distribution function for the Poisson distribution.</h5>
+<p>
+The <span style="font-family:monospace">poisson_cdf</span><a id="hevea_default1345"></a>
+command computes the cumulative distribution function for the Poisson distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">poisson_cdf</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+µ, a real number.
+</li><li class="li-itemize"><span style="font-style:italic">x</span>, a real number.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">y</span>, a real number.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">poisson_cdf(</span>µ,<span style="font-style:italic">x</span><span style="font-family:monospace">)</span> returns
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    Prob(<span style="font-style:italic">X</span> ≤ <span style="font-style:italic">x</span>)=<span style="font-family:monospace">poisson</span>(µ,0)+⋯+
+<span style="font-family:monospace">poisson</span>(µ,⌊ <span style="font-style:italic">x</span>⌋))
+</td></tr>
+</table>
+for the Poisson distribution with parameter µ.
+</li><li class="li-itemize"><span style="font-family:monospace">poisson_cdf(</span>µ, <span style="font-style:italic">x</span>, <span style="font-style:italic">y</span><span style="font-family:monospace">)</span> returns
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    Prob(<span style="font-style:italic">x</span> ≤ <span style="font-style:italic">X</span> ≤ <span style="font-style:italic">y</span>)=<span style="font-family:monospace">poisson</span>(µ,⌈ <span style="font-style:italic">x</span>⌉)+⋯+
+<span style="font-family:monospace">poisson</span>(µ,⌊ <span style="font-style:italic">y</span>⌋)).
+</td></tr>
+</table>
+</li></ul><h4 id="sec1690" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">poisson_cdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(10.0,3)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.0103360506759
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">poisson_cdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(10.0,3,10)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.580270354477
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1691" class="paragraph">The inverse distribution function for the Poisson distribution.</h5>
+<p>
+The <span style="font-family:monospace">poisson_icdf</span><a id="hevea_default1346"></a>
+command finds the inverse distribution function for the Poisson distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">poisson_icdf</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+µ, a real number.
+</li><li class="li-itemize"><span style="font-style:italic">h</span>, a real number between 0 and 1.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">poisson_icdf(</span>µ,<span style="font-style:italic">h</span><span style="font-family:monospace">)</span> returns the value of the
+inverse distribution for the Poisson distribution with parameter
+µ; namely, the value of <span style="font-style:italic">x</span> for which Prob(<span style="font-style:italic">X</span> ≤ <span style="font-style:italic">x</span>)=<span style="font-style:italic">h</span>.
+</li></ul><h4 id="sec1692" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">poisson_icdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(10.0,0.975)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+17
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en674.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en676.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Interactive plotting of solutions of a differential equation</title>
+</head>
+<body >
+<a href="cascmd_en635.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en637.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:iplotode" class="subsection">19.9.2  Interactive plotting of solutions of a differential equation</h3>
+<p>The <span style="font-family:monospace">interactive_plotode</span><a id="hevea_default1236"></a>
+or <span style="font-family:monospace">interactive_odeplot</span><a id="hevea_default1237"></a>
+command draws interactive tangent
+fields of differential equations.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">interactive_plotode</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span> an expression depending on two or three
+variables, a time variable and one or two dependent variables.
+</li><li class="li-itemize"><span style="font-style:italic">vars</span>, a list of the time variable and the dependent
+variable.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">interactive_plotode(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">vars</span><span style="font-family:monospace">)</span>
+draws the tangent field of the differential equation
+<span style="font-style:italic">y</span>′=<span style="font-style:italic">expr</span> (where <span style="font-style:italic">y</span> is the dependent variable) in a new
+window. In this window, one can click on a point to get the plot of
+the solution of <span style="font-style:italic">y</span>′=<span style="font-style:italic">expr</span> passing through this point.<p>You can further click to display several solutions. To stop, press
+the <span style="font-family:sans-serif">Esc</span> key.
+</p></li></ul><h4 id="sec1553" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">interactive_plotode</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">/</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">),[</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en121.png">
+
+</div><p>
+
+Solutions of the differential equation can be plotted by clicking on
+an initial point in the graphic screen (see Section <a href="cascmd_en607.html#sec%3Agraphscreen">19.1.1</a>).</p>
+<hr>
+<a href="cascmd_en635.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en637.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

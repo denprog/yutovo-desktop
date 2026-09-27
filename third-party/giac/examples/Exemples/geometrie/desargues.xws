@@ -1,0 +1,470 @@
+// xcas version=2.0.0 fontsize=22 font=0 currentlevel=2 pixon=1
+// fltk 7Fl_Tile 26 -114 1367 585 22 0
+[
+// fltk N4xcas6FigureE 26 -114 1367 584 22 0 landscape=0 history=0.35406 geo=0.47476  mouse_param=0.17118
+// fltk N4xcas12History_PackE 28 -86 464 1863 22 0
+[
+// fltk 7Fl_Tile 62 -86 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 -86 430 44 22 0
+11 0 ,
+A:=point(0),
+// fltk N4xcas10Log_OutputE 62 -42 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 -41 430 29 22 0
+pnt(pnt[0,536870968,"A"])
+]
+,
+// fltk 7Fl_Tile 62 -10 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 -10 430 44 22 0
+11 0 ,
+B:=point(1),
+// fltk N4xcas10Log_OutputE 62 34 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 35 430 29 22 0
+pnt(pnt[1,536870968,"B"])
+]
+,
+// fltk 7Fl_Tile 62 66 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 66 430 47 22 0
+25 0 ,
+assume(Cx=[1.4,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 113 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 114 430 29 22 0
+parameter([Cx,-5.0,5.0,1.4,0.1])
+]
+,
+// fltk 7Fl_Tile 62 145 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 145 430 47 22 0
+25 0 ,
+assume(Cy=[2.8,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 192 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 193 430 29 22 0
+parameter([Cy,-5.0,5.0,2.8,0.1])
+]
+,
+// fltk 7Fl_Tile 62 224 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 224 430 47 22 0
+25 0 ,
+C:=point(Cx,Cy,display=0),
+// fltk N4xcas10Log_OutputE 62 271 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 272 430 29 22 0
+pnt(pnt[Cx+i*Cy,[0],"C"])
+]
+,
+// fltk 7Fl_Tile 62 303 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 303 430 47 22 0
+26 0 ,
+assume(ax=[-1.3,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 350 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 351 430 29 22 0
+parameter([ax,-5.0,5.0,-1.3,0.1])
+]
+,
+// fltk 7Fl_Tile 62 382 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 382 430 44 22 0
+23 0 ,
+assume(ay=[3,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 426 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 427 430 29 22 0
+parameter([ay,-5.0,5.0,3.0,0.1])
+]
+,
+// fltk 7Fl_Tile 62 458 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 458 430 47 22 0
+25 0 ,
+a:=point(ax,ay,display=0),
+// fltk N4xcas10Log_OutputE 62 505 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 506 430 29 22 0
+pnt(pnt[ax+i*ay,[0],"a"])
+]
+,
+// fltk 7Fl_Tile 62 537 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 537 430 47 22 0
+25 0 ,
+assume(bx=[2.8,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 584 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 585 430 29 22 0
+parameter([bx,-5.0,5.0,2.8,0.1])
+]
+,
+// fltk 7Fl_Tile 62 616 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 616 430 47 22 0
+25 0 ,
+assume(bY=[1.6,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 663 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 664 430 29 22 0
+parameter([bY,-5.0,5.0,1.6,0.1])
+]
+,
+// fltk 7Fl_Tile 62 695 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 695 430 47 22 0
+25 0 ,
+b:=point(bx,bY,display=0),
+// fltk N4xcas10Log_OutputE 62 742 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 743 430 29 22 0
+pnt(pnt[bx+i*bY,[0],"b"])
+]
+,
+// fltk 7Fl_Tile 62 774 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 774 430 47 22 0
+25 0 ,
+assume(cx=[0.8,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 821 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 822 430 29 22 0
+parameter([cx,-5.0,5.0,0.8,0.1])
+]
+,
+// fltk 7Fl_Tile 62 853 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 853 430 44 22 0
+23 0 ,
+assume(cy=[1,-5,5,0.1]),
+// fltk N4xcas10Log_OutputE 62 897 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 898 430 29 22 0
+parameter([cy,-5.0,5.0,1.0,0.1])
+]
+,
+// fltk 7Fl_Tile 62 929 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 929 430 47 22 0
+25 0 ,
+c:=point(cx,cy,display=0),
+// fltk N4xcas10Log_OutputE 62 976 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 977 430 29 22 0
+pnt(pnt[cx+i*cy,[0],"c"])
+]
+,
+// fltk 7Fl_Tile 62 1008 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1008 430 47 22 0
+36 0 ,
+X:=single_inter(line(A,B),line(a,b)),
+// fltk N4xcas10Log_OutputE 62 1055 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1056 430 29 22 0
+pnt(pnt[((-ax)*bY+ay*bx)/(ay-bY),56,X])
+]
+,
+// fltk 7Fl_Tile 62 1087 430 77 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1087 430 47 22 0
+36 1 ,
+Y:=single_inter(line(B,C),line(b,c)),
+// fltk N4xcas10Log_OutputE 62 1134 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1135 430 29 22 0
+pnt(pnt[(Cx*bY*cx-Cx*bx*cy+i*Cy*bY*cx+(-(i))*Cy*bY+(-(i))*Cy*bx*cy-Cy*bx+Cy*cx+i*Cy*cy-bY*cx+bx*cy)/(Cx*bY-Cx*cy-Cy*bx+Cy*cx-bY+cy),56,Y])
+]
+,
+// fltk 7Fl_Tile 62 1166 430 110 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1166 430 80 22 0
+47 1 ,
+Z:=single_inter(
+line(C,A),line(c,a),color=red),
+// fltk N4xcas10Log_OutputE 62 1246 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1247 430 29 22 0
+pnt(pnt[((-Cx)*ax*cy+Cx*ay*cx-i*Cy*ax*cy-(-(i))*Cy*ay*cx)/(Cx*ay-Cx*cy-Cy*ax+Cy*cx),1,Z])
+]
+,
+// fltk 7Fl_Tile 62 1278 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1278 430 44 22 0
+15 1 ,
+triangle(A,B,C),
+// fltk N4xcas10Log_OutputE 62 1322 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1323 430 29 22 0
+pnt(pnt[group[0,1,Cx+i*Cy,0],56])
+]
+,
+// fltk 7Fl_Tile 62 1354 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1354 430 44 22 0
+15 0 ,
+triangle(a,b,c),
+// fltk N4xcas10Log_OutputE 62 1398 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1399 430 29 22 0
+pnt(pnt[group[ax+i*ay,bx+i*bY,cx+i*cy,ax+i*ay],56])
+]
+,
+// fltk 7Fl_Tile 62 1430 430 110 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1430 430 80 22 0
+51 0 ,
+I:=single_inter(line(A,a),
+line(B,b),color=magenta),
+// fltk N4xcas10Log_OutputE 62 1510 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1511 430 29 22 0
+pnt(pnt[(ax*bY+i*ay*bY)/(ax*bY-ay*bx+ay),5,I])
+]
+,
+// fltk 7Fl_Tile 62 1542 430 110 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1542 430 80 22 0
+51 0 ,
+J:=single_inter(line(A,a),
+line(C,c),color=magenta),
+// fltk N4xcas10Log_OutputE 62 1622 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1623 430 29 22 0
+pnt(pnt[(Cx*ax*cy+i*Cx*ay*cy-Cy*ax*cx+(-(i))*Cy*ay*cx)/(Cx*ay-Cy*ax+ax*cy-ay*cx),5,J])
+]
+,
+// fltk 7Fl_Tile 62 1654 430 74 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1654 430 44 22 0
+19 0 ,
+line(X,Y,color=red),
+// fltk N4xcas10Log_OutputE 62 1698 430 1 22 0
+
+,
+// fltk N4xcas10Gen_OutputE 62 1699 430 29 22 0
+pnt(pnt[line[((-ax)*bY+ay*bx)/(ay-bY),(Cx*bY*cx-Cx*bx*cy+i*Cy*bY*cx+(-(i))*Cy*bY+(-(i))*Cy*bx*cy-Cy*bx+Cy*cx+i*Cy*cy-bY*cx+bx*cy)/(Cx*bY-Cx*cy-Cy*bx+Cy*cx-bY+cy)],1])
+]
+,
+// fltk 7Fl_Tile 62 1730 430 45 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 62 1730 430 44 22 0
+0 0 ,
+,
+// fltk N4xcas10Log_OutputE 62 1774 430 1 22 0
+
+]
+]
+// fltk N4xcas5Geo2dE 510 -86 649 556 22 0
+-7.0077,8.7237,-5.5434,8.0394,[pnt(pnt[0,536870968,"A"]),pnt(pnt[1,536870968,"B"]),parameter([Cx,-5.0,5.0,1.4,0.1]),parameter([Cy,-5.0,5.0,2.8,0.1]),pnt(pnt[Cx+i*Cy,[0],"C"]),parameter([ax,-5.0,5.0,-1.3,0.1]),parameter([ay,-5.0,5.0,3.0,0.1]),pnt(pnt[ax+i*ay,[0],"a"]),parameter([bx,-5.0,5.0,2.8,0.1]),parameter([bY,-5.0,5.0,1.6,0.1]),pnt(pnt[bx+i*bY,[0],"b"]),parameter([cx,-5.0,5.0,0.8,0.1]),parameter([cy,-5.0,5.0,1.0,0.1]),pnt(pnt[cx+i*cy,[0],"c"]),pnt(pnt[((-ax)*bY+ay*bx)/(ay-bY),56,X]),pnt(pnt[(Cx*bY*cx-Cx*bx*cy+i*Cy*bY*cx+(-(i))*Cy*bY+(-(i))*Cy*bx*cy-Cy*bx+Cy*cx+i*Cy*cy-bY*cx+bx*cy)/(Cx*bY-Cx*cy-Cy*bx+Cy*cx-bY+cy),56,Y]),pnt(pnt[((-Cx)*ax*cy+Cx*ay*cx-i*Cy*ax*cy-(-(i))*Cy*ay*cx)/(Cx*ay-Cx*cy-Cy*ax+Cy*cx),1,Z]),pnt(pnt[group[0,1,Cx+i*Cy,0],56]),pnt(pnt[group[ax+i*ay,bx+i*bY,cx+i*cy,ax+i*ay],56]),pnt(pnt[(ax*bY+i*ay*bY)/(ax*bY-ay*bx+ay),5,I]),pnt(pnt[(Cx*ax*cy+i*Cx*ay*cy-Cy*ax*cx+(-(i))*Cy*ay*cx)/(Cx*ay-Cy*ax+ax*cy-ay*cx),5,J]),pnt(pnt[line[((-ax)*bY+ay*bx)/(ay-bY),(Cx*bY*cx-Cx*bx*cy+i*Cy*bY*cx+(-(i))*Cy*bY+(-(i))*Cy*bx*cy-Cy*bx+Cy*cx+i*Cy*cy-bY*cx+bx*cy)/(Cx*bY-Cx*cy-Cy*bx+Cy*cx-bY+cy)],1])],-1.2489,1.2489,1,0,0,0,2,2,1,0,1,1.4545,0,1,69,[],24,18,256,0,100,0,0,1,0.03,88,61,216
+
+,
+// fltk N4xcas10Log_OutputE 26 470 1367 1 22 0
+
+]
+,
+// fltk 7Fl_Tile 26 473 1367 76 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 26 473 1367 47 22 0
+99 0 ,
+n:=numer(coordinates(J-I)):; r:=im((affix(Y)-affix(X))/(affix(Z)-affix(X))):;f:=factors(numer(r)):;,
+// fltk N4xcas10Log_OutputE 26 520 1367 1 22 0
+
+,
+// fltk N4xcas8EquationE 26 521 1367 28 22 0 1
+"Done","Done","Done"
+]
+,
+// fltk 7Fl_Tile 26 551 1367 174 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 26 551 1367 44 22 0
+56 1 ,
+s1:=solve(n,Cx); s2:=solve(f[6],Cx); normal(s2[1]/s1[0]),
+// fltk N4xcas10Log_OutputE 26 595 1367 54 22 0
+Python compatibility enabled. List index will start at 0, run index:=1 or python_compat(0) to disable Python compatibility.Attention, l'argument n'est pas une Ã©quation, on rÃ©sout Cx^2*bY*cy^2*ax-Cx^2*bY*cy*ax*ay-Cx^2*bY*cy*ay+Cx^2*bY*ay^2-Cx^2*cy^2*ay*bx+Cx^2*cy^2*ay+Cx^2*cy*ay^2*bx-Cx^2*cy*ay^2-2*Cx*bY*cx*cy*Cy*ax+Cx*bY*cx*cy*ay+Cx*bY*cx*Cy*ax*ay+Cx*bY*cx*Cy*ay-Cx*bY*cx*ay^2-Cx*bY*cy^2*ax+Cx*bY*cy*Cy*ax^2+Cx*bY*cy*Cy*ax+Cx*bY*cy*ax*ay-2*Cx*bY*Cy*ax*ay+2*Cx*cx*cy*Cy*ay*bx-2*Cx*cx*cy*Cy*ay-Cx*cx*Cy*ay^2*bx+Cx*cx*Cy*ay^2-Cx*cy*Cy*ax*ay*bx+Cx*cy*Cy*ax*ay+bY*cx^2*Cy^2*ax-bY*cx^2*Cy*ay+bY*cx*cy*Cy*ax-bY*cx*Cy^2*ax^2-bY*cx*Cy^2*ax+bY*cx*Cy*ax*ay-bY*cy*Cy*ax^2+bY*Cy^2*ax^2-cx^2*Cy^2*ay*bx+cx^2*Cy^2*ay+cx*Cy^2*ax*ay*bx-cx*Cy^2*ax*ay=0
+,
+// fltk N4xcas8EquationE 26 649 1367 76 22 0 1
+list[-(-Cy*ax*bY*cx+Cy*ay*bx*cx+Cy*ax*bY-Cy*ay*cx-ax*bY*cy+ay*bY*cx)/(ax*bY*cy-ay*bx*cy-ay*bY+ay*cy)],list[(-Cy*ax+Cy*cx)/(-ay+cy),(Cy*ax*bY*cx-Cy*ay*bx*cx-Cy*ax*bY+Cy*ay*cx+ax*bY*cy-ay*bY*cx)/(ax*bY*cy-ay*bx*cy-ay*bY+ay*cy)],1
+]
+,
+// fltk 7Fl_Tile 26 727 1367 45 22 0
+[
+// fltk N4xcas16Xcas_Text_EditorE 26 727 1367 44 22 0
+0 0 ,
+,
+// fltk N4xcas10Log_OutputE 26 771 1367 1 22 0
+
+]
+// context 10433 giac archive
+7 0 29 8 0 0 'cas_setup' 7 0 12 0 0 0
+0 0 0
+0 0 0
+0 1 0
+0 0 0
+7 0 2 1 ¡½×Ùß|Û=
+1 Vçž¯Ò<
+0 12 0
+7 0 4 0 1 0
+0 50 0
+0 0 0
+0 25 0
+0 0 0
+0 0 0
+0 0 0
+0 1 0
+8 0 0 'xyztrange' 7 0 16 1      $À
+1      $@
+1      $À
+1      $@
+1      $À
+1      $@
+1      $À
+1      $@
+1      $À
+1      $@
+1 afffffö¿
+1 ™™™™™ñ?
+0 1 0
+1        
+1      ð?
+0 3 0
+7 0 0 7 0 0 8 0 15 7 1 2 8 -1 12 7 8 3 0 0 0
+0 536870968 0
+6 1 A 6 1 A 8 0 15 7 1 2 8 -1 12 7 8 3 0 1 0
+0 536870968 0
+6 1 B 6 1 B 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 1 7 1 2 6 2 Cx 8 0 4 7 1 2 4 0 0 0
+0 1 0
+6 2 Cy 7 0 1 0 0 0
+6 1 C 6 1 C 8 0 15 7 1 2 7 13 2 0 1 1
+1 afffffö?
+6 2 Cx 8 0 15 7 1 2 7 13 2 0 1 1
+1 afffff@
+6 2 Cy 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 4 7 1 2 8 0 1 7 1 2 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 4 7 1 3 4 0 0 0
+0 1 0
+6 2 ay 6 2 bY 8 0 6 8 0 1 7 1 3 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 2 8 0 4 7 1 2 6 2 ay 6 2 bx 6 2 ay 0 5 0
+6 1 I 6 1 I 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 4 7 1 2 8 0 1 7 1 4 8 0 4 7 1 3 6 2 Cx 6 2 ax 6 2 cy 8 0 4 7 1 4 4 0 0 0
+0 1 0
+6 2 Cx 6 2 ay 6 2 cy 8 0 2 8 0 4 7 1 3 6 2 Cy 6 2 ax 6 2 cx 8 0 4 7 1 4 4 0 0 0
+0 -1 0
+6 2 Cy 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 ax 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 ay 6 2 cx 0 5 0
+6 1 J 6 1 J 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 4 7 1 2 6 2 ay 6 2 bx 8 0 6 8 0 1 7 1 2 6 2 ay 8 0 2 6 2 bY 0 56 0
+6 1 X 6 1 X 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 4 7 1 2 8 0 1 7 1 10 8 0 4 7 1 3 6 2 Cx 6 2 bY 6 2 cx 8 0 2 8 0 4 7 1 3 6 2 Cx 6 2 bx 6 2 cy 8 0 4 7 1 4 4 0 0 0
+0 1 0
+6 2 Cy 6 2 bY 6 2 cx 8 0 4 7 1 3 4 0 0 0
+0 -1 0
+6 2 Cy 6 2 bY 8 0 4 7 1 4 4 0 0 0
+0 -1 0
+6 2 Cy 6 2 bx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 bx 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 4 7 1 3 4 0 0 0
+0 1 0
+6 2 Cy 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 bY 6 2 cx 8 0 4 7 1 2 6 2 bx 6 2 cy 8 0 6 8 0 1 7 1 6 8 0 4 7 1 2 6 2 Cx 6 2 bY 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 bx 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 6 2 bY 6 2 cy 0 56 0
+6 1 Y 6 1 Y 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 4 7 1 2 8 0 1 7 1 4 8 0 2 8 0 4 7 1 3 6 2 Cx 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cx 6 2 ay 6 2 cx 8 0 2 8 0 4 7 1 4 4 0 0 0
+0 1 0
+6 2 Cy 6 2 ax 6 2 cy 8 0 2 8 0 4 7 1 4 4 0 0 0
+0 -1 0
+6 2 Cy 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 0 1 0
+6 1 Z 6 1 Z 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 1 7 1 2 6 2 ax 8 0 4 7 1 2 4 0 0 0
+0 1 0
+6 2 ay 7 0 1 0 0 0
+6 1 a 6 1 a 8 0 15 7 1 2 7 13 2 0 1 1
+1 ÁÌÌÌÌÌô¿
+6 2 ax 8 0 15 7 1 2 7 13 2 0 1 1
+1      @
+6 2 ay 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 1 7 1 2 6 2 bx 8 0 4 7 1 2 4 0 0 0
+0 1 0
+6 2 bY 7 0 1 0 0 0
+6 1 b 6 1 b 8 0 15 7 1 2 7 13 2 0 1 1
+1 ™™™™™ù?
+6 2 bY 8 0 15 7 1 2 7 13 2 0 1 1
+1 afffff@
+6 2 bx 8 0 15 7 1 2 8 -1 12 7 8 3 8 0 1 7 1 2 6 2 cx 8 0 4 7 1 2 4 0 0 0
+0 1 0
+6 2 cy 7 0 1 0 0 0
+6 1 c 6 1 c 8 0 15 7 1 2 7 13 2 0 1 1
+1 ™™™™™é?
+6 2 cx 8 0 15 7 1 2 7 13 2 0 1 1
+1      ð?
+6 2 cy 8 0 15 7 1 2 7 0 10 6 2 Cy 0 1 0
+8 0 1 7 1 2 6 2 bY 8 0 2 6 2 ay 0 1 0
+8 0 1 7 1 6 8 0 4 7 1 2 6 2 cx 6 2 bY 8 0 2 8 0 4 7 1 2 6 2 cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 bY 6 2 ax 8 0 4 7 1 2 6 2 cy 6 2 ax 8 0 2 8 0 4 7 1 2 6 2 cy 6 2 bx 8 0 4 7 1 2 6 2 ay 6 2 bx 0 1 0
+8 0 1 7 1 36 8 0 4 7 1 4 8 0 7 7 1 2 6 2 Cx 0 2 0
+6 2 bY 8 0 7 7 1 2 6 2 cy 0 2 0
+6 2 ax 8 0 2 8 0 4 7 1 5 8 0 7 7 1 2 6 2 Cx 0 2 0
+6 2 bY 6 2 cy 6 2 ax 6 2 ay 8 0 2 8 0 4 7 1 4 8 0 7 7 1 2 6 2 Cx 0 2 0
+6 2 bY 6 2 cy 6 2 ay 8 0 4 7 1 3 8 0 7 7 1 2 6 2 Cx 0 2 0
+6 2 bY 8 0 7 7 1 2 6 2 ay 0 2 0
+8 0 2 8 0 4 7 1 4 8 0 7 7 1 2 6 2 Cx 0 2 0
+8 0 7 7 1 2 6 2 cy 0 2 0
+6 2 ay 6 2 bx 8 0 4 7 1 3 8 0 7 7 1 2 6 2 Cx 0 2 0
+8 0 7 7 1 2 6 2 cy 0 2 0
+6 2 ay 8 0 4 7 1 4 8 0 7 7 1 2 6 2 Cx 0 2 0
+6 2 cy 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 bx 8 0 2 8 0 4 7 1 3 8 0 7 7 1 2 6 2 Cx 0 2 0
+6 2 cy 8 0 7 7 1 2 6 2 ay 0 2 0
+8 0 2 8 0 4 7 1 7 0 2 0
+6 2 Cx 6 2 bY 6 2 cx 6 2 cy 6 2 Cy 6 2 ax 8 0 4 7 1 5 6 2 Cx 6 2 bY 6 2 cx 6 2 cy 6 2 ay 8 0 4 7 1 6 6 2 Cx 6 2 bY 6 2 cx 6 2 Cy 6 2 ax 6 2 ay 8 0 4 7 1 5 6 2 Cx 6 2 bY 6 2 cx 6 2 Cy 6 2 ay 8 0 2 8 0 4 7 1 4 6 2 Cx 6 2 bY 6 2 cx 8 0 7 7 1 2 6 2 ay 0 2 0
+8 0 2 8 0 4 7 1 4 6 2 Cx 6 2 bY 8 0 7 7 1 2 6 2 cy 0 2 0
+6 2 ax 8 0 4 7 1 5 6 2 Cx 6 2 bY 6 2 cy 6 2 Cy 8 0 7 7 1 2 6 2 ax 0 2 0
+8 0 4 7 1 5 6 2 Cx 6 2 bY 6 2 cy 6 2 Cy 6 2 ax 8 0 4 7 1 5 6 2 Cx 6 2 bY 6 2 cy 6 2 ax 6 2 ay 8 0 2 8 0 4 7 1 6 0 2 0
+6 2 Cx 6 2 bY 6 2 Cy 6 2 ax 6 2 ay 8 0 4 7 1 7 0 2 0
+6 2 Cx 6 2 cx 6 2 cy 6 2 Cy 6 2 ay 6 2 bx 8 0 2 8 0 4 7 1 6 0 2 0
+6 2 Cx 6 2 cx 6 2 cy 6 2 Cy 6 2 ay 8 0 2 8 0 4 7 1 5 6 2 Cx 6 2 cx 6 2 Cy 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 bx 8 0 4 7 1 4 6 2 Cx 6 2 cx 6 2 Cy 8 0 7 7 1 2 6 2 ay 0 2 0
+8 0 2 8 0 4 7 1 6 6 2 Cx 6 2 cy 6 2 Cy 6 2 ax 6 2 ay 6 2 bx 8 0 4 7 1 5 6 2 Cx 6 2 cy 6 2 Cy 6 2 ax 6 2 ay 8 0 4 7 1 4 6 2 bY 8 0 7 7 1 2 6 2 cx 0 2 0
+8 0 7 7 1 2 6 2 Cy 0 2 0
+6 2 ax 8 0 2 8 0 4 7 1 4 6 2 bY 8 0 7 7 1 2 6 2 cx 0 2 0
+6 2 Cy 6 2 ay 8 0 4 7 1 5 6 2 bY 6 2 cx 6 2 cy 6 2 Cy 6 2 ax 8 0 2 8 0 4 7 1 4 6 2 bY 6 2 cx 8 0 7 7 1 2 6 2 Cy 0 2 0
+8 0 7 7 1 2 6 2 ax 0 2 0
+8 0 2 8 0 4 7 1 4 6 2 bY 6 2 cx 8 0 7 7 1 2 6 2 Cy 0 2 0
+6 2 ax 8 0 4 7 1 5 6 2 bY 6 2 cx 6 2 Cy 6 2 ax 6 2 ay 8 0 2 8 0 4 7 1 4 6 2 bY 6 2 cy 6 2 Cy 8 0 7 7 1 2 6 2 ax 0 2 0
+8 0 4 7 1 3 6 2 bY 8 0 7 7 1 2 6 2 Cy 0 2 0
+8 0 7 7 1 2 6 2 ax 0 2 0
+8 0 2 8 0 4 7 1 4 8 0 7 7 1 2 6 2 cx 0 2 0
+8 0 7 7 1 2 6 2 Cy 0 2 0
+6 2 ay 6 2 bx 8 0 4 7 1 3 8 0 7 7 1 2 6 2 cx 0 2 0
+8 0 7 7 1 2 6 2 Cy 0 2 0
+6 2 ay 8 0 4 7 1 5 6 2 cx 8 0 7 7 1 2 6 2 Cy 0 2 0
+6 2 ax 6 2 ay 6 2 bx 8 0 2 8 0 4 7 1 4 6 2 cx 8 0 7 7 1 2 6 2 Cy 0 2 0
+6 2 ax 6 2 ay 0 1 0
+0 -1 0
+0 1 0
+6 1 f 8 0 15 7 1 2 7 0 2 8 0 1 7 1 10 8 0 4 7 1 4 6 2 Cx 8 0 7 7 1 2 6 2 ax 0 2 0
+6 2 cy 6 2 bY 8 0 2 8 0 4 7 1 5 6 2 Cx 6 2 ax 6 2 cy 6 2 ay 6 2 bx 8 0 4 7 1 4 6 2 Cx 6 2 ax 6 2 cy 6 2 ay 8 0 2 8 0 4 7 1 4 6 2 Cx 6 2 ax 6 2 ay 6 2 bY 8 0 2 8 0 4 7 1 3 8 0 7 7 1 2 6 2 ax 0 2 0
+6 2 cy 6 2 bY 8 0 2 8 0 4 7 1 4 8 0 7 7 1 2 6 2 ax 0 2 0
+6 2 Cy 6 2 cx 6 2 bY 8 0 4 7 1 3 8 0 7 7 1 2 6 2 ax 0 2 0
+6 2 Cy 6 2 bY 8 0 4 7 1 5 6 2 ax 6 2 Cy 6 2 cx 6 2 ay 6 2 bx 8 0 2 8 0 4 7 1 4 6 2 ax 6 2 Cy 6 2 cx 6 2 ay 8 0 4 7 1 4 6 2 ax 6 2 cx 6 2 ay 6 2 bY 8 0 1 7 1 10 8 0 4 7 1 4 6 2 Cx 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 cy 6 2 bx 8 0 2 8 0 4 7 1 3 6 2 Cx 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 cy 8 0 4 7 1 3 6 2 Cx 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 bY 8 0 2 8 0 4 7 1 5 6 2 Cx 6 2 ay 6 2 cy 6 2 ax 6 2 bY 8 0 2 8 0 4 7 1 4 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 Cy 6 2 cx 6 2 bx 8 0 4 7 1 3 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 Cy 6 2 cx 8 0 2 8 0 4 7 1 3 8 0 7 7 1 2 6 2 ay 0 2 0
+6 2 cx 6 2 bY 8 0 4 7 1 4 6 2 ay 6 2 cy 6 2 ax 6 2 bY 8 0 4 7 1 5 6 2 ay 6 2 Cy 6 2 cx 6 2 ax 6 2 bY 8 0 2 8 0 4 7 1 4 6 2 ay 6 2 Cy 6 2 ax 6 2 bY 6 1 n 8 0 15 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 4 8 0 1 7 1 2 8 0 4 7 1 2 8 0 1 7 1 6 8 0 4 7 1 3 6 2 Cx 6 2 bY 6 2 cx 8 0 2 8 0 4 7 1 3 6 2 Cx 6 2 bx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 bx 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 8 0 4 7 1 2 6 2 bY 6 2 cx 8 0 4 7 1 2 6 2 bx 6 2 cy 8 0 6 8 0 1 7 1 6 8 0 4 7 1 2 6 2 Cx 6 2 bY 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 bx 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 6 2 bY 6 2 cy 8 0 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 4 7 1 2 6 2 ay 6 2 bx 8 0 6 8 0 1 7 1 2 6 2 ay 8 0 2 6 2 bY 8 0 1 7 1 2 8 0 2 8 0 4 7 1 3 6 2 Cy 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cy 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 6 8 0 1 7 1 2 8 0 7 7 1 2 8 0 1 7 1 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 3 6 2 Cx 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cx 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 4 7 1 2 6 2 ay 6 2 bx 8 0 6 8 0 1 7 1 2 6 2 ay 8 0 2 6 2 bY 0 2 0
+8 0 7 7 1 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 3 6 2 Cy 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cy 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 0 2 0
+8 0 4 7 1 4 8 0 1 7 1 4 8 0 4 7 1 3 6 2 Cy 6 2 bY 6 2 cx 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 bY 8 0 2 8 0 4 7 1 3 6 2 Cy 6 2 bx 6 2 cy 8 0 4 7 1 2 6 2 Cy 6 2 cy 8 0 6 8 0 1 7 1 6 8 0 4 7 1 2 6 2 Cx 6 2 bY 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 bx 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 6 2 bY 6 2 cy 8 0 1 7 1 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 3 6 2 Cx 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cx 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 4 7 1 2 6 2 ay 6 2 bx 8 0 6 8 0 1 7 1 2 6 2 ay 8 0 2 6 2 bY 8 0 6 8 0 1 7 1 2 8 0 7 7 1 2 8 0 1 7 1 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 3 6 2 Cx 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cx 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 8 0 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 2 6 2 ax 6 2 bY 8 0 4 7 1 2 6 2 ay 6 2 bx 8 0 6 8 0 1 7 1 2 6 2 ay 8 0 2 6 2 bY 0 2 0
+8 0 7 7 1 2 8 0 4 7 1 2 8 0 1 7 1 2 8 0 2 8 0 4 7 1 3 6 2 Cy 6 2 ax 6 2 cy 8 0 4 7 1 3 6 2 Cy 6 2 ay 6 2 cx 8 0 6 8 0 1 7 1 4 8 0 4 7 1 2 6 2 Cx 6 2 ay 8 0 2 8 0 4 7 1 2 6 2 Cx 6 2 cy 8 0 2 8 0 4 7 1 2 6 2 Cy 6 2 ax 8 0 4 7 1 2 6 2 Cy 6 2 cx 0 2 0
+6 1 r 8 0 15 7 1 2 7 23 1 8 0 2 8 0 4 7 1 2 8 0 1 7 19 6 8 0 2 8 0 4 7 19 4 6 2 Cy 6 2 ax 6 2 bY 6 2 cx 8 0 4 7 19 4 6 2 Cy 6 2 ay 6 2 bx 6 2 cx 8 0 4 7 19 3 6 2 Cy 6 2 ax 6 2 bY 8 0 2 8 0 4 7 19 3 6 2 Cy 6 2 ay 6 2 cx 8 0 2 8 0 4 7 19 3 6 2 ax 6 2 bY 6 2 cy 8 0 4 7 19 3 6 2 ay 6 2 bY 6 2 cx 8 0 6 8 0 1 7 19 4 8 0 4 7 19 3 6 2 ax 6 2 bY 6 2 cy 8 0 2 8 0 4 7 19 3 6 2 ay 6 2 bx 6 2 cy 8 0 2 8 0 4 7 19 2 6 2 ay 6 2 bY 8 0 4 7 19 2 6 2 ay 6 2 cy 6 2 s1 8 0 15 7 1 2 7 23 2 8 0 4 7 1 2 8 0 1 7 19 2 8 0 2 8 0 4 7 19 2 6 2 Cy 6 2 ax 8 0 4 7 19 2 6 2 Cy 6 2 cx 8 0 6 8 0 1 7 19 2 8 0 2 6 2 ay 6 2 cy 8 0 4 7 1 2 8 0 1 7 19 6 8 0 4 7 19 4 6 2 Cy 6 2 ax 6 2 bY 6 2 cx 8 0 2 8 0 4 7 19 4 6 2 Cy 6 2 ay 6 2 bx 6 2 cx 8 0 2 8 0 4 7 19 3 6 2 Cy 6 2 ax 6 2 bY 8 0 4 7 19 3 6 2 Cy 6 2 ay 6 2 cx 8 0 4 7 19 3 6 2 ax 6 2 bY 6 2 cy 8 0 2 8 0 4 7 19 3 6 2 ay 6 2 bY 6 2 cx 8 0 6 8 0 1 7 19 4 8 0 4 7 19 3 6 2 ax 6 2 bY 6 2 cy 8 0 2 8 0 4 7 19 3 6 2 ay 6 2 bx 6 2 cy 8 0 2 8 0 4 7 19 2 6 2 ay 6 2 bY 8 0 4 7 19 2 6 2 ay 6 2 cy 6 2 s2 8 0 0 'xcas_mode' 0 256 0
+

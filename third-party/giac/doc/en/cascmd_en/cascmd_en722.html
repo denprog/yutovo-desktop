@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Hilbert-Huang transform</title>
+</head>
+<body >
+<a href="cascmd_en721.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en723.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:hht" class="subsection">21.4.9  Hilbert-Huang transform</h3>
+<p>The <span style="font-family:monospace">hht</span><a id="hevea_default1453"></a> command finds Hilbert spectra by applying
+the <em>Hilbert-Huang transform</em> (HHT) which obtains instantaneous frequency
+data from intrinsic mode functions (IMFs) extracted from nonstationary and/or
+nonlinear signal data. The Hilbert spectrum of a signal reveals its
+time-dependent features.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">hht</span> takes one mandatory argument and a sequence of optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">data</span>, a list of real numbers (representing the signal) or a matrix
+in which each row corresponds to an IMF as obtained by empirical mode decomposition
+(see Section <a href="cascmd_en721.html#ssec%3Aemd">21.4.8</a>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">opts</span>, a sequence of optional arguments each of which
+is one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">frequencies=</span><span style="font-style:italic">frng</span>, where <span style="font-style:italic">frng</span> is either a list
+<span style="font-family:monospace">[</span><span style="font-style:italic">fmin</span>,<span style="font-style:italic">fmax</span><span style="font-family:monospace">]</span> or
+an interval <span style="font-style:italic">fmin</span><span style="font-family:monospace">..</span><span style="font-style:italic">fmax</span>, where <span style="font-style:italic">fmin</span> and <span style="font-style:italic">fmax</span>
+specify the desired frequency range. The values are in Hertz if sample-rate is provided,
+otherwise in radians per sample. If <span style="font-style:italic">frng</span> is a list, then <span style="font-style:italic">fmin</span> and
+<span style="font-style:italic">fmax</span> can also be strings specifying MIDI notes such as e.g. <span style="font-family:monospace">"C4"</span> and
+<span style="font-family:monospace">"D#5"</span>. By default, <span style="font-style:italic">fmin</span> corresponds to the zero frequency and
+<span style="font-style:italic">fmax</span> to the Nyquist frequency.
+</li><li class="li-itemize"><span style="font-family:monospace">range=</span><span style="font-style:italic">trng</span>, where <span style="font-style:italic">trng</span> is either a list
+<span style="font-family:monospace">[</span><span style="font-style:italic">tmin</span>,<span style="font-style:italic">tmax</span><span style="font-family:monospace">]</span> or
+an interval <span style="font-style:italic">tmin</span><span style="font-family:monospace">..</span><span style="font-style:italic">tmax</span>, where <span style="font-style:italic">tmin</span> and <span style="font-style:italic">tmax</span>
+specify the desired time range. If sample-rate is provided, then the unit is one
+second, otherwise the unit is one sample. By default, the entire signal is analyzed.
+</li><li class="li-itemize"><span style="font-family:monospace">samplerate=</span><span style="font-style:italic">sr</span>, where <span style="font-style:italic">sr</span> is a positive integer representing
+the sample-rate of the (decomposed) signal (by default, unset).
+</li><li class="li-itemize"><span style="font-family:monospace">output=</span><span style="font-style:italic">out</span>, where <span style="font-style:italic">out</span> is one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">image</span> (the default), which displays the spectrum as an image.
+</li><li class="li-itemize"><span style="font-family:monospace">plot</span>, which draws the spectrum with <span style="font-variant:small-caps">Xcas</span> graphic commands
+(in lower resolution).
+</li><li class="li-itemize"><span style="font-family:monospace">matrix</span>, which outputs the spectrum as a matrix in which rows correspond
+to frequency bins and columns to spectra at individual samples.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">bins=</span><span style="font-style:italic">m</span>, where <span style="font-style:italic">m</span> is a positive integer specifying the desired number
+of bins for the frequency range discretization. By default, <span style="font-style:italic">m</span>=200 for the image
+output and <span style="font-style:italic">m</span>=100 for the plot and matrix outputs.
+</li><li class="li-itemize"><span style="font-family:monospace">log=</span><span style="font-style:italic">islog</span>, where <span style="font-style:italic">islog</span> is a boolean value specifying
+whether the frequency axis is logarithmic or not (by default, the scale is linear).
+If <span style="font-style:italic">islog</span>=<span style="font-family:monospace">true</span>, then the frequency-axis unit is one semitone,
+with zero corresponding to the MIDI note 0. Instead of <span style="font-family:monospace">log=true</span>, you can
+simply enter <span style="font-family:monospace">log</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">legend=</span><span style="font-style:italic">haslegend</span>, where <span style="font-style:italic">haslegend</span> is a boolean value
+specifying whether to show the colormap or not (by default, the colormap is shown
+on the right of the spectrum).
+</li><li class="li-itemize"><span style="font-family:monospace">tran=</span><span style="font-style:italic">hasalpha</span>, where <span style="font-style:italic">hasalpha</span> is a boolean value
+specifying whether to use the alpha channel in the image output (this value
+is ignored for other outputs). When used, the alpha channel values are smaller for
+smaller amplitudes, making the lower-amplitude components less visible. By
+default, <span style="font-family:monospace">tran=true</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">color=</span><span style="font-style:italic">cmap</span>, where <span style="font-style:italic">cmap</span> is the colormap index
+(nonnegative integer) as returned by the <span style="font-family:monospace">colormap</span> command
+(see Section <a href="cascmd_en609.html#ssec%3Acolormap">19.1.3</a>). <span style="font-style:italic">cmap</span> can also be a boolean value,
+with <span style="font-family:monospace">true</span> corresponding to the default rainbow colormap and <span style="font-family:monospace">false</span>
+corresponding to the grey ramp with 24 colors from the <span style="font-variant:small-caps">FLTK</span> colormap.
+A suitable choice of colormap can help detecting important signal features in the
+graphic output. By default, <span style="font-family:monospace">color=true</span>.
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">hht(</span><span style="font-style:italic">data</span> ⟨,<span style="font-style:italic">opts</span> ⟩<span style="font-family:monospace">)</span> returns
+(the selected part of) the Hilbert spectrum associated with <span style="font-style:italic">data</span> in the specified
+form. If graphic output is selected, then the colormap is used to color-encode amplitude
+data. The axis units are seconds/samples resp. Hertz/radians per second/semitones, depending
+on the values of <span style="font-family:monospace">samplerate</span> and <span style="font-family:monospace">log</span> options.
+</li><li class="li-itemize">With matrix output, you can use <span style="font-family:monospace">hht</span> to compute the signal energy as
+a function of time. The element at position (<span style="font-style:italic">i</span>,<span style="font-style:italic">j</span>) in the resulting matrix, when squared,
+represents the energy of the <span style="font-style:italic">i</span>th frequency bin at the <span style="font-style:italic">j</span>th sample. The total energy at
+time <span style="font-style:italic">j</span> is the sum of squares of elements in the <span style="font-style:italic">j</span>th column of the matrix.
+</li></ul><h4 id="sec1869" class="subsubsection">Examples</h4>
+<h5 id="sec1870" class="paragraph">Synthetic signal.</h5>
+<p> To see the spectrum of the <span style="font-family:monospace">synth</span> signal
+defined in Section <a href="cascmd_en721.html#ssec%3Aemd">21.4.8</a> with the <span style="font-variant:small-caps">FLTK</span> grayscale ramp, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">hht</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">synth</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#0000CC">false</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0.1..2.0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">output</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en186.png">
+
+</div><p>
+
+You may also pass the list of already computed IMFs as the first argument.</p><h5 id="sec1871" class="paragraph">Whale song.</h5>
+<p>
+The file <span style="font-family:monospace">nepblue24s10x.wav</span> downloaded from
+<a href="https://www.pmel.noaa.gov/acoustics/whales/sounds/sounds_whales_blue.html">here</a>
+contains sounds produced by a blue whale in the northeast Pacific. Since the
+frequency of moans is very low (below 20 Hz, which is inaudible for humans),
+the file is played back at 10x speed. To load and show the audio, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">whale</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/nepblue24s10x.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">whale</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en187.png">
+
+</div><p>
+
+You can hear the whale song by entering (see Section <a href="cascmd_en1031.html#ssec%3Aplaysnd">28.2.14</a>):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">playsnd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">whale</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>To perform the empirical mode decomposition (see Section <a href="cascmd_en721.html#ssec%3Aemd">21.4.8</a>), enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">imf</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">emd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">whale</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">residue</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#0000CC">false</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+Evaluation time: 10.01
+</span></span></span></p><p>
+(Note that the residue is discarded since it is not relevant for the spectrum.)
+To display the Hilbert spectrum of the whale song, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">whale</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">hht</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">imf</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">=10..500,</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"viridis"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en188.png">
+
+</div><p>
+
+Whale moans occur at about 5, 10, 15 and 20 seconds from the beginning
+of the recording (in reality, these intervals are ten times larger).
+Also, the spectrum reveals that moans have the same frequency,
+about 160 Hz in the recording and 16 Hz in reality.
+The magnitude of the first moan is smaller, as suggested by both
+the waveform and spectrum.</p><p>To obtain the Hilbert spectrum as a matrix, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">hs</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">hht</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">imf</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">=10..500,</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">output</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">matrix</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>To plot the energy of the whale song, sum the columns of the Hilbert
+spectrum matrix in which every element is squared.
+Energy data can be smoothed out by applying a moving-average filter.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">moving_average</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sum</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">hs</span></span><span style="font-weight:bold"><span style="color:#BF0000">.^2),4000):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">duration</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">whale</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">length</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">)):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">labels</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"time [sec]"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"energy"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">];</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">]))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en189.png">
+
+</div><h5 id="sec1872" class="paragraph">Spectral analysis of music.</h5>
+<p>
+With the file <span style="font-family:monospace">CantinaBand3.wav</span> downloaded from
+<a href="https://www2.cs.uic.edu/~i101/SoundFiles/">here</a>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">music</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/CantinaBand3.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 66150 samples at 22050 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To obtain instrinsic mode functions, enter (residue is discarded):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">imf</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">emd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">music</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">residue</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#0000CC">false</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>To display the Hilbert spectrum of <span style="font-family:monospace">music</span>, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">hht</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">imf</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">=22050,</span></span><span style="font-weight:bold"><span style="color:#BF0000">log</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"spectral"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#0000CC">false</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en190.png">
+
+</div><p>
+
+In the upper part of the spectrum you can see individual beats of the song,
+and in the lower part you can see six bass notes appearing every 2 beats.
+The first and fifth notes are stressed more than the others, suggesting
+the 4/4 time signature. The percussive pickup measure is also clearly visible.
+The first beat of the first measure starts after about 0.65 seconds.
+In the example in Section <a href="cascmd_en718.html#ssec%3Astft">21.4.5</a> it is explained how to extract
+the rhythmic section by cutting out the middle band of the spectrum.</p><p>As another example, download the files <span style="font-family:monospace">violin-C4.wav</span> and
+<span style="font-family:monospace">flute-G6.wav</span> from
+<a href="https://www.ee.columbia.edu/~dpwe/sounds/instruments/">here</a>
+and load them:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">violin</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/violin-C4.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">flute</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/flute-G6.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >a sound clip with 38500 samples at 11025 Hz (16 bit, mono),</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >a sound clip with 40250 samples at 11025 Hz (16 bit, mono)
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Mix the two audio clips with one-second delay for the flute
+(see Section <a href="cascmd_en1035.html#ssec%3Amixdown">28.2.18</a>):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">mixdown</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">violin</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[],</span></span><span style="font-weight:bold"><span style="color:#BF0000">flute</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[1.0])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 51275 samples at 11025 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+You can hear the result by using the <span style="font-family:monospace">playsnd</span> command
+(see Section <a href="cascmd_en1031.html#ssec%3Aplaysnd">28.2.14</a>). To display the Hilbert spectrum, enter
+(in this case, EMD is computed automatically by <span style="font-family:monospace">hht</span>):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">hht</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">log</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"jet"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">inv</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">reverse</span></span><span style="font-weight:bold"><span style="color:#BF0000">));</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en191.png">
+
+</div><p>
+
+The specified colormap helps you to see two individual tones at
+60 resp. 91 semitones from the MIDI note 0, corresponding to C4 resp. G6,
+as expected. The flute part of the spectrum (yellow-reddish) is much
+more concentrated than the violin part due to the inherent
+sinusoidal quality of the flute sound.</p>
+<hr>
+<a href="cascmd_en721.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en723.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

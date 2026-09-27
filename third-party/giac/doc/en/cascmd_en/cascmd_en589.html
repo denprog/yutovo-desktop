@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Transportation problem</title>
+</head>
+<body >
+<a href="cascmd_en588.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en590.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1402" class="subsection">16.1.3  Transportation problem</h3>
+<p>The objective of a transportation problem is to minimize the cost of
+distributing a product from <span style="font-style:italic">m</span> sources to <span style="font-style:italic">n</span> destinations. It is
+determined by three parameters:
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-weight:bold"><span style="font-style:italic">s</span></span>=(<span style="font-style:italic">s</span><sub>1</sub>,<span style="font-style:italic">s</span><sub>2</sub>,…,<span style="font-style:italic">s</span><sub><span style="font-style:italic">m</span></sub>), the supply vector, where
+<span style="font-style:italic">s</span><sub><span style="font-style:italic">k</span></sub>∈ℤ<sup>+</sup> is the maximum number of units that can
+be delivered from the <span style="font-style:italic">k</span>th source for <span style="font-style:italic">k</span>=1,2,…,<span style="font-style:italic">m</span>.
+</li><li class="li-itemize"><span style="font-weight:bold"><span style="font-style:italic">d</span></span>=(<span style="font-style:italic">d</span><sub>1</sub>,<span style="font-style:italic">d</span><sub>2</sub>,…,<span style="font-style:italic">d</span><sub><span style="font-style:italic">n</span></sub>), the demand vector 
+<span style="font-weight:bold"><span style="font-style:italic">d</span></span>=(<span style="font-style:italic">d</span><sub>1</sub>,<span style="font-style:italic">d</span><sub>2</sub>,…,<span style="font-style:italic">d</span><sub><span style="font-style:italic">n</span></sub>) , where  <span style="font-style:italic">d</span><sub><span style="font-style:italic">k</span></sub>∈ℤ<sup>+</sup>
+is the minimum number of units required by the <span style="font-style:italic">k</span>th destination for
+<span style="font-style:italic">k</span>=1,2,…,<span style="font-style:italic">n</span>.
+</li><li class="li-itemize"><span style="font-weight:bold"><span style="font-style:italic">C</span></span>=[<span style="font-style:italic">c</span><sub><span style="font-style:italic">ij</span></sub>]<sub><span style="font-style:italic">m</span>× <span style="font-style:italic">n</span></sub>, the cost matrix, where
+<span style="font-style:italic">c</span><sub><span style="font-style:italic">ij</span></sub>∈ℝ<sup>+</sup> is the cost of transporting one
+unit of product from the <span style="font-style:italic">i</span>th source to the <span style="font-style:italic">j</span>th destination, for
+<span style="font-style:italic">i</span>=1,2,…,<span style="font-style:italic">m</span> and <span style="font-style:italic">j</span>=1,2,…,<span style="font-style:italic">n</span>. 
+</li></ul><p>
+An optimal solution is represented by the matrix
+<span style="font-weight:bold"><span style="font-style:italic">X</span></span><sup>∗</sup>=(<span style="font-style:italic">x</span><sub><span style="font-style:italic">ij</span></sub><sup>∗</sup>), where <span style="font-style:italic">x</span><sub><span style="font-style:italic">ij</span></sub><sup>∗</sup> is number of
+units that must be transported from the <span style="font-style:italic">i</span>th source to the <span style="font-style:italic">j</span>th
+destination for <span style="font-style:italic">i</span>=1,2,…,<span style="font-style:italic">m</span> and <span style="font-style:italic">j</span>=1,2,…,<span style="font-style:italic">n</span>. </p><p>The <span style="font-family:monospace">tpsolve</span><a id="hevea_default1043"></a>
+command solves a transportation problem.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">tpsolve</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">s</span>, the supply vector.
+</li><li class="li-itemize"><span style="font-style:italic">d</span>, the demand vector.
+</li><li class="li-itemize"><span style="font-style:italic">C</span>, the cost matrix.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">tpsolve(</span><span style="font-style:italic">s</span>,<span style="font-style:italic">d</span>,<span style="font-style:italic">C</span><span style="font-family:monospace">)</span> returns a sequence <span style="font-style:italic">c</span>,<span style="font-style:italic">X</span><sup>∗</sup>, where
+<span style="font-style:italic">X</span><sup>∗</sup> is the optimal solution and
+<span style="font-style:italic">c</span>=∑<sub><span style="font-style:italic">i</span>=1</sub><sup><span style="font-style:italic">m</span></sup>∑<sub><span style="font-style:italic">j</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">c</span><sub><span style="font-style:italic">ij</span></sub> <span style="font-style:italic">x</span><sub><span style="font-style:italic">ij</span></sub><sup>∗</sup> is the total (minimal)
+cost of transportation.
+</li><li class="li-itemize">If the total supply and total demand are equal, i.e. if
+∑<sub><span style="font-style:italic">i</span>=1</sub><sup><span style="font-style:italic">m</span></sup> <span style="font-style:italic">s</span><sub><span style="font-style:italic">i</span></sub>=∑<sub><span style="font-style:italic">j</span>=1</sub><sup><span style="font-style:italic">n</span></sup> <span style="font-style:italic">d</span><sub><span style="font-style:italic">j</span></sub> holds, the transportation problem
+is said to be <em>closed</em> or <em>balanced</em>, otherwise it is
+said to be <em>unbalanced</em>. The excess
+supply/demand is covered by adding a dummy demand/supply point with
+zero cost of “transportation” from/to that point. The
+<span style="font-family:monospace">tpsolve</span> command handles such cases automatically.
+</li><li class="li-itemize">Sometimes it is desirable to forbid transportation on certain routes.
+That is achieved by setting a very high cost,
+represented by a symbol (e.g. <span style="font-style:italic">M</span>), to these routes.
+All instances of the symbol in the cost matrix are automatically replaced
+by a practically infinite number (precisely
+(<span style="font-style:italic">m</span> <span style="font-style:italic">n</span>+1)/<span style="font-family:monospace">epsilon</span>, which forces the algorithm to avoid the associated routes.
+</li></ul><h4 id="sec1403" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[12,17,11]:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[10,10,10,10]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[50,75,30,45],[65,80,40,60],[40,70,50,55]]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">tpsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+2020,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">10</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">9</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">8</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">10</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[7,10,8,8,9,6]:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[9,6,12,8,10]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[36,40,32,43,29],[28,27,29,40,38],[34,35,41,29,31],</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">    [41,42,35,27,36],[25,28,40,34,38],[31,30,43,38,40]]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">tpsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+1275,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">10</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">8</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">9</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[95,70,165,165]:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[195,150,30,45,75]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[15,</span></span><span style="font-weight:bold"><span style="color:#BF0000">M</span></span><span style="font-weight:bold"><span style="color:#BF0000">,45,</span></span><span style="font-weight:bold"><span style="color:#BF0000">M</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0],[12,40,</span></span><span style="font-weight:bold"><span style="color:#BF0000">M</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">M</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0],[0,15,25,25,0],[</span></span><span style="font-weight:bold"><span style="color:#BF0000">M</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">M</span></span><span style="font-weight:bold"><span style="color:#BF0000">,12,0]]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">tpsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+2820,</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">20</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">75</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">70</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">105</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">30</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">30</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">150</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">15</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en588.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en590.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

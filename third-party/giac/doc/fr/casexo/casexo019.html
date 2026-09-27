@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>La roue hexagonale ou isopolygonale</title>
+</head>
+<body >
+<a href="casexo018.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo020.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec328" class="chapter">Chapitre 19  La roue hexagonale ou isopolygonale</h1>
+<p>
+Un polygone régulier roule sur l’axe des <span style="font-style:italic">x</span>.
+Tracer la trajectoire d’un sommet <span style="font-style:italic">A</span>.<br>
+Exprimer la distance parcourue par le 
+point <span style="font-style:italic">A</span> quand la "roue" a fait un tour complet.
+</p>
+<h2 id="sec329" class="section">19.1  La roue hexagonale</h2>
+<p>
+Avec <span style="font-family:monospace">Xcas</span> on pourra exécuter <span style="font-family:monospace">hexagone.xws</span> pour avoir la 
+correction.</p><p>On peut chercher la liste <span style="font-family:monospace">S</span> des affixes des sommets de l”hexagone
+lorsque <span style="font-family:monospace">A</span> est en <span style="font-family:monospace">0</span> et <span style="font-family:monospace">B</span> est en <span style="font-family:monospace">1</span>, puis utiliser
+<span style="font-family:monospace">polygone(S)</span> ou utiliser directement <span style="font-family:monospace">hexagone(0,1)</span> ou
+<span style="font-family:monospace">isopolygone(0,1,6)</span>.<br>
+Lorsque la "roue" a fait un tour complet, le point <span style="font-family:monospace">A</span> décrit 6 arcs de 
+cercle et on met dans <span style="font-family:monospace">L</span> les extrémités de ces arcs (le dernier arc 
+est de rayon nul donc on peut dire que la trajectoire est formée de 5 arcs). 
+Pour calculer ces extrémités on tape :<br>
+<span style="font-family:monospace">a:=normal(affixe(rotation(1,-pi/3,0)));</span><br>
+<span style="font-family:monospace">b:=normal(affixe(rotation(2,-pi/3,a)))</span>,<br>
+puis on complète par symétrie par rapport à <span style="font-style:italic">x</span>=3<br>
+<span style="font-family:monospace">AL</span> est la liste de ces 5 arcs lorsque la "roue" a fait un tour complet.<br>
+<span style="font-family:monospace">BL</span> est la liste <span style="font-family:monospace">AL</span> translatée : on a ainsi la trajectoire du 
+point <span style="font-family:monospace">A</span> lorsque la "roue" a fait 2 tours complets.<br>
+On définit <span style="font-family:monospace">Hs</span> la figure formée par l’hexagone de centre <span style="font-family:monospace">O</span>
+et le segment <span style="font-family:monospace">AO</span> : on visualise ainsi le point <span style="font-family:monospace">A</span>.<br>
+Pour faire une animation on va créer la liste <span style="font-family:monospace">LH</span> contenant plusieurs 
+positions de <span style="font-family:monospace">Hs</span> obtenues par deux rotations de centre 1 d’angle −π/6
+et −π/3, deux rotations de centre 2 d’angle −π/6 et −π/3 etc...
+On obtient ainsi une liste de 12 éléments.<br>
+On tape :
+</p><pre class="verbatim">L:=[0,1/2+i*sqrt(3)/2,2+i*sqrt(3),4+i*sqrt(3),11/2+i*sqrt(3)/2,6];
+affichage((AL:=seq(arc(L[k],L[k+1],-pi/3),k,0,4)),hidden_name);
+affichage((BL:=translation(6,AL)),hidden_name);
+Hs:=[isopolygone(0,1,6),segment(0,(1+i*sqrt(3))/2)];
+LH:=[Hs];
+for (j:=0;j&lt;12;j++){LH:=concat(LH,[rotation(j+1,-pi/6,LH[2*j]),rotation(j+1,-pi/3,LH[2*j])])}:;
+affichage((A:=seq(arc(L[k],L[k+1],-pi/3),k,0,4)),hidden_name);
+affichage((B:=translation(6,A)),hidden_name);
+animation(LH);
+</pre><p>
+Le point <span style="font-style:italic">A</span> décrit des 6 arcs de cercles qui sont :
+</p><ul class="itemize"><li class="li-itemize">
+un arc de rayon 1 et d’angle au centre π/3 donc de longueur π/3, 
+</li><li class="li-itemize">un arc de rayon <span style="font-style:italic">r</span><sup>2</sup>=(−2+1/2)<sup>2</sup>+(√<span style="text-decoration:overline">(</span>3)/2)<sup>2</sup>=3 et d’angle au centre 
+π/3 donc de longueur π√<span style="text-decoration:overline">3</span>/3, 
+</li><li class="li-itemize">un arc de rayon 2 et d’angle au centre π/3 donc de longueur 
+2π/3, 
+</li><li class="li-itemize">un arc de rayon √<span style="text-decoration:overline">3</span> et d’angle au centre π/3 donc de 
+longueur π√<span style="text-decoration:overline">3</span>/3, 
+</li><li class="li-itemize">un arc de rayon 1 et d’angle au centre π/3 donc de longueur π/3, 
+</li><li class="li-itemize">un arc de rayon 0 et d’angle au centre π/3 donc de longueur 0.
+</li></ul><p>
+donc la distance parcourue par le point <span style="font-style:italic">A</span> quand la ‘"roue" a fait un tour 
+complet est π(4+2√<span style="text-decoration:overline">3</span>)/3.<br>
+On peut aussi calculer cette longueur à l’aide d’une boucle.
+On tape :<br>
+<span style="font-family:monospace">dist:=0;</span><br>
+<span style="font-family:monospace">for (k:=0;k&lt;5;k++){arc(L[k],L[k+1],-pi/3,C,R);<br>
+            dist:=dist+R*pi/3;};</span><br>
+<span style="font-family:monospace">normal(dist)</span>
+</p>
+<h2 id="sec330" class="section">19.2  La roue isopolygonale</h2>
+<p>
+Avec <span style="font-family:monospace">Xcas</span> on pourra exécuter <span style="font-family:monospace">rouepoly.xws</span> pour avoir la 
+correction.</p><p>On va écrire des procédures de param‘etre <span style="font-family:monospace">n</span> qui représente le 
+nombre de côtés de l’isopolygône.<br>
+<span style="font-family:monospace">Lsarc(n)</span> renvoie la liste des sommets des arcs qui forment la 
+trajectoire de <span style="font-family:monospace">A</span>.<br>
+<span style="font-family:monospace">Lpoly(n)</span> renvoie la liste des positions successives de la figure formée
+par <span style="font-family:monospace">P</span> l’isopolgône de centre <span style="font-family:monospace">O</span>, et <span style="font-family:monospace">S</span> le segment 
+<span style="font-family:monospace">OA</span>. On pourra ainsi faire facilement une animation.<br>
+<span style="font-family:monospace">tracerarc(n)</span> ou <span style="font-family:monospace">tracer(n)</span> trace la trajectoire lorsque
+la "roue" a fait 2 tours complets.
+<span style="font-family:monospace">longtrajet(n)</span> renvoie la longueur d’une arche : le résultat est 
+approché, mais on peut supprimer <span style="font-family:monospace">evalf</span> pour avoir un résultat exact 
+lorsque <span style="font-family:monospace">n=3,4,6</span>.</p><p>On tape :
+</p><pre class="verbatim">  Lsarc(n):={
+    local L,j;
+    L:=[point(0)];
+    for (j:=1;j&lt;n;j++){
+      L:=concat(L,normal(rotation(j,-2*pi/n,L[j-1])));
+    }
+    return(L);
+  };
+
+Lpoly(n):={
+local LP,j,P,S;
+P:=normal(isopolygone(0,1,n));
+S:=segment(0,evalf(1/2+i/2/tan(pi/n)));
+LP:=[[P,S]];
+for (j:=0;j&lt;2*n;j++){
+LP:=concat(LP,[rotation(j+1,evalf(-pi/n),LP[2*j]),
+           rotation(j+1,evalf(-2*pi/n),LP[2*j])]);
+}
+return LP;
+};
+
+tracerarc(n):={
+  local A,B,Ls;
+  Ls:=evalf(Lsarc(n));
+  A:=seq(arc(Ls[k],Ls[k+1],evalf(-2*pi/n)),k,0,n-2);
+  B:=translation(n,A);
+  return concat(A,B);
+};
+
+//ou encore
+tracer(n):={
+  local A,B,j,Ls;
+  Ls:=evalf(Lsarc(n));
+  A:=[arc(Ls[0],Ls[1],evalf(-2*pi/n))];
+  for (j:=1;j&lt;n-1;j++){
+    A:=concat(A,arc(Ls[j],Ls[j+1],-2*pi/n));
+  }
+  B:=translation(n,A);
+  return(A,B)
+};
+
+longtrajet(n):={
+local dist,k,C,R;
+dist:=0
+for (k:=0;k&lt;(n-1);k++){
+  arc((Lsarc(n))[k],(Lsarc(n))[k+1],-pi/3,C,R);
+  dist:=evalf(dist+R*pi/3);
+};
+return normal(dist);
+}
+</pre><p>
+On tape par exemple, pour avoir une animation :<br>
+<span style="font-family:monospace">tracerarc(5);animation(Lpoly(5))</span></p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo018.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo020.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

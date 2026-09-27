@@ -1,0 +1,17 @@
+# Maple integration test file: "6 Hyperbolic functions\6.1b Hyperbolic cosine\6.1.3 (e x)^m (a+b cosh(c+d x^n))^p.txt"
+
+lst:=[
+[x^3*cosh(a+b*x^2),x,3,-1/2*cosh(a+b*x^2)/b^2+1/2*x^2*sinh(a+b*x^2)/b],
+[cosh(a+b*x^2)/x^3,x,5,-1/2*cosh(a+b*x^2)/x^2+1/2*b*cosh(a)*Shi(b*x^2)+1/2*b*Chi(b*x^2)*sinh(a)],
+[cosh(a+b*x^2)^2/x^3,x,7,(-1/4)/x^2-1/4*cosh(2*a+2*b*x^2)/x^2+1/2*b*cosh(2*a)*Shi(2*b*x^2)+1/2*b*Chi(2*b*x^2)*sinh(2*a)],
+[cosh(a+b/x^2),x,5,x*cosh(a+b/x^2)+1/2*erf(sqrt(b)/x)*sqrt(b)*sqrt(Pi)/exp(a)-1/2*exp(a)*erfi(sqrt(b)/x)*sqrt(b)*sqrt(Pi)],
+[cosh(a+b/x^2)/x^2,x,4,-1/4*erf(sqrt(b)/x)*sqrt(Pi)/(exp(a)*sqrt(b))-1/4*exp(a)*erfi(sqrt(b)/x)*sqrt(Pi)/sqrt(b)],
+[cosh(a+b*x^n)/x,x,3,Chi(b*x^n)*cosh(a)/n+Shi(b*x^n)*sinh(a)/n],
+[cosh(a+b*x^n)^2/x,x,5,1/2*Chi(2*b*x^n)*cosh(2*a)/n+1/2*log(x)+1/2*Shi(2*b*x^n)*sinh(2*a)/n],
+[(e*x)^(-1+n)*(b*cosh(c+d*x^n))^p,x,3,-(e*x)^n*(b*cosh(c+d*x^n))^(1+p)*hypergeom([1/2,1/2*(1+p)],[1/2*(3+p)],cosh(c+d*x^n)^2)*sinh(c+d*x^n)/(b*d*e*n*(1+p)*x^n*sqrt(-sinh(c+d*x^n)^2))],
+[x^m*cosh(a+b*x^n),x,3,-1/2*exp(a)*x^(1+m)*GAMMA((1+m)/n,-b*x^n)/(n*(-b*x^n)^((1+m)/n))-1/2*x^(1+m)*GAMMA((1+m)/n,b*x^n)/(exp(a)*n*(b*x^n)^((1+m)/n))],
+[x^(-1-n)*cosh(a+b*x^n),x,5,-cosh(a+b*x^n)/(n*x^n)+b*cosh(a)*Shi(b*x^n)/n+b*Chi(b*x^n)*sinh(a)/n],
+[x^(-1-n)*cosh(a+b*x^n)^3,x,12,-3/4*cosh(a+b*x^n)/(n*x^n)-1/4*cosh(3*a+3*b*x^n)/(n*x^n)+3/4*b*cosh(a)*Shi(b*x^n)/n+3/4*b*cosh(3*a)*Shi(3*b*x^n)/n+3/4*b*Chi(b*x^n)*sinh(a)/n+3/4*b*Chi(3*b*x^n)*sinh(3*a)/n],
+[x*cosh((a+b*x)^2),x,8,1/2*sinh((a+b*x)^2)/b^2-1/4*a*erf(a+b*x)*sqrt(Pi)/b^2-1/4*a*erfi(a+b*x)*sqrt(Pi)/b^2],
+[x^2*cosh(a+b*(c+d*x)^(1/3)),x,23,720*c*cosh(a+b*(c+d*x)^(1/3))/(b^6*d^3)-120960*(c+d*x)^(1/3)*cosh(a+b*(c+d*x)^(1/3))/(b^8*d^3)-6*c^2*(c+d*x)^(1/3)*cosh(a+b*(c+d*x)^(1/3))/(b^2*d^3)+360*c*(c+d*x)^(2/3)*cosh(a+b*(c+d*x)^(1/3))/(b^4*d^3)-20160*(c+d*x)*cosh(a+b*(c+d*x)^(1/3))/(b^6*d^3)+30*c*(c+d*x)^(4/3)*cosh(a+b*(c+d*x)^(1/3))/(b^2*d^3)-1008*(c+d*x)^(5/3)*cosh(a+b*(c+d*x)^(1/3))/(b^4*d^3)-24*(c+d*x)^(7/3)*cosh(a+b*(c+d*x)^(1/3))/(b^2*d^3)+120960*sinh(a+b*(c+d*x)^(1/3))/(b^9*d^3)+6*c^2*sinh(a+b*(c+d*x)^(1/3))/(b^3*d^3)-720*c*(c+d*x)^(1/3)*sinh(a+b*(c+d*x)^(1/3))/(b^5*d^3)+60480*(c+d*x)^(2/3)*sinh(a+b*(c+d*x)^(1/3))/(b^7*d^3)+3*c^2*(c+d*x)^(2/3)*sinh(a+b*(c+d*x)^(1/3))/(b*d^3)-120*c*(c+d*x)*sinh(a+b*(c+d*x)^(1/3))/(b^3*d^3)+5040*(c+d*x)^(4/3)*sinh(a+b*(c+d*x)^(1/3))/(b^5*d^3)-6*c*(c+d*x)^(5/3)*sinh(a+b*(c+d*x)^(1/3))/(b*d^3)+168*(c+d*x)^2*sinh(a+b*(c+d*x)^(1/3))/(b^3*d^3)+3*(c+d*x)^(8/3)*sinh(a+b*(c+d*x)^(1/3))/(b*d^3)],
+[cosh(a+b*(c+d*x)^(1/3))/x^2,x,14,-cosh(a+b*(c+d*x)^(1/3))/x-1/3*b*d*cosh(a+b*c^(1/3))*Shi(b*c^(1/3)-b*(c+d*x)^(1/3))/c^(2/3)-1/3*(-1)^(2/3)*b*d*cosh(a+(-1)^(2/3)*b*c^(1/3))*Shi((-1)^(2/3)*b*c^(1/3)-b*(c+d*x)^(1/3))/c^(2/3)-1/3*(-1)^(1/3)*b*d*cosh(a-(-1)^(1/3)*b*c^(1/3))*Shi((-1)^(1/3)*b*c^(1/3)+b*(c+d*x)^(1/3))/c^(2/3)+1/3*b*d*Chi(b*c^(1/3)-b*(c+d*x)^(1/3))*sinh(a+b*c^(1/3))/c^(2/3)-1/3*(-1)^(1/3)*b*d*Chi((-1)^(1/3)*b*c^(1/3)+b*(c+d*x)^(1/3))*sinh(a-(-1)^(1/3)*b*c^(1/3))/c^(2/3)+1/3*(-1)^(2/3)*b*d*Chi(-(-1)^(2/3)*b*c^(1/3)+b*(c+d*x)^(1/3))*sinh(a+(-1)^(2/3)*b*c^(1/3))/c^(2/3)]]:

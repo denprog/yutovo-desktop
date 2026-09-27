@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Integral and fractional part of a rational number</title>
+</head>
+<body >
+<a href="cascmd_en199.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en201.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:ipropfrac" class="subsection">7.2.2  Integral and fractional part of a rational number</h3>
+<p>Rational numbers are often broken up into integer and fractional
+parts, where the fractional part has absolute value less than 1; i.e.,
+the absolute value of the top integer is smaller than that of the
+bottom integer. Such a fraction is called a <em>proper</em> fraction.
+The <span style="font-family:monospace">propfrac</span><a id="hevea_default330"></a>
+or <span style="font-family:monospace">propFrac</span><a id="hevea_default331"></a> command
+writes a fraction as an integer plus a proper fraction.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">propfrac</span> takes
+<span style="font-style:italic">r</span>, a rational number.
+</li><li class="li-itemize"><span style="font-family:monospace">propfrac(</span><span style="font-style:italic">r</span><span style="font-family:monospace">)</span> returns
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    <span style="font-style:italic">q</span>+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">r</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">b</span></td></tr>
+</table></td><td class="dcell">  with   0≤ <span style="font-style:italic">r</span>&lt;<span style="font-style:italic">b</span>
+</td></tr>
+</table>
+where  <span style="font-style:italic">r</span>=<span style="font-style:italic">a</span>/<span style="font-style:italic">b</span> is in lowest terms and
+and <span style="font-style:italic">a</span>=<span style="font-style:italic">b</span> <span style="font-style:italic">q</span>+<span style="font-style:italic">r</span>.
+</li></ul><p>
+(For rational expressions, see Section <a href="cascmd_en396.html#ssec%3Apropfrac">11.6.8</a>.)</p><h4 id="sec412" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">propfrac</span></span><span style="font-weight:bold"><span style="color:#BF0000">(42/15)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+2+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">propfrac</span></span><span style="font-weight:bold"><span style="color:#BF0000">(43/12)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+3+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">7</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">12</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en199.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en201.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

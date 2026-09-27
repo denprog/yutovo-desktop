@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Blending images</title>
+</head>
+<body >
+<a href="cascmd_en1016.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1018.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:image-interp" class="subsection">28.1.10  Blending images</h3>
+<p>The <span style="font-family:monospace">interp</span><a id="hevea_default1938"></a> command
+interpolates two images linearly in the XYZ color space.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">interp</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">img1</span>, an image object with dimensions <span style="font-style:italic">w</span><sub>1</sub>× <span style="font-style:italic">h</span><sub>1</sub> and color depth <span style="font-style:italic">d</span><sub>1</sub>.
+</li><li class="li-itemize"><span style="font-style:italic">img2</span>, an image object with dimensions <span style="font-style:italic">w</span><sub>2</sub>× <span style="font-style:italic">h</span><sub>2</sub> and color depth <span style="font-style:italic">d</span><sub>2</sub>.
+</li><li class="li-itemize"><span style="font-style:italic">t</span>, a real number in [0,1].
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">interp(</span><span style="font-style:italic">img1</span>,<span style="font-style:italic">img2</span>,<span style="font-style:italic">t</span><span style="font-family:monospace">)</span>
+returns the image with dimensions <span style="font-style:italic">w</span>× <span style="font-style:italic">h</span> and color depth <span style="font-style:italic">d</span>,
+obtained by linear interpolation between <span style="font-style:italic">img1</span>
+and <span style="font-style:italic">img2</span>. The width an height of the resulting image are computed by solving the
+system of equations
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">w</span> <span style="font-style:italic">h</span>=(1−<span style="font-style:italic">t</span>)<span style="font-style:italic">w</span><sub>1</sub> <span style="font-style:italic">h</span><sub>1</sub>+<span style="font-style:italic">t</span> <span style="font-style:italic">w</span><sub>2</sub> <span style="font-style:italic">h</span><sub>2</sub>,  ln</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">w</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">h</span></td></tr>
+</table></td><td class="dcell">=(1−<span style="font-style:italic">t</span>)ln</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">w</span><sub>1</sub></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">h</span><sub>1</sub></td></tr>
+</table></td><td class="dcell">+<span style="font-style:italic">t</span>ln</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">w</span><sub>2</sub></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">h</span><sub>2</sub></td></tr>
+</table></td><td class="dcell">.</td></tr>
+</table>
+The resulting color depth <span style="font-style:italic">d</span> is the smallest one that
+is able to fit data from each image. For example, if <span style="font-style:italic">img1</span> is a grayscale image with
+alpha channel (<span style="font-style:italic">d</span><sub>1</sub>=2) and <span style="font-style:italic">img2</span> is a RGB image (<span style="font-style:italic">d</span><sub>2</sub>=3) with three channels and no
+alpha channel, then the resulting depth will be RGBA, i.e. <span style="font-style:italic">d</span>=4
+(three color channels with alpha channel).<p>To interpolate pixel data, <span style="font-family:monospace">interp</span> first resizes both images to <span style="font-style:italic">w</span>× <span style="font-style:italic">h</span>.
+The RGB values of individual pixels are then computed by a perceptually uniform
+linear interpolation between the corresponding values in <span style="font-style:italic">img1</span> and <span style="font-style:italic">img2</span>
+(see Section <a href="cascmd_en609.html#ssec%3Acolor-interp">19.1.3</a>).
+</p></li></ul><h4 id="sec2545" class="subsubsection">Example</h4>
+<p>
+To begin, load two images:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Pictures/xcas-logo.png"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 377×353 (RGB)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/usr/local/share/giac/examples/Exemples/demo/terre.jpg"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 512×256 (RGB)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img1</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,400)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en454.png">
+
+</div><p>
+
+Now blend the two images together with <span style="font-style:italic">t</span>=0.6:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img1</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">img2</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0.6)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 474×277 (RGB)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en455.png">
+
+</div>
+<hr>
+<a href="cascmd_en1016.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1018.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

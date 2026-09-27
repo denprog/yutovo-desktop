@@ -1,0 +1,17 @@
+A:=point(0);
+B:=point(1);
+assume(c=[1.53,-5,5,0.1]);
+C:=point(c*exp(i*pi/3));
+triangle(A,B,C);
+P:=single_inter( bisector(A,B,C),line(B,C));
+Q:=single_inter( bisector(B,A,C),line(A,C));
+incircle(A,B,C);
+L:=solve(distance(A,B)+distance(B,P)=distance(A,Q)+distance(B,Q),c);
+p:=pmin(L[1],c); subst(angle(B,C,A),c=evalf(L[1]))*180/pi; 
+normal(80*pi/180);
+factor(x^9-1);
+cc:=exp2trig(exp(i*angle(B,C,A)));
+eq9:=numer(normal(cc^6+cc^3+1));
+eq10:=normal(eq9*subst(eq9,sqrt(c^2-c+1)=-sqrt(c^2-c+1)));
+rem(eq10,p,c);
+

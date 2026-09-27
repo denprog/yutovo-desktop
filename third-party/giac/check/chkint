@@ -1,0 +1,79 @@
+//complex_mode(1);        
+//auto_assume(1);
+tout:=15; // should be 180 for 12000 testing        
+file:=fopen("int"+testname+".tst");
+file2:=fopen("int"+testname+".rep");        
+res:=[]:;
+S:=size(lst);
+print(testname+" number of tests "+S);
+failint:=[]; failsimp:=[]; nock:=[]; ass:=[]; infos:=[]; timings:=[]; agrade:=0; bgrade:=0; cgrade:=0; fgrade:=0;
+T0:=time();
+tsts:=0;        
+for j from 0 to S-1 do
+  tsts++;
+  lj:=eval(lst,1)[j]; 
+  f:=eval(lj[0],1); v:=lj[1]; hyp:=lj[2]; solution:=lj[3]; print(f);
+  if (hyp=="nock") then print("Warning:",j+1,"not checked"); fprint(file,"Warning:",j+1,"not checked"); fi;
+  purge(unquote(v));
+  if (type(hyp)==string) expr(hyp); // eval assumption
+  print(j+1,"integrate start",f,"var=",v,"hyp=",hyp,"about=",about(unquote(v)));
+  prevtime:=time(); 
+  try { g:=timeout(integrate(f,unquote(v)),tout); } catch(err){ g:="integrate(err)"; }
+  // try { g:=risch(f,unquote(v)); } catch(err){ g:="integrate(err)"; }        
+  nxttime:=time();         
+  print(j+1,"integration done in "+(nxttime-prevtime)+" for "+f);
+  if g==undef then s:="integrate("+f+","+v+")"; else s:=""+eval(g,1); fi;
+  hhh:=false;
+  ssolution:=" "+solution; if type(ssolution)!=DOM_STRING then ssolution:=" "; fi;
+  ssolution:=ssolution.find("Defer");
+  if size(ssolution)>0 then
+    failure := f==fail || size(s.find("integrate("))==0 ;
+  else
+    failure := f==fail || size(s.find("integrate("))>0 || hyp==x;
+  fi;
+  ratio:=evalf(size(g,size)/size(solution,size));
+  grade:="F";
+  if (failure){ failint.append(j+1); fgrade++; }
+  else {
+    if (has_i(g)){ cgrade++; grade="C";}
+    else {
+      if (ratio<2){ agrade++; grade="A";}
+      else { bgrade++; grade:="B";}
+    }
+  }
+  timings.append(round(nxttime-prevtime,6));
+  infos.append([j+1,1-failure,round(nxttime-prevtime,6),round(ratio,1)]);        
+  if (hyp=="nock") nock.append(j+1);
+  if (hyp.type==string && size(hyp.find("assume("))>0) ass.append(j+1);
+  if (hyp!="nock" && !failure)  hhh:=timeout(simplify(diff(g,unquote(v))-f),tout); else print("nock");
+  purge(unquote(assumptions));
+  fgh:=""+eval([j+1,f,g,h],1);
+  verif:=eval(hhh,1)==0;
+  if (!verif) failsimp.append(j+1);
+  print(fgh);
+  //res.append([f,g,hhh]); print(res[size(res)-1]);
+  fprint(file,"",fgh);
+  // using Nasser Abassi format for 12000
+  fgh:=""+(j+1)+","+(1-failure)+","+size(eval(g,1),size)+","+round(nxttime-prevtime,4)+","+size(solution,size)+",\"\\int "+latex(eval(f,1))+"\",\""+eval(f,1)+"\",\""+latex(eval(g,1))+"\",\""+latex(solution)+"\","+(1-(size(ssolution)>0))+","+eval(g,1)+",\""+grade+"\",\"N/A\","+(0+verif)+"\n";
+  fprint(file2,Unquoted,fgh);
+od:;
+//res;
+report:= "\n===="+testname+" ====\ninfos [testno,ok,time,leafsize_ratio]: \n"+infos+
+ "\nTotal time:"+round(time()-T0,2)+
+ "\ntime list:"+timings+
+ "\nmedian time: "+median(timings)+", mean time: "+round(mean(timings),6)+
+ "\ntests: "+tsts+
+ "\nsolved: "+(agrade+bgrade+cgrade)+" "+round(100.0*(agrade+bgrade+cgrade)/S,2)+"%"+
+ "\nA: "+agrade+" "+round(100.0*agrade/S,2)+"%"+
+ "\nB: "+bgrade+" "+round(100.0*bgrade/S,2)+"%"+
+ "\nC: "+cgrade+" "+round(100.0*cgrade/S,2)+"%"+
+ "\nF: "+fgrade+" "+round(100.0*fgrade/S,2)+"%"+
+ "\nintegration failures: "+size(failint)+", "+failint+
+ "\nsimplification failures: "+size(failsimp)+", "+failsimp+
+ "\nnot cheked: "+size(nock)+", "+nock+
+ "\nassumptions: "+size(ass)+", "+ass+"\n"
+:;        
+fprint(file,report);
+fclose(file);
+fclose(file2);        
+print(report);

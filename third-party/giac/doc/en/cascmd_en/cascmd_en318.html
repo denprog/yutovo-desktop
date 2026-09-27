@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Simplifying and expressing preferentially with sines</title>
+</head>
+<body >
+<a href="cascmd_en317.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en319.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:trigsin" class="subsection">10.2.23  Simplifying and expressing preferentially with sines</h3>
+<p>Any trigonometric function can be written in terms of sines and
+cosines, and even powers of cosines can be turned into powers of sines by
+using the identity sin(<span style="font-style:italic">x</span>)<sup>2</sup>+cos(<span style="font-style:italic">x</span>)<sup>2</sup>=1. The
+<span style="font-family:monospace">trigsin</span><a id="hevea_default566"></a> command performs
+these substitutions.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">trigsin</span> takes
+<span style="font-style:italic">expr</span>, an expression containing trigonometric functions.
+</li><li class="li-itemize"><span style="font-family:monospace">trigsin(</span><span style="font-style:italic">expr</span><span style="font-family:monospace">)</span> returns <span style="font-style:italic">expr</span>
+with the trigonometric functions rewritten in terms of sines and
+cosines, with as many cosines as possible transformed to sines.
+</li></ul><h4 id="sec717" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trigsin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^4+</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^2+1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">sin</span><sup><span style="color:#0000CC">4</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−</span><span style="color:#0000CC">sin</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+2
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en317.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en319.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

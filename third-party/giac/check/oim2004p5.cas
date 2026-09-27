@@ -1,0 +1,23 @@
+assume(b=[1.2,-5,5,0.1]);
+assume(d=[-0.5,-5,5,0.1]);
+circle(0,1);
+B:=point((1+i*b)/(1-i*b));
+D:=point((1+i*d)/(1-i*d));
+A:=point(-1);
+assume(c=[0.491192993174,-5,5,0.1]);
+assume(r=[1.71,0,5,0.1]);
+C:=point(r*(1+i*c)/(1-i*c));
+d1:=rotation(B,angle(B,D,A),line(B,C),display=hidden_name);
+d2:=rotation(D,angle(D,B,A),line(D,C),display=hidden_name);
+P:=single_inter(d1,d2);
+triangle(B,D,A);
+
+f:=factor(distance2(P,A)-distance2(P,C));
+degree(f[1,3],r); l:=coeffs(f[1,3],r):;
+ff:=factors(discriminant(f[1,3],r));
+ff2:=ff[2];
+rr:=-l[1]/2/l[0];
+ff3:=factors(numer(subst(f[1,3],r=rr)));
+ff4:=factors(numer(subst(im((B-D)^2/(B-A)/(B-C)),r=rr)));
+normal(ff2-ff3[2]);
+normal(ff2/ff4[2]);

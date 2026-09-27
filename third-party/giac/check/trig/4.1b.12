@@ -1,0 +1,23 @@
+# Maple integration test file: "4 Trig functions\4.1b Cosine\4.1.12 (e x)^m (a+b cos(c+d x^n))^p.txt"
+
+lst:=[
+[x^3*cos(a+b*x^2),x,3,1/2*cos(a+b*x^2)/b^2+1/2*x^2*sin(a+b*x^2)/b],
+[x^2*cos(a+b*x^2),x,4,1/2*x*sin(a+b*x^2)/b-1/2*cos(a)*FresnelS(x*sqrt(b)*sqrt(2/Pi))*sqrt(1/2*Pi)/b^(3/2)-1/2*FresnelC(x*sqrt(b)*sqrt(2/Pi))*sin(a)*sqrt(1/2*Pi)/b^(3/2)],
+[x^3*cos(a+b*x^2)^2,x,3,1/8*x^4+1/8*cos(a+b*x^2)^2/b^2+1/4*x^2*cos(a+b*x^2)*sin(a+b*x^2)/b],
+[cos(a+b*x^2)^2/x^3,x,7,(-1/4)/x^2-1/4*cos(2*a+2*b*x^2)/x^2-1/2*b*cos(2*a)*Si(2*b*x^2)-1/2*b*Ci(2*b*x^2)*sin(2*a)],
+[x^3*cos(a+b*x^2)^3,x,4,1/3*cos(a+b*x^2)/b^2+1/18*cos(a+b*x^2)^3/b^2+1/3*x^2*sin(a+b*x^2)/b+1/6*x^2*cos(a+b*x^2)^2*sin(a+b*x^2)/b],
+[x^2*cos(a+b*x^2)^3,x,10,3/8*x*sin(a+b*x^2)/b+1/24*x*sin(3*a+3*b*x^2)/b-1/24*cos(3*a)*FresnelS(x*sqrt(b)*sqrt(6/Pi))*sqrt(1/6*Pi)/b^(3/2)-1/24*FresnelC(x*sqrt(b)*sqrt(6/Pi))*sin(3*a)*sqrt(1/6*Pi)/b^(3/2)-3/8*cos(a)*FresnelS(x*sqrt(b)*sqrt(2/Pi))*sqrt(1/2*Pi)/b^(3/2)-3/8*FresnelC(x*sqrt(b)*sqrt(2/Pi))*sin(a)*sqrt(1/2*Pi)/b^(3/2)],
+[cos(a+b*x^2)^3,x,8,1/4*cos(3*a)*FresnelC(x*sqrt(b)*sqrt(6/Pi))*sqrt(1/6*Pi)/sqrt(b)-1/4*FresnelS(x*sqrt(b)*sqrt(6/Pi))*sin(3*a)*sqrt(1/6*Pi)/sqrt(b)+3/4*cos(a)*FresnelC(x*sqrt(b)*sqrt(2/Pi))*sqrt(1/2*Pi)/sqrt(b)-3/4*FresnelS(x*sqrt(b)*sqrt(2/Pi))*sin(a)*sqrt(1/2*Pi)/sqrt(b)],
+[x^(1/2)*cos(a+b*x^2),x,3,-1/4*exp(I*a)*x^(3/2)*GAMMA(3/4,-I*b*x^2)/(-I*b*x^2)^(3/4)-1/4*x^(3/2)*GAMMA(3/4,I*b*x^2)/(exp(I*a)*(I*b*x^2)^(3/4))],
+[cos(a+b/x)/x^3,x,3,-cos(a+b/x)/b^2-sin(a+b/x)/(b*x)],
+[cos(a+b/x^2),x,5,x*cos(a+b/x^2)+cos(a)*FresnelS(sqrt(b)*sqrt(2/Pi)/x)*sqrt(b)*sqrt(2*Pi)+FresnelC(sqrt(b)*sqrt(2/Pi)/x)*sin(a)*sqrt(b)*sqrt(2*Pi)],
+[cos(a+b/x^2)/x^3,x,2,-1/2*sin(a+b/x^2)/b],
+[cos(a+b/x^2)/x^4,x,5,-1/2*sin(a+b/x^2)/(b*x)+1/2*cos(a)*FresnelS(sqrt(b)*sqrt(2/Pi)/x)*sqrt(1/2*Pi)/b^(3/2)+1/2*FresnelC(sqrt(b)*sqrt(2/Pi)/x)*sin(a)*sqrt(1/2*Pi)/b^(3/2)],
+[cos(a+b*x^(1/3))^2/x^(7/2),x,16,-16/715*b^2/x^(11/6)+256/45045*b^4/x^(7/6)-2/5*cos(a+b*x^(1/3))^2/x^(5/2)+32/715*b^2*cos(a+b*x^(1/3))^2/x^(11/6)-512/45045*b^4*cos(a+b*x^(1/3))^2/x^(7/6)+8/65*b*cos(a+b*x^(1/3))*sin(a+b*x^(1/3))/x^(13/6)-128/6435*b^3*cos(a+b*x^(1/3))*sin(a+b*x^(1/3))/x^(3/2)+2048/225225*b^5*cos(a+b*x^(1/3))*sin(a+b*x^(1/3))/x^(5/6)-32768/675675*b^7*cos(a+b*x^(1/3))*sin(a+b*x^(1/3))/x^(1/6)+32768/675675*b^(15/2)*cos(2*a)*FresnelC(2*x^(1/6)*sqrt(b)/sqrt(Pi))*sqrt(Pi)-32768/675675*b^(15/2)*FresnelS(2*x^(1/6)*sqrt(b)/sqrt(Pi))*sin(2*a)*sqrt(Pi)-4096/675675*b^6/sqrt(x)+8192/675675*b^6*cos(a+b*x^(1/3))^2/sqrt(x)],
+[cos(a+b*x^n)^2/x,x,5,1/2*Ci(2*b*x^n)*cos(2*a)/n+1/2*log(x)-1/2*Si(2*b*x^n)*sin(2*a)/n],
+[cos(a+b*x^n)^4/x,x,8,1/2*Ci(2*b*x^n)*cos(2*a)/n+1/8*Ci(4*b*x^n)*cos(4*a)/n+3/8*log(x)-1/2*Si(2*b*x^n)*sin(2*a)/n-1/8*Si(4*b*x^n)*sin(4*a)/n],
+[x^(-1-n)*cos(a+b*x^n),x,5,-cos(a+b*x^n)/(n*x^n)-b*cos(a)*Si(b*x^n)/n-b*Ci(b*x^n)*sin(a)/n],
+[cos((a+b*x)^2)/x^2,x,0,Integral(cos((a+b*x)^2)/x^2,x)],
+[cos(a+b*sqrt(c+d*x))/x,x,8,Ci(b*sqrt(c)+b*sqrt(c+d*x))*cos(a-b*sqrt(c))+Ci(b*sqrt(c)-b*sqrt(c+d*x))*cos(a+b*sqrt(c))-Si(b*sqrt(c)+b*sqrt(c+d*x))*sin(a-b*sqrt(c))+Si(b*sqrt(c)-b*sqrt(c+d*x))*sin(a+b*sqrt(c))],
+[x*cos(a+b*(c+d*x)^(1/3)),x,11,360*cos(a+b*(c+d*x)^(1/3))/(b^6*d^2)-6*c*(c+d*x)^(1/3)*cos(a+b*(c+d*x)^(1/3))/(b^2*d^2)-180*(c+d*x)^(2/3)*cos(a+b*(c+d*x)^(1/3))/(b^4*d^2)+15*(c+d*x)^(4/3)*cos(a+b*(c+d*x)^(1/3))/(b^2*d^2)+6*c*sin(a+b*(c+d*x)^(1/3))/(b^3*d^2)+360*(c+d*x)^(1/3)*sin(a+b*(c+d*x)^(1/3))/(b^5*d^2)-3*c*(c+d*x)^(2/3)*sin(a+b*(c+d*x)^(1/3))/(b*d^2)-60*(c+d*x)*sin(a+b*(c+d*x)^(1/3))/(b^3*d^2)+3*(c+d*x)^(5/3)*sin(a+b*(c+d*x)^(1/3))/(b*d^2)],
+[cos(a+b*(c+d*x)^(1/3))/x^2,x,13,-cos(a+b*(c+d*x)^(1/3))/x+1/3*b*d*cos(a+b*c^(1/3))*Si(b*c^(1/3)-b*(c+d*x)^(1/3))/c^(2/3)+1/3*(-1)^(2/3)*b*d*cos(a+(-1)^(2/3)*b*c^(1/3))*Si((-1)^(2/3)*b*c^(1/3)-b*(c+d*x)^(1/3))/c^(2/3)+1/3*(-1)^(1/3)*b*d*cos(a-(-1)^(1/3)*b*c^(1/3))*Si((-1)^(1/3)*b*c^(1/3)+b*(c+d*x)^(1/3))/c^(2/3)-1/3*b*d*Ci(b*c^(1/3)-b*(c+d*x)^(1/3))*sin(a+b*c^(1/3))/c^(2/3)+1/3*(-1)^(1/3)*b*d*Ci((-1)^(1/3)*b*c^(1/3)+b*(c+d*x)^(1/3))*sin(a-(-1)^(1/3)*b*c^(1/3))/c^(2/3)-1/3*(-1)^(2/3)*b*d*Ci((-1)^(2/3)*b*c^(1/3)-b*(c+d*x)^(1/3))*sin(a+(-1)^(2/3)*b*c^(1/3))/c^(2/3)]]:

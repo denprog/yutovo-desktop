@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.1b Cosine\4.1.1.3 (g tan)^p (a+b cos)^m.txt"
+
+lst:=[
+[tan(x)^4/(a+a*cos(x)),x,5,1/2*arctanh(sin(x))/a-1/2*sec(x)*tan(x)/a+1/3*tan(x)^3/a],
+[cot(x)/(a+a*cos(x)),x,5,-1/2*arctanh(cos(x))/a+1/2*cot(x)*csc(x)/a-1/2*csc(x)^2/a],
+[tan(x)^3/(a+b*cos(x)),x,3,(a^2-b^2)*log(cos(x))/a^3-(a^2-b^2)*log(a+b*cos(x))/a^3-b*sec(x)/a^2+1/2*sec(x)^2/a],
+[cot(x)^2/(a+b*cos(x)),x,7,-2*a^2*arctan(sqrt(a-b)*tan(1/2*x)/sqrt(a+b))/((a-b)^(3/2)*(a+b)^(3/2))-a*cot(x)/(a^2-b^2)+b*csc(x)/(a^2-b^2)],
+[(a+b*cos(e+f*x))^m*(g*tan(e+f*x))^p,x,1,(g*cot(e+f*x))^p*Integral((a+b*cos(e+f*x))^m/(g*cot(e+f*x))^p,x)*(g*tan(e+f*x))^p]]:

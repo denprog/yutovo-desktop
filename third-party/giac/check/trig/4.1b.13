@@ -1,0 +1,10 @@
+# Maple integration test file: "4 Trig functions\4.1b Cosine\4.1.13 (d+e x)^m cos(a+b x+c x^2)^n.txt"
+
+lst:=[
+[x^2*cos(a+b*x+c*x^2),x,8,-1/4*b*sin(a+b*x+c*x^2)/c^2+1/2*x*sin(a+b*x+c*x^2)/c+1/4*b^2*cos(a-1/4*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(5/2)-1/2*cos(a-1/4*b^2/c)*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(3/2)-1/2*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(3/2)-1/4*b^2*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(5/2)],
+[x*cos(a+b*x+c*x^2),x,4,1/2*sin(a+b*x+c*x^2)/c-1/2*b*cos(a-1/4*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(3/2)+1/2*b*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(3/2)],
+[cos(a+b*x-c*x^2)/x,x,0,Integral(cos(a+b*x-c*x^2)/x,x)],
+[x^2*cos(a+b*x+c*x^2)^2,x,10,1/6*x^3-1/16*b*sin(2*a+2*b*x+2*c*x^2)/c^2+1/8*x*sin(2*a+2*b*x+2*c*x^2)/c+1/16*b^2*cos(2*a-1/2*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sqrt(Pi)/c^(5/2)-1/16*cos(2*a-1/2*b^2/c)*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sqrt(Pi)/c^(3/2)-1/16*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sin(2*a-1/2*b^2/c)*sqrt(Pi)/c^(3/2)-1/16*b^2*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sin(2*a-1/2*b^2/c)*sqrt(Pi)/c^(5/2)],
+[cos(a+b*x+c*x^2)^2,x,5,1/2*x+1/4*cos(2*a-1/2*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sqrt(Pi)/sqrt(c)-1/4*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sin(2*a-1/2*b^2/c)*sqrt(Pi)/sqrt(c)],
+[x^2*cos(1/4+x+x^2)^2,x,8,1/6*x^3-1/16*sin(1/2+2*x+2*x^2)+1/8*x*sin(1/2+2*x+2*x^2)+1/16*FresnelC((1+2*x)/sqrt(Pi))*sqrt(Pi)-1/16*FresnelS((1+2*x)/sqrt(Pi))*sqrt(Pi)],
+[cos(1/4+x+x^2)^2/x^2,x,5,(-1/2)/x-1/2*cos(1/2+2*x+2*x^2)/x-Integral(sin(1/2+2*x+2*x^2)/x,x)-FresnelS((1+2*x)/sqrt(Pi))*sqrt(Pi)]]:

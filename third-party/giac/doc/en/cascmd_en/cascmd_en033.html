@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Configuration file</title>
+</head>
+<body >
+<a href="cascmd_en032.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en034.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:conffile" class="subsection">2.5.10  Configuration file</h3>
+<p>When you save changes to your configuration, they are stored in a
+configuration file, which will be <span style="font-family:monospace">.xcasrc</span><a id="hevea_default19"></a> in
+your home directory in Unix and <span style="font-family:monospace">xcas.rc</span><a id="hevea_default20"></a> in
+Windows. This file will have four functions –
+<span style="font-family:monospace">widget_size</span><a id="hevea_default21"></a>,
+<span style="font-family:monospace">cas_setup</span><a id="hevea_default22"></a>,
+<span style="font-family:monospace">xcas_mode</span><a id="hevea_default23"></a> and
+<span style="font-family:monospace">xyztrange</span><a id="hevea_default24"></a> –
+which determine the configuration and which are evaluated when
+<span style="font-variant:small-caps">Xcas</span> starts.</p><p>The <span style="font-family:monospace">widget_size</span> command sets properties of the opening
+<span style="font-variant:small-caps">Xcas</span> window.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">widget_size</span> takes between 1 and 12 arguments. The arguments
+(in order) are:
+<dl class="description"><dt class="dt-description">
+<span style="font-weight:bold">Font size.</span></dt><dd class="dd-description"> The first argument is a positive integer
+specifying the font size. Optionally, this can be a bracketed list
+whose first number indicates the font and the second the font size.
+</dd><dt class="dt-description"><span style="font-weight:bold">Horizontal and vertical offset.</span></dt><dd class="dd-description"> The second and third
+arguments are horizontal and vertical distances in pixels from the
+upper left hand corner of the screen. They specify where the upper
+left corner of the <span style="font-variant:small-caps">Xcas</span> window is when it opens.
+</dd><dt class="dt-description"><span style="font-weight:bold">Window size.</span></dt><dd class="dd-description"> The fourth and fifth arguments specify the width and height in
+pixels of the <span style="font-variant:small-caps">Xcas</span> window when it opens.
+</dd><dt class="dt-description"><span style="font-weight:bold">Keyboard</span></dt><dd class="dd-description"> (see Section <a href="index.html#sec%3Aswin">2.2</a>, item
+<a href="index.html#enum%3Akbd">2.2</a>). The sixth argument is either 0 or 1; a 1 indicates
+that the on-screen keyboard will be open when <span style="font-variant:small-caps">Xcas</span> starts,
+a 0 indicates that the keyboard will be hidden.
+</dd><dt class="dt-description"><span style="font-weight:bold">Open browser.</span></dt><dd class="dd-description"> The seventh argument is either 0 or 1;
+a 1 indicates that the browser will be automatically opened to
+display help for the selected command in the menu or index, a 0
+indicates that the browser will not be automatically opened.
+</dd><dt class="dt-description"><span style="font-weight:bold">Message window</span></dt><dd class="dd-description"> (see Section <a href="index.html#sec%3Aswin">2.2</a>, item <a href="index.html#enum%3Akbd">2.2</a>).
+The eighth argument is either 0 or 1;
+a 1 indicates that <span style="font-variant:small-caps">Xcas</span> will open with the message window,
+a 0 indicates that <span style="font-variant:small-caps">Xcas</span> will open without the message
+window.
+</dd><dt class="dt-description"><span style="font-weight:bold">&lt;empty&gt;.</span></dt><dd class="dd-description"> The ninth argument is currently not used.
+</dd><dt class="dt-description"><span style="font-weight:bold">Browser name.</span></dt><dd class="dd-description"> The tenth argument is a string with the
+name of the browser to use to read the help pages. A value of
+<span style="font-family:monospace">"builtin"</span> means that <span style="font-variant:small-caps">Xcas</span> will use a small browser
+built into <span style="font-variant:small-caps">Xcas</span>.
+</dd><dt class="dt-description"><span style="font-weight:bold">Starting level</span></dt><dd class="dd-description"> (see Section <a href="index.html#sec%3Alevels">2.1</a>). The eleventh
+argument indicates what level <span style="font-variant:small-caps">Xcas</span> will start at; a 0
+means command line, a 1 means program editor, a
+2 means spreadsheet, and a 3 means a 2D geometry screen.
+</dd><dt class="dt-description"><span style="font-weight:bold">Postscript previewer.</span></dt><dd class="dd-description"> The twelfth argument is a
+string with the name of a program for postscript previews; for
+example, <span style="font-family:monospace">"gv"</span>.
+</dd></dl>
+</li></ul><p>The <span style="font-family:monospace">cas_setup</span> command determines how computations will be
+performed.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">cas_setup</span> takes nine arguments. The arguments (in
+order) are:
+<dl class="description"><dt class="dt-description">
+<span style="font-weight:bold">Approximate mode</span></dt><dd class="dd-description"> (see Section <a href="cascmd_en027.html#ssec%3Aapprox">2.5.4</a>). A 1
+means <span style="font-variant:small-caps">Xcas</span> works in approximate mode, a 0 means exact mode.
+</dd><dt class="dt-description"><span style="font-weight:bold">Complex variables</span></dt><dd class="dd-description"> (see Section <a href="cascmd_en028.html#ssec%3Acomplex">2.5.5</a>). A 1
+means <span style="font-variant:small-caps">Xcas</span> works with complex variables, a 0 means real
+variables.
+</dd><dt class="dt-description"><span style="font-weight:bold">Complex mode</span></dt><dd class="dd-description"> (see Section <a href="cascmd_en028.html#ssec%3Acomplex">2.5.5</a>).
+A 1 means <span style="font-variant:small-caps">Xcas</span> works with in complex mode, a 0 means real
+mode.
+</dd><dt class="dt-description"><span style="font-weight:bold">Radian</span></dt><dd class="dd-description"> (see Section <a href="cascmd_en026.html#ssec%3Aangles">2.5.3</a>). A 1 means work in
+radians, a 0 means work in degrees.
+</dd><dt class="dt-description"><span style="font-weight:bold">Display format</span></dt><dd class="dd-description"> (see Section <a href="cascmd_en030.html#ssec%3Aconfcomp">2.5.7</a>, item
+<a href="cascmd_en030.html#enum%3Afloat">2.5.7</a>). A 0 means use the standard format to display
+numbers, a 1 means use scientific format, a 2 means use engineering
+format, and a 3 means use floating hexadecimal format (which is
+standardized with a non-zero first digit).
+</dd><dt class="dt-description"><span style="font-weight:bold">Epsilon</span></dt><dd class="dd-description"> (see Section <a href="cascmd_en030.html#ssec%3Aconfcomp">2.5.7</a>, item
+<a href="cascmd_en030.html#enum%3Aeps">2.5.7</a>). This is the value of <span style="font-family:monospace">epsilon</span> used
+by <span style="font-variant:small-caps">Xcas</span>.
+</dd><dt class="dt-description"><span style="font-weight:bold">Digits.</span></dt><dd class="dd-description"> This is the number of digits to use to
+display a float.
+</dd><dt class="dt-description"><span style="font-weight:bold">Tasks.</span></dt><dd class="dd-description"> This will be used in the future for
+parallelism.
+</dd><dt class="dt-description"><span style="font-weight:bold">Increasing power.</span></dt><dd class="dd-description"> This is 0 to display polynomials
+in increasing power, and 1 to display polynomials in decreasing powers.
+</dd></dl>
+</li></ul><p>The <span style="font-family:monospace">xcas_mode</span> command sets the computer language used by
+<span style="font-variant:small-caps">Xcas</span> (see Section <a href="cascmd_en025.html#ssec%3Alang">2.5.2</a>).</p><p>The <span style="font-family:monospace">xyztrange</span> command sets or returns the values of the
+graphics configuration.
+</p><ul class="itemize"><li class="li-itemize">
+To set the values, <span style="font-family:monospace">xyztrange</span> takes 15 arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">x–</span> and <span style="font-style:italic">x+</span>, the beginning and the end of the
+<span style="font-style:italic">x</span> interval for which calculations will be done.
+</li><li class="li-itemize"><span style="font-style:italic">y–</span> and <span style="font-style:italic">y+</span>, the beginning and the end of the
+<span style="font-style:italic">y</span> interval for which calculations will be done.
+</li><li class="li-itemize"><span style="font-style:italic">z–</span> and <span style="font-style:italic">z+</span>, the beginning and the end of the
+<span style="font-style:italic">z</span> interval for which calculations will be done.
+</li><li class="li-itemize"><span style="font-style:italic">t–</span> and <span style="font-style:italic">t+</span>, the beginning and the end of the
+<span style="font-style:italic">t</span> interval for which calculations will be done, when plotting
+parametric curves, for example.
+</li><li class="li-itemize"><span style="font-style:italic">wx–</span> and <span style="font-style:italic">wx+</span>, the beginning and the end of
+the <span style="font-style:italic">x</span> values for the viewing window.
+</li><li class="li-itemize"><span style="font-style:italic">wy–</span> and <span style="font-style:italic">wy+</span>, the beginning and the end of
+the <span style="font-style:italic">y</span> values for the viewing window.
+</li><li class="li-itemize"><span style="font-style:italic">show_axes</span>, to determine whether axes are shown or
+hidden (<span style="font-family:monospace">1</span> to show, <span style="font-family:monospace">0</span> to hide).
+</li><li class="li-itemize"><span style="font-style:italic">class_min</span>, the minimum size of a statistics class.
+</li><li class="li-itemize"><span style="font-style:italic">class_size</span>, the default size of a statistics class.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">xyztrange(</span><span style="font-style:italic">x–</span>,<span style="font-style:italic">x+</span>,<span style="font-style:italic">y–</span>,<span style="font-style:italic">y+</span>,<span style="font-style:italic">z–</span>,<span style="font-style:italic">z+</span>,
+<span style="font-style:italic">t–</span>,<span style="font-style:italic">t+</span>,<span style="font-style:italic">wx–</span>,<span style="font-style:italic">wx+</span>,<span style="font-style:italic">wy–</span>,<span style="font-style:italic">wy+</span>,<span style="font-style:italic">show_axes</span>,
+<span style="font-style:italic">class_min</span>,<span style="font-style:italic">class_size</span><span style="font-family:monospace">)</span>
+sets the parameters to the given values.<p>Note that the viewing window is not the same as the calculation
+window; if the calculation window is larger than the visible window,
+then you can scroll to bring other parts of the calculation window
+into view.
+</p></li><li class="li-itemize">To return the values, <span style="font-family:monospace">xyztrange</span> takes no arguments.
+</li><li class="li-itemize"><span style="font-family:monospace">xyztrange()</span> returns a matrix where each row consists
+of a short description of the first twelve arguments along with
+their values.
+</li></ul>
+<hr>
+<a href="cascmd_en032.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en034.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

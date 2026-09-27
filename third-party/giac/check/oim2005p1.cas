@@ -1,0 +1,14 @@
+r:=exp(i*pi/3);
+z1:=a*r; z2:=(a+l)*r; z3:=1+(c+l)*r^2; z4:=1+c*r^2; z5:=b+l; z6:=b ;
+S:=normal([distance2(z2,z3)-l^2,distance2(z4,z5)-l^2,distance2(z6,z1)-l^2]);
+[aa]:=solve(S[0]-S[2],a);
+SS:=numer(subst(S,a=aa));
+[bb1,bb2]:=solve(SS[1]=0,b);
+factor(resultant(SS[1],SS[2],b));
+EQ:=z1+t*(z4-z1)=z2+m*(z5-z2);
+[T,M]:=linsolve([re(EQ),im(EQ)],[t,m]);
+I:=subst(z1+t*(z4-z1),t=T);
+chk1:=normal(numer(subst(subst(im((z6-I)/(z6-z3)),a,aa),b,bb1)));
+chk2:=normal(numer(subst(subst(im((z6-I)/(z6-z3)),a,aa),b,bb2)));
+factor(normal(chk1*chk2));
+

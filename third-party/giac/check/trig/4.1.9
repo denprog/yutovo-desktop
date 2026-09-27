@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.1a Sine\4.1.9 trig^m (a+b sin^n+c sin^(2 n))^p.txt"
+
+lst:=[
+[sin(x)^4/(a+b*sin(x)+c*sin(x)^2),x,12,1/2*x/c+(b^2-a*c)*x/c^3+b*cos(x)/c^2-1/2*cos(x)*sin(x)/c-arctan((2*c+(b-sqrt(b^2-4*a*c))*tan(1/2*x))/(sqrt(2)*sqrt(b^2-2*c*(a+c)-b*sqrt(b^2-4*a*c))))*sqrt(2)*(b^3-2*a*b*c+(-b^4+4*a*b^2*c-2*a^2*c^2)/sqrt(b^2-4*a*c))/(c^3*sqrt(b^2-2*c*(a+c)-b*sqrt(b^2-4*a*c)))-arctan((2*c+(b+sqrt(b^2-4*a*c))*tan(1/2*x))/(sqrt(2)*sqrt(b^2-2*c*(a+c)+b*sqrt(b^2-4*a*c))))*sqrt(2)*(b^3-2*a*b*c+(b^4-4*a*b^2*c+2*a^2*c^2)/sqrt(b^2-4*a*c))/(c^3*sqrt(b^2-2*c*(a+c)+b*sqrt(b^2-4*a*c)))],
+[sin(x)/(a+b*sin(x)+c*sin(x)^2),x,8,arctan((2*c+(b-sqrt(b^2-4*a*c))*tan(1/2*x))/(sqrt(2)*sqrt(b^2-2*c*(a+c)-b*sqrt(b^2-4*a*c))))*sqrt(2)*(1-b/sqrt(b^2-4*a*c))/sqrt(b^2-2*c*(a+c)-b*sqrt(b^2-4*a*c))+arctan((2*c+(b+sqrt(b^2-4*a*c))*tan(1/2*x))/(sqrt(2)*sqrt(b^2-2*c*(a+c)+b*sqrt(b^2-4*a*c))))*sqrt(2)*(1+b/sqrt(b^2-4*a*c))/sqrt(b^2-2*c*(a+c)+b*sqrt(b^2-4*a*c))],
+[1/(a+b*sin(x)+c*sin(x)^2),x,7,2*c*arctan((2*c+(b-sqrt(b^2-4*a*c))*tan(1/2*x))/(sqrt(2)*sqrt(b^2-2*c*(a+c)-b*sqrt(b^2-4*a*c))))*sqrt(2)/(sqrt(b^2-4*a*c)*sqrt(b^2-2*c*(a+c)-b*sqrt(b^2-4*a*c)))-2*c*arctan((2*c+(b+sqrt(b^2-4*a*c))*tan(1/2*x))/(sqrt(2)*sqrt(b^2-2*c*(a+c)+b*sqrt(b^2-4*a*c))))*sqrt(2)/(sqrt(b^2-4*a*c)*sqrt(b^2-2*c*(a+c)+b*sqrt(b^2-4*a*c)))],
+[cos(x)/(a+b*sin(x)+c*sin(x)^2),x,3,-2*arctanh((b+2*c*sin(x))/sqrt(b^2-4*a*c))/sqrt(b^2-4*a*c)],
+[cos(x)/(2+2*sin(x)+sin(x)^2),x,3,arctan(1+sin(x))]]:

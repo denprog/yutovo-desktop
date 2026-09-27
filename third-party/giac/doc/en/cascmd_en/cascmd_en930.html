@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Lines and directed lines in space</title>
+</head>
+<body >
+<a href="cascmd_en929.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en931.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:3dlines" class="subsection">27.4.1  Lines and directed lines in space</h3>
+<p>See Section <a href="cascmd_en829.html#ssec%3A2dlines">26.6.1</a> for lines in the plane.</p><p>The <span style="font-family:monospace">line</span><a id="hevea_default1843"></a>
+command returns and draws a directed line. It can
+take its arguments in three different ways.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+<span style="font-weight:bold">Two points.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">line</span> takes two arguments:
+<span style="font-style:italic">P</span>,<span style="font-style:italic">Q</span>, two points (which can also be given as a list).
+</li><li class="li-itemize"><span style="font-family:monospace">line(</span><span style="font-style:italic">P</span>,<span style="font-style:italic">Q</span><span style="font-family:monospace">)</span> returns and draws the line whose
+direction is from the <span style="font-style:italic">P</span> to <span style="font-style:italic">Q</span>.
+</li></ul>
+</li><li class="li-enumerate"><span style="font-weight:bold">A point and a direction vector.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">line</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">P</span>, a point.
+</li><li class="li-itemize">[<span style="font-style:italic">u</span><sub>1</sub>,<span style="font-style:italic">u</span><sub>2</sub>,<span style="font-style:italic">u</span><sub>3</sub>], a direction vector.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">line(</span><span style="font-style:italic">P</span><span style="font-family:monospace">,[</span><span style="font-style:italic">u</span><sub>1</sub>,<span style="font-style:italic">u</span><sub>2</sub>,<span style="font-style:italic">u</span><sub>3</sub><span style="font-family:monospace">])</span> returns and draws the line
+through the given point with the direction given by the direction vector.
+</li></ul>
+</li><li class="li-enumerate"><span style="font-weight:bold">Two planes.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">line</span> takes two arguments:
+<span style="font-style:italic">eqn</span><sub>1</sub>,<span style="font-style:italic">eqn</span><sub>2</sub>, the equations of two planes.
+</li><li class="li-itemize"><span style="font-family:monospace">line(</span><span style="font-style:italic">eqn</span><sub>1</sub>,<span style="font-style:italic">eqn</span><sub>2</sub><span style="font-family:monospace">)</span> returns and
+draws the line which is the intersection of the planes.
+</li><li class="li-itemize">The direction of this line is given by the cross-product of the
+normals for the planes. For example, the intersection of the planes
+<span style="font-style:italic">x</span>=<span style="font-style:italic">y</span> (normal (1,−1,0)) and <span style="font-style:italic">y</span>=<span style="font-style:italic">z</span> (normal (0,1,−1)) will be
+(1,−1,0)× (0,1,−1)=(1,1,1).
+</li></ul>
+</li></ol><h4 id="sec2354" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,3,0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3,0,3))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en356.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,3,0],[3,0,3])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en357.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en358.png">
+
+</div>
+<hr>
+<a href="cascmd_en929.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en931.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

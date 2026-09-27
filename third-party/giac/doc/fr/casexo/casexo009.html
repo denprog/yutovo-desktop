@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Le "baccalauréat" suisse de 1896</title>
+</head>
+<body >
+<a href="casexo008.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo010.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec112" class="chapter">Chapitre 9  Le "baccalauréat" suisse de 1896</h1>
+<p>
+Il s’agit des épreuves que Einstein passe en 1896 à l’age de 17 ans et demi
+en Suisse, ce qui est l’équivalent de notre baccalauréat.<br>
+À l’époque tous les calculs étaient lons et fastidieux car faits à 
+l’aide de table</p>
+<h2 id="sec113" class="section">9.1  Épreuve de géométrie de 4h</h2>
+<h3 id="sec114" class="subsection">9.1.1  Exercice 1</h3>
+<h4 id="sec115" class="subsubsection">L’énoncé</h4>
+<p>
+Un triangle inscrit dans un cercle de rayon <span style="font-style:italic">R</span>=10 a ses hauteurs 
+proportionnelles à 2, 3 et 4.<br>
+Calculer les angles et un côté.
+</p>
+<h4 id="sec116" class="subsubsection">La solution avec <span style="font-family:monospace">Xcas</span></h4>
+<p>
+Par hypothèse, il existe <span style="font-style:italic">k</span>∈ ℝ<sup>+</sup> tel que :<br>
+<span style="font-style:italic">h</span><sub><span style="font-style:italic">A</span></sub>=2<span style="font-style:italic">k</span>, <span style="font-style:italic">h</span><sub><span style="font-style:italic">B</span></sub>=3<span style="font-style:italic">k</span>, <span style="font-style:italic">h</span><sub><span style="font-style:italic">C</span></sub>=4<span style="font-style:italic">k</span>,<br>
+On a :<br>
+ sin(<span style="font-style:italic">A</span>)=<span style="font-style:italic">h</span><sub><span style="font-style:italic">B</span></sub>/<span style="font-style:italic">c</span>=<span style="font-style:italic">h</span><sub><span style="font-style:italic">C</span></sub>/<span style="font-style:italic">b</span>=3<span style="font-style:italic">k</span>/<span style="font-style:italic">c</span>=4<span style="font-style:italic">k</span>/<span style="font-style:italic">b</span><br>
+ sin(<span style="font-style:italic">B</span>)=<span style="font-style:italic">h</span><sub><span style="font-style:italic">A</span></sub>/<span style="font-style:italic">c</span>=<span style="font-style:italic">h</span><sub><span style="font-style:italic">C</span></sub>/<span style="font-style:italic">a</span>=2<span style="font-style:italic">k</span>/<span style="font-style:italic">c</span>=4<span style="font-style:italic">k</span>/<span style="font-style:italic">a</span><br>
+ sin(<span style="font-style:italic">C</span>)=<span style="font-style:italic">h</span><sub><span style="font-style:italic">B</span></sub>/<span style="font-style:italic">a</span>=<span style="font-style:italic">h</span><sub><span style="font-style:italic">A</span></sub>/<span style="font-style:italic">b</span>=3<span style="font-style:italic">k</span>/<span style="font-style:italic">a</span>=2<span style="font-style:italic">k</span>/<span style="font-style:italic">b</span><br>
+Donc :<br>
+<span style="font-style:italic">a</span>=2<span style="font-style:italic">c</span> et <span style="font-style:italic">b</span>=4<span style="font-style:italic">c</span>/3 et<br>
+<span style="font-style:italic">a</span><sup>2</sup>=<span style="font-style:italic">c</span><sup>2</sup>+<span style="font-style:italic">b</span><sup>2</sup>−2<span style="font-style:italic">bc</span>cos(<span style="font-style:italic">A</span>) <br>
+<span style="font-style:italic">b</span><sup>2</sup>=<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">c</span><sup>2</sup>−2<span style="font-style:italic">ac</span>cos(<span style="font-style:italic">B</span>) <br>
+<span style="font-style:italic">c</span><sup>2</sup>=<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">b</span><sup>2</sup>−2<span style="font-style:italic">ab</span>cos(<span style="font-style:italic">C</span>) <br>
+On fait une figure :<br>
+<img src="casexo041.png"><br>
+Donc on a:
+</p><ul class="itemize"><li class="li-itemize">
+ 4<span style="font-style:italic">c</span>4<span style="font-style:italic">c</span>/3cos(<span style="font-style:italic">C</span>)=<span style="font-style:italic">c</span><sup>2</sup>(4+16/9−1=<span style="font-style:italic">c</span><sup>2</sup>43/9soit :<br>
+ cos(<span style="font-style:italic">C</span>)=43/16*3=43/48  et 
+ sin(<span style="font-style:italic">C</span>)=√<span style="text-decoration:overline">455</span>/48<br>
+On tape :<br>
+<span style="font-family:monospace">C:=acos(43/48.)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.460493425059</span><br>
+</li><li class="li-itemize"> 4<span style="font-style:italic">c</span><sup>2</sup>cos(<span style="font-style:italic">B</span>)=4<span style="font-style:italic">c</span><sup>2</sup>+<span style="font-style:italic">c</span><sup>2</sup>−16<span style="font-style:italic">c</span><sup>2</sup>/9=<span style="font-style:italic">c</span><sup>2</sup>29/9 soit : <br>
+ cos(<span style="font-style:italic">B</span>)=29/36 
+et 
+ sin(<span style="font-style:italic">B</span>)=√<span style="text-decoration:overline">455</span>/36<br>
+On tape :<br>
+<span style="font-family:monospace">B:=acos(29/36.)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.634183840824</span><br>
+</li><li class="li-itemize"> 2<span style="font-style:italic">c</span>4<span style="font-style:italic">c</span>/3cos(<span style="font-style:italic">A</span>)=+<span style="font-style:italic">c</span><sup>2</sup>+16<span style="font-style:italic">c</span><sup>2</sup>/9−4<span style="font-style:italic">c</span><sup>2</sup>=<span style="font-style:italic">c</span><sup>2</sup>−11/9soit : <br>
+ cos(<span style="font-style:italic">A</span>)=−11/24  et 
+  sin(<span style="font-style:italic">A</span>)=√<span style="text-decoration:overline">455</span>/24<br>
+On tape :<br>
+<span style="font-family:monospace">A:=acos(-11/24.)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2.04691538771</span><br>
+</li></ul><p>
+On sait que :<br>
+ <span style="font-style:italic">a</span>/sin(<span style="font-style:italic">A</span>)=<span style="font-style:italic">b</span>/sin(<span style="font-style:italic">B</span>)=<span style="font-style:italic">c</span>/sin(<span style="font-style:italic">C</span>)=2<span style="font-style:italic">R</span>=20 et <br>
+Donc on a :<br>
+</p><ul class="itemize"><li class="li-itemize">
+ <span style="font-style:italic">c</span>=20sin(<span style="font-style:italic">C</span>)=5√<span style="text-decoration:overline">455</span>/12<br>
+On tape :<br>
+<span style="font-family:monospace">c:=5*sqrt(455)/12.)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">8.88780375321</span><br>
+</li><li class="li-itemize"> <span style="font-style:italic">b</span>=4<span style="font-style:italic">c</span>/3=5√<span style="text-decoration:overline">455</span>/9<br>
+On tape :<br>
+<span style="font-family:monospace">b:=4c/3</span><br>
+On obtient :<br>
+<span style="font-family:monospace">11.8504050043</span><br>
+</li><li class="li-itemize"> <span style="font-style:italic">a</span>=2<span style="font-style:italic">c</span>=5√<span style="text-decoration:overline">455</span>/6<br>
+On tape :<br>
+<span style="font-family:monospace">a:=2*c)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">17.7756075064</span><br>
+</li></ul><p>
+On construit le triangle <span style="font-style:italic">ABC</span> et on tape :
+</p><pre class="verbatim">B:=point(0);
+C:=point(5*sqrt(455)/6);
+A:=point(5*sqrt(455)/12*(29/36+i*sqrt(455)/36));
+triangle(A,B,C);
+cc:=circonscrit(A,B,C);
+</pre><p>
+0n tape :<br>
+<span style="font-family:monospace">normal(rayon(cc));</span><br>
+On obtient : <span style="font-family:monospace">10</span><br>
+0n tape :<br>
+<span style="font-family:monospace">A1:=projection(droite(B,C),A);</span><br>
+<span style="font-family:monospace">normal(longueur(A,A1));</span><br>
+On obtient : <span style="font-family:monospace">2275/432</span><br>
+Donc le coefficient de proportionnalité <span style="font-style:italic">k</span> pour les hauteurs vaut : <br>
+ 2275/864
+</p>
+<h4 id="sec117" class="subsubsection">Une autre solution avec <span style="font-family:monospace">Xcas</span></h4>
+<p>
+Si <span style="font-style:italic">S</span> est l’aire du triangle <span style="font-style:italic">ABC</span> on a :<br>
+2<span style="font-style:italic">S</span>=<span style="font-style:italic">ah</span><sub><span style="font-style:italic">A</span></sub>=<span style="font-style:italic">bh</span><sub><span style="font-style:italic">B</span></sub>=<span style="font-style:italic">ch</span><sub><span style="font-style:italic">c</span></sub><br>
+Par hypothèse, il existe <span style="font-style:italic">k</span>∈ ℝ<sup>+</sup> tel que :<br>
+<span style="font-style:italic">h</span><sub><span style="font-style:italic">A</span></sub>=2<span style="font-style:italic">k</span>, <span style="font-style:italic">h</span><sub><span style="font-style:italic">B</span></sub>=3<span style="font-style:italic">k</span>, <span style="font-style:italic">h</span><sub><span style="font-style:italic">C</span></sub>=4<span style="font-style:italic">k</span> donc,<br>
+2<span style="font-style:italic">a</span>=3<span style="font-style:italic">b</span>=4<span style="font-style:italic">c</span> c’està dire <span style="font-style:italic">a</span>=2<span style="font-style:italic">c</span> et <span style="font-style:italic">b</span>=4/3<span style="font-style:italic">c</span><br>
+Le triangle <span style="font-style:italic">ABC</span> est donc semblable au triangle de côtés :<br>
+<span style="font-style:italic">a</span>=6, <span style="font-style:italic">b</span>=4, <span style="font-style:italic">c</span>=3<br>
+On sait que le rayon <span style="font-style:italic">R</span> du cercle circonscrit est égal à :<br>
+ <span style="font-style:italic">R</span>=<span style="font-style:italic">abc</span>/4√<span style="text-decoration:overline"><span style="font-style:italic">p</span></span><span style="text-decoration:overline">(</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">a</span></span><span style="text-decoration:overline">)(</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">b</span></span><span style="text-decoration:overline">)(</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">c</span></span><span style="text-decoration:overline">)</span> avec 2<span style="font-style:italic">p</span>=<span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>+<span style="font-style:italic">c</span>.<br>
+ Avec <span style="font-family:monospace">Xcas</span>, on calcul le rayon du cercle circonscrit au triangle 
+<span style="font-style:italic">a</span>=6, <span style="font-style:italic">b</span>=4, <span style="font-style:italic">c</span>=3, on tape :<br>
+<span style="font-family:monospace">a:=6</span><br>
+<span style="font-family:monospace">b:=4</span><br>
+<span style="font-family:monospace">c:=3</span><br>
+<span style="font-family:monospace">p:=(a+b+c)/2</span><br>
+<span style="font-family:monospace">R:=a*b*c/4/sqrt(p*(p-a)*(p-b)*(p-c))</span><br>
+On obtient : <br>
+<span style="font-family:monospace">(72*sqrt(455))/455</span><br>
+On veut avoir que le rayon du cercle circonscrit soit ègale à 10 donc le 
+triangle cherché est proportionnel au triangle de côtés 
+<span style="font-style:italic">a</span>=6, <span style="font-style:italic">b</span>=4, <span style="font-style:italic">c</span>=3 avec comme coefficient de proportionnalité :<br>
+<span style="font-style:italic">k</span>= 10√<span style="text-decoration:overline">455</span>/72=5√<span style="text-decoration:overline">455</span>/36.<br>
+Les côtés du triangle cherché sont donc :<br>
+<span style="font-style:italic">BC</span>= 5 √<span style="text-decoration:overline">455</span>/6, 
+ <span style="font-style:italic">AC</span>= 5 √<span style="text-decoration:overline">455</span>/9, 
+ <span style="font-style:italic">AB</span>= 5 √<span style="text-decoration:overline">455</span>/12 <br>
+Les angles de <span style="font-style:italic">ABC</span> sont les mêmes que les angles du triangle de côtés 
+<span style="font-style:italic">a</span>=6, <span style="font-style:italic">b</span>=4, <span style="font-style:italic">c</span>=3 donc on a :<br>
+2<span style="font-style:italic">bc</span>cos(<span style="font-style:italic">A</span>)=<span style="font-style:italic">b</span><sup>2</sup>+<span style="font-style:italic">c</span><sup>2</sup>−<span style="font-style:italic">a</span><sup>2</sup> <br>
+2<span style="font-style:italic">ac</span>cos(<span style="font-style:italic">B</span>)=<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">c</span><sup>2</sup>−<span style="font-style:italic">b</span><sup>2</sup> <br>
+2<span style="font-style:italic">ab</span>cos(<span style="font-style:italic">C</span>)=<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">b</span><sup>2</sup>−<span style="font-style:italic">c</span><sup>2</sup> <br>
+ Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">A:=evalf(acos((b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(2*b*c)))</span><br>
+On obtient : <br>
+<span style="font-family:monospace">2.04691538771</span><br>
+On tape :<br>
+<span style="font-family:monospace">B:=evalf(acos((a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(2*a*c)))</span><br>
+On obtient : <br>
+<span style="font-family:monospace">0.634183840824</span><br>
+On tape :<br>
+<span style="font-family:monospace">C:=evalf(acos((a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(2*a*b)))</span><br>
+On obtient : <br>
+<span style="font-family:monospace">0.460493425059</span>
+</p>
+<h4 id="sec118" class="subsubsection">La solution de <span style="font-family:monospace">Xcas</span></h4>
+<p>
+<span style="font-family:monospace">Xcas</span> fait de la géométrie analytique.<br>
+On dessine le triangle direct <span style="font-style:italic">ABC</span> de côtés <span style="font-style:italic">a</span>=6, <span style="font-style:italic">b</span>=4, <span style="font-style:italic">c</span>=3 en mettant 
+<span style="font-style:italic">B</span> à l’origine du repère et <span style="font-style:italic">C</span> sur l’axe des <span style="font-style:italic">x</span>.<br>
+On tape :
+</p><pre class="verbatim">B:=point(0);
+C:=point(6);
+A:=inter(cercle(0,3),cercle(5,4))[1];
+triangle(A,B,C,affichage=1+epaisseur_ligne_2);
+tA:=angle(A,B,C);
+tB:=angle(B,C,A);
+tC:=angle(C,A,B);
+cc:=circonscrit(A,B,C);
+R:=rayon(cc);
+</pre><p>
+On obtient :<br>
+<img src="casexo042.png"><br>
+Avec :<br>
+pour <span style="font-family:monospace">tA : atan(((sqrt(455))/2)/(-11/2))+(2*pi)/2</span><br>
+pour <span style="font-family:monospace">tB :atan(((sqrt(455))/2)/(29/2))</span><br>
+pour <span style="font-family:monospace">tC : -(atan(((sqrt(455))/2)/(43/2)))</span><br>
+pour <span style="font-family:monospace">evalf(tA) : 2.04691538771</span><br>
+pour <span style="font-family:monospace">evalf(tB) : 0.634183840824</span><br>
+pour <span style="font-family:monospace">evalf(tC) : 0.460493425059</span><br>
+pour <span style="font-family:monospace">R : (72*sqrt(455))/455</span></p>
+<h3 id="sec119" class="subsection">9.1.2  Exercice 2</h3>
+<h4 id="sec120" class="subsubsection">L’énoncé</h4>
+<p>
+On donne un cercle de rayon <span style="font-style:italic">r</span> dont le centre se trouve à l’origine <span style="font-style:italic">O</span> d’un
+repère orthonormal.<br>
+On considère les cordes de ce cercle perpendiculaires à l’axe des <span style="font-style:italic">x</span>.<br>
+Les cercles ayant ces cordes comme diamètres sont 
+tangents à l’ellipse de demi-axes <span style="font-style:italic">r</span>√<span style="text-decoration:overline">2</span> et <span style="font-style:italic">r</span>, aussi longtemps que la 
+distance <span style="font-style:italic">d</span> de leur centre à <span style="font-style:italic">O</span> ne dépasse pas une certaine valeur 
+maximale.<br>
+Démontrer cette proposition et déterminer la valeur maximale de <span style="font-style:italic">d</span>.
+</p>
+<h4 id="sec121" class="subsubsection">La solution avec <span style="font-family:monospace">Xcas</span></h4>
+<p>
+On considère la corde du cercle centre <span style="font-style:italic">O</span> et de rayon <span style="font-style:italic">r</span> qui a pour 
+abscisse −<span style="font-style:italic">r</span>≤ <span style="font-style:italic">a</span>≤ <span style="font-style:italic">r</span> et qui est perpendiculaire à l’axe des <span style="font-style:italic">x</span>.<br>
+Le cercle de diamètre cette corde a donc pour rayon 
+√<span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup> et pour équation :<br>
+(<span style="font-style:italic">x</span>−<span style="font-style:italic">a</span>)<sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>=<span style="font-style:italic">r</span><sup>2</sup>−<span style="font-style:italic">a</span><sup>2</sup> ou encore :<br>
+<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>−2<span style="font-style:italic">ax</span>+2<span style="font-style:italic">a</span><sup>2</sup>−<span style="font-style:italic">r</span><sup>2</sup>=0
+Avec <span style="font-family:monospace">Xcas</span>, on suppose que <span style="font-style:italic">r</span>=1 et on tape :
+</p><pre class="verbatim">ellipse(-1,1,sqrt(2),affichage 
+=1)supposons(a=[0.5,-1/sqrt(2),1/sqrt(2),0.1]);
+C:=cerle(a,sqrt(1-a^2));
+</pre><p>
+Puis, on fait bouger <span style="font-style:italic">a</span> en gardant la trace de <span style="font-family:monospace">C</span> (menu <span style="font-family:monospace">M-&gt;Trace objet-&gt;C</span>).<br>
+On obtient :<br>
+<img src="casexo043.png"><br>
+Nous allons montrer que l’enveloppe de ces cercles est une ellipse de centre 
+<span style="font-style:italic">O</span> et de demi-axes <span style="font-style:italic">r</span>√<span style="text-decoration:overline">2</span> et <span style="font-style:italic">r</span> (c’est ce que l’on voit sur la figure 
+ci-dessus).<br>
+Le point <span style="font-style:italic">M</span>=(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) de contact du 
+cercle et de son enveloppe vérifie les équations :<br>
+<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>−2<span style="font-style:italic">ax</span>+2<span style="font-style:italic">a</span><sup>2</sup>−<span style="font-style:italic">r</span><sup>2</sup>=0 et<br>
+−2<span style="font-style:italic">x</span>+4<span style="font-style:italic">a</span>=0 (obtenu en dérivant par rapport à <span style="font-style:italic">a</span>)<br>
+donc <span style="font-style:italic">M</span>=(2<span style="font-style:italic">a</span>,√<span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−2*</span><span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup>) ou <span style="font-style:italic">M</span>=(2<span style="font-style:italic">a</span>,−√<span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−2*</span><span style="text-decoration:overline"><span style="font-style:italic">a</span></span><sup><span style="text-decoration:overline">2</span></sup>).<br>
+Il faut donc que <span style="font-style:italic">r</span><sup>2</sup>−2*<span style="font-style:italic">a</span><sup>2</sup>≥ 0 soit <span style="font-style:italic">a</span>≤ <span style="font-style:italic">r</span>√<span style="text-decoration:overline">2</span>/2.<br>
+Puisque <span style="font-style:italic">a</span>=<span style="font-style:italic">x</span>/2 <span style="font-style:italic">M</span> est sur la courbe d’équation :<br>
+<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>−2(<span style="font-style:italic">x</span>/2)<span style="font-style:italic">x</span>+2(<span style="font-style:italic">x</span>/2)<sup>2</sup>−<span style="font-style:italic">r</span><sup>2</sup>=<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>−<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">x</span><sup>2</sup>/2−<span style="font-style:italic">r</span><sup>2</sup>=<span style="font-style:italic">x</span><sup>2</sup>+2<span style="font-style:italic">y</span><sup>2</sup>−2<span style="font-style:italic">r</span><sup>2</sup>0.<br>
+Donc <span style="font-style:italic">M</span> se déplace donc sur l’ellipse d’équation :<br>
+<span style="font-style:italic">x</span><sup>2</sup>+2<span style="font-style:italic">y</span><sup>2</sup>=2<span style="font-style:italic">r</span><sup>2</sup>. <br>
+Cette ellipse a pour centre <span style="font-style:italic">O</span> et pour demi-axes <span style="font-style:italic">r</span>√<span style="text-decoration:overline">2</span> et <span style="font-style:italic">r</span>.</p>
+<h2 id="sec122" class="section">9.2  Épreuve d’algébre de 2h</h2>
+<h3 id="sec123" class="subsection">9.2.1  L’énoncé</h3>
+<p>
+Dans un triangle on connait les distance <span style="font-style:italic">l</span>, <span style="font-style:italic">m</span>, <span style="font-style:italic">n</span> du centre du cercle 
+inscrit aux sommets.<br>
+Déterminer le rayon <span style="font-style:italic">r</span> du cercle inscrit lorsque <span style="font-style:italic">l</span>=1, <span style="font-style:italic">m</span>=1/2, <span style="font-style:italic">n</span>=1/3<br>
+</p>
+<h4 id="sec124" class="subsubsection">La solution avec <span style="font-family:monospace">Xcas</span></h4>
+<p>
+Soient le triangle <span style="font-style:italic">ABC</span> et <span style="font-style:italic">I</span> le centre de son cercle inscrit.<br>
+On pose <span style="font-style:italic">IA</span>=<span style="font-style:italic">l</span>, <span style="font-style:italic">IB</span>=<span style="font-style:italic">m</span> et <span style="font-style:italic">IC</span>=<span style="font-style:italic">n</span>.<br>
+<img src="casexo044.png"><br>
+On a :<br>
+ sin(<span style="font-style:italic">A</span>/2)=<span style="font-style:italic">r</span>/<span style="font-style:italic">l</span>=<span style="font-style:italic">r</span>,  
+ sin(<span style="font-style:italic">B</span>/2)=<span style="font-style:italic">r</span>/<span style="font-style:italic">m</span>=2<span style="font-style:italic">r</span>,  
+ sin(<span style="font-style:italic">C</span>/2)=<span style="font-style:italic">r</span>/<span style="font-style:italic">n</span>=3<span style="font-style:italic">r</span><br>
+On sait que  <span style="font-style:italic">A</span> + <span style="font-style:italic">B</span> + <span style="font-style:italic">C</span> =π donc<br>
+ sin(<span style="font-style:italic">C</span>/2)=sin(π/2−<span style="font-style:italic">A</span>+<span style="font-style:italic">B</span>/2)=cos(<span style="font-style:italic">A</span>+<span style="font-style:italic">B</span>/2).<br>
+On sait que :<br>
+ <span style="font-style:italic">A</span> /2&lt;π/2 donc cos(<span style="font-style:italic">A</span>/2)=√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+ <span style="font-style:italic">B</span> /2&lt;π/2 donc cos(<span style="font-style:italic">B</span>/2)=√<span style="text-decoration:overline">1−4</span><span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><br>
+Donc :<br>
+sin(<span style="font-style:italic">C</span>/2)=√<span style="text-decoration:overline">1−</span><span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup>√<span style="text-decoration:overline">1−4</span><span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup>−2<span style="font-style:italic">r</span><sup>2</sup>=3<span style="font-style:italic">r</span>
+<span style="font-style:italic">r</span> vérifie donc l’équation :<br>
+√<span style="text-decoration:overline">(1−</span><span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">)(1−4</span><span style="text-decoration:overline"><span style="font-style:italic">r</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">)</span>=3<span style="font-style:italic">r</span>+2<span style="font-style:italic">r</span><sup>2</sup> c’est à dire<br>
+(3<span style="font-style:italic">r</span>+2<span style="font-style:italic">r</span><sup>2</sup>)<sup>2</sup>−(1−<span style="font-style:italic">r</span><sup>2</sup>)(1−4<span style="font-style:italic">r</span><sup>2</sup>)=0<br>
+On tape :<br>
+<span style="font-family:monospace">normal((3r+2r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)-(1-r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)*(1-4r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+On obtient :
+<span style="font-family:monospace">12*r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+14*r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1</span><br>
+On tape :<br>
+<span style="font-family:monospace">fsolve( 12*r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+14*r</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1,r)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[0.243126179572,-0.312313414531,-1.09747943171]</span><br>
+<span style="font-style:italic">r</span> est positif donc <span style="font-style:italic">r</span>=0.243126179572.</p><p>Si on veut faire le calcul en utilisant la méthode de Newton.<br>
+On tape :<br>
+<span style="font-family:monospace">g1:=function_diff(g)</span><br>
+<span style="font-family:monospace">g1(x)</span><br>
+On obtient comme dérivé de <span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>) :<br>
+<span style="font-family:monospace">36*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+28*x</span><br>
+Donc la fonction <span style="font-style:italic">g</span> est croissante sur ℝ<sup>+</sup><br>
+On tape :<br>
+<span style="font-family:monospace">g(x):=12x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+14x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1</span><br>
+<span style="font-family:monospace">plotfunc(g(x),x=-1.5..1)</span><br>
+On obtient :<br>
+<img src="casexo045.png"><br>
+On a :
+</p><ul class="itemize"><li class="li-itemize">
+la fonction <span style="font-style:italic">g</span> est croissante et continue sur ℝ<sup>+</sup>,
+</li><li class="li-itemize"><span style="font-style:italic">g</span>(0)=−1,
+</li><li class="li-itemize"><span style="font-style:italic">g</span>(1/2)=4
+</li></ul><p>
+donc d’après le théorème des valeurs intermédiaires <span style="font-style:italic">g</span> a un seul 
+zéro <span style="font-style:italic">r</span> sur ℝ<sup>+</sup> qui est compris entre 0 et 1/2.<br>
+La valeur de <span style="font-style:italic">r</span> est proche de 1/5=0.2 (c’est l’intersection du segment <span style="font-style:italic">AB</span>
+(<span style="font-style:italic">A</span>=(0,−1), <span style="font-style:italic">B</span>=1/2,4) avec l’axe des <span style="font-style:italic">x</span>) 
+On peut chercher la solution <span style="font-style:italic">r</span> de 12<span style="font-style:italic">x</span><sup>3</sup>+14<span style="font-style:italic">x</span><sup>2</sup>−1=0 pour <span style="font-style:italic">x</span>&gt;0 avec la 
+méthode de Newton.<br>
+On tape :<br>
+<span style="font-family:monospace">h(x):=x-g(x)/g1(x)</span><br>
+<span style="font-family:monospace">b:=h(0.2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.248863636364</span><br>
+On tape :<br>
+<span style="font-family:monospace">b:=h(b)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.243208102696</span><br>
+On tape :<br>
+<span style="font-family:monospace">b:=h(b)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.243126196656</span><br>
+On tape :<br>
+<span style="font-family:monospace">b:=h(b)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.243126179572</span><br>
+Donc la méthode de Newton donne après 4 itérations :<br>
+<span style="font-style:italic">r</span>=0.243126179572<br>
+<span style="font-weight:bold">Remarque</span><br>
+Einstein résout l’équation :
+12<span style="font-style:italic">x</span><sup>3</sup>+14<span style="font-style:italic">x</span><sup>2</sup>−1=0 on posant <span style="font-style:italic">X</span>=<span style="font-style:italic">A</span>/<span style="font-style:italic">x</span> et en utilisant les formules de Cardan pour
+résoudre : <span style="font-style:italic">X</span><sup>3</sup>−14<span style="font-style:italic">X</span>−12=0.
+</p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo008.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo010.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

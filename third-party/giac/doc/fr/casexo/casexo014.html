@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Exercices d’Algèbre niveau licence 1,2</title>
+</head>
+<body >
+<a href="casexo013.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo015.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec211" class="chapter">Chapitre 14  Exercices d’Algèbre niveau licence 1,2</h1>
+<h2 id="sec212" class="section">14.1  Intersection de 2 sous espaces vectoriels</h2>
+<p>
+Soient dans <span style="font-style:italic">R</span><sup>4</sup> les vecteurs :<br>
+<span style="font-style:italic">V</span><sub>1</sub>=[1,2,3,4]<br>
+<span style="font-style:italic">V</span><sub>2</sub>=[1,1,1,3]<br>
+<span style="font-style:italic">V</span><sub>3</sub>=[0,1,2,2]<br>
+<span style="font-style:italic">V</span><sub>4</sub>=[−1,0,1,−2]<br>
+<span style="font-style:italic">V</span><sub>5</sub>=[2,3,0,1]<br>
+Soient <span style="font-style:italic">F</span> le sous espace engendré par <span style="font-style:italic">V</span><sub>1</sub>,<span style="font-style:italic">V</span><sub>2</sub>,<span style="font-style:italic">V</span><sub>3</sub> et
+<span style="font-style:italic">G</span> le sous espace engendré par <span style="font-style:italic">V</span><sub>4</sub>,<span style="font-style:italic">V</span><sub>5</sub>.<br>
+Déterminer une base de <span style="font-style:italic">F</span>, <span style="font-style:italic">G</span>, <span style="font-style:italic">F</span> ∩ <span style="font-style:italic">G</span>, <span style="font-style:italic">F</span>+<span style="font-style:italic">G</span>.</p><p><span style="font-weight:bold">Correction</span><br>
+On tape :<br>
+<span style="font-family:monospace">V1:=[1,2,3,4]</span><br>
+<span style="font-family:monospace">V2:=[1,1,1,3]</span><br>
+<span style="font-family:monospace">V3:=[0,1,2,2]</span><br>
+<span style="font-family:monospace">F:=basis(V1,V2,V3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-1,0,1,0],[0,-1,-2,0],[0,0,0,-1]]</span><br>
+Ou on tape :<br>
+<span style="font-family:monospace">rank(V1,V2,V3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">3</span><br>
+Donc <span style="font-family:monospace">F</span> est de dimension 3, et <span style="font-family:monospace">V1, V2, V3</span> forment aussi une 
+base de <span style="font-family:monospace">F</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">V4:=[-1,0,1,-2]</span><br>
+<span style="font-family:monospace">V5:=[2,3,0,1]</span><br>
+<span style="font-family:monospace">G:=basis(V4,V5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-3,0,3,-6],[0,-3,-2,3]]</span><br>
+Ou on tape :<br>
+<span style="font-family:monospace">rank(V4,V5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><br>
+Donc <span style="font-family:monospace">G</span> est de dimension 2, et <span style="font-family:monospace">V4, V5</span> forment aussi une 
+base de <span style="font-family:monospace">G</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">FIG:=ibasis(F,G)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-1,0,1,-2]]</span><br>
+Ou on tape :<br>
+<span style="font-family:monospace">rank(V1,V2,V3,V4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">3</span><br>
+et on tape :<br>
+<span style="font-family:monospace">rank(V1,V2,V3,V5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4</span><br>
+Donc <span style="font-family:monospace">F </span>∩<span style="font-family:monospace"> G</span> est engendré par <span style="font-family:monospace">V4</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">FPG:=basis(F union G)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-4,0,0,0],[0,-4,0,0],[0,0,-4,0],[0,0,0,-4]]</span><br>
+Ou on tape :<br>
+<span style="font-family:monospace">rank(V1,V2,V3,V5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4</span><br>
+Donc <span style="font-family:monospace">F+G</span> est de dimension 4, et <span style="font-family:monospace">V1, V2, V3, V5</span> forment aussi une 
+base de <span style="font-family:monospace">F+G</span>.<br>
+
+Refaire le même exercice en remplacant <span style="font-family:monospace">V4</span> par <span style="font-family:monospace">V4+V5</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">V4:=V4+V5</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,3,1,-1]</span><br>
+On tape :<br>
+<span style="font-family:monospace">G:=basis(V4,V5)</span><br>
+On obtient le même résultat que précédemment :<br>
+<span style="font-family:monospace">[[-3,0,3,-6],[0,-3,-2,3]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">FIG:=ibasis(F,G)</span><br>
+On obtient le même résultat que précédemment :<br>
+<span style="font-family:monospace">[[-1,0,1,-2]]</span><br>
+Mais si on tape :<br>
+<span style="font-family:monospace">rank(V1,V2,V3,V4)</span><br>
+On obtient cette fois:<br>
+<span style="font-family:monospace">4</span><br>
+et on tape :<br>
+<span style="font-family:monospace">rank(V1,V2,V3,V5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4</span><br>
+cela ne nous permet pas de trouver une base de <span style="font-style:italic">F</span> ∩ <span style="font-style:italic">G</span> : on sait 
+seulement que <span style="font-style:italic">F</span> ∩ <span style="font-style:italic">G</span> est de dimension 1. Pour trouver un vecteur non nul
+contenu dans <span style="font-style:italic">F</span> et dans <span style="font-style:italic">G</span> il faut résoudre le système :<br>
+<span style="font-style:italic">x</span>*<span style="font-style:italic">V</span>1+<span style="font-style:italic">y</span>*<span style="font-style:italic">V</span>2+<span style="font-style:italic">z</span>*<span style="font-style:italic">V</span>3=<span style="font-style:italic">a</span>*<span style="font-style:italic">V</span>4+<span style="font-style:italic">b</span>*<span style="font-style:italic">V</span>5.<br>
+On tape :<br>
+<span style="font-family:monospace">linsolve(x*V1+y*V2+z*V3-a*V4-b*V5,[x,y,z,a])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-b,2*b,0,-b]</span><br>
+Si on prend <span style="font-family:monospace">b=-1</span>, on retrouve que le vecteur 
+<span style="font-family:monospace">V1-2*V2=V4-V5=[-1,0,1,-2]</span>
+est une base de <span style="font-family:monospace">F </span>∩<span style="font-family:monospace"> G</span>.</p>
+<h2 id="sec213" class="section">14.2  Rang de formes linéaires</h2>
+<p>
+Étudier le rang de l’ensemble des formes :<br>
+<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>−<span style="font-style:italic">t</span><br>
+<span style="font-style:italic">x</span>−<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>+<span style="font-style:italic">t</span><br>
+<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span>+<span style="font-style:italic">a</span>*<span style="font-style:italic">t</span><br>
+<span style="font-style:italic">x</span>−<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span>−<span style="font-style:italic">a</span>*<span style="font-style:italic">t</span><br>
+
+On tape :<br>
+<span style="font-family:monospace">A:=syst2mat([x+y-z-t,x-y-z+t,x+y+z+a*t,x-y+z-a*t],[x,y,z,t])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1,1,-1,-1,0],[1,-1,-1,1,0],[1,1,1,a,0],[1,-1,1,-a,0]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">C:=tran(A)[0..3]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1,1,1,1],[1,-1,1,-1],[-1,-1,1,1],[-1,1,a,-a]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">det(C)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">8*a+8</span><br>
+Donc pour <span style="font-family:monospace">a!=-1</span> le rang est 4.<br>
+On tape :<br>
+<span style="font-family:monospace">D:=subst(C,a=-1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1,1,1,1],[1,-1,1,-1],[-1,-1,1,1],[-1,1,-1,1]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">rank(D)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">3</span><br>
+Donc pour <span style="font-family:monospace">a=-1</span> le rang est 3.<br>
+Ou on tape :<br>
+<span style="font-family:monospace">normal(lu(C))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[0,1,2,3],[[1,0,0,0],[1,1,0,0],[-1,0,1,0],[-1,-1,a/2+1/2,1]],</span><br>
+<span style="font-family:monospace">[[1,1,1,1],[0,-2,0,-2],[0,0,2,2],[0,0,0,-2*a-2]]</span><br>
+On retrouve ainsi le résultat précédent.</p>
+<h2 id="sec214" class="section">14.3  Une rotation</h2>
+<p>
+Montrer que la matrice :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">M</span>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">9</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎡<br>
+⎢<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >8</td><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:right;white-space:nowrap" >−4</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >−4</td><td style="text-align:right;white-space:nowrap" >4</td><td style="text-align:right;white-space:nowrap" >−7</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:right;white-space:nowrap" >8</td><td style="text-align:right;white-space:nowrap" >4 
+</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table><p>
+est une matrice de rotation.<br>
+Déterminer l’axe et l’angle de cette rotation.<br>
+On tape :<br>
+<span style="font-family:monospace">M:=1/9*[[8,1,-4],[-4,4,-7],[1,8,4]]</span><br>
+<span style="font-family:monospace">isom(M)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[3,-1,-1],acos(7/18),1]</span><br>
+Cela signifie que l’on a une rotation (le 1 indique que l’on a une isométrie 
+positive) d’axe porté par le vecteur [3,-1,-1]
+et d’angle <span style="font-style:italic">t</span>=arccos(7/18) avec sin(<span style="font-style:italic">t</span>)&gt;0 (<span style="font-family:monospace">isom</span> choisit l’orientation
+de l’axe pour que l’angle soit dans [0,π] ie pour que son sinus soit 
+positif).</p><p>Comment retrouver ces résultats ?<br>
+On cherche les points fixes de l’application linéaire <span style="font-family:monospace">rot</span> de matrice 
+<span style="font-family:monospace">M</span> dans la base canonique de  <span style="font-style:italic">R</span><sup>3</sup>, c’est à dire les points
+<span style="font-family:monospace">[x,y,z]</span> tels que :<br>
+<span style="font-family:monospace">(M-idn(3))*[x,y,z]=0</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">linsolve((M-idn(3))*[x,y,z],[x,y,z])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-3*z,z,z]</span><br>
+Il y a donc une droite de points fixes qui est pour <span style="font-family:monospace">z</span> ∈ <span style="font-style:italic">R</span> :<br>
+<span style="font-family:monospace">z*[-3,1,1]</span><br>
+Cherchons une base orthonormée <span style="font-style:italic">E</span>1,<span style="font-style:italic">E</span>2,<span style="font-style:italic">E</span>3 avec <span style="font-style:italic">E</span>3 porté par l’axe,
+par exemple <span style="font-style:italic">E</span>3=√<span style="text-decoration:overline">11</span>/11[−3,1,1].<br>
+On choisit <span style="font-style:italic">E</span>1*<span style="font-style:italic">E</span>3=0 les coordonnées <span style="font-family:monospace">[x,y,z]</span> de <span style="font-style:italic">E</span>1 doivent 
+vérifier :<br>
+<span style="font-family:monospace">-3*x+y+z=0</span><br>
+On choisit <span style="font-family:monospace">x=0,y=-z</span> donc <span style="font-style:italic">E</span>1=√<span style="text-decoration:overline">2</span>/2[0,1,−1]<br>
+Puis on choisit <span style="font-style:italic">E</span>2=<span style="font-style:italic">E</span>3∧ <span style="font-style:italic">E</span>1.<br>
+On tape :<br>
+<span style="font-family:monospace">E3:=sqrt(11)/11*[-3,1,1]</span><br>
+<span style="font-family:monospace">E1:=sqrt(2)/2*[0,1,-1]</span><br>
+<span style="font-family:monospace">E2:=normal(cross(E3,E1))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-(2*sqrt(22))/22,-(3*sqrt(22))/22,-(3*sqrt(22))/22]</span><br>
+En prenant comme nouvelle base <span style="font-style:italic">E</span>1,<span style="font-style:italic">E</span>2,<span style="font-style:italic">E</span>3 on a comme matrice de passage 
+<span style="font-family:monospace">P:=tran(Q)</span> avec <span style="font-family:monospace">Q:=[E1,E2,E3]</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">Q:=[E1,E2,E3]</span><br>
+<span style="font-family:monospace">P:=tran(Q)</span><br>
+On vérifie que <span style="font-family:monospace">Q=inv(P)</span> en tapant :<br>
+<span style="font-family:monospace">normal(P*Q)</span>et <span style="font-family:monospace">normal(Q*P)</span><br>
+On obtient bien <span style="font-family:monospace">idn(3)</span><br>
+La matrice de <span style="font-family:monospace">rot</span> dans cette nouvelle base est donc obtenue en tapant :<br>
+<span style="font-family:monospace">normal(Q*M*P)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[7/18,5*sqrt(11)/18,0],[(-(5*sqrt(11)))/18,7/18,0],[0,0,1]]</span><br>
+L’angle <span style="font-family:monospace">t</span> de la rotation est donc défini par :<br>
+<span style="font-family:monospace">acos(t)=7/18</span> et <span style="font-family:monospace">asin(t)=-5*sqrt(11)/18</span><br>
+On retrouve les résultats trouvés avec la commande <span style="font-family:monospace">isom</span> car 
+on n’a pas choisit la même orientation pour l’axe <span style="font-family:monospace">E3</span> est dirigé selon
+le vecteur <span style="font-family:monospace">[-3,1,1]</span> et non <span style="font-family:monospace">[3,-1,-1]</span>... <br>
+On tape :<br>
+<span style="font-family:monospace">isom([[7/18,5*sqrt(11)/18,0],[(-(5*sqrt(11)))/18,7/18,0],</span><br>
+<span style="font-family:monospace">[0,0,1]])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[0,0,-1],acos(7/18),1]</span><br>
+car <span style="font-family:monospace">isom</span> choisit l’orientation
+de l’axe pour que l’angle soit dans [0,π] ie pour que son sinus soit 
+positif : si l’axe est dirigé selon <span style="font-family:monospace">-E3</span>, l’angle vaut 
+α=  acos (7/18) avec 0≤ α ≤ π.</p>
+<h2 id="sec215" class="section">14.4  Puissance n-ième d’une matrice</h2>
+<p>
+Calculer la puissance n-ième de la matrice :<br>
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>=
+</td><td class="dcell">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >7</td><td style="text-align:right;white-space:nowrap" >4</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >−12</td><td style="text-align:right;white-space:nowrap" >−7</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >20</td><td style="text-align:right;white-space:nowrap" >11</td><td style="text-align:right;white-space:nowrap" >−6</td><td style="text-align:right;white-space:nowrap" >−12</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >−12</td><td style="text-align:right;white-space:nowrap" >−6</td><td style="text-align:right;white-space:nowrap" >6</td><td style="text-align:right;white-space:nowrap" >11 
+</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table><p>
+On cherche si <span style="font-family:monospace">A</span> est diagonalisable.<br>
+ On tape :<br>
+<span style="font-family:monospace">A:=[[7,4,0,0],[-12,-7,0,0],[20,11,-6,-12],[-12,-6,6,11]]</span><br>
+<span style="font-family:monospace">P,B:=jordan(A)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">P:=[[0,1,0,2],[0,-2,0,-3],[-3,2,4,1],[2,-1,-3,0]]</span><br>
+<span style="font-family:monospace">B:=[[2,0,0,0],[0,-1,0,0],[0,0,3,0],[0,0,0,1]]</span><br>
+Donc <span style="font-family:monospace">A</span> est diagonalisable.<br>
+On a :<br>
+<span style="font-family:monospace">B=P</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1</span><span style="font-family:monospace">*A*P</span><br>
+donc <br>
+<span style="font-family:monospace">B</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n=P</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1</span><span style="font-family:monospace">*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*P</span><br>
+ou encore<br>
+<span style="font-family:monospace">A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n=P*B</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*P</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1</span><br>
+On a :<br>
+<span style="font-family:monospace">B</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n=[[2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0,0,0],[0,(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0,0],[0,0,3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0],[0,0,0,1]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">Bn:=[[</span><code><span style="font-family:monospace">2^</span></code><span style="font-family:monospace">n,0,0,0],[0,(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0,0],[0,0,3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,0],[0,0,0,1]]</span><br>
+<span style="font-family:monospace">An:=normal(P*Bn*inv(P))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-3*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+4,-2*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+2,0,0],[6*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-6,4*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-3,0,0],</span><br>
+<span style="font-family:monospace">[-6*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+4*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+2,3*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-4*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+1,9*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-8*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,12*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-12*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">],</span><br>
+<span style="font-family:monospace">[3*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-3*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,-2*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+2*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,-6*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+6*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,-8*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+9*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">]]</span></p><p>Autre méthode :<br>
+On calcule le polynômr caractéristique de <span style="font-family:monospace">A</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">pcar(A)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,-5,5,5,-6]</span><br>
+<span style="font-family:monospace">r2e([1,-5,5,5,-6],X)=(((X-5)*X+5)*X+5)*X-6</span><br>
+Donc le polynôme caractéristique de <span style="font-family:monospace">A</span> est :<br>
+<span style="font-style:italic">X</span><sup>4</sup>−5*<span style="font-style:italic">X</span><sup>3</sup>+5*<span style="font-style:italic">X</span><sup>2</sup>+5*<span style="font-style:italic">X</span>−6<br>
+On tape :<br>
+<span style="font-family:monospace">factor(r2e([1,-5,5,5,-6],X))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(X-2)*(X-3)*(X+1)*(X-1)</span><br>
+La matrice <span style="font-family:monospace">A</span> a donc 4 valeurs propres distinctes, et on a :<br>
+<span style="font-style:italic">A</span><sup>4</sup>−5*<span style="font-style:italic">A</span><sup>3</sup>+5*<span style="font-style:italic">A</span><sup>2</sup>+5*<span style="font-style:italic">A</span>−6*<span style="font-style:italic">idn</span>(4)=0<br>
+Donc :<br>
+<span style="font-style:italic">A</span><sup>4</sup>=5*<span style="font-style:italic">A</span><sup>3</sup>−5*<span style="font-style:italic">A</span><sup>2</sup>−5*<span style="font-style:italic">A</span>+6*<span style="font-style:italic">idn</span>(4)<br>
+<span style="font-style:italic">A</span><sup><span style="font-style:italic">n</span>+4</sup>=5*<span style="font-style:italic">A</span><sup><span style="font-style:italic">n</span>+3</sup>−5*<span style="font-style:italic">A</span><sup><span style="font-style:italic">n</span>+2</sup>−5*<span style="font-style:italic">A</span><sup><span style="font-style:italic">n</span>+1</sup>+6*<span style="font-style:italic">A</span><sup><span style="font-style:italic">n</span></sup><br>
+On va donc étudier les suites récurrentes vérifiant :<br>
+(1) <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+4</sub>=5*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+3</sub>−5*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+2</sub>−5*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>+6*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub><br>
+en cherchant les progressions géométriques de raison <span style="font-style:italic">r</span> 
+qui vérifient (1). La raison est donc solution de :<br>
+<span style="font-style:italic">X</span><sup>4</sup>−5*<span style="font-style:italic">X</span><sup>3</sup>+5*<span style="font-style:italic">X</span><sup>2</sup>+5*<span style="font-style:italic">X</span>−6=(<span style="font-style:italic">X</span>−2)*(<span style="font-style:italic">X</span>−3)*(<span style="font-style:italic">X</span>+1)*(<span style="font-style:italic">X</span>−1)=0 <br>
+c’est à dire on peut avoir :<br>
+<span style="font-style:italic">r</span>=−1 ou <span style="font-style:italic">r</span>=1 ou <span style="font-style:italic">r</span>=2 ou <span style="font-style:italic">r</span>=3<br>
+donc comme une suite récurrente qui vérifie (1) est entièrement définie
+par ses 4 premiers termes : <span style="font-style:italic">u</span><sub>0</sub>,<span style="font-style:italic">u</span><sub>1</sub>,<span style="font-style:italic">u</span><sub>2</sub>,<span style="font-style:italic">u</span><sub>3</sub>, si il existe <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>,<span style="font-style:italic">d</span> 
+tel que :<br>
+<span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span>*(−1)<sup>0</sup>+<span style="font-style:italic">b</span>*1<sup>0</sup>+<span style="font-style:italic">c</span>*2<sup>0</sup>+<span style="font-style:italic">d</span>*3<sup>0</sup>=<span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>+<span style="font-style:italic">c</span>+<span style="font-style:italic">d</span><br>
+<span style="font-style:italic">u</span><sub>1</sub>=<span style="font-style:italic">a</span>*(−1)<sup>1</sup>+<span style="font-style:italic">b</span>*1<sup>1</sup>+<span style="font-style:italic">c</span>*2<sup>1</sup>+<span style="font-style:italic">d</span>*3<sup>1</sup>=−<span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>+2*<span style="font-style:italic">c</span>+3*<span style="font-style:italic">d</span><br>
+<span style="font-style:italic">u</span><sub>2</sub>=<span style="font-style:italic">a</span>*(−1)<sup>2</sup>+<span style="font-style:italic">b</span>*1<sup>2</sup>+<span style="font-style:italic">c</span>*2<sup>2</sup>+<span style="font-style:italic">d</span>*3<sup>2</sup>=<span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>+4*<span style="font-style:italic">c</span>+9*<span style="font-style:italic">d</span><br>
+<span style="font-style:italic">u</span><sub>3</sub>=<span style="font-style:italic">a</span>*(−1)<sup>3</sup>+<span style="font-style:italic">b</span>*1<sup>3</sup>+<span style="font-style:italic">c</span>*2<sup>3</sup>+<span style="font-style:italic">d</span>*3<sup>3</sup>=−<span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>+8*<span style="font-style:italic">c</span>+27*<span style="font-style:italic">d</span><br>
+on aura :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>*(−1)<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">b</span>*1<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">c</span>*2<sup><span style="font-style:italic">n</span></sup>+<span style="font-style:italic">d</span>*3<sup><span style="font-style:italic">n</span></sup><br>
+On tape :<br>
+<span style="font-family:monospace">g(u0,u1,u2,u3):=linsolve([a+b+c+d=u0,-a+b+2*c+3*d=u1,</span><br>
+    <span style="font-family:monospace">a+b+4*c+9*d=u2,-a+b+8*c+27*d=u3],[a,b,c,d])</span><br>
+Puis :<br>
+<span style="font-family:monospace">g(u0,u1,u2,u3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1/4*u0+-11/24*u1+1/4*u2+1/-24*u3,3/2*u0+1/4*u1-u2+1/4*u3,</span><br>
+<span style="font-family:monospace">-u0-1/-3*u1+u2-1/3*u3,1/4*u0+1/-8*u1+1/-4*u2+1/8*u3]</span><br>
+On tape :<br>
+<span style="font-family:monospace">normal((-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(1/4*idn(4)+-11/24*A+1/4*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1/-24*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)+</span><br>
+<span style="font-family:monospace">3/2*idn(4)+1/4*A-A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1/4*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(-idn(4)-1/-3*A+A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-</span><br>
+<span style="font-family:monospace">1/3*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)+3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*(1/4*idn(4)+1/-8*A+1/-4*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1/8*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3))</span><br>
+ou on tape :<br>
+<span style="font-family:monospace">vn:=[(-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,1,2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n,3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n]</span><br>
+puis,<br>
+<span style="font-family:monospace">vn*g(idn(4),A,A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-3*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+4,-2*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+2,0,0],[6*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-6,4*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-3,0,0],</span><br>
+<span style="font-family:monospace">[-6*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+4*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+2,-4*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+3*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+1,9*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-8*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,12*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-12*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">],</span><br>
+<span style="font-family:monospace">[3*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-3*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,2*(-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">-2*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,-6*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+6*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">,-8*2</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">+9*3</span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">]]</span></p>
+<h2 id="sec216" class="section">14.5  Rang d’une matrice</h2>
+<p>
+Soit <span style="font-style:italic">a</span> ∈ <span style="font-style:italic">R</span>, on considère la matrice :<br>
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">M</span><sub><span style="font-style:italic">a</span></sub>=
+</td><td class="dcell">⎡<br>
+⎢<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >2<span style="font-style:italic">a</span>−1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span></td><td style="text-align:right;white-space:nowrap" >2<span style="font-style:italic">a</span>−1</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">a</span>−2</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span><sup>2</sup>−1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span>−1</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">a</span>−1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">a</span>−1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span>
+</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table><p>
+1/ Pour quelles valeurs de <span style="font-style:italic">a</span>, la matrice <span style="font-style:italic">M</span><sub><span style="font-style:italic">a</span></sub> est-elle inversible ?<br>
+Quel est le rang de <span style="font-style:italic">M</span><sub><span style="font-style:italic">a</span></sub> ?<br>
+2/ Calculer l’inverse de <span style="font-style:italic">M</span><sub><span style="font-style:italic">a</span></sub> lorsque cela est possible.<br>
+ 
+1/ On cherche si <span style="font-family:monospace">Ma</span> est inversible en calculant son déterminant.<br>
+ On tape :<br>
+<span style="font-family:monospace">Ma:=[[2a-1,a,2a-1],[a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a-2,a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1,a-1],[a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a-1,a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a-1,a]]</span><br>
+<span style="font-family:monospace">d:=det(Ma)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4+-2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+-2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2*a</span><br>
+On tape :<br>
+<span style="font-family:monospace">factor(d)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*(a+1)*a*(a-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+Donc <span style="font-style:italic">M</span><sub><span style="font-style:italic">a</span></sub> est inversible si est seulement si <span style="font-style:italic">a</span> ∈ <span style="font-style:italic">R</span>−{−1,0,1}.<br>
+Donc lorsque <span style="font-style:italic">a</span> ∈ <span style="font-style:italic">R</span>−{−1,0,1} le rang de <span style="font-style:italic">M</span><sub><span style="font-style:italic">a</span></sub> est 3.<br>
+Pour <span style="font-style:italic">a</span>=−1 on tape :<br>
+<span style="font-family:monospace">A:=subst(Ma,a=-1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-3,-1,-3],[-2,0,-2],[-1,-1,-1]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">rank(A)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><br>
+en effet :<br>
+<span style="font-family:monospace">det([[-3,-1],[-2,0]])!=0</span><br>
+Pour <span style="font-style:italic">a</span>=0, on tape :<br>
+<span style="font-family:monospace">B:=subst(Ma,a=0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[-1,0,-1],[-2,-1,-1],[-1,-1,0]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">rank(B)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><br>
+en effet :<br>
+<span style="font-family:monospace">det([[-1,0],[-2,-1]])!=0</span><br>
+Pour <span style="font-style:italic">a</span>=1 on tape :<br>
+<span style="font-family:monospace">C:=subst(Ma,a=1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1,1,1],[0,0,0],[1,1,1]]</span><br>
+On tape :<br>
+<span style="font-family:monospace">rank(C)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1</span><br>
+en effet :<br>
+Les trois colonnes sont identiques et non nulles.<br>
+2/ On tape :<br>
+<span style="font-family:monospace">normal(inv(Ma))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-2*a),(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2*a-1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-2*a),</span><br>
+<span style="font-family:monospace">(-2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-2*a)],[1/(-2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2*a),</span><br>
+<span style="font-family:monospace">(-2*a+1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*a),(2*a-1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*a)],</span><br>
+<span style="font-family:monospace">[(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+a-1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-2*a),(-a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-a+1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-2*a),</span><br>
+<span style="font-family:monospace">(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-a-1)/(2*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-2*a)]]</span></p>
+<h2 id="sec217" class="section">14.6  Changement de base</h2>
+<p>
+Soit <span style="font-style:italic">u</span> l’endomorphisme de <span style="font-style:italic">R</span><sup>4</sup> dont la matrice dans la base canonique est :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>=
+</td><td class="dcell">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span></td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span></td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span></td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >1 
+</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table><p>
+Déterminer la matrice <span style="font-style:italic">B</span> de <span style="font-style:italic">u</span> dans la base :<br>
+<span style="font-style:italic">E</span>1=<span style="font-style:italic">e</span>1<br>
+<span style="font-style:italic">E</span>2=<span style="font-style:italic">e</span>1+<span style="font-style:italic">e</span>2<br>
+<span style="font-style:italic">E</span>3=<span style="font-style:italic">e</span>1+<span style="font-style:italic">e</span>2+<span style="font-style:italic">e</span>3<br>
+<span style="font-style:italic">E</span>4=<span style="font-style:italic">e</span>1+<span style="font-style:italic">e</span>2+<span style="font-style:italic">e</span>3+<span style="font-style:italic">e</span>4</p><p><span style="font-weight:bold">Correction</span><br>
+On tape :<br>
+<span style="font-family:monospace">A:=[[1,a,0,0],[0,1,a,0],[0,0,1,a],[0,0,0,1]]</span><br>
+On définit la matrice de passage <span style="font-style:italic">P</span> en mettant en colonne les coordonnées 
+des nouveaux vecteurs de base :<br>
+<span style="font-family:monospace">P:=[[1,1,1,1],[0,1,1,1],[0,0,1,1],[0,0,0,1]]</span><br>
+On définit la matrice de <span style="font-style:italic">u</span> dans la nouvelle base :<br>
+<span style="font-family:monospace">B:=normal(changebase(A,P))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[1,a,0,0],[0,1,a,0],[0,0,1,a],[0,0,0,1]]</span><br>
+On a : <br>
+<span style="font-style:italic">B</span>=inv(<span style="font-style:italic">P</span>)*<span style="font-style:italic">A</span>*<span style="font-style:italic">P</span></p><p>Vérifions :<br>
+On tape :<br>
+<span style="font-family:monospace">E1:=[1,0,0,0]</span><br>
+<span style="font-family:monospace">E2:=[1,1,0,0]</span><br>
+<span style="font-family:monospace">E3:=[1,1,1,0]</span><br>
+<span style="font-family:monospace">E4:=[1,1,1,1]</span><br>
+On tape :<br>
+<span style="font-family:monospace">A*E1</span>
+On obtient :<br>
+<span style="font-family:monospace">[1,0,0,0]</span><br>
+On tape :<br>
+<span style="font-family:monospace">A*E2</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,1,0,0]</span><br>
+On tape :<br>
+<span style="font-family:monospace">A*E3</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,1,1,0]</span><br>
+On tape :<br>
+<span style="font-family:monospace">A*E4</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,1,1,1]</span></p>
+<h2 id="sec218" class="section">14.7  Résolution d’un système</h2>
+<p>
+Résoudre le système :<br>
+<span style="font-style:italic">x</span>+2<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>+2<span style="font-style:italic">t</span>=1<br>
+3<span style="font-style:italic">x</span>−<span style="font-style:italic">y</span>+<span style="font-style:italic">z</span>+2<span style="font-style:italic">t</span>=3<br>
+<span style="font-style:italic">x</span>+3<span style="font-style:italic">y</span>+3<span style="font-style:italic">z</span>−<span style="font-style:italic">t</span>=1<br>
+5<span style="font-style:italic">x</span>+5<span style="font-style:italic">y</span>−<span style="font-style:italic">z</span>+7<span style="font-style:italic">t</span>=<span style="font-style:italic">a</span><br>
+Pour quelles valeurs de <span style="font-style:italic">a</span> ce système admet-il des solutions entières ?</p><p><span style="font-weight:bold">Correction</span><br>
+On tape :<br>
+<span style="font-family:monospace">linsolve([x+2y-z+2t=1,3x-y+z+2t=3,x+3y+3z-t=1,5x+5y-z+7t=a],</span><br>
+<span style="font-family:monospace">[x,y,z,t])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-31/24*a+179/24,-1/6*a+5/6,25/24*a+(-125)/24,4/3*a+(-20)/3]</span><br>
+Pour que <span style="font-style:italic">z</span> soit entier il faut et il suffit que :<br>
+<span style="font-style:italic">a</span>−5 soit un mulitple de 24.<br>
+Si <span style="font-style:italic">a</span>=5+<span style="font-style:italic">k</span>*24, <span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">t</span> sont alors aussi des entiers.
+On tape :<br>
+<span style="font-family:monospace">linsolve([x+2y-z+2t=1,3x-y+z+2t=3,x+3y+3z-t=1,5x+5y-z+7t=5+24*k],</span><br>
+<span style="font-family:monospace">[x,y,z,t])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-31*k+1,-(4*k),25*k,32*k]</span></p>
+<h2 id="sec219" class="section">14.8  Forme bilinéaire</h2>
+<p>
+Soient <span style="font-style:italic">E</span> l’espace vectoriel réel des polynômes de degré <span style="font-style:italic">leq</span> 2 et à
+coefficients réels et <span style="font-style:italic">f</span> la forme bilinéaire symétrique définie 
+par :<br>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">P</span>,<span style="font-style:italic">Q</span>)=∫<sub>−1</sub><sup>1</sup> <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>),<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>) <span style="font-style:italic">dx</span><br>
+1/ Déterminer la matrice de <span style="font-style:italic">f</span> et montrer que <span style="font-style:italic">f</span> est positive et non 
+dégénérée.<br>
+2/ Déterminer l’endomorphisme adjoint à la dérivation.<br>
+</p><p><span style="font-weight:bold">Correction</span><br>
+La base canonique de <span style="font-style:italic">E</span> est : 1,<span style="font-style:italic">x</span>,<span style="font-style:italic">x</span><sup>2</sup>. <br>
+Pour déterminer la matrice <span style="font-style:italic">A</span>
+de <span style="font-style:italic">f</span> on va calculer : <span style="font-style:italic">f</span>(<span style="font-style:italic">e</span><sub><span style="font-style:italic">j</span></sub>,<span style="font-style:italic">e</span><sub><span style="font-style:italic">k</span></sub>).<br>
+On tape :<br>
+<span style="font-family:monospace">integrate(1,x,-1,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(x,x,-1,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,x,-1,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2/3</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3,x,-1,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+On tape :<br>
+<span style="font-family:monospace">integrate(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4,x,-1,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2/5</span><br>
+
+Donc on a :<br>
+<span style="font-style:italic">A</span>=
+[</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >2</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">2</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">3</td></tr>
+</table></td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">2</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">3</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">2</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">3</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">2</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">5</td></tr>
+</table></td><td class="dcell"> 
+</td></tr>
+</table></td></tr>
+</table><p>
+]</p><p>On tape pour avoir <span style="font-style:italic">f</span>(<span style="font-style:italic">c</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">a</span>) :<br>
+<span style="font-family:monospace">normal(integrate((a*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b*x+c)*(a*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b*x+c),x,-1,1))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(2*</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">)/5+(4*</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><span style="font-family:monospace">*</span><span style="font-family:monospace"><span style="font-style:italic">c</span></span><span style="font-family:monospace">)/3+(2*</span><span style="font-family:monospace"><span style="font-style:italic">b</span></span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">)/3+2*</span><span style="font-family:monospace"><span style="font-style:italic">c</span></span><sup><span style="font-family:monospace">2</span></sup><br>
+On tape :<br>
+<span style="font-family:monospace">gauss(2/5*a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4/3*a*c+2/3*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2*</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,[c,b,a])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(2/3*</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><span style="font-family:monospace">+2*</span><span style="font-family:monospace"><span style="font-style:italic">c</span></span><span style="font-family:monospace">)</span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">/2+(2/3*</span><span style="font-family:monospace"><span style="font-style:italic">b</span></span><span style="font-family:monospace">)</span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">/(2/3)+8*</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">/45</span><br>
+on a donc :<br>
+<span style="font-family:monospace"><span style="font-style:italic">f</span></span><span style="font-family:monospace">(</span><span style="font-family:monospace"><span style="font-style:italic">c</span></span><span style="font-family:monospace">,</span><span style="font-family:monospace"><span style="font-style:italic">b</span></span><span style="font-family:monospace">,</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><span style="font-family:monospace">)=(2/3*</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><span style="font-family:monospace">+2*</span><span style="font-family:monospace"><span style="font-style:italic">c</span></span><span style="font-family:monospace">)</span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">/2+(2/3*</span><span style="font-family:monospace"><span style="font-style:italic">b</span></span><span style="font-family:monospace">)</span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">/(2/3)+8*</span><span style="font-family:monospace"><span style="font-style:italic">a</span></span><sup><span style="font-family:monospace">2</span></sup><span style="font-family:monospace">/45</span><br>
+donc <span style="font-family:monospace">f(c,b,a)&gt;=0</span> et on a :<br>
+<span style="font-family:monospace">f(c,b,a)=0</span> si et seulement si <span style="font-family:monospace">a=b=c=0</span>.<br>
+
+2/ La dérivation <span style="font-style:italic">d</span> est une application linéaire de <span style="font-style:italic">E</span> dans <span style="font-style:italic">E</span> matrice :<br>
+<span style="font-style:italic">B</span>=
+[</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >1</td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >2</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >0 
+</td></tr>
+</table><p>
+] </p><p>L’adjoint <span style="font-style:italic">d</span><sup>*</sup> de <span style="font-style:italic">d</span> vérifie <span style="font-style:italic">f</span>(<span style="font-style:italic">d</span><sup>*</sup>(<span style="font-style:italic">P</span>),<span style="font-style:italic">Q</span>)=<span style="font-style:italic">f</span>(<span style="font-style:italic">P</span>,<span style="font-style:italic">d</span>(<span style="font-style:italic">Q</span>)) ou encore si <span style="font-style:italic">C</span> est 
+la matrice de <span style="font-style:italic">d</span><sup>*</sup>:<br>
+<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">P</span>*<span style="font-style:italic">A</span>*<span style="font-style:italic">B</span>*<span style="font-style:italic">Q</span>=<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">P</span>*<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">C</span>*<span style="font-style:italic">A</span>*<span style="font-style:italic">Q</span><br>
+<span style="font-style:italic">A</span>*<span style="font-style:italic">B</span>=<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">C</span>*<span style="font-style:italic">A</span> ou <sup><span style="font-style:italic">t</span></sup> <span style="font-style:italic">B</span>*<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">A</span>=<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">A</span>*<span style="font-style:italic">C</span><br>
+donc :<br>
+<span style="font-style:italic">C</span>=(<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">A</span>)<sup>−1</sup>*<sup><span style="font-style:italic">t</span></sup> <span style="font-style:italic">B</span>*<sup><span style="font-style:italic">t</span></sup><span style="font-style:italic">A</span><br>
+On tape :<br>
+<span style="font-family:monospace">A:=[[2,0,2/3],[0,2/3,0],[2/3,0,2/5]]</span><br>
+<span style="font-family:monospace">B:=[[0,1,0],[0,0,2],[0,0,0]]</span><br>
+<span style="font-family:monospace">C:=normal(inv(tran(A))*tran(B)*tran(A))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[0,-5/2,0],[3,0,1],[0,15/2,0]]</span><br>
+donc <br>
+<span style="font-style:italic">C</span>=
+[</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">5</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >3</td><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" >1</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >0</td><td style="text-align:right;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">15</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >0 
+</td></tr>
+</table><p>
+] </p><p>donc <br>
+<span style="font-style:italic">d</span><sup>*</sup>(<span style="font-style:italic">a</span>*<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">b</span>*<span style="font-style:italic">x</span>+<span style="font-style:italic">c</span>)=−5/2*<span style="font-style:italic">b</span>+(3*<span style="font-style:italic">c</span>+<span style="font-style:italic">a</span>)*<span style="font-style:italic">x</span>+15/2*<span style="font-style:italic">b</span>*<span style="font-style:italic">x</span><sup>2</sup></p>
+<h2 id="sec220" class="section">14.9  Exercices utilisant le PGCD</h2>
+<h3 id="sec221" class="subsection">14.9.1  L’énoncé 1</h3>
+<p>
+Calculer le pgcd modulo 3 et le pgcd modulo 5 de <span style="font-style:italic">x</span><sup>202</sup>+<span style="font-style:italic">x</span><sup>101</sup>+1 et de sa derivée. Que peut-on en conclure ?<br>
+<span style="font-weight:bold">La solution</span><br>
+On tape :<br>
+<span style="font-family:monospace">gcd((x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">202+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">101+1)%3,(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">202+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">101+1)’%3)</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">(1 % 3)*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">101-1 % 3</span><br>
+On tape :<br>
+<span style="font-family:monospace">gcd((x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">202+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">101+1)%5,(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">202+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">101+1)’%5)</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">1 % 5</span><br>
+Donc <span style="font-style:italic">x</span><sup>202</sup>+<span style="font-style:italic">x</span><sup>101</sup>+1 et sa derivée sont premiers entre eux donc 
+<span style="font-style:italic">x</span><sup>202</sup>+<span style="font-style:italic">x</span><sup>101</sup>+1 n’a pas de racine multiple (ce que l’on pouvait prévoir 
+puisqu l’on peut calculer ls racines de <span style="font-style:italic">x</span><sup>202</sup>+<span style="font-style:italic">x</span><sup>101</sup>+1 
+</p>
+<h3 id="sec222" class="subsection">14.9.2  L’énoncé 2</h3>
+<p>
+Soient <span style="font-style:italic">P</span>=51<span style="font-style:italic">x</span><sup>3</sup>−35<span style="font-style:italic">x</span><sup>2</sup>+39<span style="font-style:italic">x</span>−115 et <span style="font-style:italic">Q</span>=17<span style="font-style:italic">x</span><sup>4</sup>−23<span style="font-style:italic">x</span><sup>3</sup>+34<span style="font-style:italic">x</span><sup>2</sup>+39<span style="font-style:italic">x</span>−115
+Calculer le pgcd modulo 5, le pgcd modulo 7 et le pgcd modulo 11 de <span style="font-style:italic">P</span> et <span style="font-style:italic">Q</span>.
+En déduire le pgcd de <span style="font-style:italic">P</span> et <span style="font-style:italic">Q</span> par le théoréme des restes chinois.<br>
+Pourquoi ne doit-on pas utiliser modulo 17 ?<br>
+<span style="font-weight:bold">La solution</span><br>
+On tape :<br>
+<span style="font-family:monospace">gcd((51x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-35x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)%5,(17x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-23x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+34x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)’%5)</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">(1 % 5)*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+(1 % 5)*x</span><br>
+Le poolynôme obtenu est de degré 2 car 5 est un diviseur des termes 
+constants de <span style="font-style:italic">P</span> et <span style="font-style:italic">Q</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">gcd((51x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-35x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)%7,(17x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-23x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+34x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)’%7)</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">(1 % 7)*x-3 % 7</span><br>
+On tape :<br>
+<span style="font-family:monospace">gcd((51x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-35x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)%11,(17x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-23x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+34x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)’%11)</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">(1 % 11)*x-2 % 11</span><br>
+On tape :<br>
+<span style="font-family:monospace">ichinrem((1 % 7)*x-3 % 7,(1 % 11)*x-2 % 11))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(1 % 77)*x-24 % 77</span><br>
+On tape (on cherche le pgcd des coefficients dominants) :<br>
+<span style="font-family:monospace">gcd(51,17)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">17</span><br>
+On tape :<br>
+<span style="font-family:monospace">17*(-24)%77</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-23 % 77</span><br>
+Donc le pgcd de <span style="font-style:italic">P</span>=51<span style="font-style:italic">x</span><sup>3</sup>−35<span style="font-style:italic">x</span><sup>2</sup>+39<span style="font-style:italic">x</span>−115 et <span style="font-style:italic">Q</span>=17<span style="font-style:italic">x</span><sup>4</sup>−23<span style="font-style:italic">x</span><sup>3</sup>+34<span style="font-style:italic">x</span><sup>2</sup>+39<span style="font-style:italic">x</span>−115 est 
+17<span style="font-style:italic">x</span>−23.<br>
+On vérifie et on tape :<br>
+<span style="font-family:monospace">gcd(51x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-35x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115,17x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-23x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+34x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+39x-115)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">17*x-23</span><br>
+On ne doit pas essayer modulo 17 car 17 est un diviseur des coefficients 
+dominants.</p>
+<h3 id="sec223" class="subsection">14.9.3  L’énoncé 3 utilisant l’identité de Bézout</h3>
+<p>
+En utilisant l’identité de Bézout, décomposer en éléments simples :<br>
+<span style="font-style:italic">F</span><sub>1</sub>(<span style="font-style:italic">x</span>)= 1/(<span style="font-style:italic">x</span><sup>2</sup>−1)(<span style="font-style:italic">x</span>+2) ,
+<span style="font-style:italic">F</span><sub>2</sub>(<span style="font-style:italic">x</span>)= 1/(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup>(<span style="font-style:italic">x</span>+2)<br>
+On donnera le détail des calculs. <br>
+ <br>
+<span style="font-weight:bold">Avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">egcd(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1,x+2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,-x+2,3]</span><br>
+Donc :<br>
+ <span style="font-style:italic">F</span><sub>1</sub>(<span style="font-style:italic">x</span>)=1/(<span style="font-style:italic">x</span><sup>2</sup>−1)(<span style="font-style:italic">x</span>+2)=1/3(<span style="font-style:italic">x</span>+2)+−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1)<br>
+ <span style="font-style:italic">F</span><sub>2</sub>(<span style="font-style:italic">x</span>)=1/(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup>(<span style="font-style:italic">x</span>+2)=1/3(<span style="font-style:italic">x</span>+2)(<span style="font-style:italic">x</span><sup>2</sup>−1)+−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup><br>
+ <span style="font-style:italic">F</span><sub>2</sub>(<span style="font-style:italic">x</span>)=1/3<span style="font-style:italic">F</span><sub>1</sub>(<span style="font-style:italic">x</span>)+−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup><br>
+Il reste donc à décomposer :<br>
+ <span style="font-style:italic">F</span><sub>3</sub>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1) et 
+ <span style="font-style:italic">F</span><sub>4</sub>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup><br>
+
+<span style="font-weight:bold">Décomposition de </span> <span style="font-style:italic">F</span><sub>3</sub>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1)<br>
+On tape :<br>
+<span style="font-family:monospace">abcuv(x-1,x+1,-x+2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-3)/2,1/2]</span><br>
+Donc <br>
+ <span style="font-style:italic">F</span><sub>3</sub>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span>−1)(<span style="font-style:italic">x</span>+1)=−1/2(<span style="font-style:italic">x</span>+1)+1/6(<span style="font-style:italic">x</span>−1)<br>
+
+<span style="font-weight:bold">Décomposition de </span><span style="font-style:italic">F</span><sub>1</sub>(<span style="font-style:italic">x</span>)<br>
+ <span style="font-style:italic">F</span><sub>1</sub>(<span style="font-style:italic">x</span>)=1/(<span style="font-style:italic">x</span><sup>2</sup>−1)(<span style="font-style:italic">x</span>+2)=1/3(<span style="font-style:italic">x</span>+2)+−1/2(<span style="font-style:italic">x</span>+1)+1/6(<span style="font-style:italic">x</span>−1)<br>
+
+<span style="font-weight:bold">Décomposition de </span> <span style="font-style:italic">F</span><sub>4</sub>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup><br>
+On tape :<br>
+<span style="font-family:monospace">abcuv((x-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,(x+1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,(-x+2)/3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(2*x+5)/12,(-2*x+3)/12]</span><br>
+Donc <br>
+ <span style="font-style:italic">F</span><sub>4</sub>(<span style="font-style:italic">x</span>)=−<span style="font-style:italic">x</span>+2/3(<span style="font-style:italic">x</span>−1)<sup>2</sup>(<span style="font-style:italic">x</span>+1)<sup>2</sup>=2<span style="font-style:italic">x</span>+5/12(<span style="font-style:italic">x</span>+1)<sup>2</sup>+−2<span style="font-style:italic">x</span>+3/12(<span style="font-style:italic">x</span>−1)<sup>2</sup> <br>
+ <span style="font-style:italic">F</span><sub>4</sub>(<span style="font-style:italic">x</span>)=2<span style="font-style:italic">x</span>+2+3/12(<span style="font-style:italic">x</span>+1)<sup>2</sup>+−2<span style="font-style:italic">x</span>+2+1/12(<span style="font-style:italic">x</span>−1)<sup>2</sup><br>
+Donc <br>
+ <span style="font-style:italic">F</span><sub>4</sub>(<span style="font-style:italic">x</span>)=1/6(<span style="font-style:italic">x</span>+1)+1/4(<span style="font-style:italic">x</span>+1)<sup>2</sup>+−1/6(<span style="font-style:italic">x</span>−1)+1/12(<span style="font-style:italic">x</span>−1)<sup>2</sup><br>
+ 
+<span style="font-weight:bold">Décomposition de </span><span style="font-style:italic">F</span><sub>2</sub>(<span style="font-style:italic">x</span>)<br>
+ <span style="font-style:italic">F</span><sub>2</sub>(<span style="font-style:italic">x</span>)=1/(<span style="font-style:italic">x</span><sup>2</sup>−1)<sup>2</sup>(<span style="font-style:italic">x</span>+2)=1/3<span style="font-style:italic">F</span><sub>1</sub>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">F</span><sub>4</sub>(<span style="font-style:italic">x</span>)=<br>
+ 1/9(<span style="font-style:italic">x</span>+2)+−1/6(<span style="font-style:italic">x</span>+1)+1/18(<span style="font-style:italic">x</span>−1)+1/6(<span style="font-style:italic">x</span>+1)+1/4(<span style="font-style:italic">x</span>+1)<sup>2</sup>+−1/6(<span style="font-style:italic">x</span>−1)+1/12(<span style="font-style:italic">x</span>−1)<sup>2</sup><br>
+Donc <br>
+ <span style="font-style:italic">F</span><sub>2</sub>(<span style="font-style:italic">x</span>)=1/9(<span style="font-style:italic">x</span>+2)+1/4(<span style="font-style:italic">x</span>+1)<sup>2</sup>+1/9(<span style="font-style:italic">x</span>−1)+1/12(<span style="font-style:italic">x</span>−1)<sup>2</sup></p>
+<h2 id="sec224" class="section">14.10  Exercices utilisant le résultant</h2>
+<h3 id="sec225" class="subsection">14.10.1  L’énoncé 1</h3>
+<p>
+Pour quelles valeurs de <span style="font-style:italic">p</span> le polynôme <span style="font-style:italic">x</span><sup>5</sup>+<span style="font-style:italic">x</span><sup>3</sup>−<span style="font-style:italic">p</span>*<span style="font-style:italic">x</span>+1 admet-il une racine 
+multiple ?<br>
+<span style="font-weight:bold">La solution</span><br>
+On cherche les valeurs de <span style="font-style:italic">p</span> pour lesquels le polynôme <span style="font-style:italic">x</span><sup>5</sup>+<span style="font-style:italic">x</span><sup>3</sup>−<span style="font-style:italic">p</span>*<span style="font-style:italic">x</span>+1 et sa 
+derivée sont premiers entre eux. <br>
+On tape :<br>
+<span style="font-family:monospace">factor(resultant(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-p*x+1,(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-p*x+1)’))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-(16*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+40*p+61)*(16*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-32*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+20*p-53)</span><br>
+On tape, en mode réel :<br>
+<span style="font-family:monospace">solve(-(16*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+40*p+61),p),solve((16*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-32*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+20*p-53),p)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[],[2.13943295467]</span><br>
+Donc pour <span style="font-style:italic">p</span>≃ 2.13943295467 le polynôme <span style="font-style:italic">x</span><sup>5</sup>+<span style="font-style:italic">x</span><sup>3</sup>−<span style="font-style:italic">p</span>*<span style="font-style:italic">x</span>+1 admet une 
+racine double.
+En mode complexe :<br>
+<span style="font-family:monospace">solve(-(16*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+40*p+61),p),solve((16*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-32*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+20*p-53),p)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-5+6*i)/4,(-5-6*i)/4],[-0.0697164773345+1.24235545275*i,<br>
+-0.0697164773345-1.24235545275*i,2.13943295467]</span><br>
+On vérifie avec <span style="font-family:monospace">Xcas</span>, on tape en mode complexe :<br>
+<span style="font-family:monospace">solve([x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5+x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-p*x+1,5x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4+3x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-p],[x,p])</span><br>
+On obtient :
+</p><pre class="verbatim">[[(-1-i)/2,(-5+6*i)/4],[(-1+i)/2,(-5-6*i)/4],
+[0.17610056437-0.860716618624*i,-0.0697164773345+1.24235545275*i],
+[0.17610056437+0.860716618624*i,-0.0697164773345-1.24235545275*i],
+[0.647798871261,2.13943295467]]
+</pre>
+<h3 id="sec226" class="subsection">14.10.2  L’énoncé 2</h3>
+<p>
+Résoudre le système d’inconnues <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">⎧<br>
+⎪<br>
+⎨<br>
+⎪<br>
+⎩</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span><sup>3</sup>+<span style="font-style:italic">b</span><sup>3</sup>+<span style="font-style:italic">c</span><sup>3</sup></td><td style="text-align:left;white-space:nowrap" >=8</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">b</span><sup>2</sup>+<span style="font-style:italic">c</span><sup>2</sup></td><td style="text-align:left;white-space:nowrap" >=6</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" ><span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>+2<span style="font-style:italic">c</span></td><td style="text-align:left;white-space:nowrap" >=4
+</td></tr>
+</table></td><td class="dcell">
+</td></tr>
+</table><p>
+On éliminera les variables grâce au résultant.<br>
+<span style="font-weight:bold">La solution</span><br>
+On remarque que si <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> est solution alors <span style="font-style:italic">b</span>,<span style="font-style:italic">a</span>,<span style="font-style:italic">c</span> est aussi solution 
+(symétrie des variables <span style="font-style:italic">a</span> et <span style="font-style:italic">b</span>). De plus <span style="font-style:italic">a</span>≠ <span style="font-style:italic">b</span> car si <span style="font-style:italic">a</span>=<span style="font-style:italic">b</span> on aurait
+<span style="font-style:italic">b</span>=<span style="font-style:italic">a</span> et <span style="font-style:italic">c</span>=2−<span style="font-style:italic">a</span> et <span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">b</span><sup>2</sup>+<span style="font-style:italic">c</span><sup>2</sup>−6=3<span style="font-style:italic">a</span><sup>2</sup>−4<span style="font-style:italic">a</span>−2=0 qui n’a pas les mêmes 
+solutions que <span style="font-style:italic">a</span><sup>3</sup>+<span style="font-style:italic">b</span><sup>3</sup>+<span style="font-style:italic">c</span><sup>3</sup>−8=<span style="font-style:italic">a</span><sup>3</sup>+6<span style="font-style:italic">a</span><sup>2</sup>−12<span style="font-style:italic">a</span>=<span style="font-style:italic">a</span>(<span style="font-style:italic">a</span><sup>2</sup>+6<span style="font-style:italic">a</span>−12)=0<br>
+On élimine <span style="font-style:italic">a</span> entre la première et la troisième équation, on tape :<br>
+<span style="font-family:monospace">eq1:=resultant(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-8,a+b+2c-4,a)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">6*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*c-12*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+12*b*c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-48*b*c+48*b+7*c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-48*c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+96*c-56</span><br>
+On élimine <span style="font-style:italic">a</span> entre la deuxième et la troisième équation, on tape :<br>
+<span style="font-family:monospace">eq2:=resultant(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-6,a+b+2c-4,a)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4*b*c-8*b+5*c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-16*c+10</span><br>
+On élimine <span style="font-style:italic">b</span> entre les 2 résultats obtenus, on tape :<br>
+<span style="font-family:monospace">factor(resultant(eq1,eq2,b))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">16*(c-2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(c+(sqrt(33)-7)/8)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(4*c+(-(sqrt(33))-7)/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+Donc les valeurs possibles de <span style="font-style:italic">c</span> sont :<br>
+ 2,−√<span style="text-decoration:overline">33</span>+7/8,√<span style="text-decoration:overline">33</span>+7/8 <br>
+On tape car <span style="font-family:monospace">eq2</span> est de degré 2 par rapport à <span style="font-family:monospace">b</span> :<br>
+<span style="font-family:monospace">c:=2;</span><br>
+<span style="font-family:monospace">solve(eq2,b)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-1,1]</span><br>
+Ou on tape car <span style="font-family:monospace">eq1</span> et <span style="font-family:monospace">eq2</span> ont une racine commune :<br>
+<span style="font-family:monospace">c:=2;</span><br>
+<span style="font-family:monospace">gcd(eq1,eq2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2</span><br>
+et on retrouve ainsi les valeurs <span style="font-family:monospace">[-1,1]</span><br>
+On tape :<br>
+<span style="font-family:monospace">b:=-1;c:=2;a:=4-b-2c</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-1,2,1</span><br>
+Cela donne comme solution :<br>
+<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=1,−1,2 et par symétrie <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=−1,1,2.<br>
+On tape pour vérifier :<br>
+<span style="font-family:monospace">simplify(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-8,a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-6,a+b+2c-4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0,0,0</span><br>
+On tape :<br>
+<span style="font-family:monospace">c:=(-sqrt(33)+7)/8;solve(eq2,b)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-(sqrt(33))+7)/8,list[]</span><br>
+Il n’y a donc pas de solution réelle si <span style="font-style:italic">c</span>=−√<span style="text-decoration:overline">33</span>+7/8<br>
+Si <span style="font-family:monospace">Complexe</span> est coché dans la configuration du CAS, on obtient :<br>
+<span style="font-family:monospace">[1/64*(8*sqrt(33)+72+sqrt(704*sqrt(33)-2368)*(i)),<br>
+1/64*(8*sqrt(33)+72-sqrt(704*sqrt(33)-2368)*(i))]</span><br>
+On tape :<br>
+<span style="font-family:monospace">b:=1/64*(8*sqrt(33)+72+sqrt(704*sqrt(33)-2368)*(i))</span><br>
+<span style="font-family:monospace">a:=1/64*(8*sqrt(33)+72-sqrt(704*sqrt(33)-2368)*(i))</span><br>
+Cela donne comme solution <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> :<br>
+ −√<span style="text-decoration:overline">33</span>+9/8−<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+9/8+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+7/8<br>
+ et par symétrie<br>
+ −√<span style="text-decoration:overline">33</span>+9/8+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+9/8−<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+7/8<br>
+On tape pour vérifier :<br>
+<span style="font-family:monospace">simplify(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-8,a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-6,a+b+2c-4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0,0,0</span><br>
+On tape :<br>
+<span style="font-family:monospace">c:=(+sqrt(33)+7)/8;</span><br>
+<span style="font-family:monospace">solve(eq2,b)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1/64*(-8*sqrt(33)+72-(sqrt(704*sqrt(33)+2368))),<br>
+1/64*(-8*sqrt(33)+72+sqrt(704*sqrt(33)+2368))]</span><br>
+On tape :<br>
+<span style="font-family:monospace">b:=1/8*(-sqrt(33)+9)-1/64*(sqrt(704*sqrt(33)+2368));</span><br>
+<span style="font-family:monospace">a:=4-b-2c</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4-((-(sqrt(33))+9)/8)+(sqrt(704*sqrt(33)+2368))/64-<br>
+((2*(sqrt(33)+7))/8)</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(4-((-(sqrt(33))+9)/8)-((2*(sqrt(33)+7))/8))+<br>
+(sqrt(704*sqrt(33)+2368))/64</span><br>
+On obtient comme valeur simplifiée de <span style="font-style:italic">a</span> :<br>
+<span style="font-family:monospace">(-(sqrt(33))+9)/8+(sqrt(704*sqrt(33)+2368))/64</span><br>
+Cela donne comme solution <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> :<br>
+ −√<span style="text-decoration:overline">33</span>+9/8+√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64,−√<span style="text-decoration:overline">33</span>+9/8−√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64,√<span style="text-decoration:overline">33</span>+7/8<br>
+ et par symétrie <br>
+ −√<span style="text-decoration:overline">33</span>+9/8−√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64, −√<span style="text-decoration:overline">33</span>+9/8+√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64,√<span style="text-decoration:overline">33</span>+7/8
+On tape pour vérifier :<br>
+<span style="font-family:monospace">simplify(a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-8,a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-6,a+b+2c-4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0,0,0</span><br>
+Donc les solutions sont :<br>
+<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=1,−1,2<br>
+<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=−1,1,2<br>
+ <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=−√<span style="text-decoration:overline">33</span>+9/8−<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+9/8+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+7/8<br>
+ <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=−√<span style="text-decoration:overline">33</span>+9/8+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+9/8−<span style="font-style:italic">i</span>√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">−2368</span>/64,−√<span style="text-decoration:overline">33</span>+7/8<br>
+
+ <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=−√<span style="text-decoration:overline">33</span>+9/8+√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64,−√<span style="text-decoration:overline">33</span>+9/8−√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64,√<span style="text-decoration:overline">33</span>+7/8<br>
+ <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>=−√<span style="text-decoration:overline">33</span>+9/8−√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64, −√<span style="text-decoration:overline">33</span>+9/8+√<span style="text-decoration:overline">704√</span><span style="text-decoration:overline">33</span><span style="text-decoration:overline">+2368</span>/64,√<span style="text-decoration:overline">33</span>+7/8
+On vérifie avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">solve([a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3=8,a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2=6,a+b+2c=4],[a,b,c])</span><br>
+On obtient :
+</p><pre class="verbatim">[[-1,1,2],[1,-1,2],
+[1/64*(-8*sqrt(33)-(sqrt(704*sqrt(33)+2368))+72),
+(-8*sqrt(33)+72+sqrt(704*sqrt(33)+2368))/64,(7+sqrt(33))/8],
+[1/64*(-8*sqrt(33)+sqrt(704*sqrt(33)+2368)+72),
+(-8*sqrt(33)+72-(sqrt(704*sqrt(33)+2368)))/64,(7+sqrt(33))/8],
+[1/64*(8*sqrt(33)+(-i)*sqrt(704*sqrt(33)-2368)+72),
+(8*sqrt(33)+72+sqrt(704*sqrt(33)-2368)*(i))/64,(7-(sqrt(33)))/8],
+[1/64*(8*sqrt(33)+(i)*sqrt(704*sqrt(33)-2368)+72),
+(8*sqrt(33)+72-sqrt(704*sqrt(33)-2368)*(i))/64,(7-(sqrt(33)))/8]]
+</pre>
+<h3 id="sec227" class="subsection">14.10.3  L’énoncé 3 : résultant et géométrie</h3>
+<p>
+On cherche une relation entre les affixes <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>,<span style="font-style:italic">d</span>
+de 4 points distincts <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> qui traduise le fait que ces 4 points sont 
+cocycliques.
+Soient le cercle de centre <span style="font-style:italic">O</span> et de rayon <span style="font-style:italic">R</span> et 4 points <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> sur ce 
+cercle d’arguments respectifs <span style="font-style:italic">ta</span>,<span style="font-style:italic">tb</span>,<span style="font-style:italic">tc</span>,<span style="font-style:italic">td</span>. On pose :<br>
+<span style="font-style:italic">t</span><sub>0</sub>=tan(<span style="font-style:italic">ta</span>/2),<span style="font-style:italic">t</span><sub>1</sub>=tan(<span style="font-style:italic">tb</span>/2),<span style="font-style:italic">t</span><sub>2</sub>=tan(<span style="font-style:italic">tc</span>/2),<span style="font-style:italic">t</span><sub>3</sub>=tan(<span style="font-style:italic">td</span>/2)<br>
+<span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">iy</span><sub>1</sub>=<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>, <span style="font-style:italic">x</span><sub>2</sub>+<span style="font-style:italic">iy</span><sub>2</sub>=<span style="font-style:italic">c</span>−<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>3</sub>+<span style="font-style:italic">iy</span><sub>3</sub>=<span style="font-style:italic">d</span>−<span style="font-style:italic">a</span>.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Calculer <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">y</span><sub>1</sub> en fonction de <span style="font-style:italic">R</span>,<span style="font-style:italic">t</span><sub>0</sub>,<span style="font-style:italic">t</span><sub>1</sub>(resp <span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">y</span><sub>2</sub> en fonction de 
+<span style="font-style:italic">R</span>,<span style="font-style:italic">t</span><sub>0</sub>,<span style="font-style:italic">t</span><sub>2</sub> et <span style="font-style:italic">x</span><sub>3</sub>,<span style="font-style:italic">y</span><sub>3</sub> en fonction de <span style="font-style:italic">R</span>,<span style="font-style:italic">t</span><sub>0</sub>,<span style="font-style:italic">t</span><sub>3</sub>).
+</li><li class="li-enumerate">Calculer les 6 polynômes (fonction de <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">y</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">y</span><sub>2</sub>,<span style="font-style:italic">x</span><sub>3</sub>,<span style="font-style:italic">y</span><sub>3</sub>,<span style="font-style:italic">R</span>,<span style="font-style:italic">t</span><sub>0</sub>,<span style="font-style:italic">t</span><sub>1</sub>,<span style="font-style:italic">t</span><sub>2</sub>,<span style="font-style:italic">t</span><sub>3</sub>) qui doivent s’annuler pour que les 4 points. 
+<span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> soient cocycliques
+</li><li class="li-enumerate">Éliminer successivement <span style="font-style:italic">b</span>, <span style="font-style:italic">c</span>, <span style="font-style:italic">d</span>, <span style="font-style:italic">R</span> et <span style="font-style:italic">t</span><sub>0</sub>.
+</li><li class="li-enumerate">Vérifier que la relation trouvée est équivalente à la nullité de la partie imaginaire du birapport de <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>,<span style="font-style:italic">d</span> :
+ im(<span style="font-style:italic">a</span>−<span style="font-style:italic">b</span>)(<span style="font-style:italic">d</span>−<span style="font-style:italic">c</span>)/(<span style="font-style:italic">a</span>−<span style="font-style:italic">c</span>)(<span style="font-style:italic">d</span>−<span style="font-style:italic">b</span>)
+</li><li class="li-enumerate">Montrer géométriquement que si 4 points distincts <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> d’affixes
+<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>,<span style="font-style:italic">d</span> sont cocycliques alors  im(<span style="font-style:italic">a</span>−<span style="font-style:italic">b</span>)(<span style="font-style:italic">d</span>−<span style="font-style:italic">c</span>)/(<span style="font-style:italic">a</span>−<span style="font-style:italic">c</span>)(<span style="font-style:italic">d</span>−<span style="font-style:italic">b</span>)=0.
+</li></ol>
+<h3 id="sec228" class="subsection">14.10.4  La solution</h3>
+<ol class="enumerate" type=1><li class="li-enumerate">
+On a <span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">iy</span><sub>1</sub>=<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>=<span style="font-style:italic">R</span>(cos(<span style="font-style:italic">t</span>−1)−cos(<span style="font-style:italic">t</span><sub>0</sub>)+<span style="font-style:italic">i</span>(sin(<span style="font-style:italic">t</span><sub>1</sub>)−sin(<span style="font-style:italic">t</span><sub>0</sub>))).
+Donc <br>
+ <span style="font-style:italic">x</span><sub>1</sub>−<span style="font-style:italic">R</span>(cos(<span style="font-style:italic">tb</span>)−cos(<span style="font-style:italic">ta</span>))=<span style="font-style:italic">x</span>1−<span style="font-style:italic">R</span>(1−<span style="font-style:italic">t</span><sub>1</sub><sup>2</sup>/1+<span style="font-style:italic">t</span><sub>1</sub><sup>2</sup>−1−<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>/1+<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>)=0<br>
+ <span style="font-style:italic">y</span><sub>1</sub>−<span style="font-style:italic">R</span>(sin(<span style="font-style:italic">tb</span>)−sin(<span style="font-style:italic">ta</span>))=<span style="font-style:italic">y</span>1−<span style="font-style:italic">R</span>(2<span style="font-style:italic">t</span><sub>1</sub>/1+<span style="font-style:italic">t</span><sub>1</sub><sup>2</sup>−2<span style="font-style:italic">t</span><sub>0</sub>/1+<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>)=0<br>
+ <span style="font-style:italic">x</span><sub>2</sub>−<span style="font-style:italic">R</span>(cos(<span style="font-style:italic">tc</span>)−cos(<span style="font-style:italic">ta</span>))=<span style="font-style:italic">x</span>2−<span style="font-style:italic">R</span>(1−<span style="font-style:italic">t</span><sub>2</sub><sup>2</sup>/1+<span style="font-style:italic">t</span><sub>2</sub><sup>2</sup>−1−<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>/1+<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>)=0<br>
+ <span style="font-style:italic">y</span><sub>2</sub>−<span style="font-style:italic">R</span>(sin(<span style="font-style:italic">tc</span>)−sin(<span style="font-style:italic">ta</span>))=<span style="font-style:italic">y</span>2−<span style="font-style:italic">R</span>(2<span style="font-style:italic">t</span><sub>2</sub>/1+<span style="font-style:italic">t</span><sub>2</sub><sup>2</sup>−2<span style="font-style:italic">t</span><sub>0</sub>/1+<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>)=0<br>
+ <span style="font-style:italic">x</span><sub>3</sub>−<span style="font-style:italic">R</span>(cos(<span style="font-style:italic">td</span>)−cos(<span style="font-style:italic">ta</span>))=<span style="font-style:italic">x</span>3−<span style="font-style:italic">R</span>(1−<span style="font-style:italic">t</span><sub>3</sub><sup>2</sup>/1+<span style="font-style:italic">t</span><sub>3</sub><sup>2</sup>−1−<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>/1+<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>)=0<br>
+ <span style="font-style:italic">y</span><sub>3</sub>−<span style="font-style:italic">R</span>(sin(<span style="font-style:italic">td</span>)−sin(<span style="font-style:italic">ta</span>))=<span style="font-style:italic">y</span>3−<span style="font-style:italic">R</span>(2<span style="font-style:italic">t</span><sub>3</sub>/1+<span style="font-style:italic">t</span><sub>3</sub><sup>2</sup>−2<span style="font-style:italic">t</span><sub>0</sub>/1+<span style="font-style:italic">t</span><sub>0</sub><sup>2</sup>)=0
+</li><li class="li-enumerate">Après avoir réduit au même dénominateur ces équations, on 
+obtient 6 fractions rationnelles. Les numérateurs de ces fractions 
+simplifiées donnent les 6 polynômes (fonction de <span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">y</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">y</span><sub>2</sub>,<span style="font-style:italic">x</span><sub>3</sub>,<span style="font-style:italic">y</span><sub>3</sub>,<span style="font-style:italic">R</span>,<span style="font-style:italic">t</span><sub>0</sub>,<span style="font-style:italic">t</span><sub>1</sub>,<span style="font-style:italic">t</span><sub>2</sub>,<span style="font-style:italic">t</span><sub>3</sub>) qui doivent s’annuler pour que les 4 points. 
+<span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> soient cocycliques.<br>
+On tape :<br>
+<span style="font-family:monospace">eq1:=numer(x1-R*(1-t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(1+t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)+R*(1-t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/(1+t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1+2*R*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">eq4:=numer(y1-R*(2*t1)/(1+t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)+R*(2*t0)/(1+t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">y1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y1+2*R*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0-2*R*t1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2- 2*R*t1+2*R*t0</span><br>
+Donc on a 6 polynômes qui s’annulent lorsque <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> sont cocycliques.<br>
+On tape :<br>
+<span style="font-family:monospace">eq1:=x1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1+2*R*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+<span style="font-family:monospace">eq2:=x2*t2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x2*t2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x2+2*R*t2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+<span style="font-family:monospace">eq3:=x3*t3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x3*t3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x3*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x3+2*R*t3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+<span style="font-family:monospace">eq4:=y1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y1*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y1+2*R*t1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0-<br>
+2*R*t1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t1+2*R*t0</span><br>
+<span style="font-family:monospace">eq5:=y2*t2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y2*t2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y2+2*R*t2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0-<br>
+2*R*t2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t2+2*R*t0</span><br>
+<span style="font-family:monospace">eq6:=y3*t3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y3*t3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y3*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+y3+2*R*t3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0-<br>
+2*R*t3*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*R*t3+2*R*t0</span>
+</li><li class="li-enumerate">On élimine <span style="font-style:italic">t</span>1 de <span style="font-style:italic">eq</span>1 et <span style="font-style:italic">eq</span>4.<br>
+On tape :<br>
+<span style="font-family:monospace">eq7:=resultant(eq1,eq4,t1)</span><br>
+On élimine <span style="font-style:italic">t</span>2 de <span style="font-style:italic">eq</span>2 et <span style="font-style:italic">eq</span>5.<br>
+On tape :<br>
+<span style="font-family:monospace">eq8:=resultant(eq2,eq5,t2)</span><br>
+On élimine <span style="font-style:italic">t</span>3 de <span style="font-style:italic">eq</span>3 et <span style="font-style:italic">eq</span>6.<br>
+On tape :<br>
+<span style="font-family:monospace">eq9:=resultant(eq3,eq6,t3)</span><br>
+On cherche le pgcd de <span style="font-family:monospace">eq7, eq8, eq9</span>. On tape :<br>
+<span style="font-family:monospace">D:=factor(gcd(eq7,eq8,eq9))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4*(t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*R</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+4*(<span style="font-style:italic">t</span>0<sup>2</sup>+1)<sup>3</sup>*<span style="font-style:italic">R</span><sup>2</sup> n’est jamais nul donc on tape :<br>
+<span style="font-family:monospace">eq7:=eq7/D</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*x1*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*R+2*x1*R+t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4*t0*R*y1+y1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">eq8:=eq8/D</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*x2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*R+2*x2*R+t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4*t0*R*y2+y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">eq9:=eq9/D</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*x3*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*R+2*x3*R+t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4*t0*R*y3+y3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+On élimine <span style="font-style:italic">R</span> de <span style="font-style:italic">eq</span>8 et <span style="font-style:italic">eq</span>7.<br>
+On tape :<br>
+<span style="font-family:monospace">eq10:=resultant(eq8,eq7,R)</span><br>
+On élimine <span style="font-style:italic">R</span> de <span style="font-style:italic">eq</span>8 et <span style="font-style:italic">eq</span>9.<br>
+On tape :<br>
+<span style="font-family:monospace">eq11:=resultant(eq8,eq9,R)</span><br>
+On cherche le pgcd de <span style="font-family:monospace">eq10, eq11</span>. On tape :<br>
+<span style="font-family:monospace">DD:=gcd(eq10,eq11)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*t0</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2</span><br>
+2*<span style="font-style:italic">t</span>0<sup>2</sup>+2 n’est jamais nul donc on tape :<br>
+On tape :<br>
+<span style="font-family:monospace">eq10:=eq10/DD</span><br>
+<span style="font-family:monospace">eq11:=eq11/DD</span><br>
+On élimine <span style="font-style:italic">t</span><sub>0</sub> de <span style="font-style:italic">eq</span>10 et <span style="font-style:italic">eq</span>11.<br>
+<span style="font-family:monospace">factor(resultant(eq10,eq11,t0))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-4*(y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)*(x1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x2*y3-x1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x3*y2-x1*x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y3+ x1*y3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y2-x1*y3*y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x1*x3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y2+x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x3*y1-x2*y3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1+ x2*y3*y1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-x2*x3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1+x3*y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1-x3*y2*y1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span>
+</li><li class="li-enumerate">La nullité du résultat précédent donne la relation que doivent vérfier 
+<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">y</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">y</span><sub>2</sub>,<span style="font-style:italic">x</span><sub>3</sub>,<span style="font-style:italic">y</span><sub>3</sub> pour que les 4 points soient cocycliques 
+On tape :<br>
+<span style="font-family:monospace">eq12:=x1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x2*y3-x1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x3*y2-x1*x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y3+x1*y3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y2-x1*y3*y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+ x1*x3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y2+x2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*x3*y1-x2*y3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1+x2*y3*y1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-x2*x3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1+ x3*y2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*y1-x3*y2*y1</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span><br>
+Les affixes <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>,<span style="font-style:italic">d</span> des 4 points distincts <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> vérifient par 
+définition :<br>
+<span style="font-style:italic">x</span><sub>1</sub>+<span style="font-style:italic">iy</span><sub>1</sub>=<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>, <span style="font-style:italic">x</span><sub>2</sub>+<span style="font-style:italic">iy</span><sub>2</sub>=<span style="font-style:italic">c</span>−<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>3</sub>+<span style="font-style:italic">iy</span><sub>3</sub>=<span style="font-style:italic">d</span>−<span style="font-style:italic">a</span><br>
+On tape :<br>
+<span style="font-family:monospace">eq13:=numer(im((x1+i*y1)/(x2+i*y2)*(x3-x2+i*(y3-y2))/ (x3-x1+i*(y3-y1))))</span><br>
+On tape :<br>
+<span style="font-family:monospace">simplify(eq12/eq13)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-1</span><br>
+Donc les 2 relations <span style="font-family:monospace">eq12=0</span> et <span style="font-family:monospace">eq13=0</span> sont donc équivalentes.
+</li><li class="li-enumerate">On sait que :<br>
+Les points distincts <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span> d’affixes <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>,<span style="font-style:italic">d</span> sont cocycliques si et 
+seulement si <span style="font-style:italic">displaystyle</span> <span style="font-style:italic">AC</span>,<span style="font-style:italic">AB</span>=<span style="font-style:italic">DC</span>,<span style="font-style:italic">DB</span>+<span style="font-style:italic">k</span>π (<span style="font-style:italic">k</span>∈ ℕ).<br>
+ <span style="font-style:italic">displaystyle</span> <span style="font-style:italic">AC</span>,<span style="font-style:italic">AB</span>=<span style="font-family:monospace">arg</span>(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>/<span style="font-style:italic">c</span>−<span style="font-style:italic">a</span>)<br>
+ <span style="font-style:italic">displaystyle</span> <span style="font-style:italic">DC</span>,<span style="font-style:italic">DB</span>=<span style="font-family:monospace">arg</span>(<span style="font-style:italic">b</span>−<span style="font-style:italic">d</span>/<span style="font-style:italic">c</span>−<span style="font-style:italic">d</span>)<br>
+Donc <span style="font-family:monospace">arg</span>(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>/<span style="font-style:italic">c</span>−<span style="font-style:italic">a</span>*<span style="font-style:italic">c</span>−<span style="font-style:italic">d</span>/<span style="font-style:italic">b</span>−<span style="font-style:italic">d</span>=<span style="font-style:italic">k</span>π (<span style="font-style:italic">k</span>∈ ℕ).<br>
+Donc <span style="font-family:monospace">im</span>(<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>/<span style="font-style:italic">c</span>−<span style="font-style:italic">a</span>*<span style="font-style:italic">c</span>−<span style="font-style:italic">d</span>/<span style="font-style:italic">b</span>−<span style="font-style:italic">d</span>=<span style="font-family:monospace">im</span>(<span style="font-style:italic">a</span>−<span style="font-style:italic">b</span>/<span style="font-style:italic">a</span>−<span style="font-style:italic">c</span>*<span style="font-style:italic">d</span>−<span style="font-style:italic">c</span>/<span style="font-style:italic">d</span>−<span style="font-style:italic">b</span>=0 i.e.
+α=<span style="font-style:italic">a</span>−<span style="font-style:italic">b</span>/<span style="font-style:italic">a</span>−<span style="font-style:italic">c</span>*<span style="font-style:italic">d</span>−<span style="font-style:italic">c</span>/<span style="font-style:italic">d</span>−<span style="font-style:italic">b</span> ∈ ℝ.<br>
+On peut même dire si α&gt;0 <span style="font-style:italic">A</span> et <span style="font-style:italic">D</span> sont sur le même arc <span style="font-style:italic">BC</span> et 
+si α&lt;0 <span style="font-style:italic">A</span> et <span style="font-style:italic">D</span> ne sont pas sur le même arc <span style="font-style:italic">BC</span>.
+</li></ol>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo013.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo015.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

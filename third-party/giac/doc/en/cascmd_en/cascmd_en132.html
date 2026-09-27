@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Flattening a list</title>
+</head>
+<body >
+<a href="cascmd_en131.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en133.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:flatten" class="subsection">6.3.13  Flattening a list</h3>
+<p>The <span style="font-family:monospace">flatten</span><a id="hevea_default232"></a> command
+replaces any sublists of a list by their elements.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">flatten</span> takes
+<span style="font-style:italic">L</span>, a list.
+</li><li class="li-itemize"><span style="font-family:monospace">flatten(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> returns a list which is the result of
+recursively replacing any elements that are lists by the elements,
+resulting in a list with no lists as elements.
+</li></ul><h4 id="sec255" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">flatten</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,[2,3],4],[5,6]])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1,2,3,4,5,6</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="sec256" class="paragraph">Remark.</h5>
+<p>
+If the original list is a matrix, you can also use the <span style="font-family:monospace">mat2list</span>
+command for this (see Section <a href="cascmd_en152.html#ssec%3Amat2list">6.3.33</a>).</p>
+<hr>
+<a href="cascmd_en131.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en133.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

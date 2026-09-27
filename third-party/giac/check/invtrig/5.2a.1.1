@@ -1,0 +1,15 @@
+# Maple integration test file: "5 Inverse trig functions\5.2a Inverse tangent\5.2.1.1 (d x)^m (a+b arctan(c x))^n.txt"
+
+lst:=[
+[x^5*arctan(a*x),x,4,-1/6*x/a^5+1/18*x^3/a^3-1/30*x^5/a+1/6*arctan(a*x)/a^6+1/6*x^6*arctan(a*x)],
+[arctan(a*x)/x^2,x,5,-arctan(a*x)/x+a*log(x)-1/2*a*log(1+a^2*x^2)],
+[arctan(a*x)^2,x,4,I*arctan(a*x)^2/a+x*arctan(a*x)^2+2*arctan(a*x)*log(2*I/(I-a*x))/a+I*polylog(2,(-I-a*x)/(I-a*x))/a],
+[arctan(a*x)^2/x,x,6,2*arctan(a*x)^2*arctanh(1+(-2*I)/(I-a*x))-I*arctan(a*x)*polylog(2,(-I-a*x)/(I-a*x))+I*arctan(a*x)*polylog(2,(I+a*x)/(I-a*x))-1/2*polylog(3,(-I-a*x)/(I-a*x))+1/2*polylog(3,(I+a*x)/(I-a*x))],
+[arctan(a*x)^2/x^2,x,4,-I*a*arctan(a*x)^2-arctan(a*x)^2/x+2*a*arctan(a*x)*log(2*a*x/(I+a*x))-I*a*polylog(2,(I-a*x)/(I+a*x))],
+[x^2*arctan(a*x)^3,x,11,x*arctan(a*x)/a^2-1/2*arctan(a*x)^2/a^3-1/2*x^2*arctan(a*x)^2/a-1/3*I*arctan(a*x)^3/a^3+1/3*x^3*arctan(a*x)^3-arctan(a*x)^2*log(2*I/(I-a*x))/a^3-1/2*log(1+a^2*x^2)/a^3-I*arctan(a*x)*polylog(2,(-I-a*x)/(I-a*x))/a^3-1/2*polylog(3,(-I-a*x)/(I-a*x))/a^3],
+[arctan(a*x)^3/x,x,8,2*arctan(a*x)^3*arctanh(1+(-2*I)/(I-a*x))-3/2*I*arctan(a*x)^2*polylog(2,(-I-a*x)/(I-a*x))+3/2*I*arctan(a*x)^2*polylog(2,(I+a*x)/(I-a*x))-3/2*arctan(a*x)*polylog(3,(-I-a*x)/(I-a*x))+3/2*arctan(a*x)*polylog(3,(I+a*x)/(I-a*x))+3/4*I*polylog(4,(-I-a*x)/(I-a*x))-3/4*I*polylog(4,(I+a*x)/(I-a*x))],
+[arctan(a*x)^3/x^2,x,5,-I*a*arctan(a*x)^3-arctan(a*x)^3/x+3*a*arctan(a*x)^2*log(2*a*x/(I+a*x))-3*I*a*arctan(a*x)*polylog(2,(I-a*x)/(I+a*x))+3/2*a*polylog(3,(I-a*x)/(I+a*x))],
+[arctan(a*x)^3/x^3,x,7,-3/2*I*a^2*arctan(a*x)^2-3/2*a*arctan(a*x)^2/x-1/2*a^2*arctan(a*x)^3-1/2*arctan(a*x)^3/x^2+3*a^2*arctan(a*x)*log(2*a*x/(I+a*x))-3/2*I*a^2*polylog(2,(I-a*x)/(I+a*x))],
+[arctan(a*x)^3/x^6,x,28,-1/20*a^3/x^2-1/10*a^2*arctan(a*x)/x^3+9/10*a^4*arctan(a*x)/x+9/20*a^5*arctan(a*x)^2-3/20*a*arctan(a*x)^2/x^4+3/10*a^3*arctan(a*x)^2/x^2-1/5*I*a^5*arctan(a*x)^3-1/5*arctan(a*x)^3/x^5-a^5*log(x)+3/5*a^5*arctan(a*x)^2*log(2*a*x/(I+a*x))+1/2*a^5*log(1+a^2*x^2)-3/5*I*a^5*arctan(a*x)*polylog(2,(I-a*x)/(I+a*x))+3/10*a^5*polylog(3,(I-a*x)/(I+a*x))],
+[arctan(a*x)^(3/2)/x,x,0,Integral(arctan(a*x)^(3/2)/x,x)],
+[x^m*arctan(a*x),x,2,x^(1+m)*arctan(a*x)/(1+m)-a*x^(2+m)*hypergeom([1,1/2*(2+m)],[1/2*(4+m)],-a^2*x^2)/(2+3*m+m^2)]]:

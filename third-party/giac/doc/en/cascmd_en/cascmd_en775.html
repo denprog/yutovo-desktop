@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Checking the type of the argument</title>
+</head>
+<body >
+<a href="cascmd_en774.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en776.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:type" class="subsection">25.2.5  Checking the type of the argument</h3>
+<p>
+<a id="hevea_default1559"></a>
+<a id="hevea_default1560"></a>
+<a id="hevea_default1561"></a>
+<a id="hevea_default1562"></a>
+<a id="hevea_default1563"></a>
+<a id="hevea_default1564"></a>
+<a id="hevea_default1565"></a>
+<a id="hevea_default1566"></a>
+<a id="hevea_default1567"></a>
+<a id="hevea_default1568"></a>
+<a id="hevea_default1569"></a>
+<a id="hevea_default1570"></a>
+<a id="hevea_default1571"></a>
+<a id="hevea_default1572"></a>
+<a id="hevea_default1573"></a>
+<a id="hevea_default1574"></a>
+<a id="hevea_default1575"></a>
+<a id="hevea_default1576"></a>
+<a id="hevea_default1577"></a>
+<a id="hevea_default1578"></a>
+<a id="hevea_default1579"></a>
+<a id="hevea_default1580"></a>
+<a id="hevea_default1581"></a>
+<a id="hevea_default1582"></a>
+<a id="hevea_default1583"></a>
+<a id="hevea_default1584"></a>
+<a id="hevea_default1585"></a>
+<a id="hevea_default1586"></a>
+<a id="hevea_default1587"></a>
+<a id="hevea_default1588"></a>
+<a id="hevea_default1589"></a>
+<a id="hevea_default1590"></a>
+<a id="hevea_default1591"></a></p><p>The <span style="font-family:monospace">type</span> command finds the type of its input.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">type</span> takes one argument: 
+<span style="font-style:italic">arg</span>, an object.
+</li><li class="li-itemize"><span style="font-family:monospace">type(</span><span style="font-style:italic">arg</span><span style="font-family:monospace">)</span> returns an integer
+indicating the type of <span style="font-style:italic">arg</span>.<p>The integer is given as a constant symbol which is equal to the integer.
+The possible values are: 
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">1</span>, equivalently
+<span style="font-family:monospace">real</span>, <span style="font-family:monospace">double</span> or <span style="font-family:monospace">DOM_FLOAT</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">2</span>, equivalently
+<span style="font-family:monospace">integer</span> or <span style="font-family:monospace">DOM_INT</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">4</span>, equivalently
+<span style="font-family:monospace">complex</span> or <span style="font-family:monospace">DOM_COMPLEX</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">6</span>, equivalently
+<span style="font-family:monospace">identifier</span> or <span style="font-family:monospace">DOM_IDENT</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">7</span>, equivalently
+<span style="font-family:monospace">vector</span> or <span style="font-family:monospace">DOM_LIST</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">8</span>, equivalently
+<span style="font-family:monospace">expression</span> or <span style="font-family:monospace">DOM_SYMBOLIC</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">10</span>, equivalently
+<span style="font-family:monospace">rational</span> or <span style="font-family:monospace">DOM_RAT</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">12</span>, equivalently
+<span style="font-family:monospace">string</span> or <span style="font-family:monospace">DOM_STRING</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">13</span>, equivalently
+<span style="font-family:monospace">func</span> or <span style="font-family:monospace">DOM_FUNC</span>.
+</li></ul></li></ul><p>The <span style="font-family:monospace">getType</span> command is similar to <span style="font-family:monospace">type</span> in that it
+takes an object and returns the type, but it has different possible
+return values. It is included for compatibility reasons.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">getType</span> takes
+<span style="font-style:italic">obj</span>, an object.
+</li><li class="li-itemize"><span style="font-family:monospace">getType(</span><span style="font-style:italic">obj</span><span style="font-family:monospace">)</span> returns the type of
+<span style="font-style:italic">obj</span>, which in this case means one of:
+<span style="font-family:monospace">NUM</span>, <span style="font-family:monospace">VAR</span>, <span style="font-family:monospace">STR</span>, <span style="font-family:monospace">EXPR</span>,
+<span style="font-family:monospace">NONE</span>, <span style="font-family:monospace">PIC</span>, <span style="font-family:monospace">MAT</span> or <span style="font-family:monospace">FUNC</span>.
+</li></ul><h4 id="sec1996" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">type</span></span><span style="font-weight:bold"><span style="color:#BF0000">(4)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">integer</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">type</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3.1)==</span></span><span style="font-weight:bold"><span style="color:#BF0000">DOM_FLOAT</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">true</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">getType</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3.14)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">NUM</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">getType</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">VAR</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h4 id="sec1997" class="subsubsection">Subtypes</h4>
+<p>
+<span style="font-variant:small-caps">Xcas</span> has various types of lists; the <span style="font-family:monospace">subtype</span> command
+can determine what kind of list it is.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">subtype</span> takes
+<span style="font-style:italic">L</span>, a list (in <span style="font-family:monospace">DOM_LIST</span>).
+</li><li class="li-itemize"><span style="font-family:monospace">subtype(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> returns an integer indicating what type
+of list <span style="font-style:italic">L</span> is.<p>The possible values are:
+</p><ul class="itemize"><li class="li-itemize">
+1 is <span style="font-style:italic">L</span> is a sequence.
+</li><li class="li-itemize">2 if <span style="font-style:italic">L</span> is a set.
+</li><li class="li-itemize">10 if <span style="font-style:italic">L</span> is a polynomial represented by a list (see
+Section <a href="index.html#sec%3Apolynomials">11.1</a>).
+</li><li class="li-itemize">0 if <span style="font-style:italic">L</span> is not one of the above types of list.
+</li></ul></li></ul><h4 id="sec1998" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">subtype</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1,2,3)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h4 id="sec1999" class="subsubsection">Object comparison</h4>
+<p>
+The <span style="font-family:monospace">compare</span> operator compares two objects taking their
+type into account.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">compare</span> takes two arguments:
+<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>, two objects.
+</li><li class="li-itemize"><span style="font-family:monospace">compare(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span><span style="font-family:monospace">)</span> returns
+<ul class="itemize"><li class="li-itemize">
+1 (<span style="font-family:monospace">true</span>) if <span style="font-family:monospace">type</span>(<span style="font-style:italic">a</span>)&lt;<span style="font-family:monospace">type</span>(<span style="font-style:italic">b</span>) or if
+<span style="font-family:monospace">type</span>(<span style="font-style:italic">a</span>)=<span style="font-family:monospace">type</span>(<span style="font-style:italic">b</span>) and <span style="font-style:italic">a</span> is less than <span style="font-style:italic">b</span> in the
+ordering of their type.
+</li><li class="li-itemize">0 (<span style="font-family:monospace">false</span>) otherwise.
+</li></ul>
+</li></ul><h4 id="sec2000" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">compare</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"a"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"b"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since <span style="font-family:monospace">"a"</span> and <span style="font-family:monospace">"b"</span> have the same type
+(<span style="font-family:monospace">string</span>) and <span style="font-family:monospace">"a"</span> is less than <span style="font-family:monospace">"b"</span> in the
+string ordering.</p><p>If <span style="font-family:monospace">b</span> is a formal variable:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">compare</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"a"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since the type of <span style="font-family:monospace">"a"</span> is <span style="font-family:monospace">string</span> (the integer 12)
+while the type of <span style="font-family:monospace">b</span> is <span style="font-family:monospace">identifier</span> (the integer 6)
+and <span style="font-family:monospace">12</span> is not less than <span style="font-family:monospace">6</span>.</p>
+<hr>
+<a href="cascmd_en774.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en776.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,13 @@
+gl_ortho=1;
+C:=point(0);
+B:=point(1);
+assume(a=[2.0,-5,5,0.1]);
+A:=point(0,a);
+triangle(A,B,C);
+D:=projection(line(B,A),C);
+assume(b=[0.25,0,1,0.05]);
+X:=C+b*(D-C);
+[K]:=inter(segment(A,X),circle(B,C-B));
+[L]:=inter(segment(B,X),circle(A,C-A));
+M:=single_inter(line(A,L),line(B,K));
+normal(distance2(M,K)-distance2(M,L));

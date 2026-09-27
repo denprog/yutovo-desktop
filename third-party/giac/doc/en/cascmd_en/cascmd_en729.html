@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Gaussian window</title>
+</head>
+<body >
+<a href="cascmd_en728.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en730.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1888" class="subsection">21.5.6  Gaussian window</h3>
+<p>The <span style="font-family:monospace">gaussian_window</span><a id="hevea_default1461"></a>
+command applies the Gaussian window function to a sequence or its segment.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">gaussian_window</span> takes one mandatory argument
+and up to three optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-weight:bold"><span style="font-style:italic">v</span></span>, a real vector with length <span style="font-style:italic">n</span>.
+</li><li class="li-itemize">Optionally, one of:
+<ul class="itemize"><li class="li-itemize">
+α, a real number not larger than 0.5 (by default, α=0.1).
+</li><li class="li-itemize"><span style="font-style:italic">m</span>,<span style="font-style:italic">N</span> ⟨,α⟩, a sequence of two integers
+and optionally a real number α≤ 0.5 (by default, <span style="font-style:italic">m</span>=0 and <span style="font-style:italic">N</span>=<span style="font-style:italic">n</span>).
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">gaussian_window</span>
+returns the elementwise product of [<span style="font-style:italic">v</span><sub><span style="font-style:italic">m</span></sub>,<span style="font-style:italic">v</span><sub><span style="font-style:italic">m</span>+1</sub>,…,<span style="font-style:italic">v</span><sub><span style="font-style:italic">m</span>+<span style="font-style:italic">N</span>−1</sub>]
+and the vector <span style="font-style:italic">w</span> of length <span style="font-style:italic">N</span> defined by
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    <span style="font-style:italic">w</span><sub><span style="font-style:italic">k</span></sub>=exp</td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell">−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>−(<span style="font-style:italic">N</span>−1)/2</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">α (<span style="font-style:italic">N</span>−1)/2</td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">2</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">&nbsp;</td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">,
+   <span style="font-style:italic">k</span>=0,1,…,<span style="font-style:italic">N</span>−1.
+</td></tr>
+</table>
+</li></ul><h4 id="sec1889" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">gaussian_window</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1</span></span><span style="font-weight:bold"><span style="color:#BF0000">$1000</span></span><span style="font-weight:bold"><span style="color:#BF0000">],0.4))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en200.png">
+
+</div>
+<hr>
+<a href="cascmd_en728.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en730.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

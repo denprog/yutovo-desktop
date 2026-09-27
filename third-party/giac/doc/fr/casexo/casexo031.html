@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Exercices de physique atomique</title>
+</head>
+<body >
+<a href="casexo030.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo032.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec473" class="chapter">Chapitre 31  Exercices de physique atomique</h1>
+<h2 id="sec474" class="section">31.1  Structure de la matière</h2>
+<h3 id="sec475" class="subsection">31.1.1  L’énoncé 1</h3>
+<p>
+En supposant qu’un observateur puisse compter 100000 molécules par seconde, 
+quel délai lui est-il nécessaire pour dénombrer les molécules contenues
+dans 1mg d’hydrogène ?
+</p>
+<h3 id="sec476" class="subsection">31.1.2  La correction de 1</h3>
+<p>plotfunc(F(x,y,1),[x=-1..2,y=-1..2])
+<span style="font-weight:bold">Rappels</span>
+La loi d’Avogadro dit que un volume donné de gaz contient toujours le même 
+nombre de molécules, pour une température donnée et une pression 
+donnée.<br>
+Le volume unité qui est de 22.414 litres contient <span style="font-style:italic">N</span>=(6.0221367<span style="font-style:italic">e</span>+23)10<sup>23</sup>
+molécules (<span style="font-style:italic">N</span> est le nombre d’Avogadro). La molécules gramme 
+d’hydrogène molécule symbolique correspondant à <span style="font-style:italic">N</span> molécules 
+réelles, pèse 2.016 g (masse moléculaire de l’hydrogène).<br>
+La constante <span style="font-family:monospace">_NA_=6.0221367e+23_(1/mol)</span> l’unité est <span style="font-family:monospace">_(1/mol)</span>
+car c’est le nombre de particules par mole.</p><p>Donc dans 2016 mg d’hydrogène il y a <span style="font-style:italic">N</span>= 6.0248*10<sup>23</sup> molécules.<br>
+Dans 1 mg il y an aura <span style="font-style:italic">n</span>=6.0248*10<sup>23</sup>/2016.<br>
+Il faut 1 s pour compter 10<sup>5</sup> molécules, donc pour compter <span style="font-style:italic">n</span> molécules,
+il faut : <span style="font-style:italic">t</span>=<span style="font-style:italic">n</span>/10<sup>5</sup> <span style="font-style:italic">s</span>.<br>
+Calcul de <span style="font-style:italic">t</span> :<br>
+On tape pour avoir <span style="font-style:italic">n</span> :<br>
+<span style="font-family:monospace">n:=mksa(_NA_/2.016 _(g/mol)*1_mg)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2.98717098214e+20</span><br>
+On tape pour avoir <span style="font-style:italic">t</span> :<br>
+<span style="font-family:monospace">mksa(n/10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5*1_s)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2.98717098214e+15 _s</span><br>
+On tape pour avoir <span style="font-style:italic">t</span> en années :<br>
+<span style="font-family:monospace">convert(2.98717098214e+15 _s,_yr)</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">94659758.1949 _yr</span>
+</p>
+<h3 id="sec477" class="subsection">31.1.3  L’énoncé 2</h3>
+<p>
+Quel est le nombre de molécules contenues dans 1 cm<sup>3</sup> d’oxygène dans les 
+conditions normales de température et de pression ?<br>
+Quelle est la distance qui sépare ces molécules entre elles ?</p>
+<h3 id="sec478" class="subsection">31.1.4  La correction de 2</h3>
+<p>
+Dans les conditions normales de température et de pression, <span style="font-style:italic">N</span> molécules
+occupent un volume de 22.414 litres, soit 22.414*10<sup>3</sup> cm<sup>3</sup>.
+Dans un cm<sup>3</sup> il y aura donc :<br>
+<span style="font-style:italic">n</span>=<span style="font-style:italic">N</span>/22.414*10<sup>3</sup>=2.68677464977<span style="font-style:italic">e</span>+19 molécules.<br>
+On tape pour avoir <span style="font-style:italic">n</span> :<br>
+<span style="font-family:monospace">n:=mksa(_NA_/_Vm_*1_cm</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2.68676266279e+19</span><br>
+Si on suppose que les molécules sont situées sur les sommets de cubes de 
+dimenson <span style="font-style:italic">d</span> cm, le long d’1 cm il y aura alors 1/<span style="font-style:italic">d</span>+1 molécules, donc 
+il y aura (1/<span style="font-style:italic">d</span>+1)<sup>3</sup> molécules dans un cube de dimenson 1 cm.<br>
+Donc on a <span style="font-style:italic">n</span>=(1/<span style="font-style:italic">d</span>+1)<sup>3</sup>, soit :<br>
+<span style="font-style:italic">d</span>=1/(<span style="font-style:italic">n</span><sup>1/3</sup>−1)=3.33879481972<span style="font-style:italic">e</span>−07 cm<br>
+On tape pour avoir <span style="font-style:italic">d</span> :<br>
+<span style="font-family:monospace">1_cm/(n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(1/3)-1))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">3.33879978505e-07 _(cm)</span>
+</p>
+<h3 id="sec479" class="subsection">31.1.5  L’énoncé 3</h3>
+<p>
+Exprimer en eV l’énergie cinétique d’un neutron dont la vitesse est 
+20000 km/s
+</p>
+<h3 id="sec480" class="subsection">31.1.6  La correction de 3</h3>
+<p>
+L’énergie cinétique d’un neutron de masse <span style="font-style:italic">m</span> et de vitesse <span style="font-style:italic">v</span> est :<br>
+<span style="font-style:italic">E</span>=1/2<span style="font-style:italic">mv</span><sup>2</sup>.<br>
+On a <span style="font-style:italic">v</span>=20000 km/s=2*10<sup>9</sup> cm/s<br>
+Un électron pèse 9.1*10<sup>−27</sup> g, et un neutron a une masse égale 
+à 1840 fois celle de l’électron, donc <span style="font-style:italic">m</span>=1840*9.1*10<sup>−27</sup> g.<br>
+Donc :<br>
+<span style="font-style:italic">E</span>=1840*9.1*10<sup>−27</sup>*4*10<sup>18</sup>/2=3.3488<span style="font-style:italic">e</span>−05 ergs<br>
+On tape :<br>
+<span style="font-family:monospace">convert(3.3488*10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-05_erg,_MeV)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2.1_MeV</span>
+</p>
+<h2 id="sec481" class="section">31.2  La radioactivité et le temps</h2>
+<h3 id="sec482" class="subsection">31.2.1  L’énoncé 4</h3>
+<p>
+Le radium <span style="font-style:italic">Ra</span> 226 est un émetteur alpha de période 1617 ans.<br>
+a) Quelle est sa constante radioactive ?<br>
+b) On en prend 1 gramme, combien en subsistera-t-il au bout d’un an, dix ans ?
+</p>
+<h3 id="sec483" class="subsection">31.2.2  La correction de 4</h3>
+<p>
+La période <span style="font-style:italic">T</span> d’un corps radioactif est liée par sa constante radioactive 
+λ par :<br>
+<span style="font-style:italic">T</span>=0.693/λ
+Le radium <span style="font-style:italic">Ra</span> 226 est un émetteur alpha de période 1617 ans.<br>
+On tape pour convertir les années en secondes :<br>
+<span style="font-family:monospace">convert(1617_yr,_s)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">51027549301.1_s</span><br>
+Donc :<br>
+λ=0.693/1617_<span style="font-style:italic">yr</span>=0.000428571428571_(1/<span style="font-style:italic">yr</span>)=0.693/(51027549301.1_<span style="font-style:italic">s</span>)=1.35808991318<span style="font-style:italic">e</span>−11_(1/<span style="font-style:italic">s</span>) <br>
+À l’instant initial, on a <span style="font-style:italic">N</span> atomes.<br>
+Pendant l’intervalle de temps Δ <span style="font-style:italic">t</span>, il disparait :<br>
+Δ <span style="font-style:italic">N</span>=λ <span style="font-style:italic">N</span> Δ <span style="font-style:italic">t</span> atomes.<br>
+donc il reste :<br>
+<span style="font-style:italic">N</span>−Δ <span style="font-style:italic">N</span>=<span style="font-style:italic">N</span>(1−λ Δ <span style="font-style:italic">t</span>) atomes.<br>
+ou encore si <span style="font-style:italic">P</span> est le poids en grammes de <span style="font-style:italic">N</span> atomes et si Δ <span style="font-style:italic">P</span> est la 
+variation de poids pendant l’intervalle de temps Δ <span style="font-style:italic">t</span> :<br>
+<span style="font-style:italic">P</span>−Δ <span style="font-style:italic">P</span>=<span style="font-style:italic">P</span>(1−λ Δ <span style="font-style:italic">t</span>)
+Une mole de <span style="font-style:italic">Ra</span> 226 pèse 226 grammes.<br>
+Donc dans 1g de <span style="font-style:italic">Ra</span> 226 il y a <span style="font-style:italic">N</span>=mksa(1/226*_NA_*1 _mol)=
+2.66466225664e+21 atomes.<br>
+Soit en poids, il restera au bout d’un an :<br>
+<span style="font-family:monospace">1_g*(1-0.693/1617_yr*1_yr)=0.999571428571_g</span><br>
+il restera au bout de 10 ans :<br>
+<span style="font-family:monospace">1_g*(1-0.693/1617_yr*10_yr)=0.995714285714_g</span></p>
+<h3 id="sec484" class="subsection">31.2.3  L’énoncé 5</h3>
+<p>
+Une particule alpha émise par <sup>210</sup><span style="font-style:italic">P</span><sub>0</sub> a une énergie de 5.3 _MeV et 
+elle provoque l’ionisation du gaz qu’elle traverse et on collecte tous les 
+électrons libérés sur un fil chargé positivement.<br>
+Quelle est la valeur de la charge électrique recueillie sur ce fil en sachant
+que l’énergie nécessaire pour créer une paire d’ions est de 30 _eV ?
+</p>
+<h3 id="sec485" class="subsection">31.2.4  La correction de 5</h3>
+<p>
+Puisqu’il faut 30 _eV pour créer une paire d’ions, une particule alpha 
+émise par <sup>210</sup><span style="font-style:italic">P</span><sub>0</sub> dénergie de 5.3 _MeV va créer :<br>
+<span style="font-family:monospace">mksa(5.3 _MeV/30 _eV)=176666.666667</span> paire d’ions.<br>
+La charge élémentaire d’un électron est de 1.6*10<sup>−19</sup> Coulomb, donc,
+la valeur de la charge électrique recueillie sur ce fil est :<br>
+<span style="font-family:monospace">176666.666667*1.6*10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-19_C</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2.82666666667e-14_C</span>
+</p>
+<h3 id="sec486" class="subsection">31.2.5  L’énoncé 6</h3>
+<p>
+Calculer l’activité de 1g de <span style="font-style:italic">Th</span> 232 sachant que 
+λ=1.58*10<sup>18</sup> <span style="font-style:italic">s</span><sup>−</sup>1
+</p>
+<h3 id="sec487" class="subsection">31.2.6  La correction de 6</h3>
+<p>
+Une mole de <span style="font-style:italic">Th</span> 232 pèse 232 grammes.<br>
+Dans un gramme de <span style="font-style:italic">Th</span> 232 il y a 1/232 moles, donc le nombre de noyaux 
+est :<br>
+<span style="font-family:monospace">_NA_*1/232_mol</span><br>
+soit : <span style="font-family:monospace">2.59574857759e+21</span><br>
+L’activité est le nombre de désintégration par seconde :<br>
+ Δ <span style="font-style:italic">N</span>/Δ <span style="font-style:italic">t</span>=<span style="font-style:italic">N</span>λ  avec λ=1.58*10<sup>−18</sup> <span style="font-style:italic">s</span><sup>−1</sup><br>
+Donc l’activité de 1g de <span style="font-style:italic">Th</span> 232 est de :<br>
+<span style="font-family:monospace">mksa(_NA_/232*1_mol*1.58*10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-18_s</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1)=4101.28275259_s</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1</span><br>
+On tape :<br>
+<span style="font-family:monospace">convert(4101.28275259_s</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1,1_Ci)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1.108454798e-07_Ci</span>
+</p>
+<h3 id="sec488" class="subsection">31.2.7  L’énoncé 7</h3>
+<p>
+Quelle est l’énergie qui serait libérée par la fission complète de 1 kg
+de <span style="font-style:italic">U</span> 235 ?
+</p>
+<h3 id="sec489" class="subsection">31.2.8  La correction de 7</h3>
+<p>
+La réaction de fission d’un noyau d’<span style="font-style:italic">U</span> 235 s’écrit :<br>
+<sup>235</sup><span style="font-style:italic">H</span>+<sub>0</sub><sup>1</sup><span style="font-style:italic">n</span>−&gt;<sub>32</sub><sup>94</sup><span style="font-style:italic">Sr</span>+<sub>54</sub><sup>140</sup><span style="font-style:italic">Xe</span>+2<sub>0</sub><sup>1</sup><span style="font-style:italic">n</span><br>
+et libère 200_MeV.<br>
+Une mole ou encore <span style="font-family:monospace">_NA_*1_mol</span> atomes de <span style="font-style:italic">U</span> 235 pèse 
+235_<span style="font-style:italic">g</span>=235*10<sup>−3</sup>_<span style="font-style:italic">kg</span>.<br>
+Dans un kilogramme de <span style="font-style:italic">U</span> 235 il y a donc <span style="font-family:monospace">_NA_*1_mol/235*10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3</span>
+atomes.<br>
+La fission d’un kilogramme de <span style="font-style:italic">U</span> 235 libère donc :<br>
+<span style="font-family:monospace">_NA_*1_mol/235*10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*200_MeV</span><br>
+On obtient :<br>
+<span style="font-family:monospace">5.1252227234e+26_((mol*MeV)/mol)</span>
+soit <span style="font-family:monospace">5.1252227234e+26_MeV</span>.</p>
+<h3 id="sec490" class="subsection">31.2.9  L’énoncé 8</h3>
+<p>
+La réaction :<br>
+<sub>1</sub><sup>2</sup><span style="font-style:italic">H</span>+<sub>1</sub><sup>2</sup><span style="font-style:italic">H</span>−&gt;<sub>0</sub><sup>1</sup><span style="font-style:italic">n</span>+<sub>2</sub><sup>3</sup><span style="font-style:italic">He</span><br>
+est une réaction de fussion.<br>
+On donne :<br>
+masse de <sub>1</sub><sup>2</sup><span style="font-style:italic">H</span> =2.014741 _<span style="font-style:italic">u</span><br>
+masse de <sub>2</sub><sup>3</sup><span style="font-style:italic">He</span>=3.016977 _<span style="font-style:italic">u</span><br>
+masse de <sub>0</sub><sup>1</sup><span style="font-style:italic">n</span>=1.008987_<span style="font-style:italic">u</span><br>
+Au cours de cette réaction, une partie de la masse disparait.<br>
+Calculez cette perte de masse ainsi que l’énergie en MeV liberée par la
+réaction.</p>
+<h3 id="sec491" class="subsection">31.2.10  La correction de 8</h3>
+<p>
+On a la réaction :<br>
+<sub>1</sub><sup>2</sup><span style="font-style:italic">H</span>+<sub>1</sub><sup>2</sup><span style="font-style:italic">H</span>−&gt;<sub>0</sub><sup>1</sup><span style="font-style:italic">n</span>+<sub>2</sub><sup>3</sup><span style="font-style:italic">He</span><br>
+Calculons la masse de l’état initial, on tape :<br>
+<span style="font-family:monospace">2*2.014741_u</span><br>
+Calculons la masse de l’état final, on tape :<br>
+<span style="font-family:monospace">1.008987_u+3.016977_u</span><br>
+Il disparait donc :<br>
+<span style="font-family:monospace">2*2.014741_u-(1.008987_u+3.016977_u)</span><br>
+On obtient donc une perte de masse de :<br>
+<span style="font-family:monospace">0.003518_u</span><br>
+On tape :<br>
+<span style="font-family:monospace">mksa( 0.003518_u)</span><br>
+On obtient donc une perte de masse de :<br>
+<span style="font-family:monospace">5.8417804236e-30_kg</span><br>
+L’énergie liberée par cette réaction est donc (<span style="font-style:italic">E</span>=<span style="font-style:italic">mc</span><sup>2</sup>) :<br>
+<span style="font-family:monospace">5.8417804236e-30_kg*_c_</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span> <br>
+On obtient :<br>
+<span style="font-family:monospace">5.25033040875e-13_(kg*(m/s)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+Pour convertir en _Mev, on tape :<br>
+<span style="font-family:monospace">convert(5.25033040875e-13_(kg*(m/s)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),_MeV)</span> <br>
+On obtient l’énergie en MeV liberée par la réaction :<br>
+<span style="font-family:monospace">3.27699706546_MeV</span>.</p>Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo030.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo032.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

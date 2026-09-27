@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Setting samples in audio clips</title>
+</head>
+<body >
+<a href="cascmd_en1025.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1027.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:setchndata" class="subsection">28.2.9  Setting samples in audio clips</h3>
+<p>The <span style="font-family:monospace">set_channel_data</span><a id="hevea_default1956"></a>
+command sets the audio clip samples to desired values.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">set_channel_data</span> takes two mandatory arguments and two
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an audio clip.
+</li><li class="li-itemize"><span style="font-style:italic">data</span>, a matrix or vector containing sample data.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">offset</span>, a position in <span style="font-style:italic">A</span> at which
+<span style="font-style:italic">data</span> should be written (by default, <span style="font-style:italic">offset</span>=0).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">chn</span>, a channel index or specification
+(<span style="font-family:monospace">left</span> or <span style="font-family:monospace">right</span>) (by default, the same data is written to all channels
+or <span style="font-style:italic">data</span> must be a matrix with one row for each channel).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">set_channel_data(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">data</span> ⟨,<span style="font-style:italic">offset</span>,<span style="font-style:italic">chn</span> ⟩<span style="font-family:monospace">)</span> 
+returns a modified copy of <span style="font-style:italic">A</span> in which
+<span style="font-style:italic">data</span> is written to <span style="font-style:italic">A</span> at the desired <span style="font-style:italic">offset</span> and channel <span style="font-style:italic">chn</span>.
+</li><li class="li-itemize">If <span style="font-style:italic">data</span> is a matrix, then it must have <span style="font-style:italic">n</span> rows where <span style="font-style:italic">n</span> is the
+number of channels in <span style="font-style:italic">A</span>. In this case, the fourth argument should be dropped.
+</li><li class="li-itemize">If <span style="font-style:italic">data</span> is a vector, then it is written to the specified channel
+or to all channels if <span style="font-style:italic">chn</span> is not given.
+</li></ul><h4 id="sec2565" class="subsubsection">Example</h4>
+<p>
+In the following example we create an audio clip containing the
+sine wave and add random noise to its portion.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">createwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*440*</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(4)))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 176400 samples at 44100 Hz (16 bit, mono</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+We extract the data after the first and before the third second of the audio.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1.0..3.0):;</span></span></td></tr>
+</table><p>Now we create the noise which fades in and out.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">noise</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">hamming_window</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ranv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">length</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">normald</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,0.1))):;</span></span></td></tr>
+</table><p>Finally we replace the portion of the original clip with the
+mix of the sine wave and noise.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">snd1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">set_channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">noise</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">,44100,0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 176400 samples at 44100 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en1025.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1027.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

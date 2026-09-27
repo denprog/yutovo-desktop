@@ -1,0 +1,8 @@
+# Maple integration test file: "8 Special functions\8.7 Zeta function.txt"
+
+lst:=[
+[x^2*Zeta(2,a+b*x),x,4,-2*x*lnGAMMA(a+b*x)/b^2+2*Psi(-2,a+b*x)/b^3+x^2*Psi(0,a+b*x)/b],
+[x*Zeta(2,a+b*x),x,3,-lnGAMMA(a+b*x)/b^2+x*Psi(0,a+b*x)/b],
+[Zeta(2,a+b*x)/x^2,x,2,b*Integral(Psi(2,a+b*x)/x,x)-Psi(1,a+b*x)/x],
+[Zeta(s,a+b*x)/x^3,x,2,1/2*b^2*s*(1+s)*Integral(Zeta(2+s,a+b*x)/x,x)-1/2*Zeta(s,a+b*x)/x^2+1/2*b*s*Zeta(1+s,a+b*x)/x],
+[Zeta(s,a+b*x)/x^2+b*s*Zeta(1+s,a+b*x)/x,x,2,-Zeta(s,a+b*x)/x]]:

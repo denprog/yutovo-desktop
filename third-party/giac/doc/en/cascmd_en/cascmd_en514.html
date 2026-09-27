@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Tables</title>
+</head>
+<body >
+<a href="cascmd_en513.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en515.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:table" class="subsection">14.4.1  Tables</h3>
+<p>A <em>table</em> is a map (associative container) used to store
+information associated to indices which are much more general than
+integers, such as strings or sequences. For example, use one to
+store a table of phone numbers indexed by names.</p><p>In <span style="font-variant:small-caps">Xcas</span>, the indices in a table may be any kind of <span style="font-variant:small-caps">Xcas</span> objects.
+Access is done by a binary search algorithm, where the sorting
+function first sorts by type and then uses an order for each type
+(e.g. &lt; for numeric types, lexicographic order for strings, etc.)</p><p>The <span style="font-family:monospace">table</span><a id="hevea_default880"></a> command creates a table.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">table</span> takes <span style="font-style:italic">seq</span>, a list or sequence of equalities
+of the form <span style="font-style:italic">key</span><span style="font-family:monospace">=</span><span style="font-style:italic">value</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">table(</span><span style="font-style:italic">seq</span><span style="font-family:monospace">)</span> returns a table. The
+elements of the table can be retrieved using index bracket notation.
+If <span style="font-style:italic">T</span> is the name of the table, then <span style="font-style:italic">T</span><span style="font-family:monospace">[</span><span style="font-style:italic">key</span><span style="font-family:monospace">]</span>
+returns <span style="font-style:italic">value</span>.
+</li></ul><p>Tables can also be created and the elements of a table can be changed by using
+the <span style="font-family:monospace">:=</span> assignment.
+</p><ul class="itemize"><li class="li-itemize">
+If <span style="font-family:monospace">T</span> is a symbolic variable, then
+<span style="font-family:monospace">T[</span><span style="font-style:italic">key</span><span style="font-family:monospace">]:=</span><span style="font-style:italic">value</span>
+creates a table <span style="font-family:monospace">T</span> with one element.
+</li><li class="li-itemize">If <span style="font-style:italic">n</span> is an integer, then the assignment
+<span style="font-family:monospace">T[</span><span style="font-style:italic">n</span><span style="font-family:monospace">]:=</span><span style="font-style:italic">obj</span> will do the following:
+<ul class="itemize"><li class="li-itemize">
+If the variable <span style="font-family:monospace">T</span> was assigned to a list or a sequence,
+then the <span style="font-style:italic">n</span>th element of <span style="font-family:monospace">T</span> is modified.
+</li><li class="li-itemize">If the variable <span style="font-family:monospace">T</span> was not assigned, a table <span style="font-family:monospace">T</span>
+is created with one entry (corresponding to the index <span style="font-style:italic">n</span>). Note
+that after the assignment <span style="font-family:monospace">T</span> is not a list, despite the fact that <span style="font-style:italic">n</span>
+is an integer.
+</li></ul>
+</li></ul><h4 id="sec1201" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">T</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">table</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3=-10,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"a"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">=10,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"b"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">=20,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"c"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">=30,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"d"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">=40):;</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">T</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"b"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+20
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">T</span></span><span style="font-weight:bold"><span style="color:#BF0000">[3]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−10
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">T</span></span><span style="font-weight:bold"><span style="color:#BF0000">[3]:=-15:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">T</span></span><span style="font-weight:bold"><span style="color:#BF0000">[3]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−15
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en513.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en515.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

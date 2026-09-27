@@ -1,0 +1,22 @@
+# Maple integration test file: "4 Trig functions\4.2a Tangent\4.2.1.3 (d sin)^m (a+b tan)^n.txt"
+
+lst:=[
+[sin(x)^4/(I+tan(x)),x,5,-1/16*I*x+(-1/32)/(I-tan(x))^2+(-1/8*I)/(I-tan(x))+1/24*I/(I+tan(x))^3+(-5/32)/(I+tan(x))^2+(-3/16*I)/(I+tan(x))],
+[sin(x)^3/(I+tan(x)),x,9,1/3*I*cos(x)^3-1/5*I*cos(x)^5+1/5*sin(x)^5],
+[csc(x)^4/(I+tan(x)),x,4,-1/2*cot(x)^2+1/3*I*cot(x)^3],
+[sin(c+d*x)^2*(a+b*tan(c+d*x)),x,5,1/2*a*x-b*log(cos(c+d*x))/d-1/2*cos(c+d*x)*sin(c+d*x)*(a+b*tan(c+d*x))/d],
+[sin(c+d*x)*(a+b*tan(c+d*x)),x,6,b*arctanh(sin(c+d*x))/d-a*cos(c+d*x)/d-b*sin(c+d*x)/d],
+[csc(c+d*x)*(a+b*tan(c+d*x)),x,4,-a*arctanh(cos(c+d*x))/d+b*arctanh(sin(c+d*x))/d],
+[csc(c+d*x)^3*(a+b*tan(c+d*x)),x,7,-1/2*a*arctanh(cos(c+d*x))/d+b*arctanh(sin(c+d*x))/d-b*csc(c+d*x)/d-1/2*a*cot(c+d*x)*csc(c+d*x)/d],
+[sin(c+d*x)*(a+b*tan(c+d*x))^2,x,9,2*a*b*arctanh(sin(c+d*x))/d-a^2*cos(c+d*x)/d+b^2*cos(c+d*x)/d+b^2*sec(c+d*x)/d-2*a*b*sin(c+d*x)/d],
+[csc(c+d*x)^4*(a+b*tan(c+d*x))^3,x,3,-a*(a^2+3*b^2)*cot(c+d*x)/d-3/2*a^2*b*cot(c+d*x)^2/d-1/3*a^3*cot(c+d*x)^3/d+b*(3*a^2+b^2)*log(tan(c+d*x))/d+3*a*b^2*tan(c+d*x)/d+1/2*b^3*tan(c+d*x)^2/d],
+[csc(c+d*x)^6*(a+b*tan(c+d*x))^3,x,3,-a*(a^2+6*b^2)*cot(c+d*x)/d-1/2*b*(6*a^2+b^2)*cot(c+d*x)^2/d-1/3*a*(2*a^2+3*b^2)*cot(c+d*x)^3/d-3/4*a^2*b*cot(c+d*x)^4/d-1/5*a^3*cot(c+d*x)^5/d+b*(3*a^2+2*b^2)*log(tan(c+d*x))/d+3*a*b^2*tan(c+d*x)/d+1/2*b^3*tan(c+d*x)^2/d],
+[sin(c+d*x)*(a+b*tan(c+d*x))^4,x,16,4*a^3*b*arctanh(sin(c+d*x))/d-6*a*b^3*arctanh(sin(c+d*x))/d-a^4*cos(c+d*x)/d+6*a^2*b^2*cos(c+d*x)/d-b^4*cos(c+d*x)/d+6*a^2*b^2*sec(c+d*x)/d-2*b^4*sec(c+d*x)/d+1/3*b^4*sec(c+d*x)^3/d-4*a^3*b*sin(c+d*x)/d+6*a*b^3*sin(c+d*x)/d+2*a*b^3*sin(c+d*x)*tan(c+d*x)^2/d],
+[csc(c+d*x)*(a+b*tan(c+d*x))^4,x,10,-a^4*arctanh(cos(c+d*x))/d+4*a^3*b*arctanh(sin(c+d*x))/d-2*a*b^3*arctanh(sin(c+d*x))/d+6*a^2*b^2*sec(c+d*x)/d-b^4*sec(c+d*x)/d+1/3*b^4*sec(c+d*x)^3/d+2*a*b^3*sec(c+d*x)*tan(c+d*x)/d],
+[csc(c+d*x)^6/(a+b*tan(c+d*x)),x,3,-(a^2+b^2)^2*cot(c+d*x)/(a^5*d)+1/2*b*(2*a^2+b^2)*cot(c+d*x)^2/(a^4*d)-1/3*(2*a^2+b^2)*cot(c+d*x)^3/(a^3*d)+1/4*b*cot(c+d*x)^4/(a^2*d)-1/5*cot(c+d*x)^5/(a*d)-b*(a^2+b^2)^2*log(tan(c+d*x))/(a^6*d)+b*(a^2+b^2)^2*log(a+b*tan(c+d*x))/(a^6*d)],
+[csc(c+d*x)^2/(a+b*tan(c+d*x))^3,x,3,-cot(c+d*x)/(a^3*d)-3*b*log(tan(c+d*x))/(a^4*d)+3*b*log(a+b*tan(c+d*x))/(a^4*d)-1/2*b/(a^2*d*(a+b*tan(c+d*x))^2)-2*b/(a^3*d*(a+b*tan(c+d*x)))],
+[csc(c+d*x)^6/(a+b*tan(c+d*x))^3,x,3,-(a^4+12*a^2*b^2+15*b^4)*cot(c+d*x)/(a^7*d)+b*(3*a^2+5*b^2)*cot(c+d*x)^2/(a^6*d)-2/3*(a^2+3*b^2)*cot(c+d*x)^3/(a^5*d)+3/4*b*cot(c+d*x)^4/(a^4*d)-1/5*cot(c+d*x)^5/(a^3*d)-b*(3*a^4+20*a^2*b^2+21*b^4)*log(tan(c+d*x))/(a^8*d)+b*(3*a^4+20*a^2*b^2+21*b^4)*log(a+b*tan(c+d*x))/(a^8*d)-1/2*b*(a^2+b^2)^2/(a^6*d*(a+b*tan(c+d*x))^2)-2*b*(a^2+b^2)*(a^2+3*b^2)/(a^7*d*(a+b*tan(c+d*x)))],
+[sin(c+d*x)^m/(a+b*tan(c+d*x))^2,x,0,Integral(sin(c+d*x)^m/(a+b*tan(c+d*x))^2,x)],
+[sin(c+d*x)^2*(a+b*tan(c+d*x))^n,x,6,-1/4*hypergeom([1,1+n],[2+n],(a+b*tan(c+d*x))/(a+sqrt(-b^2)))*(a*b^2*n-(a^2+b^2*(1+n))*sqrt(-b^2))*(a+b*tan(c+d*x))^(1+n)/(b*(a^2+b^2)*d*(1+n)*(a+sqrt(-b^2)))-1/4*hypergeom([1,1+n],[2+n],(a+b*tan(c+d*x))/(a-sqrt(-b^2)))*(a*b^2*n+(a^2+b^2*(1+n))*sqrt(-b^2))*(a+b*tan(c+d*x))^(1+n)/(b*(a^2+b^2)*d*(1+n)*(a-sqrt(-b^2)))-1/2*cos(c+d*x)^2*(b+a*tan(c+d*x))*(a+b*tan(c+d*x))^(1+n)/((a^2+b^2)*d)],
+[sin(c+d*x)^3*(a+b*tan(c+d*x))^n,x,0,Integral(sin(c+d*x)^3*(a+b*tan(c+d*x))^n,x)],
+[csc(c+d*x)^3*(a+b*tan(c+d*x))^n,x,0,Integral(csc(c+d*x)^3*(a+b*tan(c+d*x))^n,x)]]:
