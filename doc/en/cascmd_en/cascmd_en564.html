@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Operator norm of a matrix</title>
+</head>
+<body >
+<a href="cascmd_en563.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en565.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:matrixopnorm" class="subsection">15.4.6  Operator norm of a matrix</h3>
+<h5 id="sec1314" class="paragraph">Operator norms.</h5>
+<p>
+In mathematics, particularly functional analysis, a linear function
+between two normed spaces <span style="font-style:italic">f</span>:<span style="font-style:italic">E</span> → <span style="font-style:italic">F</span> is continuous exactly when there
+is a number <span style="font-style:italic">K</span> such that ||<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)||<sub><span style="font-style:italic">F</span></sub> ≤ <span style="font-style:italic">K</span> ||<span style="font-style:italic">x</span>|| for all <span style="font-style:italic">x</span> in <span style="font-style:italic">E</span>.
+(See Section <a href="cascmd_en482.html#ssec%3Avectornorms">14.1.1</a> for norms on ℝ<sup><span style="font-style:italic">n</span></sup>.)
+For this reason, they are also called
+bounded linear functions. The infimum of all such <span style="font-style:italic">K</span> is defined to
+be the operator norm of <span style="font-style:italic">f</span>, and it depends on the norms of <span style="font-style:italic">E</span> and
+<span style="font-style:italic">F</span>. There are other characterizations of the operator norm of <span style="font-style:italic">f</span>,
+such as the supremum of ||<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)||<sub><span style="font-style:italic">F</span></sub> over all <span style="font-style:italic">x</span> in <span style="font-style:italic">E</span> with ||<span style="font-style:italic">x</span>||<sub><span style="font-style:italic">E</span></sub>
+≤ 1.</p><p>If <span style="font-style:italic">E</span> and <span style="font-style:italic">F</span> are finite dimensional, then any linear function
+<span style="font-style:italic">f</span>:<span style="font-style:italic">E</span>→ <span style="font-style:italic">F</span> will be bounded.</p><p>Any <span style="font-style:italic">m</span>× <span style="font-style:italic">n</span> matrix <span style="font-style:italic">A</span>=(<span style="font-style:italic">a</span><sub><span style="font-style:italic">jk</span></sub>) corresponds to a linear
+function <span style="font-style:italic">f</span>:ℝ<sup><span style="font-style:italic">n</span></sup> → ℝ<sup><span style="font-style:italic">m</span></sup> defined by <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">Ax</span>. The
+operator norm of <span style="font-style:italic">A</span> will be the operator norm of <span style="font-style:italic">f</span>.
+</p><ul class="itemize"><li class="li-itemize">
+If ℝ<sup><span style="font-style:italic">n</span></sup> and ℝ<sup><span style="font-style:italic">m</span></sup> both have the ℓ<sub>1</sub> norm,
+namely for <span style="font-style:italic">x</span>=(<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,…) the norm is ||<span style="font-style:italic">x</span>||=
+∑<sub><span style="font-style:italic">j</span></sub> |<span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub>|, the operator norm of <span style="font-style:italic">A</span> is
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:center">max</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span></td></tr>
+</table></td><td class="dcell"> </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">j</span></td></tr>
+</table></td><td class="dcell"> |<span style="font-style:italic">a</span><sub><span style="font-style:italic">jk</span></sub>|.
+</td></tr>
+</table>
+This is the column norm given by <span style="font-family:monospace">colnorm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span>
+(see Section <a href="cascmd_en563.html#ssec%3Acolnorm">15.4.5</a>).</li><li class="li-itemize">If ℝ<sup><span style="font-style:italic">n</span></sup> and ℝ<sup><span style="font-style:italic">m</span></sup> both have the ℓ<sub>2</sub> norm,
+namely for <span style="font-style:italic">x</span>=(<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,…) the norm is ||<span style="font-style:italic">x</span>||=
+√<span style="text-decoration:overline">∑</span><sub><span style="text-decoration:overline"><span style="font-style:italic">j</span></span></sub><span style="text-decoration:overline"> </span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sub><span style="text-decoration:overline"><span style="font-style:italic">j</span></span></sub><sup><span style="text-decoration:overline">2</span></sup> (the usual Euclidean norm), the operator norm
+of <span style="font-style:italic">A</span> is the largest eigenvalue of <span style="font-style:italic">f</span><sup>∗</sup>∘ <span style="font-style:italic">f</span>, where <span style="font-style:italic">f</span><sup>∗</sup> is the
+transpose of <span style="font-style:italic">f</span>, and so the largest singular value of <span style="font-style:italic">f</span>. This is
+given by <span style="font-family:monospace">l2norm</span> (see Section <a href="cascmd_en560.html#ssec%3Amatl2norm">15.4.2</a>) or
+<span style="font-family:monospace">max(SVL(</span><span style="font-style:italic">A</span><span style="font-family:monospace">))</span> (see Section <a href="cascmd_en554.html#ssec%3ASVL">15.3.7</a>).</li><li class="li-itemize">If ℝ<sup><span style="font-style:italic">n</span></sup> and ℝ<sup><span style="font-style:italic">m</span></sup> both have the ℓ<sub>∞</sub> norm,
+namely for <span style="font-style:italic">x</span>=(<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,…) the norm is |<span style="font-style:italic">x</span>|=
+max<sub><span style="font-style:italic">j</span></sub> |<span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub>|, the operator norm of <span style="font-style:italic">A</span> is
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:center">max</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">j</span></td></tr>
+</table></td><td class="dcell"> </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span></td></tr>
+</table></td><td class="dcell"> |<span style="font-style:italic">a</span><sub><span style="font-style:italic">jk</span></sub>|.
+</td></tr>
+</table>
+This is given by <span style="font-family:monospace">rownorm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span> (see Section <a href="cascmd_en562.html#ssec%3Arownorm">15.4.4</a>).
+</li></ul>
+<h5 id="sec1315" class="paragraph">Computing operator norms.</h5>
+<p>
+The <span style="font-family:monospace">matrix_norm</span><a id="hevea_default975"></a>
+command is a command which finds any of the above operator norms.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">matrix_norm</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">arg</span>, which can be <span style="font-family:monospace">1</span>, <span style="font-family:monospace">2</span> or
+<span style="font-family:monospace">inf</span>.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">matrix_norm(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">arg</span><span style="font-style:italic">)</span> returns an
+operator norm of the operator associated to the matrix, the norm is
+determined by <span style="font-style:italic">arg</span>.
+<ul class="itemize"><li class="li-itemize">
+If <span style="font-style:italic">arg</span> is <span style="font-family:monospace">1</span>, it is based on the ℓ<sup>1</sup>
+norm on ℝ<sup><span style="font-style:italic">n</span></sup>.<p><span style="font-family:monospace">matrix_norm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">,1)</span> is the same as <span style="font-family:monospace">colnorm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span>
+and <span style="font-family:monospace">l1norm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span>.<a id="hevea_default976"></a>
+</p></li><li class="li-itemize">If <span style="font-style:italic">arg</span> is <span style="font-family:monospace">2</span>, it is based on the ℓ<sup>2</sup>
+norm on ℝ<sup><span style="font-style:italic">n</span></sup>.<p><span style="font-family:monospace">matrix_norm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">,2)</span> is the same as <span style="font-family:monospace">l2norm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span>
+and <span style="font-family:monospace">norm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span>.<a id="hevea_default977"></a><a id="hevea_default978"></a>
+</p></li><li class="li-itemize">If <span style="font-style:italic">arg</span> is <span style="font-family:monospace">inf</span>, it is based on the
+ℓ<sup>∞</sup> norm on ℝ<sup><span style="font-style:italic">n</span></sup>.<p><span style="font-family:monospace">matrix_norm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">,inf)</span> is the same as
+<span style="font-family:monospace">rownorm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span><a id="hevea_default979"></a> and
+<span style="font-family:monospace">linfnorm(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span><a id="hevea_default980"></a>.
+</p></li></ul>
+</li></ul><h4 id="sec1316" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[1,2,3],[3,-9,6],[4,5,6]]</span></span></td></tr>
+</table><p>then:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">matrix_norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">l1norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colnorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+16
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since max{1+3+4, 2+9+5, 3+6+6}=16.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">matrix_norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,2)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">l2norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+11.2449175989
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">matrix_norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">inf</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">linfnorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rowNorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+18
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Indeed, max{1+2+3, 3+9+6, 4+5+6}=18.</p>
+<hr>
+<a href="cascmd_en563.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en565.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

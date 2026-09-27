@@ -1,0 +1,11 @@
+# Maple integration test file: "4 Trig functions\4.1a Sine\4.1.13 (d+e x)^m sin(a+b x+c x^2)^n.txt"
+
+lst:=[
+[x^2*sin(a+b*x+c*x^2),x,8,1/4*b*cos(a+b*x+c*x^2)/c^2-1/2*x*cos(a+b*x+c*x^2)/c+1/2*cos(a-1/4*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(3/2)+1/4*b^2*cos(a-1/4*b^2/c)*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(5/2)+1/4*b^2*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(5/2)-1/2*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(3/2)],
+[x*sin(a+b*x+c*x^2),x,4,-1/2*cos(a+b*x+c*x^2)/c-1/2*b*cos(a-1/4*b^2/c)*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(3/2)-1/2*b*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(3/2)],
+[sin(a+b*x-c*x^2),x,3,cos(a+1/4*b^2/c)*FresnelS((b-2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/sqrt(c)-FresnelC((b-2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a+1/4*b^2/c)*sqrt(1/2*Pi)/sqrt(c)],
+[sin(1/4+x+x^2)/x,x,0,Integral(sin(1/4+x+x^2)/x,x)],
+[x*sin(a+b*x+c*x^2)^2,x,6,1/4*x^2-1/8*sin(2*a+2*b*x+2*c*x^2)/c+1/8*b*cos(2*a-1/2*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sqrt(Pi)/c^(3/2)-1/8*b*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sin(2*a-1/2*b^2/c)*sqrt(Pi)/c^(3/2)],
+[sin(a+b*x+c*x^2)^2,x,5,1/2*x-1/4*cos(2*a-1/2*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sqrt(Pi)/sqrt(c)+1/4*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(Pi)))*sin(2*a-1/2*b^2/c)*sqrt(Pi)/sqrt(c)],
+[(d+e*x)^2*sin(a+b*x+c*x^2),x,8,-1/4*e*(2*c*d-b*e)*cos(a+b*x+c*x^2)/c^2-1/2*e*(d+e*x)*cos(a+b*x+c*x^2)/c+1/2*e^2*cos(a-1/4*b^2/c)*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(3/2)+1/4*(2*c*d-b*e)^2*cos(a-1/4*b^2/c)*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/c^(5/2)+1/4*(2*c*d-b*e)^2*FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(5/2)-1/2*e^2*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/c^(3/2)],
+[sin(a+b*x+c*x^2),x,3,cos(a-1/4*b^2/c)*FresnelS((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sqrt(1/2*Pi)/sqrt(c)+FresnelC((b+2*c*x)/(sqrt(c)*sqrt(2*Pi)))*sin(a-1/4*b^2/c)*sqrt(1/2*Pi)/sqrt(c)]]:

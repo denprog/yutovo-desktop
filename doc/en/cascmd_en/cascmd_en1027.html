@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Trimming silence</title>
+</head>
+<body >
+<a href="cascmd_en1026.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1028.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:trim-audio" class="subsection">28.2.10  Trimming silence</h3>
+<p>You can find leading and/or trailing silence and remove it by using the
+<span style="font-family:monospace">trim</span><a id="hevea_default1957"></a> command
+(see Section <a href="cascmd_en090.html#ssec%3Atrim-string">5.2.5</a>, Section <a href="cascmd_en706.html#ssec%3Atrim-vector">21.2.2</a> and Section <a href="cascmd_en1016.html#ssec%3Atrim-image">28.1.9</a>
+for other usages of <span style="font-family:monospace">trim</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">trim</span> takes one mandatory argument and up to four optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an audio clip object.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">threshold</span>, a negative real number specifying the
+silence threshold in dB (by default, <span style="font-style:italic">threshold</span>=−30).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">mavglen</span>, a nonnegative real number specifying the
+time interval (in seconds) for a moving-average filter
+(by default, <span style="font-style:italic">mavglen</span>=0.001).
+</li><li class="li-itemize">Optionally, either <span style="font-family:monospace">left</span> or <span style="font-family:monospace">right</span>, the symbol specifiying
+one-sided trimming.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">index</span>, the symbol.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">trim(</span><span style="font-style:italic">A</span> ⟨,<span style="font-style:italic">threshold</span> ⟨,<span style="font-style:italic">mavglen</span> ⟩
+⟩ ⟨,<span style="font-family:monospace">left</span>|<span style="font-family:monospace">right</span> ⟩ ⟨,<span style="font-family:monospace">index</span> ⟩<span style="font-family:monospace">)</span>
+finds the start <span style="font-style:italic">l</span> of the first nonsilent portion of <span style="font-style:italic">A</span> and the start <span style="font-style:italic">u</span> of the trailing
+silence (in samples). Audio is considered silent at offset <span style="font-style:italic">k</span> if the instantaneous energy at
+<span style="font-style:italic">k</span> is below <span style="font-style:italic">threshold</span> decibels.
+The energy vector is smoothed out by applying a moving-average filter with length
+<span style="font-style:italic">n</span>=⌊ <span style="font-family:monospace">samplerate(</span><span style="font-style:italic">A</span><span style="font-family:monospace">)</span>·<span style="font-style:italic">mavglen</span>+1/2⌋
+(i.e. the length in samples corresponding to <span style="font-style:italic">mavglen</span> seconds).
+To disable the filtering, set <span style="font-style:italic">mavglen</span> to 0.<p>If <span style="font-family:monospace">index</span> is given, then the return value is either <span style="font-style:italic">l</span> if <span style="font-family:monospace">left</span> is given,
+<span style="font-style:italic">u</span> if <span style="font-family:monospace">right</span> is given, or (<span style="font-style:italic">l</span>,<span style="font-style:italic">u</span>−<span style="font-style:italic">l</span>) otherwise (the last sequence contains the
+start and length of the nonsilent part, in samples). If <span style="font-family:monospace">index</span> is omitted, then
+the return value is an audio clip obtained from <span style="font-style:italic">A</span> by removing either the leading silence
+if <span style="font-family:monospace">left</span> is given, trailing silence if <span style="font-family:monospace">right</span> is given, or both leading
+and trailing silence otherwise.
+</p></li></ul><h4 id="sec2567" class="subsubsection">Example</h4>
+<p>
+With the file <span style="font-family:monospace">gs-16b-2c-44100hz.wav</span> downloaded from
+<a href="https://espressif-docs.readthedocs-hosted.com/projects/esp-adf/en/latest/design-guide/audio-samples.html">here</a> (an excerpt from a piece of band music):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/gs-16b-2c-44100hz.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 698194 samples at 44100 Hz (16 bit, stereo)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en456.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip1</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 538796 samples at 44100 Hz (16 bit, stereo)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip2</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en457.png">
+
+</div>
+<hr>
+<a href="cascmd_en1026.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1028.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

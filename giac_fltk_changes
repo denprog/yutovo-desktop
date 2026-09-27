@@ -1,0 +1,17 @@
+FL/Fl_Input.H: line 266, changed from protected to public for draw()
+FL/Fl_Device.H:#define FL_REGION_STACK_SIZE 100 instead of 10
+src/gl_start.cxx: removed static line 58 for gl_choice
+FL/Fl_Window.H: added public method   void * window_ref() const;
+FL/Fl_Window.cxx: implemented as
+void * Fl_Window::window_ref() const {
+#ifdef __APPLE__
+  return Fl_X::i(this)->window_ref();
+#else
+  return 0;
+#endif
+}
+src/gl_draw.cxx: #define GL_DRAW_USES_TEXTURES  0 // (defined(__APPLE__) && !__ppc__) // 1 only for non-PPC OSX
+makeinclude: disable x64 using ARCHFLAGS	= -arch i386 # -arch x86_64
+
+Various changes in Fl_Postscript.cxx to support encapsulated postscript, 
+changed driver() from protected to public in Fl_Postscript.H

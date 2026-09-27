@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<style type="text/css">
+.li-itemize{margin:1ex 0ex;}
+.li-enumerate{margin:1ex 0ex;}
+.dd-description{margin:0ex 0ex 1ex 4ex;}
+.dt-description{margin:0ex;}
+.toc{list-style:none;}
+.footnotetext{margin:0ex; padding:0ex;}
+div.footnotetext P{margin:0px; text-indent:1em;}
+.thefootnotes{text-align:left;margin:0ex;}
+.dt-thefootnotes{margin:0em;}
+.dd-thefootnotes{margin:0em 0em 0em 2em;}
+.footnoterule{margin:1em auto 1em 0px;width:50%;}
+.caption{padding-left:2ex; padding-right:2ex; margin-left:auto; margin-right:auto}
+.title{margin:2ex auto;text-align:center}
+.titlemain{margin:1ex 2ex 2ex 1ex;}
+.titlerest{margin:0ex 2ex;}
+.center{text-align:center;margin-left:auto;margin-right:auto;}
+.flushleft{text-align:left;margin-left:0ex;margin-right:auto;}
+.flushright{text-align:right;margin-left:auto;margin-right:0ex;}
+div table{margin-left:inherit;margin-right:inherit;margin-bottom:2px;margin-top:2px}
+td table{margin:auto;}
+table{border-collapse:collapse;}
+td{padding:0;}
+.cellpadding0 tr td{padding:0;}
+.cellpadding1 tr td{padding:1px;}
+pre{text-align:left;margin-left:0ex;margin-right:auto;}
+blockquote{margin-left:4ex;margin-right:4ex;text-align:left;}
+td p{margin:0px;}
+.boxed{border:1px solid black}
+.textboxed{border:1px solid black}
+.vbar{border:none;width:2px;background-color:black;}
+.hbar{border:none;height:2px;width:100%;background-color:black;}
+.hfill{border:none;height:1px;width:200%;background-color:black;}
+.vdisplay{border-collapse:separate;border-spacing:2px;width:auto; empty-cells:show; border:2px solid red;}
+.vdcell{white-space:nowrap;padding:0px; border:2px solid green;}
+.display{border-collapse:separate;border-spacing:2px;width:auto; border:none;}
+.dcell{white-space:nowrap;padding:0px; border:none;}
+.dcenter{margin:0ex auto;}
+.vdcenter{border:solid #FF8000 2px; margin:0ex auto;}
+.minipage{text-align:left; margin-left:0em; margin-right:auto;}
+.marginpar{border:solid thin black; width:20%; text-align:left;}
+.marginparleft{float:left; margin-left:0ex; margin-right:1ex;}
+.marginparright{float:right; margin-left:1ex; margin-right:0ex;}
+.theorem{text-align:left;margin:1ex auto 1ex 0ex;}
+.part{margin:2ex auto;text-align:center}
+</style>
+<title>&#36;chi&#36;CAS: Xcas sur calculatrices Casio Graph 90, 35+eii, Math+
+</title>
+</head>
+<body >
+<!--HEVEA command line is: hevea -fix khicasio.tex -->
+<!--CUT STYLE article--><!--CUT DEF section 1 --><table class="title"><tr><td style="padding:1ex"><h1 class="titlemain">χCAS: Xcas sur calculatrices Casio Graph 90, 35+eii, Math+</h1><h3 class="titlerest">Bernard.Parisse@univ-grenoble-alpes.fr</h3><h3 class="titlerest">2019, 2022, 2025</h3></td></tr>
+</table><!--TOC section id="sec1" Table des matières-->
+<h2 id="sec1" class="section">Table des matières</h2><!--SEC END --><ul class="toc"><li class="li-toc">
+<a href="#sec2">1  Introduction et installation</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec3">1.1  Compatibilité mode examen Graph 35eii et 90e.</a>
+</li><li class="li-toc"><a href="#sec4">1.2  Installation sur calculatrices (hors mode examen)</a>
+</li><li class="li-toc"><a href="#sec5">1.3  Émulateur</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec6">2  Premiers pas</a>
+</li><li class="li-toc"><a href="#sec7">3  Utilisation de la calculatrice et de KhiCAS au bac, exemples</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec8">3.1  Observations générales</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec9">3.1.1  100% du sujet de Terminale.</a>
+</li><li class="li-toc"><a href="#sec10">3.1.2  À propos de l’algorithmique au bac</a>
+</li><li class="li-toc"><a href="#sec11">3.1.3  L’épreuve anticipée de 1ère et le DPE calculatrice</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec12">3.2  Premier exemple de sujet</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec13">3.2.1  Exercice 1</a>
+</li><li class="li-toc"><a href="#sec14">3.2.2  Exercice 2</a>
+</li><li class="li-toc"><a href="#sec15">3.2.3  Exercice 3</a>
+</li><li class="li-toc"><a href="#sec16">3.2.4  Exercice 4</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec17">3.3  Deuxième exemple de sujet</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec18">3.3.1  Exercice 1</a>
+</li><li class="li-toc"><a href="#sec19">3.3.2  Exercice 2</a>
+</li><li class="li-toc"><a href="#sec20">3.3.3  Exercice 3</a>
+</li><li class="li-toc"><a href="#sec21">3.3.4  Exercice 4</a>
+</li></ul>
+</li></ul>
+</li><li class="li-toc"><a href="#sec22">4  Commandes usuelles de calcul formel</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec23">4.1  Développer et factoriser</a>
+</li><li class="li-toc"><a href="#sec24">4.2  Analyse</a>
+</li><li class="li-toc"><a href="#sec25">4.3  Résoudre</a>
+</li><li class="li-toc"><a href="#sec26">4.4  Arithmétique</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec27">4.4.1  Entiers</a>
+</li><li class="li-toc"><a href="#sec28">4.4.2  Polynômes</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec29">4.5  Algèbre linéaire, vecteurs, matrices</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec30">5  Probabilités et statistiques</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec31">5.1  Tirages aléatoires</a>
+</li><li class="li-toc"><a href="#sec32">5.2  Lois de probabilités</a>
+</li><li class="li-toc"><a href="#sec33">5.3  Statistiques descriptives 1-d</a>
+</li><li class="li-toc"><a href="#sec34">5.4  Statistiques descriptives 2-d</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec35">6  Graphes</a>
+</li><li class="li-toc"><a href="#sec36">7  L’éditeur d’expressions</a>
+</li><li class="li-toc"><a href="#sec37">8  Sessions de calculs</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec38">8.1  Edition de l’historique.</a>
+</li><li class="li-toc"><a href="#sec39">8.2  Variables</a>
+</li><li class="li-toc"><a href="#sec40">8.3  Sauvegarde et échange de sessions avec Xcas.</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec41">9  Programmation</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec42">9.1  Utilisation en exemples</a>
+</li><li class="li-toc"><a href="#sec43">9.2  Quelques exemples</a>
+</li><li class="li-toc"><a href="#sec44">9.3  Commandes utilisables</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec45">10  Raccourcis claviers.</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec46">10.1  KhiCAS 90 et 50 (version en 2 fichiers)</a>
+</li><li class="li-toc"><a href="#sec47">10.2  KhiCAS (version courte en 1 fichier)</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec48">11  Remarques</a>
+</li><li class="li-toc"><a href="#sec49">12  Version plus complète (en 2 fichiers)</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec50">12.1  MicroPython 1.12</a>
+</li><li class="li-toc"><a href="#sec51">12.2  Graphes 3d et 4d</a>
+</li><li class="li-toc"><a href="#sec52">12.3  Géométrie interactive 2d/3d</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec53">12.3.1  Modes, vue graphique et symbolique.</a>
+</li><li class="li-toc"><a href="#sec54">12.3.2  Curseurs</a>
+</li><li class="li-toc"><a href="#sec55">12.3.3  Mesures et légendes</a>
+</li><li class="li-toc"><a href="#sec56">12.3.4  Traces</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec57">12.4  Tableur formel</a>
+</li></ul>
+</li><li class="li-toc"><a href="#sec58">13  Copyright et Remerciements</a>
+</li><li class="li-toc"><a href="#sec59">14  Réinstallation de l’OS d’origine</a>
+</li><li class="li-toc"><a href="#sec60">15  À propos du développement.</a>
+<ul class="toc"><li class="li-toc">
+<a href="#sec61">15.1  Install rapide sous linux</a>
+</li><li class="li-toc"><a href="#sec62">15.2  Source de giac</a>
+</li><li class="li-toc"><a href="#sec63">15.3  Mise au point</a>
+</li></ul>
+</li></ul><blockquote class="abstract"><span style="font-weight:bold">Résumé: </span>
+Ce document explique comment prendre en main et utiliser efficacement
+sur calculatrices Casio Graph 90+e, 35+eii ou Math+
+le système de calcul formel et géométrie analytique
+χCAS, une version adaptée
+du <a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac_fr.html">logiciel Xcas</a> pour ces calculatrices.<p>Ce document est interactif, vous pouvez modifier les commande
+et voir le résultat de l’exécution des commandes
+proposées en exemple en cliquant sur le bouton <span class="textboxed">ok</span> (ou en
+validant avec la touche Entrée).
+</p></blockquote>
+<!--TOC section id="sec2" Introduction et installation-->
+<h2 id="sec2" class="section">1  Introduction et installation</h2><!--SEC END --><p> <a id="sec:install"></a>
+χCAS est une version adaptée du
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac_fr.html">logiciel Xcas</a> 
+pour calculatrices, ici de la marque Casio. 
+KhiCAS est utilisable en mode examen sur les Graph 90 et 35eii.
+</p><p><span style="font-weight:bold">Sur les Casio Graph Math+, le clavier a été notablement modifié</span>, il n’y
+a plus de touches F1 à F6 et les 6 menus en bas de l’écran
+sont remplacés dans l’OS par 2 onglets de navigation. 
+Notez que l’interface de χCAS ne suit pas cette nouvelle logique,
+elle conserve la logique des Casio 90/35. Les touches en correspondance 
+des légendes de menu permettent de les activer. La touche correspondant
+à F4 étant une touche de déplacement sur la Math+, elle n’a plus de 
+légende en menu. 
+L’action correspondante à F4 sur la 90, qui est l’accès au menu 
+de toutes les commandes, s’effectue avec la touche Tools sur la Math+.
+Il n’y a plus de touche MENU sur la Math+, c’est la touche Home
+qui joue ce rôle, à la position de la touche F2 sur la 90.
+Ainsi pour quitter χCAS sur la Math+, on tape shift OFF ou on 
+tape sur Home et on valide l’entrée de menu <code>quit</code> qui apparait.
+Il peut être nécessaire de lancer une application Casio avant de relancer
+un addin, sinon on risque un crash, sauf si KhiCAS est le seul addin présent.</p>
+<!--TOC subsection id="sec3" Compatibilité mode examen Graph 35eii et 90e.-->
+<h3 id="sec3" class="subsection">1.1  Compatibilité mode examen Graph 35eii et 90e.</h3><!--SEC END --><p>
+<span style="font-weight:bold">KhiCAS est conforme à la réglementation du bac en France,
+</span><a href="https://www.education.gouv.fr/bo/15/Hebdo42/MENS1523092C.htm"><span style="font-weight:bold">circulaire 2015-178 du 1er octobre 2015</span></a> et
+<a href="http://www-fourier.ujf-grenoble.fr/~parisse/irem/Calculatrices_examens_specifications_techniques.pdf">cahier des charges</a>,
+au même titre que les calculatrices CAS des constructeurs 
+(HP Prime, TI Nspire CX/CX2, Casio Classpad), il est donc utilisable
+aux épreuves de terminale de maths du bac. 
+Mais attention, certains autres
+concours ou examens interdisent l’utilisation
+de calculatrices formelles. Il est de la responsabilité de l’utilisateur
+de vérifier que les calculatrices formelles sont autorisées
+avant d’utiliser χCAS dans un autre examen ou concours. Les auteurs
+ne sauraient être tenus pour responsables en cas d’utilisation
+non autorisée.</p><p>Pour utiliser KhiCAS en mode examen, il est nécessaire
+d’exécuter (une fois pour toutes) un programme de mise en compatibilité,
+utilisable sur les OS 3.80.1 (Graph 90, fonctionne aussi sur OS 3.60) 
+ou 3.70 (Graph 35eii, fonctionne aussi sur 3.40). 
+Ce programme sécurisé a été écrit par Sébastien Michelland de Planète Casio 
+et est disponible depuis le 23 mai 2025. Il n’est pas encore disponible
+pour les Graph Math+.</p><p>Vérifiez votre version d’OS depuis MENU, Système, F5. </p><p><span style="font-weight:bold">Si vous n’avez pas la bonne version</span>,
+téléchargez l’installeur de la version compatible de l’OS
+</p><ul class="itemize"><li class="li-itemize">
+OS 3.80.1 (Graph 90), installeur pour
+<a href="https://tiplanet.org/forum/archives_voir.php?id=4173827">Windows</a>,
+<a href="https://tiplanet.org/forum/archives_voir.php?id=3338352">Mac</a>
+ou <a href="https://tiplanet.org/forum/archives_list.php?order=hit&cat=OS+cprizm&multi_chaine_search=3.60">OS 3.60, Graph 90</a>.
+</li><li class="li-itemize"><a href="https://tiplanet.org/forum/archives_voir.php?id=3471077">OS 3.70 (Graph 35eii) Windows</a> ou
+<a href="https://tiplanet.org/forum/archives_voir.php?id=2648557">OS 3.40 (Graph 35eii) Windows</a>
+</li></ul><p>
+Lancez le programme de mise à jour sur votre ordinateur, sur la calculatrice,
+toujours depuis Système, il faut taper F6 puis F5 (OS Update).</p><p>Si le programme d’installation refuse de se lancer parce que
+vous avez une version trop récente de l’OS, vérifiez qu’il s’agit bien
+de l’installeur de l’OS 3.80.1 pour la Graph 90 ou 3.70 sur la 35eii.
+Si le problème d’installation persiste, rendez-vous section
+<a href="#sec%3Aoserror">14</a>.</p><p><span style="font-weight:bold">Lorsque votre calculatrice a la bonne version de l’OS</span>, 
+récupérez le logiciel de mise en
+compatibilité de KhiCAS en mode examen pour Windows :
+</p><ul class="itemize"><li class="li-itemize">
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/excas90.zip">Graph 90</a> 
+</li><li class="li-itemize"><a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/excas35.zip">Graph 35eii</a>
+</li></ul><p>
+Sur la calculatrice, tapez MENU Système F6 F5 (OS update),
+branchez la calculatrice à un PC sous Windows et
+lancez le programme de mise en compatibilité inclus
+<code>tai-installer-*</code> (trusted addins installer)
+et suivez les instructions sur la calculatrice. </p><p>Vous pouvez maintenant installer KhiCAS. Branchez la calculatrice
+sur un ordinateur, sélectionnez F1 sur la calculatrice, vous devez
+voir les fichiers de la calculatrice vue comme une clef USB
+sur votre gestionnaire de fichiers
+</p><ul class="itemize"><li class="li-itemize">
+Graph 90e: copiez les fichiers <span style="font-family:monospace">khicasfr.g3a</span>, <span style="font-family:monospace">cas90a.mzs</span>
+et <span style="font-family:monospace">cas90b.mzs</span> sur la calculatrice-clef USB
+</li><li class="li-itemize">Graph 35eii: copiez le fichier <span style="font-family:monospace">excas.g1a</span> sur la
+calculatrice-clef USB.
+</li></ul><p>Il est conseillé de tester que tout s’est bien passé.
+</p><ul class="itemize"><li class="li-itemize">
+Vérifiez que Khicas apparait dans le menu principal
+Casio et se lance normalement. Tapez sur MENU pour revenir au menu principal
+Casio.
+</li><li class="li-itemize">Éteignez la calculatrice. Puis
+appuyez sur les touches M et E
+en même temps que la touche ON pour lancer le mode examen.
+</li><li class="li-itemize">Vérifiez que vous pouvez lancer KhiCAS.
+<span style="font-weight:bold">Attention, le lancement de KhiCAS en mode examen depuis le MENU 
+principal Casio prend environ 6 secondes sur une Graph 90e et 
+12 secondes sur une 35eii</span>.
+Ceci vient de l’authentification cryptographique
+de l’addin KhiCAS sur les deux modèles et des fichiers cas90*.mzs sur la 90. 
+(Si vous appuyez sur la touche MENU depuis KhiCAS sans ouvrir une
+autre application, vous pouvez réouvrir KhiCAS sans attendre ce
+délai en appuyant à nouveau sur la touche MENU).
+</li><li class="li-itemize">Quittez le mode examen en branchant la calculatrice sur un PC,
+tapez F1 sur la calculatrice,
+effacez un fichier inutile ou créez un fichier sur la calculatrice-clef USB.
+</li></ul><p>Vous pouvez passer à la section <a href="#sec%3A1erpas">2</a> Premier pas pour
+apprendre à utiliser l’interface du shell, stocker des valeurs
+dans des variables, saisir efficacement un nom de commande.
+Si vous êtes en terminale, vous pouvez ensuite consulter
+la section <a href="#sec%3Abac25">3</a>
+qui donne des indications sur l’utilisation de KhiCAS
+pour vérifier ou effectuer les calculs d’un sujet de bac 2025. </p>
+<!--TOC subsection id="sec4" Installation sur calculatrices (hors mode examen)-->
+<h3 id="sec4" class="subsection">1.2  Installation sur calculatrices (hors mode examen)</h3><!--SEC END --><p> 
+Pour installer ou mettre à jour χCAS
+récupérez sur votre ordinateur 
+</p><ul class="itemize"><li class="li-itemize">
+Sur les Graph 90, la version plus complète de χCAS
+en trois fichiers : le programme de lancement
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/khicasfr.g3a">khicasfr.g3a</a>
+et les deux fichiers compressés
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/cas90a.mzs">cas90a.mzs</a>
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/cas90b.mzs">cas90b.mzs</a>
+</li><li class="li-itemize">Sur Graph 35eii,
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/excas.g1a">excas.g1a</a>
+</li><li class="li-itemize">Sur les Graph Math+, commencez par installer le
+<a href="https://www.planet-casio.com/storage/forums/mpm-installer-1.0bw-199064.zip">MPM (par Lephe)</a>
+(plus d’infos <a href="https://www.planet-casio.com/Fr/forums/topic18534-1-mpm-mod-add-ins-math.html">ici</a>). 
+Puis récupérez les fichiers
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/mpm/mpm.bin">mpm.bin</a> (attention, il faut impérativement installer ce fichier
+en remplacement de celui proposé par Lephe),
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/mpm/khicasmp.g3a">khicasmp.g3a</a>,
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/mpm/mpcasa.mzs">mpcasa.mpz</a> et
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/mpm/mpcasb.mzs">mpcasb.mpz</a>.
+</li></ul><p>Branchez le cable USB de la calculatrice, tapez F1 pour que la
+calculatrice soit considérée comme une clef USB et copiez le ou
+les fichiers 
+</p><ul class="itemize"><li class="li-itemize">
+Graph90: <code>khicasfr.g3a</code>, <code>cas90a.mzs</code> 
+et <code>cas90b.mzs</code> 
+</li><li class="li-itemize">Graph35eii: <code>excas.g1a</code> 
+</li><li class="li-itemize">Graph Math+: <code>mpm.bin</code>, <code>khicasmp.g3a</code>,
+<code>mpcasa.mpz</code> et <code>mpcasb.mpz</code>
+</li></ul><p>
+sur la “clef”-calculatrice puis suivre
+la manipulation de votre ordinateur qui permet de débrancher
+une clef USB en toute sécurité. Le transfert s’effectue en 
+moins d’une minute. </p>
+<!--TOC subsection id="sec5" Émulateur-->
+<h3 id="sec5" class="subsection">1.3  Émulateur</h3><!--SEC END --><p>
+Si vous testez sur l’émulateur
+(<a href="https://tiplanet.org/forum/archives_voir.php?id=1209556">PC</a>,
+<a href="https://tiplanet.org/forum/archives_voir.php?id=1352720">Mac</a>), 
+depuis le menu principal de la calculatrice (MENU), allez à Mémoire,
+puis F3 (Import/Export), puis F1 (Import files),
+puis sélectionnez le fichier à
+transférez depuis le disque dur de votre ordinateur, tapez
+F1 pour sauvegarder sur la racine de la calculatrice, confirmez par F1 
+si vous effectuez une mise à jour. Le transfert est relativement
+long (plusieurs minutes) sur l’émulateur. 
+Une fois le transfert terminé, une nouvelle icone (avec le flocon
+de Xcas ou le mot Xcas) apparait dans le menu principal de la
+calculatrice.</p><p>Attention, pour installer la version
+complète en 2 fichiers sur l’émulateur, il faut transférer
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/khicas90.882">khicas90.882</a>
+et 
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/emucas90.g3a">emucas90.g3a</a>.</p><p><span style="font-weight:bold">Remarques</span>:
+</p><ul class="itemize"><li class="li-itemize">
+χCAS n’est pas compatible avec le simulateur distribué
+par Casio sur clef USB. Il faut bien installer l’émulateur, avec une
+licence d’essai de 90 jours, les enseignants peuvent obtenir gratuitement
+une licence, la demander à Casio Education France.
+</li><li class="li-itemize">la version Windows de l’émulateur Casio tourne sous Linux avec
+wine, en utilisant la commande suivante après installation :
+<code>wine "C:\Program Files (x86)\CASIO\fx-CG Manager PLUS Subscription for fx-CG50series\fx-CG_Manager_PLUS_Subscription_for_fx-CG50series.exe" /n"fx-CG Manager PLUS Subscription for fx-CG50series" &amp;</code>
+</li></ul>
+<!--TOC section id="sec6" Premiers pas-->
+<h2 id="sec6" class="section">2  Premiers pas</h2><!--SEC END --><p> <a id="sec:1erpas"></a>
+Depuis le menu principal, déplacez le curseur jusqu’à l’icone de Xcas,
+puis tapez EXE. Lors de la première exécution, on vous demandera de choisir
+entre syntaxe Xcas et Python. Sélectionnez l’un des deux avec
+F1 et F6. Pour changer de syntaxe plus tard, utilisez shift-SETUP ou
+le menu F6.</p><p>Vous devez alors voir un historique de calculs (shell) vide 
+dans lequel vous pouvez
+taper la plupart des commandes de calcul formel de Xcas.</p><p>Par exemple, tapez 
+<code>1/2+1/6</code>
+puis EXE, vous devriez voir le résultat <code>2/3</code> s’afficher
+sur la ligne du dessous.</p><p>Vous pouvez recopier dans la ligne de commande
+une commande de l’historique en utilisant le
+curseur vers le haut ou vers le bas puis EXE, puis vous pouvez
+modifier la commande et l’exécuter. Par exemple, taper sur la
+touche curseur vers le haut, EXE et remplacez <code>1/6</code> par <code>1/3</code>.</p><p><span style="font-weight:bold">Remarques :</span>
+</p><ul class="itemize"><li class="li-itemize">
+pour saisir un seul caractère alphabétique en majuscule,
+taper ALPHA en rouge puis la lettre. Pour saisir plusieurs caractères
+majuscules, taper SHIFT ALPHA. Pour saisir plusieurs caractères en
+minuscules, taper F5. F5 permet ensuite de basculer entre majuscules
+et minuscules.
+</li><li class="li-itemize">si vous ne voyez pas un caractère sur le clavier de
+la calculatrice, vous pouvez sélectionner ce caractère depuis
+la table de caractères en tapant les touches shift INS.
+</li><li class="li-itemize">Lors de la première utilisation, vous pouvez mettre à l’heure
+l’horloge de la calculatrice en tapant la
+commande <code>hh,mm=&gt;,</code>.
+Pour saisir <code>=&gt;</code>, tapez sur la touche →
+située au-dessus de la touche AC/ON.<br>
+Par exemple <code>13,17=&gt;,</code> pour 13h17.
+L’affichage de l’heure est utile en examen, car vous n’avez 
+alors pas accès à un smartphone ou à une montre connectée.
+</li></ul><p>Vous pouvez utiliser le résultat de la dernière commande
+avec la touche <code>Ans</code> de la calculatrice (taper sur shift 
+puis <code>(-)</code>),
+mais il vaut en général mieux définir une variable comme résultat 
+d’une commande si on souhaite la réutiliser. Pour cela, on
+utilise une des deux instructions d’affectation :
+</p><ul class="itemize"><li class="li-itemize">
+l’affectation vers la droite <code>=&gt;</code> s’obtient avec la 
+touche → de la 
+calculatricen (au-dessus de ON), 
+par exemple <code>2=&gt;A</code> met 2 dans la variable A.
+Vous pouvez ensuite utiliser <code>A</code> dans un calcul, sa
+valeur sera remplacée par 2.
+</li><li class="li-itemize">l’affectation vers la gauche se fait en tapant sur la touche
+shift-→.
+Cela correspond à l’affectation en
+Python (<code>=</code>) ou en Xcas (<code>:=</code>, <code>=</code>
+est accepté s’il n’y a pas de risque de confusion).
+Par exemple <code>A:=2</code> fait la même chose que <code>2=&gt;A</code>.
+</li></ul><p>Pour vous aider à saisir les commandes Xcas les plus utiles,
+χCAS dispose d’un catalogue d’une centaine de commandes
+par thèmes,
+avec une courte description et le plus souvent un exemple 
+d’exécution facile à recopier. 
+Appuyez sur la touche F4 (cmds), choisissez une catégorie avec le curseur, 
+par exemple <code>Algebre</code>, tapez EXE,
+puis choisissez une commande avec le curseur, par exemple <code>factor</code>.
+La touche F6 vous affiche une courte description de la commande,
+en général avec un exemple. En tapant sur F2, vous recopiez
+l’exemple en ligne de commande. S’il y a un deuxième exemple,
+on le recopie avec F3. Vous pouvez alors valider (EXE) ou
+modifier la commande et valider (EXE) 
+pour factoriser un autre polynôme que celui
+donné en exemple.</p><p>Si vous connaissez le nom de la commande, vous pouvez aussi
+sélectionner la commande depuis l’index des commandes
+en tapant sur les touches shift CATALOG (touche 4).</p><p>Lorsqu’une commande renvoie une expression (i.e. un résultat qui
+n’est pas entier, ni réel approché, ni une fraction d’entiers), 
+celle-ci est affichée
+en écriture naturelle (affichage 2-d). Vous pouvez faire défiler 
+l’affichage avec les touches du curseur lorsque l’expression est grande.
+Tapez sur EXIT pour revenir au shell.</p><p>Maintenant essayez de taper la commande <code>plot(sin(x))</code>.
+Indication: taper F4 (cmds), puis sélectionner 
+<code>Courbes</code>.</p><p>Lorsqu’une commande renvoie un graphe, celui-ci est affiché. Vous
+pouvez modifier la fenêtre graphique d’affichage 
+avec les touches <code>+</code> ou <code>-</code> 
+(zoom in ou out, utiliser la touche <code>(-)</code>
+pour faire un zoom out partiel selon l’axe <span style="font-style:italic">Oy</span>),
+les touches du curseur, orthonormaliser le repère (touche <code>/</code>)
+ou faire une recherche automatique de l’échelle (autoscale 
+touche <code>*</code>). Pour enlever ou remettre les axes et graduations,
+tapez sur SIN.
+Tapez sur EXIT pour revenir au shell.</p><p>Vous pouvez effacer l’historique des calculs et les variables
+pour commencer un nouvel exercice : depuis le menu Fich,Cfg (F6) 
+sélectionnez <code>Effacer l'historique</code>. </p><p>Un certain nombre de raccourcis claviers sont prévus pour faciliter 
+les taches les plus courantes: par exemple F1 (alg) et F2 (calc) ouvrent un menu
+avec des commandes d’algèbre et d’analyse (calculus en anglais),
+cf. la section <a href="#sec%3Araccourcis">10</a> pour une liste complète. 
+L’appui sur ON/AC efface la ligne courante, et si celle-ci
+est vide propose d’effacer l’historique des calculs.</p><p>Pour quitter χCAS, appuyez sur la touche MENU. Lorsque vous lancez
+une autre application, les variables et l’historique des calculs
+sont sauvegardés dans le fichier <span style="font-family:monospace">session.xw</span>
+(mémoire de sauvegarde de la calculatrice, visible
+depuis l’application Mémoire de Casio), 
+ils seront restaurés lorsque vous reviendrez
+dans χCAS. 
+La première sauvegarde prend un peu de temps, en particulier 
+sur l’émulateur,
+ensuite les sauvegardes sont plus rapides. 
+Vous pouvez sauvegarder plusieurs sessions distinctes (historique et
+programmes éventuels) depuis le menu F6 de KhiCAS, et les
+restaurer ultérieurement.</p>
+<!--TOC section id="sec7" Utilisation de la calculatrice et de KhiCAS au bac, exemples-->
+<h2 id="sec7" class="section">3  Utilisation de la calculatrice et de KhiCAS au bac, exemples</h2><!--SEC END --><p> <a id="sec:bac25"></a>
+</p>
+<!--TOC subsection id="sec8" Observations générales-->
+<h3 id="sec8" class="subsection">3.1  Observations générales</h3><!--SEC END -->
+<!--TOC subsubsection id="sec9" 100% du sujet de Terminale.-->
+<h4 id="sec9" class="subsubsection">3.1.1  100% du sujet de Terminale.</h4><!--SEC END --><p>
+Sur les sujets de 2025, il y a toujours 4 exercices (4 à 6 points par exercice)
+</p><ul class="itemize"><li class="li-itemize">
+un exercice de proba/stats. Pour cet exercice, une simple
+calculatrice scientifique suffit, sauf en général pour une petite
+question demandant un calcul de distribution binomiale cumulée qui
+serait un peu fastidieux avec une calculatrice collège. Ce sera l’occasion
+de tester le shell de KhiCAS sur des calculs simples. Les
+commandes à connaitre sont <span style="font-family:monospace">binomial</span> et
+<span style="font-family:monospace">binomial_cdf</span> du menu 9. Probabilités.
+</li><li class="li-itemize">presque toujours un exercice faisant intervenir une suite récurrente.
+Pour cet exercice, on peut obtenir une représentation graphique
+et la valeur numérique des premiers termes (N.B.: le calcul de 
+quelques termes d’une suite
+récurrente se fait déjà sur certains modèles college)
+avec l’application Suites de la Casio, mais on ne peut pas faire
+grand chose d’autre. 
+L’équivalent dans KhiCAS est la commande
+<span style="font-family:monospace">plotseq</span> (menu F3) qui permet de faire cela depuis le shell.<br>
+En exclusivité dans KhiCAS,
+la commande <span style="font-family:monospace">rsolve</span> permet de déterminer l’expression
+explicite d’une partie des suites récurrentes données (les
+arithmético-géométriques, mais pas les logistiques). Dans
+ce cas <span style="font-family:monospace">limit</span> permet de déterminer la limite de la suite.
+Sinon, la commande <span style="font-family:monospace">solve</span> ou <span style="font-family:monospace">fsolve</span>
+permet d’appliquer le théorème du point fixe pour trouver
+la limite.
+</li><li class="li-itemize">un exercice de géométrie analytique dans l’espace
+souvent présenté sous la forme d’un vrai/faux. Les
+applis intégrées Casio ne servent pas directement sur cet exercice.
+Sur les Graph 90, KhiCAS permet de résoudre ou vérifier toutes les 
+questions (exclusivité KhiCAS!),
+et c’est probablement l’exercice où KhiCAS est vraiment utile,
+car contrairement aux autres exercices, les réponses ne sont
+pas données.<br>
+Les commandes sont dans le menu F4 Géométrie ou F4 3d ou directement
+depuis shift CATALOG. Les noms de commande sont très simple à mémoriser,
+il s’agit en général
+d’un nom commun en français, par exemple <span style="font-family:monospace">point, droite,
+plan, coordonnees, distance, equation, parameq</span>, etc.<br>
+Ces commandes ne sont hélas pas disponibles sur la 35eii par manque
+de place.
+</li><li class="li-itemize">Un exercice d’analyse, avec tableau de variations,
+étude de convexité, calcul d’intégrale ou/et équation
+différentielle. Le CAS de KhiCAS permet alors de vérifier tous les calculs
+littéraux alors que les applis intégrées de Casio permettent
+seulement de faire un graphe et des calculs numériques.
+On utilise les commandes des menus F1, F2, F3 ainsi que F4 4 Analyse.
+</li></ul><p>
+Grosso modo, on peut dire qu’une calculatrice scientifique couvre environ 
+de 25% à 40% d’un sujet de bac
+(40% pour une scientifique avec distribution binomiale,
+solveur numérique et calcul approché d’intégrale), 
+une calculatrice graphique sans CAS couvre
+environ 50%, une calculatrice CAS du constructeur environ 75%, une 
+Graph 90 avec KhiCAS couvre 100%.</p><p>Remarques :
+</p><ul class="itemize"><li class="li-itemize">
+Attention, les rédacteurs de sujet de bac utilisent souvent des
+“nombres à virgule” pour représenter des quantités numériques,
+par exemple 0,6, sans indiquer s’il s’agit de valeurs exactes ou
+d’estimations approchées. 
+Dans KhiCAS, on distingue deux représentations
+pour les nombres, la représentation approchée qui ici serait
+<span style="font-family:monospace">0.6</span> (avec un point séparant la partie entière de la partie
+décimale) et la représentation exacte qui ici serait
+<span style="font-family:monospace">3/5</span>. Il est presque toujours indispensable d’utiliser la représentation
+exacte pour faire du calcul littéral avec KhiCAS, et ne faire un
+calcul approché qu’à la fin si c’est demandé. Il y a quelques
+exceptions, par exemple si on souhaite calculer une 
+solution approchée d’une équation (lorsqu’il n’y a pas
+de méthode exacte pour le faire) ou calculer la valeur
+approchée d’une intégrale 
+(s’il n’existe pas de primitive explicite de la fonction).
+</li><li class="li-itemize">Si vous êtes pris par le temps en examen ou si le résultat que
+vous obtenez n’est pas cohérent, je vous conseille de l’indiquer 
+sur votre copie, indiquez ensuite
+la commande KhiCAS que vous avez utilisée sur la calculatrice sur votre 
+copie ainsi que la réponse obtenue.<br>
+Si vous avez montré votre capacité à faire des calculs 
+à la main ailleurs sur votre copie, vous pouvez espérer récupérer 
+une partie des points de la question, à moins que le correcteur 
+ne soit obtus.
+</li></ul>
+<!--TOC subsubsection id="sec10" À propos de l’algorithmique au bac-->
+<h4 id="sec10" class="subsubsection">3.1.2  À propos de l’algorithmique au bac</h4><!--SEC END --><p>
+Il y a au plus une question dans le sujet (sur les sujets de métropole
+dans un sujet sur les deux en 2024 et 2025). Elle est posée 
+dans l’exercice sur les suites (je n’ai pas vu d’exception pour 2025, 
+c’est en général une question stéréotypée sur un seuil). L’énoncé donne 
+un script Python, soit avec des <span style="font-family:monospace">...</span> à compléter (expliciter
+le test d’arrêt ou/et traduire la récurrence en une instruction),
+soit sous forme d’une fonction <span style="font-family:monospace">mystere</span> à interpréter, c’est
+essentiellement évident dans le contexte de l’exercice. Il est
+parfois demandé de donner le résultat d’exécution du script,
+impliquant les premiers termes de la récurrence <br>
+L’utilisation de l’application Python de la calculatrice
+n’a guère d’intérêt en pratique, il est nettement plus efficace d’utiliser
+l’application Suites de la calculatrice ou la commande <span style="font-family:monospace">plotseq</span>
+de KhiCAS (et regarder une dizaine de termes). Dans quelques cas
+(exécution de script), on peut effectivement saisir le script
+et l’exécuter, mais d’un point de vue compréhension, cela revient
+à donner des points à un élève qui est un bon presse-bouton au lieu
+de donner des points à un élève qui a compris l’algorithme!<br>
+Dans d’autres cas, exécuter le script risque fort de dérouter les
+candidats, parce que
+les concepteurs de sujet ne semblent pas tester systématiquement
+les scripts donnés. Par exemple le script donné dans le sujet
+de <a href="https://www.apmep.fr/IMG/pdf/Polynesie_spe_J1_17_06_2025_DV.pdf">Polynésie du 17 juin 2025</a>, est le suivant
+
+from math import *
+def mystere(n):
+I = 1 - 1.0/e
+L = [I]
+for i in range(n):
+I = (i+1)*I - 1/e
+L.append(I)
+return L
+
+et on demande ce que renvoie <br>
+mystere(100)<br>
+Cela correspond aux 101 premiers termes (d’indice 0 à 100) de la suite
+récurrente étudiée dans l’exercice
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">I</span><sub><span style="font-style:italic">n</span></sub>=</td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">1</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">x</span><sup><span style="font-style:italic">n</span></sup> <span style="font-style:italic">e</span><sup>−<span style="font-style:italic">x</span></sup>  <span style="font-style:italic">dx</span>,    <span style="font-style:italic">I</span><sub><span style="font-style:italic">n</span>+1</sub>=(<span style="font-style:italic">n</span>+1)<span style="font-style:italic">I</span><sub><span style="font-style:italic">n</span></sub>−1/<span style="font-style:italic">e</span> </td></tr>
+</table><p>
+Or ce script est numériquement instable, et ne donne pas du tout les 
+valeurs attendues. Les éléments de la liste <span style="font-style:italic">L</span> deviennent négatifs au
+bout d’une vingtaine de termes, et le dernier terme vaut 
+<span style="font-family:monospace">-3.1530126806564304e+141</span> (avec CPython), laissant croire
+que lim<sub><span style="font-style:italic">n</span> → +∞</sub><span style="font-style:italic">I</span><sub><span style="font-style:italic">n</span></sub>=−∞ alors que la limite est nulle.
+Cela s’explique par le fait qu’à chaque itération on soustrait des nombres
+qui devraient être de plus en plus proche, ce qui est la principale
+source de perte de précision dans un calcul numérique. Comprendre
+cela est hors de portée d’un lycéen normal, surtout en examen, j’en
+veux pour preuve que cela
+a échappé aux concepteurs de sujet, aux testeurs, et la première
+version du corrigé du site de l’APMEP n’en parle pas non plus.</p><p>Conclusion : pendant l’examen, je vous déconseille d’utiliser
+l’appli Python du constructeur de votre calculatrice ou celle 
+incluse dans KhiCAS. Les questions sont suffisamment simples
+pour être résolues papier-crayon ou plus efficacement
+avec l’application Suites de la calculatrice.
+Et du coup, on se demande à quoi cela rime d’avoir imposé Python
+comme unique langage au lycée, en tout cas pour les sujets de bac.
+il serait bien plus raisonnable à mon avis d’écrire des algorithmes 
+en langage naturel puisque visiblement on se dispense de l’étape de test 
+des scripts, seul intérêt de fixer un langage, surtout à l’heure où
+l’IA générative n’a aucun mal à traduire vers un langage donné.
+On éviterait en tout cas les problèmes
+liés à la représentation approchée des nombres.</p>
+<!--TOC subsubsection id="sec11" L’épreuve anticipée de 1ère et le DPE calculatrice-->
+<h4 id="sec11" class="subsubsection">3.1.3  L’épreuve anticipée de 1ère et le DPE calculatrice</h4><!--SEC END --><p>
+En juin 2025, l’épreuve anticipée de math de 1ère a été confirmée
+avec deux parties (automatismes et résolution de problèmes).
+La calculatrice est pour le moment interdite pendant toute
+l’épreuve. C’est à mon sens ridicule d’interdire la calculatrice
+dans la 2ème partie, résolution de problèmes, alors que c’est
+légitime pour juger les automatismes. C’est aussi ce que
+demandait l’APMEP, mais nos décideurs ont choisi de passer outre,
+suivant les demandes des intégristes anti-calculatrice.
+On voit ainsi sur les sujets 0 un encadré “Aide au calcul”
+qui peut par exemple souffler aux candidats que 0,5*0,5=0,25 (sic). 
+On n’est pas loin
+du retour à des tables d’exponentielles (le log n’est pas au programme
+de 1ère) et trigonométriques.</p><p>Le coefficient de cette épreuve est faible pour le bac (2/100), 
+mais il s’agit de la seule épreuve de sciences hors controle continu
+qui figurera dans le dossier des candidats à Parcoursup, elle aura
+donc un impact bien au-delà de ce coefficient. Il est donc
+probable qu’on assiste à un recul massif de l’utilisation un peu évoluée
+de calculatrices graphiques (et de logiciels de calcul) au lycée, 
+au moins en première (en vue de la préparation à l’épreuve
+anticipée), mais aussi
+en seconde : les élèves de seconde ne vont probablement plus s’équiper,
+ce sera reporté à la fin de 1ère début terminale
+pour les élèves ayant choisi la spécialité maths en terminale
+(175 000 en 2025). Une partie de ces élèves
+va sans doute trouver l’achat
+d’une calculatrice graphique milieu de gamme
+(TI83, Casio Graph90/math+, Numworks) trop onéreux 
+juste pour quelques mois (septembre à
+mars, date de fin des dépôts de dossier Parcoursup), ils vont utiliser
+une calculatrice scientifique (qui permet de traiter de 20% à
+40% d’un sujet de bac selon le modèle). 
+On peut anticiper une division par un facteur 2
+de la taille du marché français des calculatrices graphiques,
+peut-être plus si un cercle vicieux se met en place (hausse
+du prix de vente car moins d’achats, pressions pour que les sujets de 
+terminale soient faisable avec une calculatrice collège). </p><p>L’élève
+qui achètera une calculatrice le fera ssouvent deux ans après son entrée
+au lycée,
+il sera plus autonome dans le choix entre calculatrices
+selon les capacités utiles pour la terminale et éventuellement la poursuite
+d’études dans le supérieur. Pour aider à faire ce choix,
+je propose d’établir un 
+<span style="font-weight:bold">DPE, diagnostic perfomance examen</span>, de quelques calculatrices
+en fonction des sujets de bac de spé maths terminale de 2025.
+Un + désigne une fonctionnalité présente, un - présente mais peu confortable.
+</p><div class="center">
+<table border=1  style="border-spacing:0;" class="cellpadding1"><tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >Calculatrice</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">Graph 90</span></td><td style="text-align:center;border:solid 1px;white-space:nowrap" >Graph Math+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">Graph 35eii</span></td><td style="text-align:center;border:solid 1px;white-space:nowrap" >Graph Light</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >FX92</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >Numworks 110</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >Numworks 115/120</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >TI83CE</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >TI82AEP</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">TI36XPRO</span> </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >observation</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >KhiCAS</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >KhiCAS</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >déverrouillée</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >verrouillée</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >KhiCAS</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >prix rentrée</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >occas (≈60?)</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >70-90</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">50</span></td><td style="text-align:center;border:solid 1px;white-space:nowrap" >35</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >15-20</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >occas (≈60?)</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >83</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >80-90</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >60</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">20</span> </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >DPE</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">A+</span></td><td style="text-align:center;border:solid 1px;white-space:nowrap" >C</td><td style="text-align:center;border:solid 1px;white-space:nowrap" ><span style="font-weight:bold">B</span></td><td style="text-align:center;border:solid 1px;white-space:nowrap" >D</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >E</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >A</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >C</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >B</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >C</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >D </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >proba-stats</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+ </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >binomial_cdf</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >-</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+ </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >graphe suite</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >premiers termes</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >-</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >-</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >- </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >rsolve</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >limit</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >solve</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >fsolve</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+ </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >analytique 3D</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >tests 3D</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >géométrie 3D</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >linsolve</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >-</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+ </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >graphe fct</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >dérivée</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >primitive</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >aire/courbe</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+ </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >tableau var.</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >-</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >+</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >mémoire RAM</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >8M</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >8M</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >512K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >24K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >24K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >256K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >256K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >256K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >256K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >N.A. </td></tr>
+<tr><td style="text-align:center;border:solid 1px;white-space:nowrap" >stockage flash</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >13M/32</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >4.7M/32</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >1M/8</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >0/512K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >0/512K</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >2M/8</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >5M/8</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >192K/4M</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >/4M</td><td style="text-align:center;border:solid 1px;white-space:nowrap" >0/128K </td></tr>
+</table>
+</div><p>
+Voir aussi <a href="https://tiplanet.org/forum/compare.php">le QCC de tiplanet</a>
+qui établit une comparaison beaucoup plus complète, mais celui-ci
+est adapté au programme de spé maths de terminale. Pour les prix
+de calculatrices neuves, cf. 
+<a href="https://tiplanet.org/prix/">le comparateur de tiplanet</a>.</p><p>Remarques :
+</p><ul class="itemize"><li class="li-itemize">
+Les deux calculatrices classées A sont donc des calculatrices qui ne
+sont plus produites, à acheter principalement d’occasion. Attention,
+pour la Numworks, bien demander si elle est déverrouillée, pas
+de risques de ce type avec la Graph 90.
+La Graph 90 est de toutes façons un meilleur choix à mon avis, 
+le clavier a plus de touches,
+il y a beaucoup plus de mémoire RAM disponible (peu de risque
+que KhiCAS doive interrompre un calcul par manque de mémoire), il
+y a beaucoup plus d’espace de stockage disponible, et il est très facile
+d’y accéder (la calculatrice se comporte comme une clef USB).
+La Numworks a un processeur plus rapide.
+</li><li class="li-itemize">La Graph Math+ ressemble beaucoup à la Graph 90, et pourrait passer
+de C à A si on rend KhiCAS compatible en mode examen. De même pour les
+Numworks N0115/N0120.
+</li><li class="li-itemize">Si on se tourne vers une calculatrice scientifique 
+pour des raisons économiques, la fx92 collège,
+qui est le modèle le plus populaire au collège en France, 
+me parait quand même trop limitée,
+sauf si Casio décidait d’y ajouter les fonctionnalités qu’on retrouve
+dans les calculatrices scientifiques non destinées aux scolaires. La Graph
+Light est vendue bien trop chère, alors que son coût de fabrication
+matériel est certainement très proche de la fx92, on devrait 
+la trouver vers les 25 euros, et pas 35! Pour
+un prix essentiellement équivalent à la fx92 (soit 20 euros), je conseillerais
+plutôt la TI36XPRO, qui est moins profilée scolaire, mais permet
+de traiter 40% d’un sujet de bac de terminale spé maths (et dispose
+en plus d’un peu de calcul matriciel pour maths expertes), 
+on est très proche (le confort en moins) d’une
+Numworks verrouillée ou d’une Graph Math+ pour 4 fois moins cher
+(et même 5 fois si on l’achète dès le collège!).
+</li></ul><p>
+<span style="font-weight:bold">Conclusion</span> : selon votre budget, je vous conseille la Graph 90 
+graphique couleur (à trouver d’occasion vers les 60 euros, 
+les prix neufs sont en général bien trop élevés), 
+ou la Graph 35eii graphique monochrome 
+(neuf 50 euros avec la remise différée de 14 euros de Casio) ou
+ou la TI36XPRO scientifique monochrome (neuf 20 euros).</p>
+<!--TOC subsection id="sec12" Premier exemple de sujet-->
+<h3 id="sec12" class="subsection">3.2  Premier exemple de sujet</h3><!--SEC END --><p>
+Le sujet du 17 juin
+<a href="https://www.apmep.fr/IMG/pdf/Metro_J1_17_06_2025_DV.pdf">métropole 2025 jour 1</a></p>
+<!--TOC subsubsection id="sec13" Exercice 1-->
+<h4 id="sec13" class="subsubsection">3.2.1  Exercice 1</h4><!--SEC END --><p>
+Tout le début peut se faire avec une calculatrice scientifique, 
+on peut bien sur aussi utiliser le shell de KhiCAS.</p><p>Question 1.b, on gagne un peu de temps avec<br>
+binomial_cdf(100,0.0714,7)<br>
+qui renvoie 0.577. Pour saisir la commande, le plus efficace est
+de taper shift CATALOG puis b i n, descendre jusqu’à 
+<code>binomial_cdf</code>. F5 affiche alors l’aide de la commande, puis
+on tape F1 ou F2 pour recopier un exemple, on modifie et on tape EXE.
+On peut vérifier que c’est vraissemblable avec le graphe<br>
+plot(binomial(100,0.0714))</p><p>1.c
+stddev(binomial,100,0.0714)=&gt;S<br>
+permet de calculer l’écart-type de la loi qui vaut 2.57.. et
+de la stocker dans <span style="font-family:monospace">S</span>.
+Ensuite <code>S^2</code> donne la variance 6.63...</p><p>2.d
+S/sqrt(N) =&gt; s
+nous donne l’écart-type de <span style="font-style:italic">M</span><sub><span style="font-style:italic">N</span></sub> qui 
+va servir ensuite pour Bienaymé-Tchebycheff. 
+On veut <span style="font-style:italic">P</span>(|<span style="font-style:italic">X</span>−7.14|&gt;=0.14)&lt;0.05, on pose donc 0.14=<span style="font-style:italic">a</span>*<span style="font-style:italic">s</span>, 
+avec <span style="font-style:italic">a</span> tel que <br>
+solve(1/a^2=0.05,a) =&gt; A, 
+puis <span style="font-style:italic">N</span> tel que <br>
+solve(A[1]*s=0.14,N) qui renvoie N=6766.</p><p>Discussion : cela fait beaucoup de villes, mais on surestime avec l’inégalité de Bienaymé-Tchebycheff, en utilisant la loi normale <span style="font-style:italic">a</span> passe de 4.47 à 1.96, 
+une estimation plus réaliste diviserait donc <span style="font-style:italic">N</span> par 5 environ, 
+ce qui correspond au nombre de villes de plus de 5000 habitants 
+(ça reste 10 fois plus que le nombre de maisons du don, mais beaucoup 
+moins que le nombre de collectes mobiles). </p>
+<!--TOC subsubsection id="sec14" Exercice 2-->
+<h4 id="sec14" class="subsubsection">3.2.2  Exercice 2</h4><!--SEC END --><p>
+<span style="font-weight:bold">Partie A</span> :<br>
+Cette partie est prévue pour tester la lecture graphique 
+et ne pas utiliser d’outil de calcul,
+mais comme la fonction est donnée en partie B, on peut quand même 
+vérifier (trouver?) les valeurs de la partie A avec KhiCAS.
+On commence par saisir la valeur de f donnée en partie B<br>
+x*(2*ln(x)^2-3*ln(x)+2) =&gt; F<br>
+puis on vérifie qu’elle correspond au graphe de la partie A<br>
+plot(F,x=0..3)</p><p>Pour ajouter la tangente en <span style="font-style:italic">x</span>=1, il faut donner un nom au graphe, 
+on remonte dans l’historique pour recopier la commande précédente et on ajoute
+<code>G:=</code> (taper shift → pour saisir <code>:=</code>)<br>
+G:=plot(F,x=0..3)
+puis on tape <br>
+TA:=tangent(G,1)
+et pour voir <span style="font-style:italic">G</span> et <span style="font-style:italic">TA</span> simultanément<br>
+G,TA</p><p>La commande<br>
+equation(TA)
+nous renvoie <span style="font-style:italic">y</span>=−<span style="font-style:italic">x</span>+3 et permet de vérifier qu’on passe par le point <span style="font-style:italic">C</span>, 
+le coefficient directeur -1 nous donne la valeur de <span style="font-style:italic">f</span>′(1), qu’on
+peut ausi obtenir par les deux commandes<br>
+diff(F)=&gt;F1 
+(taper F2 pour saisir <code>diff</code> ou <code>'</code>)<br>
+F1(x=1)<br>
+On vérifie que <br>
+solve(F1=0) <br>
+renvoie 2 solutions (1/<span style="font-style:italic">e</span> et <span style="font-style:italic">e</span><sup>1/2</sup>).
+On calcule<br>
+F1’=&gt;F2<br>
+puis<br>
+F2(x=0.2)</p><p><span style="font-weight:bold">Partie B</span> :<br>
+Utiliser les menus F1 et F2 pour saisir rapidement les commandes<br>
+solve(2X^2-3X+2,X)<br>
+limit(F,x,oo)<br>
+limit(F,x,0) (admis dans l’énoncé)<br>
+simplify(F2)<br>
+solve(F2&gt;0)</p><p><span style="font-weight:bold">Partie C:</span><br>
+equation(tangente(G,e))
+integrate(x*ln(x),x) (pour vérifier la primitive)<br>
+integrate(x*ln(x),x,1,e) (pour vérifier l’énoncé)<br>
+integrate(F-(2x-e),x,1,e)
+renvoie 3*<span style="font-style:italic">exp</span>(1)<sup>2</sup>/4−(4*<span style="font-style:italic">exp</span>(1)+5)/4<br>
+En mettant 1.0 au lieu de 1 on a une valeur numérique 1.57... 
+et on peut juger si c’est vraisemblable en comparant à l’aire 
+de la partie hachurée sur l’énoncé.</p>
+<!--TOC subsubsection id="sec15" Exercice 3-->
+<h4 id="sec15" class="subsubsection">3.2.3  Exercice 3</h4><!--SEC END --><p>
+Pour saisir les commandes, taper les touches F4 * (3d) ou F4 →
+(géométrie) ou shift CATALOG et les premières lettres de la commande<br>
+point(-1,0,5)=&gt;A</p><p>point(3,2,-1)=&gt;B</p><p>point(0,0,0)=&gt;O</p><p>Sur la calculatrice taper EXIT pour quitter le graphe 3d.
+Pour visualiser plusieurs objets géométriques simultanément, on peut taper ici
+A,B,O. Les touches du curseur permettent de changer le point de vue
+3d.</p><p>Affirmation 1:VRAI <br>
+B-A renvoie les coordonnées du vecteur 
+<span style="font-style:italic">AB</span> et on regarde si c’est colinéaire avec 
+le vecteur directeur déduit de l’équation paramétrique, 
+qui passe en <span style="font-style:italic">t</span>=0 par <span style="font-style:italic">B</span>. 
+Attention une droite admet une infinité de représentations paramétriques, 
+<span style="font-family:monospace">parameq(droite(A,B))</span> 
+ne donne pas la même équation que celle de l’énoncé.</p><p>Affirmation 2: FAUX<br>
+equation(plan(O,A,B)) 
+renvoie −10*<span style="font-style:italic">x</span>+14*<span style="font-style:italic">y</span>−2*<span style="font-style:italic">z</span>=0 donc vecteur normal au plan (−10,14,−2) 
+non colinéaire au vecteur <span style="font-style:italic">n</span>. 
+Autre solution cross(A-O,B-O)</p><p>Affirmation 3: VRAI<br>
+On voit sans calcul que les 2 droites ne sont pas parallèles 
+(les vecteurs directeurs ne sont pas colinéaires),
+on teste si elles sont sécantes
+solve([15+k=1+4s,8-k=2+4s,-6+2k=1-6s],[k,s]) 
+renvoie [[-4,5/2]] donc oui, donc les droites sont coplanaires.</p><p>Affirmation 4: VRAI<br>
+point(2,-1,2)=&gt;C</p><p>distance(plan(x-y+z+1=0),C) renvoie 2√<span style="text-decoration:overline">3</span>.
+On peut aussi le faire de tête en remplaçant les coordonnées de <span style="font-style:italic">C</span> 
+dans l’équation du plan (ce qui donne 6) et en divisant par la racine 
+carrée de la somme des carrés des coefficients de x,y,z 
+(norme du vecteur normal, √<span style="text-decoration:overline">3</span>)</p>
+<!--TOC subsubsection id="sec16" Exercice 4-->
+<h4 id="sec16" class="subsubsection">3.2.4  Exercice 4</h4><!--SEC END --><p>
+<span style="font-weight:bold">Partie A</span><br>
+-0.02*x^2+1.3*x=&gt;H<br>
+H(x=1) nous donne u1=1.28
+solve(H=x) nous donne la limite <span style="font-style:italic">L</span>=15 (<span style="font-style:italic">L</span>=0 est exclus ici)</p><p><span style="font-weight:bold">Partie B</span><br>
+La résolution de la question 1 à la machine est un peu technique, 
+je pense qu’il vaut mieux le faire sans la calculatrice 
+d’autant plus que la réponse est donnée. Si on veut vraiment le vérifier,<br>
+eq:=diff(y(t),t)=0.02*y(t)*(15-y(t))<br>
+normal(equal2diff(subst(eq,y(t)=1/f(t))))<br>
+qui affiche <code>-diff(f(t),t)-0.3*f(t)+0.02</code><br>
+Pour vérifier la solution de l’équation différentielle, il faut
+saisir les coefficients sous forme de fraction
+</p><ul class="itemize"><li class="li-itemize">
+sans condition initiale <br>
+desolve(y’=-3/10*y+2/100) renvoie <code>(15*c_0*exp(-3*x/10)+1)/15</code>
+</li><li class="li-itemize">avec condition initiale<br>
+desolve([y’=-3/10*y+2/100,y(0)=1])=&gt;g 
+renvoie <code>(14*exp(-3*x/10)+1)/15</code>
+</li></ul><p>
+Puis on inverse 
+1/g=&gt;f<br>
+puis on vérifie 
+limit(f,x,oo) 
+on retrouve le <span style="font-style:italic">L</span> de la partie A. Enfin
+solve(f&gt;14) renvoie <span style="font-style:italic">x</span>&gt;10*ln(196)/3</p>
+<!--TOC subsection id="sec17" Deuxième exemple de sujet-->
+<h3 id="sec17" class="subsection">3.3  Deuxième exemple de sujet</h3><!--SEC END --><p>
+Le sujet du 18 juin
+<a href="https://www.apmep.fr/IMG/pdf/Metropole_spe_J2_18_06_2025_DV.pdf">métropole 2025 jour 2</a></p>
+<!--TOC subsubsection id="sec18" Exercice 1-->
+<h4 id="sec18" class="subsubsection">3.3.1  Exercice 1</h4><!--SEC END --><p>
+Exercice de proba/stats: une calculatrice scientifique suffit ici, 
+sauf pour A5b/ où ce serait fastidieux, dans KhiCAS on peut taper<br>
+binomial_cdf(100,0.24,20,100) 
+ou son équivalent à 3 arguments <br>
+1-binomial_cdf(100,0.24,19)<br>
+(pour saisir <span style="font-family:monospace">binomial_cdf</span>, taper shift CATALOG puis b i n
+puis déplacer le curseur sur la commande, taper F5 si vous voulez
+consulter l’aide en ligne, puis F1 ou F2 pour recopier un exemple,
+le modifier et calculer avec EXE).</p>
+<!--TOC subsubsection id="sec19" Exercice 2-->
+<h4 id="sec19" class="subsubsection">3.3.2  Exercice 2</h4><!--SEC END --><p>
+<span style="font-weight:bold">Partie A</span><br>
+Question 1/ sélectionner solve dans le menu rapide F2, puis saisir<br>
+solve([3/2+2t=s,2+t=3/2+s,3-t=3-2s],[t,s])
+(pour taper <span style="font-family:monospace">t</span> ou <span style="font-family:monospace">s</span>, taper F5 puis la touche avec
+le label en rouge correspondant puis ALPHA pour quitter le mode alphabétique).
+On obtient <span style="font-family:monospace">[[-1,-1/2]]</span> donc <span style="font-style:italic">t</span>=−1 (et <span style="font-style:italic">s</span>=−1/2), 
+les droites sont bien sécantes, pour déterminer l’intersection on peut
+faire<br>
+subst([3/2+2t,2+t,3-t],t=-1)=&gt;S (<span style="font-family:monospace">=&gt;</span> s’obtient
+en tapant sur la touche → située au-dessus de AC/ON).
+Attention <span style="font-family:monospace">S</span> n’est pas un point géométrique 
+mais la liste des coordonnées de l’intersection.</p><p>Question 2/
+On crée les points avec la commande <span style="font-family:monospace">point</span> du menu F4 * (3d)
+ou shift CATALOG taper le début de point et déplacer le curseur
+à la commande point.<br>
+point(-1,2,1)=&gt;A (taper ALPHA puis la touche de label A pour saisir A)</p><p>point(1,-1,2) =&gt; B</p><p>point(1,1,1) =&gt; C</p><p>[1,2,4] =&gt; n<br>
+<span style="font-style:italic">A</span>, <span style="font-style:italic">B</span>, <span style="font-style:italic">C</span> sont des objets géométriques 3d, qui sont représentés graphiquement
+lorsqu’on exécute la commande. Taper EXIT pour quitter la représentation
+graphique. Si vous voulez voir les trois points simultanément, taper
+dans une ligne de commande <br>
+A,B,C</p><p>Vous pouvez utiliser les touches 
+curseur pour changer de point de vue 3d, EXIT pour quitter.<br>
+(B-A)*n renvoie 0. La différence de 2 points est la liste
+des coordonnées du vecteur les reliant (<span style="font-style:italic">AB</span> ici), 
+et <span style="font-family:monospace">*</span> entre 2 vecteurs calcule leur produit scalaire.
+(C-A)*n renvoie aussi 0.
+Donc <span style="font-style:italic">n</span> est normal au plan.<br>
+subst(x+2y+4z,[x,y,z],coordonnees(A)) renvoie 7, 
+c’est la bonne constante.</p><p>Question 3/ <br>
+subst(x+2y+4z,[x,y,z],S) renvoie 35/2 donc le point <span style="font-style:italic">S</span> dont les
+coordonnées sont dans la variable <span style="font-family:monospace">S</span> n’est pas dans le plan <span style="font-style:italic">ABC</span>.</p><p>Question 4a/ <br>
+[-1,0,2]=&gt;H<br>
+H-S renvoie [-1/2,-1,-2] soit −<span style="font-style:italic">n</span>/2 et<br>
+subst(x+2y+4z,[x,y,z],H) renvoie 7.</p><p>Question 4b/ 
+distance(H,S) renvoie √<span style="text-decoration:overline">21</span>/2.</p><p><span style="font-weight:bold">Partie B</span><br>
+coordonnees(C)=&gt;c<br>
+c+k*(S-c)=&gt;M (représentation paramétrique des coordonnées de <span style="font-style:italic">M</span>)<br>
+(M-coordonnees(A))*(M-coordonnees(B))=&gt;eq (produit scalaire
+<span style="font-style:italic">AM</span>.<span style="font-style:italic">BM</span>)<br>
+solve(eq=0,k) renvoie <span style="font-family:monospace">list[(-6*sqrt(14)+12)/45,(6*sqrt(14)+12)/45]</span>, ou numériquement<br>
+fsolve(eq=0,k), il y a une seule solution sur le segment 
+(<span style="font-style:italic">k</span>=0.76...)</p>
+<!--TOC subsubsection id="sec20" Exercice 3-->
+<h4 id="sec20" class="subsubsection">3.3.3  Exercice 3</h4><!--SEC END --><p>
+1/ faux (Evident!) pour vérifier <br>
+limit((1+5^n)/(1+3^n),n,oo) renvoie +∞.</p><p>2/ N.B.: <span style="font-style:italic">w</span><sub>0</sub>==0 donc faux sur l’énoncé de l’apmep mis en lien, 
+mais sur le vrai sujet on a inégalité large, donc c’est vrai.
+Si on n’aime pass trop les inéquations, on peut montrer par récurrence que 
+<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>+3<sup><span style="font-style:italic">n</span></sup>−1 et conclure puisque 3<sup><span style="font-style:italic">n</span></sup>−1&gt;=0.
+En effet, KhiCAS permet de calculer l’expression explicite de <span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub> <br>
+rsolve(w(n+1)=3*w(n)-2n+3,w(n),w(0)=0) (rsolve est dans
+le menu F2) qui renvoie [<span style="font-style:italic">n</span>+3<sup><span style="font-style:italic">n</span></sup>−1]. Il suffit ensuite de le justifier.</p><p>3/ c’est concave en <span style="font-style:italic">A</span></p><p>4/ tabvar(ln(x)-x+1) (tabvar est dans le menu F4 Analyse,
+ou bien shift CATALOG taper le premières lettres de la commande).
+N.B. l’inégalité est large sur le “vrai” sujet. Donc vrai.</p>
+<!--TOC subsubsection id="sec21" Exercice 4-->
+<h4 id="sec21" class="subsubsection">3.3.4  Exercice 4</h4><!--SEC END --><p>
+<span style="font-weight:bold">Partie A lecture graphique</span><br>
+Cette partie d’énoncé avec un graphique sur papier millimétré qui fleure
+bon le 20ème siècle est prévu pour faire des lectures graphiques,
+sans calculatrices. Mais en exclusivité ici, comme on ne demande pas 
+de justifier dans cette partie, je vous explique comment le résoudre 
+avec des outils du 21ème siècle. <br>
+Il suffit en effet de lire l’énoncé jusqu’au bout pour obtenir 
+l’expression de <span style="font-style:italic">d</span>:<br>
+(12+x)*exp(-3/5*x) =&gt;v<br>
+integrate(v,x,0,t) =&gt; d (menu F2)<br>
+plot(d,t=0..15) (menu F3) permet de reproduire la figure pour
+vérifier la saisie.
+fsolve(d=15,t=2) renvoie 2.02..., en lecture graphique 2
+limit(d,t,oo) renvoie 205/9 soit environ 22.8
+v(x=4.7) vaut 0.99... donc en lecture graphique 1.</p><p><span style="font-weight:bold">Partie B</span><br>
+1a/ 
+desolve(y’+3/5*y=0) ou desolve(y’+0.6*y=0) (pour les 
+étourdis qui ont oublié que ça se résoud de tête, desolve est dans le 
+menu rapide F2).</p><p>1b/ desolve(y’+3/5*y=exp(-3/5*t))</p><p>1c/ desolve([y’+3/5*y=exp(-3/5*t),y(0)=12]) 
+(ou desolve(y’+3/5*y=exp(-3/5*t) and y(0)=12))
+renvoie <span style="font-family:monospace">t*exp(-3*t/5)+12*exp(-3*t/5)</span><br>
+Ou en approché<br>
+desolve([y’+0.6*y=exp(-0.6*t),y(0)=12])
+renvoie t*exp(-0.6*t)+12.0*exp(-0.6*t)</p><p>1d/ Pour trouver <span style="font-style:italic">v</span> sans se fatiguer à dériver, 
+on peut utiliser l’équation différentielle</p><p>2/ 
+v’=&gt;v1<br>
+normal(v1) renvoie le résultat de l’énoncé en exact<br>
+limit(v,x,oo) renvoie 0, on s’en doutait puisque <span style="font-style:italic">d</span> converge (graphiquement ou vers 205/9).<br>
+tabvar(v,x=0..oo) (menu F4 Analyse)<br>
+fsolve(v=1,x=4.7)=&gt;T permet de vérifier le résultat de la partie A (à recopier en 2d et 3)</p><p><span style="font-weight:bold">partie C</span>: les calculs ont déjà été faits:<br>
+normal(d)
+d(t=T) renvoie 20.94...
+on vérifie sur le graphique l’ordonnée du point <span style="font-style:italic">A</span>.</p><p>Remarque : ce modèle me semble partiellement sorti du chapeau, en effet 
+si la partie homogène de l’équation différentielle sur <span style="font-style:italic">v</span> 
+correspond au principe fondemental de la dynamique avec
+un frottement proportionnel à la vitesse, je ne vois
+pas ce que modélise le terme de forçage
+non homogène en <span style="font-style:italic">e</span><sup>−0.6<span style="font-style:italic">t</span></sup>, dépendant du temps compté à partir du moment
+où le chariot entre dans la zone de freinage. 
+Est-ce un habillage artificiel, le but étant d’avoir une solution particulière
+multipliée par <span style="font-style:italic">t</span> (-0.6 solution de l’équation caractéristique) ?</p>
+<!--TOC section id="sec22" Commandes usuelles de calcul formel-->
+<h2 id="sec22" class="section">4  Commandes usuelles de calcul formel</h2><!--SEC END -->
+<!--TOC subsection id="sec23" Développer et factoriser-->
+<h3 id="sec23" class="subsection">4.1  Développer et factoriser</h3><!--SEC END --><p>
+Depuis le catalogue, sélectionner le sous-menu <code>Algebre</code>
+ou tapez F1 :
+</p><ul class="itemize"><li class="li-itemize">
+<code>factor</code> : factorisation. Raccourci clavier <code>=&gt;*</code>
+(touche → puis *),
+par exemple x^4-1=&gt;*.
+Utiliser <code>cfactor</code> pour factoriser sur .
+</li><li class="li-itemize"><code>partfrac</code> : développement d’un polynôme ou
+décomposition en éléments simples pour une fraction. Raccourci
+clavier <code>=&gt;+</code> (touche → puis +), 
+par exemple  (x+1)^4=&gt;+ 
+ou 1/(x^4-1)=&gt;+.
+</li><li class="li-itemize"><code>simplify</code> : essai de simplifier une expression.
+Raccourci clavier <code>=&gt;/</code> (touche → puis /), 
+par exemple sin(3x)/sin(x)=&gt;/
+</li><li class="li-itemize"><code>ratnormal</code> : développer une expression,
+écrire une fraction sous forme irréductible.
+</li></ul>
+<!--TOC subsection id="sec24" Analyse-->
+<h3 id="sec24" class="subsection">4.2  Analyse</h3><!--SEC END --><p>
+Depuis le catalogue, sélectionner le sous-menu <code>Analyse</code>, ou
+tapez F2
+</p><ul class="itemize"><li class="li-itemize">
+<code>diff</code> : dérivation. On peut aussi utiliser la notation
+<code>'</code> (raccourci clavier F3) pour dériver par rapport à <span style="font-style:italic">x</span>, ainsi
+diff(sin(x),x) et sin(x)’ sont équivalents.
+Pour dériver plusieurs fois, ajouter le nombre de dérivations
+par exemple diff(sin(x^2),x,3).
+</li><li class="li-itemize"><code>integrate</code> : primitive si 1 ou 2 arguments,
+par exemple 
+integrate(sin(x)) ou integrate(1/(t^4-1),t)
+pour ∫1/<span style="font-style:italic">t</span><sup>4</sup>−1  <span style="font-style:italic">dt</span> <br>
+Calcul d’intégrale définie si 4 arguments, par
+exemple integrate(sin(x)^4,x,0,pi)
+pour ∫<sub>0</sub><sup>π</sup>sin(<span style="font-style:italic">x</span>)<sup>4</sup>  <span style="font-style:italic">dx</span>. Mettre une des bornes
+d’intégration sous forme approchée si on souhaite un calcul
+approché d’intégrale définie, par exemple
+integrate(sin(x)^4,x,0.0,pi)<br>
+Raccourci clavier shift F3.
+</li><li class="li-itemize"><code>limit</code> : limite d’une expression.
+Exemple limit((cos(x)-1)/x^2,x=0)<br>
+Pour une limite à droite [resp. à gauche], ajouter 1 [resp. -1]
+en dernier argument, par exemple
+limit(1/x,x=0,1)
+</li><li class="li-itemize"><code>tabvar</code> : tableau de variations d’une expression.
+Par exemple tabvar(x^3-7x+5)
+on peut vérifier avec le graphe plot(x^3-7x+5,x,-4,4)
+</li><li class="li-itemize"><code>taylor</code> et <code>series</code> : développement de Taylor
+(ou développement limité ou asymptotique). Par exemple
+taylor(sin(x),x=0,5)
+</li><li class="li-itemize"><code>sum</code> : somme discrète. Par exemple
+sum(k^2,k,1,n) calcule ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup> <span style="font-style:italic">k</span><sup>2</sup>,
+sum(k^2,k,1,n)=&gt;* calcule la somme et l’écrit sous
+forme factorisée.<br>
+Raccourci clavier ALPHA F3.
+</li></ul>
+<!--TOC subsection id="sec25" Résoudre-->
+<h3 id="sec25" class="subsection">4.3  Résoudre</h3><!--SEC END --><p>
+Depuis le catalogue, sélectionner le sous-menu <code>Resoudre</code>.
+</p><ul class="itemize"><li class="li-itemize">
+<code>solve</code> permet de résoudre de manière exacte
+une équation (se ramenant à une équation polynomiale).
+Il faut préciser la variable si ce n’est pas <code>x</code> par
+exemple solve(t^2-1=0,t). Si la
+variable est <code>x</code>, on peut écrire l’expression
+ou l’équation suivie de 2 appuis sur la touche →,
+par exemple <code>x^2-1=&gt;</code><br>
+Si la recheche exacte échoue, la commande <code>fsolve</code>
+permet de faire une résolution approchée, soit par
+une méthode itérative en partant d’une valeur
+initiale fsolve(cos(x)=x,x=0.0), soit par
+dichotomie fsolve(cos(x)=x,x=0..1).<br>
+Pour avoir des solutions complexes, utiliser <code>csolve</code>.<br>
+On peut faire des hypothèses sur la variable que l’on cherche,
+par exemple assume(m&gt;1) puis solve(m^2-4=0,m).
+</li><li class="li-itemize"><code>solve</code> permet aussi de résoudre des systèmes
+polynomiaux simples, on donne en 1er argument la liste des
+équations, en 2ème argument la liste des variables.
+Par exemple intersection d’un cercle et d’une droite
+solve([x^2+y^2+2y=3,x+y=1],[x,y])
+</li><li class="li-itemize"><code>linsolve</code> permet de résoudre des systèmes
+linéaires. On lui passe la liste des équations et la liste
+des variables (par convention une expression équivaut
+à l’équation expression=0). Par exemple
+linsolve([x+2y=3,x-y=7],[x,y])
+<code>linsolve</code> renvoie la solution générale du système 
+(y compris si la solution n’est pas unique).
+</li><li class="li-itemize"><code>desolve</code> permet de résoudre de manière exacte
+certaines équations différentielles, par exemple 
+pour résoudre <span style="font-style:italic">y</span>′=2<span style="font-style:italic">y</span>, on tape <code>desolve(y'=2y)</code>.<br>
+Un exemple où on indique une condition initiale, 
+la variable indépendante
+et la fonction inconnue :<br>
+<code>desolve([y'=2y,y(0)=1],x,y)</code>
+Utiliser <code>odesolve</code>
+pour une résolution approchée et <code>plotode</code> pour une
+représentation graphique de solution calculée de manière
+approchée. 
+</li><li class="li-itemize"><code>rsolve</code> permet de résoudre de manière exacte
+certaines relations de récurrences <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>,...),
+par exemple les suites arithmético-géométriques, par
+exemple <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=2<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+3, <span style="font-style:italic">u</span><sub>0</sub>=1
+rsolve(u(n+1)=2*u(n)+3,u(n),u(0)=1)
+</li></ul>
+<!--TOC subsection id="sec26" Arithmétique-->
+<h3 id="sec26" class="subsection">4.4  Arithmétique</h3><!--SEC END --><p>
+Lorsque cela est nécessaire,
+on distingue l’arithmétique des entiers de celle des polynômes
+par l’existence du préfixe <code>i</code> (comme <code>integer</code>) dans
+un nom de commande, par exemple <code>ifactor</code> factorise un entier
+(pas trop grand) alors que <code>factor</code> factorise un polynôme
+(et <code>cfactor</code> factorise un polynôme sur les complexes).
+Certaines commandes fonctionnent à la fois pour les entiers et
+les polynômes, par exemple <code>gcd</code> et <code>lcm</code>.</p>
+<!--TOC subsubsection id="sec27" Entiers-->
+<h4 id="sec27" class="subsubsection">4.4.1  Entiers</h4><!--SEC END --><p>
+Depuis le catalogue, sélectionner le sous-menu <code>Arithmetic, Crypto</code>
+</p><ul class="itemize"><li class="li-itemize">
+<code>iquo(a,b)</code>, 
+<code>irem(a,b)</code> quotient et reste de la division euclidienne
+de deux entiers.<br>
+iquo(23,13),irem(23,13)
+</li><li class="li-itemize"><code>isprime(n)</code> teste si <span style="font-style:italic">n</span> est un nombre premier.
+Le test est probabiliste pour de grandes valeurs de <span style="font-style:italic">n</span>.
+isprime(2^64+1)
+</li><li class="li-itemize"><code>ifactor(n)</code> factorise un entier pas trop grand
+(les algorithmes utilisés se limitent à la division et Pollard-ρ,
+il n’y avait pas de place pour le crible quadratique).
+Par exemple
+ifactor(2^64+1)<br>
+Raccourci clavier touches → puis * (<code>=&gt;*</code>)
+</li><li class="li-itemize"><code>gcd(a,b)</code>, <code>lcm(a,b)</code> PGCD et PPCM de deux entiers
+ou de deux polnômes<br>
+gcd(25,15),lcm(25,15)<br>
+gcd(x^3-1,x^2-1),lcm(x^3-1,x^2-1)
+</li><li class="li-itemize"><code>iegcd(a,b)</code> renvoie 3 entiers <span style="font-style:italic">u</span>,<span style="font-style:italic">v</span>,<span style="font-style:italic">d</span> tels que
+<span style="font-style:italic">au</span>+<span style="font-style:italic">bv</span>=<span style="font-style:italic">d</span> où <span style="font-style:italic">d</span> est le PGCD de <span style="font-style:italic">a</span> et <span style="font-style:italic">b</span>, avec |<span style="font-style:italic">u</span>|&lt;|<span style="font-style:italic">b</span>| et
+|<span style="font-style:italic">v</span>|&lt;|<span style="font-style:italic">a</span>|.<br>
+u,v,d:=iegcd(23,13); 23u+13v
+</li><li class="li-itemize"><code>ichinrem([a,m],[b,n])</code> lorsque cela est possible,
+renvoie <span style="font-style:italic">c</span> tel que <span style="font-style:italic">c</span>=<span style="font-style:italic">a</span> (mod <span style="font-style:italic">m</span> ) et <span style="font-style:italic">c</span>=<span style="font-style:italic">b</span> (mod <span style="font-style:italic">n</span> ) (si <span style="font-style:italic">m</span> et <span style="font-style:italic">n</span>
+sont premiers entre eux, <span style="font-style:italic">c</span> existe).
+c,n:=ichinrem([1,23],[2,13]); irem(c,23); irem(c,13)
+</li><li class="li-itemize"><code>powmod(a,n,m)</code> calcule <span style="font-style:italic">a</span><sup><span style="font-style:italic">n</span></sup> (mod <span style="font-style:italic">m</span> ) par
+l’algorithme de la puissance rapide modulaire.
+powmod(7,22,23)
+</li></ul><p>
+Les commandes <code>asc</code> et <code>char</code> permettent de convertir
+une chaine de caractères en liste d’entiers (entre 0 et 255) et
+réciproquement, ce qui permet de faire facilement de la cryptographie
+avec des messages sous forme de chaines de caractères.</p>
+<!--TOC subsubsection id="sec28" Polynômes-->
+<h4 id="sec28" class="subsubsection">4.4.2  Polynômes</h4><!--SEC END --><p>
+Depuis le catalogue, sélectionner le sous-menu <code>Polynomes</code>.
+La variable est par défaut <span style="font-style:italic">x</span>, sinon il faut la spécifier en
+général en dernier argument, par exemple <code>degree(x^2*y)</code>
+ou <code>degree(x^2*y,x)</code> renvoient 2, alors que <code>degree(x^2*y,y)</code>
+renvoie 1
+</p><ul class="itemize"><li class="li-itemize">
+<code>coeff(P,n)</code> coefficient de <span style="font-style:italic">x</span><sup><span style="font-style:italic">n</span></sup> dans <span style="font-style:italic">P</span>, <code>lcoeff(P)</code>
+coefficient dominant de <span style="font-style:italic">P</span>, par exemple
+P:=x^3+3x; coeff(P,1); lcoeff(P)
+</li><li class="li-itemize"><code>degre(P)</code> degré du polynôme <span style="font-style:italic">P</span>.
+degree(x^3)
+</li><li class="li-itemize"><code>quo(P,Q)</code>, <code>rem(P,Q)</code> quotient et reste de la division
+euclidienne de <code>P</code> par <code>Q</code>
+P:=x^3+7x-5; Q:=x^2+x; quo(P,Q); rem(P,Q)
+</li><li class="li-itemize"><code>proot(P)</code> : racines approchées de <span style="font-style:italic">P</span> (réelles et complexes)<br>
+proot(x^5+x+1)
+Représentation graphique :<br>
+point(proot(x^5+x+1))
+</li><li class="li-itemize"><code>interp(X,Y)</code> : pour deux listes
+de même taille, polynôme d’interpolation
+passant par les points (<span style="font-style:italic">X</span><sub><span style="font-style:italic">i</span></sub>,<span style="font-style:italic">Y</span><sub><span style="font-style:italic">i</span></sub>). <br>
+X,Y:=[0,1,2,3],[1,-3,-2,0]; P:=interp(X,Y)=&gt;+
+Représentation graphique<br>
+scatterplot(X,Y); plot(P,x,-1,4)
+</li><li class="li-itemize"><code>resultant(P,Q)</code> : résultant des polynômes
+<span style="font-style:italic">P</span> et <span style="font-style:italic">Q</span>
+P:=x^3+7x-5; Q:=x^2+x; resultant(P,Q)
+</li><li class="li-itemize"><code>hermite(x,n)</code> : n-ième polynôme de Hermite,
+orthogonal pour la densité <span style="font-style:italic">e</span><sup>−<span style="font-style:italic">x</span><sup>2</sup></sup><span style="font-style:italic">dx</span> sur 
+</li><li class="li-itemize"><code>laguerre(x,n,a)</code> : n-ième polynôme de Laguerre,
+</li><li class="li-itemize"><code>legendre(x,n)</code> : n-ième polynôme de Legendre,
+orthogonal pour la densité <span style="font-style:italic">dx</span> sur [−1,1]
+</li><li class="li-itemize"><code>tchebyshev1(n)</code> et <code>tchebyshev2(n)</code>
+polynômes de Tchebyshev de 1ère et 2ème espèce
+définis par :
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">T</span><sub><span style="font-style:italic">n</span></sub>(cos(<span style="font-style:italic">x</span>))=cos(<span style="font-style:italic">nx</span>),    <span style="font-style:italic">U</span><sub><span style="font-style:italic">n</span></sub>(cos(<span style="font-style:italic">x</span>))sin(<span style="font-style:italic">x</span>)=sin((<span style="font-style:italic">n</span>+1)<span style="font-style:italic">x</span>)</td></tr>
+</table>
+</li></ul>
+<!--TOC subsection id="sec29" Algèbre linéaire, vecteurs, matrices-->
+<h3 id="sec29" class="subsection">4.5  Algèbre linéaire, vecteurs, matrices</h3><!--SEC END --><p>
+Xcas ne fait pas de différence entre vecteur et liste. Par
+exemple pour faire le produit scalaire de deux vecteurs, on peut
+saisir :
+v:=[1,2]; w:=[3,4]
+dot(v,w)</p><p>Pour saisir une matrice élément par élément, taper
+sur shift-MATR et sélectionner <code>matrix</code> 
+ou F6, puis 10 (editer matrice). Vous pouvez ensuite
+créer une nouvelle matrice ou éditer
+une matrice existante parmi la liste de variables proposées. 
+Notez que la touche <code>,</code> permet d’insérer une ligne ou une colonne,
+alors que la touche d’effacement <code>DEL</code> efface la ligne ou la colonne de la
+sélection (tapez <code>UNDO</code> si vous avez effacé par erreur
+une ligne ou colonne).
+Pour de petites matrices, vous pouvez aussi
+entrer en ligne de commandes
+une liste de listes de même taille. Par exemple
+pour définir la matrice
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>=</td><td class="dcell">⎛<br>
+⎜<br>
+⎝</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >1</td><td style="text-align:center;white-space:nowrap" >2 </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >3</td><td style="text-align:center;white-space:nowrap" >4 </td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎠</td></tr>
+</table><p>
+on peut taper A:=[[1,2],[3,4]] 
+ou [[1,2],[3,4]]=&gt;A</p><p>Il est fortement conseillé de stocker les matrices dans des variables
+pour éviter de les saisir plusieurs fois.</p><p>Pour entrer une matrice dont les coefficients sont
+donnés par une formule définissant l’élément <span style="font-style:italic">a</span><sub><span style="font-style:italic">ij</span></sub>
+en fonction de la ligne <span style="font-style:italic">i</span> et colonne <span style="font-style:italic">j</span>,
+on peut utiliser la commande <code>matrix(</code>.
+Par exemple 
+matrix(2,2,(j,k)-&gt;1/(j+k+1)) 
+renvoie
+la matrice dont le coefficient ligne <span style="font-style:italic">j</span> et colonne <span style="font-style:italic">k</span> vaut
+1/<span style="font-style:italic">j</span>+<span style="font-style:italic">k</span>+1 (attention les indices commencent à 0). 
+Pour obtenir la commande <code>matrix(</code>, taper F4 (cmds) puis
+17 Matrices ou utiliser le raccourci shift-MATR, EXE, <code>AC/ON</code>.</p><p>La matrice identité de taille <span style="font-style:italic">n</span> 
+est renvoyée par la commande <code>idn(n)</code> (F4 17),
+alors que <code>ranm(n,m,loi,[parametres])</code> (menu shift-MATR ou F4 17)
+renvoie une matrice à coefficients aléatoires de taille <span style="font-style:italic">n</span>,<span style="font-style:italic">m</span>.
+Par exemple 
+U:=ranm(4,4,uniformd,0,1)
+N:=ranm(4,4,normald,0,1)</p><p>Pour exécuter une commande sur des matrices, s’il s’agit
+d’arithmétique de base (<code>+,-,*</code> inverse), on utilise
+les opérations au clavier. Pour les autres commandes.
+depuis le catalogue F4, sélectionner le sous-menu <code>Matrices</code>
+</p><ul class="itemize"><li class="li-itemize">
+eigenvals(A)
+eigenvects(A) 
+renvoient les valeurs
+propres et vecteurs propres d’une matrice carrée <span style="font-style:italic">A</span>. 
+</li><li class="li-itemize">P,D:=jordan(A) 
+calcule la forme normale de Jordan d’une matrice <span style="font-style:italic">A</span>
+(à coefficients exacts) et renvoie les matrices <span style="font-style:italic">P</span> et <span style="font-style:italic">D</span> telles que
+<span style="font-style:italic">P</span><sup>−1</sup><span style="font-style:italic">AP</span>=<span style="font-style:italic">D</span>, avec <span style="font-style:italic">D</span> triangulaire supérieure (diagonale si <span style="font-style:italic">A</span> est
+diagonalisable)
+</li><li class="li-itemize">Ak:=matpow(A,k) calcule la puissance <span style="font-style:italic">k</span>-ième
+d’une matrice <span style="font-style:italic">A</span> avec <span style="font-style:italic">k</span> une variable formelle.
+</li><li class="li-itemize"><code>rref</code> effectue la réduction sous forme échelonnée
+d’une matrice <span style="font-style:italic">A</span> (pivot de Gauss)
+</li><li class="li-itemize"><code>lu</code> calcule la décomposition <span style="font-style:italic">LU</span> d’une matrice <span style="font-style:italic">A</span>
+et renvoie une permutation de matrice <span style="font-style:italic">P</span> et deux matrices <span style="font-style:italic">L</span>
+triangulaire inférieure et <span style="font-style:italic">U</span> triangulaire supérieure telles que
+<span style="font-style:italic">PA</span>=<span style="font-style:italic">LU</span>. Le résultat de la commande 
+P,L,U:=lu(A) peut
+être passé en argument à la commande linsolve(P,L,U,v)
+pour résoudre un système <span style="font-style:italic">Ax</span>=<span style="font-style:italic">b</span> de matrice <span style="font-style:italic">A</span> en résolvant
+deux systèmes triangulaires (calcul en <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>2</sup>) au lieu
+de <span style="font-style:italic">O</span>(<span style="font-style:italic">n</span><sup>3</sup>)).
+</li><li class="li-itemize"><code>qr</code> calcule la décomposition <span style="font-style:italic">QR</span> d’une matrice <span style="font-style:italic">A</span>
+et renvoie deux matrices <span style="font-style:italic">Q</span> orthogonale et <span style="font-style:italic">R</span> triangulaire supérieure
+telles que <span style="font-style:italic">A</span>=<span style="font-style:italic">QR</span>.
+</li><li class="li-itemize"><code>svd(A)</code> calcule la factorisation en valeurs
+singulières d’une matrice <span style="font-style:italic">A</span>, et renvoie 
+<span style="font-style:italic">U</span> orthogonale, <span style="font-style:italic">S</span> vecteur des valeurs singulières, <span style="font-style:italic">Q</span>
+orthogonale tels que <code>A=U*diag(S)*tran(Q)</code>. Le rapport
+de la plus grande valeur singulière de <span style="font-style:italic">S</span> sur la plus petite
+donne le nombre de condition de <span style="font-style:italic">A</span> relativement à la norme euclidienne,
+plus ce nombre est grand, plus on perd en précision en résolvant
+un système <span style="font-style:italic">Ax</span>=<span style="font-style:italic">b</span> lorsque <span style="font-style:italic">b</span> n’est pas connu exactement.
+</li></ul>
+<!--TOC section id="sec30" Probabilités et statistiques-->
+<h2 id="sec30" class="section">5  Probabilités et statistiques</h2><!--SEC END -->
+<!--TOC subsection id="sec31" Tirages aléatoires-->
+<h3 id="sec31" class="subsection">5.1  Tirages aléatoires</h3><!--SEC END --><p>
+Depuis le catalogue F4, sélectionner le sous-menu <code>Probabilites</code>
+puis sélectionnez rand() (réel selon
+la loi uniforme dans [0,1]) ou 
+n:=6:; randint(n) 
+(entier
+entre 1 et <span style="font-style:italic">n</span>). De nombreuses autres fonctions aléatoires
+existent, avec comme préfixe <code>rand</code>, suivi par le nom
+de la loi, par exemple <code>randbinomial(n,p)</code> renvoie
+un entier aléatoire selon la loi binomiale de paramètres <span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>.
+Pour créer un vecteur ou une matrice aléatoire, utiliser la commande
+<code>ranv</code> ou <code>ranm</code> (menu F4 <code>Matrice</code> ou shift-MATR), 
+par exemple pour un vecteur de 10 composantes
+selon la loi normale centrée réduite 
+ranv(10,normald,0,1)</p>
+<!--TOC subsection id="sec32" Lois de probabilités-->
+<h3 id="sec32" class="subsection">5.2  Lois de probabilités</h3><!--SEC END --><p>
+Depuis F4, sélectionner le sous-menu <code>Probabilites</code>.
+Les lois proposées dans le catalogue sont la loi binomiale, la loi normale,
+la loi exponentielle et la loi uniforme. 
+D’autres lois sont disponibles mais il n’y a pas assez de place pour
+les documenter :
+<code>chisquared</code>, <code>geometric</code>, <code>multinomial</code>
+<code>studentd</code>, <code>fisherd</code>, <code>poisson</code>.</p><p>Pour obtenir la distribution cumulée d’une loi, on saisit le nom de la loi
+et le suffixe <code>_cdf</code> (sélectionner <code>cdf</code> dans le catalogue
+sous-menu Probabilités et taper F1). 
+Pour obtenir la distribution cumulée inverse,
+on saisit le nom de la loi et le suffixe <code>_icdf</code> 
+(sélectionner <code>cdf</code> dans le catalogue
+sous-menu Probabilités et taper F2).</p><p>Exemple : calcul de l’intervalle centré <span style="font-style:italic">I</span>
+pour la loi normale de moyenne 5000 et d’écart-type 200
+tel que la probabilité d’être en-dehors de <span style="font-style:italic">I</span> soit de 5% :
+M:=5000; S:=200; normald_icdf(M,S,0.025);normald_icdf(M,S,0.975)</p>
+<!--TOC subsection id="sec33" Statistiques descriptives 1-d-->
+<h3 id="sec33" class="subsection">5.3  Statistiques descriptives 1-d</h3><!--SEC END --><p>
+Ces fonctions agissent sur des listes
+par exemple l:=[9,11,6,13,17,10]
+Depuis le catalogue, sélectionner le sous-menu <code>Statistiques</code>.
+</p><ul class="itemize"><li class="li-itemize">
+mean(l) : moyenne arithmétique d’une liste
+</li><li class="li-itemize">stddev(l) : écart-type d’une liste<br>
+Utiliser
+stddevp(l) pour avoir un estimateur non biaisé
+de l’écart-type d’une population dont <code>l</code> est un échantillon
+</li><li class="li-itemize">median(l), quartile1(l), 
+quartile3(l)
+renvoient respectivement la médiane, le 1er et 3ème quartiles
+d’une liste
+</li></ul><p>
+Pour les statistiques 1-d de listes avec effectifs, on remplace
+<code>l</code> par deux listes de même longueur, la 1ère liste
+est la liste des valeurs de la série statistique, la 2ème
+liste est la liste des effectifs.
+Voir aussi les commandes du menu <code>Graphique</code> 
+<code>histogram</code> et <code>barplot</code>.</p>
+<!--TOC subsection id="sec34" Statistiques descriptives 2-d-->
+<h3 id="sec34" class="subsection">5.4  Statistiques descriptives 2-d</h3><!--SEC END --><p>
+Depuis le catalogue, sélectionner le sous-menu <code>Statistiques</code>.
+</p><ul class="itemize"><li class="li-itemize">
+<code>correlation(X,Y)</code> calcule la corrélation entre 
+2 listes de même taille.
+</li><li class="li-itemize"><code>covariance(X,Y)</code> calcule la covariance entre 
+2 listes de même taille.
+</li><li class="li-itemize">les commandes de suffixe <code>_regression(X,Y)</code> calculent
+des ajustements par régression au sens des moindres carrés,
+par exemple <code>linear_regression(X,Y)</code> renvoie
+les coefficients <span style="font-style:italic">m</span>,<span style="font-style:italic">p</span> de la droite de régression linéaire
+<span style="font-style:italic">y</span>=<span style="font-style:italic">mx</span>+<span style="font-style:italic">p</span>.<br>
+</li><li class="li-itemize"><code>linear_regression_plot(X,Y)</code> (respectivement
+toutes les commandes
+de suffixe <code>_regression_plot</code>) trace une droite (respectivement
+une courbe) d’ajustement des données contenues dans les listes
+<code>X,Y</code> de même taille.
+Ces commandes affichent
+de plus le coefficient <span style="font-style:italic">R</span><sup>2</sup> qui permet de quantifier la qualité
+de l’ajustement (plus <span style="font-style:italic">R</span><sup>2</sup> est proche de 1, meilleur est
+l’ajustement).
+</li></ul>
+<!--TOC section id="sec35" Graphes-->
+<h2 id="sec35" class="section">6  Graphes</h2><!--SEC END --><p>
+Pour obtenir une représentation graphique, on saisit une commande
+de tracé (ou plusieurs commandes séparées par <code>;</code>).
+Depuis le catalogue F4, sélectionner le sous-menu <code>Graphes</code>
+(7).
+</p><ul class="itemize"><li class="li-itemize">
+<code>plot(f(x),x=a..b)</code> graphe de <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) pour <span style="font-style:italic">x</span>∈ [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>].
+On peut spécifier un pas de discrétisation avec <code>xstep=</code>,
+par exemple plot(x^2,x=-4..4,xstep=1)
+</li><li class="li-itemize"><code>plotseq(f(x),x=[u0,a,b])</code> graphe “en toile d’araignée”
+de la suite récurrente <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>) de premier terme <span style="font-style:italic">u</span><sub>0</sub> donné.
+Par exemple si <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=√<span style="text-decoration:overline">2+</span><span style="text-decoration:overline"><span style="font-style:italic">u</span></span><sub><span style="text-decoration:overline"><span style="font-style:italic">n</span></span></sub>, <span style="font-style:italic">u</span><sub>0</sub>=6 avec une représentation
+sur [0,7]
+plotseq(sqrt(2+x),x=[6,0,7])
+</li><li class="li-itemize"><code>plotparam([x(t),y(t)],t=tm..tM)</code> courbe en paramétriques
+(<span style="font-style:italic">x</span>(<span style="font-style:italic">t</span>),<span style="font-style:italic">y</span>(<span style="font-style:italic">t</span>)) pour <span style="font-style:italic">t</span>∈ [<span style="font-style:italic">t</span><sub><span style="font-style:italic">m</span></sub>,<span style="font-style:italic">t</span><sub><span style="font-style:italic">M</span></sub>].
+On peut spécifier un pas de discrétisation avec <code>tstep=</code>
+par exemple
+plotparam([sin(2t),cos(3t)],t,0,2*pi)
+</li><li class="li-itemize"><code>plotpolar(r(theta),theta=a..b)</code> courbe
+en polaires <span style="font-style:italic">r</span>(θ) pour θ ∈ [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>],
+par exemple
+plotpolar(sin(3*theta),theta,0,2*pi)
+</li><li class="li-itemize"><code>plotlist(l)</code> pour une liste <code>l</code>,
+trace la ligne polygonale reliant
+les points de coordonnées (<span style="font-style:italic">i</span>,<span style="font-style:italic">l</span><sub><span style="font-style:italic">i</span></sub>) (indice <span style="font-style:italic">i</span> commençant à 0).<br>
+<code>plotlist([X1,Y1],[X2,Y2],...)</code> 
+trace la ligne polygonale reliant
+les points de coordonnées (<span style="font-style:italic">X</span><sub><span style="font-style:italic">i</span></sub>,<span style="font-style:italic">Y</span><sub><span style="font-style:italic">i</span></sub>) 
+</li><li class="li-itemize"><code>scatterplot(X,Y)</code>, <code>polygonscatterplot(X,Y)</code>
+pour 2 listes <code>X,Y</code> de même taille, trace un nuage de points
+ou une ligne polygonale reliant
+les points de coordonnées (<span style="font-style:italic">X</span><sub><span style="font-style:italic">i</span></sub>,<span style="font-style:italic">Y</span><sub><span style="font-style:italic">i</span></sub>) 
+</li><li class="li-itemize"><code>histogram(l,class_min,class_size)</code> trace
+l’histogramme des données de la liste <code>l</code> avec
+comme largeur de classe <code>class_size</code> en commençant
+à <code>class_min</code>. Par exemple, on peut tester la qualité
+du générateur aléatoire avec
+l:=ranv(500,normald,0,1); histogram(l,-4,0.25); plot(normald(x),x,-4,4)
+</li><li class="li-itemize"><code>plotcontour(f(x,y),[x=xmin..xmax,y=ymin..ymax],[l0,l1,...])</code>
+trace les courbes de niveaux <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=<span style="font-style:italic">l</span><sub>0</sub>, <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=<span style="font-style:italic">l</span><sub>1</sub>, ....
+</li><li class="li-itemize">(Graph 90)
+<code>plotfield(f(t,y),[t=tmin..tmax,y=ymin..ymax])</code>
+trace le champ des tangentes à l’équation différentielle
+<span style="font-style:italic">y</span>′=<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>,<span style="font-style:italic">y</span>). On peut ajouter en dernier paramètre
+optionnel <code>,plotode=[t0,y0]</code>
+pour tracer simultanément la solution passant par la condition
+initiale <span style="font-style:italic">y</span>(<span style="font-style:italic">t</span><sub>0</sub>)=<span style="font-style:italic">y</span><sub>0</sub>. Exemple <span style="font-style:italic">y</span>′=sin(<span style="font-style:italic">ty</span>) sur l’intervalle [−3,3]
+en temps et [−2,2] en <span style="font-style:italic">y</span><br>
+plotfield(sin(t*y),[t=-3..3,y=-3..3],plotode=[0,1])
+On peut aussi utiliser la commande <code>plotode</code> en-dehors d’une commande
+<code>plotfield</code>.<br>
+Sur la graph 35eii, 
+la mémoire est insuffisante pour utiliser <code>plotfield</code>
+avec l’option <code>plotode</code>.
+</li><li class="li-itemize">On peut tracer simultanément plusieurs graphiques, en séparant
+les commandes de tracé par <code>;</code>
+</li></ul><p>
+Lorsqu’un graphique comporte des tracés de courbes (graphes de
+fonction, courbes en paramétriques ou en polaires), le mode
+“trace” est activé par défaut sur χCAS en 2 addins pour Graph 90
+et sur χCAS pour Graph 35eii. Dans ce mode, l’appui sur la
+touche curseur vers la droite ou la gauche permet de déplacer
+un pointeur sur la courbe active, en affichant les coordonnées
+du pointeur (et du paramètre pour une courbe en paramétriques)
+et d’un vecteur tangent. S’il y a plusieurs arcs de courbe, les
+touches de curseur haut et bas permettent de changer l’arc d’étude.
+L’appui sur F2 permet d’afficher les informations sur la courbe
+courante, si on confirme par EXE on accède à un tableau de valeurs.</p><p>Le menu F1 étude de graphes (raccourci touche x,θ,t)
+permet d’ajouter un vecteur normal pointant vers le centre de courbure
+(F4),
+ou/et le cercle osculateur (F5) et le rayon de courbure. On peut
+aussi à partir de ce menu déplacer le pointeur vers une position déterminée, ou
+vers un point remarquable: racine, tangente horizontale ou verticale,
+point d’inflexion, intersection avec un autre arc de courbe 
+(fonctionnalité limitée à l’intersection de graphes de fonctions 
+sur la 35eii par manque de place). On peut
+enfin calculer une longueur d’arc ou l’aire sous la courbe entre
+le pointeur et la marque. </p><p>Lorsque vous faites une étude de courbe, les variables
+<code>X0,X1,X2,Y0,Y1,Y2</code>
+sont automatiquement affectées avec l’expression de la position, vitesse
+et accélération sur la courbe étudiée. Lors de la recherche
+d’une racine, tangente horizontale, inflexion, longueur d’arc, aire
+sous la courbe, des variables contenant la dernière recherche
+sont crées.</p><p>La touche OPTN vous permet de spécifier certaines options graphiques :
+</p><ul class="itemize"><li class="li-itemize">
+Pour modifier les couleurs des graphes, utiliser la touche OPTN
+et sélectionnez une couleur puis tapez F2 (Exemple 1) pour insérer
+<code>display=</code><em>couleur</em>, par exemple OPTN r e d F2 pour
+plot(sin(x),display=red)
+</li><li class="li-itemize">Pour changer l’épaisseur des segments (y compris les lignes
+polygonales utilisées pour tracer une courbe), utiliser
+<code>display=line_width_2</code> à <code>display=line_width_8</code>.
+OPTN l i puis curseur vers le bas si nécessaire puis F2
+Pour changer à la fois la couleur et l’épaisseur, additionnez les
+attributs, par exemple :
+<code>display=red+line_width_2</code>
+</li><li class="li-itemize">Les cercles ainsi que les polygones 
+peuvent être remplis avec l’attribut
+<code>display=filled</code> (qui peut s’additionner à d’autres attributs).
+</li><li class="li-itemize">Pour remplacer la fenêtre graphique calculée automatiquement
+par des valeurs prédéfinies, utiliser la touche OPTN,
+sélectionner <code>gl_x</code> ou/et <code>gl_y</code> et indiquer l’intervalle
+en <span style="font-style:italic">x</span> ou en <span style="font-style:italic">y</span> souhaité, la commande doit précder une
+commande de tracé. Par exemple 
+gl_x=-2..2;gl_y=-1..4;plot(exp(x))
+</li><li class="li-itemize">Pour enlever les axes, sélectionner <code>axes</code> puis taper F2 
+(<code>axes=0</code>). La commande doit précéder une commande de
+tracé.
+</li></ul>
+<!--TOC section id="sec36" L’éditeur d’expressions-->
+<h2 id="sec36" class="section">7  L’éditeur d’expressions</h2><!--SEC END --><p>
+Lorsqu’un calcul renvoie une expression, elle est affichée en plein 
+écran dans
+l’éditeur d’expression 2d. Depuis l’historique des calculs, si le niveau
+sélectionné est une expression, l’appui sur F3 (voir) affiche
+l’expression dans l’éditeur 2d. En ligne de commande, l’appui
+sur F3 (voir) ouvre aussi l’éditeur 2d, soit avec 0 si la ligne
+de commande était vide, ou avec le contenu de la ligne de commande si
+celle-ci est syntaxiquement correcte.</p><p>Lorsque l’éditeur 2d est ouvert, l’expression est affichée en
+plein écran et une
+partie de l’expression est sélectionnée. On peut alors agir sur
+la sélection en exécutant des commandes saisies via les menus
+ou le clavier, on peut aussi éditer la sélection (en mode de saisie
+1d). Ceci permet de retravailler des sous-expressions
+ou d’éditer une expression en écriture naturelle.</p><p>Exemple 1 : nous allons saisir 
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:center">lim</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span> → 0</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">sin(<span style="font-style:italic">x</span>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span></td></tr>
+</table></td></tr>
+</table><p>
+Depuis une ligne de commande vide, taper F3 (voir), vous devez voir 0 
+sélectionné. Tapez sur la touche x et EXE, maintenant c’est x qui
+est en surbrillance. Tapez sur la touche SIN, c’est sin(<span style="font-style:italic">x</span>) qui
+est en surbrillance. Tapez sur la touche de division (au-dessus de -), 
+vous devez voir sin(<span style="font-style:italic">x</span>)/0 avec 0 en surbrillance, tapez
+x puis EXE, vous devez voir sin(<span style="font-style:italic">x</span>)/<span style="font-style:italic">x</span> avec
+x au dénominateur en surbrillance. Tapez sur le curseur
+flèche vers le haut pour mettre sin(<span style="font-style:italic">x</span>)/<span style="font-style:italic">x</span> en surbrillance,
+puis F2 4 (pour limit). L’expression est correcte, vous pouvez taper EXE
+pour la recopier en ligne de commande and EXE again to eval it. 
+Si on avait voulu
+une limite en +∞, il aurait fallu déplacer la sélection
+avec curseur vers la droite, puis faire F1 8 (oo) EXE.</p><p>Exemple 2 : nous allons saisir
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">+∞</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span><sup>4</sup>+1</td></tr>
+</table></td><td class="dcell">  <span style="font-style:italic">dx</span> </td></tr>
+</table><p>
+Depuis une ligne de commande vide, taper F3 (voir), puis F2 3 (integrate),
+vous devez voir
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">1</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell"> 0  <span style="font-style:italic">dx</span></td></tr>
+</table><p>
+avec <span style="font-style:italic">x</span> sélectionné. Il faut donc changer le 1 de la borne supérieure
+et le 0 à intégrer. Pour modifier le 0, curseur vers la gauche pour
+le sélectionner puis <code>1/(x^4+1)</code> EXE, puis curseur vers
+la gauche F1 8 EXE. Taper sur EXE pour recopier vers la ligne
+de commande puis EXE pour effectuer le calcul, le résultat s’affiche
+dans l’éditeur 2d, EXE quitte l’éditeur avec dans l’historique
+l’intégrale et sa valeur (en syntaxe algébrique 1d).</p><p>Exemple 3 : nous allons calculer et simplifier 
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span><sup>4</sup>+1</td></tr>
+</table></td><td class="dcell">  <span style="font-style:italic">dx</span> </td></tr>
+</table><p>
+Depuis une ligne de commande vide, taper F3 (voir), puis F2 3 (integrate),
+vous devez voir
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">1</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell"> 0  <span style="font-style:italic">dx</span></td></tr>
+</table><p>
+Déplacez le curseur sur le 0 de la borne inférieure de l’intégrale
+et tapez sur la touche DEL, vous devez voir
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell">0  <span style="font-style:italic">dx</span></td></tr>
+</table><p>
+avec le tout sélectionné. Utilisez le curseur vers le bas
+pour sélectionner 0 et tapez <code>1/(x^4+1)</code> EXE puis EXE pour
+recopier en ligne de commande puis EXE pour exécuter le calcul,
+le résultat s’affiche maintenant dans l’éditeur 2d.<br>
+On peut alors sélectionner avec les touches du curseur par exemple
+l’argument d’un des arctangentes et exécuter F1 EXE (simplify) 
+pour effectuer une simplification partielle du résultat, puis
+recommencer avec l’autre arctangente.<br>
+On peut simplifier encore plus, en rassemblant les logarithmes. Pour
+cela il faut d’abord échanger deux des arguments de la somme. 
+Sélectionnez un des logarithmes avec des déplacements du curseur,
+puis tapez
+</p><ul class="itemize"><li class="li-itemize">
+Graph 90: shift-curseur droit ou gauche
+</li><li class="li-itemize">Graph 35: F5 curseur droit ou gauche, ensuite ALPHA
+</li></ul><p>
+cela échange l’argument sélectionné avec son frère de droite ou
+de gauche. Tapez ensuite 
+ALPHA curseur vers la droite ou vers la gauche, ceci augmente la
+sélection en ajoutant le frère de droite ou de gauche.
+Une fois les deux logarithmes sélectionnés, menu F1 2 EXE (factor), puis
+descendez la sélection sur la somme ou différence de logarithmes,
+allez dans le menu F4 (cmds) puis EXE (Tout), tapez les lettres l, n, c
+ce qui déplace à la première commande commençant par <code>lnc</code>,
+sélectionnez <code>lncollect</code>, validez et tapez enfin sur F6 (eval).</p>
+<!--TOC section id="sec37" Sessions de calculs-->
+<h2 id="sec37" class="section">8  Sessions de calculs</h2><!--SEC END -->
+<!--TOC subsection id="sec38" Edition de l’historique.-->
+<h3 id="sec38" class="subsection">8.1  Edition de l’historique.</h3><!--SEC END --><p>
+En utilisant la touche curseur vers le haut/bas, on se déplace dans
+l’historique des calculs, le niveau courant est en surbrillance. </p><p>Pour modifier l’ordre des niveaux dans l’historique des calculs,
+tapez ALPHA-curseur vers le haut ou vers le bas.
+Pour effacer un niveau, appuyez sur la touche DEL (le niveau
+est recopié dans le presse-papiers).</p><p>Pour
+modifier un niveau existant, on tape sur F3 ou sur ALPHA-F3. Dans le
+premier cas, c’est l’éditeur 2d qui est appelé si le niveau
+est une expression, dans le
+deuxième cas, c’est l’éditeur texte qui est appelé.
+Taper EXIT pour annuler les modifications ou EXE pour valider.
+Si les modifications sont validées, les lignes de commande situées
+en-dessous de la ligne modifiée seront automatiquement calculées,
+tenant compte des modifications, par exemple si vous modifiez un niveau
+comme <code>A:=1</code>, les lignes situées en-dessous dépendant de <code>A</code>
+seront actualisées.</p><p>Ce processus peut être automatisé en utilisant un curseur,
+que l’on peut créer avec un assistant, depuis le menu F6,
+Parameter. Une fois créé, vous pouvez modifier un curseur
+en tapant sur les touches + ou - lorsque le niveau contenant
+la commande <code>assume</code> ou <code>parameter</code> est sélectionné
+(tapez * ou / pour une modification plus rapide).</p>
+<!--TOC subsection id="sec39" Variables-->
+<h3 id="sec39" class="subsection">8.2  Variables</h3><!--SEC END --><p>
+En appuyant sur la touche <code>VARS</code> vous affichez la liste
+des variables qui ont une valeur, ainsi que des commandes de gestion
+de variables. Déplacez le curseur vers une variable puis EXE pour
+la recopier en ligne de commande, DEL copie en ligne de commande
+la commande d’effacement de la variable (confirmez ensuite avec EXE).
+La commande <code>restart</code> permet d’effacer toutes les variables.
+La commande <code>assume</code> permet de faire une hypothèse sur
+une variable, par exemple <code>assume(x&gt;5)</code> (<code>&gt;</code> se trouve
+dans le menu shift-PRGM).</p>
+<!--TOC subsection id="sec40" Sauvegarde et échange de sessions avec Xcas.-->
+<h3 id="sec40" class="subsection">8.3  Sauvegarde et échange de sessions avec Xcas.</h3><!--SEC END --><p>
+Depuis l’historique des calculs, avec le menu F6, vous pouvez sauvegarder
+une session de travail sur la mémoire de stockage de la
+calculatrice. Les fichiers ont comme extension <code>xw</code>.
+Vous pouvez alors sauvegarder ces fichiers sur votre ordinateur en
+connectant la calculatrice comme clef USB (choix F1), depuis
+l’explorateur de fichiers de votre ordinateur.</p><p>Ces fichiers sont compatibles avec Xcas et Xcas pour Firefox. Vous
+pouvez ouvrir une session depuis le menu Fich, Ouvrir de Xcas
+ou depuis le bouton Charger/Parcourir de la page de 
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/xcasfr.html">Xcas pour Firefox</a>.
+Vous pouvez sauvegarder des sessions Xcas et Xcas pour Firefox au format
+<code>xw</code> dans le menu Fich, Exporter comme Khicas de Xcas, 
+ou le bouton Export de Xcas pour Firefox.</p>
+<!--TOC section id="sec41" Programmation-->
+<h2 id="sec41" class="section">9  Programmation</h2><!--SEC END --><p>
+Vous pouvez programmer en utilisant
+les structures de commande en français de Xcas
+ou en utilisant la compatibilité de
+syntaxe Python. Les programmes très courts (en une ligne)
+peuvent être saisis directement en ligne de commande. Les
+programmes plus longs ou que l’on souhaite sauvegarder
+seront saisis dans l’éditeur de programmes sur
+la calculatrice, ou bien transférés depuis un PC ou
+une autre calculatrice.</p>
+<!--TOC subsection id="sec42" Utilisation en exemples-->
+<h3 id="sec42" class="subsection">9.1  Utilisation en exemples</h3><!--SEC END --><p>
+<span style="font-weight:bold">Un premier exemple en ligne de commande </span>:<br>
+une fonction définie par une expression algébrique. On
+saisit <code>nom_fonction(parametres):=expression</code>
+Par exemple, pour définir le périmètre d’un cercle de
+rayon <span style="font-style:italic">r</span>, on peut taper
+peri(r):=2*pi*r
+puis on peut calculer peri(1).
+Pour saisir <code>:=</code> on peut utiliser le raccourci
+shift-→ ou shift-INS selon la version de χCAS.</p><p><span style="font-weight:bold">Autre exemple, pour calculer l’intervalle de confiance de seconde</span>
+connaissant une fréquence <span style="font-style:italic">p</span> et un effectif <span style="font-style:italic">n</span>, on tape<br>
+F(P,N):=[P-1/sqrt(N),P+1/sqrt(N)]<br>
+puis on teste F(0.4,30)</p><p><span style="font-weight:bold">Autre exemple : avec la tortue de Xcas</span><br>
+La tortue de Xcas est un petit robot qui se déplace selon des 
+ordres qui lui sont donnés en laissant une trace de son passage.
+Les commandes de la tortue sont accessibles depuis le dernier item
+du menu F6, ou par le raccourci shift-QUIT.
+Saisir la commande <span style="font-family:monospace">avance</span> dans ce menu puis valider, vous
+devez voir la tortue (symbolisée par un triangle) avancer de 10 pixels.
+Taper EXIT pour revenir en ligne de commande.
+Saisir la commande <code>tourne_gauche</code> et valider, la tortue a tourné
+de 90 degrés. Répéter
+3 fois ces deux commandes pour afficher un carré.<br>
+Pour effacer le dessin et ramener la tortue à l’origine,
+saisir la commande <span style="font-family:monospace">efface</span>.
+Pour faire des dessins tortue, il est conseillé d’utiliser l’éditeur
+de programmes (cf. ci-dessous).</p><p><span style="font-weight:bold">Autre exemple : une boucle “oneliner” en syntaxe Xcas.</span><br>
+Tapez shift-PRGM, puis sélectionnez l’exemple
+de <code>pour (boucle Xcas)</code><br>
+pour j de 1 jusque 10 faire print(j,j^2); fpour;
+tapez sur EXE, vous devez voir les carrés des entiers de 1 à 10.</p><p><span style="font-weight:bold">Exercice :</span> faire faire un carré à la tortue en utilisant
+une boucle.</p><p><span style="font-weight:bold">Utilisation de l’éditeur</span><br>
+Modifions cet exemple pour faire afficher les carrés de 1 à <span style="font-style:italic">n</span>
+en utilisant la syntaxe compatible Python et
+l’éditeur de programmes. Vérifiez que la syntaxe Python
+est cochée (F6 ou shift-SETUP), sinon cochez-la.
+Tapez F6 (Fich,Cfg) puis sélectionner
+Editeur script
+pour ouvrir l’éditeur. S’il n’y a pas encore de script,
+on vous propose de choisir entre Tortue ou Programme, sélectionnez
+Programme, vous devriez obtenir
+<code>def session(x):</code>. Remplacez <code>session</code> par <code>f</code> et
+<code>x</code> par <code>n</code>, puis 
+déplacez le curseur en fin de ligne et passez à la
+ligne (shift-EXE).
+Tapez Shift-PRGM puis <code>1 for</code>, placez le curseur entre <code>for</code>
+et <code>in</code> et tapez F5 j, placez le curseur entre les parenthèses
+de <code>range</code> tapez <code>1,n+1</code> puis
+déplacez le curseur à la ligne suivante
+F4 (cmds), EXE (<code>1 Tout</code>), P, R, déplacez
+la surbrillance avec le curseur vers le bas jusque <code>print</code> 
+et validez (EXE), puis tapez <code>j,j^2)</code> (F5 j ALPHA , F5 j ALPHA <span style="font-style:italic">x</span><sup>2</sup>). 
+Vous devriez avoir le programme suivant :
+
+def f(n):
+for j in range(1,n+1):
+print(j,j**2)
+return 
+
+N.B.: pour la puissance, on peut utiliser <code>^</code> ou <code>**</code> dans 
+KhiCAS (sauf si on a exécuté la commande <code>python_compat(2)</code>),
+notez qu’il faut utiliser <code>**</code> en Python.</p><p>Maintenant, tapez F6 (Fich,Cfg) et sélectionnez <code>1. Tester syntaxe</code>
+ou tapez EXE.
+Si tout va bien, vous devez voir <code>Syntaxe correcte</code> 
+dans la ligne d’état.
+Sinon, le numéro de ligne de la première erreur est indiqué ainsi que
+le mot qui a provoqué l’erreur. Le curseur est positionné sur la ligne
+où l’erreur a été détectée (il peut arriver que l’erreur soit 
+située avant mais détectée un peu plus loin seulement). Si vous
+utilisez la syntaxe en Python, notez que les structures de programmation
+sont traduites en langage Xcas, les erreurs affichées le sont par
+rapport à cette traduction (donc des mots-clefs de fin de structure
+comme <code>end</code> rajoutés par le traducteur
+peuvent apparaitre dans le message d’erreur).</p><p>Si le programme est syntaxiquement correct, vous pouvez le sauvegarder
+depuis le menu F6 (File). Pour l’exécuter, revenez à la
+ligne de commande en tapant la touche EXIT. En tapant la touche
+VARS, <code>f</code> doit apparaitre, sélectionnez <code>f</code>
+puis complétez pour obtenir par
+exemple la commande <code>f(10)</code>, puis EXE, vous devriez voir s’afficher
+les carrés de 1 à 10.</p><p><span style="font-weight:bold">3ième exemple : Calcul de l’intervalle de confiance de terminale S</span><br>
+On peut le saisir en ligne de commande
+F(P,N):=[P-1.96*sqrt(P*(1-P)/N),P+1.96*sqrt(P*(1-P)/N)]
+On peut éviter les calculs redondants en utilisant une variable
+locale (utiliser shift-PRGM pour saisir def et return)<br>
+
+def F(P,N):
+D=1.96*sqrt(P*(1-P)/N)
+return [P-D,P+D]
+</p><p><span style="font-weight:bold">Exercice </span> Créez une nouvelle session contenant
+un script pour afficher un carré avec la tortue.
+Créez ensuite une fonction <code>f</code> d’argument <span style="font-style:italic">n</span>
+pour afficher un carré de <span style="font-style:italic">n</span> pixels.</p><p><span style="font-weight:bold">Solution </span>
+Faire F6, Nouvelle session, taper <code>carre</code> puis F6, Editeur script,
+choisir Tortue ce qui crée un script contenant
+l’instruction <code>efface</code>. Ajouter 4 fois <code>avance; tourne_gauche;</code>.
+Appuyer sur EXE pour tester.
+Quitter avec EXIT (et sauvegardez avec F1).</p><p>Taper EXIT. Modifiez avant la ligne <code>efface</code> en
+</p><pre class="verbatim">def f(n):
+  for j in range(4):
+    avance(n)
+    tourne_gauche
+</pre><p>
+puis après la ligne <code>efface;</code> tapez par exemple <code>f(40)</code>
+puis F6 1 Tester syntaxe ou EXE.</p><p><span style="font-weight:bold">Un exemple de fonction non algébrique : le calcul du PGCD de 2 entiers.</span><br>
+Utiliser shift-EXE pour passer à la ligne. Le caractère <code>!</code>
+est accessible depuis le menu <code>Programmation_cmds</code> (F4 10, 
+raccourci F4 0).
+En syntaxe Xcas 
+
+fonction pgcd(a,b)
+tantque b!=0 faire
+a,b:=b,irem(a,b);
+ftantque;
+return a;
+ffonction
+
+Le même en syntaxe Python 
+
+def pgcd(a,b):
+while b!=0:
+a,b=b,irem(a,b)
+return a
+
+On vérifie pgcd(12345,3425)</p><p><span style="font-weight:bold">Mise au point</span><br>
+Depuis l’historique des calculs,
+la commande <code>debug</code> (disponible depuis shift-PRGM) permet 
+d’exécuter une fonction en mode pas-à-pas, i.e.
+visualiser l’évolution des variables instruction par instruction,
+par exemple<br>
+<code>debug(pgcd(12345,3425))</code></p>
+<!--TOC subsection id="sec43" Quelques exemples-->
+<h3 id="sec43" class="subsection">9.2  Quelques exemples</h3><!--SEC END --><p>
+Vous trouverez
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/sessions">en ligne</a> des exemples de sessions
+dont certains sont des TP pour classes de seconde de l’IREM de Grenoble.</p>
+<!--TOC subsection id="sec44" Commandes utilisables-->
+<h3 id="sec44" class="subsection">9.3  Commandes utilisables</h3><!--SEC END --><p>
+Contrairement aux adaptations de MicroPython proposées par
+les constructeurs (dont
+celui de la Casio Graph 90+e), la programmation en (simili-)Python 
+dans KhiCAS n’est pas une application indépendante. 
+Vous pouvez donc utiliser tous les types
+de Xcas (par exemple les rationnels) et appliquer toutes
+les commandes de Xcas dans vos programmes. Ceci correspond
+plus ou moins à un environnement Python avec les modules
+<code>math</code>, <code>cmath</code>, <code>random</code> (plus complet
+que le module <code>urandom</code> fourni par les constructeurs),
+<code>scipy</code>, <code>numpy</code>, un petit module de graphiques
+pixelisé 
+(<code>set_pixel(x,y,c)</code>, <code>set_pixel()</code>
+pour synchroniser l’affichage, <code>clear()</code>,
+<code>draw_line(x1,y1,x2,y2,c)</code>, 
+<code>draw_polygon([[x1,y1],[x2,y2],...],c)</code>,
+<code>draw_rectangle(x,y,w,h,c)</code>, <code>draw_circle(x,y,r,c)</code>,
+la couleur+epaisseur+remplissage <code>c</code> est un paramètre optionnel,
+<code>draw_arc(x,y,rx,ry,t1,t2,c)</code> permet de tracer un arc
+d’ellipse).
+et pour remplacer <code>matplotlib</code> on peut utiliser
+les commande graphiques dans un repère de χCAS
+(<code>point</code>, <code>line</code>, <code>segment</code>, <code>circle</code>,
+<code>barplot</code>, <code>histogram</code> et les commandes <code>plot...</code>).
+De plus, vous pouvez travailler avec des expressions et faire
+du calcul formel dessus.
+La liste complète des commandes portées se trouve en annexe,
+pour une présentation détaillée, on renvoie à la documentation
+de Xcas.</p>
+<!--TOC section id="sec45" Raccourcis claviers.-->
+<h2 id="sec45" class="section">10  Raccourcis claviers.</h2><!--SEC END --><p> <a id="sec:raccourcis"></a>
+</p>
+<!--TOC subsection id="sec46" KhiCAS 90 et 50 (version en 2 fichiers)-->
+<h3 id="sec46" class="subsection">10.1  KhiCAS 90 et 50 (version en 2 fichiers)</h3><!--SEC END --><p>
+Ces raccourcis sont utilisables dans le shell et l’éditeur texte
+</p><ul class="itemize"><li class="li-itemize">
+shift INS: table de caractères
+</li><li class="li-itemize">F1 à F6, shift-F1 à shift F6: selon le bandeau en bas
+</li><li class="li-itemize">OPTN: menu rapide des options de couleur
+</li><li class="li-itemize">shift-OPTN: commandes de programmation
+</li><li class="li-itemize">VARS: liste des variables
+</li><li class="li-itemize">shift-PRGM: menu rapide utile en programmation
+</li><li class="li-itemize">MENU: retour au menu principal Casio
+</li><li class="li-itemize">shift-SETUP: configuration
+</li><li class="li-itemize">EXIT: passage du shell à l’éditeur et réciproquement
+</li><li class="li-itemize">shift-EXIT: affiche l’écran de la tortue logo
+</li><li class="li-itemize">ALPHA-EXIT: si le mode alpha n’est pas verrouillé, affiche le dernier graphe 2d ou 3d
+</li><li class="li-itemize">shift angle: menu rapide géométrie 
+</li><li class="li-itemize">fraction: menu rapide polynômes dans le shell, indentation
+dans l’éditeur, force l’évaluation dans le tableur
+</li><li class="li-itemize">shift-fraction: aide/complétion
+</li><li class="li-itemize">touche S↔D: applications additionnelles
+(tableur, finance, ...). Dans le tableur, affiche les graphes du tableur.
+</li><li class="li-itemize">shift <code>,</code>: <code>;</code>
+</li><li class="li-itemize">shift →: <code>:=</code> ou <code>:</code> selon l’interpréteur
+Xcas ou Python
+</li><li class="li-itemize">AC/ON: annule la sélection ou annule la recherche, sinon
+efface la ligne courante et la copie dans le presse-papier
+</li><li class="li-itemize">shift CAPTURE: sauve la session ou le fichier texte courant
+</li><li class="li-itemize">shift CLIP: début de sélection de zone ou copie de
+sélection dans le presse-papier
+</li><li class="li-itemize">shift PASTE: colle le presse-papier
+</li><li class="li-itemize">shift CATALOG: liste toutes les commandes Xcas
+</li><li class="li-itemize">shift FORMAT: commandes de programmation
+</li><li class="li-itemize">shift 6: menu rapide avec <code>&lt;&gt;_!</code> et <code>comb, rand, binomial,  normald</code>
+</li><li class="li-itemize">shift List: menu rapide liste
+</li><li class="li-itemize">shift Mat: menu rapide matrice
+</li><li class="li-itemize">shift 3: menu rapide algèbre (bi-)linéaire
+</li><li class="li-itemize">shift EXE: passe à la ligne dans l’éditeur
+</li></ul><p>
+Les raccourcis claviers ouvrant un menu rapide sont configurables, en
+éditant le fichier <code>FMENU.py</code>. Pour revenir à la
+configuration par défaut, effacez ce fichier depuis l’application
+Memory de la Casio.</p>
+<!--TOC subsection id="sec47" KhiCAS (version courte en 1 fichier)-->
+<h3 id="sec47" class="subsection">10.2  KhiCAS (version courte en 1 fichier)</h3><!--SEC END --><ul class="itemize"><li class="li-itemize">
+F1 à F3 : selon les légendes
+</li><li class="li-itemize">F4: catalogue de commandes.
+</li><li class="li-itemize">F5: passage majuscules minusucules. Si le mode alphabétique
+n’est pas actif, bloque le clavier en mode alpha minuscule.
+</li><li class="li-itemize">F6: menu Fichier et configuration.
+</li><li class="li-itemize"><code>(-)</code>: dans l’éditeur de programmes,
+renvoie le caractère <code>_</code>. 
+</li><li class="li-itemize">shift PRGM: commandes de programmation
+</li><li class="li-itemize">OPTN: toutes les options 
+</li><li class="li-itemize">shift-QUIT: commandes tortues
+</li><li class="li-itemize">shift-List: commandes et édition de listes
+</li><li class="li-itemize">shift-Mat: commandes et édition de matrices
+</li><li class="li-itemize">touche angle: commande nombres complexes
+</li><li class="li-itemize">touche fraction: indentation dans l’éditeur, menu
+divers dans l’historique
+</li><li class="li-itemize">touche fraction shiftée (jaune): graphes
+</li><li class="li-itemize">touche r rouge: <code>abs</code>
+</li><li class="li-itemize">touche θ rouge: <code>arg</code>
+</li><li class="li-itemize">touche S↔D: commandes sur les nombres réels
+</li><li class="li-itemize">touche S↔D shiftée (jaune): commandes sur les entiers
+</li><li class="li-itemize">Shift-INS (touche DEL): <code>:=</code>
+</li><li class="li-itemize">Depuis le shell, taper sur la touche flèche vers le bas 
+pour obtenir de l’aide ou/et complétion.
+Depuis l’éditeur de programmes, taper sur shift touche de fraction (G).
+</li></ul><p>Dans l’éditeur de programmes :
+</p><ul class="itemize"><li class="li-itemize">
+touches curseur shiftées: déplacement en début/fin de ligne/fichier.
+</li><li class="li-itemize">shift CLIP: sélection. Déplacer le curseur à l’autre
+extrémité puis taper sur DEL pour effacer la sélection
+et la copier dans le presse-papier ou à nouveau sur
+shift CLIP pour copier la sélection sans l’effacer.
+Taper sur AC/ON pour annuler.
+</li><li class="li-itemize">EXE: si une recherche/remplacement
+de mot est active (après avoir fait F6 6),
+recherche l’occurence suivante d’un mot. Sinon, teste la syntaxe.
+</li><li class="li-itemize">shift EXE: passe à la ligne
+</li><li class="li-itemize">DEL efface le caractère précédent ou la sélection.
+</li><li class="li-itemize">shift PASTE: copie le presse-papier
+</li><li class="li-itemize">AC/ON: annule la sélection ou annule la recherche, sinon
+efface la ligne courante et la copie dans le presse-papier
+</li><li class="li-itemize">EXIT: quitte l’éditeur et revient en ligne de commandes. On
+peut revenir ensuite à l’éditeur en tapant à nouveau EXIT.
+</li></ul>
+<!--TOC section id="sec48" Remarques-->
+<h2 id="sec48" class="section">11  Remarques</h2><!--SEC END --><p>
+Pour éteindre la Graph 90 depuis KhiCAS, taper d’abord 
+sur la touche MENU puis shift ON. Lorsque vous rallumez la
+calculatrice, taper sur MENU.</p><p>Pour connecter la Graph 90 au PC comme une clef USB lorsqu’on
+est dans KhiCAS, il faut 
+taper sur une touche après avoir tapé sur F1, sinon
+rien ne se passe.</p><p>Si χCAS se bloque dans un long calcul, essayez de taper sur la
+touche AC/ON. Si cela n’a pas d’effet, vous pouvez toujours
+réinitialiser la calculatrice avec le bouton reset à l’arrière.</p><p>Si χCAS plante avec un affichage du type SYSTEM ERROR, etc.
+essayez de taper sur la touche MENU puis de lancer une autre application,
+si tout se passe bien, vous pourrez sauvegarder votre session et
+relancer χCAS sans avoir à effectuer une réinitialisation
+complète. En cas de problèmes persistants, 
+depuis le MENU principal, ouvrir l’application Mémoire, puis F2
+(mémoire de stockage) puis effacez le fichier <code>session.xw</code>
+(déplacez le curseur sur le fichier, puis F1 pour SELECT puis
+F6 pour DELETE). Si χCAS90 se lance (la version en deux fichiers), 
+vous pouvez aussi depuis le menu F6 sélectionner le dernier item 
+Quit et choisir la réinitialisation de KhiCAS.</p><p>Vous disposez dorénavant d’environ 500K pour vos données sur une Graph 90
+(ce qui permet de travailler assez confortablement)
+et de 58K sur une Graph 35eii (ce qui est vite rempli).
+Sur la Graph 90, il est conseillé d’ouvrir le menu VARS de temps
+en temps, si vous constatez que la mémoire disponible descend en-dessous
+des 100K, relancez χCAS (touche MENU, puis ouvrir n’importe
+quelle autre application puis MENU et réouvrir χCAS).</p>
+<!--TOC section id="sec49" Version plus complète (en 2 fichiers)-->
+<h2 id="sec49" class="section">12  Version plus complète (en 2 fichiers)</h2><!--SEC END --><p> <a id="sec:2"></a>
+Cette version de χCAS en deux fichiers contient un portage de
+MicroPython avec plusieurs modules utiles pour l’enseignement, plus de 
+commandes de Xcas, en particulier des commandes de géométrie,
+d’algèbre avancée, le support de flottants avec grande
+précision, un moteur d’affichage 3d. Le menu Fichier permet d’accéder
+à des applications additionnelles : tableur formel, géométrie,
+finance, table périodique des éléments ...</p><p>Pour installer cette version plus complète, cf. la section
+<a href="#sec%3Ainstall">1</a>. </p>
+<!--TOC subsection id="sec50" MicroPython 1.12-->
+<h3 id="sec50" class="subsection">12.1  MicroPython 1.12</h3><!--SEC END --><p>
+Pour passer du shell de Xcas à celui de MicroPython, tapez
+shift-SETUP et sélectionnez MicroPython. 
+Lorsque MicroPython est actif, les menus sont sur fonds
+jaune-brun, sinon sur fonds rose (Xcas) ou bleu (Xcas compatible Python).
+Les modules disponibles sont: turtle (version plus complète que
+celle de Casio, avec en particulier la possibilité de remplir des formes),
+graphic (version plus complète de casioplot, avec compatibilité
+Numworks), matplotl (graphes repérés), 
+arit (arithmétique entière), linalg/numpy (algèbre linéaire),
+ulab (compatibilité scipy), cas (calcul formel dans Python).</p>
+<!--TOC subsection id="sec51" Graphes 3d et 4d-->
+<h3 id="sec51" class="subsection">12.2  Graphes 3d et 4d</h3><!--SEC END --><p>
+Cette version de χCAS en deux fichiers contient 
+toutes les commandes de base de Xcas de géométrie 2d et 3d. 
+On peut en particulier tracer des graphes de fonction de 2 variables,
+des cones, des plans, etc. Par exemple tapez 
+<code>F4 * 5 F2</code> pour sélectionner un exemple de cube
+ou <code>shift F4 1</code> pour sélectionner la commande plot,
+puis tapez <code>x^2-y^2</code>.</p><p>Pour tracer rapidement le graphe d’une fonction de ℂ dans
+ℂ, on peut utiliser la commande <code>plot</code> avec
+en argument une fonction de 2 variables (partie réelle
+et imaginaire) à valeurs complexes,
+par exemple <code>plot((x+i*y)^2-9)</code> ou pour les fonctions
+holomorphes/méromorphes ayant une expression en fonction de la variable
+complexe sans passer par partie réelle et imaginaire,
+on peut utiliser la commande <code>plot3d</code> par exemple
+<code>plot3d(x^2-9)</code> (la commande <code>plot(x^2-9)</code> ne
+convient pas car déjà utilisée pour un graphe de ℝ dans
+ℝ. Le module de la fonction est représenté selon <span style="font-style:italic">z</span>,
+l’argument est représenté par les couleurs de l’arc en ciel, de −π
+en bleu violet à 0 en vert (en passant par jaune et orange) et de 0 à π
+en passant par cyan.</p><p>Pour préciser des options, il faut utiliser la commande <code>plotfunc</code>,
+par exemple<br>
+<code>plotfunc((x+i*y)^3-1,[x=-2..2,y=-2..2],nstep=500)</code><br>
+pour tracer <span style="font-style:italic">z</span> → <span style="font-style:italic">z</span><sup>3</sup>−1 depuis le carré du plan complexe
+centré en l’origine
+de coté 4, avec une discrétisation utilisant 500 petits rectangles.</p><p>Le moteur de rendu 3d étant relativement lent sur la calculatrice, la
+précision de tracé par défaut est moyenne ce qui impacte
+en premier lieu le rendu des objets avec des angles, comme les polyèdres. 
+On peut changer
+la précision du tracé en tapant F2 (plus rapide, moins précise) 
+ou F3 (moins rapide, plus précis). Notez qu’il est possible
+d’accélérer la vitesse du processeur 
+au lancement de χCAS (utilise du code de
+Sébastien Michelland, semblable à l’addin
+<a href="https://www.planet-casio.com/Fr/programmes/dl.php?id=3710&num=1">Ptune3</a>)</p><p>Pour obtenir un unique tracé précis sans changer la précision
+par défaut, tapez sur la touche <code>^</code> et
+soyez patients. On peut interrompre un tracé précis en cours en tapant
+sur la touche DEL.
+Les touches de déplacement permettent de changer de point de vue, 
+taper 5 pour revenir au point de vue initial,
+<code>-</code> ou <code>+</code> pour faire un zoom in ou out. Lorsqu’on laisse
+une touche de déplacement appuyée, la précision de tracé est
+diminuée temporairement pour donner une certaine fluidité,
+lorsqu’on relâche la touche, la dernière position est retracée
+avec la précision par défaut. 
+F4 permet de montrer ou cacher une 2ème surface cachée, F5
+affiche ou cache des points intermédiaires, F6 montre ou cache
+les arêtes des polyèdres.</p>
+<!--TOC subsection id="sec52" Géométrie interactive 2d/3d-->
+<h3 id="sec52" class="subsection">12.3  Géométrie interactive 2d/3d</h3><!--SEC END --><p>
+L’application de géométrie
+permet de construire des figures dans le plan ou dans l’espace,
+et de faire bouger un point et tout ce qui en dépend pour illustrer
+certaines propriétés (géométrie
+dynamique). On peut faire des constructions de géométrie euclidienne
+pure, mais aussi avec des graphes de fonction, des coniques, etc.
+L’application possède deux “vues”: la vue graphique et la vue
+symbolique qui contient les commandes Xcas permettant de créer la figure
+(la philosophie de cette application est proche de celle du logiciel
+Geogebra, avec les commandes de Xcas).</p><p>Cette section donne un aperçu rapide de l’application,
+pour une documentation plus complète avec quelques captures d’écran, cf.
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/geo.html">ici</a></p>
+<!--TOC subsubsection id="sec53" Modes, vue graphique et symbolique.-->
+<h4 id="sec53" class="subsubsection">12.3.1  Modes, vue graphique et symbolique.</h4><!--SEC END --><p>
+Taper F6 1 (ou la touche S↔D) pour afficher la liste des
+applications additionnelles, puis EXE puis sélectionnez soit une nouvelle
+figure 2d ou 3d soit une figure existante. Vous pouvez aussi ouvrir
+l’application de géométrie depuis un graphe (par exemple après avoir
+tapé <code>plot(sin(x))</code>) en tapant F6 puis Sauvegarder figure.</p><p>Au lancement on est dans la vue graphique en mode repère, les touches de curseur
+permettent de changer de point de vue. Pour changer le mode, utiliser
+la touche F4, pour passer en vue symbolique et vice-versa taper EXE.
+Par exemple tapez F4 3 pour passer en mode point
+qui permet de construire des points en déplaçant
+le pointeur et en tapant EXE ou tapez F4 5 pour passer
+en mode triangle qui permet de construire
+un triangle à partir de ses 3 sommets, on déplace le pointeur et on tape EXE
+trois fois. Pour déplacer le pointeur, utiliser les touches de déplacement,
+pour se déplacer plus rapidement, faire shift touche de curseur. Si on
+est proche d’un point existant, son nom apparait en bas. Pour
+déplacer le pointeur vers un point existant, vous pouvez aussi
+taper le nom du point (par exemple touche alpha A).
+Pour une figure 3d, les objets créé depuis la vue graphique seront situés
+dans le plan qui apparait en jaune sur la figure. On peut modifier ce plan
+en utilisant les touches 4 et 6. Il est fortement conseillé de
+conserver un point de vue avec l’axe <span style="font-style:italic">Oz</span> vertical (donc changer
+de point de vue uniquement avec les touches flèche droite ou gauche
+qui effectuent une rotation autour de <span style="font-style:italic">Oz</span>).</p><p>Le mode pointeur permet de sélectionner un point et de le
+déplacer pour observer comment la construction varie, ce qui permet
+de mettre en évidence des propriétés de la figure, par exemple concurrence
+de 3 droites.</p><p>Si vous tapez sur la touche EXIT depuis la vue graphique
+de l’application, vous revenez au mode repère ou si vous y étiez
+vous passez en vue symbolique. Vous pouvez ajouter
+des objets à la construction depuis cette vue, en mettant une commande
+par ligne. Tapez shift-EXE pour passer à la ligne. Tapez EXE
+pour revenir à la vue graphique. Dans la vue symbolique, vous
+pouvez sauvegarder la construction géométrique au format texte
+(avec une extension <code>.py</code>, même s’il ne s’agit pas
+d’un script Python).
+Tapez EXIT pour quitter l’application de géométrie.</p><p>Lorsque vous quittez l’application de géométrie,
+la figure est automatiquement sauvegardée
+dans une variable Xcas qui a le même nom que celui du nom de fichier
+affiché dans la vue symbolique. Vous pouvez purger la variable Xcas
+si vous voulez effacer la figure de la session.</p><p><span style="font-weight:bold">Exemple : cercle circonscrit.</span><br>
+Depuis le shell, taper F6 1 sélectionner nouvelle figure 2d et valider EXE.
+Puis F4 5 Triangle, EXE pour créer le premier sommet du triangle
+puis déplacer le pointeur avec les touches de déplacement, EXE pour créer
+le 2ème sommet du triangle, déplacer le pointeur à nouveau et EXE
+pour créer le triangle.</p><p>Version longue en construisant le centre :
+Taper F4 7, sélectionner 8 Mediatrice, déplacer
+le pointeur de sorte que seul un segment du triangle
+soit sélectionné (affichage
+en bas à droite <code>perpen_bisector D5,D</code>),
+taper EXE pour créer la médiatrice du segment, déplacer le pointeur
+sur une autre arête du triangle et EXE pour créer la 2ème médiatrice,
+optionnellement sur le 3ème segment pour avoir les 3 médiatrices.
+Puis F4 6 et 4 Intersection unique. Déplacer le pointeur vers
+une des médiatrices, taper EXE puis vers une autre médiatrice, taper EXE,
+ceci crée le centre du cercle circonscrit. Pour tracer le cercle,
+taper F4 4, déplacer le pointeur au centre du cercle (vous pouvez
+utiliser les touches de déplacement ou juste taper
+ALPHA H ou la bonne lettre si le centre du cercle s’appelle autrement),
+puis EXE puis sur un des sommets et EXE.</p><p>Version courte avec la commande <code>circonscrit</code> :
+taper F4 9 puis circonscrit puis sélectionner chaque
+sommet avec EXE (ALPHA A EXE ALPHA B EXE ALPHA C EXE, remplacez A, B, C
+par les lettres du sommet du triangle).</p><p>Version en vue symbolique :
+taper EXIT puis en fin de script sur une ligne vide (taper shift EXE s’il
+faut en créer une), taper<br>
+<code>c:=circonscrit(A,B,C)</code> EXE</p><p><span style="font-weight:bold">Exemple 3d: bac septembre 2019 </span><br>
+Taper F6 1 pour lancer l’application de géométrie puis nouvelle figure 3d.
+Puis EXIT ou EXE pour passer en vue symbolique. Puis F5 c ALPHA shift =
+puis F4 flèche haut deux fois pour sélectionner 3D puis EXE puis 5 pour cube
+puis F6 (aide), qui explique que
+les 2 premiers arguments de cube sont les sommets d’une arête,
+le troisième est un point d’un plan d’une face. Le premier
+exemple nous convient ici exactement, on tape F2 et on obtient
+<code>c=cube([0,0,0],[1,0,0],[0,1,0])</code>
+On tape EXE pour voir le cube puis + plusieurs fois pour zoomer et EXE
+pour revenir à la vue symbolique.
+Vous pouvez sauvegarder à tout moment la construction au format
+texte depuis
+le menu F6.
+On passe à la ligne en tapant shift EXE. Puis on définit les sommets
+du cube en tapant <code>A,B,C,D,E,F,G,H=</code>
+(taper ALPHA A , ALPHA B etc.), puis F4 et flèche vers le haut 3 fois
+pour sélectionner Géometrie puis flèche vers le haut 4 fois pour sélectionner
+<code>sommets</code> EXE et mettre c en argyument <code>sommets(c)</code>.
+Taper EXE pour visualiser puis EXE à nouveau pour revenir en vue
+symbolique. Passer à la ligne avec shift EXE puis créer le plan ABG
+en tapant ALPHA P = puis F2 pour
+ouvrir le menu rapide lines et 8 pour saisir plane. La commande plan
+prend en arguments 3 points pour définir le plan (on peut aussi donner
+une équation cartésienne, ici A,B,G, <code>P=plan(A,B,G,</code>
+on va lui ajouter une couleur avec le menu rapide F3 disp
+<code>display=filled+green</code>, vérifier en visualisant avec EXE EXE.
+On passe à la ligne (shift EXE) et on crée le segment DE
+ALPHA S = F2 sélectionner la commande segment avec EXE
+puis D,E et F3 pour lui donner une couleur
+<code>S=segment(D,E,color=cyan)</code>
+(on pouvait aussi créer le segment depuis la vue graphique en mode Lignes
+mais sur la Casio c’est un peu lent).
+La construction est donc la suivante:
+</p><pre class="verbatim">c=cube([0,0,0],[1,0,0],[0,1,0])
+A,B,C,D,E,F,G,H=sommets(c)
+P=plan(A,B,G,display=filled+green)
+S=segment(D,E,display=cyan)
+</pre><p>
+Vous pouvez taper EXE pour la visualiser et utiliser les flèches de
+déplacement pour changer de point de vue. Taper EXE ou EXIT pour revenir
+en vue symbolique. Pour quitter l’application taper EXIT. Taper F1 pour
+sauvegarder la figure si nécessaire.
+Vous pouvez depuis le shell de KhiCAS accéder à de nombreuses informations
+de géométrie analytique, par exemple <code>equation(P)</code> (menu
+F4 Géométrie) vous donnera
+l’équation cartésienne du plan <span style="font-style:italic">P</span> ou <code>is_orthogonal(P,S)</code>
+(F4 Géométrie) vous confirmera que le plan <span style="font-style:italic">P</span> est orthogonal au segment <span style="font-style:italic">S</span>.</p>
+<!--TOC subsubsection id="sec54" Curseurs-->
+<h4 id="sec54" class="subsubsection">12.3.2  Curseurs</h4><!--SEC END --><p>
+Vous pouvez créer un paramètre qui se déplace entre 2 valeurs extrêmes
+par saut de 1% depuis le menu F4 Curseur en vue graphique ou
+la commande <code>element</code> en vue symbolique.</p><p><span style="font-weight:bold">Exemple : explorateur quadratique avec des curseurs</span><br>
+pour explorer comment une parabole d’équation <span style="font-style:italic">y</span>=<span style="font-style:italic">ax</span><sup>2</sup>+<span style="font-style:italic">bx</span>+<span style="font-style:italic">c</span>
+dépend de la valeur de <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span>, créer 3 curseurs
+(F4 curseur vers le haut 4 fois EXE EXE). En vue symbolique
+on doit avoir quelque chose ressemblant à
+</p><pre class="verbatim">a:=element(-1..1)
+b:=element(0..1,0.5)
+c:=element(-1..1)
+</pre><p>
+puis ajouter un graphe, depuis la vue graphique taper F4 0 (pour 10 Courbe)
+et sélectionner plot,
+ou en vue symbolique shift F6 et sélectionner plot,
+remplir entre les parenthèses par <code>a*x^2+b*x+c</code> (attention
+à ne pas oublier les <code>*</code>), puis valider avec EXE. En vue graphique,
+vous devez voir 3 curseurs <code>a</code>, <code>b</code> et <code>c</code> et le
+graphe correspondant. Vous pouvez maintenant faire varier les valeurs
+de <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> depuis la vue graphique en mode pointeur (F4 2) en déplaçant le
+pointeur vers <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,<span style="font-style:italic">c</span> et en tapant EXE puis les flèches de déplacement
+gauche ou droit et EXE pour arrêter.</p><p>On peut bien sur faire des exemples plus simples avec un ou deux curseurs
+et une courbe dépendant d’un ou de deux paramètres. Par exemple
+un explorateur linéaire <code>droite(y=a*x+b)</code> ou
+trigonométrique <code>plot(sin(a*x+b))</code>.</p>
+<!--TOC subsubsection id="sec55" Mesures et légendes-->
+<h4 id="sec55" class="subsubsection">12.3.3  Mesures et légendes</h4><!--SEC END --><p>
+En tapant F4 puis en sélectionnant 13 Mesures,
+on peut afficher une mesure en un point de la figure. Par exemple
+après avoir construit un triangle, on peut afficher son périmètre
+ou son aire en tapant F4 puis deux fois flèche vers le haut, EXE.
+Déplacer le pointeur près du triangle, taper EXE, puis déplacer
+le curseur à l’endroit où on souhaite mettre la mesure et taper EXE.</p><p>On peut afficher n’importe quelle légende avec la commande
+<code>legende()</code> depuis la vue symbolique. Le premier argument
+de légende peut être un point de la figure, ou bien un vecteur
+de deux entiers donnant la position absolue en pixels mesuré
+depuis le coin en haut à gauche. Le deuxième argument est la légende,
+cela peut être une chaine de caractères ou n’importe quelle expression.</p><p>Si la légende est une valeur numérique, elle peut être utilisée pour
+un paramètre numérique d’une commande, par exemple le rapport d’une
+homothétie ou l’angle d’une rotation en utilisant la commande
+<code>extract_measure</code>. Par exemple
+<code>r:=legend([20,40],"2")</code><br>
+<code>homothetie(A,extract_measure(r),B)</code> </p>
+<!--TOC subsubsection id="sec56" Traces-->
+<h4 id="sec56" class="subsubsection">12.3.4  Traces</h4><!--SEC END --><p>
+La commande <code>trace()</code> permet de conserver la trace du
+déplacement d’un objet géométrique.</p><p><span style="font-weight:bold">Exemple</span> Enveloppe des normales à une courbe paramétrée
+(ici une ellipse).<br>
+</p><pre class="verbatim">E:=plotparam([cos(t),2*sin(t)],t=-pi..pi)
+a:=element(-pi..pi)
+M:=element(E,a)
+T:=tangent(M)
+N:=perpendiculaire(M,T)
+trace(N)
+</pre><p>
+En faisant varier <span style="font-style:italic">a</span>,
+on observe une courbe séparant la zone des normales à une zone sans point
+tracé qui est l’enveloppe des normales, c’est la développée de l’ellipse<br>
+<code>evolute(E,color=red)</code><br>
+On peut effacer les traces à tout moment
+avec la touche F6, puis touche vers le haut pour sélectionner
+le dernier item du menu de configuration.</p>
+<!--TOC subsection id="sec57" Tableur formel-->
+<h3 id="sec57" class="subsection">12.4  Tableur formel</h3><!--SEC END --><p>
+Le tableur de χCAS est un tableur utilisant la syntaxe standard des
+tableurs pour les références de cellule, mais il
+est capable de travailler avec des données exactes
+(par exemple fraction ou racines carrées) et symboliques (par
+exemple on peut calculer la dérivée d’une cellule du tableur),
+et on dispose de l’ensemble des commandes de Xcas, ainsi que les
+fonctions définies par l’utilisateur.</p><p>Taper F6 1 (ou la touche S↔D) pour afficher la liste des
+applications additionnelles, sélectionner le tableur et valider avec
+EXE. </p><p>Pour donner une valeur fixe à une cellule, tapez simplement
+un nombre. Vous pouvez aussi taper une chaine de caractère
+ou un autre objet reconnu par Xcas. Si vous saisissez une
+liste ou une commande renvoyant une liste, celle-ci remplira
+plusieurs cellules (en allant vers le bas ou vers la droite selon
+la configuration du tableur). Par exemple <code>range(10)</code>
+remplira 10 cellules consécutives avec les entiers de 0 à 9
+(pour saisir <code>range</code>, vous pouvez utiliser le menu rapide F1).</p><p>Pour définir le contenu d’une cellule en faisant référence
+à d’autres cellules, taper <code>=</code>
+puis utilisez la syntaxe
+habituelle des tableurs, les
+caractères <code>:</code> et <code>&#36;</code> sont accessibles depuis
+le menu F3 edit, <code>:</code> est aussi accessible par shift
+→. 
+On peut sélectionner une cellule lorsqu’on édite
+le contenu d’une autre cellule en déplaçant le curseur vers
+le haut ou vers le bas, puis vers n’importe quelle direction.
+Pour sélectionner une plage de cellules, déplacez-vous
+vers un des coins de la plage, taper shift-CLIP, puis
+déplacez-vous vers l’autre coin et tapez EXE. </p><p>Dans la définition d’une cellule ,
+vous pouvez utiliser toutes les commandes de Xcas 
+via le menu F4
+ou les menus rapides (F1 à F6 éventuellement précédés
+de alpha ou shift) ou shift CATALOG. Vous pouvez aussi utiliser les structures
+de controle Xcas (test/boucle) ainsi que des fonctions
+Xcas que vous avez définis. Attention, seules les fonctions
+définies dans l’interpréteur Xcas sont reconnus (quelle que soit
+la syntaxe utilisée), les programmes
+écrits en MicroPython ne sont pas reconnus.</p><p>Une cellule peut contenir une commande renvoyant un résultat 
+graphique. Pour voir le graphique correspondant à toutes les cellules du tableur ayant
+un résultat graphique, taper la touche S↔D.</p>
+<!--TOC section id="sec58" Copyright et Remerciements-->
+<h2 id="sec58" class="section">13  Copyright et Remerciements</h2><!--SEC END --><ul class="itemize"><li class="li-itemize">
+Giac et χCAS, noyau de calcul (c) B. Parisse et R. De Graeve, 2019.
+</li><li class="li-itemize">Interface de χCAS adaptée par B. Parisse à partir
+de l’interface utilisateur du code source d’Eigenmath
+créée par Gabriel Maia pour la 90 et par Mike Smith et Nemh pour
+la 35eii, et de l’interface utilisateur de Xcas.
+</li><li class="li-itemize">License d’utilisation de χCAS: GPL2. Voir le détail
+des conditions dans le fichier <code>LICENSE.GPL2</code> de l’archive
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/khicasio.zip">khicasio.zip</a>
+ou sur la page
+<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.fr.html">GPL2</a>
+du site de la Free Software Foundation.
+Le code source de χCAS ainsi que des librairies 
+libtommath et USTL, se trouvent sur
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/">la section
+Casio</a> de ma page web (cf. la section <a href="#sec%3Adev">15</a>)
+</li><li class="li-itemize">Certaines parties du code sont sous licence MIT: 
+<ul class="itemize"><li class="li-itemize">
+<a href="https://github.com/micropython/micropython/blob/master/LICENSE">MicroPython 1.12 (c) Damien P. George</a>
+</li><li class="li-itemize"><a href="https://www.nayuki.io/page/qr-code-generator-library">QR code generator, project Nayuki</a>
+</li></ul>
+</li><li class="li-itemize">Remerciements à tous les membres actifs de tiplanet et
+de Planète Casio pour l’aide qu’ils m’ont apportés
+en répondant à mes questions ou/et en testant χCAS,
+en particulier à LePhenixNoir pour son expertise 
+et son aide technique pour la 35 et la 90, Redoste pour le
+debugger, Nemhardy pour la 90, et à critor
+pour les articles, tests et la diffusion de KhiCAS via tiplanet.
+Remerciements à tous les contributeurs du
+<a href="http://prizm.cemetech.net/index.php/Prizm_Programming_Portal#Native_OS_reference">Prizm programming portal</a>.
+Remerciements à Pavel Demin pour les astuces de compilation ayant
+permis d’économiser 135K environ.
+</li><li class="li-itemize">Remerciements à Camille Margot pour l’intérêt
+porté au projet et à Casio France pour le soutien par le prêt de
+calculatrices Graph 90/35 et l’attribution 
+d’une licence d’utilisation de l’émulateur.
+</li></ul>
+<!--TOC section id="sec59" Réinstallation de l’OS d’origine-->
+<h2 id="sec59" class="section">14  Réinstallation de l’OS d’origine</h2><!--SEC END --><p> <a id="sec:oserror"></a>
+Téléchargez un installeur, par exemple
+<a href="https://tiplanet.org/forum/archives_list.php?order=hit&cat=OS+cprizm&multi_chaine_search=3.60">ici</a>.
+Lancez le programmes
+d’installation de Casio sur le PC jusqu’à la dernière confirmation,
+mais au lieu de taper F5 OS Update sur la calculatrice,
+effectuez les manipulations suivantes (merci à critor, TI-Planet) :
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+maintenir enfoncé le bouton restart au dos
+sans le relâcher, maintenir enfoncées les touches
+F2, 4 et AC
+</li><li class="li-enumerate">sans rien relâcher d’autre, relâcher le bouton restart
+</li><li class="li-enumerate">maintenant relâcher uniquement les touches
+F2 et 4
+</li><li class="li-enumerate">patienter une seconde
+</li><li class="li-enumerate">maintenant relâcher enfin la touche AC
+</li><li class="li-enumerate">maintenir enfoncée la touche 9,
+patienter une seconde
+relâcher la touche 9
+</li><li class="li-enumerate">maintenir enfoncée la touche *
+</li><li class="li-enumerate">La calculatrice doit se rallumer seulement maintenant
+sur un écran "OS ERROR", relâcher la touche *
+</li><li class="li-enumerate">vous pouvez maintenant exécuter la dernière confirmation
+d’installation de l’OS sur l’ordinateur.
+</li></ol><p>
+N.B.: la manipulation ci-dessus est assez acrobatique, il faudra probablement
+faire plusieurs essais avant d’avoir l’écran OS Error.
+Il peut aussi être nécessaire de laisser reposer la calculatrice (éteinte)
+environ 1h avant.
+Cette manipulation fonctionne aussi sur les Math+, mais
+<span style="font-weight:bold">pour l’instant </span>χ<span style="font-weight:bold">CAS n’est
+pas compatible avec le mode examen sur les Graph Math+.</span>.</p>
+<!--TOC section id="sec60" À propos du développement.-->
+<h2 id="sec60" class="section">15  À propos du développement.</h2><!--SEC END --><p> <a id="sec:dev"></a>
+</p>
+<!--TOC subsection id="sec61" Install rapide sous linux-->
+<h3 id="sec61" class="subsection">15.1  Install rapide sous linux</h3><!--SEC END --><p> 
+Installer
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/libmpfr.so.4">la
+librairie dynamique libmpfr.so.4</a> dans <code>/usr/local/lib</code>,
+vérifiez que <code>/usr/local/lib</code> est dans la liste des chemins de
+<code>/etc/ld.so.conf</code> 
+et exécutez
+<code>sudo ldconfig</code>. Puis désarchivez
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/casiolocal.tgz">casiolocal.tgz</a>,
+c’est une version du cross-compiler gcc avec certaines librairies
+(libc, ustl, tommath). Pour créer des addins pour la 90, vous devez aussi installer 
+<a href="https://www-fourier.univ-grenoble-alpes.fr/ parisse/casio/mkg3a.tgz">mkg3a</a>.</p>
+<!--TOC subsection id="sec62" Source de giac-->
+<h3 id="sec62" class="subsection">15.2  Source de giac</h3><!--SEC END --><p>
+Le source pour la 90 est 
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/giacbf.tgz">giacbf.tgz</a>
+(avec support des flottants multi-précision). Il devrait se compiler avec
+<code>make</code>.
+La version light en un seul fichier est 
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/giac90.tgz">giac90.tgz</a>.
+Pour la 35gii, c’est
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/giac35.tar.bz2">giac35.tar.bz2</a>
+et on fait <code>make</code> dans le répertoire <code>giac35/src0</code>.</p><p>Si quelque chose ne fonctionne pas, voici quelques détails.
+Pour développer l’add-in, j’ai installé le cross-compiler
+gcc pour processeur sh3eb, en m’inspirant de ce
+<a href="https://www.planet-casio.com/Fr/forums/topic12970-1-Tutoriel_Compiler_sous_Linux_avec_un_cross-compilateur_gcc.html">tutoriel</a>.
+Téléchargez gcc puis 
+(remplacer la version de gcc par la version téléchargée)<br>
+<code>../gcc-5.3.0/configure --target=sh3eb-elf --prefix="&#36;HOME/opt/sh3eb-elf" --disable-nls --disable-shared --disable-multilib --enable-languages=c,c++ --without-headers</code><br>
+Malheureusement, il n’y a pas de support pour sh3eb dans la <code>newlib</code>
+(librairie C) fournie avec gcc, encore moins pour la <code>libstdc++</code>.</p><p>J’ai donc installé <code>libfxcg.tar.gz</code>, 
+quelque peu modifiée par mes soins 
+(corrections de plusieurs petits bugs dans la librairie C, ajout
+de fonctions manquantes comme qsort, ...), à récupérer dans
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/">ce répertoire</a> (désarchiver et compiler avec make). Toujours
+dans ce répertoire, on trouve <code>tommath.tgz</code> (gestion des
+entiers multi-précision) et <code>ustl.tar.gz</code> (implémentation
+de la standard template library) que j’ai du pas mal modifier
+pour le faire fonctionner avec sh3eb-elf-g++, avec un résultat
+partiel qui est suffisant pour porter Giac (support de vector/string/map
+mais pas des flux E/S fichiers, j’ai créé à part un fichier
+iostream pour avoir un ersatz de cin/cout, cf. le répertoire 
+<a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/ustl">ustl</a>). 
+Tout ces fichiers se désarchivent
+et on compile en principe avec make.</p><p>Comme il n’y
+a pas de support du compilateur pour la newlib et la libstdc++ et pour
+éviter les problèmes d’ordre d’initialisation des variables statiques,
+ce portage de Giac se caractérise par l’absence de variables statiques
+classes, il n’y a que des variables statiques C. La très grande
+majorité des variables
+globales (tous les noms de commandes Xcas par exemple) sont déclarées via
+des alias sur des structures C en constantes pour ne
+pas occuper de place en mémoire vive. Il a fallu tenir compte
+de l’endianness du CPU par rapport à d’autres portages de Giac
+(plus précisément le CPU peut se comporter des deux manières
+little ou big endian mais on est obligé de choisir le même
+ordre que celui de l’OS Casio, et c’est l’inverse de celui qu’on
+rencontre sur les architectures Intel).</p>
+<!--TOC subsection id="sec63" Mise au point-->
+<h3 id="sec63" class="subsection">15.3  Mise au point</h3><!--SEC END --><p>
+Les etapes pour utiliser gdb pour Casio sous linux avec wine sont les suivantes:
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+installer wine si nécessaire 
+</li><li class="li-enumerate">installer l’emulateur casio avec wine avec une commande qui
+ressemble à<br>
+<code>wine /chemin_vers/fx-CG_Manager_PLUS_Subscription_for_fx-CG50series_Ver.3.40.exe</code>
+</li><li class="li-enumerate">installer l’equivalent de gdb-server
+<pre class="verbatim">cd .wine/drive_c/Program\ Files\ <math xmlns='http://www.w3.org/1998/Math/MathML' display='inline'><semantics><mrow><mi>x</mi><mn>86</mn></mrow><annotation encoding='application/x-tex'>x86</annotation></semantics></math>/CASIO/fx-CG\ Manager\ PLUS\ Subscription\ for\ fx-CG50series/
+mv CPU73050.dll CPU73050.real.dll
+wget https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/CPU73050.dll
+cp CPU73050.dll CPU73050.dbg.dll
+</pre>
+(j’ai mis la dll sur ma page, parce que j’ai eu un peu de mal a le
+compiler, le source est 
+<code>https://github.com/redoste/fx-CG50_Manager_PLUS-gdbserver</code>).</li><li class="li-enumerate">compiler gdb pour sh3:
+<pre class="verbatim">wget https://ftp.gnu.org/gnu/gdb/gdb-11.1.tar.gz
+cd casio (ou autre repertoire de build)
+tar xvfz ../gdb-11.1.tar.gz
+mkdir sh3eb-gdb
+cd sh3eb-gdb
+../gdb-11.1/configure --srcdir=../gdb-11.1 --target=sh3eb-elf
+</pre>
+(ajouter –prefix=chemin dans la commande configure si on n’a pas les
+droits sur /usr/local/bin).
+Puis
+<pre class="verbatim">make
+sudo make install
+</pre><p>Ensuite on crée deux scripts, <code>casioemu</code> pour lancer
+en mode normal
+</p><pre class="verbatim">#! /bin/bash
+cd ~/.wine/drive_c/Program\ Files\ <math xmlns='http://www.w3.org/1998/Math/MathML' display='inline'><semantics><mrow><mi>x</mi><mn>86</mn></mrow><annotation encoding='application/x-tex'>x86</annotation></semantics></math>/CASIO/fx-CG\ Manager\ PLUS\ Subscription\ for\ fx-CG50series
+/bin/cp CPU73050.real.dll CPU73050.dll
+cd
+wine "C:\Program Files (x86)\CASIO\fx-CG Manager PLUS Subscription for fx-CG50series\fx-CG_Manager_PLUS_Subscription_for_fx-CG50series.exe" /n"fx-CG Manager PLUS Subscription for fx-CG50series" &gt; /dev/null &amp;
+</pre><p>
+et <code>casiodbg</code> pour lancer en mode debug
+</p><pre class="verbatim">#! /bin/bash
+cd ~/.wine/drive_c/Program\ Files\ <math xmlns='http://www.w3.org/1998/Math/MathML' display='inline'><semantics><mrow><mi>x</mi><mn>86</mn></mrow><annotation encoding='application/x-tex'>x86</annotation></semantics></math>/CASIO/fx-CG\ Manager\ PLUS\ Subscription\ for\ fx-CG50series
+/bin/cp CPU73050.dbg.dll CPU73050.dll
+cd
+wine "C:\Program Files (x86)\CASIO\fx-CG Manager PLUS Subscription for fx-CG50series\fx-CG_Manager_PLUS_Subscription_for_fx-CG50series.exe" /n"fx-CG Manager PLUS Subscription for fx-CG50series" &gt; /dev/null &amp;
+</pre></li><li class="li-enumerate">Pour utiliser l’émulateur en mode normal 
+taper simplement <code>casioemu</code>, pour le mode debug taper
+<pre class="verbatim">casiodbg
+sh3eb-elf-gdb
+target remote localhost:31188
+</pre><p>Ou directement pour utiliser avec les infos de debug de emucas.elf<br>
+<code>sh3eb-elf-gdb -i=mi -ex "target remote localhost:31188" emucas.elf</code></p><p>Pour mettre un point d’arret utiliser <code>b</code> ou <code>hb</code> (<code>hbreak</code>
+(hardware break, nécessaire pour le premier point d’arrêt).
+</p></li></ol><!--CUT END -->
+<!--HTMLFOOT-->
+Retour à la page principale de <a href="http://www-fourier.univ-grenoble-alpes.fr/~parisse/giac_fr.html">Giac/Xcas</a>.<!--ENDHTML-->
+<!--FOOTER-->
+<hr style="height:2"></body>
+</html>

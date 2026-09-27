@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Hadamard product</title>
+</head>
+<body >
+<a href="cascmd_en502.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en504.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:product2" class="subsection">14.3.8  Hadamard product</h3>
+<p>The <span style="font-family:monospace">hadamard</span><a id="hevea_default851"></a>
+command finds the Hadamard product of two
+matrices; namely, the term-by-term product of the two matrices.</p><p>The <span style="font-family:monospace">product</span><a id="hevea_default852"></a> command can do
+the same thing (see also Section <a href="cascmd_en146.html#ssec%3Aproductmul">6.3.27</a> for other uses of <span style="font-family:monospace">product</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">hadamard</span> takes two arguments:
+<span style="font-style:italic">A</span> and <span style="font-style:italic">B</span>, two matrices of the same size.
+</li><li class="li-itemize"><span style="font-family:monospace">hadamard(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">B</span><span style="font-family:monospace">)</span> returns the matrix where each element
+is the product of the corresponding elements of <span style="font-style:italic">A</span> and <span style="font-style:italic">B</span>.
+</li></ul><p>
+The infixed operator <span style="font-family:monospace">.*</span><a id="hevea_default853"></a>
+also finds the Hadamard product, and also works on lists.</p><h4 id="sec1169" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">hadamard</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2],[3,4]],[[5,6],[7,8]])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">hadamard</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2],[3,4]],[[5,6],[7,8]])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">[[1,2],[3,4]].*[[5,6],[7,8]]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">12</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">21</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">32</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">[1,2,3,4].*[5,6,7,8]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">5,12,21,32</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en502.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en504.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

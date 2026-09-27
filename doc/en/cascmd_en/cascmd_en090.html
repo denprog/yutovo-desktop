@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Finding and removing leading/trailing whitespace</title>
+</head>
+<body >
+<a href="cascmd_en089.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en091.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:trim-string" class="subsection">5.2.5  Finding and removing leading/trailing whitespace</h3>
+<p>The <span style="font-family:monospace">trim</span><a id="hevea_default160"></a> command can find and/or remove
+leading and trailing whitespace in a string
+(see Section <a href="cascmd_en706.html#ssec%3Atrim-vector">21.2.2</a>, Section <a href="cascmd_en1016.html#ssec%3Atrim-image">28.1.9</a>
+and Section <a href="cascmd_en1019.html#ssec%3Aaudio-clips-from-old">28.2.2</a> for other usages of <span style="font-family:monospace">trim</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">trim</span> takes one mandatory arguments and one or two optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">left</span> or <span style="font-family:monospace">right</span>, the symbol specifying an
+one-sided truncation.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">index</span>, the symbol.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">trim(</span><span style="font-style:italic">str</span> ⟨,<span style="font-family:monospace">left</span>|<span style="font-family:monospace">right</span> ⟩
+ ⟨,<span style="font-family:monospace">index</span> ⟩<span style="font-family:monospace">)</span> finds the index <span style="font-style:italic">l</span> of the first
+non-whitespace character in <span style="font-style:italic">str</span> and the index <span style="font-style:italic">u</span> of the first trailing
+whitespace character in <span style="font-style:italic">str</span>. If <span style="font-family:monospace">index</span> is given, then the
+return value is either <span style="font-style:italic">l</span> if <span style="font-family:monospace">left</span> is given, <span style="font-style:italic">u</span> if <span style="font-family:monospace">right</span>
+is given, or (<span style="font-style:italic">l</span>,<span style="font-style:italic">u</span>−<span style="font-style:italic">l</span>) otherwise (the last sequence contains the start and length
+of the truncated string). If <span style="font-family:monospace">index</span> is omitted, then the return value is
+the portion between the <span style="font-style:italic">l</span>th character (inclusive) and <span style="font-style:italic">u</span>th character
+(exclusive); if <span style="font-family:monospace">left</span> is given, then <span style="font-style:italic">u</span>=<span style="font-family:monospace">length(</span><span style="font-style:italic">str</span><span style="font-family:monospace">)</span>,
+and if <span style="font-family:monospace">right</span> is given, then <span style="font-style:italic">l</span>=0.
+</li><li class="li-itemize">Whitespace characters in ASCII are: 9 (horizontal tab), 10 (line feed),
+11 (vertical tab), 12 (form feed), 13 (carriage return) and 32 (space).
+</li></ul><p>
+Instead of <span style="font-family:monospace">trim</span>, you can also use the <span style="font-family:monospace">strip</span><a id="hevea_default161"></a>
+command to remove whitespace, but note that it discards only space characters.</p><h4 id="sec153" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"  this is a string\n\t    "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“this is a string”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"  this is a string\n\t    "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">right</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“ this is a string”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"  12345  "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">index</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+2,5
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en089.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en091.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Étude de fonctions</title>
+</head>
+<body >
+<a href="casexo001.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo003.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec15" class="chapter">Chapitre 2  Étude de fonctions</h1>
+<h2 id="sec16" class="section">2.1  Exercice : étude de  <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=2<span style="font-style:italic">x</span><sup>2</sup>−1/6<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">x</span>−2</h2>
+<ol class="enumerate" type=1><li class="li-enumerate">
+Domaine de définition<br>
+On tape :<br>
+<span style="font-family:monospace">solve(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-2)/3,1/2]</span><br>
+Donc <span style="font-style:italic">f</span> est définie sur ℝ−{−2/3,1/2}
+</li><li class="li-enumerate">Dérivée<br>
+On tape :<br>
+<span style="font-family:monospace">factor(diff((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(2*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">+4*x+1)/((2*x-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(3*x+2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)</span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(solve(2*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">+4*x+1))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[(-sqrt(2)-2)/2,(sqrt(2)-2)/2]</span><br>
+On tape :<br>
+<span style="font-family:monospace">evalf([(-sqrt(2)-2)/2,(sqrt(2)-2)/2])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-1.70710678119,-0.292893218813]</span><br>
+On tape :<br>
+<span style="font-family:monospace">subst((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=-1.70710678119)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.35044026276</span><br>
+On tape :<br>
+<span style="font-family:monospace">subst((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=-0.292893218813)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.465886267852</span><br>
+<span style="font-style:italic">f</span> a donc deux extremum en ≃ (-1.71,0.35) et (-0.29,0.47)<br>
+Donc <span style="font-style:italic">f</span> est :<br>
+croissante sur ]−∞;(−√<span style="text-decoration:overline">2</span>−2)/2]<br>
+décroissante sur [(−√<span style="text-decoration:overline">2</span>−2)/2; −2/3[<br>
+décroissante sur ]−2/3;(√<span style="text-decoration:overline">2</span>−2)/2]<br>
+croissante sur [(√<span style="text-decoration:overline">2</span>−2)/;1/2[<br>
+croissante sur ]1/2;+∞[</li><li class="li-enumerate">Branches infinies<br>
+On tape :<br>
+<span style="font-family:monospace">limit((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/3</span><br>
+On tape :<br>
+<span style="font-family:monospace">limit((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=-inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/3</span><br>
+Donc  <span style="font-style:italic">y</span>=1/3 est asymptote.<br>
+On tape :<br>
+<span style="font-family:monospace">limit((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=-2/3,-1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-infinity</span><br>
+On tape :<br>
+<span style="font-family:monospace">limit((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=-2/3,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">+(infinity)</span><br>
+Donc  <span style="font-style:italic">x</span>=−2/3 est asymptote.<br>
+On tape :<br>
+<span style="font-family:monospace">limit((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=1/2,-1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">+infinity</span><br>
+On tape :<br>
+<span style="font-family:monospace">limit((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=1/2,1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-infinity</span><br>
+Donc  <span style="font-style:italic">x</span>=1/2 est asymptote.
+</li><li class="li-enumerate">Graphe<br>
+On tape :<br>
+<span style="font-family:monospace">plotfunc((2x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)/(6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+x-2),x=-8..8),</span><br>
+<span style="font-family:monospace">affichage(droite(x=1/2),droite(x=-2/3),droite(y=1/3),1)</span><br>
+On obtient :<br>
+<img src="casexo003.png">
+</li></ol>
+<h2 id="sec17" class="section">2.2  Exercice : étude de  <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=  acos (sin(<span style="font-style:italic">x</span>))+  asin (cos(<span style="font-style:italic">x</span>))</h2>
+<ol class="enumerate" type=1><li class="li-enumerate">
+Domaine de définition et période.<br>
+</li><li class="li-enumerate">Montrer que :<br>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>+π)=<span style="font-style:italic">f</span>(π/2−<span style="font-style:italic">x</span>)=π−<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>).
+</li><li class="li-enumerate">Graphe de <span style="font-style:italic">f</span> et préciser son centre de symétrie et son axe de symétrie.
+</li><li class="li-enumerate">Valeur de <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) sur [0,π/2] et sur π/2,π].
+</li></ol><p><span style="font-weight:bold">Rappels</span><br>
+On a :<br>
+sin(<span style="font-style:italic">x</span>)=cos(π/2−<span style="font-style:italic">x</span>)<br>
+cos(<span style="font-style:italic">x</span>)=sin(π/2−<span style="font-style:italic">x</span>)<br>
+sin(<span style="font-style:italic">x</span>+π)=−sin(<span style="font-style:italic">x</span>)<br>
+cos(<span style="font-style:italic">x</span>+<span style="font-style:italic">pi</span>)=−cos(<span style="font-style:italic">x</span>)<br>
+  asin (<span style="font-style:italic">x</span>) est une bijection de [-1,1] sur [−π/2,π/2]
+sin(  asin (<span style="font-style:italic">x</span>))=<span style="font-style:italic">x</span> et <br>
+si <span style="font-style:italic">x</span>∈ [−π/2,π/2] alors   asin (sin(<span style="font-style:italic">x</span>))=<span style="font-style:italic">x</span><br>
+  acos (<span style="font-style:italic">x</span>) est une bijection de [-1,1] sur [0,π]
+cos(  acos (<span style="font-style:italic">x</span>))=<span style="font-style:italic">x</span> et <br>
+si <span style="font-style:italic">x</span>∈ [0,π] alors   acos (cos(<span style="font-style:italic">x</span>))=<span style="font-style:italic">x</span><br>
+  asin (−<span style="font-style:italic">x</span>)=−  asin (<span style="font-style:italic">x</span>)<br>
+  acos (−<span style="font-style:italic">x</span>)=π−  acos (<span style="font-style:italic">x</span>)<br>
+  asin (<span style="font-style:italic">x</span>)+  acos (<span style="font-style:italic">x</span>)=π/2<br>
+  asin (<span style="font-style:italic">x</span>)′=1/√<span style="text-decoration:overline">(</span>1−<span style="font-style:italic">x</span><sup>2</sup>)<br>
+  acos (<span style="font-style:italic">x</span>)′=−1/√<span style="text-decoration:overline">(</span>1−<span style="font-style:italic">x</span><sup>2</sup>)<br>
+
+<span style="font-weight:bold">La solution avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span>
+On tape :<br>
+<span style="font-family:monospace">f(x):=acos(sin(x))+asin(cos(x))</span><br>
+donc <br>
+<span style="font-family:monospace">f(x):=acos(cos(pi/2-x))+asin(sin(pi/2-x))</span><br>
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>+π)=<span style="font-style:italic">f</span>(π/2−<span style="font-style:italic">x</span>)=π−<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>).<br>
+On tape :<br>
+<span style="font-family:monospace">simplify(f(x+pi)+f(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">pi</span><br>
+En effet :<br>
+<span style="font-family:monospace">f(x+pi)=acos(-sin(x))+asin(-cos(x))</span><br>
+et on a : <br>
+  acos (−sin(<span style="font-style:italic">x</span>))=π−  acos (sin(<span style="font-style:italic">x</span>))<br>
+  asin (−cos(<span style="font-style:italic">x</span>))=−  asin (cos(<span style="font-style:italic">x</span>))<br>
+D’où le rèsultat.<br>
+On tape :<br>
+<span style="font-family:monospace">simplify(f(pi/2-x)+f(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">pi</span><br>
+En effet :<br>
+<span style="font-family:monospace">f(pi/2-x)=acos(cos(x))+asin(sin(x))</span><br>
+et on a : <br>
+  acos (sin(<span style="font-style:italic">x</span>))+  asin (sin(<span style="font-style:italic">x</span>)=π/2<br>
+  asin (cos(<span style="font-style:italic">x</span>))+  acos (cos(<span style="font-style:italic">x</span>))=π/2<br>
+D’où le rèsultat.</li><li class="li-enumerate">Graphe de <span style="font-style:italic">f</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">f(x):=acos(sin(x))+asin(cos(x))</span><br>
+<span style="font-family:monospace">plotfunc(f(x))</span><br>
+On obtient :<br>
+<img src="casexo004.png">
+Le point <span style="font-style:italic">S</span>(π/4,π/2 est un centre de symétrie car 
+on a <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">f</span>(<span style="font-style:italic">pi</span>/2−<span style="font-style:italic">x</span>)=π donc les points <span style="font-style:italic">A</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) et <span style="font-style:italic">B</span>(π/2−<span style="font-style:italic">x</span>,<span style="font-style:italic">f</span>(π/2−<span style="font-style:italic">x</span>)
+sont 2 points de la courbe qui sont symétriques par rapport à <span style="font-style:italic">S</span>.<br>
+En effet 1/2*(<span style="font-style:italic">x</span>+π/2−<span style="font-style:italic">x</span>)=π/4 et 
+1/2*(<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)+<span style="font-style:italic">f</span>(π/2−<span style="font-style:italic">x</span>))=π/2.<br>
+La droite d’équation <span style="font-style:italic">x</span>=3π/4 est un axe de symétrie de la courbe.<br>
+ En effet <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>+π)=<span style="font-style:italic">f</span>(π/2−<span style="font-style:italic">x</span>) et donc les points
+<span style="font-style:italic">C</span>(<span style="font-style:italic">x</span>+π,<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>+π) et <span style="font-style:italic">D</span>(π/2−<span style="font-style:italic">x</span>,<span style="font-style:italic">f</span>(π/2−<span style="font-style:italic">x</span>) sont symétriques par rapport à la droite <span style="font-style:italic">x</span>=3π/4
+puisque 1/2*(<span style="font-style:italic">x</span>+π+π/2−<span style="font-style:italic">x</span>)=3π/4</li><li class="li-enumerate">Valeur de <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) sur [0,π/2] et sur π/2,π].
+On tape :<br>
+<span style="font-family:monospace">assume(x&gt;0 and x&lt;pi/2)</span><br>
+<span style="font-family:monospace">simplify(f(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">pi-2*x</span><br>
+Si <span style="font-style:italic">x</span>∈ [0,π/2] on a π/2−<span style="font-style:italic">x</span>∈ [0,π/2] donc
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>):=  acos (cos(π/2−<span style="font-style:italic">x</span>))+  asin (sin(π/2−<span style="font-style:italic">x</span>))=π−2<span style="font-style:italic">x</span>
+On tape :<br>
+<span style="font-family:monospace">assume(x&gt;=pi/2 and x&lt;=pi)</span><br>
+<span style="font-family:monospace">simplify(f(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+Si <span style="font-style:italic">x</span>∈ [π/2,π] on a <span style="font-style:italic">x</span>−π/2∈ [0,π/2] donc
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>):=  acos (cos(π/2−<span style="font-style:italic">x</span>))+  asin (sin(π/2−<span style="font-style:italic">x</span>))=<br>
+  acos (cos(<span style="font-style:italic">x</span>−π/2))−  asin (sin(<span style="font-style:italic">x</span>−π/2−))=<span style="font-style:italic">x</span>−π/2−(<span style="font-style:italic">x</span>−π/2)=0</li></ol>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo001.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo003.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

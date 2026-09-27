@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Infixed assignments</title>
+</head>
+<body >
+<a href="cascmd_en777.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en779.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2006" class="subsection">25.2.8  Infixed assignments</h3>
+<p>The infixed operators <span style="font-family:monospace">=&gt;</span><a id="hevea_default1596"></a>,
+<span style="font-family:monospace">:=</span><a id="hevea_default1597"></a>, and
+<span style="font-family:monospace">=&lt;</span><a id="hevea_default1598"></a> can
+all store a value in a variable, but their arguments are in different
+order. (See Section <a href="cascmd_en063.html#ssec%3Aassign">3.3.2</a> and Section <a href="cascmd_en064.html#ssec%3Arefassign">3.3.3</a>.)
+Also, <span style="font-family:monospace">:=</span> and <span style="font-family:monospace">=&lt;</span> have different effects when
+the first argument is an element of a list stored in a variable, since
+<span style="font-family:monospace">=&lt;</span> modifies list elements by reference (see section
+<a href="cascmd_en780.html#ssec%3Aassignmentdiffs">25.2.10</a>).</p><p><span style="font-family:monospace">=&gt;</span> is the infixed version of <span style="font-family:monospace">sto</span>, it stores
+the value in the first argument in the variable in the second
+argument. Both
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">4=&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span></td></tr>
+</table><p>and
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">sto</span></span><span style="font-weight:bold"><span style="color:#BF0000">(4,</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>store the value 4 in the variable <span style="font-family:monospace">a</span>.</p><p><span style="font-family:monospace">:=</span> and <span style="font-family:monospace">=&lt;</span> both have a variable as the first
+argument and the value to store in the variable as the second
+argument. Both
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=4</span></span></td></tr>
+</table><p>and
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">=&lt;4</span></span></td></tr>
+</table><p>store the value 4 in the variable <span style="font-family:monospace">a</span>.</p><p>However, suppose you have entered:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[0,1,2,3,4]:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span></td></tr>
+</table><p>and you want to change <span style="font-family:monospace">A[3]</span>, then the commandline
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">[3]=&lt;33</span></span></td></tr>
+</table><p>will change both <span style="font-family:monospace">A</span> and <span style="font-family:monospace">B</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">B</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,1,2,33,4</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0,1,2,33,4</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Here, <span style="font-family:monospace">A</span> pointed to the list <span style="font-family:monospace">[0,1,2,3,4]</span> and
+after setting <span style="font-family:monospace">B</span> to <span style="font-family:monospace">A</span>, <span style="font-family:monospace">B</span> also pointed to
+<span style="font-family:monospace">[0,1,2,3,4]</span>. Changing an element of <span style="font-family:monospace">A</span> by
+reference changes the list that <span style="font-family:monospace">A</span> points to, which
+<span style="font-family:monospace">B</span> also points to.</p><p>Note that multiple assigments can be made using sequences or lists.
+Both
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">]:=[1,2,3]</span></span></td></tr>
+</table><p>and
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">):=(1,2,3)</span></span></td></tr>
+</table><p>assign <span style="font-family:monospace">a</span> the value 1, <span style="font-family:monospace">b</span> the value 2, and <span style="font-family:monospace">c</span>
+the value 3. If multiple assignments are made this way and variables
+are on the right hand side, they will be replaced by their values
+before the assignment. If <span style="font-family:monospace">a</span> contains 5 and you enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">):=(2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>then <span style="font-family:monospace">b</span> will get the previous value of <span style="font-family:monospace">a</span>, 5, and not
+the new value of <span style="font-family:monospace">a</span>, 2.</p>
+<hr>
+<a href="cascmd_en777.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en779.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

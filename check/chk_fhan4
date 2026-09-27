@@ -1,0 +1,5 @@
+#! /bin/sh
+unset LANG
+export PARI_SIZE=2048000
+../src/icas TP04-sol.cas > TP04.tst
+diff TP04.tst TP04-sol.cas.out1

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Extracting portions of a string
+</title>
+</head>
+<body >
+<a href="cascmd_en088.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en090.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:lrstring" class="subsection">5.2.4  Extracting portions of a string
+</h3>
+<p>The <span style="font-family:monospace">left</span><a id="hevea_default155"></a> and
+<span style="font-family:monospace">right</span><a id="hevea_default156"></a> commands find the left
+and right parts of a string. (See Section <a href="cascmd_en243.html#ssec%3Aop">8.2.3</a>, Section <a href="cascmd_en159.html#ssec%3Arange">6.5.1</a>,
+Section <a href="cascmd_en163.html#ssec%3Alrinterval">6.6.2</a>, Section <a href="cascmd_en125.html#ssec%3Alrlist">6.3.6</a>, Section <a href="cascmd_en275.html#ssec%3Alhs">9.3.4</a>,
+Section <a href="cascmd_en276.html#ssec%3Arhs">9.3.5</a>, Section <a href="cascmd_en1025.html#ssec%3Achanneldata">28.2.8</a> and Section <a href="cascmd_en1026.html#ssec%3Asetchndata">28.2.9</a>
+for other uses of <span style="font-family:monospace">left</span> and <span style="font-family:monospace">right</span>.)
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">left</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize"><span style="font-style:italic">n</span>, a non-negative integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">left(</span><span style="font-style:italic">str</span>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns the first <span style="font-style:italic">n</span>
+characters of the string <span style="font-style:italic">str</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">right</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize"><span style="font-style:italic">n</span>, a non-negative integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">right(</span><span style="font-style:italic">str</span>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns the last <span style="font-style:italic">n</span>
+characters of the string <span style="font-style:italic">str</span>.
+</li></ul><p>The <span style="font-family:monospace">head</span><a id="hevea_default157"></a>
+command finds the first character of a string.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">head</span> takes
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize"><span style="font-family:monospace">head(</span><span style="font-style:italic">str</span><span style="font-family:monospace">)</span> returns the first
+character of the string <span style="font-style:italic">str</span>.
+</li></ul><p>The <span style="font-family:monospace">mid</span><a id="hevea_default158"></a>
+command finds a selected part from the middle of a
+string.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">mid</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize"><span style="font-style:italic">p</span>, an integer for the starting index of the result.
+</li><li class="li-itemize"><span style="font-style:italic">q</span>, an integer <span style="font-style:italic">q</span> for the length of the string.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">mid(</span><span style="font-style:italic">str</span>,<span style="font-style:italic">p</span>,<span style="font-style:italic">q</span><span style="font-family:monospace">)</span> returns the part of
+the string <span style="font-style:italic">str</span> starting with the character at index <span style="font-style:italic">p</span> with length
+<span style="font-style:italic">q</span>. (Remember that the first index is 0 in <span style="font-variant:small-caps">Xcas</span> mode.)
+</li></ul><p>The <span style="font-family:monospace">tail</span><a id="hevea_default159"></a>
+command removes the first character of a string.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">tail</span> takes
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize"><span style="font-family:monospace">tail(</span><span style="font-style:italic">str</span><span style="font-family:monospace">)</span> returns the string
+<span style="font-style:italic">str</span> without its first character.
+</li></ul><h4 id="sec151" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">left</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"hello"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,3)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“hel”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">right</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"hello"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,4)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“ello”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">head</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Hello"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“H”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">mid</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Hello"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,1,3)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“ell”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tail</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Hello"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">“ello”</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en088.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en090.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

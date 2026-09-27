@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.3b Cosecant\4.3.1.4 (d cot)^n (a+b csc)^m.txt"
+
+lst:=[
+[tan(x)^4/(a+a*csc(x)),x,5,x/a-1/15*(15-8*csc(x))*tan(x)/a+1/15*(5-4*csc(x))*tan(x)^3/a-1/5*(1-csc(x))*tan(x)^5/a],
+[cot(x)/(a+a*csc(x)),x,2,log(1+sin(x))/a],
+[cot(x)^7/(a+a*csc(x)),x,3,-csc(x)/a-csc(x)^2/a+2/3*csc(x)^3/a+1/4*csc(x)^4/a-1/5*csc(x)^5/a-log(sin(x))/a],
+[cot(x)/(a+b*csc(x)),x,4,log(a+b*csc(x))/a+log(sin(x))/a],
+[cot(x)^6/(a+b*csc(x)),x,16,-x/a-3/8*arctanh(cos(x))/b-1/2*(a^2-3*b^2)*arctanh(cos(x))/b^3-(a^4-3*a^2*b^2+3*b^4)*arctanh(cos(x))/b^5+2*(a^2-b^2)^(5/2)*arctanh((a+b*tan(1/2*x))/sqrt(a^2-b^2))/(a*b^5)+a*cot(x)/b^2+a*(a^2-3*b^2)*cot(x)/b^4+1/3*a*cot(x)^3/b^2-3/8*cot(x)*csc(x)/b-1/2*(a^2-3*b^2)*cot(x)*csc(x)/b^3-1/4*cot(x)*csc(x)^3/b]]:

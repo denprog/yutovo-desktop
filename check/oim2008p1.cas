@@ -1,0 +1,14 @@
+f(A,B,H):=inter(circle(midpoint(A,B),H-midpoint(A,B)),line(A,B));
+A:=point(0);
+B:=point(1);
+assume(a=[0.4,-5,5,0.1]);
+assume(b=[0.9,-5,5,0.1]);
+C:=point(a,b);
+triangle(A,B,C);
+H:=orthocenter(A,B,C);
+A1,A2:=f(B,C,H);
+B1,B2:=f(C,A,H);
+C1,C2:=f(A,B,H);
+O:=single_inter(perpen_bisector(B1,B2),perpen_bisector(C1,C2));
+chk(M):=normal(distance2(A1,O)-distance2(M,O));
+chk(A2),chk(B1),chk(B2),chk(C1),chk(C2);

@@ -1,0 +1,15 @@
+assume(a=[0.9,-5,5,0.1]);
+assume(b=[-0.5,-5,5,0.1]);
+A:=point((1+i*a)/(1-i*a));
+B:=point((1+i*b)/(1-i*b));
+C:=point(-1);
+c:=circle(0,1);
+D:=bisector(C,A,B);
+R:=reflection(projection(D,0),C);
+triangle(A,B,C);
+P:=single_inter(D,perpen_bisector(B,C));
+Q:=single_inter(D,perpen_bisector(A,C));
+K:=midpoint(B,C);
+L:=midpoint(A,C);
+normal(area(R,P,K)-area(R,L,Q));
+

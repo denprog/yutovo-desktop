@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Normal form</title>
+</head>
+<body >
+<a href="cascmd_en285.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en287.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:normal" class="subsection">10.1.2  Normal form</h3>
+<p>The <span style="font-family:monospace">normal</span><a id="hevea_default512"></a> command takes an
+expression and considers it to be a rational function with respect
+to generalized identifiers (which are either true identifiers or
+transcendental functions replaced by temporary identifiers) with
+coefficients in ℚ or ℚ[<span style="font-style:italic">i</span>] or in an algebraic
+extension (such as ℚ[√<span style="text-decoration:overline">2</span>] and finds its expanded
+irreducible representation.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">normal</span> takes
+<span style="font-style:italic">expr</span>, an expression.
+</li><li class="li-itemize"><span style="font-family:monospace">normal(</span><span style="font-style:italic">expr</span><span style="font-family:monospace">)</span> returns the expanded irreducible
+representation of <span style="font-style:italic">expr</span>. (See also <span style="font-family:monospace">ratnormal</span>,
+Section <a href="cascmd_en289.html#ssec%3Aratnormal">10.1.5</a>, for pure rational function or
+<span style="font-family:monospace">simplify</span>, Section <a href="cascmd_en287.html#ssec%3Asimplify">10.1.3</a>, if the transcendental
+functions are not algebraically independent.)
+</li></ul><h4 id="sec654" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">((</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1)*(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">((1-</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))*(1+</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−</span><span style="color:#0000CC">sin</span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="sec655" class="paragraph">Remarks.</h5>
+<ul class="itemize"><li class="li-itemize">
+Unlike <span style="font-family:monospace">simplify</span>,
+<span style="font-family:monospace">normal</span> does not try to find algebraic relations between
+transcendental functions like cos(<span style="font-style:italic">x</span>)<sup>2</sup>+sin(<span style="font-style:italic">x</span>)<sup>2</sup>=1.
+</li><li class="li-itemize">It is sometimes necessary to run the <span style="font-family:monospace">normal</span> command twice to
+get a fully irreducible representation of an expression
+containing algebraic extensions.
+</li></ul>
+<hr>
+<a href="cascmd_en285.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en287.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

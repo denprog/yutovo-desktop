@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Graphing recurrent sequences</title>
+</head>
+<body >
+<a href="cascmd_en633.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en635.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:plotseq" class="subsection">19.8.4  Graphing recurrent sequences</h3>
+<p>The <span style="font-family:monospace">plotseq</span><a id="hevea_default1231"></a>
+or <span style="font-family:monospace">seqplot</span><a id="hevea_default1232"></a>
+or <span style="font-family:monospace">graphe_suite</span><a id="hevea_default1233"></a>
+command draws the process of finding the terms of a recurrent sequence.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">plotseq</span> takes:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression depending on a variable.
+</li><li class="li-itemize"><span style="font-style:italic">var=a</span>, the variable and a beginning value. (If
+<span style="font-style:italic">var=</span><span style="font-family:monospace">x</span>, then the variable name can be omitted.)
+The <span style="font-style:italic">a</span> value can be replaced by a list of three elements,
+[<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>−</sub>,<span style="font-style:italic">x</span><sub>+</sub>] where <span style="font-style:italic">x</span><sub>−</sub><span style="font-family:monospace">..</span><span style="font-style:italic">x</span><sub>+</sub> will be passed as the range of the
+variable for the graph computation.
+</li><li class="li-itemize"><span style="font-style:italic">n</span>, the ending value of the variable.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">plotseq(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">var</span><span style="font-family:monospace">=</span><span style="font-style:italic">a</span>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span>
+draws the line <span style="font-style:italic">y</span>=<span style="font-style:italic">x</span>, the graph of <span style="font-style:italic">y</span>=<span style="font-style:italic">expr</span>, and the <span style="font-style:italic">n</span>
+first terms of the recurrent sequence defined by: <span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span>,
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>) where <span style="font-style:italic">f</span> is the function determined by <span style="font-style:italic">expr</span>.
+</li></ul><h4 id="sec1548" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotseq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sqrt</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[3,0,5],5)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en118.png">
+
+</div>
+<hr>
+<a href="cascmd_en633.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en635.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

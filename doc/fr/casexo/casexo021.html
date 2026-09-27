@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Les limites</title>
+</head>
+<body >
+<a href="casexo020.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo022.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec357" class="chapter">Chapitre 21  Les limites</h1>
+<h2 id="sec358" class="section">21.1  Un exercice sur limite et développement limité</h2>
+<h3 id="sec359" class="subsection">21.1.1  L’énoncé</h3>
+<p>
+1/ Trouver le développement limité à l’ordre 4 autour de zéro de :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=cos(sin(<span style="font-style:italic">x</span>))</td></tr>
+</table><p>.
+2/ Calculer :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:center">lim</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span>−&gt;0</td></tr>
+</table></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)−<span style="font-style:italic">e</span><sup>−<span style="font-style:italic">x</span><sup>2</sup></sup></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span><sup>2</sup></td></tr>
+</table></td></tr>
+</table><p>
+3/ Soit <span style="font-style:italic">g</span> définie sur ]0;+∞ par :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>2</sup>(<span style="font-style:italic">f</span>(</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >(</td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">x</span>)</td></tr>
+</table></td></tr>
+</table></td><td class="dcell">)−1)</td></tr>
+</table><p>
+Montrer que <span style="font-style:italic">g</span> admet une asymptote oblique au voisinage de +∞ et en 
+donner une équation.
+</p>
+<h3 id="sec360" class="subsection">21.1.2  La solution avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+1/ On tape :<br>
+<span style="font-family:monospace">taylor(cos(sin(x)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1+(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/-2+(5*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4)/24+</span><code><span style="font-family:monospace">x^</span></code><span style="font-family:monospace">6*order_size(x)</span><br>
+donc le développement limité à l’ordre 4 autour de zéro de 
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=cos(sin(<span style="font-style:italic">x</span>)) est :<br>
+<span style="font-family:monospace">1+(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/-2+(5*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4)/24+</span><code><span style="font-family:monospace">x^</span></code><span style="font-family:monospace">5*</span>є<span style="font-family:monospace">(x)</span><br>
+2/ On tape :<br>
+<span style="font-family:monospace">limit((cos(sin(x))-exp(-x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))/x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,x=0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/2</span><br>
+3/ On tape :<br>
+<span style="font-family:monospace">f(x):=cos(sin(x))</span><br>
+Puis, on tape :<br>
+<span style="font-family:monospace">series(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(f(1/sqrt(x))-1),x=+infinity,4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x/-2+5/24+(order_size(1/x))/x</span><br>
+Donc <span style="font-style:italic">g</span> admet une asymptote oblique au voisinage de +∞ déquation :<br>
+<span style="font-style:italic">y</span>=−<span style="font-style:italic">x</span>/2+5/24</p>
+<h2 id="sec361" class="section">21.2  Des calculs de limite</h2>
+<p>
+On tape :
+</p><pre class="verbatim">limit((1-cos(x))*sin(x)^2/(x^3*ln(x+1)),x,0);
+limit(sqrt(x^2+x+1)-sqrt(x^2+1),x,+infinity);
+limit((x^n-y^n)/(x-y),x,t);
+limit((x+1)/sqrt((x+1)/(x-1)),x,+infinity);
+limit((1-2*x)/(x^2+x-2),x,1);
+limit(exp(x*exp(-x)/(exp(-x)+exp(-2*x^2/(x+1))))/x,
+      x,+infinity);
+limit((exp(x*exp(-x)/(exp(-x)+exp(-2*x^2/(x+1))))-
+      exp(x))/x,x,+infinity);
+</pre>
+<h2 id="sec362" class="section">21.3  Des calculs de développements limités</h2>
+<p>
+On tape :
+</p><pre class="verbatim">series(cos(x)/exp(x),x,0,4);
+series(ln(cos(x)),x,0,4);
+series(atan(x*y)+1-exp(x+y),x,1/2,2);
+series(cos(x)*exp(2*x+1),x,0,4);
+series(sin(sin(x)),x,0,7);
+</pre>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo020.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo022.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

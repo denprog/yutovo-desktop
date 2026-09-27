@@ -1,0 +1,23 @@
+# Maple integration test file: "1 Algebraic functions\1.3 Miscellaneous\1.3.6 Derivative integration problems.txt"
+
+lst:=[
+[Derivative(1)(f)(x),x,1,f(x)],
+[Derivative(2)(f)(x),x,1,Derivative(1)(f)(x)],
+[f(x)*Derivative(1)(f)(x),x,2,1/2*f(x)^2],
+[Derivative(2)(f)(x)/Derivative(1)(f)(x),x,2,log(Derivative(1)(f)(x))],
+[Derivative(2)(f)(x)/(a+b*Derivative(1)(f)(x)),x,2,log(a+b*Derivative(1)(f)(x))/b],
+[Derivative(1)(f)(x)*Derivative(2)(f)(x),x,2,1/2*Derivative(1)(f)(x)^2],
+[Derivative(2)(f)(x)/sqrt(Derivative(1)(f)(x)),x,2,2*sqrt(Derivative(1)(f)(x))],
+[(g(x)*Derivative(1)(f)(x)-f(x)*Derivative(1)(g)(x))/g(x)^2,x,1,f(x)/g(x)],
+[(g(x)*Derivative(1)(f)(x)+f(x)*Derivative(1)(g)(x))/(a+b*(f(x)*g(x))^(1/2)),x,4,-2*a*log(a+b*sqrt(f(x)*g(x)))/b^2+2*sqrt(f(x)*g(x))/b],
+[(g(x)*Derivative(1)(f)(x)+f(x)*Derivative(1)(g)(x))/(a+b*(f(x)*g(x))^(5/2)),x,8,-2/5*log(a^(1/5)+b^(1/5)*sqrt(f(x)*g(x)))/(a^(3/5)*b^(2/5))+1/10*log(2*a^(2/5)+2*b^(2/5)*f(x)*g(x)-a^(1/5)*b^(1/5)*sqrt(f(x)*g(x))-a^(1/5)*b^(1/5)*sqrt(5)*sqrt(f(x)*g(x)))*(1-sqrt(5))/(a^(3/5)*b^(2/5))+1/10*log(2*a^(2/5)+2*b^(2/5)*f(x)*g(x)-a^(1/5)*b^(1/5)*sqrt(f(x)*g(x))+a^(1/5)*b^(1/5)*sqrt(5)*sqrt(f(x)*g(x)))*(1+sqrt(5))/(a^(3/5)*b^(2/5))+1/5*arctan((a^(1/5)*(1-sqrt(5))-4*b^(1/5)*sqrt(f(x)*g(x)))/(a^(1/5)*sqrt(2*(5+sqrt(5)))))*sqrt(2*(5-sqrt(5)))/(a^(3/5)*b^(2/5))-1/5*arctan(1/2*(a^(1/5)*(1+sqrt(5))-4*b^(1/5)*sqrt(f(x)*g(x)))*sqrt(5+sqrt(5))/(a^(1/5)*sqrt(10)))*sqrt(2*(5+sqrt(5)))/(a^(3/5)*b^(2/5))],
+[cos(x)*g(exp(x))*Derivative(1)(f)(sin(x))+exp(x)*f(sin(x))*Derivative(1)(g)(exp(x)),x,-1,f(sin(x))*g(exp(x))],
+[F^(a+b*x)*Derivative(3)(f)(x),x,3,b^2*F^(a+b*x)*f(x)*log(F)^2-b^3*integrate(F^(a+b*x)*f(x),x)*log(F)^3-b*F^(a+b*x)*log(F)*Derivative(1)(f)(x)+F^(a+b*x)*Derivative(2)(f)(x)],
+[cos(a+b*x)*Derivative(3)(f)(x),x,3,-b^2*cos(a+b*x)*f(x)-b^3*integrate(f(x)*sin(a+b*x),x)+b*sin(a+b*x)*Derivative(1)(f)(x)+cos(a+b*x)*Derivative(2)(f)(x)],
+[cos(Derivative(-1+m)(f)(x)*Derivative(-1+n)(g)(x))*(Derivative(m)(f)(x)*Derivative(-1+n)(g)(x)+Derivative(-1+m)(f)(x)*Derivative(n)(g)(x)),x,2,sin(Derivative(-1+m)(f)(x)*Derivative(-1+n)(g)(x))],
+[(Derivative(1)(g)(x)*Derivative(m)(f)(x)+g(x)*Derivative(1+m)(f)(x))/(a+b*g(x)^2*Derivative(m)(f)(x)^2),x,2,arctan(g(x)*sqrt(b)*Derivative(m)(f)(x)/sqrt(a))/(sqrt(a)*sqrt(b))],
+[cos(g(x)*Derivative(m)(f)(x)^2)*Derivative(m)(f)(x)*(Derivative(1)(g)(x)*Derivative(m)(f)(x)+2*g(x)*Derivative(1+m)(f)(x)),x,2,sin(g(x)*Derivative(m)(f)(x)^2)],
+[Derivative(1)(F)(g(x)*Derivative(m)(f)(x)^2)*Derivative(m)(f)(x)*(Derivative(1)(g)(x)*Derivative(m)(f)(x)+2*g(x)*Derivative(1+m)(f)(x)),x,2,F(g(x)*Derivative(m)(f)(x)^2)],
+[cos(Derivative(m)(f)(x)^2*Derivative(n)(g)(x)^3)*Derivative(m)(f)(x)*Derivative(n)(g)(x)^2*(2*Derivative(1+m)(f)(x)*Derivative(n)(g)(x)+3*Derivative(m)(f)(x)*Derivative(1+n)(g)(x)),x,2,sin(Derivative(m)(f)(x)^2*Derivative(n)(g)(x)^3)],
+[Derivative(m)(f)(x)*Derivative(n)(g)(x)^2*(2*Derivative(1+m)(f)(x)*Derivative(n)(g)(x)+3*Derivative(m)(f)(x)*Derivative(1+n)(g)(x))/(a+b*Derivative(m)(f)(x)^4*Derivative(n)(g)(x)^6),x,2,arctan(sqrt(b)*Derivative(m)(f)(x)^2*Derivative(n)(g)(x)^3/sqrt(a))/(sqrt(a)*sqrt(b))],
+[Derivative(1)(F)(Derivative(m)(f)(x)^2*Derivative(n)(g)(x)^3)*Derivative(m)(f)(x)*Derivative(n)(g)(x)^2*(2*Derivative(1+m)(f)(x)*Derivative(n)(g)(x)+3*Derivative(m)(f)(x)*Derivative(1+n)(g)(x)),x,2,F(Derivative(m)(f)(x)^2*Derivative(n)(g)(x)^3)]]:

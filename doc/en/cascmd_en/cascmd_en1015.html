@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Extracting data from images</title>
+</head>
+<body >
+<a href="cascmd_en1014.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1016.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:imageprops" class="subsection">28.1.8  Extracting data from images</h3>
+<h5 id="sec2538" class="paragraph">Printing out information about an image.</h5>
+<p>
+The <span style="font-family:monospace">about</span> command can be used to print out a brief description
+of an image object, which it takes as its only argument.</p>
+<h5 id="sec2539" class="paragraph">Obtaining the size of an image.</h5>
+<p>
+The size of an image can be obtained by using the
+<span style="font-family:monospace">size</span><a id="hevea_default1933"></a> command.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">size</span> takes <span style="font-style:italic">img</span>, an image object.
+</li><li class="li-itemize"><span style="font-family:monospace">size(</span><span style="font-style:italic">img</span><span style="font-family:monospace">)</span> returns a list of two integers
+representing the width and the height of <span style="font-style:italic">img</span> (in that order).
+</li></ul>
+<h5 id="sec2540" class="paragraph">Obtaining pixel data.</h5>
+<p>
+Channel data can be extracted from image objects to matrices by using
+the <span style="font-family:monospace">[]</span><a id="hevea_default1934"></a> operator or the
+<span style="font-family:monospace">channel_data</span><a id="hevea_default1935"></a> command.
+</p><ul class="itemize"><li class="li-itemize">
+Let <span style="font-style:italic">img</span> be an image object.
+</li><li class="li-itemize">The command <span style="font-style:italic">img</span><span style="font-family:monospace">[</span><span style="font-style:italic">chn</span> ⟨,<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span> ⟨,<span style="font-style:italic">w</span>,<span style="font-style:italic">h</span> ⟩⟩<span style="font-family:monospace">]</span>,
+where
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">chn</span> is a channel index, which should be either a
+nonnegative integer or <span style="font-family:monospace">red</span> for the red channel, <span style="font-family:monospace">green</span> for the
+green channel, <span style="font-family:monospace">blue</span> for the blue channel, <span style="font-family:monospace">grey</span> for the
+grayscale channel resp. <span style="font-family:monospace">tran</span> for the transparency channel,
+</li><li class="li-itemize">(optionally) <span style="font-style:italic">x</span>, <span style="font-style:italic">y</span> are integers and
+</li><li class="li-itemize">(optionally) <span style="font-style:italic">w</span>, <span style="font-style:italic">h</span> are positive integers (if these are given, then
+<span style="font-style:italic">x</span> and <span style="font-style:italic">y</span> must also be given),
+</li></ul>
+returns
+<ul class="itemize"><li class="li-itemize">
+the full matrix of the channel <span style="font-style:italic">chn</span> if no optional arguments are given,
+</li><li class="li-itemize">the <span style="font-style:italic">chn</span> component of the pixel (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) if <span style="font-style:italic">w</span> and <span style="font-style:italic">h</span> are not given,
+</li><li class="li-itemize">the matrix of pixel data for the channel <span style="font-style:italic">chn</span> in the
+rectangle with upper left corner (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) and lower right corner (<span style="font-style:italic">x</span>+<span style="font-style:italic">w</span>−1,<span style="font-style:italic">y</span>+<span style="font-style:italic">h</span>−1)
+if <span style="font-style:italic">x</span>, <span style="font-style:italic">y</span>, <span style="font-style:italic">w</span> and <span style="font-style:italic">h</span> are given.
+</li></ul>
+</li><li class="li-itemize">If <span style="font-style:italic">chn</span>=<span style="font-family:monospace">grey</span> and <span style="font-style:italic">img</span> is a color image, then the returned
+pixel value(s) are obtained by averaging the color channels.
+</li><li class="li-itemize">The <span style="font-family:monospace">channel_data</span> command extracts a channel (sub)matrix. Precisely,
+<span style="font-family:monospace">channel_data(</span><span style="font-style:italic">img</span>,<span style="font-style:italic">args</span><span style="font-style:italic">)</span> is equivalent to
+<span style="font-style:italic">img</span><span style="font-family:monospace">[</span><span style="font-style:italic">args</span><span style="font-family:monospace">]</span>, where <span style="font-style:italic">img</span> is an image object
+and <span style="font-style:italic">args</span> is a sequence of arguments as described above.
+</li></ul>
+<h5 id="sec2541" class="paragraph">Flattening images.</h5>
+<p>
+The <span style="font-family:monospace">flatten</span><a id="hevea_default1936"></a> command returns a list
+representation of an image, which is suitable for e.g. passing the image to a neural
+network. It accepts a single argument, an image object <span style="font-style:italic">img</span>, and returns the
+list in which the pixel data is stored row by row, with individual channel values for
+the same pixel occupying consecutive entries in the list. (See the MNIST example
+in Section <a href="cascmd_en743.html#ssec%3Atrain">22.2.2</a>.)</p>
+<hr>
+<a href="cascmd_en1014.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1016.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

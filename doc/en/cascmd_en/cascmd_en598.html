@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Spline interpolation</title>
+</head>
+<body >
+<a href="cascmd_en597.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en599.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:spline-interp" class="subsection">17.1.2  Spline interpolation</h3>
+<p>Spline interpolation is a method of piecewise polynomial interpolation
+in which smaller, low-degree pieces are glued together at given points under
+suitable boundary conditions. With <span style="font-variant:small-caps">Xcas</span> you can do both symbolic and
+numerical spline interpolation.</p><h5 id="sec1436" class="paragraph">Theoretical background.</h5>
+<p>
+Let σ<sub><span style="font-style:italic">n</span></sub> be a subdivision of a real interval [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">a</span>=<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">x</span><sub>1</sub>,…,<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">b</span>.
+</td></tr>
+</table><p>
+The function <span style="font-style:italic">s</span> is a <em>spline</em> function of
+degree <span style="font-style:italic">l</span> if <span style="font-style:italic">s</span> is a function from [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] to ℝ such
+that:
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">s</span> has continuous derivatives up to the order <span style="font-style:italic">l</span>−1,
+</li><li class="li-itemize">on each interval of the subdivision σ<sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">s</span>
+is a polynomial of degree less or equal than <span style="font-style:italic">l</span>.
+</li></ul><div class="theorem"><span style="font-weight:bold">Theorem 5</span>  <em>
+The set of spline functions of degree </em><span style="font-style:italic">l</span><em> on </em>σ<sub><span style="font-style:italic">n</span></sub><em> is an
+</em>ℝ<em>-vector space of dimension </em><span style="font-style:italic">n</span>+<span style="font-style:italic">l</span><em>.
+</em></div><p><span style="font-weight:bold">Proof.</span>
+Let <span style="font-style:italic">s</span> be a spline function of degree <span style="font-style:italic">l</span> on σ<sub><span style="font-style:italic">n</span></sub>.
+For <span style="font-style:italic">x</span>∈[<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>1</sub>], <span style="font-style:italic">s</span> is a polynomial <span style="font-style:italic">A</span> of degree less or equal to <span style="font-style:italic">l</span>,
+hence on [<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>1</sub>], <span style="font-style:italic">s</span>=<span style="font-style:italic">A</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">a</span><sub>1</sub><span style="font-style:italic">x</span>+⋯+<span style="font-style:italic">a</span><sub><span style="font-style:italic">l</span></sub><span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup> and <span style="font-style:italic">A</span> is a
+linear combination of 1,<span style="font-style:italic">x</span>,…,<span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>.</p><p>For <span style="font-style:italic">x</span>∈[<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>], <span style="font-style:italic">s</span> is a polynomial <span style="font-style:italic">B</span> of degree
+less or equal to <span style="font-style:italic">l</span>, hence on [<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>], <span style="font-style:italic">s</span>=<span style="font-style:italic">B</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">b</span><sub>0</sub>+<span style="font-style:italic">b</span><sub>1</sub><span style="font-style:italic">x</span>+⋯+<span style="font-style:italic">b</span><sub><span style="font-style:italic">l</span></sub><span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>.
+Since <span style="font-style:italic">s</span> has continuous derivatives up to order <span style="font-style:italic">l</span>−1, it follows
+<span style="font-style:italic">B</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">x</span><sub>1</sub>)−<span style="font-style:italic">A</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">x</span><sub>1</sub>)=0 for 0≤ <span style="font-style:italic">j</span>&lt;<span style="font-style:italic">l</span>, and
+therefore <span style="font-style:italic">B</span>(<span style="font-style:italic">x</span>)−<span style="font-style:italic">A</span>(<span style="font-style:italic">x</span>)=α<sub>1</sub>(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>1</sub>)<sup><span style="font-style:italic">l</span></sup>, i.e.
+<span style="font-style:italic">B</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">A</span>(<span style="font-style:italic">x</span>)+α<sub>1</sub>(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>1</sub>)<sup><span style="font-style:italic">l</span></sup>, for some α<sub>1</sub>.
+Define the function:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">q</span><sub>1</sub>(<span style="font-style:italic">x</span>)=</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎧<br>
+⎨<br>
+⎩</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >0,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">a</span>≤ <span style="font-style:italic">x</span>≤ <span style="font-style:italic">x</span><sub>1</sub>,</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>1</sub>)<sup><span style="font-style:italic">l</span></sup>,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span><sub>1</sub>≤ <span style="font-style:italic">x</span>≤ <span style="font-style:italic">b</span>.</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table><p>
+Now <span style="font-style:italic">s</span>|<sub>[<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>2</sub>]</sub>=<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">a</span><sub>1</sub><span style="font-style:italic">x</span>+⋯+<span style="font-style:italic">a</span><sub><span style="font-style:italic">l</span></sub><span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>+α<sub>1</sub><span style="font-style:italic">q</span><sub>1</sub>(<span style="font-style:italic">x</span>).</p><p>For <span style="font-style:italic">x</span>∈[<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">x</span><sub>3</sub>], <span style="font-style:italic">s</span> is a polynomial <span style="font-style:italic">C</span> of degree less or equal than
+<span style="font-style:italic">l</span>, hence on [<span style="font-style:italic">x</span><sub>2</sub>,<span style="font-style:italic">x</span><sub>3</sub>], <span style="font-style:italic">s</span>=<span style="font-style:italic">C</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">c</span><sub>0</sub>+<span style="font-style:italic">c</span><sub>1</sub><span style="font-style:italic">x</span>+⋯+<span style="font-style:italic">c</span><sub><span style="font-style:italic">l</span></sub><span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>.
+Since <span style="font-style:italic">s</span> has continuous derivatives up to order <span style="font-style:italic">l</span>−1, it follows
+<span style="font-style:italic">C</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">x</span><sub>2</sub>)−<span style="font-style:italic">B</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">x</span><sub>2</sub>)=0 for 0≤ <span style="font-style:italic">j</span>&lt;<span style="font-style:italic">l</span>, and
+therefore <span style="font-style:italic">C</span>(<span style="font-style:italic">x</span>)−<span style="font-style:italic">B</span>(<span style="font-style:italic">x</span>)=α<sub>2</sub>(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>2</sub>)<sup><span style="font-style:italic">n</span></sup> or <span style="font-style:italic">C</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">B</span>(<span style="font-style:italic">x</span>)+α<sub>2</sub>(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>2</sub>)<sup><span style="font-style:italic">n</span></sup> for
+some α<sub>2</sub>∈ℝ. Define the function:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">q</span><sub>2</sub>(<span style="font-style:italic">x</span>)=</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎧<br>
+⎨<br>
+⎩</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >0,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">a</span>≤ <span style="font-style:italic">x</span>≤ <span style="font-style:italic">x</span><sub>2</sub>,</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub>2</sub>)<sup><span style="font-style:italic">l</span></sup>,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span><sub>2</sub>≤ <span style="font-style:italic">x</span>≤ <span style="font-style:italic">b</span>.</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table><p>
+Now <span style="font-style:italic">s</span>|<sub>[<span style="font-style:italic">a</span>,<span style="font-style:italic">x</span><sub>3</sub>]</sub>=<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">a</span><sub>1</sub><span style="font-style:italic">x</span>+⋯+<span style="font-style:italic">a</span><sub><span style="font-style:italic">l</span></sub><span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>+α<sub>1</sub><span style="font-style:italic">q</span><sub>1</sub>(<span style="font-style:italic">x</span>)+α<sub>2</sub><span style="font-style:italic">q</span><sub>2</sub>(<span style="font-style:italic">x</span>).</p><p>Continuing, define the functions <span style="font-style:italic">q</span><sub><span style="font-style:italic">j</span></sub> for all 1≤ <span style="font-style:italic">j</span>&lt;<span style="font-style:italic">n</span>:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">q</span><sub><span style="font-style:italic">j</span></sub>(<span style="font-style:italic">x</span>)=</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎧<br>
+⎨<br>
+⎩</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >0,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">a</span>≤ <span style="font-style:italic">x</span>≤ <span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub>,</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >(<span style="font-style:italic">x</span>−<span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub>)<sup><span style="font-style:italic">l</span></sup>,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub>≤ <span style="font-style:italic">x</span>≤ <span style="font-style:italic">b</span>.</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table><p>
+You obtain <span style="font-style:italic">s</span>|<sub>[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]</sub>=<span style="font-style:italic">a</span><sub>0</sub>+<span style="font-style:italic">a</span><sub>1</sub><span style="font-style:italic">x</span>+⋯+<span style="font-style:italic">a</span><sub><span style="font-style:italic">l</span></sub><span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>+α<sub>1</sub><span style="font-style:italic">q</span><sub>1</sub>(<span style="font-style:italic">x</span>)+⋯+α<sub><span style="font-style:italic">n</span>−1</sub><span style="font-style:italic">q</span><sub><span style="font-style:italic">n</span>−1</sub>(<span style="font-style:italic">x</span>),
+meaning that <span style="font-style:italic">s</span> is a linear combination of <span style="font-style:italic">n</span>+<span style="font-style:italic">l</span> independent functions
+1,<span style="font-style:italic">x</span>,…,<span style="font-style:italic">x</span><sup><span style="font-style:italic">l</span></sup>,<span style="font-style:italic">q</span><sub>1</sub>,…,<span style="font-style:italic">q</span><sub><span style="font-style:italic">n</span>−1</sub>. It follows that the set of all possible <span style="font-style:italic">s</span> is
+a real vector space of dimension <span style="font-style:italic">n</span>+<span style="font-style:italic">l</span>.
+</p><p><br>
+</p>
+<h5 id="sec1437" class="paragraph">Types of spline functions.</h5>
+<p>
+If you want to interpolate a function <span style="font-style:italic">f</span> on σ<sub><span style="font-style:italic">n</span></sub> by a spline
+function <span style="font-style:italic">s</span> of degree <span style="font-style:italic">l</span>, then <span style="font-style:italic">s</span> must satisfy <span style="font-style:italic">s</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span></sub>)=<span style="font-style:italic">y</span><sub><span style="font-style:italic">k</span></sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">k</span></sub>)
+for all 0≤ <span style="font-style:italic">k</span>≤ <span style="font-style:italic">n</span>. This gives <span style="font-style:italic">n</span>+1 conditions, leaving <span style="font-style:italic">l</span>−1
+degrees of freedom. You can therefore add <span style="font-style:italic">l</span>−1 conditions, these
+conditions are on the derivatives of <span style="font-style:italic">s</span> at <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>.</p><p>Hermite interpolation, natural interpolation and periodic
+interpolation are three kinds of interpolation obtained by specifying
+three kinds of constraints. The uniqueness of the solution of the
+interpolation problem can be proved for each kind of constraints.</p><p>If <span style="font-style:italic">l</span> is odd (i.e. <span style="font-style:italic">l</span>=2<span style="font-style:italic">m</span>−1), there are 2<span style="font-style:italic">m</span>−2 degrees of freedom. The
+constraints are defined as follows.
+</p><ul class="itemize"><li class="li-itemize">
+Hermite interpolation: <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">f</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>) and <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>)=<span style="font-style:italic">f</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>), 1≤ <span style="font-style:italic">j</span>≤ <span style="font-style:italic">m</span>−1.
+</li><li class="li-itemize">Natural interpolation: <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>)=0, <span style="font-style:italic">m</span> ≤ <span style="font-style:italic">j</span> ≤ 2<span style="font-style:italic">m</span>−2.
+</li><li class="li-itemize">Periodic interpolation: <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>), 1≤ <span style="font-style:italic">j</span>≤ 2<span style="font-style:italic">m</span>−2.
+</li></ul><p>If <span style="font-style:italic">l</span> is even (<span style="font-style:italic">l</span>=2<span style="font-style:italic">m</span>), there are 2<span style="font-style:italic">m</span>−1 degrees of freedom. The
+constraints are defined as follows.
+</p><ul class="itemize"><li class="li-itemize">
+Hermite interpolation:
+<span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">f</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>), <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>)=<span style="font-style:italic">f</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>) and <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">m</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">f</span><sup>(<span style="font-style:italic">m</span>)</sup>(<span style="font-style:italic">a</span>),
+1≤ <span style="font-style:italic">j</span>≤ <span style="font-style:italic">m</span>−1.
+</li><li class="li-itemize">Natural interpolation:
+<span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>)=0 and <span style="font-style:italic">s</span><sup>(2<span style="font-style:italic">m</span>−1)</sup>(<span style="font-style:italic">a</span>)=0, <span style="font-style:italic">m</span> ≤ <span style="font-style:italic">j</span> ≤ 2<span style="font-style:italic">m</span>−2.
+</li><li class="li-itemize">Periodic interpolation: <span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">a</span>)=<span style="font-style:italic">s</span><sup>(<span style="font-style:italic">j</span>)</sup>(<span style="font-style:italic">b</span>), 1≤ <span style="font-style:italic">j</span>≤ 2<span style="font-style:italic">m</span>−1.
+</li></ul>
+<h5 id="sec1438" class="paragraph">Natural symbolic interpolation.</h5>
+<p>
+The <span style="font-family:monospace">spline</span><a id="hevea_default1072"></a> command finds the natural spline.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">spline</span> takes two mandatory arguments and up to three optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>, a list of abscissas (in increasing order).
+</li><li class="li-itemize"><span style="font-style:italic">L</span><sub><span style="font-style:italic">y</span></sub>, a list of ordinates (the same length as <span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span>, either a symbolic variable, real number, or list of reals
+(by default <span style="font-family:monospace">x</span>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">l</span>, a positive integer for the degree (by default, <span style="font-style:italic">l</span>=3).
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">piecewise</span>, the symbol.
+</li></ul>
+</li><li class="li-itemize">If <span style="font-style:italic">x</span> is a variable, then
+<span style="font-family:monospace">spline(</span><span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>,<span style="font-style:italic">L</span><sub><span style="font-style:italic">y</span></sub> ⟨,<span style="font-style:italic">x</span>,<span style="font-style:italic">l</span> ⟩ ⟨,<span style="font-family:monospace">piecewise</span> ⟩<span style="font-family:monospace">)</span>
+returns the natural spline function <span style="font-style:italic">s</span> of degree <span style="font-style:italic">l</span>, where <span style="font-style:italic">s</span>(<span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span>,<span style="font-style:italic">j</span></sub>)=<span style="font-style:italic">L</span><sub><span style="font-style:italic">y</span>,<span style="font-style:italic">j</span></sub>
+for <span style="font-style:italic">j</span>=0,…,<span style="font-family:monospace">length</span>(<span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>), as a list of polynomials, each
+polynomial being valid on the corresponding interval determined by
+<span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>, or, if <span style="font-family:monospace">piecewise</span> is given, a piecewise expression
+representing the entire spline for min<span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>≤ <span style="font-style:italic">x</span>≤ max<span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>.
+</li><li class="li-itemize">If <span style="font-style:italic">x</span> is a real number (resp. a list of numbers), then
+<span style="font-family:monospace">spline(</span><span style="font-style:italic">L</span><sub><span style="font-style:italic">x</span></sub>,<span style="font-style:italic">L</span><sub><span style="font-style:italic">y</span></sub>,<span style="font-style:italic">x</span> ⟨,<span style="font-style:italic">l</span> ⟩<span style="font-family:monospace">)</span> returns the spline value
+at <span style="font-style:italic">x</span> (resp. the list of spline values at individual components of <span style="font-style:italic">x</span>).
+</li></ul><h4 id="sec1439" class="subsubsection">Examples</h4>
+<p>
+Find the natural spline of degree 3, crossing through the points
+(0,1), (1,3) and (2,0):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2],[1,3,0])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2],[1,3,0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,3)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">13</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+1,</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">15</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+3</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The first polynomial, −5/4 <span style="font-style:italic">x</span><sup>3</sup>+13/4 <span style="font-style:italic">x</span>+1, is
+defined on the interval [0,1] (the first interval defined by the
+list [0,1,2]) and the second polynomial 5/4
+(<span style="font-style:italic">x</span>−1)<sup>3</sup>−15/4
+(<span style="font-style:italic">x</span>−1)<sup>2</sup>−<span style="font-style:italic">x</span>−1/2+3 is defined on the interval
+[1,2], the second interval defined by the list [0,1,2]. To obtain the
+result in a piecewise form, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2],[1,3,0],</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">piecewise</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎧<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎨<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎩</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">13</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+1,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">≥ 0∧ 1&gt;</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">15</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+3,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">2≥ </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>Find the natural spline of degree 4, crossing through the points
+(0,1), (1,3), (2,0) and (3,−1):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2,3],[1,3,0,-1],</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,4)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">62</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">x</span><sup>4</sup>+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">304</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">x</span>+1,</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">201</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−1</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>4</sup>−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">248</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−1</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>3</sup>−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">372</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−1</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>2</sup>+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">56</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell">
+</td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−1</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">+3,</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+−</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">139</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−2</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>4</sup>+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">556</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−2</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>3</sup>+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">90</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−2</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>2</sup>−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">628</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">121</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span>−2</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The output is a list of three polynomial functions of <span style="font-style:italic">x</span>,
+defined on the intervals [0,1], [1,2] and [2,3], respectively.
+To compute the spline value for points <span style="font-style:italic">x</span>=1/2,4/3,9/4, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spline</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2,3],[1,3,0,-1],[1/2,4/3,9/4],4)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2153</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">968</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">9008</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3267</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">36667</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">30976</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>Find the natural spline interpolation of the cosine function with abscissas
+[0,π/2,3π/2]:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/2,3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/2]:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">spline</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">4 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3 π </span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">7 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3 π </span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+1,
+−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">2 </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">π </span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎠</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left"><span style="color:#0000CC"><span style="color:#0000CC">3</span></span></td></tr>
+<tr><td class="dcell" style="text-align:left"><span style="color:#0000CC"><br>
+<br>
+<br>
+</span></td></tr>
+<tr><td class="dcell" style="text-align:left"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3 π </span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">2
+</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">π </span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎠</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left"><span style="color:#0000CC"><span style="color:#0000CC">2</span></span></td></tr>
+<tr><td class="dcell" style="text-align:left"><span style="color:#0000CC"><br>
+<br>
+<br>
+</span></td></tr>
+<tr><td class="dcell" style="text-align:left"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">π </span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">4 </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">π
+</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎠</span></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">3 π </span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="ssec:fast-interp" class="paragraph">Numerical spline interpolation.</h5>
+<p>
+The <span style="font-family:monospace">interp</span><a id="hevea_default1073"></a> command interpolates a
+discretized function at a list of given points by using fast spline interpolation
+routines provided by GSL. You should use this command when you do not need the
+interpolated function itself but only its values at a sequence of points.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">interp</span> takes two or three mandatory arguments and a sequence
+of optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">data</span>, a sequence or list of two vectors <span style="font-style:italic">x</span> and <span style="font-style:italic">y</span> of the same length.
+</li><li class="li-itemize"><span style="font-style:italic">v</span>, a vector of <span style="font-style:italic">x</span>-values at which the spline is evaluated.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">opts</span>, a sequence of options each of which is one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">"</span><span style="font-style:italic">stype</span><span style="font-family:monospace">"</span>, a string specifying spline type.
+Allowed values for <span style="font-style:italic">stype</span> are <span style="font-family:monospace">cubic</span>, <span style="font-family:monospace">akima</span> and <span style="font-family:monospace">steffen</span>
+(by default, <span style="font-style:italic">stype</span>=<span style="font-family:monospace">cubic</span>). See below for descriptions of these types.
+</li><li class="li-itemize"><span style="font-family:monospace">periodic</span>, the symbol specifying that interpolation should be periodic
+(by default, interpolation is not periodic).
+This argument gets ignored if <span style="font-style:italic">stype</span>=<span style="font-family:monospace">steffen</span>.
+</li><li class="li-itemize"><span style="font-style:italic">d</span>, a nonnegative integer specifying the order of the derivative
+of interpolated function to be evaluated.
+Allowed values are 0, 1 and 2 (by default, <span style="font-style:italic">d</span>=0).
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">interp([</span><span style="font-style:italic">x</span>,<span style="font-style:italic">y</span><span style="font-family:monospace">]</span>,<span style="font-style:italic">v</span> ⟨,<span style="font-style:italic">opts</span> ⟩<span style="font-family:monospace">)</span> or
+<span style="font-family:monospace">interp(</span><span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">v</span> ⟨,<span style="font-style:italic">opts</span> ⟩<span style="font-family:monospace">)</span>
+returns the list <span style="font-style:italic">z</span> of spline (derivative) values at points in <span style="font-style:italic">v</span>.
+</li><li class="li-itemize">Note that <span style="font-style:italic">data</span> and <span style="font-style:italic">v</span> must be entirely numeric and
+<span style="font-style:italic">data</span> should also be inexact.
+</li><li class="li-itemize">The elements of <span style="font-style:italic">x</span> must be strictly ascending. The minimal number of data points is 3.
+</li><li class="li-itemize">The elements of <span style="font-style:italic">t</span> must be between min<span style="font-style:italic">x</span> and max<span style="font-style:italic">x</span>, otherwise the output list
+will contain undefined elements (as an effect, plotting would fail).
+</li></ul><p>
+The description of spline types below is quoted from GSL documentation.
+</p><dl class="description"><dt class="dt-description">
+<span style="font-weight:bold">cubic</span></dt><dd class="dd-description"> Cubic spline with natural boundary conditions.
+The resulting curve is piecewise cubic on each interval,
+with matching first and second derivatives at the supplied data-points.
+The second derivative is chosen to be zero at the first point and last point.
+</dd><dt class="dt-description"><span style="font-weight:bold">periodic cubic</span></dt><dd class="dd-description"> Cubic spline with periodic boundary conditions.
+The resulting curve is piecewise cubic on each interval, with matching first
+and second derivatives at the supplied data-points.
+The derivatives at the first and last points are also matched.
+Note that the last point in the data must have the same <span style="font-style:italic">y</span>-value as the first point,
+otherwise the resulting periodic interpolation will have a discontinuity at the boundary.
+</dd><dt class="dt-description"><span style="font-weight:bold">(periodic) akima</span></dt><dd class="dd-description"> Non-rounded Akima spline with natural (periodic) boundary conditions.
+This method uses the non-rounded corner algorithm of Wodicka.
+</dd><dt class="dt-description"><span style="font-weight:bold">steffen</span></dt><dd class="dd-description"> Steffen’s method guarantees the monotonicity of the interpolating
+function between the given data points. Therefore, minima and maxima can only occur
+exactly at the data points, and there can never be spurious oscillations between data points.
+The interpolated function is piecewise cubic in each interval.
+The resulting curve and its first derivative are guaranteed to be continuous,
+but the second derivative may be discontinuous.
+</dd></dl><p>
+Note that Steffen interpolation is available only if <span style="font-family:monospace">giac</span> is compiled with GSL version 2.2 or later.</p><h4 id="sec1441" class="subsubsection">Example</h4>
+<p>
+This example is adapted from GSL documentation. To define some synthetic data, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">makelist</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">+0.5*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">),0,10),</span></span><span style="font-weight:bold"><span style="color:#BF0000">makelist</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2),0,10):;</span></span></td></tr>
+</table><p>This gives you 11 data points. To interpolate the function at intermediate points, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">min</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">max</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),1000):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>Now plot the data and the interpolated values together:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">]));</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">scatterplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">point_width_2</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en031.png">
+
+</div><p>
+
+To see the difference between the supported spline types, interpolate
+in the segment [4,6]. Enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(4,6):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"cubic"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"akima"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">interp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"steffen"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">quadrant4</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"cubic"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"akima"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">magenta</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"steffen"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en032.png">
+
+</div>
+<hr>
+<a href="cascmd_en597.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en599.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

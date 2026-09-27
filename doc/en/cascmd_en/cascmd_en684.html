@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Exponential distribution</title>
+</head>
+<body >
+<a href="cascmd_en683.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en685.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:exponentiald" class="subsection">20.4.15  Exponential distribution</h3>
+<h5 id="sec1758" class="paragraph">The probability density function for the exponential distribution.</h5>
+<p>
+The exponential distribution depends on one parameters, λ&gt;0;
+the value of the density function at <span style="font-style:italic">x</span> ≥ 0 is
+<span style="font-family:monospace">exponential</span>(λ,<span style="font-style:italic">x</span>)=λ <span style="font-style:italic">e</span><sup>−λ <span style="font-style:italic">x</span></sup>.
+The <span style="font-family:monospace">exponential</span><a id="hevea_default1386"></a>
+or <span style="font-family:monospace">exponentiald</span><a id="hevea_default1387"></a>
+command computes the exponential distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">exponential</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+λ, a positive number (the parameter).
+</li><li class="li-itemize"><span style="font-style:italic">x</span>, a positive number.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">exponential(</span>λ,<span style="font-style:italic">x</span><span style="font-family:monospace">)</span> returns the value of the
+exponential density function with parameter λ at <span style="font-style:italic">x</span>; namely,
+<span style="font-family:monospace">exponential</span>(λ,<span style="font-style:italic">x</span>)=λ <span style="font-style:italic">e</span><sup>−λ <span style="font-style:italic">x</span></sup>. 
+</li></ul><h4 id="sec1759" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">exponential</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2.1,3.5)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.00134944395675
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1760" class="paragraph">The cumulative distribution function for the exponential distribution.</h5>
+<p>
+The <span style="font-family:monospace">exponential_cdf</span><a id="hevea_default1388"></a>
+(or <span style="font-family:monospace">exponentiald_cdf</span><a id="hevea_default1389"></a>)
+command computes the cumulative distribution function for the exponential distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">exponential_cdf</span> (or <span style="font-family:monospace">exponentiald_cdf</span>)
+takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+λ, a positive number (the parameter).
+</li><li class="li-itemize"><span style="font-style:italic">x</span>, a positive number.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">exponential_cdf(</span>λ,<span style="font-style:italic">x</span><span style="font-family:monospace">)</span> returns
+Prob(<span style="font-style:italic">X</span> ≤ <span style="font-style:italic">x</span>) for the exponential distribution with
+parameter λ.
+</li><li class="li-itemize"><span style="font-family:monospace">exponential_cdf(</span>λ,<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span><span style="font-family:monospace">)</span> returns
+Prob(<span style="font-style:italic">x</span> ≤ <span style="font-style:italic">X</span> ≤ <span style="font-style:italic">y</span>).
+</li></ul><h4 id="sec1761" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">exponential_cdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2.3,3.2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.99936380154
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">exponential_cdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2.3,0.9,3.2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.125549583246
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1762" class="paragraph">The inverse distribution function for the exponential distribution.</h5>
+<p>
+The <span style="font-family:monospace">exponential_icdf</span><a id="hevea_default1390"></a>
+(or <span style="font-family:monospace">exponentiald_icdf</span><a id="hevea_default1391"></a>)
+command computes the inverse distribution for the exponential distribution.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">exponential_icdf</span> (or <span style="font-family:monospace">exponentiald_icdf</span>) takes two
+arguments:
+<ul class="itemize"><li class="li-itemize">
+λ, a positive number (the parameter).
+</li><li class="li-itemize"><span style="font-style:italic">h</span>, a positive real number.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">exponential_icdf(</span>λ,<span style="font-style:italic">h</span><span style="font-family:monospace">)</span> returns the inverse
+distribution for the exponential distribution with parameter
+λ; namely, the value of <span style="font-style:italic">x</span> for which
+Prob(<span style="font-style:italic">X</span> ≤ <span style="font-style:italic">x</span>)=<span style="font-style:italic">h</span>.
+</li></ul><h4 id="sec1763" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">exponential_icdf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2.3,0.87)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.887052534142
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en683.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en685.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

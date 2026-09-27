@@ -1,0 +1,9 @@
+# Maple integration test file: "4 Trig functions\4.3b Cosecant\4.3.7 (d trig)^m (a+b (c csc)^n)^p.txt"
+
+lst:=[
+[(a+b*csc(c+d*x)^2)^4,x,4,a^4*x-b*(2*a+b)*(2*a^2+2*a*b+b^2)*cot(c+d*x)/d-1/3*b^2*(6*a^2+8*a*b+3*b^2)*cot(c+d*x)^3/d-1/5*b^3*(4*a+3*b)*cot(c+d*x)^5/d-1/7*b^4*cot(c+d*x)^7/d],
+[(a+b*csc(c+d*x)^2)^2,x,4,a^2*x-b*(2*a+b)*cot(c+d*x)/d-1/3*b^2*cot(c+d*x)^3/d],
+[1/(a+b*csc(c+d*x)^2),x,3,x/a-arctan(sqrt(a+b)*tan(c+d*x)/sqrt(b))*sqrt(b)/(a*d*sqrt(a+b))],
+[(a+b*csc(c+d*x)^2)^(1/2),x,6,-arctan(cot(c+d*x)*sqrt(a)/sqrt(a+b+b*cot(c+d*x)^2))*sqrt(a)/d-arctanh(cot(c+d*x)*sqrt(b)/sqrt(a+b+b*cot(c+d*x)^2))*sqrt(b)/d],
+[1/(a+b*csc(c+d*x)^2)^(7/2),x,7,-arctan(cot(c+d*x)*sqrt(a)/sqrt(a+b+b*cot(c+d*x)^2))/(a^(7/2)*d)+1/5*b*cot(c+d*x)/(a*(a+b)*d*(a+b+b*cot(c+d*x)^2)^(5/2))+1/15*b*(9*a+5*b)*cot(c+d*x)/(a^2*(a+b)^2*d*(a+b+b*cot(c+d*x)^2)^(3/2))+1/15*b*(33*a^2+40*a*b+15*b^2)*cot(c+d*x)/(a^3*(a+b)^3*d*sqrt(a+b+b*cot(c+d*x)^2))],
+[1/sqrt(-1-csc(x)^2),x,3,-arctanh(cot(x)/sqrt(-2-cot(x)^2))]]:

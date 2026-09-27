@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Solving a linear system using the Gauss-Seidel method</title>
+</head>
+<body >
+<a href="cascmd_en582.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en584.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1367" class="subsection">15.7.8  Solving a linear system using the Gauss-Seidel method</h3>
+<p>The <span style="font-family:monospace">gauss_seidel_linsolve</span><a id="hevea_default1000"></a>
+command finds the solution of a linear system of equations using the Gauss-Seidel method.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">gauss_seidel_linsolve</span> command takes two mandatory arguments
+and three optional arguments (including an optional first
+argument):
+<ul class="itemize"><li class="li-itemize">
+Optionally, ω, used for a general
+form of the Gauss-Seidel method (the successive overrelaxation
+method) (by default, ω=1).
+</li><li class="li-itemize"><span style="font-style:italic">A</span>, the matrix of coefficients of a system.
+</li><li class="li-itemize"><span style="font-style:italic">b</span>, the right hand side of the system as a list.
+</li><li class="li-itemize">Optionally, ε, a positive number indicating the error tolerance
+(by default ε=<span style="font-family:monospace">epsilon</span>, see Section <a href="cascmd_en030.html#ssec%3Aconfcomp">2.5.7</a>, item
+<a href="cascmd_en030.html#enum%3Aeps">2.5.7</a>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">m</span>, an integer indicating the maximum
+number of iterations (by default <span style="font-style:italic">m</span>=<span style="font-family:monospace">maxiter</span>,
+see Section <a href="cascmd_en030.html#ssec%3Aconfcomp">2.5.7</a>, item <a href="cascmd_en030.html#enum%3Amaxiter">2.5.7</a>).
+</li></ul>
+<span style="font-family:monospace">gauss_seidel_linsolve(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">b</span>⟨ε,<span style="font-style:italic">m</span>⟩<span style="font-family:monospace">)</span> returns
+the solution of the system.
+</li></ul><h4 id="sec1368" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[100,2],[2,100]]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">gauss_seidel_linsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[0,1],1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-12);</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−0.000200080032013,0.0100040016006</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">gauss_seidel_linsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1.5,</span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[0,1],1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-12);</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−0.000200080032218,0.0100040016006</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en582.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en584.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

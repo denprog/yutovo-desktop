@@ -1,0 +1,23 @@
+# Maple integration test file: "7 Inverse hyperbolic functions\7.3a Inverse hyperbolic secant\7.3.2 Inverse hyperbolic secant functions.txt"
+
+lst:=[
+[x^3*arcsech(a+b*x),x,8,-1/4*(a^4-b^4*x^4)*arcsech(a+b*x)/b^4+1/6*(1+9*a^2)*(a+b*x)*(1+(-1)/(a+b*x)^2)/(b^4*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))-1/2*a*(a+b*x)^2*(1+(-1)/(a+b*x)^2)/(b^4*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))+1/12*(a+b*x)^3*(1+(-1)/(a+b*x)^2)/(b^4*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))+1/2*a*(1+2*a^2)*arctan(sqrt(-1+1/(a+b*x)^2))*sqrt(-1+1/(a+b*x)^2)/(b^4*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))],
+[x^2*arcsech(a+b*x),x,7,1/3*(a^3+b^3*x^3)*arcsech(a+b*x)/b^3-a*(a+b*x)*(1+(-1)/(a+b*x)^2)/(b^3*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))+1/6*(a+b*x)^2*(1+(-1)/(a+b*x)^2)/(b^3*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))-1/6*(1+6*a^2)*arctan(sqrt(-1+1/(a+b*x)^2))*sqrt(-1+1/(a+b*x)^2)/(b^3*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x)))],
+[arcsech(a+b*x)/x^4,x,15,-1/3*(b^3+a^3/x^3)*arcsech(a+b*x)/a^3-2*b^3*arctanh(sqrt(1-a)*sqrt(1+1/(a+b*x))/(sqrt(1+a)*sqrt(-1+1/(a+b*x))))/(a^3*(1-a^2)^(3/2))+1/3*(2+a^2)*b^3*arctanh(sqrt(1-a)*sqrt(1+1/(a+b*x))/(sqrt(1+a)*sqrt(-1+1/(a+b*x))))/(a^3*(1-a^2)^(5/2))+2*b^3*arctanh(sqrt(1-a)*sqrt(1+1/(a+b*x))/(sqrt(1+a)*sqrt(-1+1/(a+b*x))))/(a^3*sqrt(1-a^2))+1/6*b^3*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x))/(a^2*(1-a^2)*(1-a/(a+b*x))^2)+1/2*b^3*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x))/(a^2*(1-a^2)^2*(1-a/(a+b*x)))-b^3*sqrt(-1+1/(a+b*x))*sqrt(1+1/(a+b*x))/(a^2*(1-a^2)*(1-a/(a+b*x)))],
+[arcsech(a+b*x)^3,x,9,(a+b*x)*arcsech(a+b*x)^3/b-6*arcsech(a+b*x)^2*arctan(exp(arcsech(a+b*x)))/b+6*I*arcsech(a+b*x)*polylog(2,-I*exp(arcsech(a+b*x)))/b-6*I*arcsech(a+b*x)*polylog(2,I*exp(arcsech(a+b*x)))/b-6*I*polylog(3,-I*exp(arcsech(a+b*x)))/b+6*I*polylog(3,I*exp(arcsech(a+b*x)))/b],
+[arcsech(a+b*x)^3/x,x,0,integrate(arcsech(a+b*x)^3/x,x)],
+[x^3*arcsech(sqrt(x)),x,4,1/4*x^4*arcsech(sqrt(x))+1/4*(-1+x)/(sqrt(x)*sqrt(-1+1/sqrt(x))*sqrt(1+1/sqrt(x)))+1/4*(1-x)^2/(sqrt(x)*sqrt(-1+1/sqrt(x))*sqrt(1+1/sqrt(x)))-3/20*(1-x)^3/(sqrt(x)*sqrt(-1+1/sqrt(x))*sqrt(1+1/sqrt(x)))+1/28*(1-x)^4/(sqrt(x)*sqrt(-1+1/sqrt(x))*sqrt(1+1/sqrt(x)))],
+[x*arcsech(sqrt(x)),x,4,1/2*x^2*arcsech(sqrt(x))+1/2*(-1+x)/(sqrt(x)*sqrt(-1+1/sqrt(x))*sqrt(1+1/sqrt(x)))+1/6*(1-x)^2/(sqrt(x)*sqrt(-1+1/sqrt(x))*sqrt(1+1/sqrt(x)))],
+[arcsech(a*x^n)/x,x,7,1/2*arcsech(a*x^n)^2/n-arcsech(a*x^n)*log(1+exp(2*arcsech(a*x^n)))/n-1/2*polylog(2,-exp(2*arcsech(a*x^n)))/n],
+[exp(arcsech(a*x))/x^6,x,10,1/30/(a*x^6)-1/5*exp(arcsech(a*x))/x^5+1/30*sqrt(1-a*x)/(a*x^6*sqrt(1/(1+a*x)))+1/24*a*sqrt(1-a*x)/(x^4*sqrt(1/(1+a*x)))+1/16*a^3*sqrt(1-a*x)/(x^2*sqrt(1/(1+a*x)))+1/16*a^5*arctanh(sqrt(1-a*x)*sqrt(1+a*x))*sqrt(1/(1+a*x))*sqrt(1+a*x)],
+[exp(arcsech(a*x))/x^8,x,12,1/56/(a*x^8)-1/7*exp(arcsech(a*x))/x^7+1/56*sqrt(1-a*x)/(a*x^8*sqrt(1/(1+a*x)))+1/48*a*sqrt(1-a*x)/(x^6*sqrt(1/(1+a*x)))+5/192*a^3*sqrt(1-a*x)/(x^4*sqrt(1/(1+a*x)))+5/128*a^5*sqrt(1-a*x)/(x^2*sqrt(1/(1+a*x)))+5/128*a^7*arctanh(sqrt(1-a*x)*sqrt(1+a*x))*sqrt(1/(1+a*x))*sqrt(1+a*x)],
+[exp(arcsech(a*x^2))*x^5,x,3,1/12*x^4/a+1/6*exp(arcsech(a*x^2))*x^6-1/6*sqrt(1-a*x^2)/(a^3*sqrt(1/(1+a*x^2)))],
+[exp(arcsech(a*x^2))*x^4,x,7,2/15*x^3/a+1/5*exp(arcsech(a*x^2))*x^5+2/5*EllipticE(x*sqrt(a),I)*sqrt(1/(1+a*x^2))*sqrt(1+a*x^2)/a^(5/2)-2/5*EllipticF(x*sqrt(a),I)*sqrt(1/(1+a*x^2))*sqrt(1+a*x^2)/a^(5/2)],
+[exp(arcsech(a*x^p))/x^2,x,4,-exp(arcsech(a*x^p))/x+p*x^(-1-p)/(a*(1+p))+p*x^(-1-p)*hypergeom([1/2,1/2*(-1-p)/p],[1/2*(-1+p)/p],a^2*x^(2*p))*sqrt(1/(1+a*x^p))*sqrt(1+a*x^p)/(a*(1+p))],
+[exp(2*arcsech(a*x))/x^5,x,5,1/4*a^4*arctanh(sqrt((1-a*x)/(1+a*x)))-2/3*a^4/(1-sqrt((1-a*x)/(1+a*x)))^6+2*a^4/(1-sqrt((1-a*x)/(1+a*x)))^5-3*a^4/(1-sqrt((1-a*x)/(1+a*x)))^4+8/3*a^4/(1-sqrt((1-a*x)/(1+a*x)))^3-11/8*a^4/(1-sqrt((1-a*x)/(1+a*x)))^2+3/8*a^4/(1-sqrt((1-a*x)/(1+a*x)))-1/8*a^4/(1+sqrt((1-a*x)/(1+a*x)))^2+1/8*a^4/(1+sqrt((1-a*x)/(1+a*x)))],
+[x^4/exp(arcsech(a*x)),x,8,(-2)/(a^5*(1+(1-a*x)/(1+a*x)))-32/5*sqrt((1-a*x)/(1+a*x))/(a^5*(1+(1-a*x)/(1+a*x))^5)+2/3*(9+4*sqrt((1-a*x)/(1+a*x)))/(a^5*(1+(1-a*x)/(1+a*x))^2)+4/5*(5+16*sqrt((1-a*x)/(1+a*x)))/(a^5*(1+(1-a*x)/(1+a*x))^4)-8/15*(15+17*sqrt((1-a*x)/(1+a*x)))/(a^5*(1+(1-a*x)/(1+a*x))^3)],
+[1/(exp(arcsech(a*x))*x^3),x,4,-1/2*a^2/(1-sqrt((1-a*x)/(1+a*x)))-2/3*a^2/(1+sqrt((1-a*x)/(1+a*x)))^3+a^2/(1+sqrt((1-a*x)/(1+a*x)))^2-1/2*a^2/(1+sqrt((1-a*x)/(1+a*x)))],
+[exp(arcsech(c*x))*x^3/(1-c^2*x^2),x,7,-x/c^3+arctanh(c*x)/c^4-1/2*x*sqrt(1-c*x)/(c^3*sqrt(1/(1+c*x)))+1/2*arcsin(c*x)*sqrt(1/(1+c*x))*sqrt(1+c*x)/c^4],
+[exp(arcsech(c*x))/(x*(1-c^2*x^2)),x,5,(-1)/(c*x)+arctanh(c*x)-sqrt(1-c*x)/(c*x*sqrt(1/(1+c*x)))],
+[x*(-1+a*exp(arcsech(a*x))*x)/(1-a^2*x^2),x,7,-exp(arcsech(a*x))*x/a,-sqrt(1-a*x)/(a^2*sqrt(1/(1+a*x)))],
+[x^(-1+n)*arcsech(a+b*x^n),x,5,(a+b*x^n)*arcsech(a+b*x^n)/(b*n)-2*arctan(sqrt((1-a-b*x^n)/(1+a+b*x^n)))/(b*n)]]:

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Assumptions on variables
+</title>
+</head>
+<body >
+<a href="cascmd_en068.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en070.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:about" class="subsection">3.3.8  Assumptions on variables
+</h3>
+<p>The <span style="font-family:monospace">assume</span><a id="hevea_default88"></a>
+(or <span style="font-family:monospace">supposons</span><a id="hevea_default89"></a>)
+command lets you tell <span style="font-variant:small-caps">Xcas</span> some properties of a variable
+without giving the variable a specific value.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">assume</span> (or <span style="font-family:monospace">supposons</span>) takes one mandatory
+argument and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">assumptions</span>, statements about a variable (such as
+equalities and inequalities, possibly combined with <span style="font-family:monospace">and</span> and
+<span style="font-family:monospace">or</span>, and domains).
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">additionally</span>, which indicates that the
+assumptions are to be added to previous assumptions, as opposed to
+replace them.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">assume(</span><span style="font-style:italic">assumptions</span> ⟨,<span style="font-family:monospace">additionally</span> ⟩<span style="font-family:monospace">)</span>
+places the assumptions on the variable. With no second argument,
+it will remove any previous assumptions.
+</li></ul><p>The <span style="font-family:monospace">additionally</span><a id="hevea_default90"></a>
+command can be used to place additional assumptions on a variable.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">additionally</span> takes
+<span style="font-style:italic">assumptions</span> as above.
+</li><li class="li-itemize"><span style="font-family:monospace">additionally(</span><span style="font-style:italic">assumptions</span><span style="font-family:monospace">)</span> adds the
+assumptions to a variable without removing assumptions.
+</li></ul><p>The <span style="font-family:monospace">about</span><a id="hevea_default91"></a> command
+will display the current assumptions about a variable.
+(See Section <a href="cascmd_en1015.html#ssec%3Aimageprops">28.1.8</a> and Section <a href="cascmd_en1023.html#ssec%3Aaudioclipprops">28.2.6</a> for
+other uses of <span style="font-family:monospace">about</span>.)
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">about</span> takes
+<span style="font-style:italic">var</span>, the name of a variable.
+</li><li class="li-itemize"><span style="font-family:monospace">about(</span><span style="font-style:italic">var</span><span style="font-family:monospace">)</span> returns the current assumptions
+on the variable.
+</li></ul><p>The <span style="font-family:monospace">purge</span><a id="hevea_default92"></a> command will remove all
+values and assumptions about a variable.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">purge</span> takes
+<span style="font-style:italic">var</span>, a variable name or a sequence of variable names.
+</li><li class="li-itemize"><span style="font-family:monospace">purge(</span><span style="font-style:italic">var</span><span style="font-family:monospace">)</span> removes any assumptions you have
+made about the variable <span style="font-style:italic">var</span> (or about all the variables in
+the sequence).
+</li></ul><h4 id="sec103" class="subsubsection">Examples</h4>
+<p>If you enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">variable</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;0)</span></span></td></tr>
+</table><p>then <span style="font-variant:small-caps">Xcas</span> will assume that <span style="font-family:monospace">variable</span> is a positive real
+number, and so
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">variable</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>will be evaluated to
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">variable</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>You can put one or more conditions in the <span style="font-family:monospace">assume</span> command by
+combining them with <span style="font-family:monospace">and</span><a id="hevea_default93"></a> and
+<span style="font-family:monospace">or</span><a id="hevea_default94"></a>. For example, if you
+want the variable <span style="font-family:monospace">a</span> to be in [2,4) ∪ (6,∞), you can
+enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">((</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;=2 </span></span><span style="font-weight:bold"><span style="color:#BF0000">and</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&lt;4) </span></span><span style="font-weight:bold"><span style="color:#BF0000">or</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;6)</span></span></td></tr>
+</table><p>If a variable has attached assumptions, then making another assumption
+with <span style="font-family:monospace">assume</span> will remove the original assumptions. To add
+extra assumptions, you can either use the <span style="font-family:monospace">additionally</span>
+command or give <span style="font-family:monospace">assume</span> a second argument of
+<span style="font-family:monospace">additionally</span><a id="hevea_default95"></a>. If
+you assume that <span style="font-style:italic">b</span> &gt; 0 with
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;0)</span></span></td></tr>
+</table><p>and you want to add the condition that <span style="font-style:italic">b</span> &lt; 1, you can either enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">&lt;1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">additionally</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">additionally</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">&lt;1)</span></span></td></tr>
+</table><p>As well as equalities and inequalities, you can make assumptions about
+the domain of a variable. If you want <span style="font-family:monospace">n</span> to represent an
+integer<a id="hevea_default96"></a>, for example, you can enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">integer</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>If you want <span style="font-family:monospace">n</span> to be a positive integer, you can add the
+condition
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">additionally</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;0)</span></span></td></tr>
+</table><p>You can also assume a variable is in one of the domains
+<span style="font-family:monospace">real</span>, <span style="font-family:monospace">integer</span>, <span style="font-family:monospace">complex</span> or
+<span style="font-family:monospace">rational</span> (see Section <a href="cascmd_en775.html#ssec%3Atype">25.2.5</a>).</p><p>You can check the assumptions on a variable with the <span style="font-family:monospace">about</span>
+command. For the above positive integer <span style="font-family:monospace">n</span>,
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">about</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+[</span><span style="color:#0000CC"><span style="font-style:italic">integer</span></span><span style="color:#0000CC">,[[0,+∞]],[0]]
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The first element tells you that <span style="font-family:monospace">n</span> is an integer, the second
+element tells you that <span style="font-family:monospace">n</span> is between 0 and
++∞, and the third element tells you that the value
+0 is excluded.</p><p>If you assume that a variable is equal to a specific value, such as
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">=2)</span></span></td></tr>
+</table><p>then by default the variable <span style="font-family:monospace">c</span> will remain unevaluated in
+later levels. If you want an expression involving <span style="font-family:monospace">c</span> to be
+evaluated, you would need to put the expression inside the
+<span style="font-family:monospace">evalf</span><a id="hevea_default97"></a> command (see Section <a href="cascmd_en209.html#ssec%3Aevalf">7.3.1</a>). After
+the above assumption on <span style="font-family:monospace">c</span>, if you enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">evalf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+3)</span></span></td></tr>
+</table><p>then you will get
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+7.0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Right below the <span style="font-family:monospace">assume(c=2)</span> command line
+there will be a slider; namely arrows pointing left and right with the
+value <span style="font-family:monospace">2</span> between them. These
+can be used to change the values of <span style="font-family:monospace">c</span>. If you click on the
+right arrow, the <span style="font-family:monospace">assume(c=2)</span> command will transform to
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[2.2,-10.0,10.0,0.0])</span></span></td></tr>
+</table><p>and the value between the arrows will be <span style="font-family:monospace">2.2</span>. Also, any
+later levels where the variable <span style="font-family:monospace">c</span> is evaluated will be
+re-evaluated with the value of <span style="font-family:monospace">c</span> now <span style="font-family:monospace">2.2</span>. The
+output to
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">evalf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+3)</span></span></td></tr>
+</table><p>will become
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+7.84
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The <span style="font-family:monospace">-10.0</span> and <span style="font-family:monospace">10.0</span> in the <span style="font-family:monospace">assume</span> line
+represent the smallest and largest values that <span style="font-family:monospace">c</span> can become
+using the sliders. You can set them yourself in the <span style="font-family:monospace">assume</span>
+command, as well as the increment that the value will change; if you
+want <span style="font-family:monospace">c</span> to start with the value <span style="font-family:monospace">5</span> and vary between
+<span style="font-family:monospace">2</span> and <span style="font-family:monospace">8</span> in increments of <span style="font-family:monospace">0.05</span>, then you can
+enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[5,2,8,0.05])</span></span></td></tr>
+</table><p>Recall the <span style="font-family:monospace">purge</span> command removes assumptions about a
+variable.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">purge</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>then <span style="font-family:monospace">a</span> will no longer have any assumptions made about it.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">purge</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>then <span style="font-family:monospace">a</span> and <span style="font-family:monospace">b</span> will no longer have any assumptions
+made about them.</p>
+<hr>
+<a href="cascmd_en068.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en070.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

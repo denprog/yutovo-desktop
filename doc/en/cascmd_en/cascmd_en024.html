@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Number of significant digits
+</title>
+</head>
+<body >
+<a href="cascmd_en023.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en025.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:sigdig" class="subsection">2.5.1  Number of significant digits
+</h3>
+<p>By default, <span style="font-variant:small-caps">Xcas</span> uses and displays 12 significant
+digits, but you can set the number of digits to other positive
+integers. If you set the number of significant digits to a number
+less than 14, then <span style="font-variant:small-caps">Xcas</span> will use the computer’s
+floating point hardware, and so calculations will be done to more
+significant digits than you asked for, but only the number of digits
+that you asked for will be displayed. If you set the number of
+significant digits to 14 or higher, then both the
+computations and the display will use that number of digits.</p><p>You can set the number of significant digits for <span style="font-variant:small-caps">Xcas</span> by
+using the CAS configuration screen (see Section <a href="cascmd_en030.html#ssec%3Aconfcomp">2.5.7</a>). The
+number of significant digits is stored in the variable
+<span style="font-family:monospace">DIGITS</span><a id="hevea_default10"></a>
+or <span style="font-family:monospace">Digits</span><a id="hevea_default11"></a>,
+so you can also set it by giving the variable
+<span style="font-family:monospace">DIGITS</span> a new value, as in <span style="font-family:monospace">DIGITS:=20</span>. The value
+will be stored in the configuration file (see Section <a href="cascmd_en033.html#ssec%3Aconffile">2.5.10</a>),
+and so can also be set there.</p>
+<hr>
+<a href="cascmd_en023.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en025.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

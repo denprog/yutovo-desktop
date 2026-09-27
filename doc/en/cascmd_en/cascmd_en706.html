@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Finding and removing leading/trailing zeros</title>
+</head>
+<body >
+<a href="cascmd_en705.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en707.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:trim-vector" class="subsection">21.2.2  Finding and removing leading/trailing zeros</h3>
+<p>You can find leading and/or trailing zeros in a vector and remove them by using the
+<span style="font-family:monospace">trim</span><a id="hevea_default1421"></a> command
+(see Section <a href="cascmd_en090.html#ssec%3Atrim-string">5.2.5</a>, Section <a href="cascmd_en1016.html#ssec%3Atrim-image">28.1.9</a> and Section <a href="cascmd_en1019.html#ssec%3Aaudio-clips-from-old">28.2.2</a>
+for other usages of <span style="font-family:monospace">trim</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">trim</span> takes one mandatory argument and up to three optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">v</span>, a vector of real or complex numbers.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">threshold</span>, a positive real number specifying the
+threshold for zeros (by default, <span style="font-style:italic">threshold</span>=<span style="font-family:monospace">epsilon()</span>, the working precision).
+</li><li class="li-itemize">Optionally, either <span style="font-family:monospace">left</span> or <span style="font-family:monospace">right</span>, the symbol specifiying
+one-sided trimming.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">index</span>, the symbol.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">trim(</span><span style="font-style:italic">v</span> ⟨,<span style="font-style:italic">threshold</span>
+ ⟩ ⟨,<span style="font-family:monospace">left</span>|<span style="font-family:monospace">right</span> ⟩ ⟨,<span style="font-family:monospace">index</span> ⟩<span style="font-family:monospace">)</span>
+finds the index <span style="font-style:italic">l</span> of the first nonzero element in <span style="font-style:italic">v</span> and the index <span style="font-style:italic">u</span> of the first
+trailing zero in <span style="font-style:italic">v</span>. A number <span style="font-style:italic">z</span> is considered to be zero if |<span style="font-style:italic">z</span>|≤<span style="font-style:italic">threshold</span>.
+If <span style="font-family:monospace">index</span> is given, then the return value is either <span style="font-style:italic">l</span> if <span style="font-family:monospace">left</span> is given,
+<span style="font-style:italic">u</span> if <span style="font-family:monospace">right</span> is given, or (<span style="font-style:italic">l</span>,<span style="font-style:italic">u</span>−<span style="font-style:italic">l</span>) otherwise (the last sequence contains the
+start and length of the truncated vector). If <span style="font-family:monospace">index</span> is omitted, then
+the return value is the portion of <span style="font-style:italic">v</span> between <span style="font-style:italic">v</span>[<span style="font-style:italic">l</span>] (inclusive) and <span style="font-style:italic">v</span>[<span style="font-style:italic">u</span>] (exclusive);
+if <span style="font-family:monospace">left</span> is given, then <span style="font-style:italic">u</span>=<span style="font-family:monospace">length(</span><span style="font-style:italic">v</span><span style="font-family:monospace">)</span>, and if <span style="font-family:monospace">right</span> is
+given, then <span style="font-style:italic">l</span>=0.
+</li></ul><h4 id="sec1818" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[0,0,1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-16,0,-1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-13,1,2,3,0,0,0]:;</span></span></td></tr>
+</table><p>To remove leading zeros from <span style="font-style:italic">v</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">left</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1,2,3,0,0,0</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To remove leading and trailing zeros with threshold set to 10<sup>−14</sup> (the default is the value
+of <span style="font-family:monospace">epsilon()</span>, which is 10<sup>−12</sup> in this case):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-14)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−1.0×10</span><sup><span style="color:#0000CC">−13</span></sup><span style="color:#0000CC">,1,2,3</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To return the start and length of the nonzero part of <span style="font-style:italic">v</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">index</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+5,3
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Now, enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">mid</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">v</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>to obtain the trimmed variant of <span style="font-style:italic">v</span>.</p>
+<hr>
+<a href="cascmd_en705.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en707.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

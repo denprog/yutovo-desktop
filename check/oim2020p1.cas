@@ -1,0 +1,24 @@
+A:=point(0);
+B:=point(1);
+assume(a=[0.6,-5,5,0.1]);
+assume(b=[0.9,-5,5,0.1]);
+P:=B-b*(1-i*a)^2;
+d1:=rotation(A,atan(a),line(A,P));
+d2:=rotation(P,-3*atan(a),line(P,A));
+D1:=single_inter(d1,d2);
+D:=point(normal(texpand(coordinates(D1))));
+psi:=angle(A,B,P);
+m:=normal(tan(psi/2));
+eq:=B+t*(P-B)*(1-i*m)-(P+u*(B-P)*(1+i*m)^3);
+T,U:=linsolve([re(eq),im(eq)],[t,u]);
+C:=B+T*(P-B)*(1-i*m);
+b1:=bisector(D,A,P,color=red);
+med:=perpen_bisector(A,B,color=red);
+b2:=bisector(C,P,B,color=red);
+J:=single_inter(b1,med);
+evalf(angle(A,P,D)); evalf(angle(B,P,A)); evalf(angle(P,D,A)); evalf(atan(a));
+angle(1.0,C,P); angle(0.0,1.0,evalf(P)); angle(evalf(P),1.0,C);
+Z:=affix(J); ZC:=normal(affix(C)):; ZB:=affix(B); ZP:=affix(P);
+R:=(ZC-ZP)*(ZC-ZB)/(ZC-Z)^2;
+normal(im(R));
+

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Linear regression</title>
+</head>
+<body >
+<a href="cascmd_en657.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en659.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1606" class="subsection">20.2.4  Linear regression</h3>
+<p>Given a set of points (<span style="font-style:italic">x</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>),…,(<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span>−1</sub>,<span style="font-style:italic">y</span><sub><span style="font-style:italic">n</span>−1</sub>), linear
+regression finds the line <span style="font-style:italic">y</span>=<span style="font-style:italic">mx</span>+<span style="font-style:italic">b</span> that comes closest to passing
+through all of the points; i.e., that makes
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  </td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >(<span style="font-style:italic">y</span><sub>0</sub>−(<span style="font-style:italic">m</span> <span style="font-style:italic">x</span><sub>0</sub>+<span style="font-style:italic">b</span>))<sup>2</sup>+⋯+(<span style="font-style:italic">y</span><sub><span style="font-style:italic">n</span>−1</sub>−(<span style="font-style:italic">m</span> <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">b</span>))<sup>2</sup></td></tr>
+</table></td></tr>
+</table><p>
+as small as possible.
+The <span style="font-family:monospace">linear_regression</span><a id="hevea_default1293"></a>
+command finds the linear regression of a set of points.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">linear_regression</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">xcoords</span>, a list of <span style="font-style:italic">x</span>-coordinates.
+</li><li class="li-itemize"><span style="font-style:italic">ycoords</span>, a list of <span style="font-style:italic">y</span>-coordinates.
+</li></ul>
+You can combine two arguments into a matrix with two columns (each
+list becomes a column of the matrix).
+</li><li class="li-itemize"><span style="font-family:monospace">linear_regression(</span><span style="font-style:italic">xcoords</span>,<span style="font-style:italic">ycoords</span><span style="font-family:monospace">)</span>
+returns a sequence <span style="font-style:italic">m</span>,<span style="font-style:italic">b</span> of the slope and <span style="font-style:italic">y</span>-intercept of the
+regression line.
+</li></ul><h4 id="sec1607" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">linear_regression</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[0,0],[1,1],[2,4],[3,9],[4,16]])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">linear_regression</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2,3,4],[0,1,4,9,16])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+4,−2
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+which means that the line <span style="font-style:italic">y</span>=4<span style="font-style:italic">x</span>−2 is the best fit line.</p><p>The <span style="font-family:monospace">linear_regression_plot</span><a id="hevea_default1294"></a>
+command draws the best fit line.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">linear_regression_plot</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">xcoords</span>, a list of <span style="font-style:italic">x</span>-coordinates.
+</li><li class="li-itemize"><span style="font-style:italic">ycoords</span>, a list of <span style="font-style:italic">y</span>-coordinates.
+</li></ul>
+You can combine two arguments into a matrix with two columns (each
+list becomes a column of the matrix).
+</li><li class="li-itemize"><span style="font-family:monospace">linear_regression_plot(</span><span style="font-style:italic">xcoords</span>,<span style="font-style:italic">ycoords</span><span style="font-family:monospace">)</span>
+draws the line of best fit through the points. It will also
+give you the equation at the top, as well as the <span style="font-style:italic">R</span><sup>2</sup> value, which
+is
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">    <span style="font-style:italic">R</span><sup>2</sup>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span>−1</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">j</span>=0</td></tr>
+</table></td><td class="dcell"> (<span style="font-style:italic">m</span> <span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub>+<span style="font-style:italic">b</span>−ȳ)<sup>2</sup></td></tr>
+</table></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span>−1</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">j</span>=0</td></tr>
+</table></td><td class="dcell"> (<span style="font-style:italic">y</span><sub><span style="font-style:italic">j</span></sub>−ȳ)<sup>2</sup></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table>
+(The <span style="font-style:italic">R</span><sup>2</sup> value will be between 0 and 1 and is one measure of how
+good the line fits the data; a value close to 1 indicates a good fit,
+a value close to 0 indicates a bad fit.)
+</li></ul><h4 id="sec1608" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">linear_regression_plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,1,2,3,4],[0,1,4,9,16])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en156.png">
+
+</div>
+<hr>
+<a href="cascmd_en657.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en659.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

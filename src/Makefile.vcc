@@ -1,0 +1,43 @@
+# -*- mode:Makefile -*-
+# Makefile for Visual Studio Community 2022, tested with Windows Linux
+# (if any later version is installed you will have to adapt paths in Makefile)
+# Make sure you installed SDK CRT (Runtime C) universal for Windows 
+# in individual components, if not re-run Visual Studio Installer and modify 
+# your install.
+
+# Install gmp/mpfr/mpir. Run cp config.h.vcc config.h
+
+# Enter src directory and type make -f Makefile.vcc.
+# This will create the library giac_oo.lib.
+# There is one very simple example named example.cc. 
+# Type make -f Makefile.vcc example.exe to compile.
+
+# Contributors: Christophe Devalland and Bernard Parisse
+
+CXXFLAGS = -DHAVE_CONFIG_H -DIN_GIAC /I. /I.. /I'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include' /I'C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\' /EHsc /Zi /MDd /MT /W3 # /D "_UNICODE" /D "UNICODE" # -pg
+# CFLAGS = -DHAVE_CONFIG_H -DIN_GIAC /I. /I.. /Ivcc /I'C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include' /I'c:\Program Files\Microsoft SDKs\Windows\v7.0A\Include' /EHsc  /MDd /W3 #/Zi /D "_UNICODE" /D "UNICODE" # -pg
+#CFLAGS = -DHAVE_CONFIG_H -DIN_GIAC /I. /I.. /Ivcc /I'C:\Program Files (x86)\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include' /EHsc  /MDd /W3 #/Zi /D "_UNICODE" /D "UNICODE" # -pg
+
+CXX=cl.exe
+# OBJS =  History.obj Input.obj Xcas1.obj Equation.obj Print.obj Tableur.obj Cfg.obj Flv_CStyle.obj Flve_Check_Button.obj Flve_Input.obj Flv_Style.obj Flv_Data_Source.obj Flve_Combo.obj Flv_List.obj Flv_Table.obj Graph.obj Graph3d.obj Editeur.obj Help1.obj gl2ps.obj
+# GIACOBJS = sym2poly.obj gausspol.obj threaded.obj maple.obj ti89.obj mathml.obj moyal.obj misc.obj permu.obj quater.obj desolve.obj input_parser.obj symbolic.obj index.obj modpoly.obj modfactor.obj ezgcd.obj derive.obj solve.obj intg.obj intgab.obj risch.obj lin.obj series.obj subst.obj vecteur.obj sparse.obj graphtheory.obj csturm.obj tex.obj global.obj ifactor.obj alg_ext.obj gauss.obj isom.obj help.obj plot.obj plot3d.obj rpn.obj prog.obj pari.obj cocoa.obj unary.obj usual.obj identificateur.obj gen.obj input_lexer.obj # TmpLESystemSolver.obj TmpFGLM.obj 
+GIACOBJS = input_lexer.obj sym2poly.obj gausspol.obj threaded.obj maple.obj ti89.obj mathml.obj moyal.obj misc.obj permu.obj quater.obj desolve.obj input_parser.obj symbolic.obj index.obj modpoly.obj modfactor.obj ezgcd.obj derive.obj solve.obj intg.obj intgab.obj risch.obj lin.obj series.obj subst.obj vecteur.obj sparse.obj csturm.obj tex.obj ifactor.obj alg_ext.obj gauss.obj isom.obj help.obj plot.obj plot3d.obj rpn.obj prog.obj pari.obj cocoa.obj optimization.obj signalprocessing.obj lpsolve.obj nautywrapper.obj graphtheory.obj graphe.obj markup.obj unary.obj usual.obj identificateur.obj gen.obj tinymt32.obj global.obj # caseval.obj graphic.obj libregexp.obj libunicode.obj qjsgiac.obj quickjs.obj quickjs-libc.obj 
+
+LIBPATH = /LIBPATH:'C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\lib\x64' /LIBPATH:'C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\um\x64' /LIBPATH:'C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\ucrt\x64'
+LIBS = mpir.lib mpfr.lib
+#LIBS = gmp.lib
+
+giac_oo.lib:   $(GIACOBJS) first.obj
+	lib.exe /out:giac_oo.lib $(GIACOBJS) first.obj 
+%.obj:	%.cc
+	$(CXX) $(CXXFLAGS) /c $<
+%.obj:	%.c
+	$(CXX) $(CXXFLAGS) /c $<
+example.exe:	example.obj giac_oo.lib
+	link.exe /DEBUG $(LIBPATH) example.obj giac_oo.lib $(LIBS) shell32.lib
+	cp example.exe ../bin
+icas.exe:	icas.obj giac_oo.lib
+	link.exe /DEBUG $(LIBPATH) icas.obj giac_oo.lib $(LIBS) # shell32.lib /NODEFAULTLIB:libcmt.lib
+clean:
+	rm -f $(GIACOBJS) $(OBJS) giac_oo.lib icas.obj example.obj
+

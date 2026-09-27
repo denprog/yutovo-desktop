@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+  <link rel="manifest" href="./manifest.json">  
+  <meta charset="utf-8">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="keywords" content="xcas Numworks">
+  <title>Numworks tools</title>
+  <link rel="stylesheet" href="w3.css">
+  <style type="text/css">
+    body, h1, h2, h3, h4, h5, h6 {
+        font-family: "Trebuchet MS", Tahoma, sans-serif;
+    }
+
+    .slides { display: none; }
+    .pointer { cursor: pointer; }
+    .demo {
+        height: 13px;
+        width: 13px;
+        padding: 0;
+    }
+
+    dt { font-weight: bold; }
+    em { color: #e91e63 !important; }
+    a { color: #059862; }
+
+    .btn { margin-bottom: 16px;  }
+    .btn2 { margin-left: 16px; margin-right: 16px; }
+.fixed {
+          position:fixed;
+          top: 0;
+          width: 100%;
+ }
+ .p-10{
+            padding: 0 10px;
+  }
+ .after-menu {
+            margin-left: 16px; 
+            max-height:700px; 
+            overflow:auto; 
+            padding-top: 40px
+  }
+  </style>
+
+<script src="numworks.js"></script>
+<script src="nws_sig.js"></script>
+<script src="nws.js"></script>
+<script src="FileSaver.js"></script>
+<script src="jszip.min.js"></script>
+  
+</head>
+
+
+<script>
+  if (window.location.href.substr(0, 4) == "http") {
+      if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+              navigator.serviceWorker.register('./sw.js')
+                  .then(reg => console.log('Xcas Service Worker enregistré !'))
+                  .catch(err => console.log('Erreur Service Worker :', err));
+          });
+      }
+  }
+</script>
+<body>
+<header class="w3-container w3-light-gray fixed">
+
+<div class="w3-bar w3-deep-purple" style="padding: 0 10px;">
+  <a class="w3-bar-item w3-button w3-hide-small" href="nws.html">Version francaise</a>
+  <a class="w3-bar-item w3-button"
+  onclick="document.getElementById('top').scrollIntoView()">↑</a>
+  <a class="w3-bar-item w3-button" href="#giac" >Python</a>
+  <a class="w3-bar-item w3-button" href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/numworks/khicasnwen.html">Doc</a>
+  <a class="w3-bar-item w3-button" href="#install" >Install</a>
+  <a class="w3-bar-item w3-button" href="#reactivate" >Reactivate</a>
+  <a class="w3-bar-item w3-button w3-hide-small" href="#report" >Log</a>
+  <a class="w3-bar-item w3-button w3-hide-small" href="#exam" >Exam</a>
+  <a class="w3-bar-item w3-button w3-hide-small" href="#rescue" >Rescue</a>
+  <a class="w3-bar-item w3-button w3-hide-small" href="https://xcas.univ-grenoble-alpes.fr/en.html" >Xcas</a>
+</div>
+<hr style="border-top: 1px dashed red; margin: 4px 4px;">
+    <span id="ploglegend"></span>
+<progress id="plog" value=0 style="display:none"></progress>
+<hr style="border-top: 1px dashed red; margin: 4px 4px;">
+</header>
+
+<div id="body" class="after-menu">
+  <div id="top" class="w3-col w3-right-align w3-padding-16 s3 m4 l5">
+    <img src="logo.png" height="60px">
+  </div>
+  <div class="w3-col w3-padding-16 s9 m8 l7">
+    <div class="w3-margin-left">
+        <b class="w3-xlarge">KhiCAS/XCAS</b>
+        <br>
+        <i class="w3-large">Connexion kit for Numworks calculators</i>
+        
+    </div>
+</div>
+<br>
+
+<div id="divcontent" class="w3-container w3-section w3-padding-large w3-light-gray" style="margin:30px;">
+<div class="w3-panel w3-margin w3-lime" uk-alert>
+  <em>Beware, don't upgrade your N0110 calculator from Numworks site!</em><a class="w3-bar-item interface" onclick="let field=$id('update'); if (field.style.display=='block')
+    field.style.display='none'; else field.style.display='block'">+
+    More info</a>
+
+  <div id='update' style="display:none">
+    If you have upgraded from Numworks site, your calculator is locked
+  and therefore partially incompatible with KhiCAS. Thanks to M4x1m3,
+  there is temporarily a
+  workaround to unlock your N0110 Numworks, 
+follow instructions <a class="w3-link" href="https://phi.getomega.dev/">here</a>.
+  If the workaround fails (if you made an update from Numworks site
+  after 22/03/28), the locking process is (almost) irreversible,
+  the only known workaround for N0110 is explained 
+    <a class="w3-link" href="https://tiplanet.org/forum/viewtopic.php?f=113&t=25191">here (French)</a>
+    it requires some additional hardware and opening the calculator (<b>beware
+it does not work on N0115 and N0120</b>).
+   <br>
+    If your calc is a locked N0110 or a N0115 or a N0120
+    you can still install a version of KhiCAS from
+    <a href="#install">this page</a>, but it will need partial reinstallation
+    after any RESET or crash.
+    <br>
+    If you install Khi+KhiCAS from this site, it will protect
+    your calc against lock from USB connection.
+    You will have to press reset and 4 simultaneously to open
+    the bootloader in order to access flash.
+    <b>Beware, don't do reset+4 or reset+6 unless you are sure to be
+    on a safe site</b>, if you do that on Numworks site, you might
+    end up with a locked calculator.
+    
+  </div>
+  <div> <b>If this page does not work,
+    <a class="w3-link"
+  href="https://fr.wikipedia.org/wiki/Aide:Purge_du_cache_du_navigateur"
+  target="_blank">clear the browser cache</a> and retry</b>
+  </div>
+  
+</div>
+
+
+
+<!-- CORPS DE LA PAGE -->
+
+  <b>&#128712;Connect your calculator to the computer. 
+    If the calculator connection does not work:</b>
+  <ul>
+    <li> If the calculator screen remains black, even after you have pressed the Power black button on the calculator:
+      <ul>
+        <li> Unlocked N0110 model: go to the <a href="#rescue">rescue</a> section.
+        <li> Other models: go to <a href="https://my.numworks.com/">Numworks site</a>
+      </ul>
+    <li>
+      If the calculator is on and the calc does not display
+      "Calculator connected", unplug and plug the calc
+    </li>
+    <li>
+      If the calculator is on and the calc displays
+      "Calculator connected", try the 
+        <a class="w3-bar-item interface" onclick="UI.nws_detect(UI.nws_detect_success,UI.nws_detect_failure)">Detect</a>
+        button.
+    </li>
+
+  </ul>
+  
+      
+  <div class="w3-border-bottom"></div>
+  <h3 id="giac" class="w3-margin">Python scripts</h3>
+  <div class="w3-margin w3-row">
+    <ul>
+      <li>     
+        <a class="w3-bar-item interface" onclick="UI.nws_detect(UI.nws_detect_success,UI.nws_detect_failure)">Detect</a>
+        the Numworks.
+      <li>
+        <a class="w3-bar-item interface" id="numworks_load" onclick="UI.numworks_load(false)">Numworks→</a>
+        ou
+        <input id="loadbackupinput" class="w3-input-2" accept=".nws" type="file" title="Cliquer ici pour charger un backup (.nws)"
+          onchange="UI.backup_load((this.files)[0]);"><a class="w3-bar-item interface" onclick="UI.backup_load(($id('loadbackupinput').files)[0]);">Backup→</a>
+          : get Python scripts from the calculator or from a backup.
+          <span id='storelist'></span>
+      </li>
+      <li>
+        <a class="w3-bar-item interface" id="numworks_load" onclick="UI.numworks_load(true)">→Backup</a> :
+        get all scripts from the calculator in one archive and save it
+      </li>
+      <li>
+        <input id="loadfileinput" class="w3-input-2" accept=".py,.nws" type="file"
+                title="Cliquer ici pour charger un fichier Python (.py) ou un backup (.nws)"
+                onchange="UI.loadFile((this.files)[0]);">
+              <a class="w3-bar-item interface" onclick="UI.loadFile(($id('loadfileinput').files)[0]);">→Numworks</a>
+              : send a script (<tt>.py</tt> extension) or restore a backup
+                (<tt>.nws</tt>) to the calculator.
+      </li>
+    </ul>
+  
+
+    <div class="w3-border-bottom"></div>
+    <h3 class="w3-margin" id="install">Install, upgrade ...</h3>
+    <ul id="main">
+      <li><a class="w3-link"
+             href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/numworks/khicasnwen.html">Documentation (English)</a>,
+        <a class="w3-link" href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/numworks/khicasnwen.html#sec37">Licences</a>,
+        <a class="w3-link" href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/numworks/khicasnwen.html#sec38">Source</a>.
+      <li> Installation on a locked N0110, or a N0115/N0120 (recent models):
+	<b>tested with Epsilon >= 19.5 (N0110) or 20.1 (N0120)</b>
+	<ul>
+	  <li>step 1:
+            Press the 6 key and RESET at the back simultaneously
+            keeping the 6 key pressed, then release. You should
+          see on the calc a picture of a computer, Numworks rescue
+          URL and a yellow cable. Click on
+          <br>
+          <a class="w3-bar-item interface"
+  onclick="UI.nws_detect(UI.nws_detect_success,UI.nws_detect_failure)">
+  Detect</a> the calc.
+          <li> step 2: install KhiCAS 
+            <a class="w3-bar-item interface" onclick="UI.numworks_install_slotb(0,0)">short version</a> or
+            <a class="w3-bar-item interface" onclick="UI.numworks_install_slotb(1,0)">complete version</a>
+	    on your calculator. <br>
+            For the short version, you can optionnaly install
+	    <a class="w3-bar-item interface" onclick="UI.numworks_install_slotb(0,1)">examples scripts</a>.      <br>
+	  <li> step 3: RESET the calculator. If it does not restart,
+           you will have to do a firmware install on slot A 
+<ul>
+<li>
+  from an Epsilon firmware image you have downloaded somewhere
+  (19.5 is recommended on N0110/N0115). Visit
+<a href="https://ti-planet.github.io/webdfu_numworks/">tiplanet webdfu site</a>
+ <li>  otherwise from 
+     <a href="https://my.numworks.com" target="_blank">Numworks
+    site</a>. Note that if you do that,
+  you will not be able to downgrade to
+  versions of Epsilon earlier than 24.11.
+</ul>
+          <li><a name="step4">step 4</a> : if you do not have other external apps,
+            you can install the
+            <a class="w3-bar-item interface" onclick="UI.numworks_install_slotb(0,-1)">launcher</a> compatible with 
+<ul>
+<li>N0110: 
+<a href="sector15v19.5.0.110">19.5.0</a>, 
+<a href="sector15v19.5.9.110">19.5.9</a>, 
+<a href="sector17v20.1.0.110">20.1.0</a>, 
+<a href="sector17v20.2.0.110">20.2.0</a>, 
+<a href="sector17v20.3.0.110">20.3.0</a>, 
+<a href="sector17v20.4.0.110">20.4.0</a>, 
+<a href="sector18v21.1.1.110">21.1.1</a>, 
+<a href="sector18v21.3.0.110">21.2.0</a>, 
+<a href="sector18v21.3.0.110">21.3.0</a>, 
+<a href="sector18v22.2.0.110">22.1.0</a>, 
+<a href="sector18v22.2.0.110">22.2.0</a>, 
+<a href="sector19v23.0.0.110">23.0.0</a>, 
+<a href="sector19v23.1.0.110">23.1.0</a>, 
+<a href="sector19v23.2.0.110">23.2.0</a>, 
+<a href="sector19v23.2.3.110">23.2.3</a> (last public source), 
+<a href="sector19v23.2.5.110">23.2.5</a>, 
+<a href="sector19v23.2.6.110">23.2.6</a>, 
+<a href="sector16v24.1.0.110">24.1.0</a>,
+<a href="sector17v24.5.0.110">24.5.0</a>,
+<a href="sector17v24.6.0.110">24.6.0</a>,
+<a href="sector17v24.8.0.110">24.8.0 ou 24.10.0 ou 24.11.0</a>,
+<a href="sector17v25.1.0.110">25.1.0</a>,
+<li>N0115: userland with the same version number and same source
+sha256 fingerprint
+are identical between N0110 and N0115 up to 1 byte (the model number digit 5 or 0). Launcher should be compatible. Kernels for N0110 can run on N0115 if
+the LCD controler of the N0115 is recognized by the N0110 kernel. Conversely
+N0115 kernels should work on N0110.
+<li>N0120: 
+<a href="sector18v20.1.0.120">20.1.0</a>, 
+<a href="sector18v20.2.0.120">20.2.0</a>, 
+<a href="sector18v20.3.0.120">20.3.0</a>, 
+<a href="sector18v20.4.0.120">20.4.0</a>, 
+<a href="sector19v21.0.0.120">21.0.0</a>, 
+<a href="sector19v21.1.1.120">21.1.1</a>, 
+<a href="sector19v21.2.0.120">21.2.0</a>, 
+<a href="sector19v21.3.0.120">21.3.0</a>, 
+<a href="sector19v22.1.0.120">22.1.0</a>, 
+<a href="sector19v22.2.0.120">22.2.0</a>, 
+<a href="sector19v22.2.1.120">22.2.1</a>, 
+<a href="sector19v23.0.0.120">23.0.0</a>, 
+<a href="sector19v23.1.0.120">23.1.0</a>, 
+<a href="sector19v23.2.0.120">23.2.0</a>, 
+<a href="sector19v23.2.2.120">23.2.2</a>, 
+<a href="sector19v23.2.3.120">23.2.3</a>, (last public source), 
+<a href="sector19v23.2.4.120">23.2.4</a>, 
+<a href="sector19v23.2.5.120">23.2.5</a>, 
+<a href="sector19v23.2.6.120">23.2.6</a>, 
+<a href="sector16v24.1.0.120">24.1.0</a>,
+<a href="sector17v24.5.0.120">24.5.0</a>,
+<a href="sector17v24.6.0.120">24.6.0</a>,
+<a href="sector17v24.8.0.120">24.8.0 ou 24.10.0 ou 24.11.0</a>,
+<a href="sector18v25.1.0.120">25.1.0</a>,
+</ul>
+N.B.: if you have dfu-utils installed (Linux/Mac),
+click on the link above corresponding to your calculator/firmware,
+then you will be able to send the launcher locally with a command like
+<br><tt>dfu-util -i 0 -a 0 -s 0x901x0000 -D sector1xvxx.x.x.1x0</tt><br>
+where 1x is the sector number, vxx.x.x the version number, 
+1x0 the calculator model.<br>
+	    Otherwise download 
+          <a class="w3-bar-item interface" onclick='UI.download("khicas.nwa","khicas.nwa");window.open("https://my.numworks.com/apps")'>khicas.nwa</a>,
+          <b>close this tab</b> (this will free the calculator).
+          and install khicas.nwa from
+	  <a href="https://my.numworks.com/apps" target="_blank">external apps (Numworks page</a>.
+	  <li> step 5: you should now see KhiCAS from the calculator Home screen.
+<li><a name="reactivate">
+	  <b>Reactivate</b></a><br>
+Note that KhiCAS will be partially erased at each RESET/crash
+(except on N0110/N0115 with Epsilon 19.5)<br>
+Therefore you will have to
+<a class="w3-bar-item interface" onclick="UI.numworks_install_slotb(0,-1)">reinstall KhiCAS launcher</a><br>
+(<a href="#step4">step 4</a> above) 
+            every time the
+            calculator RESETs or crashes (keep this page in your bookmarks)
+or does an exam activation/deactivation cycle on some versions. 
+<br>
+If you have to reinstall KhiCAS
+frequently, this will erase and erase again the same flash sector, 
+this may be bad because the number of erase/rewrite cycles is limited. 
+It is therefore recommended on N0110/N0115 to
+install Epsilon 19.5.
+With Epsilon 19.5 on N0110/N0115, external apps are automatically reactivated
+when you leave exam mode. After a crash or reset, you can reactivate external apps without flashing the calculator, connect the calc and click on<br>
+<a class="w3-bar-item interface" onclick="UI.numworks_activateapps()">
+reactivate external apps (19.5)</a>.
+<br>
+Under Linux or Mac OS with <tt>dfu-utils</tt>, 
+you can reactivate external apps without connexion with the 
+following command:
+<br> <tt>&nbsp;&nbsp;dfu-util -i 0 -a 0 -s 0x90200000:leave</tt>
+<br>
+
+          I can not change this myself, this is the consequence 
+of design decisions made by Numworks.
+	</ul>
+      <li> 
+        Installation for unlocked N0110 (old models) 
+        <ul>
+          <li>  <a class="w3-bar-item interface"
+  onclick="UI.nws_detect(UI.nws_detect_success,UI.nws_detect_failure)">
+  Detect</a> the calc.
+          <li>
+          <a class="w3-bar-item interface" onclick="UI.numworks_install_delta(0,4)">multi-boot</a>,
+          <a class="w3-bar-item interface" onclick="UI.numworks_install_delta();">
+            Khi+KhiCAS (20.0.03, 2025/07/10)</a> 
+          </li>
+          <li>
+            Update (type on the calculator Power ln OK):
+            <a class="w3-bar-item interface" onclick="UI.numworks_getarchive(0);">KhiCAS stable</a>,
+            <!--- <a class="w3-bar-item interface" onclick="UI.numworks_getarchive(1);">KhiCAS alpha</a>, --->
+            <a class="w3-bar-item interface" onclick="UI.numworks_install_delta(1,1);">Khi slot 1</a>,
+            <a class="w3-bar-item interface" onclick="UI.numworks_install_delta(0,5)">Khi slot 2</a>
+            <br> Latest version (alpha)
+            <a href="khialpha.zip">khialpha.zip</a>.
+          </li>
+          <li> Press reset-1 or 2 or Power ln OK Back 1 or 2 in order to boot from slot 1 or 2.
+            Run KhiCAS from slot 2 if you need more memory.
+          </li>
+        </ul>
+      <li>
+        <a class="w3-bar-item interface" onclick="UI.numworks_getarchive('nwsflash.tar',0)">Archive flash </a>from your Numworks 
+      </li>
+      <li>
+        <a class="w3-bar-item interface" onclick="if (confirm('Please confirm that installing a custom archive is under your responsability.')) $id('persoinit').style.display='inline'">Customize flash</a> 
+        <br>
+        <span id="persoinit" style="display:none"> Init from
+          <a class="w3-bar-item interface" onclick="UI.numworks_gettar(1)">calculator→</a>
+          or
+          <a class="w3-bar-item interface" onclick="UI.numworks_gettar(-2)">script examples (all models except unlocked N0110)</a>
+          or
+          <a class="w3-bar-item interface" onclick="UI.numworks_gettar(0)">KhiCAS (unlocked N0110 with Khi)</a>
+          <!--- or
+          <a class="w3-bar-item interface" onclick="UI.numworks_gettar(-1)">KhiCAS alpha (unlocked N0110 with Khi)</a>--->
+          or
+          <input id="loadtarinput" class="w3-input-2" accept=".tar" type="file"
+            title="Cliquer ici pour charger un fichier archive (.tar)"
+            onchange="UI.file_gettar((this.files)[0]); $id('perso').style.display='inline';">
+          <!-- <button
+onclick="UI.file_gettar(($id('loadtarinput').files)[0]);$id('perso').style.display='inline';">sauvegarde tar</button>-->
+          or <a class="w3-bar-item interface" onclick="UI.tar_clear(UI.numworks_buffer)">Clear</a>
+          <br>
+          <span id="perso" style="display:none">
+            Add files:
+            <input class="w3-input-2" id="addtarinput" type="file" title="Cliquer ici pour ajouter un fichier"
+              onchange="UI.tar_addfile((this.files)[0]);">
+            <!--    <button
+onclick="UI.tar_addfile(($id('addtarinput').files)[0]);">Ajouter</button> -->
+            <hr>
+            <div id="listtarfiles">
+            </div>
+            <hr>
+            <a class="w3-bar-item interface" onclick="UI.numworks_sendtar();">Install</a> or
+            <a class="w3-bar-item interface" onclick="UI.file_savetar(UI.numworks_buffer,'myapps.tar')">save</a> customization.
+
+          </span>
+        </span>
+      </li>
+    </ul>
+
+    <div class="w3-border-bottom"></div>
+    <h3 id="report" class="w3-margin">Install or certification log <font size='4'><a class="w3-bar-item interface" onclick="$id('output').innerHTML=''">Clear</a></font></h3>
+    <div class="w3-border-bottom"></div>
+    <br>
+    <div class="w3-border-bottom"></div>
+    <div id="output" style="max-height: 200px; overflow:auto"></div>
+    <h3 class="w3-margin" id="exam">Unlocked N0110 exam mode :</h3>
+    <div class="w3-col-x">
+        If you want to certify that a N0110 calculator firmware  is
+        a genuine version of Khi+KhiCAS, click here
+        <a class="w3-bar-item interface" onclick="UI.numworks_certify(nws_sig,false);">Certification</a><br>
+        <!-- <a class="w3-bar-item interface"
+    onclick="UI.numworks_certify(nws_sig,true);">Certification + R/W
+    test</a><br> -->
+        This test takes about 30 secondes<!--, the second one is more secure
+        but it takes about 1 minute and it writes data on the calc.-->
+        These tests may be done by a proctor during an exam with a
+        smartphone from this
+        <a class="w3-link" href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/nws.html">link</a>
+          using a
+        <a class="w3-link" href="https://tiplanet.org/forum/viewtopic.php?f=99&t=25091">
+          smartphone-Numworks link</a>.
+    </div>
+    <div class="w3-border-bottom"></div>
+    <h3 class="w3-margin" id="rescue"><strong>Unlocked N0110 calculator blocked:</strong></h3>
+    <div class="w3-col-x">
+      -<a class="w3-bar-item interface" onclick="UI.numworks_rescue();">Rescue</a> :
+      Click here if your N0110 is stuck.<br>
+      Connect the calculator, press the 6 key, enter a pin in the RESET
+      button
+      on the back (keeping 6 pressed), release the 6 key. The screen
+      should remain black, while the red led is visible. Otherwise
+      your calculator is probably locked,
+      click <a class="w3-link" href="https://phi.getomega.dev/">here</a>. 
+          <br>
+          -If you see <tt>http://... tries to connect</tt>, click on
+          <tt>STM32 BOOTLOADER</tt> then click on
+          <tt>Connect</tt>.
+          <br>
+          -If rescue does not work, try with Xcas PC. On windows, check that you have a driver for STM32 BOOTLOADER, you can install one from <a href="https://zadig.akeo.ie">Zadig</a>.
+    </div>
+
+    <div class="w3-border-bottom"></div>
+    <br><b>
+        This kit works only with a webusb compatible browser, like Chromium,
+        Chrome or Edge and from a web server.</b> Firefox does not have support
+        for webusb for security reasons. If you don't want to run a webusb
+        compatible browser, you can connect your Numworks with
+    <a class="w3-link" href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/install_fr">Xcas</a>
+    (version Windows, Linux et Mac).
+    <br>
+    For experts who want to run this page locally,
+activate a local webserver, for example by running from a Terminal
+the following command <br><tt>python3 -m http.server</tt><br>
+from the directory where you have unzipped 
+    <a class="w3-link" href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/xcashtml.zip">xcashtml.zip</a>, then click on
+    <a class="w3-link" href="localhost:8000/nws.html">this link</a>.
+
+
+    <div class="w3-border-bottom"></div>
+    <br>
+    <b>
+        Thanks to Maxime Friess for his script
+    <a class="w3-link" href="https://github.com/M4xi1m3/numworks.js/blob/master/README.md" target="_blank">Numworks.js</a> (MIT licence). This page is also using
+    <a class="w3-link" href="https://github.com/ankitrohatgi/tarballjs">tarballjs</a>
+    <a class="w3-link" href="https://stuk.github.io/jszip/">JSZip</a> to read
+    zip files and <a class="w3-link" href="https://github.com/eligrey/FileSaver.js/blob/master/src/FileSaver.js">FileSaver.js</a>
+    to save files.
+    <br> Thanks to Yaya.Cout for insightfull discussions about locked firmwares slot informations.
+    <br>Thanks to Zexi Ru and Elio Poletti for the initial page style.</b>
+  </div>
+  
+
+
+  </div>
+  </div>
+</body>
+
+</html>
+<script language="javascript">
+  window.onload = function (e) {
+    if (!navigator.usb) alert('Requires a webusb browser like Chromium or Chrome or Edge');
+  }
+  UI.langue=0;
+</script>

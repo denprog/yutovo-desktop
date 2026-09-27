@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Rational minimax approximation</title>
+</head>
+<body >
+<a href="cascmd_en601.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en603.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1454" class="subsection">17.2.2  Rational minimax approximation</h3>
+<p>The <span style="font-family:monospace">minimax</span><a id="hevea_default1078"></a> command finds
+the rational function which approximates a continuous function
+<span style="font-style:italic">f</span>:[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]→ℝ most closely in the sense of ℓ<sup>∞</sup> norm.
+It operates exclusively in floating-point arithmetic.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">minimax</span> takes three mandatory argument and a sequence of
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, a univariate expression representing the function <span style="font-style:italic">f</span>.
+</li><li class="li-itemize"><span style="font-style:italic">x</span><span style="font-family:monospace">=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>, a variable with bounds.
+</li><li class="li-itemize"><span style="font-style:italic">deg</span>, which is either a positive integer <span style="font-style:italic">n</span> or a list [<span style="font-style:italic">n</span>,<span style="font-style:italic">m</span>] where
+<span style="font-style:italic">n</span> is a negative and <span style="font-style:italic">m</span> a positive integer, specifying the degrees of
+the numerator (and denominator) of the approximant (by default, <span style="font-style:italic">m</span>=0).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">opts</span>, a sequence of options each of which is one of:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">limit=</span><span style="font-style:italic">maxiter</span>, where <span style="font-style:italic">maxiter</span> is a positive
+integer specifying the number of iterations of the Remez
+algorithm (by default, <span style="font-style:italic">maxiter</span>=100).
+</li><li class="li-itemize"><span style="font-family:monospace">rand</span>⟨<span style="font-family:monospace">=</span><span style="font-style:italic">N</span>⟩, where <span style="font-style:italic">N</span> is a positive integer specifying
+the number of tries with initial node skewing (by default, <span style="font-style:italic">N</span>=1 and no skewing
+is performed).
+</li><li class="li-itemize"><span style="font-family:monospace">threshold=</span><span style="font-style:italic">tol</span>, where <span style="font-style:italic">tol</span> is a real number greater than 1
+specifying the terminating criterion max<sub><span style="font-style:italic">x</span>∈[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]</sub> <span style="font-style:italic">e</span>(<span style="font-style:italic">x</span>)&lt;<span style="font-style:italic">tol</span>·min<sub><span style="font-style:italic">x</span>∈[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]</sub> <span style="font-style:italic">e</span>(<span style="font-style:italic">x</span>) for
+the Remez algorithm, where <span style="font-style:italic">e</span>(<span style="font-style:italic">x</span>)=|<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)−<span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>)| is the error function in the current iteration
+(by default, <span style="font-style:italic">tol</span>=1.02).
+</li></ul>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">minimax(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">x</span><span style="font-family:monospace">=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>,<span style="font-style:italic">deg</span> ⟨,<span style="font-family:monospace">limit=</span><span style="font-style:italic">maxiter</span> ⟩<span style="font-family:monospace">)</span>
+uses the Remez method (see e.g. <a href="https://valelab4.ucsf.edu/svn/3rdpartypublic/boost/libs/math/doc/sf_and_dist/html/math_toolkit/backgrounders/remez.html">here</a>)
+to find the rational function <span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">p</span>(<span style="font-style:italic">x</span>)/<span style="font-style:italic">q</span>(<span style="font-style:italic">x</span>), where <span style="font-style:italic">p</span> is a polynomial of
+degree <span style="font-style:italic">n</span> and <span style="font-style:italic">q</span> a polynomial of degree <span style="font-style:italic">m</span> normalized such that its trailing
+coefficient is equal to 1, which minimizes the ℓ<sup>∞</sup> error when approximating
+<span style="font-style:italic">expr</span> on [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>]. If <span style="font-style:italic">r</span> has no singularities in [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>], then a list containing
+||<span style="font-style:italic">f</span>−<span style="font-style:italic">r</span>||<sub>∞</sub> and <span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>) is returned. Otherwise, an approximation of
+1/<span style="font-style:italic">b</span>−<span style="font-style:italic">a</span>∫<sub><span style="font-style:italic">a</span></sub><sup><span style="font-style:italic">b</span></sup>|<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)−<span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>)|<span style="font-style:italic">d</span><span style="font-style:italic">x</span>, computed by using Simpson’s rule with 20(<span style="font-style:italic">n</span>+<span style="font-style:italic">m</span>+2) steps,
+is returned as the first element (this may serve as a rough estimation of fitness outside poles)
+and a warning is printed in the message area.
+</li><li class="li-itemize">By specifying only the parameter <span style="font-style:italic">n</span>, you get an approximation of <span style="font-style:italic">f</span> by a polynomial.
+This is faster and the result is always well-defined, but rational approximants provide more
+flexibility and can be significantly more accurate even for smaller values of <span style="font-style:italic">n</span> and <span style="font-style:italic">m</span>
+(these should be chosen so that <span style="font-style:italic">r</span> has no singularities in [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>], however).
+</li><li class="li-itemize">With the <span style="font-family:monospace">rand</span>⟨<span style="font-family:monospace">=</span><span style="font-style:italic">N</span>⟩ option, <span style="font-family:monospace">minimax</span> skews the
+initial (Chebyshev) nodes randomly before proceeding to the first Remez step. This may help
+the algorithm to converge to a well-defined result when <span style="font-style:italic">m</span>&gt;0. If <span style="font-style:italic">N</span> is specified,
+then the entire computation is performed <span style="font-style:italic">N</span> times and the best result is selected.
+This will be a pole-free function when possible. The <span style="font-family:monospace">rand</span> option is usually not
+needed when <span style="font-style:italic">m</span>=0, i.e. when the minimax polynomial is sought.
+</li></ul><h4 id="sec1455" class="subsubsection">Example</h4>
+<p>
+Find a function of form <span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">a</span><sub>2</sub><span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">a</span><sub>1</sub><span style="font-style:italic">x</span>+<span style="font-style:italic">a</span><sub>0</sub>/<span style="font-style:italic">b</span><sub>2</sub><span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">b</span><sub>1</sub><span style="font-style:italic">x</span>+<span style="font-style:italic">b</span><sub>0</sub> which is an optimal
+ℓ<sup>∞</sup>-approximation of <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=ln(<span style="font-style:italic">x</span>+1)/2+sin<span style="font-style:italic">x</span> on the segment [0,7].
+Define <span style="font-style:italic">f</span> by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1)/(2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)):;</span></span></td></tr>
+</table><p>Now compute the approximation by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fit</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">minimax</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..7,[2,2])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.0759657940359,</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">−0.00264534091503 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+0.0393947055011 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+0.0759192001346</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">0.0386492470797 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−0.368513748981 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+1</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To display the approximation, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tol</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">op</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">fit</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1)/(2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..7);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..7,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en038.png">
+
+</div><p>
+
+(Here, <span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>) is drawn in blue.)
+You can conclude that max<sub>0≤ <span style="font-style:italic">x</span>≤ 7</sub>|<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)−<span style="font-style:italic">r</span>(<span style="font-style:italic">x</span>)|=<span style="font-family:monospace">tol</span>. Indeed:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">maximize</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">r</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..7)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.0759657940359
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The maximal absolute error is attained at <span style="font-style:italic">x</span>=3.45532968966.</p><p>As another example, consider the function <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><span style="font-style:italic">e</span><sup>sin<span style="font-style:italic">x</span></sup>/10+7cos<span style="font-style:italic">x</span> for
+<span style="font-style:italic">x</span>∈[0,10]. To show the graph, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">exp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))/(10+7*</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)); </span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=0..10:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en039.png">
+
+</div><p>
+
+In the examples that follow, approximation functions are not output to save space.</p><p>To obtain the ℓ<sup>∞</sup> error of the 15th order polynomial approximation, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">minimax</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">,15)[0]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.0800812074329
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+By requesting a rational approximant, you can achieve significantly better accuracy with
+polynomials of lower degrees:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">p</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">minimax</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[8,8])[0]</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.000495628620328
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Sometimes you get poles in the approximant, for example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">minimax</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[10,3])[0]</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+Warning: the result is undefined at point(s) 3.03555290496
+</span></span></span></p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.206238829817
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+By using the <span style="font-family:monospace">rand</span> option, you obtain a pole-free result:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">p</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">minimax</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">D</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[10,3],</span></span><span style="font-weight:bold"><span style="color:#BF0000">rand</span></span><span style="font-weight:bold"><span style="color:#BF0000">=30)[0]</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+Evaluation time: 6.11
+</span></span></span></p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.0364254964552
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en601.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en603.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

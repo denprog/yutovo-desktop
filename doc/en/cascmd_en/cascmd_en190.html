@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Chinese remainders</title>
+</head>
+<body >
+<a href="cascmd_en189.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en191.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec385" class="subsection">7.1.20  Chinese remainders</h3>
+<div class="theorem"><span style="font-weight:bold">Theorem 1</span> <span style="font-weight:bold">(Chinese remainders)</span>  <a id="thm:chinrem"></a><em>
+If </em><span style="font-style:italic">p</span><sub>1</sub>,<span style="font-style:italic">p</span><sub>2</sub>,…,<span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub><em> are relatively prime,
+then for any integers </em><span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">a</span><sub>2</sub>,…,<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub><em>
+there is a number </em><span style="font-style:italic">c</span><em> such that
+</em><span style="font-style:italic">c</span>≡ <span style="font-style:italic">a</span><sub>1</sub>(mod <span style="font-style:italic">p</span><sub>1</sub> )<em>, </em><span style="font-style:italic">c</span>≡ <span style="font-style:italic">a</span><sub>2</sub> (mod <span style="font-style:italic">p</span><sub>2</sub> ), …, <span style="font-style:italic">c</span>≡ <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> (mod <span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub> )<em>.
+</em></div><p>
+The <span style="font-family:monospace">ichinrem</span><a id="hevea_default317"></a>
+or <span style="font-family:monospace">ichrem</span><a id="hevea_default318"></a> command
+finds this value of <span style="font-style:italic">c</span>.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">ichinrem</span> takes one or more arguments:
+Each argument is a pair of integers <span style="font-style:italic">a</span><sub><span style="font-style:italic">k</span></sub> and <span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub> either as a list
+[<span style="font-style:italic">a</span><sub><span style="font-style:italic">k</span></sub>,<span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub>] or as a modular integer <span style="font-style:italic">a</span><sub><span style="font-style:italic">k</span></sub>% <span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub>.
+</li><li class="li-itemize"><span style="font-family:monospace">ichinrem(</span>[<span style="font-style:italic">a</span><sub>1</sub>,<span style="font-style:italic">p</span><sub>1</sub>],[<span style="font-style:italic">a</span><sub>2</sub>,<span style="font-style:italic">p</span><sub>2</sub>],…,[<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>,<span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub>]<span style="font-family:monospace">)</span>
+if possible returns a list [<span style="font-style:italic">c</span>,<span style="font-style:italic">L</span>], where <span style="font-style:italic">L</span>=
+<span style="font-style:italic">lcm</span>(<span style="font-style:italic">p</span><sub>1</sub>,<span style="font-style:italic">p</span><sub>2</sub>,…,<span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub>) and <span style="font-style:italic">c</span> satisfies <span style="font-style:italic">c</span>≡ <span style="font-style:italic">a</span><sub><span style="font-style:italic">k</span></sub> (mod <span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub> ) for
+<span style="font-style:italic">k</span>=1,…,<span style="font-style:italic">n</span>.
+</li></ul><p>
+Note that any multiple of <span style="font-style:italic">L</span>=<span style="font-style:italic">lcm</span>(<span style="font-style:italic">p</span><sub>1</sub>,<span style="font-style:italic">p</span><sub>2</sub>,…,<span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub>) can be
+added to <span style="font-style:italic">c</span> and the equalities will still be true. If the <span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub>
+are relatively prime, then a solution <span style="font-style:italic">c</span> exists by Theorem <a href="#thm%3Achinrem">1</a>;
+what’s more, any two solutions will be congruent
+modulo the product of the <span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub>s.</p><p>If all of the arguments are given as modular integers, then the result
+will also be given as a modular integer <span style="font-style:italic">c</span> % <span style="font-style:italic">l</span>.</p><p>The <span style="font-family:monospace">chrem</span><a id="hevea_default319"></a> command does the same
+thing as <span style="font-family:monospace">ichinrem</span>, but the input is given in a different form.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">chrem</span> takes two arguments:
+[<span style="font-style:italic">a</span><sub>1</sub>,…,<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>] and [<span style="font-style:italic">p</span><sub>1</sub>,…,<span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub>],
+lists of integers of the same size.
+</li><li class="li-itemize"><span style="font-family:monospace">chrem(</span>[<span style="font-style:italic">a</span><sub>1</sub>,…,<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>],[<span style="font-style:italic">p</span><sub>1</sub>,…,<span style="font-style:italic">p</span><sub><span style="font-style:italic">n</span></sub>]<span style="font-family:monospace">)</span>
+returns [<span style="font-style:italic">c</span>,<span style="font-style:italic">L</span>], as for <span style="font-family:monospace">ichinrem</span>.
+</li></ul><p>Be careful with
+the order of the parameters. Indeed,
+<span style="font-family:monospace">chrem([a,b],[p,q])</span>, <span style="font-family:monospace">ichrem([a,p],[b,q])</span>
+and <span style="font-family:monospace">ichinrem([a,p],[b,q])</span> all produce the same output.</p><h4 id="sec386" class="subsubsection">Examples</h4>
+<p>
+Solve:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >≡ 3(mod 5 )</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >≡ 9(mod 13 )
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ichinrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,5],[9,13])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ichrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,5],[9,13])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">48,65</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+so <span style="font-style:italic">x</span>≡ 48 (mod 65 ).</p><p>You can also input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ichrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3%5,9%13)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−17</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">%65
+</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Note that 48≡ −17 (mod 65 ).</p><p>Recalling that <span style="font-family:monospace">chrem</span> takes its arguments in a different form,
+you can also enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">chrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,9],[5,13])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">48,65</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Solve:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >≡ 3(mod 5 )</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >≡ 4(mod 7 ) </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">x</span></td><td style="text-align:left;white-space:nowrap" >≡ 1(mod 9 )
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ichinrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,5],[4,7],[1,9])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">298,315</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+hence <span style="font-style:italic">x</span>≡ 298 (mod 315 ).</p><p>Alternative input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ichinrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3%5,4%7,1%9])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−17</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">%315
+</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Note that 298≡ −17 (mod 315 ).</p><p>Again, with the arguments in a different form, you can also enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">chrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,4,1],[5,7,9])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">298,315</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="sec387" class="paragraph">Remark.</h5>
+<p>
+These three commands, <span style="font-family:monospace">ichinrem</span>,
+<span style="font-family:monospace">ichrem</span> and <span style="font-family:monospace">chrem</span>, may also be used to find the
+coefficients of a polynomial whose equivalence classes are known
+modulo several integers by using polynomials with integer coefficients
+instead of integers for the <span style="font-style:italic">a</span><sub><span style="font-style:italic">k</span></sub>.</p><p>For example, to find <span style="font-style:italic">ax</span>+<span style="font-style:italic">b</span> modulo 315=5 · 7 · 9 under the
+assumptions
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">a</span></td><td style="text-align:left;white-space:nowrap" >≡ 3(mod 5 )</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">a</span></td><td style="text-align:left;white-space:nowrap" >≡ 4(mod 7 ) </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">a</span></td><td style="text-align:left;white-space:nowrap" >≡ 1(mod 9 )
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+and
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="font-style:italic">b</span></td><td style="text-align:left;white-space:nowrap" >≡ 1(mod 5 )</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">b</span></td><td style="text-align:left;white-space:nowrap" >≡ 2(mod 7 )</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="font-style:italic">b</span></td><td style="text-align:left;white-space:nowrap" >≡ 3(mod 9 )
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h4 id="sec388" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ichinrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">((3</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1)%5,(4</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2)%7,(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+3)%9)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−17</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">%315</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+156%315
+</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+hence <span style="font-family:monospace">a=-17 (mod 315)</span> and <span style="font-family:monospace">b=156 (mod 315)</span>.</p><p>As before, <span style="font-family:monospace">chrem</span> takes the same input in a different format.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">chrem</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+1,4</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+3],[5,7,9])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">298 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+156,315</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Note that 298≡ −17 (mod 315 ).</p>
+<hr>
+<a href="cascmd_en189.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en191.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

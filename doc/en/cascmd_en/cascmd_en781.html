@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Conditional statements</title>
+</head>
+<body >
+<a href="cascmd_en780.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en782.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2013" class="subsection">25.3.1  Conditional statements</h3>
+<p>The <span style="font-variant:small-caps">Xcas</span> language has different ways of writing
+“if…then” statements (see Section <a href="cascmd_en081.html#ssec%3Apiecewise">5.1.3</a>).
+The standard version of such a statement consists of
+the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span><a id="hevea_default1600"></a> keyword, followed by a boolean expression (see
+Section <a href="index.html#sec%3Aboolean">5.1</a>) in parentheses, followed by a statement block
+(see Section <a href="cascmd_en770.html#ssec%3Acodeblocks">25.1.7</a>) which will be executed if the boolean
+is true. You can optionally add an <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">else</span></span></span><a id="hevea_default1601"></a>
+keyword followed by a statement block which will be executed if the boolean is false.
+</p><div class="center">
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span> <span style="font-family:monospace">(</span><span style="font-style:italic">boolean</span><span style="font-family:monospace">)</span> <span style="font-style:italic">true-block</span> ⟨<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">else</span></span></span> <span style="font-style:italic">false-block</span>⟩
+</div><p>
+Recall that the blocks need to be delimited by braces or by
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">begin</span></span></span> and <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span>.</p><h4 id="sec2014" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=3:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">if</span></span><span style="font-weight:bold"><span style="color:#BF0000"> (</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">) { </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+5; </span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">; }:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+8,6
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since <span style="font-family:monospace">a&gt;b</span> evaluates to true, and so the variable
+<span style="font-family:monospace">a</span> resets to <span style="font-family:monospace">8</span> and <span style="font-family:monospace">b</span> resets
+to the value <span style="font-family:monospace">6</span>.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=3:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">if</span></span><span style="font-weight:bold"><span style="color:#BF0000"> (</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&lt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">) { </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+5; </span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">; } </span></span><span style="font-weight:bold"><span style="color:#0000CC">else</span></span><span style="font-weight:bold"><span style="color:#BF0000"> { </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">-5; </span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span><span style="font-weight:bold"><span style="color:#BF0000">; }:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">b</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−2,0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since <span style="font-family:monospace">a&gt;b</span> evaluates to false, and so the variable
+<span style="font-family:monospace">a</span> resets to <span style="font-family:monospace">-2</span> and <span style="font-family:monospace">b</span> resets
+to the value <span style="font-family:monospace">0</span>.</p>
+<h5 id="sec2015" class="paragraph">The “if…then…else…end” structure.</h5>
+<p>
+An alternate way to write an <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span> statement is to enclose the
+code block in <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">then</span></span></span><a id="hevea_default1602"></a> and
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span><a id="hevea_default1603"></a> instead of braces:
+</p><div class="center">
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span> <span style="font-family:monospace">(</span><span style="font-style:italic">boolean</span><span style="font-family:monospace">)</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">then</span></span></span> <span style="font-style:italic">true-block</span> ⟨<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">else</span></span></span> <span style="font-style:italic">false-block</span>⟩ <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span>
+</div><ul class="itemize"><li class="li-itemize">
+In this case, it is usually not necessary to enclose the boolean in parentheses.
+</li><li class="li-itemize">Instead of the keyword <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span>, you can also use <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">fi</span></span></span><a id="hevea_default1604"></a>.
+</li></ul><h4 id="sec2016" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=3:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">if</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;1 </span></span><span style="font-weight:bold"><span style="color:#0000CC">then</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+5; </span></span><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+8
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=8:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">if</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;10 </span></span><span style="font-weight:bold"><span style="color:#0000CC">then</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+10; </span></span><span style="font-weight:bold"><span style="color:#0000CC">else</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">-5; </span></span><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+3
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+This input can also be written as:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">si</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;10 </span></span><span style="font-weight:bold"><span style="color:#0000CC">alors</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">+10; </span></span><span style="font-weight:bold"><span style="color:#0000CC">sinon</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">-5; </span></span><span style="font-weight:bold"><span style="color:#0000CC">fsi</span></span></td></tr>
+</table>
+<h5 id="sec2017" class="paragraph">Nesting conditional statements.</h5>
+<p>
+Several <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span> statements can be nested. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> <span style="color:#0000CC"><span style="font-weight:bold">if</span></span> a&gt;1 <span style="color:#0000CC"><span style="font-weight:bold">then</span></span> a:=1; <span style="color:#0000CC"><span style="font-weight:bold">else</span></span> <span style="color:#0000CC"><span style="font-weight:bold">if</span></span> a&lt;0 <span style="color:#0000CC"><span style="font-weight:bold">then</span></span> a:=0; <span style="color:#0000CC"><span style="font-weight:bold">else</span></span> a:=0.5; <span style="color:#0000CC"><span style="font-weight:bold">end</span></span>; <span style="color:#0000CC"><span style="font-weight:bold">end</span></span></td></tr>
+</table><p>A simpler way is to replace the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">else</span></span></span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span> by
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">elif</span></span></span><a id="hevea_default1605"></a> and
+combine the <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span>s:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> <span style="color:#0000CC"><span style="font-weight:bold">if</span></span> a&gt;1 <span style="color:#0000CC"><span style="font-weight:bold">then</span></span> a:=1; <span style="color:#0000CC"><span style="font-weight:bold">elif</span></span> a&lt;0 <span style="color:#0000CC"><span style="font-weight:bold">then</span></span> a:=0; <span style="color:#0000CC"><span style="font-weight:bold">else</span></span> a:=0.5; <span style="color:#0000CC"><span style="font-weight:bold">end</span></span></td></tr>
+</table><p>In general, such a combination can be written
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">if</span></span></span> <span style="font-family:monospace">(</span><span style="font-style:italic">boolean1</span><span style="font-family:monospace">)</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">then</span></span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">  block1;</span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">elif</span></span></span> <span style="font-family:monospace">(</span><span style="font-style:italic">boolean2</span><span style="font-family:monospace">)</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">then</span></span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">  block2;</span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > …</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">elif</span></span></span> <span style="font-family:monospace">(</span><span style="font-style:italic">booleanN</span><span style="font-family:monospace">)</span> <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">then</span></span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">  blockN;</span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">else</span></span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-style:italic">  last block;</span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span>
+</td></tr>
+</table>
+</div><p>
+where the last <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">else</span></span></span> is optional.
+For example, to define a function <span style="font-style:italic">f</span> by
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=
+</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎧<br>
+⎪<br>
+⎪<br>
+⎨<br>
+⎪<br>
+⎪<br>
+⎩</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >    8</td><td style="text-align:left;white-space:nowrap" >if  <span style="font-style:italic">x</span> &gt; 8</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >    4</td><td style="text-align:left;white-space:nowrap" >if  4 &lt; <span style="font-style:italic">x</span> ≤ 8</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >    2</td><td style="text-align:left;white-space:nowrap" >if  2 &lt; <span style="font-style:italic">x</span> ≤ 4</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >    1</td><td style="text-align:left;white-space:nowrap" >if  0 &lt; <span style="font-style:italic">x</span> ≤ 2</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >    0</td><td style="text-align:left;white-space:nowrap" >if  <span style="font-style:italic">x</span> ≤ 0
+</td></tr>
+</table></td></tr>
+</table></td></tr>
+</table><p>
+you may enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> f(x):={
+   <span style="color:#0000CC"><span style="font-weight:bold">if</span></span> (x&gt;8) <span style="color:#0000CC"><span style="font-weight:bold">then</span></span>
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> 8;
+   <span style="color:#0000CC"><span style="font-weight:bold">elif</span></span> (x&gt;4) <span style="color:#0000CC"><span style="font-weight:bold">then</span></span>
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> 4;
+   <span style="color:#0000CC"><span style="font-weight:bold">elif</span></span> (x&gt;2) <span style="color:#0000CC"><span style="font-weight:bold">then</span></span>
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> 2;
+   <span style="color:#0000CC"><span style="font-weight:bold">elif</span></span> (x&gt;0) <span style="color:#0000CC"><span style="font-weight:bold">then</span></span>
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> 1;
+   <span style="color:#0000CC"><span style="font-weight:bold">else</span></span>
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> 0;
+   <span style="color:#0000CC"><span style="font-weight:bold">fi</span></span>;
+ }</td></tr>
+</table>
+<hr>
+<a href="cascmd_en780.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en782.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

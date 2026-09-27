@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Bar plots</title>
+</head>
+<body >
+<a href="cascmd_en652.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en654.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1591" class="subsection">20.1.14  Bar plots</h3>
+<p>The <span style="font-family:monospace">bar_plot</span><a id="hevea_default1279"></a>
+or <span style="font-family:monospace">barplot</span><a id="hevea_default1280"></a>
+command draws bar plots.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">bar_plot</span> takes one mandatory argument and up to three optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">M</span>, a matrix, where each row consists of a label followed by one or
+more values. If the labels are followed by more than one value,
+then the corresponding elements in the first row need to be identifiers or strings.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">color=</span><span style="font-style:italic">col</span>, where <span style="font-style:italic">col</span> is a color object
+or a list of color objects (see Section <a href="cascmd_en609.html#ssec%3Acolors">19.1.3</a>). By default,
+<span style="font-style:italic">col</span>=<span style="font-family:monospace">black</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">barwidth</span>, a real number in ⟨ 0,1] which specifies
+the width of bars (by default, <span style="font-style:italic">barwidth</span>=0.75).
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">axes</span>, the symbol specifying that usual axes should be drawn,
+which is useful if you want to combine the output with other graphic objects.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">bar_plot(</span><span style="font-style:italic">M</span> ⟨,<span style="font-family:monospace">color=</span><span style="font-style:italic">col</span>,<span style="font-style:italic">barwidth</span>,<span style="font-family:monospace">axes</span> ⟩<span style="font-family:monospace">)</span>
+draws a bar graph with a bar for each label, whose height is given by the
+corresponding value. If <span style="font-style:italic">M</span> is a two-column matrix, then the first column can be numbers
+specifying bar base midpoints. If the matrix has more than two columns, then there
+will be a bar plot for each column of values. If <span style="font-style:italic">col</span> is a color object, then
+the bars are filled with the specified color. If <span style="font-style:italic">col</span> is a list of colors,
+then the fill color cycles through the list for bars from left to right (each group
+of bars is colored by using the same colors).
+</li></ul><h4 id="sec1592" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">bar_plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"France"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,6],[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Germany"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,12],[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Switzerland"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,5]],</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">navy</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0.618)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en145.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">bar_plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[2,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"*First group*"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"*Second group*"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">  [</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"A"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,2,5],[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"B"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,5,6],[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"C"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,6,6]],</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">teal</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">olive</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">gold</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en146.png">
+
+</div><p>
+
+To specify the midpoints of bar bases, the first argument
+must be a list of pairs <span style="font-family:monospace">[</span><span style="font-style:italic">midpoint</span>,<span style="font-style:italic">height</span><span style="font-family:monospace">]</span>.
+For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">barplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,4],[3,5],[4,2]],</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">orange</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en147.png">
+
+</div><p>
+
+Note that usual axes are automatically drawn in this case.</p>
+<hr>
+<a href="cascmd_en652.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en654.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

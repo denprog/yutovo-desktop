@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.3b Cosecant\4.3.3.1 (a+b csc)^m (d csc)^n (A+B csc).txt"
+
+lst:=[
+[csc(c+d*x)^3*(a+a*csc(c+d*x))*(A+A*csc(c+d*x)),x,7,-7/8*a*A*arctanh(cos(c+d*x))/d-2*a*A*cot(c+d*x)/d-2/3*a*A*cot(c+d*x)^3/d-7/8*a*A*cot(c+d*x)*csc(c+d*x)/d-1/4*a*A*cot(c+d*x)*csc(c+d*x)^3/d],
+[(a+a*csc(c+d*x))*(A+A*csc(c+d*x))*sin(c+d*x)^2,x,5,3/2*a*A*x-2*a*A*cos(c+d*x)/d-1/2*a*A*cos(c+d*x)*sin(c+d*x)/d],
+[(a-a*csc(c+d*x))*(A+A*csc(c+d*x))*sin(c+d*x)^2,x,3,-1/2*a*A*x-1/2*a*A*cos(c+d*x)*sin(c+d*x)/d],
+[csc(c+d*x)*(a+a*csc(c+d*x))*(A-A*csc(c+d*x)),x,3,-1/2*a*A*arctanh(cos(c+d*x))/d+1/2*a*A*cot(c+d*x)*csc(c+d*x)/d],
+[(a-a*csc(c+d*x))*(A-A*csc(c+d*x))/csc(c+d*x)^3,x,7,-a*A*x-2*a*A*cos(c+d*x)/d+1/3*a*A*cos(c+d*x)^3/d+a*A*cos(c+d*x)*sin(c+d*x)/d]]:

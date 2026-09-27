@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Analytic representation of a real signal</title>
+</head>
+<body >
+<a href="cascmd_en719.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en721.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:analytic-signal" class="subsection">21.4.7  Analytic representation of a real signal</h3>
+<p>Hilbert transform is the key component of the <em>analytic representation</em> of a real signal
+(see <a href="https://en.wikipedia.org/wiki/Analytic_signal">here</a> for details).
+Briefly, given a real signal <span style="font-style:italic">u</span>(<span style="font-style:italic">t</span>), its analytic representation is
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">u</span>(<span style="font-style:italic">t</span>)+<span style="font-style:italic">i</span><span style="color:red"><span style="font-style:italic">H</span></span>{<span style="font-style:italic">u</span>}(<span style="font-style:italic">t</span>), the main property of which is that its imaginary
+part is the Hilbert transform of the real part, the latter being exactly the original signal.
+As a consequence, the spectrum of <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub> does not contain negative frequency components.</p><p>The <span style="font-family:monospace">hilbert</span><a id="hevea_default1446"></a>
+command can find analytic representation <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub> of a discrete real signal <span style="font-style:italic">u</span>
+by using the algorithm of Marple (1999) which uses FFT as a subroutine.
+See Section <a href="cascmd_en491.html#ssec%3Aspecial-matrix">14.2.2</a> and Section <a href="cascmd_en719.html#ssec%3Ahtrans">21.4.6</a> for other uses of <span style="font-family:monospace">hilbert</span>.
+<a id="hevea_default1447"></a>
+</p><ul class="itemize"><li class="li-itemize">
+To find <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>, <span style="font-family:monospace">hilbert</span> takes <span style="font-style:italic">u</span>, a list [<span style="font-style:italic">u</span><sub>1</sub>,<span style="font-style:italic">u</span><sub>2</sub>,…,<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>] of real numbers.
+</li><li class="li-itemize"><span style="font-family:monospace">hilbert(</span><span style="font-style:italic">u</span><span style="font-family:monospace">)</span> returns the analytic representation <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub> of <span style="font-style:italic">u</span> as
+a list of complex numbers <span style="font-style:italic">z</span><sub><span style="font-style:italic">i</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">i</span></sub>+<span style="font-style:italic">i</span><span style="font-style:italic">v</span><sub><span style="font-style:italic">i</span></sub> for <span style="font-style:italic">i</span>=1,2,…,<span style="font-style:italic">n</span>, where
+<span style="font-style:italic">v</span>=[<span style="font-style:italic">v</span><sub>1</sub>,<span style="font-style:italic">v</span><sub>2</sub>,…,<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>] is the Hilbert transform of <span style="font-style:italic">u</span>.
+</li><li class="li-itemize">Note that, in order to obtain a well-behaved Hilbert transform of the input signal,
+the latter should have the mean zero (or close to it). Namely, since <span style="color:red"><span style="font-style:italic">H</span></span>{<span style="font-style:italic">c</span>}=0
+for <span style="font-style:italic">c</span>∈ℝ, the inverse transform is unable to restore the original signal if the
+latter is shifted by a nonzero amount.
+</li></ul><h4 id="sec1862" class="subsubsection">Examples</h4>
+<p>
+Given a signal defined by:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[0.7,0.2,-0.5,-0.6,-0.2,0.3,0.5,-0.1,-0.3]:;</span></span></td></tr>
+</table><p>you get its analytic representation with
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">hilbert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>which is valid since
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">mean</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1.97372982156×10</span><sup><span style="color:#0000CC">−16</span></sup><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Indeed:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">re</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>and
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">im</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">hilbert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">im</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">)))</span></span></td></tr>
+</table><p>both return
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.7,0.2,−0.5,−0.6,−0.2,0.3,0.5,−0.1,−0.3</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To visualize the input signal and its Hilbert transform together, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"f"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">im</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">red</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"H(f)"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en175.png">
+
+</div><p>
+
+The above image illustrates the fundamental property of the Hilbert transform:
+it shifts the phase of the input signal by ± 90<sup>∘</sup>.</p><h4 id="sec1863" class="subsubsection">Instantaneous amplitude, frequency and phase</h4>
+<p>You can get instantaneous amplitude and frequency of the original signal
+from its analytic representation. Since <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)<span style="font-style:italic">e</span><sup><span style="font-style:italic">i</span>ϕ(<span style="font-style:italic">t</span>)</sup> for
+some <span style="font-style:italic">A</span> and ϕ, the instantaneous amplitude is <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>) and
+the instantaneous (angular) frequency is given by
+ω(<span style="font-style:italic">t</span>)=<span style="font-style:italic">d</span>ϕ/<span style="font-style:italic">d</span><span style="font-style:italic">t</span>. Indeed, this applies to the
+original signal because <span style="font-style:italic">u</span>(<span style="font-style:italic">t</span>)=ℜ(<span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">t</span>))=<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>)cos(ϕ(<span style="font-style:italic">t</span>)) by Euler’s formula.
+For sampled signals, ω(<span style="font-style:italic">t</span>) is obtained in radians per sample and, assuming that <span style="font-style:italic">r</span>
+is the sample rate of <span style="font-style:italic">u</span>, the instantaneous frequency in Hertz is thus given by
+<span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">r</span>/2πω(<span style="font-style:italic">t</span>). Since <span style="font-style:italic">f</span>(<span style="font-style:italic">t</span>)≤<span style="font-style:italic">r</span>/2 by Nyquist theorem and
+ω(<span style="font-style:italic">t</span>)≥ 0, it follows that 0≤ω(<span style="font-style:italic">t</span>)≤π.</p><p>For a continuous, differentiable signal <span style="font-style:italic">u</span>, the instantaneous frequency can
+be obtained as
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><a id="eq:instfreq"></a>
+ω(<span style="font-style:italic">t</span>)=−<span style="font-style:italic">i</span><span style="font-style:italic">N</span><sup>∗</sup>(<span style="font-style:italic">t</span>) <span style="font-style:italic">N</span>′(<span style="font-style:italic">t</span>)=ℑ</td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">N</span><sup>∗</sup>(<span style="font-style:italic">t</span>) <span style="font-style:italic">N</span>′(<span style="font-style:italic">t</span>)</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">,
+    (3)</td></tr>
+</table><p>
+where <span style="font-style:italic">N</span><sup>∗</sup>(<span style="font-style:italic">t</span>) denotes the complex conjugate of the normalized analytic signal
+<span style="font-style:italic">N</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>(<span style="font-style:italic">t</span>)/<span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>) and <span style="font-style:italic">N</span>′ the time derivative of <span style="font-style:italic">N</span> (Vesnaver, 2017).</p><p>The phase ϕ(<span style="font-style:italic">t</span>) is “wrapped” to [−π,π] because of the periodicity of
+<span style="font-style:italic">e</span><sup><span style="font-style:italic">i</span>ϕ(<span style="font-style:italic">t</span>)</sup>. Therefore it may contain an arbitrary number of
+first-order discontinuities when defined by ϕ(<span style="font-style:italic">t</span>)=arg(<span style="font-style:italic">N</span>(<span style="font-style:italic">t</span>)).
+One way of defining the “unwrapped phase” for a causal signal <span style="font-style:italic">u</span> is:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><a id="eq:instphase"></a>
+ϕ(<span style="font-style:italic">t</span>)=ϕ<sub>0</sub>+</td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left"><span style="font-style:italic">t</span></td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell">ω(τ)<span style="font-style:italic">d</span>τ,   <span style="font-style:italic">t</span>≥ 0,
+    (4)</td></tr>
+</table><p>
+where ϕ<sub>0</sub>=arg(<span style="font-style:italic">N</span>(0)) and ω is computed from (<a href="#eq%3Ainstfreq">3</a>).
+Indeed, ϕ in (<a href="#eq%3Ainstphase">4</a>) is non-decreasing because ω(<span style="font-style:italic">t</span>)≥ 0.
+Note that unwrapping the phase introduces uncertainties and requires user-defined
+parameters; in the above definition, ϕ<sub>0</sub> can have infinitely many values.</p><p>The instantaneous amplitude of <span style="font-style:italic">u</span> is obtained simply by calling the <span style="font-family:monospace">abs</span>
+command with <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub> as its argument. The vector of squared amplitudes is called the
+<em>energy</em> of <span style="font-style:italic">u</span>.</p><p>The <span style="font-family:monospace">instfreq</span><a id="hevea_default1448"></a> command finds instantaneous
+frequency of a discrete signal <span style="font-style:italic">u</span> given its analytic representation <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">instfreq</span> takes one mandatory argument and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>, the analytic representation of a real signal <span style="font-style:italic">u</span>,
+which may be a vector (as returned by <span style="font-family:monospace">hilbert</span>) or a symbolic expression.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span>, a variable (by default <span style="font-family:monospace">x</span>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">instfreq(</span><span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub> ⟨,<span style="font-style:italic">x</span> ⟩<span style="font-family:monospace">)</span>
+returns ω as a vector of phase advancements of <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub> in the
+discrete case and the expression (<a href="#eq%3Ainstfreq">3</a>) in the continuous case.
+Precisely, if <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>=[<span style="font-style:italic">z</span><sub>1</sub>,<span style="font-style:italic">z</span><sub>2</sub>,…,<span style="font-style:italic">z</span><sub><span style="font-style:italic">n</span></sub>], then ω is a vector of length <span style="font-style:italic">n</span>−1 with
+components
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">ω<sub><span style="font-style:italic">i</span></sub>=arg</td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">z</span><sub><span style="font-style:italic">i</span></sub><sup>∗</sup><span style="font-style:italic">z</span><sub><span style="font-style:italic">i</span>+1</sub></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">∈[0,π],   <span style="font-style:italic">i</span>=1,2,…,<span style="font-style:italic">n</span>−1. </td></tr>
+</table>
+The above formula handles phase wrapping.
+</li><li class="li-itemize">In the discrete case, ω<sub><span style="font-style:italic">i</span></sub> is the angular frequency of <span style="font-style:italic">u</span> at offset <span style="font-style:italic">i</span>+1,
+where <span style="font-style:italic">i</span>=1,2,…,<span style="font-style:italic">n</span>−1.
+</li></ul><p>The <span style="font-family:monospace">instphase</span><a id="hevea_default1449"></a> command finds instantaneous
+phase of a discrete signal <span style="font-style:italic">u</span> given its analytic representation <span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>, without wrapping.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">instphase</span> takes one mandatory argument and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub>, the analytic representation of a real signal <span style="font-style:italic">u</span>,
+which may be a vector (as returned by <span style="font-family:monospace">hilbert</span>) or a symbolic expression.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span>, a variable (by default <span style="font-family:monospace">x</span>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">instphase</span> returns ϕ as a cummulative-sum vector of
+<span style="font-family:monospace">instfreq(</span><span style="font-style:italic">u</span><sub><span style="font-style:italic">a</span></sub><span style="font-family:monospace">)</span> (adjusted so that the first element matches the
+initial phase) in the discrete case and the expression (<a href="#eq%3Ainstphase">4</a>)
+in the continuous case.
+</li><li class="li-itemize">In the discrete case, ϕ<sub><span style="font-style:italic">i</span></sub> is the phase of <span style="font-style:italic">u</span> at offset <span style="font-style:italic">i</span>, where <span style="font-style:italic">i</span>=1,2,…,<span style="font-style:italic">n</span>.
+</li></ul><h4 id="sec1864" class="subsubsection">Examples</h4>
+<p>
+Sample the function <span style="font-style:italic">x</span>(<span style="font-style:italic">t</span>)=sin(20πsin(<span style="font-style:italic">t</span>))
+in the segment [0,π/2] and apply the Hamming window:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">evalf</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/2,1000)):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">hamming_window</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">-&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(20*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)):;</span></span></td></tr>
+</table><p>Compute the analytic representation of <span style="font-style:italic">y</span> and the relative error (in percentages)
+made by reconstructing the original signal from <span style="font-style:italic">h</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">hilbert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">im</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">hilbert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">im</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">))))/</span></span><span style="font-weight:bold"><span style="color:#BF0000">norm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">)*100</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+2.08546075156
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The error is relatively small (about 2%), hence <span style="font-style:italic">y</span> is
+applicable for further analysis (its analytic representation is
+well-behaved).</p><p>The instantaneous amplitude is obtained by:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>and the instantaneous frequency by
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">instfreq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>To plot <span style="font-style:italic">y</span>, <span style="font-style:italic">a</span> and <span style="font-style:italic">f</span> together, you can enter (<span style="font-style:italic">f</span> is scaled
+arbitrarily to be visible in the amplitude axis):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">green</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">line_width_2</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">listplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(10*</span></span><span style="font-weight:bold"><span style="color:#BF0000">f</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en176.png">
+
+</div><p>
+
+As you can see in the image above, the instantaneous amplitude (shown
+in green) forms an envelope of the original signal (shown in black), while
+the instantaneous frequency (shown in blue) drops as the oscillations in the
+original signal are slowing down (note that its values are nonnegative).</p><h5 id="sec1865" class="paragraph">Continuous analytic signal.</h5>
+<p>
+To obtain the instantaneous frequency of a continuous signal you can
+use (<a href="#eq%3Ainstfreq">3</a>) or the <span style="font-family:monospace">instfreq</span> command. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">-3+(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">-2)^2)/(1+(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">-2)^4)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−2</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−3</span></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−2</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><sup><span style="color:#0000CC">4</span></sup><span style="color:#0000CC">+1</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..10)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en177.png">
+
+</div><p>
+
+To compute <span style="font-style:italic">y</span>=<span style="color:red"><span style="font-style:italic">H</span></span>{<span style="font-style:italic">x</span>}, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">hilbert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−6 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+7</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">4</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">8 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+24 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">32 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+17 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The analytic representation of <span style="font-style:italic">x</span> and its normalization are obtained by:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">:;</span></span></td></tr>
+</table><p>To animate unfolding of <span style="font-style:italic">z</span>(<span style="font-style:italic">t</span>) in the complex plane for 0≤ <span style="font-style:italic">t</span>≤ 10, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">animation</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">seq</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">plotparam</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">/5),</span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">subs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">/5),</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">)],</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1..50))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en178.png">
+
+</div><p>
+
+To plot the instantaneous amplitude <span style="font-style:italic">A</span>(<span style="font-style:italic">t</span>) against <span style="font-style:italic">x</span>(<span style="font-style:italic">t</span>), enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotfunc</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">)],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..10,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">black</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en179.png">
+
+</div><p>
+
+The instantaneous frequency of <span style="font-style:italic">x</span> is obtained by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ifreq</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">instfreq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">−4 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+5 </span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">4</span></sup><span style="color:#0000CC">−8 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+24 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−32 </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">+17</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ifreq</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;=0</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">true</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">ifreq</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..10)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en180.png">
+
+</div><p>
+
+The unwrapped phase, according to the definition (<a href="#eq%3Ainstphase">4</a>),
+is now obtained by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">iphas</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">instphase</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">iphas</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..10)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en181.png">
+
+</div><p>
+
+The wrapped phase, on the other hand, suffers from a discontinuity at <span style="font-style:italic">t</span>=3−√<span style="text-decoration:overline">2</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">arg</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..10)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en182.png">
+
+</div><p>As another example, show that the function <span style="font-style:italic">u</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">a</span>/<span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">t</span><sup>2</sup>
+for <span style="font-style:italic">a</span>&gt;0 is itself its instantaneous frequency and, in case <span style="font-style:italic">a</span>=1, also
+its energy. To verify, first compute the (normalized) analytic
+representation by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">purge</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;0):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">hilbert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">u</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">N</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">simplify</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">/</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC"><span style="font-style:italic">a</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">a</span></span><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Then compute the instantaneous frequency and energy of <span style="font-style:italic">u</span>, respectively,
+by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">instfreq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">simplify</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">abs</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">a</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">a</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+</table></td><td class="dcell">, </td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">a</span><sup>2</sup>+<span style="font-style:italic">t</span><sup>2</sup></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en719.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en721.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Viewing images</title>
+</head>
+<body >
+<a href="cascmd_en1010.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1012.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:viewing-images" class="subsection">28.1.4  Viewing images</h3>
+<p>Starting from <span style="font-variant:small-caps">Xcas</span> version 1.9.0, image objects are viewed by using
+the <span style="font-family:monospace">display</span><a id="hevea_default1926"></a>
+command. The legacy <span style="font-variant:small-caps">Xcas</span> image structure can be visualized by exporting
+it to a file by using the <span style="font-family:monospace">writergb</span> command (see Section <a href="cascmd_en1012.html#ssec%3Awritergb">28.1.5</a>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">display</span> takes one mandatory arguments and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">img</span>, an image object.
+</li><li class="li-itemize">Optionally, either <span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>, a pair of real numbers, or <span style="font-style:italic">a</span>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span>,
+a complex number (by default, <span style="font-style:italic">a</span>=<span style="font-style:italic">b</span>=0).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">display(</span><span style="font-style:italic">img</span> ⟨,<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span> ⟩<span style="font-style:italic">)</span>
+or <span style="font-family:monospace">display(</span><span style="font-style:italic">img</span> ⟨,<span style="font-style:italic">a</span>+<span style="font-style:italic">i</span><span style="font-style:italic">b</span> ⟩<span style="font-style:italic">)</span>
+returns a graphic object showing <span style="font-style:italic">img</span> with (<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>) corresponding to its
+lower-left corner. The axes are automatically hidden and the view
+is orthonormalized in order to preserve the original aspect ratio of the image.
+</li></ul><p>In the examples that follow, we assume that the current directory in <span style="font-variant:small-caps">Xcas</span>
+is changed (by using the <span style="font-family:monospace">cd</span> command, see Section <a href="cascmd_en077.html#ssec%3Awdir">4.2.1</a>)
+to <span style="font-family:monospace">/usr/local/share/giac/examples</span> in Linux resp. to
+<span style="font-family:monospace">C:\xcaswin\examples</span> in Windows.</p><h4 id="sec2523" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Exemples/demo/terre.jpg"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 512×256 (RGB)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en441.png">
+
+</div><p>Multiple images can be shown together by calling <span style="font-family:monospace">display</span> several times
+within a single command line (delimited by <span style="font-family:monospace">;</span>) and adjusting <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>
+to appropriate values in each call. If desired, individual image captions can be
+inserted by using the <span style="font-family:monospace">legend</span> command
+(See Section <a href="cascmd_en723.html#ssec%3Adwt">21.4.10</a> for an example.) There is also a possibility
+of combining images with other graphical objects.</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(285+125</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Africa"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">gold</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(270+200</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Europe"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">gold</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(380+190</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Asia"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">yellow</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(430+90</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Australia"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">yellow</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(100+190</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"North America"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">gold</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">(160+80</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"South America"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">gold</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en442.png">
+
+</div>
+<h5 id="sec2524" class="paragraph">Viewing images as textures.</h5>
+<p>
+<span style="font-variant:small-caps">Xcas</span> can also display image files in rectangles in
+2D or on surfaces in 3D with the
+<span style="font-family:monospace">gl_texture</span><a id="hevea_default1927"></a>
+property of the object (see Section <a href="cascmd_en608.html#ssec%3Aindattr">19.1.2</a>). This
+procedure does not use image objects, but reads images
+from disk.</p><h4 id="sec2525" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rectangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,200,1/2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">gl_texture</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Exemples/demo/terre.jpg"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en443.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">sphere</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,0,0],1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">gl_material</span></span><span style="font-weight:bold"><span style="color:#BF0000">=[</span></span><span style="font-weight:bold"><span style="color:#BF0000">gl_texture</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"Exemples/demo/terre.jpg"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en444.png">
+
+</div>
+<hr>
+<a href="cascmd_en1010.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1012.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

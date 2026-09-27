@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Vectors in the plane</title>
+</head>
+<body >
+<a href="cascmd_en831.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en833.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:2dvectors" class="subsection">26.6.4  Vectors in the plane</h3>
+<p>See Section <a href="cascmd_en933.html#ssec%3A3dvectors">27.4.4</a> for vectors in space.</p><p>The <span style="font-family:monospace">segment</span><a id="hevea_default1725"></a>
+commands returns and draws
+vectors. (The <span style="font-family:monospace">segment</span> command can also draw line segments,
+see section <a href="cascmd_en831.html#ssec%3A2dsegments">26.6.3</a>.)
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">segment</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">p</span>, a point.
+</li><li class="li-itemize"><span style="font-style:italic">v</span>, a vector.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">segment(</span><span style="font-style:italic">p</span>,<span style="font-style:italic">v</span><span style="font-family:monospace">)</span> returns the corresponding vector and
+draws it as a line segment from <span style="font-style:italic">p</span> to <span style="font-style:italic">p</span>+<span style="font-style:italic">v</span>.
+</li></ul><h4 id="sec2137" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">segment</span></span><span style="font-weight:bold"><span style="color:#BF0000">([-1,0],[1,1])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en258.png">
+
+</div><p>The <span style="font-family:monospace">vector</span><a id="hevea_default1726"></a>
+command also makes vectors, with a different syntax.
+It can take its arguments in two different ways.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+<span style="font-weight:bold">The coordinates of the vector.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">vector</span> takes
+<span style="font-style:italic">L</span>, a list of the coordinates of the vector.
+</li><li class="li-itemize"><span style="font-family:monospace">vector(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> returns and draws the vector with the
+given coordinates, starting from the origin.
+</li></ul>
+</li><li class="li-enumerate"><span style="font-weight:bold">Two points or a point and a vector.</span>
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">vector</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">P</span>, a point.
+</li><li class="li-itemize"><span style="font-style:italic">Q</span>, a point or a vector. If <span style="font-style:italic">Q</span> is a point, it can
+be combined with <span style="font-style:italic">P</span> in a list.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">vector(</span><span style="font-style:italic">P</span>,<span style="font-style:italic">Q</span><span style="font-family:monospace">)</span> returns and draws the
+corresponding vector. If the arguments are two points, the vector
+goes from <span style="font-style:italic">P</span> to <span style="font-style:italic">Q</span>. If the arguments are a point and a
+vector, then the vector starts at <span style="font-style:italic">P</span>.
+</li></ul>
+</li></ol><h4 id="sec2138" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,2])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en259.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">([-1,0],[1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">V</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1,2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">vector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">V</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en260.png">
+
+</div>
+<hr>
+<a href="cascmd_en831.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en833.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

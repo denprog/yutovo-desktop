@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Laplace transform</title>
+</head>
+<body >
+<a href="cascmd_en458.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en460.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:laplace" class="subsection">13.4.2  Laplace transform</h3>
+<p>Denoting by <span style="color:red"><span style="font-style:italic">L</span></span> the Laplace transform,
+you get the following:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>)</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">=</td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">+∞</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">e</span><sup>−<span style="font-style:italic">x</span> <span style="font-style:italic">u</span></sup><span style="font-style:italic">y</span>(<span style="font-style:italic">u</span>)<span style="font-style:italic">du</span> </td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="color:red"><span style="font-style:italic">L</span></span><sup>−1</sup>(<span style="font-style:italic">g</span>)(<span style="font-style:italic">x</span>)</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<span style="font-style:italic">i</span>π</td></tr>
+</table></td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">&nbsp;</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left"><span style="font-style:italic">C</span></td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">e</span><sup><span style="font-style:italic">z</span> <span style="font-style:italic">x</span></sup><span style="font-style:italic">g</span>(<span style="font-style:italic">z</span>) <span style="font-style:italic">d</span><span style="font-style:italic">z</span>
+</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+where <span style="font-style:italic">C</span> is a closed contour enclosing the poles of <span style="font-family:monospace">g</span>.</p><p>The <span style="font-family:monospace">laplace</span><a id="hevea_default758"></a> command finds the
+Laplace transform of a function.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">laplace</span> takes one mandatory argument and two optional
+arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression involving a variable.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span>, the variable name (by default <span style="font-family:monospace">x</span>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">s</span>, a variable for the output (by default <span style="font-style:italic">x</span>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">laplace(</span><span style="font-style:italic">expr</span> ⟨,<span style="font-style:italic">x</span> ⟩<span style="font-family:monospace">)</span>
+returns the Laplace transform of <span style="font-style:italic">expr</span>.
+</li></ul><p>The <span style="font-family:monospace">ilaplace</span><a id="hevea_default759"></a> or
+<span style="font-family:monospace">invlaplace</span><a id="hevea_default760"></a> command finds the
+inverse Laplace transform of a function.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">ilaplace</span> takes one mandatory argument and two optional
+arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression involving a variable.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span>, the variable name (by default <span style="font-family:monospace">x</span>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">s</span>, a variable for the output (by default <span style="font-style:italic">x</span>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">ilaplace(</span><span style="font-style:italic">expr</span> ⟨,<span style="font-style:italic">x</span> ⟩<span style="font-family:monospace">)</span>
+returns the inverse Laplace transform of <span style="font-style:italic">expr</span>.
+</li></ul><p>You also can use the <span style="font-family:monospace">addtable</span> command
+Laplacians of unspecified functions (see Section <a href="cascmd_en716.html#ssec%3Aaddtable">21.4.3</a>).
+The Laplace transform has the following properties:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>′)(<span style="font-style:italic">x</span>)</td><td style="text-align:left;white-space:nowrap" >=−<span style="font-style:italic">y</span>(0)+<span style="font-style:italic">x</span><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>)</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >
+<span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>′′)(<span style="font-style:italic">x</span>)</td><td style="text-align:left;white-space:nowrap" >=−<span style="font-style:italic">y</span>′(0)+<span style="font-style:italic">x</span><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>′)(<span style="font-style:italic">x</span>)</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=−<span style="font-style:italic">y</span>′(0)−<span style="font-style:italic">xy</span>(0)+<span style="font-style:italic">x</span><sup>2</sup><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>)
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+These properties make the Laplace transform and inverse Laplace
+transform useful for solving linear differential equations
+with constant coefficients. For example, suppose you have
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">y</span>′′ +<span style="font-style:italic">p</span> <span style="font-style:italic">y</span>′ +<span style="font-style:italic">q</span> <span style="font-style:italic">y</span>=<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">y</span>(0)=<span style="font-style:italic">a</span>,  <span style="font-style:italic">y</span>′(0)=<span style="font-style:italic">b</span>
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+then
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">f</span>)(<span style="font-style:italic">x</span>)</td><td style="text-align:left;white-space:nowrap" >=<span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>′′+<span style="font-style:italic">py</span>′+<span style="font-style:italic">qy</span>)(<span style="font-style:italic">x</span>) </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=−<span style="font-style:italic">y</span>′(0)−<span style="font-style:italic">x</span> <span style="font-style:italic">y</span>(0)+<span style="font-style:italic">x</span><sup>2</sup> <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>)−<span style="font-style:italic">p</span> <span style="font-style:italic">y</span>(0)+<span style="font-style:italic">p</span> <span style="font-style:italic">x</span> <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>))+<span style="font-style:italic">q</span> <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>) </td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >=(<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">p</span> <span style="font-style:italic">x</span>+<span style="font-style:italic">q</span>) <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>)−<span style="font-style:italic">y</span>′(0)−(<span style="font-style:italic">x</span>+<span style="font-style:italic">p</span>) <span style="font-style:italic">y</span>(0)
+</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Therefore, if <span style="font-style:italic">a</span>=<span style="font-style:italic">y</span>(0) and <span style="font-style:italic">b</span>=<span style="font-style:italic">y</span>′(0), you get
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">f</span>)(<span style="font-style:italic">x</span>)=(<span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">p</span> <span style="font-style:italic">x</span>+<span style="font-style:italic">q</span>)<span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">y</span>)(<span style="font-style:italic">x</span>)−(<span style="font-style:italic">x</span>+<span style="font-style:italic">p</span>) <span style="font-style:italic">a</span>−<span style="font-style:italic">b</span>
+</td></tr>
+</table><p>
+and the solution of the differential equation is:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">y</span>(<span style="font-style:italic">x</span>)=<span style="color:red"><span style="font-style:italic">L</span></span><sup>−1</sup></td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">f</span>)(<span style="font-style:italic">x</span>)+(<span style="font-style:italic">x</span>+<span style="font-style:italic">p</span>) <span style="font-style:italic">a</span> +<span style="font-style:italic">b</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">p</span> <span style="font-style:italic">x</span>+<span style="font-style:italic">q</span></td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">.
+</td></tr>
+</table><h4 id="sec1035" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+1</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+With <span style="font-style:italic">t</span> as the original variable:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+1</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+With <span style="font-style:italic">t</span> as the original variable and <span style="font-style:italic">s</span> as the transform variable:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">s</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+1</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Apply the inverse transform to obtain the original function:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ilaplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">sin</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Solve <span style="font-style:italic">y</span>′′ −6 <span style="font-style:italic">y</span>′+9 <span style="font-style:italic">y</span>=<span style="font-style:italic">x</span> <span style="font-style:italic">e</span><sup>3 <span style="font-style:italic">x</span></sup>,
+<span style="font-style:italic">y</span>(0)=<span style="font-style:italic">c</span><sub>0</sub>, <span style="font-style:italic">y</span>′(0)=<span style="font-style:italic">c</span><sub>1</sub>. Here, <span style="font-style:italic">p</span>=−6 and <span style="font-style:italic">q</span>=9.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">exp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−6 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+9</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">ilaplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">((1/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2-6*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+9)+(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-6)*</span></span><span style="font-weight:bold"><span style="color:#BF0000">c_0</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">c_1</span></span><span style="font-weight:bold"><span style="color:#BF0000">)/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2-6*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">+9))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">6</span></td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">x</span><sup>3</sup>−18 <span style="font-style:italic">x</span> <span style="font-style:italic">c</span><sub>0</sub>+6 <span style="font-style:italic">x</span> <span style="font-style:italic">c</span><sub>1</sub>+6 <span style="font-style:italic">c</span><sub>0</sub></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><span style="font-style:italic">e</span><sup>3 <span style="font-style:italic">x</span></sup>
+</td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Note that this equation could be solved directly:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">desolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">''-6*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">'+9*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">exp</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span><span style="color:#0000CC"><span style="font-style:italic">e</span></span><sup><span style="color:#0000CC">3 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></sup><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">c</span></span><sub><span style="color:#0000CC">0</span></sub><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">c</span></span><sub><span style="color:#0000CC">1</span></sub></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">6</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">e</span></span><sup><span style="color:#0000CC">3 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></sup><span style="color:#0000CC">
+</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h4 id="sec1036" class="subsubsection">Applications</h4>
+<p>Laplace transform is useful in analysis of eletric circuits.
+A simple RL circuit is shown in Figure <a href="#fig%3Acircuit">13.1</a>.
+Given the input voltage <span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>, the problem is to find the current <span style="font-style:italic">I</span>(<span style="font-style:italic">t</span>).
+From Kirchhoff laws:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">V</span><sub><span style="font-style:italic">L</span></sub>+<span style="font-style:italic">V</span><sub><span style="font-style:italic">R</span></sub>=<span style="font-style:italic">LI</span>′(<span style="font-style:italic">t</span>)+<span style="font-style:italic">RI</span>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>. </td></tr>
+</table><p>
+By transforming both sides of the above equation and assuming <span style="font-style:italic">I</span>(0)=0, you get
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">Ls</span><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">I</span>)(<span style="font-style:italic">s</span>)+<span style="font-style:italic">R</span><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">I</span>)(<span style="font-style:italic">s</span>)=<span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>)(<span style="font-style:italic">s</span>), </td></tr>
+</table><p>
+from which follows
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">I</span>(<span style="font-style:italic">t</span>)=<span style="color:red"><span style="font-style:italic">L</span></span><sup>−1</sup></td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:red"><span style="font-style:italic">L</span></span>(<span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>)(<span style="font-style:italic">s</span>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">Ls</span>+<span style="font-style:italic">R</span></td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">. </td></tr>
+</table><blockquote class="figure"><div class="center"><div class="center"><hr style="width:80%;height:2"></div>
+<img src="cascmd_en013.png">
+
+<div class="caption"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="vertical-align:top;text-align:left;" >Figure 13.1: <a id="fig:circuit"></a>RL circuit (<a href="https://en.wikipedia.org/wiki/RL_circuit#/media/File:Series-RL.png">source</a>)</td></tr>
+</table></div>
+<div class="center"><hr style="width:80%;height:2"></div></div></blockquote><p>Let <span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>(<span style="font-style:italic">t</span>)=<span style="font-style:italic">V</span><sub>0</sub>sin(ω <span style="font-style:italic">t</span>). You find <span style="font-style:italic">I</span>(<span style="font-style:italic">t</span>) by entering:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">assume</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">omega</span></span><span style="font-weight:bold"><span style="color:#BF0000">&gt;0):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">I</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">ilaplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">V0</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">omega</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">factor</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">I</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">−ω </span><span style="color:#0000CC"><span style="font-style:italic">L</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">cos</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">ω </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">+ω </span><span style="color:#0000CC"><span style="font-style:italic">L</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">e</span></span></td><td class="dcell"><table class="display"><tr><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="dcell"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC">sin</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">ω </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">V</span></span><sub><span style="color:#0000CC">0</span></sub></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">L</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> ω</span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>Let now <span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub> be a single rectangular pulse
+<span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>={</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">V</span><sub>0</sub>,</td><td style="text-align:left;white-space:nowrap" >0≤ <span style="font-style:italic">t</span>≤ 1,</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >0,</td><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">t</span>&gt;1.</td></tr>
+</table><p>.
+It is easily defined by using the <span style="font-family:monospace">boxcar</span> command (see Section <a href="cascmd_en701.html#ssec%3Aboxcar">21.1.1</a>):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Vin</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">V0</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">boxcar</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">I</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">ilaplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">Vin</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">piecewise</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">I</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎧<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎨<br>
+⎪<br>
+⎪<br>
+⎪<br>
+⎩</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">V</span></span><sub><span style="color:#0000CC">0</span></sub><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">e</span></span></td><td class="dcell"><table class="display"><tr><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="dcell"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">V</span></span><sub><span style="color:#0000CC">0</span></sub></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">1&gt;</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">V</span></span><sub><span style="color:#0000CC">0</span></sub><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">e</span></span></td><td class="dcell"><table class="display"><tr><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="dcell"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">V</span></span><sub><span style="color:#0000CC">0</span></sub><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">e</span></span></td><td class="dcell"><table class="display"><tr><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">R</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="dcell"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" ><span style="color:#0000CC">otherwise</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>Laplace transform can be used with arbitrary periodic functions. For example,
+Let <span style="font-style:italic">V</span><sub><span style="font-style:italic">in</span></sub>=<span style="font-style:italic">V</span><sub>0</sub>(1−(<span style="font-style:italic">t</span>−1)<sup>2</sup>) for <span style="font-style:italic">t</span>∈[0,2] define a periodic function with
+period <span style="font-style:italic">T</span>=2.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Vin</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">V0</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">periodic</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1-(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1)^2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..2):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">I</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">ilaplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">laplace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">Vin</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC">2 </span><span style="color:#0000CC"><span style="font-style:italic">L</span></span><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">e</span></span></td><td class="dcell"><table class="display"><tr><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−2 </span></td><td class="dcell"><span style="color:#0000CC">⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎠</span></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td></tr>
+</table></td></tr>
+</table></td></tr>
+<tr><td class="dcell"><span style="color:#0000CC">&nbsp;</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+4 </span><span style="color:#0000CC"><span style="font-style:italic">R</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−</span></td><td class="dcell"><span style="color:#0000CC">⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC">−1</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−2</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−4 </span><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">t</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">L</span></span><span style="color:#0000CC">+2 </span><span style="color:#0000CC"><span style="font-style:italic">L</span></span><span style="color:#0000CC"> </span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">R</span></span><span style="color:#0000CC">−</span><span style="color:#0000CC"><span style="font-style:italic">L</span></span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎟<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">V</span></span><sub><span style="color:#0000CC">0</span></sub></td></tr>
+</table></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">R</span></span><sup><span style="color:#0000CC">3</span></sup></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Subexpressions in the above result are factored manually for a more readable presentation.
+<span style="font-variant:small-caps">Xcas</span> computes this result by using symbolic periodic summation.</p><p>Applying the above technique to more complex circuits involving resistors, capacitors and
+inductors is straightforward; contour analysis by Kirchhoff laws produces a system of linear
+differential equations which is transformed to a system of linear equations by Laplace transform.
+From there, it is easy to find transforms of contour currents.</p>
+<hr>
+<a href="cascmd_en458.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en460.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

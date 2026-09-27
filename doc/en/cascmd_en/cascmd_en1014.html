@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Modifying images</title>
+</head>
+<body >
+<a href="cascmd_en1013.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1015.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2534" class="subsection">28.1.7  Modifying images</h3>
+<h5 id="sec2535" class="paragraph">Setting pixel data explicitly.</h5>
+<p>
+Existing image objects can be modified by using the
+<span style="font-family:monospace">set_channel_data</span><a id="hevea_default1930"></a> command.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">set_channel_data</span> takes four or five arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">img</span>, an image object.
+</li><li class="li-itemize"><span style="font-style:italic">chn</span>, a channel index, which should be either a nonnegative
+integer or <span style="font-family:monospace">red</span> for the red channel, <span style="font-family:monospace">green</span> for the green channel,
+<span style="font-family:monospace">blue</span> for the blue channel, <span style="font-family:monospace">grey</span> for the grayscale
+channel resp. <span style="font-family:monospace">tran</span> for the transparency channel.<p>For grayscale images without a transparency channel, 
+this argument should be omitted since there is only one channel.
+</p></li><li class="li-itemize"><span style="font-style:italic">x</span>, an integer.
+</li><li class="li-itemize"><span style="font-style:italic">y</span>, an integer.
+</li><li class="li-itemize"><span style="font-style:italic">data</span>, a matrix of integers between 0 and 255.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">set_channel_data(</span><span style="font-style:italic">img</span> ⟨,<span style="font-style:italic">chn</span> ⟩,<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">data</span><span style="font-family:monospace">)</span>
+returns a modified copy of <span style="font-style:italic">img</span> in which the indicated channel components of pixels in
+the rectangle with upper left corner (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)
+and lower right corner (<span style="font-style:italic">x</span>+<span style="font-style:italic">w</span>−1,<span style="font-style:italic">y</span>+<span style="font-style:italic">h</span>−1), where <span style="font-style:italic">w</span> resp. <span style="font-style:italic">h</span> is the number of columns resp. rows of the
+matrix <span style="font-style:italic">data</span>, are set to the values in <span style="font-style:italic">data</span>; i.e. the <span style="font-style:italic">chn</span> component in the
+pixel (<span style="font-style:italic">x</span>+<span style="font-style:italic">j</span>,<span style="font-style:italic">y</span>+<span style="font-style:italic">i</span>) in is set to <span style="font-style:italic">data</span><sub><span style="font-style:italic">ij</span></sub> for <span style="font-style:italic">i</span>=0,…,<span style="font-style:italic">h</span>−1 and <span style="font-style:italic">j</span>=0,…,<span style="font-style:italic">w</span>−1.
+</li></ul>
+<h5 id="sec2536" class="paragraph">Inverting pixel data.</h5>
+<p>
+To produce a negative of an image, i.e. to apply the function <span style="font-style:italic">p</span>↦ 255−<span style="font-style:italic">p</span> to all channel data
+entries, use the unary operator <span style="font-family:monospace">-</span><a id="hevea_default1931"></a> or the command
+<span style="font-family:monospace">inv</span><a id="hevea_default1932"></a>.</p>
+<hr>
+<a href="cascmd_en1013.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1015.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

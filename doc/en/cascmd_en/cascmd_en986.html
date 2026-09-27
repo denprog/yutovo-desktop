@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Similarity in space</title>
+</head>
+<body >
+<a href="cascmd_en985.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en987.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:3dsimilarity" class="subsection">27.12.6  Similarity in space</h3>
+<p>See Section <a href="cascmd_en891.html#ssec%3A2dsimilarity">26.14.6</a> for similarities in the plane.</p><p>The <span style="font-family:monospace">similarity</span><a id="hevea_default1900"></a>
+command creates a command to rotate and scale about a given line.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">similarity</span> takes three mandatory arguments and
+one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>, a line (the axis of the rotation).
+</li><li class="li-itemize"><span style="font-style:italic">r</span>, a real number (the scaling ratio).
+</li><li class="li-itemize">θ, a real number (the angle of rotation).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">G</span>, a geometric object.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">similarity(</span><span style="font-style:italic">L</span>,<span style="font-style:italic">r</span>,θ<span style="font-family:monospace">)</span> returns a new command which
+rotates about <span style="font-style:italic">L</span> through an angle of θ and scales about <span style="font-style:italic">L</span>
+by a factor of <span style="font-style:italic">r</span>. If <span style="font-style:italic">r</span> is negative, the direction of rotation
+is reversed.
+</li><li class="li-itemize"><span style="font-family:monospace">similarity(</span><span style="font-style:italic">L</span>,<span style="font-style:italic">r</span>,θ,<span style="font-style:italic">G</span><span style="font-family:monospace">)</span> returns and draws the
+transformation of <span style="font-style:italic">G</span>.
+</li></ul><h4 id="sec2473" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sphere</span></span><span style="font-weight:bold"><span style="color:#BF0000">([0,0,0],0.5);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">similarity</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,1,0),</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,1,1)), 2, 2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/3);</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">blue</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en409.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">similarity</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">line</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,1,0),</span></span><span style="font-weight:bold"><span style="color:#BF0000">point</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1,1,1)),2,2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/3,</span></span><span style="font-weight:bold"><span style="color:#BF0000">S</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en410.png">
+
+</div>
+<hr>
+<a href="cascmd_en985.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en987.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

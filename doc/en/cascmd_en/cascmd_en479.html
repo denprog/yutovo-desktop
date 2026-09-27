@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Jacobi equation</title>
+</head>
+<body >
+<a href="cascmd_en478.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en480.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1079" class="subsection">13.8.4  Jacobi equation</h3>
+<p>When determining whether a solution <span style="font-style:italic">y</span><sub>0</sub> to the Euler-Lagrange
+equations is an extremum, checking the convexity of the Lagrangian <span style="font-style:italic">f</span>
+does not always work. In such cases you may use the Jacobi equation:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><a id="eq:jacobi-equation"></a>
+−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">d</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">d</span><span style="font-style:italic">t</span></td></tr>
+</table></td><td class="dcell"> </td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">f</span><sub><span style="font-style:italic">y</span>′ <span style="font-style:italic">y</span>′</sub>(<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>′,<span style="font-style:italic">t</span>) <span style="font-style:italic">h</span>′</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">+</td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><span style="font-style:italic">f</span><sub><span style="font-style:italic">y</span> <span style="font-style:italic">y</span></sub>(<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>′,<span style="font-style:italic">t</span>)−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">d</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">d</span><span style="font-style:italic">t</span></td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">f</span><sub><span style="font-style:italic">y</span> <span style="font-style:italic">y</span>′</sub>(<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>′,<span style="font-style:italic">t</span>)</td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell"> <span style="font-style:italic">h</span>=0.
+    (4)</td></tr>
+</table><p>
+for an unknown function <span style="font-style:italic">h</span>. 
+If the Jacobi equation has a solution such that <span style="font-style:italic">h</span>(<span style="font-style:italic">a</span>)=0, <span style="font-style:italic">h</span>(<span style="font-style:italic">c</span>)=0 for
+some <span style="font-style:italic">c</span>∈(<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] (the interval given in the variational problem) and
+<span style="font-style:italic">h</span> not identically zero on [<span style="font-style:italic">a</span>,<span style="font-style:italic">c</span>], then <span style="font-style:italic">c</span> is called a
+<em>conjugate</em> to <span style="font-style:italic">a</span>. If a conjugate exists, then
+<span style="font-style:italic">y</span><sub>0</sub> does not minimize <span style="font-style:italic">F</span>.
+But the function <span style="font-style:italic">y</span><sub>0</sub> minimizes <span style="font-style:italic">F</span> if
+<span style="font-style:italic">f</span><sub><span style="font-style:italic">y</span>′ <span style="font-style:italic">y</span>′</sub>(<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">y</span><sub>0</sub>′,<span style="font-style:italic">x</span>)&gt;0 for all <span style="font-style:italic">x</span>∈[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] and there are no points
+conjugate to <span style="font-style:italic">a</span> in (<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>].</p><p>The <span style="font-family:monospace">jacobi_equation</span><a id="hevea_default783"></a>
+command computes the Jacobi equation.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">jacobi_equation</span> takes five or six arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">f</span>(<span style="font-style:italic">y</span>,<span style="font-style:italic">y</span>′,<span style="font-style:italic">x</span>), an expression involving an independent
+variable, a dependent variable, and the dependent variable derivative.
+</li><li class="li-itemize"><span style="font-style:italic">depvar</span>, the independent variable.
+</li><li class="li-itemize"><span style="font-style:italic">indvar</span>, the dependent variable. This argument and
+the previous one can be combined to a single argument
+<span style="font-style:italic">depvar(indvar)</span>, which case the call has five arguments.
+</li><li class="li-itemize">expression <span style="font-style:italic">y</span><sub>0</sub> representing a function in <span style="font-style:italic">C</span><sup>1</sup>[<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] which
+is stationary for the functional
+<span style="font-style:italic">F</span>(<span style="font-style:italic">y</span>)=∫<sub><span style="font-style:italic">a</span></sub><sup><span style="font-style:italic">b</span></sup> <span style="font-style:italic">f</span>(<span style="font-style:italic">y</span>,<span style="font-style:italic">y</span>′,<span style="font-style:italic">x</span>) <span style="font-style:italic">d</span><span style="font-style:italic">x</span>.
+</li><li class="li-itemize"><span style="font-style:italic">h</span>, a symbol for the unknown function in the Jacobi equation.
+</li><li class="li-itemize"><span style="font-style:italic">a</span>, a real number which is the lower bound for <span style="font-style:italic">x</span>.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">jacobi_equation(</span><span style="font-style:italic">f</span>(<span style="font-style:italic">y</span>,<span style="font-style:italic">y</span>′,<span style="font-style:italic">x</span>),<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">y</span><sub>0</sub>,<span style="font-style:italic">a</span><span style="font-family:monospace">)</span> returns
+the Jacobi equation and possibly the solution.
+</li></ul><p>
+If the Jacobi equation can be solved by <span style="font-family:monospace">dsolve</span> (see
+Section <a href="cascmd_en458.html#ssec%3Adsolve">13.4.1</a>), a sequence containing the
+equation (<a href="#eq%3Ajacobi-equation">4</a>) and its solution is
+returned. Otherwise, if (<a href="#eq%3Ajacobi-equation">4</a>) cannot be solved
+immediately, only the Jacobi equation is returned.</p><h4 id="sec1080" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">jacobi_equation</span></span><span style="font-weight:bold"><span style="color:#BF0000">(-1/2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">'(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)^2/2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">h</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">d</span></span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">d</span></span><span style="color:#0000CC"><span style="font-style:italic">t</span></span><sup><span style="color:#0000CC">2</span></sup></td></tr>
+</table></td><td class="dcell"><span style="font-style:italic">h</span></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">t</span></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">−<span style="font-style:italic">h</span></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">t</span></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">=0,<span style="font-style:italic">c</span><sub>0</sub> sin<span style="font-style:italic">t</span>
+</td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en478.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en480.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Maple integration test file: "7 Inverse hyperbolic functions\7.3b Inverse hyperbolic cosecant\7.3.2 Inverse hyperbolic cosecant functions.txt"
+
+lst:=[
+[x^3*arccsch(a+b*x),x,7,-1/4*(a^4-b^4*x^4)*arccsch(a+b*x)/b^4+1/2*a*(1-2*a^2)*arctanh(sqrt(1+1/(a+b*x)^2))/b^4-1/6*(1-9*a^2)*(a+b*x)*sqrt(1+1/(a+b*x)^2)/b^4-1/2*a*(a+b*x)^2*sqrt(1+1/(a+b*x)^2)/b^4+1/12*(a+b*x)^3*sqrt(1+1/(a+b*x)^2)/b^4],
+[x^2*arccsch(sqrt(x)),x,4,1/3*x^3*arccsch(sqrt(x))+2/9*(-1-x)^(3/2)*sqrt(x)/sqrt(-x)+1/15*(-1-x)^(5/2)*sqrt(x)/sqrt(-x)+1/3*sqrt(-1-x)*sqrt(x)/sqrt(-x)],
+[arccsch(a*x^5)/x,x,7,1/10*arccsch(a*x^5)^2-1/5*arccsch(a*x^5)*log(1-exp(2*arccsch(a*x^5)))-1/10*polylog(2,exp(2*arccsch(a*x^5)))],
+[arccsch(c*exp(a+b*x)),x,7,1/2*arccsch(c*exp(a+b*x))^2/b-arccsch(c*exp(a+b*x))*log(1-exp(2*arccsch(c*exp(a+b*x))))/b-1/2*polylog(2,exp(2*arccsch(c*exp(a+b*x))))/b],
+[exp(arccsch(a*x))*x^m,x,4,x^m/(a*m)+x^(1+m)*hypergeom([-1/2,1/2*(-1-m)],[1/2*(1-m)],(-1)/(a^2*x^2))/(1+m)],
+[exp(arccsch(a*x))/x,x,6,(-1)/(a*x)+arctanh(sqrt(1+1/(a^2*x^2)))-sqrt(1+1/(a^2*x^2))],
+[exp(arccsch(a*x))/x^4,x,6,(-1/4)/(a*x^4)+1/8*a^3*arccsch(a*x)-1/4*sqrt(1+1/(a^2*x^2))/x^3-1/8*a^2*sqrt(1+1/(a^2*x^2))/x],
+[exp(arccsch(a*x))/x^5,x,5,1/3*a^4*(1+1/(a^2*x^2))^(3/2)-1/5*a^4*(1+1/(a^2*x^2))^(5/2)+(-1/5)/(a*x^5)],
+[exp(arccsch(a*x^2))*x^m,x,4,-x^(-1+m)/(a*(1-m))+x^(1+m)*hypergeom([-1/2,1/4*(-1-m)],[1/4*(3-m)],(-1)/(a^2*x^4))/(1+m)],
+[exp(arccsch(a*x^2))*x^2,x,5,x/a+1/3*x^3*sqrt(1+1/(a^2*x^4))-1/3*(a+1/x^2)*sqrt(cos(2*arccot(x*sqrt(a)))^2)/cos(2*arccot(x*sqrt(a)))*EllipticF(sin(2*arccot(x*sqrt(a))),sqrt(1/2))*sqrt((a^2+1/x^4)/(a+1/x^2)^2)/(a^(5/2)*sqrt(1+1/(a^2*x^4)))],
+[exp(2*arccsch(a*x))*x,x,6,1/2*x^2-2*arccsch(a*x)/a^2+2*log(x)/a^2+2*x*sqrt(1+1/(a^2*x^2))/a],
+[exp(arccsch(c*x))*x/(1+c^2*x^2),x,5,arctan(c*x)/c^2+arctanh(sqrt(1+1/(c^2*x^2)))/c^2],
+[x^3*arccsch(a+b*x^4),x,6,1/4*(a+b*x^4)*arccsch(a+b*x^4)/b+1/4*arctanh(sqrt(1+1/(a+b*x^4)^2))/b]]:

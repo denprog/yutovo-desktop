@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Creating and loading images</title>
+</head>
+<body >
+<a href="cascmd_en1008.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1010.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:creating-images" class="subsection">28.1.2  Creating and loading images</h3>
+<p>The <span style="font-family:monospace">image</span><a id="hevea_default1924"></a>
+command creates image objects from files or data.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">image</span> accepts either a string <span style="font-style:italic">filename</span> from which
+the image is loaded or two mandatory arguments for creating images from data:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">n</span>, a positive integer in {1,2,3,4}.
+</li><li class="li-itemize"><span style="font-style:italic">data</span>, a sequence of numeric matrices of the same size
+which contain the channel data.
+Each matrix must have integral values between 0 and 255, representing
+8-bit color values.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">image(</span><span style="font-style:italic">filename</span><span style="font-family:monospace">)</span> or
+<span style="font-family:monospace">image(</span><span style="font-style:italic">n</span>,<span style="font-style:italic">data</span><span style="font-family:monospace">)</span>
+returns the corresponding image object.
+</li><li class="li-itemize">The parameter <span style="font-style:italic">n</span> represents the color type of the image (1 – grayscale image,
+2 – grayscale image with alpha channel, 3 – RGB image, 4 – RGBA image).
+</li><li class="li-itemize">If the number of matrices in <span style="font-style:italic">data</span> is smaller than <span style="font-style:italic">n</span>, then it can
+be either:
+<ul class="itemize"><li class="li-itemize">
+1, for writing the same data to all color channels and 255 to
+the alpha channel if there is one.
+</li><li class="li-itemize">2, for writing the same data from the first matrix to all color channels and
+the values from the second matrix to the alpha channel (this requires <span style="font-style:italic">n</span>∈{2,4}).
+</li><li class="li-itemize">3, for writing the data to R, G, and B channels and the value 255 to the alpha channel.
+</li></ul>
+</li></ul><h4 id="sec2519" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/usr/local/share/giac/doc/logo.png"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 64×64 (RGBA)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+The command lines below create a simple noisy grayscale image
+with <span style="font-style:italic">n</span>× <span style="font-style:italic">n</span> pixels.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=200:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">p</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=(</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">)-&gt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">round</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">max</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">min</span></span><span style="font-weight:bold"><span style="color:#BF0000">(255,1000*((</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">/2)^2+(</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">/2)^2)/</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+</span></span><span style="font-weight:bold"><span style="color:#BF0000">randnorm</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,10)))):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">matrix</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">p</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 200×200 (grayscale)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">inv</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en439.png">
+
+</div><p>
+
+We are displaying the negative image (<span style="font-family:monospace">inv</span> is applied) to have
+an impression of a square-shaped picture.</p>
+<hr>
+<a href="cascmd_en1008.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1010.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

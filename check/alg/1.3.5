@@ -1,0 +1,17 @@
+# Maple integration test file: "1 Algebraic functions\1.3 Miscellaneous\1.3.5 Piecewise constant extraction.txt"
+
+lst:=[
+[x^m*sqrt(b-a/x)/sqrt(a-b*x),x,3,2*x^(1+m)*sqrt(b-a/x)/((1+2*m)*sqrt(a-b*x))],
+[x*sqrt(b-a/x)/sqrt(a-b*x),x,3,2/3*x^2*sqrt(b-a/x)/sqrt(a-b*x)],
+[(a+b/x)^m*(c+d*x)^n,x,4,(a+b/x)^m*x*(c+d*x)^n*AppellF1(1-m,-m,-n,2-m,-a*x/b,-d*x/c)/((1-m)*(1+a*x/b)^m*(1+d*x/c)^n)],
+[(a+b/x)^m/(c+d*x)^4,x,5,1/3*d^2*(a+b/x)^(1+m)/(c^2*(a*c-b*d)*(d+c/x)^3)-1/6*d*(6*a*c-b*d*(4+m))*(a+b/x)^(1+m)/(c^2*(a*c-b*d)^2*(d+c/x)^2)-1/6*b*(6*a^2*c^2-6*a*b*c*d*(1+m)+b^2*d^2*(2+3*m+m^2))*(a+b/x)^(1+m)*hypergeom([2,1+m],[2+m],c*(a+b/x)/(a*c-b*d))/(c^2*(a*c-b*d)^4*(1+m))],
+[(a+b*x^2)^(1/2)/sqrt(a^2-b^2*x^4),x,3,arctan(x*sqrt(b)/sqrt(a-b*x^2))*sqrt(a-b*x^2)*sqrt(a+b*x^2)/(sqrt(b)*sqrt(a^2-b^2*x^4))],
+[(a-b*x^2)^(3/2)/sqrt(a^2-b^2*x^4),x,4,-1/2*x*(a+b*x^2)*sqrt(a-b*x^2)/sqrt(a^2-b^2*x^4)+3/2*a*arctanh(x*sqrt(b)/sqrt(a+b*x^2))*sqrt(a-b*x^2)*sqrt(a+b*x^2)/(sqrt(b)*sqrt(a^2-b^2*x^4))],
+[1/((a-b*x^2)^(3/2)*sqrt(a^2-b^2*x^4)),x,4,1/4*x*(a+b*x^2)/(a^2*sqrt(a-b*x^2)*sqrt(a^2-b^2*x^4))+3/4*arctanh(x*sqrt(2)*sqrt(b)/sqrt(a+b*x^2))*sqrt(a-b*x^2)*sqrt(a+b*x^2)/(a^2*sqrt(2)*sqrt(b)*sqrt(a^2-b^2*x^4))],
+[1/((1+x)*(-1+x^2))^(2/3),x,3,-3/2*(1-x^2)/(-(1+x)*(1-x^2))^(2/3),-3/2*(1-x)*(1+x)/(-1-x+x^2+x^3)^(2/3)],
+[(1+2*x/(1+x^2))^(1/2),x,4,(1+x^2)*sqrt(1+2*x/(1+x^2))/(1+x)+arcsinh(x)*sqrt(1+x^2)*sqrt(1+2*x/(1+x^2))/(1+x)],
+[x*(c/(a+b*x^2))^(3/2),x,3,-c*sqrt(c/(a+b*x^2))/b],
+[x^2*(c*(a+b*x^2)^3)^(3/2),x,9,7/128*a^3*c*x^3*sqrt(c*(a+b*x^2)^3)+21/1024*a^5*c*x*sqrt(c*(a+b*x^2)^3)/(b*(a+b*x^2))+21/512*a^4*c*x^3*sqrt(c*(a+b*x^2)^3)/(a+b*x^2)+21/320*a^2*c*x^3*(a+b*x^2)*sqrt(c*(a+b*x^2)^3)+3/40*a*c*x^3*(a+b*x^2)^2*sqrt(c*(a+b*x^2)^3)+1/12*c*x^3*(a+b*x^2)^3*sqrt(c*(a+b*x^2)^3)-21/1024*a^6*c*arctanh(x*sqrt(b)/sqrt(a+b*x^2))*sqrt(c*(a+b*x^2)^3)/(b^(3/2)*(a+b*x^2)^(3/2))],
+[(c*(a+b*x^2)^3)^(3/2)/x,x,9,1/3*a^3*c*sqrt(c*(a+b*x^2)^3)+a^4*c*sqrt(c*(a+b*x^2)^3)/(a+b*x^2)+1/5*a^2*c*(a+b*x^2)*sqrt(c*(a+b*x^2)^3)+1/7*a*c*(a+b*x^2)^2*sqrt(c*(a+b*x^2)^3)+1/9*c*(a+b*x^2)^3*sqrt(c*(a+b*x^2)^3)-a^(9/2)*c*arctanh(sqrt(a+b*x^2)/sqrt(a))*sqrt(c*(a+b*x^2)^3)/(a+b*x^2)^(3/2)],
+[(c*(a+b*x^2)^3)^(3/2)/x^2,x,8,105/64*a^2*b*c*x*sqrt(c*(a+b*x^2)^3)+315/128*a^3*b*c*x*sqrt(c*(a+b*x^2)^3)/(a+b*x^2)+21/16*a*b*c*x*(a+b*x^2)*sqrt(c*(a+b*x^2)^3)+9/8*b*c*x*(a+b*x^2)^2*sqrt(c*(a+b*x^2)^3)-c*(a+b*x^2)^3*sqrt(c*(a+b*x^2)^3)/x+315/128*a^4*c*arctanh(x*sqrt(b)/sqrt(a+b*x^2))*sqrt(b)*sqrt(c*(a+b*x^2)^3)/(a+b*x^2)^(3/2)],
+[F(x)/(sqrt(1-x)*sqrt(x)),x,1,Integral(F(x)/sqrt(x-x^2),x)]]:

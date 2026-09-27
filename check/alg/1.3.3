@@ -1,0 +1,25 @@
+# Maple integration test file: "1 Algebraic functions\1.3 Miscellaneous\1.3.3 Expansion problems.txt"
+
+lst:=[
+[sqrt(-1+x^2)/sqrt(-1+x^4),x,2,arcsinh(x)*sqrt(-1+x^2)*sqrt(1+x^2)/sqrt(-1+x^4)],
+[sqrt(1+x^2)/sqrt(-1+x^4),x,3,-arcsin(x)*sqrt(-1+x^4)/sqrt(1-x^4),arctanh(x/sqrt(-1+x^2))*sqrt(-1+x^2)*sqrt(1+x^2)/sqrt(-1+x^4)],
+[(1+2*x^8)/(x*(1+x^8)^(3/2)),x,4,-1/4*arctanh(sqrt(1+x^8))+(-1/4)/sqrt(1+x^8)],
+[2/(-1+4*x^2),x,2,-arctanh(2*x)],
+[1/(-1+2*x)+(-1)/(1+2*x),x,1,1/2*log(1-2*x)-1/2*log(1+2*x)],
+[1/sqrt(4-9*x^2),x,1,1/3*arcsin(3/2*x)],
+[1/sqrt((2-3*x)*(2+3*x)),x,2,1/3*arcsin(3/2*x)],
+[1-sqrt(x),x,1,x-2/3*x^(3/2)],
+[sqrt(1-x^2)/sqrt(1+x),x,2,-2/3*(1-x)^(3/2)],
+[(1+x)^3/(x*(1-x^2)^(3/2)),x,6,-arcsin(x)-arctanh(sqrt(1-x^2))+4*(1+x)/sqrt(1-x^2)],
+[((a+b+c*x^2)/d)^m,x,3,d*x*((a+b)/d+c*x^2/d)^(1+m)*hypergeom([1,3/2+m],[3/2],-c*x^2/(a+b))/(a+b),x*((a+b)/d+c*x^2/d)^m*hypergeom([1/2,-m],[3/2],-c*x^2/(a+b))/(1+c*x^2/(a+b))^m],
+[(2*sqrt(3-x)+3/sqrt(1+x))^2/x,x,11,-4*x+12*arcsin(1/2*(1-x))+21*log(x)-9*log(1+x)-24*arctanh(sqrt(3)*sqrt(1+x)/sqrt(3-x))*sqrt(3)],
+[(-1+x+x^2)/(1+x+sqrt(1+x^2)),x,12,1/12*(6*x^2+2*x^3-3*arcsinh(x)-6*log(1+sqrt(1+x^2))+(4-3*x-2*x^2)*sqrt(1+x^2)),1/2*x+1/2*x^2+1/6*x^3-1/6*(1+x^2)^(3/2)-1/4*arcsinh(x)+1/2*log(x+sqrt(1+x^2))-log(1+x+sqrt(1+x^2))-1/4*x*sqrt(1+x^2)+1/2/(x+sqrt(1+x^2))],
+[(1+x)/((4+x^2)*sqrt(9+x^2)),x,6,1/2*arctan(1/2*x*sqrt(5)/sqrt(9+x^2))/sqrt(5)-arctanh(sqrt(9+x^2)/sqrt(5))/sqrt(5)],
+[(-5-4*x-3*sqrt(1-x^2))/((4+5*x)^2*sqrt(1-x^2)),x,8,3/5/(4+5*x)+sqrt(1-x^2)/(4+5*x)],
+[(-1+sqrt(1-x^2))/((2+x-2*sqrt(1-x^2))^2*sqrt(1-x^2)),x,0,3/5/(4+5*x)+sqrt(1-x^2)/(4+5*x)],
+[(x+x^5)/(1+2*x^2+2*x^4)^3,x,7,1/16*(3+4*x^2)/(1+2*x^2+2*x^4)^2+1/2*(1+2*x^2)/(1+2*x^2+2*x^4)+arctan(1+2*x^2)],
+[(a+b*x+c*x^2)/(d+e*x^2+f*x^4),x,8,-b*arctanh((e+2*f*x^2)/sqrt(e^2-4*d*f))/sqrt(e^2-4*d*f)+arctan(x*sqrt(2)*sqrt(f)/sqrt(e-sqrt(e^2-4*d*f)))*(c+(-c*e+2*a*f)/sqrt(e^2-4*d*f))/(sqrt(2)*sqrt(f)*sqrt(e-sqrt(e^2-4*d*f)))+arctan(x*sqrt(2)*sqrt(f)/sqrt(e+sqrt(e^2-4*d*f)))*(c+(c*e-2*a*f)/sqrt(e^2-4*d*f))/(sqrt(2)*sqrt(f)*sqrt(e+sqrt(e^2-4*d*f)))],
+[x^2/((a+b*x)*(c+d*x)),x,2,x/(b*d)+a^2*log(a+b*x)/(b^2*(b*c-a*d))-c^2*log(c+d*x)/(d^2*(b*c-a*d))],
+[x/((1-x)*(1+x)^2),x,3,1/2/(1+x)+1/2*arctanh(x)],
+[x^2/((1-x^2)*(1+x^2)^2),x,2,-1/4*x/(1+x^2)+1/4*arctanh(x)],
+[(a+b*x+c*x^2)/((d+e*x)^3*sqrt(-1+x)*sqrt(1+x)),x,12,((2*a+c)*d^2-3*b*d*e+(a+2*c)*e^2)*arctanh(sqrt(d+e)*sqrt(1+x)/(sqrt(d-e)*sqrt(-1+x)))/((d-e)^(5/2)*(d+e)^(5/2))-1/2*(c*d^2-b*d*e+a*e^2)*sqrt(-1+x)*sqrt(1+x)/(e*(d^2-e^2)*(d+e*x)^2)+1/2*(c*d^3+b*d^2*e-(3*a+4*c)*d*e^2+2*b*e^3)*sqrt(-1+x)*sqrt(1+x)/(e*(d^2-e^2)^2*(d+e*x)),-2*d*(2*c*d-b*e)*arctanh(sqrt(d+e)*sqrt(1+x)/(sqrt(d-e)*sqrt(-1+x)))/((d-e)^(3/2)*e^2*(d+e)^(3/2))+(2*d^2+e^2)*(c*d^2-b*d*e+a*e^2)*arctanh(sqrt(d+e)*sqrt(1+x)/(sqrt(d-e)*sqrt(-1+x)))/((d-e)^(5/2)*e^2*(d+e)^(5/2))+2*c*arctanh(sqrt(d+e)*sqrt(1+x)/(sqrt(d-e)*sqrt(-1+x)))/(e^2*sqrt(d-e)*sqrt(d+e))-1/2*(c*d^2-b*d*e+a*e^2)*sqrt(-1+x)*sqrt(1+x)/(e*(d^2-e^2)*(d+e*x)^2)+(2*c*d-b*e)*sqrt(-1+x)*sqrt(1+x)/(e*(d^2-e^2)*(d+e*x))-3/2*d*(c*d^2-b*d*e+a*e^2)*sqrt(-1+x)*sqrt(1+x)/(e*(d^2-e^2)^2*(d+e*x))]]:

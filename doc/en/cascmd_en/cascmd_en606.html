@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Evolute of a curve</title>
+</head>
+<body >
+<a href="cascmd_en605.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en607.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1468" class="subsection">18.2.3  Evolute of a curve</h3>
+<p>
+The <span style="font-family:monospace">evolute</span> <a id="hevea_default1083"></a>
+command finds and draws the evolute of a curve.</p><ul class="itemize"><li class="li-itemize">
+To find the evolute from a parameterization,
+<span style="font-family:monospace">evolute</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">C</span>, a curve.
+</li><li class="li-itemize"><span style="font-style:italic">t</span>, the parameter of the curve.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">evolute(</span><span style="font-style:italic">C</span>,<span style="font-style:italic">t</span><span style="font-family:monospace">)</span> draws and returns the
+evolute of the curve.
+</li><li class="li-itemize">To find the evolute from a curve object,
+<span style="font-family:monospace">evolute</span> takes
+<span style="font-style:italic">C</span>, a curve.
+</li><li class="li-itemize"><span style="font-family:monospace">evolute(</span><span style="font-style:italic">C</span><span style="font-family:monospace">)</span> draws and returns the
+evolute of <span style="font-style:italic">C</span>.
+</li></ul><h4 id="sec1469" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">evolute</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en045.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">equation</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">evolute</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">plot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2)))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+27 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−16 </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+24 </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−12 </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><span style="color:#0000CC">+2=0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">equation</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">evolute</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+16 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">−24 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+12 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−27 </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">−2=0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en605.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en607.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

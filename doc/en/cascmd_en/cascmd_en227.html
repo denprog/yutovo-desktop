@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Airy functions</title>
+</head>
+<body >
+<a href="cascmd_en226.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en228.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec472" class="subsection">7.3.19  Airy functions</h3>
+<p>The Airy functions of the first and second kind are defined by
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  Ai(<span style="font-style:italic">x</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">π</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">+∞</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell"> cos</td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">t</span><sup>3</sup>/3+<span style="font-style:italic">x</span> <span style="font-style:italic">t</span></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><span style="font-style:italic">d</span><span style="font-style:italic">t</span>,  
+Bi(<span style="font-style:italic">x</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">π</td></tr>
+</table></td><td class="dcell"> </td><td class="dcell"><span style="font-size:xx-large">∫</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:left">+∞</td></tr>
+<tr><td class="dcell" style="text-align:left"><br>
+<br>
+</td></tr>
+<tr><td class="dcell" style="text-align:left">0</td></tr>
+</table></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">e</span><sup>− <span style="font-style:italic">t</span><sup>3</sup>/3</sup>+sin</td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">t</span><sup>3</sup>/3+<span style="font-style:italic">x</span> <span style="font-style:italic">t</span></td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><span style="font-style:italic">d</span><span style="font-style:italic">t</span>.
+</td></tr>
+</table><p>
+Let <span style="font-style:italic">f</span> and <span style="font-style:italic">g</span> be two entire series solutions of
+ <span style="font-style:italic">w</span>″−<span style="font-style:italic">x</span> <span style="font-style:italic">w</span>=0 .
+Then
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  Ai(<span style="font-style:italic">x</span>)=Ai(0) <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)+ Ai′ (0) <span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>),  
+Bi(<span style="font-style:italic">x</span>)=</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >3</td></tr>
+</table></td><td class="dcell">(Ai(0) <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>) −Ai′ (0) <span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>)),
+</td></tr>
+</table><p>
+where 
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup>∞</sup>3<sup><span style="font-style:italic">k</span></sup>(Γ(<span style="font-style:italic">k</span>+1/3)/Γ(1/3)) <span style="font-style:italic">x</span><sup>3<span style="font-style:italic">k</span></sup>/(3<span style="font-style:italic">k</span>)! and <span style="font-style:italic">g</span>(<span style="font-style:italic">x</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup>∞</sup>3<sup><span style="font-style:italic">k</span></sup>(Γ(<span style="font-style:italic">k</span>+2/3)/Γ(2/3))
+<span style="font-style:italic">x</span><sup>3<span style="font-style:italic">k</span>+1</sup>/(3<span style="font-style:italic">k</span>+1)!.</p><p>The <span style="font-family:monospace">Airy_Ai</span><a id="hevea_default368"></a> and
+<span style="font-family:monospace">Airy_Bi</span><a id="hevea_default369"></a> commands
+compute the Airy functions.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">Airy_Ai</span> and <span style="font-family:monospace">Airy_Bi</span> take one argument:
+<span style="font-style:italic">x</span>, a real number.
+</li><li class="li-itemize"><span style="font-family:monospace">Airy_Ai(</span><span style="font-style:italic">x</span><span style="font-family:monospace">)</span> and <span style="font-family:monospace">Airy_Bi(</span><span style="font-style:italic">x</span><span style="font-family:monospace">)</span> return the values of
+the Airy functions.
+</li></ul><h4 id="sec473" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Airy_Ai</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.135292416313
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Airy_Bi</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1.20742359495
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Airy_Ai</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.355028053888
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">Airy_Bi</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.614926627446
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en226.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en228.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

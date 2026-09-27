@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Graphing the area under a curve</title>
+</head>
+<body >
+<a href="cascmd_en623.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en625.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1521" class="subsection">19.4.3  Graphing the area under a curve</h3>
+<p>The <span style="font-family:monospace">plotarea</span><a id="hevea_default1199"></a>
+or <span style="font-family:monospace">areaplot</span><a id="hevea_default1200"></a>
+command draws the area below a graph.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">plotarea</span> takes two mandatory arguments and two
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression representing the function to
+graph.
+</li><li class="li-itemize"><span style="font-style:italic">var</span>=<span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>, the variable and the range of values.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">n</span>.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">method</span>, a method to approximate the
+region under the graph, which can be one of:
+<span style="font-family:monospace">trapezoid</span>,
+<a id="hevea_default1201"></a>
+<a id="hevea_default1202"></a>
+<span style="font-family:monospace">rectangle_left</span>,
+<a id="hevea_default1203"></a>
+<a id="hevea_default1204"></a>
+<span style="font-family:monospace">rectangle_right</span> or
+<a id="hevea_default1205"></a>
+<a id="hevea_default1206"></a>
+<span style="font-family:monospace">middle_point</span>.
+<a id="hevea_default1207"></a>
+<a id="hevea_default1208"></a>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">plotarea(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">var</span>=<span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span><span style="font-family:monospace">)</span>
+draws and shades the area between the graph of <span style="font-style:italic">expr</span> and the
+<span style="font-style:italic">y</span>-axis for <span style="font-style:italic">a &lt; var &lt; b</span>.
+</li><li class="li-itemize"><span style="font-family:monospace">plotarea(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">var</span><span style="font-family:monospace">=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span> ⟨,<span style="font-style:italic">n</span>,<span style="font-style:italic">method</span> ⟩<span style="font-family:monospace">)</span>
+draws and shades the region used by the numeric approximation method
+<span style="font-style:italic">method</span> for area between the graph of <span style="font-style:italic">expr</span> and the
+<span style="font-style:italic">y</span>-axis for <span style="font-style:italic">a &lt; var &lt; b</span>, when [<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>] is cut into <span style="font-style:italic">n</span>
+equal parts, along with the graph in red.
+</li></ul><h4 id="sec1522" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotarea</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en095.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotarea</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..1,5,</span></span><span style="font-weight:bold"><span style="color:#BF0000">trapezoid</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en096.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotarea</span></span><span style="font-weight:bold"><span style="color:#BF0000">((</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..1,5,</span></span><span style="font-weight:bold"><span style="color:#BF0000">middle_point</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en097.png">
+
+</div>
+<hr>
+<a href="cascmd_en623.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en625.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

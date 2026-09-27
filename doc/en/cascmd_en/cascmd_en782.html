@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Switch statement</title>
+</head>
+<body >
+<a href="cascmd_en781.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en783.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2018" class="subsection">25.3.2  Switch statement</h3>
+<p>The <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">switch</span></span></span><a id="hevea_default1606"></a>
+statement can be used when you want the value of a
+block to depend on an integer. It takes one argument, an expression
+which evaluates to an integer. It should be followed by a sequence of
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">case</span></span></span><a id="hevea_default1607"></a> statements, which takes
+the form <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">case</span></span></span> followed
+by an integer and then a colon, which is followed by a code block to
+be executed if the expression equals the integer. At the end is an
+optional <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">default</span></span></span><a id="hevea_default1608"></a>
+statement, which is followed by a code block to be executed if the
+expression does not equal any of the given integers.
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">switch</span></span></span><span style="font-family:monospace">(</span><span style="font-style:italic">n</span><span style="font-family:monospace">) {</span></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace">  </span><span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">case</span></span></span> <span style="font-style:italic">n</span><sub>1</sub>: <span style="font-style:italic">block </span><span style="font-style:italic">n</span><sub>1</sub></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace">  </span><span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">case</span></span></span> <span style="font-style:italic">n</span><sub>2</sub>: <span style="font-style:italic">block </span><span style="font-style:italic">n</span><sub>2</sub></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" >    …</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace">  </span><span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">case</span></span></span> <span style="font-style:italic">n</span><sub><span style="font-style:italic">k</span></sub>: <span style="font-style:italic">block </span><span style="font-style:italic">n</span><sub><span style="font-style:italic">k</span></sub></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <span style="font-family:monospace">  </span><span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">default</span></span></span>: <span style="font-style:italic">default_block</span>
+</td></tr>
+</table>
+</div><p>
+Recall that the blocks need to be delimited by braces or by
+<span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">begin</span></span></span> and <span style="font-family:monospace"><span style="font-weight:bold"><span style="color:#0000CC">end</span></span></span>.</p><h4 id="sec2019" class="subsubsection">Example</h4>
+<p>
+As an example of a program which performs an operation on the first
+two variables depending on the third, you could enter (see
+Section <a href="cascmd_en764.html#ssec%3Aproged">25.1.1</a>):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> oper(a,b,c):={
+   <span style="color:#0000CC"><span style="font-weight:bold">switch</span></span> (c) {
+     <span style="color:#0000CC"><span style="font-weight:bold">case</span></span> 1:  { a:=a+b; <span style="color:#0000CC"><span style="font-weight:bold">break</span></span>; }
+     <span style="color:#0000CC"><span style="font-weight:bold">case</span></span> 2:  { a:=a-b; <span style="color:#0000CC"><span style="font-weight:bold">break</span></span>; }
+     <span style="color:#0000CC"><span style="font-weight:bold">case</span></span> 3:  { a:=a*b; <span style="color:#0000CC"><span style="font-weight:bold">break</span></span>; }
+     <span style="color:#0000CC"><span style="font-weight:bold">default</span></span>: { a:=a^b; }
+   }
+   <span style="color:#0000CC"><span style="font-weight:bold">return</span></span> a;
+ }</td></tr>
+</table><p>Then:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">oper</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2,3,1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+5
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since the third argument is <span style="font-family:monospace">1</span>, and so <span style="font-family:monospace">oper(a,b,c)</span>
+will return <span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>, and:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">oper</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2,3,2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−1
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+since the third argument is <span style="font-family:monospace">2</span> and so <span style="font-family:monospace">oper(a,b,c)</span>
+will return <span style="font-style:italic">a</span>−<span style="font-style:italic">b</span>.</p>
+<hr>
+<a href="cascmd_en781.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en783.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

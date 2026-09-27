@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Storing and recalling variables and their values
+</title>
+</head>
+<body >
+<a href="cascmd_en066.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en068.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:archiving" class="subsection">3.3.6  Storing and recalling variables and their values
+</h3>
+<p>The <span style="font-family:monospace">archive</span><a id="hevea_default85"></a> command stores the
+values of variables for later use in a file of your choosing.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">archive</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">filename</span>, a filename in which to store values.
+</li><li class="li-itemize"><span style="font-style:italic">vars</span>, a variable or list of variables.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">archive("</span><span style="font-style:italic">filename</span><span style="font-family:monospace">",</span><span style="font-style:italic">vars</span><span style="font-family:monospace">)</span>
+saves the values of <span style="font-style:italic">vars</span> (or the values of the variables in
+the list) in file <span style="font-style:italic">filename</span>.
+</li></ul><p>
+For example, if the variable <span style="font-family:monospace">a</span> has the value <span style="font-family:monospace">2</span> and the variable
+<span style="font-family:monospace">bee</span> has the value <span style="font-family:monospace">"letter"</span> (a string), then entering
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">archive</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"foo"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">bee</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><p>will create a file named “<span style="font-family:monospace">foo</span>” which contains the values
+<span style="font-family:monospace">2</span> and <span style="font-family:monospace">"letter"</span> in a format meant to be efficiently
+read by <span style="font-variant:small-caps">Xcas</span>.</p><p>The <span style="font-family:monospace">unarchive</span><a id="hevea_default86"></a>
+command will read the values from a file
+created with <span style="font-family:monospace">archive</span>.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">unarchive</span> takes
+<span style="font-style:italic">filename</span>, the filename.
+</li><li class="li-itemize"><span style="font-family:monospace">unarchive("</span><span style="font-style:italic">filename</span><span style="font-family:monospace">")</span> returns the value
+or list of values stored in <span style="font-style:italic">filename</span>.
+</li></ul><h4 id="sec99" class="subsubsection">Example</h4>
+<p>
+With the file <span style="font-family:monospace">foo</span> as above:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">unarchive</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"foo"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">2,</span><span style="color:#0000CC">“letter”</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+You can enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">bee</span></span><span style="font-weight:bold"><span style="color:#BF0000">]:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">unarchive</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"foo"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>in order to reassign these values to <span style="font-family:monospace">a</span> and <span style="font-family:monospace">bee</span>.</p>
+<hr>
+<a href="cascmd_en066.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en068.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

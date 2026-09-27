@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Generating a random walks</title>
+</head>
+<body >
+<a href="cascmd_en693.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en695.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1792" class="subsection">20.4.25  Generating a random walks</h3>
+<p>The <span style="font-family:monospace">randmarkov</span><a id="hevea_default1411"></a>
+command generates random walks or creates stochastic matrices.</p><ul class="itemize"><li class="li-itemize">
+To generate a random walk, <span style="font-family:monospace">randmarkov</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">M</span>, a transition matrix for a Markov chain.
+</li><li class="li-itemize"><span style="font-style:italic">i</span><sub>0</sub>, an initial state.
+</li><li class="li-itemize"><span style="font-style:italic">n</span>, a positive integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">randmarkov(</span><span style="font-style:italic">M</span>,<span style="font-style:italic">i</span><sub>0</sub>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns a
+a random walk (given as a vector) starting at <span style="font-style:italic">i</span><sub>0</sub> and
+taking <span style="font-style:italic">n</span> random steps, where each step is a transition with
+probabilities given by <span style="font-style:italic">M</span>.
+</li><li class="li-itemize">To create a stochastic matrix, <span style="font-family:monospace">randmarkov</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">v</span>, a vector of length <span style="font-style:italic">p</span>.
+</li><li class="li-itemize"><span style="font-style:italic">i</span><sub>0</sub>, the number of transient states.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">randmatrix(</span><span style="font-style:italic">v</span>,<span style="font-style:italic">i</span><sub>0</sub><span style="font-family:monospace">)</span> returns a stochastic matrix with
+<span style="font-style:italic">p</span> recurrent loops (given by <span style="font-style:italic">v</span>) and <span style="font-style:italic">i</span><sub>0</sub> transient states.
+</li></ul><h4 id="sec1793" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">randmarkov</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[0,1/2,0,1/2],[0,1,0,0],[1/4,1/4,1/4,1/4],[0,0,1/2,1/2]],2,10)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">2,3,2,0,3,2,2,0,3,2,0</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">randmarkov</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,2],2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.289031975209</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.710968024791</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.46230383289</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.53769616711</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.0</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.259262238137</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.149948861946</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.143448150524</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.242132758802</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.205207990592</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.231568633749</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.145429586345</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.155664673778</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.282556511895</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">0.184780594232</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en693.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en695.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

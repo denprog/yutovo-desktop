@@ -1,0 +1,16 @@
+# Maple integration test file: "4 Trig functions\4.2b Cotangent\4.2.7 (d trig)^m (a+b (c cot)^n)^p.txt"
+
+lst:=[
+[(A+C*cot(c+d*x)^2)/sqrt(b*tan(c+d*x)),x,15,-(A-C)*arctan(1-sqrt(2)*sqrt(b*tan(c+d*x))/sqrt(b))/(d*sqrt(2)*sqrt(b))+(A-C)*arctan(1+sqrt(2)*sqrt(b*tan(c+d*x))/sqrt(b))/(d*sqrt(2)*sqrt(b))-1/2*(A-C)*log(sqrt(b)-sqrt(2)*sqrt(b*tan(c+d*x))+sqrt(b)*tan(c+d*x))/(d*sqrt(2)*sqrt(b))+1/2*(A-C)*log(sqrt(b)+sqrt(2)*sqrt(b*tan(c+d*x))+sqrt(b)*tan(c+d*x))/(d*sqrt(2)*sqrt(b))-2/3*b*C/(d*(b*tan(c+d*x))^(3/2))],
+[(1+cot(x)^2)^(3/2),x,4,-1/2*arcsinh(cot(x))-1/2*cot(x)*sqrt(csc(x)^2)],
+[tan(x)/sqrt(a+a*cot(x)^2),x,5,arctanh(sqrt(a*csc(x)^2)/sqrt(a))/sqrt(a)+(-1)/sqrt(a*csc(x)^2)],
+[tan(x)^2/sqrt(a+a*cot(x)^2),x,5,cot(x)/sqrt(a*csc(x)^2)+csc(x)*sec(x)/sqrt(a*csc(x)^2)],
+[cot(x)^3*sqrt(a+b*cot(x)^2),x,6,-1/3*(a+b*cot(x)^2)^(3/2)/b-arctanh(sqrt(a+b*cot(x)^2)/sqrt(a-b))*sqrt(a-b)+sqrt(a+b*cot(x)^2)],
+[sqrt(a+b*cot(x)^2)*tan(x)^4,x,6,-arctan(cot(x)*sqrt(a-b)/sqrt(a+b*cot(x)^2))*sqrt(a-b)-1/3*(3*a-b)*sqrt(a+b*cot(x)^2)*tan(x)/a+1/3*sqrt(a+b*cot(x)^2)*tan(x)^3],
+[cot(x)*(a+b*cot(x)^2)^(3/2),x,6,(a-b)^(3/2)*arctanh(sqrt(a+b*cot(x)^2)/sqrt(a-b))-1/3*(a+b*cot(x)^2)^(3/2)-(a-b)*sqrt(a+b*cot(x)^2)],
+[(a+b*cot(x)^2)^(3/2)*tan(x),x,8,a^(3/2)*arctanh(sqrt(a+b*cot(x)^2)/sqrt(a))-(a-b)^(3/2)*arctanh(sqrt(a+b*cot(x)^2)/sqrt(a-b))-b*sqrt(a+b*cot(x)^2)],
+[(a+b*cot(x)^2)^(3/2)*tan(x)^2,x,7,(a-b)^(3/2)*arctan(cot(x)*sqrt(a-b)/sqrt(a+b*cot(x)^2))-b^(3/2)*arctanh(cot(x)*sqrt(b)/sqrt(a+b*cot(x)^2))+a*sqrt(a+b*cot(x)^2)*tan(x)],
+[(a+b*cot(c+d*x)^2)^(1/2),x,6,-arctan(cot(c+d*x)*sqrt(a-b)/sqrt(a+b*cot(c+d*x)^2))*sqrt(a-b)/d-arctanh(cot(c+d*x)*sqrt(b)/sqrt(a+b*cot(c+d*x)^2))*sqrt(b)/d],
+[cot(x)^2/sqrt(a+b*cot(x)^2),x,6,arctan(cot(x)*sqrt(a-b)/sqrt(a+b*cot(x)^2))/sqrt(a-b)-arctanh(cot(x)*sqrt(b)/sqrt(a+b*cot(x)^2))/sqrt(b)],
+[tan(x)/(a+b*cot(x)^2)^(5/2),x,9,arctanh(sqrt(a+b*cot(x)^2)/sqrt(a))/a^(5/2)-arctanh(sqrt(a+b*cot(x)^2)/sqrt(a-b))/(a-b)^(5/2)+1/3*b/(a*(a-b)*(a+b*cot(x)^2)^(3/2))+(2*a-b)*b/(a^2*(a-b)^2*sqrt(a+b*cot(x)^2))],
+[cot(x)/(a+b*cot(x)^4)^(3/2),x,6,1/2*arctanh((a-b*cot(x)^2)/(sqrt(a+b)*sqrt(a+b*cot(x)^4)))/(a+b)^(3/2)+1/2*(-a-b*cot(x)^2)/(a*(a+b)*sqrt(a+b*cot(x)^4))]]:

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Fonctions et expressions en seconde</title>
+</head>
+<body >
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo002.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec1" class="chapter">Chapitre 1  Fonctions et expressions en seconde</h1>
+<p>
+<span style="font-weight:bold">Objectifs</span>
+S’entrainer à lire, écrire, interprêter et simplifier des 
+expressions.<br>
+Faire la distinction entre expression et fonction. 
+</p>
+<h2 id="sec2" class="section">1.1  Les expressions</h2>
+<p>
+Une expression est une suite de termes séparés par un signe 
+d’opération.
+Un terme est un nombre ou un nom de variable ou un
+produit ou une parenthése contenant une expression.<br>
+<span style="font-weight:bold">Convention</span>
+La multiplication et la division sont prioritaires sur l’addition et la
+soustraction.<br>
+Le signe * est quelqufois omis dans l’écriture, par exemple on 
+écrit :
+2<span style="font-style:italic">x</span> au lieu de 2*<span style="font-style:italic">x</span>. </p>
+<h3 id="sec3" class="subsection">1.1.1  L’énoncé</h3>
+<p>
+Voici 6 expressions formées à partir de <span style="font-style:italic">T</span>=1−<span style="font-style:italic">x</span>*2+<span style="font-style:italic">x</span> en rajoutant des 
+parenthèses:<br>
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>=(1−<span style="font-style:italic">x</span>)*2+<span style="font-style:italic">x</span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">B</span>=1−(<span style="font-style:italic">x</span>*2)+<span style="font-style:italic">x</span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">C</span>=1−<span style="font-style:italic">x</span>*(2+<span style="font-style:italic">x</span>)</td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">D</span>=(1−<span style="font-style:italic">x</span>*2)+<span style="font-style:italic">x</span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">F</span>=1−(<span style="font-style:italic">x</span>*2+<span style="font-style:italic">x</span>)</td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">G</span>=(1−<span style="font-style:italic">x</span>)*(2+<span style="font-style:italic">x</span>)</td></tr>
+</table><p>
+1/ Y-a-t-il une (ou des) expression(s) égale à <span style="font-style:italic">T</span> ?<br>
+Si oui, pourquoi ?<br>
+2/ Calculer les valeurs de ces expressions pour <span style="font-style:italic">x</span>=1 et pour <span style="font-style:italic">x</span>=−1.<br>
+3/ Parmi les expressions <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span>,<span style="font-style:italic">F</span>,<span style="font-style:italic">G</span> :<br>
+- Lesquelles sont une somme de 2 termes ?<br>
+- Lesquelles sont une différence de 2 termes ? <br>
+- Lesquelles sont une somme algébrique de 3 termes ?<br>
+- Lesquelles sont un produit de 2 termes ?<br>
+- Lesquelles sont égales ?<br>
+4/ Simplifier les expressions <span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span>,<span style="font-style:italic">F</span>,<span style="font-style:italic">G</span>.<br>
+5/ Écrire toutes les expressions formées à partir de <span style="font-style:italic">S</span>=1+<span style="font-style:italic">x</span>/2*<span style="font-style:italic">x</span> en 
+rajoutant des parenthèses.
+</p>
+<h3 id="sec4" class="subsection">1.1.2  Vérifions avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On tape :<br>
+<span style="font-family:monospace">T:=1-x*2+x</span><br>
+<span style="font-family:monospace">A:=(1-x)*2+x</span><br>
+<span style="font-family:monospace">B:=1-(x*2)+x</span><br>
+<span style="font-family:monospace">C:=1-x*(2+x)</span><br>
+<span style="font-family:monospace">D:=(1-x*2)+x</span><br>
+<span style="font-family:monospace">F:=1-(x*2+x)</span><br>
+<span style="font-family:monospace">G:=(1-x)*(2+x)</span><br>
+Puis on tape pour connaitre les expressions égales à <span style="font-family:monospace">T</span> :<br>
+<span style="font-family:monospace">A==T</span>, <span style="font-family:monospace">B==T</span>, etc...<br>
+On trouve que la réponse de <span style="font-family:monospace">A==T</span> est <span style="font-family:monospace">0</span> ce qui veut dire que 
+l’expression <span style="font-family:monospace">A</span> est différente de <span style="font-family:monospace">T</span>.<br>
+On trouve que la réponse de <span style="font-family:monospace">B==T</span> est <span style="font-family:monospace">1</span> ce qui veut dire que 
+l’expression <span style="font-family:monospace">B</span> est identique à <span style="font-family:monospace">T</span> etc...
+</p>
+<h2 id="sec5" class="section">1.2  Les fonctions</h2>
+<p>
+Une fonction rèelle <span style="font-style:italic">f</span> définie sur <span style="font-style:italic">I</span> partie de ℝ 
+est une application qui à tout 
+nombre de <span style="font-style:italic">x</span> de <span style="font-style:italic">I</span> fait correspondre une expression <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>).
+La valeur de la fonction en un point <span style="font-style:italic">x</span> est donc donnée par une 
+expression.<br>
+<span style="font-weight:bold">Exemple avec </span><span style="font-weight:bold"><span style="font-family:monospace">Xcas</span></span><br>
+Je tape :<br>
+<span style="font-family:monospace">xpr:=3*x+2</span><br>
+je définis ainsi l’expression <span style="font-family:monospace">xpr</span><br>
+Je tape :<br>
+<span style="font-family:monospace">f(x):=3*x+2</span><br>
+je définis ainsi la fonction <span style="font-family:monospace">f</span><br>
+Je tape :<br>
+<span style="font-family:monospace">subst(xpr,x=1)</span> et j’obtiens 5<br>
+Je tape :<br>
+<span style="font-family:monospace">f(1)</span> et j’obtiens 5<br>
+Je tape :<br>
+<span style="font-family:monospace">plotfunc(3*x+2)</span> ou,<br>
+<span style="font-family:monospace">plotfunc(xpr)</span> ou,<br>
+<span style="font-family:monospace">plotfunc(f(x))</span><br>
+j’obtiens un seul graphe qui est le graphe de la fonction <span style="font-family:monospace">f</span>
+</p>
+<h3 id="sec6" class="subsection">1.2.1  L’énoncé</h3>
+<p>
+1/ Définir 6 fonctions ayant pour valeurs respectives les expressions 
+<span style="font-style:italic">A</span>,<span style="font-style:italic">B</span>,<span style="font-style:italic">C</span>,<span style="font-style:italic">D</span>,<span style="font-style:italic">F</span>,<span style="font-style:italic">G</span>.<br>
+2/ Tracer le graphe de ces fonctions et observer sur un même graphique.<br>
+3/ Parmi ces graphes il y a des droites et des paraboles. Retrouver le graphe
+de chaque fonction. 
+</p>
+<h3 id="sec7" class="subsection">1.2.2  Vérifions avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On tape pour définir les 6 fonctions :<br>
+<span style="font-family:monospace">a(x):=(1-x)*2+x</span><br>
+<span style="font-family:monospace">b(x):=1-(x*2)+x</span><br>
+<span style="font-family:monospace">c(x):=1-x*(2+x)</span><br>
+<span style="font-family:monospace">d(x):=(1-x*2)+x</span><br>
+<span style="font-family:monospace">f(x):=1-(x*2+x)</span><br>
+<span style="font-family:monospace">g(x):=(1-x)*(2+x)</span><br>
+Puis on tape pour visualiser les graphes :<br>
+<span style="font-family:monospace">plotfunc([a(x),b(x),c(x),d(x),f(x),g(x)])</span><br>
+On obtient que 5 courbes de couleurs différentes.<br>
+On peut taper progressivement :<br>
+<span style="font-family:monospace">plotfunc([a(x)])</span>, <span style="font-family:monospace">plotfunc([a(x),b(x)])</span> etc...<br>
+On voit ainsi que :
+</p><ul class="itemize"><li class="li-itemize">
+le graphe de <span style="font-family:monospace">a</span> est la droite noire,
+</li><li class="li-itemize">le graphe de <span style="font-family:monospace">b</span> est une droite rouge,
+</li><li class="li-itemize">le graphe de <span style="font-family:monospace">c</span> est la parabole verte,
+</li><li class="li-itemize">le graphe de <span style="font-family:monospace">d</span> est la droite jaune qui se supperpose à la droite rouge,
+</li><li class="li-itemize">le graphe de <span style="font-family:monospace">f</span> est la droite bleue et,
+</li><li class="li-itemize">le graphe de <span style="font-family:monospace">g</span> est la parabole verte. 
+</li></ul>
+<h2 id="sec8" class="section">1.3  Résolution d’équations</h2>
+<h3 id="sec9" class="subsection">1.3.1  Le trinôme du second degré</h3>
+<p>
+Pour résoudre les équations de la forme :
+<span style="font-style:italic">ax</span><sup>2</sup>+<span style="font-style:italic">bx</span>+<span style="font-style:italic">c</span>=0 on écrit :<br>
+<span style="font-style:italic">ax</span><sup>2</sup>+<span style="font-style:italic">bx</span>+<span style="font-style:italic">c</span>=<span style="font-style:italic">a</span>((<span style="font-style:italic">x</span>+<span style="font-style:italic">b</span>/(2<span style="font-style:italic">a</span>))<sup>2</sup>−(<span style="font-style:italic">b</span><sup>2</sup>/(4<span style="font-style:italic">a</span><sup>2</sup>)−<span style="font-style:italic">c</span>/<span style="font-style:italic">a</span>))<br>
+Donc <span style="font-style:italic">ax</span><sup>2</sup>+<span style="font-style:italic">bx</span>+<span style="font-style:italic">c</span>=0 est équivalent à (<span style="font-style:italic">x</span>+<span style="font-style:italic">b</span>/(2<span style="font-style:italic">a</span>))<sup>2</sup>−(<span style="font-style:italic">b</span><sup>2</sup>−4<span style="font-style:italic">ac</span>)/(4<span style="font-style:italic">a</span><sup>2</sup>))=0
+Les solutions dépendent donc du signe de <span style="font-style:italic">b</span><sup>2</sup>−4<span style="font-style:italic">ac</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">solve(a*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+b*x+c)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1/(2*a)*(-b+sqrt(-4*a*c+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)),1/(2*a)*(-b-sqrt(-4*a*c+b</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))]</span><br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2x-5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-sqrt(6)-1,sqrt(6)-1]</span><br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2x+5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-1+2*i,-1-2*i]</span>
+</p>
+<h3 id="sec10" class="subsection">1.3.2  Visualisation géométrique des racines du trinôme</h3>
+<p>
+Soient 2 réels <span style="font-style:italic">s</span> et <span style="font-style:italic">p</span>.<br>
+On veut visualiser les racines de <span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">sx</span>+<span style="font-style:italic">p</span>.<br>
+Dans le plan muni d’un repère orthonormé d’origine <span style="font-style:italic">O</span>, on considère les 
+points <span style="font-style:italic">J</span>=(0,1), <span style="font-style:italic">P</span>=(0,<span style="font-style:italic">p</span>), <span style="font-style:italic">M</span>=(<span style="font-style:italic">s</span>,<span style="font-style:italic">p</span> ), le cercle <span style="font-style:italic">C</span>1 circonscrit au triangle 
+<span style="font-style:italic">JPM</span> et le cercle <span style="font-style:italic">C</span>2 de centre <span style="font-style:italic">O</span> et de rayon √<span style="text-decoration:overline">|</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><span style="text-decoration:overline">|</span>.<br>
+</p><ul class="itemize"><li class="li-itemize">
+Si le cercle <span style="font-style:italic">C</span>1 coupe l’axe <span style="font-style:italic">x</span>, il le coupe en 2 points qui ont pour 
+abscisse les racines de <span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">sx</span>+<span style="font-style:italic">p</span>.<br>
+Dans ce cas le carré du rayon de <span style="font-style:italic">C</span>1 vaut (<span style="font-style:italic">s</span><sup>2</sup>+(<span style="font-style:italic">p</span>−1)<sup>2</sup>)/4 et 
+la distance de son centre à l’axe des <span style="font-style:italic">x</span> vaut (<span style="font-style:italic">p</span>+1)/2 on a donc :
+(<span style="font-style:italic">p</span>+1)<sup>2</sup>≤ <span style="font-style:italic">s</span><sup>2</sup>+(<span style="font-style:italic">p</span>−1)<sup>2</sup> c’est à dire :<br>
+le cercle <span style="font-style:italic">C</span>1 coupe l’axe <span style="font-style:italic">x</span> si et seulement si <span style="font-style:italic">s</span><sup>2</sup>−4<span style="font-style:italic">p</span>≥ 0.<br>
+Les abscisses des points d’intersections <span style="font-style:italic">M</span>1 et <span style="font-style:italic">M</span>2 ont :<br>
+comme demi-somme <span style="font-style:italic">s</span>/2 car le centre de <span style="font-style:italic">C</span>1 se projette sur <span style="font-style:italic">Ox</span> au point 
+d’abscisse <span style="font-style:italic">s</span>/2 et<br>
+comme produit <span style="font-style:italic">p</span> car <span style="font-style:italic">OM</span>1*<span style="font-style:italic">OM</span>2=<span style="font-style:italic">OJ</span>*<span style="font-style:italic">OP</span>=puissance de <span style="font-style:italic">O</span> par rapport à <span style="font-style:italic">C</span>1.
+Ces 2 points d’intersection ont donc pour abscisses les racines de <span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">sx</span>+<span style="font-style:italic">p</span>
+<div class="center"><img src="casexo001.png"></div>
+</li><li class="li-itemize">Si le cercle <span style="font-style:italic">C</span>1 ne coupe pas l’axe <span style="font-style:italic">x</span>, c’est que <span style="font-style:italic">s</span><sup>2</sup>−4<span style="font-style:italic">p</span>&lt; 0 donc 
+<span style="font-style:italic">p</span>≥ 0 et le cercle <span style="font-style:italic">C</span>2 coupe la droite 
+verticale <span style="font-style:italic">x</span>=<span style="font-style:italic">s</span>/2 en 2 points qui ont pour affixes les racines de 
+<span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">sx</span>+<span style="font-style:italic">p</span>.<br>
+ <span style="font-style:italic">C</span>2 est le cercle d’équation <span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>=<span style="font-style:italic">p</span> (car <span style="font-style:italic">s</span><sup>2</sup>−4<span style="font-style:italic">p</span>&lt; 0 donc <span style="font-style:italic">p</span>≥ 0) 
+donc les ordonnées <span style="font-style:italic">y</span> de l’intersection avec <span style="font-style:italic">x</span>=<span style="font-style:italic">s</span>/2 sont les solutions de 
+4<span style="font-style:italic">y</span><sup>2</sup>=4<span style="font-style:italic">p</span>−<span style="font-style:italic">s</span><sup>2</sup>.<br>
+ Ces 2 points d’intersection ont donc pour affixes les racines de <span style="font-style:italic">x</span><sup>2</sup>−<span style="font-style:italic">sx</span>+<span style="font-style:italic">p</span>.
+<div class="center"><img src="casexo002.png"></div>
+</li></ul><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape dans un niveau de géométrie :
+</p><pre class="verbatim">assume(s=3);
+assume(p=2);
+J:=point(i);
+P:=point(p*i);
+M:=point(s+i*p);
+C1:=circonscrit(J,P,M);
+C2:=cercle(0,sqrt(abs(p)));
+d:=droite(x=s/2):;d;
+si s^2-4p&gt;=0 alors R:=inter(C1,droite(y=0)):; 
+sinon R:=inter(C2,d):; fsi;
+a:=evalf(affixe(R[0]));
+b:=evalf(affixe(R[1]));
+legende(-6+4*i,a);
+legende(-6+3.5*i,b);
+legende(-6+5*i,string("s=")+evalf(s));
+legende(-6+4.5*i,string("p=")+evalf(p));
+</pre>
+<h3 id="sec11" class="subsection">1.3.3  Simplification de √<span style="text-decoration:overline"><span style="font-style:italic">A</span></span><span style="text-decoration:overline">+√</span><span style="text-decoration:overline"><span style="font-style:italic">B</span></span> lorsque <span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span> est un carré parfait</h3>
+<p>
+Montrer que :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >2</td></tr>
+</table></td><td class="dcell"><table style="border-spacing:0" class="cellpadding0"><tr><td ALIGN="right"><div CLASS="vbar" STYLE="height:0em;"></div></td></tr>
+<tr><td><span style="font-size:xx-large"><span style="font-size:150%">√</span></span></td></tr>
+</table></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>+</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:0;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">B</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td><td class="dcell">=</td><td class="dcell"><table style="border-spacing:0" class="cellpadding0"><tr><td ALIGN="right"><div CLASS="vbar" STYLE="height:0em;"></div></td></tr>
+<tr><td><span style="font-size:xx-large"><span style="font-size:150%">√</span></span></td></tr>
+</table></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>+</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:0;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table style="border-spacing:0" class="cellpadding0"><tr><td ALIGN="right"><div CLASS="vbar" STYLE="height:0em;"></div></td></tr>
+<tr><td><span style="font-size:xx-large"><span style="font-size:150%">√</span></span></td></tr>
+</table></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">A</span>−</td><td class="dcell"><span style="font-size:x-large">√</span></td><td class="dcell"><table style="border:0;border-spacing:0;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table></td></tr>
+</table><p>
+On tape :<br>
+<span style="font-family:monospace">normal(expand((sqrt(A+c)+ sqrt(A-c))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">sqrt(-4*c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)+2*A</span><br>
+On tape :<br>
+<span style="font-family:monospace">c:=sqrt(A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-B)</span>
+<span style="font-family:monospace">normal(sqrt(-4*c</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+4*A</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)+2*A)</span><br>
+<span style="font-family:monospace">2*A+sqrt(4*B)</span><br>
+Donc :<br>
+√<span style="text-decoration:overline"><span style="font-style:italic">A</span></span><span style="text-decoration:overline">+√</span><span style="text-decoration:overline"><span style="font-style:italic">A</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">B</span></span>+√<span style="text-decoration:overline"><span style="font-style:italic">A</span></span><span style="text-decoration:overline">−√</span><span style="text-decoration:overline"><span style="font-style:italic">A</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">B</span></span>=√<span style="text-decoration:overline">2</span>√<span style="text-decoration:overline"><span style="font-style:italic">A</span></span><span style="text-decoration:overline">+√</span><span style="text-decoration:overline"><span style="font-style:italic">B</span></span><br>
+On tape :<br>
+<span style="font-family:monospace">sqrt(5+sqrt(21))</span><br>
+On a 5<sup>2</sup>−21=4=2<sup>2</sup>, 5+2=7 et 5−2=3<br>
+On obtient donc :<br>
+<span style="font-family:monospace">sqrt(7/2)+sqrt(3/2)</span><br>
+On tape :<br>
+<span style="font-family:monospace">sqrt(11+6*sqrt(2))</span><br>
+On a 11<sup>2</sup>−72=49=7<sup>2</sup>, 11+7=18 et 11−7=4<br>
+On obtient donc :<br>
+<span style="font-family:monospace">3+sqrt(2)</span><br>
+On tape :<br>
+<span style="font-family:monospace">sqrt(11+2*sqrt(30))</span><br>
+On a 11<sup>2</sup>−120=1=1<sup>2</sup>, 11+1=12 et 11−1=10<br>
+On obtient donc :<br>
+<span style="font-family:monospace">sqrt(6)+sqrt(5)</span><br>
+
+On peut écrire un petit programme qui prend en entrée <span style="font-family:monospace">(a,b,s)</span> pour 
+simplifier <span style="font-family:monospace">sqrt(a+s*sqrt(b))</span>.<br>
+On tape :<br>
+</p><pre class="verbatim">reduire2(a,b,s):={
+  local c;
+  si s==0  alors return sqrt(a);fsi;
+  c:=round(sqrt(a^2-b*s^2));
+  si c^2==a^2-b*s^2 alors
+  si s&gt;0  alors return sqrt((a+c)/2)+sqrt((a-c)/2); 
+  sinon 
+  return sqrt((a+c)/2)-sqrt((a-c)/2);
+  fsi;
+  fsi;
+  return sqrt(a+s*sqrt(b));
+}:;
+</pre><p>
+On tape :<br>
+<span style="font-family:monospace">reduire2(18,2,-8)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4-sqrt(2)</span><br>
+On tape :<br>
+<span style="font-family:monospace">reduire2(194320499737857776523212040,
+97160249868928888261606031,19713979797994)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">sqrt(97160249868928888261606031)+9856989898997</span>
+ou bien, on tape la fonction <span style="font-family:monospace">simply</span> qui doit avoir 
+<span style="font-family:monospace">r=sqrt(a+sqrt(b))</span> comme paramètre où <span style="font-family:monospace">b</span> est sans facteur carré:
+</p><pre class="verbatim">simply(r):={
+  local f,a,b,c,d;
+  si sommet(r)=='^' alors
+  f:=feuille(r);
+  a,d:=feuille(f[0]);
+  si type(a)==integer alors
+  b:=feuille(d)[0];
+  c:=sqrt(a^2-b);
+  si (round(c))^2==a^2-b alors 
+  retourne sqrt((a+c)/2)+sqrt((a-c)/2) 
+  fsi;
+  sinon 
+  d,a:=feuille(f[0]);
+  b:=feuille(d)[0];
+  c:=sqrt(a^2-b);
+  si (round(c))^2==a^2-b alors 
+  retourne sqrt((a+c)/2)+sqrt((a-c)/2) 
+  fsi;
+  fsi;
+  fsi;
+  retourne r;
+}:;
+</pre><p>
+On tape :<br>
+<span style="font-family:monospace">simply(sqrt(9+sqrt(17)))</span><br>
+ou <br>
+<span style="font-family:monospace">simply(sqrt(sqrt(17)+9))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(sqrt(34))/2+(sqrt(2))/2</span>
+ou bien, on tape la fonction <span style="font-family:monospace">simplyf</span> qui doit avoir comme paramètre
+<span style="font-family:monospace">r</span> de la forme <span style="font-family:monospace">rsqrt(a+s*sqrt(b))</span> ou <span style="font-family:monospace">sqrt(a+sqrt(b))</span> :
+</p><pre class="verbatim">simplyf(r):={
+  local f,a,b,c,d,s,sb;
+  si sommet(r)=='^' alors
+  f:=feuille(r);
+  a,d:=feuille(f[0]);
+  si type(a)==integer alors
+  f:=feuille(d);
+  si f[1]==1/2 alors 
+  s:=1;
+  b:=f[0];
+  sinon
+  s,sb:=f;
+  si type(s)==integer alors
+  b:=feuille(sb)[0];
+  sinon
+  sb,s:=f;
+  b:=feuille(sb)[0];
+  fsi;
+  fsi;
+  c:=sqrt(a^2-s^2*b);
+  si (round(c))^2==a^2-s^2*b alors 
+  retourne sqrt((a+c)/2)+sqrt((a-c)/2); 
+  fsi;
+  sinon
+  d,a:=feuille(f[0]);
+  f:=feuille(d);
+  si f[1]==1/2 alors 
+  b:=f[0];
+  s:=1;
+  sinon
+  s,sb:=f;
+  si type(s)==integer alors
+  b:=feuille(sb)[0];
+  sinon
+  sb,s:=f;
+  b:=feuille(sb)[0];
+  fsi;
+  fsi;
+  c:=sqrt(a^2-s^2*b);
+  si (round(c))^2==a^2-s^2*b alors 
+  retourne sqrt((a+c)/2)+sqrt((a-c)/2) 
+  fsi;
+  fsi;
+  fsi;
+  retourne r;
+}:;
+</pre><p>
+On tape (car <span style="font-family:monospace">Xcas</span> remplace <span style="font-family:monospace">sqrt(128)</span> par <span style="font-family:monospace">8*sqrt(2)</span>:<br>
+<span style="font-family:monospace">simplyf(sqrt(18+sqrt(128)))</span><br>
+ou <br>
+<span style="font-family:monospace">simplyf(sqrt(sqrt(128)+18))</span><br>
+ou <br>
+<span style="font-family:monospace">simplyf(sqrt(8*sqrt(2)+18))</span><br>
+ou <br>
+<span style="font-family:monospace">simplyf(sqrt(18+8*sqrt(2)))</span><br>
+ou <br>
+<span style="font-family:monospace">simplyf(sqrt(sqrt(2)*8+18))</span><br>
+ou <br>
+<span style="font-family:monospace">simplyf(sqrt(18+sqrt(2)*8))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4+sqrt(2)</span>
+On tape :<br>
+<span style="font-family:monospace">simplyf(sqrt(194320499737857776523212040+19713979797994*sqrt(97160249868928888261606031)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">sqrt(97160249868928888261606031)+9856989898997</span>
+</p>
+<h3 id="sec12" class="subsection">1.3.4  Les formules de Cardan</h3>
+<p>
+Les formules de Cardan permettent de résoudre les équations de la forme :
+<span style="font-style:italic">x</span><sup>3</sup>+<span style="font-style:italic">px</span>+<span style="font-style:italic">q</span>=0.<br>
+Pour cela, on pose <span style="font-style:italic">x</span>=<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span> avec <span style="font-style:italic">uv</span>=−<span style="font-style:italic">p</span>/3 on a donc à résoudre :<br>
+<span style="font-style:italic">x</span><sup>3</sup>+<span style="font-style:italic">px</span>+<span style="font-style:italic">q</span>=<span style="font-style:italic">u</span><sup>3</sup>+<span style="font-style:italic">v</span><sup>3</sup>+3<span style="font-style:italic">uv</span>(<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)+<span style="font-style:italic">p</span>(<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)+<span style="font-style:italic">q</span>=<span style="font-style:italic">u</span><sup>3</sup>+<span style="font-style:italic">v</span><sup>3</sup>+<span style="font-style:italic">q</span>=0.<br>
+et on doit résoudre :<br>
+<span style="font-style:italic">u</span><sup>3</sup>+<span style="font-style:italic">v</span><sup>3</sup>+<span style="font-style:italic">q</span>=0 et <span style="font-style:italic">u</span><sup>3</sup><span style="font-style:italic">v</span><sup>3</sup>=−<span style="font-style:italic">p</span><sup>3</sup>/27
+On a donc <span style="font-style:italic">U</span>=<span style="font-style:italic">u</span><sup>3</sup> et <span style="font-style:italic">V</span>=<span style="font-style:italic">v</span><sup>3</sup> qui sont les solutions de l’équation du 2-ième 
+degré :<br>
+<span style="font-style:italic">X</span><sup>2</sup>+<span style="font-style:italic">qX</span>−<span style="font-style:italic">p</span><sup>3</sup>/27=0 donc <br>
+</p><ul class="itemize"><li class="li-itemize">
+Si 4<span style="font-style:italic">p</span><sup>3</sup>+27<span style="font-style:italic">q</span><sup>2</sup> ≥ 0 on a :<br>
+<span style="font-style:italic">U</span>=−<span style="font-style:italic">q</span>+√<span style="text-decoration:overline"><span style="font-style:italic">q</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+4</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><sup><span style="text-decoration:overline">3</span></sup><span style="text-decoration:overline">/27</span>/2 et<br>
+<span style="font-style:italic">V</span>=−<span style="font-style:italic">q</span>−√<span style="text-decoration:overline"><span style="font-style:italic">q</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+4</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><sup><span style="text-decoration:overline">3</span></sup><span style="text-decoration:overline">/27</span>/2<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-6*x-9)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[3,1/2*(-3+(i)*sqrt(3)),1/2*(-3-(i)*sqrt(3))]</span><br>
+En effet <span style="font-style:italic">p</span>=−6, <span style="font-style:italic">q</span>=−9 donc <br>
+4<span style="font-style:italic">p</span><sup>3</sup>/27+<span style="font-style:italic">q</span><sup>2</sup>=49<br>
+<span style="font-style:italic">X</span><sup>2</sup>−9<span style="font-style:italic">X</span>−(−6)<sup>3</sup>/27=<span style="font-style:italic">X</span><sup>2</sup>−9<span style="font-style:italic">X</span>+8=(<span style="font-style:italic">X</span>−1)(<span style="font-style:italic">X</span>−8)
+0n a donc :
+<span style="font-style:italic">u</span>=<span style="font-style:italic">U</span><sup>1/3</sup>=8<sup>1/3</sup>=2 et <span style="font-style:italic">v</span>=<span style="font-style:italic">V</span><sup>1/3</sup>=1
+donc <span style="font-style:italic">x</span>=<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>=3 est solution et on a :<br>
+<span style="font-style:italic">x</span><sup>3</sup>−6*<span style="font-style:italic">x</span>−9=(<span style="font-style:italic">x</span>−3)(<span style="font-style:italic">x</span><sup>2</sup>+3<span style="font-style:italic">x</span>+3)
+</li><li class="li-itemize">Si 4<span style="font-style:italic">p</span><sup>3</sup>+27<span style="font-style:italic">q</span><sup>2</sup> &lt;0 on a :<br>
+<span style="font-style:italic">u</span><sup>3</sup>=<span style="font-style:italic">U</span>=−<span style="font-style:italic">q</span>+<span style="font-style:italic">i</span>√<span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">q</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−4</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><sup><span style="text-decoration:overline">3</span></sup><span style="text-decoration:overline">/27</span>/2 et<br>
+<span style="font-style:italic">v</span><sup>3</sup>=<span style="font-style:italic">V</span>=−<span style="font-style:italic">q</span>−<span style="font-style:italic">i</span>√<span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">q</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">−4</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><sup><span style="text-decoration:overline">3</span></sup><span style="text-decoration:overline">/27</span>/2<br>
+<span style="font-style:italic">arg</span>(<span style="font-style:italic">u</span>)=−<span style="font-style:italic">arg</span>(<span style="font-style:italic">v</span>)=<span style="font-style:italic">t</span>=<span style="font-style:italic">arg</span>(<span style="font-style:italic">U</span>)/3 (mod2π/3) et <span style="font-style:italic">abs</span>(<span style="font-style:italic">u</span>)=<span style="font-style:italic">abs</span>(<span style="font-style:italic">v</span>)=<span style="font-style:italic">n</span>=<span style="font-style:italic">abs</span>(<span style="font-style:italic">U</span>)<sup>1/3</sup><br>
+Donc :<br>
+<span style="font-style:italic">x</span><sub>1</sub>=<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>=2<span style="font-style:italic">n</span>cos(<span style="font-style:italic">t</span>), <span style="font-style:italic">x</span><sub>2</sub>=<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>=2<span style="font-style:italic">n</span>cos(<span style="font-style:italic">t</span>+2π/3), <span style="font-style:italic">x</span><sub>1</sub>=<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>=2<span style="font-style:italic">n</span>cos(<span style="font-style:italic">t</span>+4π/3)<br>
+avec <span style="font-style:italic">n</span><sup>6</sup>=−<span style="font-style:italic">p</span><sup>3</sup>/27 soit <span style="font-style:italic">n</span>=√<span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><span style="text-decoration:overline">/3</span> et<br>
+cos(3<span style="font-style:italic">t</span>)=−<span style="font-style:italic">q</span>/2/<span style="font-style:italic">n</span><sup>3</sup>=−<span style="font-style:italic">q</span>/2/√<span style="text-decoration:overline">−</span><span style="text-decoration:overline"><span style="font-style:italic">p</span></span><sup><span style="text-decoration:overline">3</span></sup><span style="text-decoration:overline">/27</span><br>
+</li></ul>
+<h3 id="sec13" class="subsection">1.3.5  Simplification de (<span style="font-style:italic">A</span>+√<span style="text-decoration:overline"><span style="font-style:italic">B</span></span>)<sup>1/3</sup></h3>
+<p> 
+Soient :
+<span style="font-style:italic">u</span>=(<span style="font-style:italic">A</span>+√<span style="text-decoration:overline"><span style="font-style:italic">B</span></span>)<sup>1/3</sup> et <span style="font-style:italic">v</span>=(<span style="font-style:italic">A</span>−√<span style="text-decoration:overline"><span style="font-style:italic">B</span></span>)<sup>1/3</sup>
+On cherche à savoir si <span style="font-style:italic">u</span>+<span style="font-style:italic">v</span> est un entier.<br>
+On pose :
+<span style="font-style:italic">u</span>*<span style="font-style:italic">v</span>=<span style="font-style:italic">p</span><br>
+<span style="font-style:italic">U</span>=<span style="font-style:italic">u</span><sup>3</sup>=<span style="font-style:italic">A</span>+√<span style="text-decoration:overline"><span style="font-style:italic">B</span></span> et <span style="font-style:italic">V</span>=<span style="font-style:italic">v</span><sup>3</sup>=<span style="font-style:italic">A</span>−√<span style="text-decoration:overline"><span style="font-style:italic">B</span></span>
+On a <span style="font-style:italic">U</span>*<span style="font-style:italic">V</span>=<span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span>=(<span style="font-style:italic">u</span>*<span style="font-style:italic">v</span>)<sup>3</sup>=<span style="font-style:italic">p</span><sup>3</sup> et<br>
+<span style="font-style:italic">U</span>+<span style="font-style:italic">V</span>=<span style="font-style:italic">u</span><sup>3</sup>+<span style="font-style:italic">v</span><sup>3</sup>=(<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)(<span style="font-style:italic">u</span><sup>2</sup>+<span style="font-style:italic">v</span><sup>2</sup>−<span style="font-style:italic">uv</span>)=(<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)((<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)<sup>2</sup>−3<span style="font-style:italic">uv</span>)=2<span style="font-style:italic">A</span> donc 
+(<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)<sup>3</sup>−3<span style="font-style:italic">p</span>(<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span>)−2<span style="font-style:italic">A</span>=0 donc<br>
+<span style="font-style:italic">u</span>+<span style="font-style:italic">v</span> est racine de :<br>
+<span style="font-style:italic">S</span><sup>3</sup>−3<span style="font-style:italic">pS</span>−2<span style="font-style:italic">A</span>=0<br>
+Pour que ce trinôme ait une racine entière <span style="font-style:italic">k</span> il faut que <span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span> soit le
+cube d’un entier <span style="font-style:italic">p</span> et que <span style="font-style:italic">k</span> divise 2*<span style="font-style:italic">A</span> i.e. <span style="font-style:italic">k</span>*(<span style="font-style:italic">k</span><sup>2</sup>−3<span style="font-style:italic">p</span>)=2*<span style="font-style:italic">A</span>.<br>
+
+On cherche à simplifier :<br>
+<span style="font-style:italic">u</span>=(20+14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup> et <span style="font-style:italic">v</span>=(20−14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup><br>
+On a : <span style="font-style:italic">A</span>=20, <span style="font-style:italic">B</span>=14<sup>2</sup>*2=392  2<span style="font-style:italic">A</span>=40  <span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span>=8=2<sup>3</sup> donc <span style="font-style:italic">p</span>=2
+L’équation à résoudre est : <span style="font-style:italic">S</span><sup>3</sup>−6<span style="font-style:italic">S</span>=<span style="font-style:italic">S</span>(<span style="font-style:italic">S</span><sup>2</sup>−6)=40<br>
+Les diviseurs de 40 sont :<br>
+<span style="font-family:monospace">idivis(40)</span><br>
+On obtient :
+<span style="font-family:monospace">[1,2,4,8,5,10,20,40]</span><br>
+On tape :
+<span style="font-family:monospace">L:=NULL;for k in idivis(40) do L:=L,k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-6; end_for</span>
+On obtient :<br>
+<span style="font-family:monospace">-5,-2,10,58,19,94,394,1594</span><br>
+On tape :
+<span style="font-family:monospace">[1,2,4,8,5,10,20,40].*[-5,-2,10,58,19,94,394,1594]</span>
+On obtient :<br>
+<span style="font-family:monospace">[-5,-4,40,464,95,940,7880,63760]</span>
+donc <span style="font-style:italic">k</span>=4 est solution et donc :<br>
+<span style="font-style:italic">u</span>=(20+14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup> et <span style="font-style:italic">v</span>=(20−14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup> sont les racines de 
+<span style="font-style:italic">X</span><sup>2</sup>−4<span style="font-style:italic">X</span>+2=0
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-4x+2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-sqrt(2)+2,sqrt(2)+2]</span><br>
+Donc (20+14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup>=2+√<span style="text-decoration:overline">2</span> et (20−14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup>=2−√<span style="text-decoration:overline">2</span>.<br>
+On vérifie :<br>
+On tape :<br>
+<span style="font-family:monospace">normal(expand((-sqrt(2)+2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)),normal(expand((sqrt(2)+2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3))</span>
+On obtient :<br>
+<span style="font-family:monospace">-14*sqrt(2)+20,14*sqrt(2)+20</span><br>
+
+On cherche à simplifier :<br>
+<span style="font-style:italic">u</span>=(9+4√<span style="text-decoration:overline">5</span>)<sup>1/3</sup> et <span style="font-style:italic">v</span>=(9−4√<span style="text-decoration:overline">5</span>)<sup>1/3</sup><br>
+On a : <span style="font-style:italic">A</span>=9, <span style="font-style:italic">B</span>=4<sup>2</sup>*5=80  2<span style="font-style:italic">A</span>=18  <span style="font-style:italic">A</span><sup>2</sup>−<span style="font-style:italic">B</span>=1=1<sup>3</sup> donc <span style="font-style:italic">p</span>=1<br>
+L’équation à résoudre est : <span style="font-style:italic">S</span><sup>3</sup>−3<span style="font-style:italic">S</span>=<span style="font-style:italic">S</span>(<span style="font-style:italic">S</span><sup>2</sup>−3)=18<br>
+Les diviseurs de 8 sont :<br>
+<span style="font-family:monospace">idivis(18)</span><br>
+On obtient :
+<span style="font-family:monospace">[1,2,3,6,9,18]</span><br>
+On tape :
+<span style="font-family:monospace">L:=NULL;for k in idivis(18) do L:=L,k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-3; end_for</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-2,1,6,33,78,321</span><br>
+On tape en utilisant <span style="font-family:monospace">.*</span> :<br>
+<span style="font-family:monospace">[1,2,3,6,9,18].*[L]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-2,2,18,198,702,5778]</span><br>
+alors que <span style="font-family:monospace">[1,2,3,6,9,18]*[L]</span> renvoie <span style="font-family:monospace">6696</span><br>
+donc <span style="font-style:italic">k</span>=3 est solution et donc :<br>
+<span style="font-style:italic">u</span>=(9+4√<span style="text-decoration:overline">5</span>)<sup>1/3</sup> et <span style="font-style:italic">v</span>=(9−4√<span style="text-decoration:overline">5</span>)<sup>1/3</sup> sont les racines de 
+<span style="font-style:italic">X</span><sup>2</sup>−3<span style="font-style:italic">X</span>+1=0<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-3x+1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1/2*(3-sqrt(5)),1/2*(3+sqrt(5))]</span><br>
+Donc (9+4√<span style="text-decoration:overline">5</span>)<sup>1/3</sup>=(3+√<span style="text-decoration:overline">5</span>)/2 et (20−14√<span style="text-decoration:overline">2</span>)<sup>1/3</sup>=(3−√<span style="text-decoration:overline">5</span>)/2.<br>
+On vérifie :<br>
+On tape :<br>
+<span style="font-family:monospace">normal(expand((-sqrt(5)/2+3/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3)),normal(expand((+sqrt(5)/2+3/2)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3))</span>
+On obtient :<br>
+<span style="font-family:monospace">-4*sqrt(5)+9,4*sqrt(5)+9</span><br>
+<span style="font-weight:bold">Remarque</span> La méthode utilisée ci-dessus n’est valable que lorsque le 
+nombre pour lequel on cherche les diviseurs est petit ! Il est donc 
+préférable de faire évaluer par <span style="font-family:monospace">Xcas</span> <span style="font-family:monospace">u+v</span> puis de vérifier 
+si <span style="font-family:monospace">u+v</span> est entier.<br>
+On peut écrire un petit programme qui prend en entrée <span style="font-family:monospace">(a,b,s)</span> pour 
+simplifier <span style="font-family:monospace">(a+s*sqrt(b))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(1/3)</span>.<br>
+On évite la décomposition en facteurs premiers trop longue en utilisant 
+des <span style="font-family:monospace">round</span>.<br>
+On utilise la fonction <span style="font-family:monospace">surd</span> qui est la puisance 1/<span style="font-style:italic">n</span> par exemple :<br>
+si <span style="font-family:monospace">a&gt;0</span>, <span style="font-family:monospace">surd(a,3)</span> renvoie <span style="font-family:monospace">a</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(1/3)</span> et
+si <span style="font-family:monospace">a&lt;0</span>, <span style="font-family:monospace">surd(a,3)</span>renvoie <span style="font-family:monospace">-(-a)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(1/3)</span><br>
+On tape :<br>
+</p><pre class="verbatim">reduire3(a,b,s):={
+  local c,d,r;
+  si s==0  alors return a^(1/3);fsi;
+  c:=round(surd(a^2-b*s^2,3));
+  d:=round(surd(a+sqrt(b*s^2),3)+surd(a-sqrt(b*s^2),3));
+  si (c^3==a^2-b*s^2) alors
+  si (d*(d^2-3*c)==2*a) alors
+  r:=solve(x^2-d*x+c);
+  si s&gt;0 alors return r[1]; else return r[0]; fsi;;
+  fsi;
+  fsi;
+  return (a+s*sqrt(b))^(1/3);
+}:;
+</pre><p>
+On tape :<br>
+<span style="font-family:monospace">reduire3(9,5,-4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/2*(3-sqrt(5))</span><br>
+On tape :<br>
+<span style="font-family:monospace">reduire3(747,5,428)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">4*sqrt(5)+3</span><br>
+On tape (avec <span style="font-family:monospace">Digits:=30</span>) :<br>
+<span style="font-family:monospace">reduire3(957707601542343957074807589821177843432,
+9716024986949,291480749606796380809804976)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">sqrt(9716024986949)+9856989898997</span>
+</p>
+<h3 id="sec14" class="subsection">1.3.6  Exercices divers de résolution déquations</h3>
+<p>
+<span style="font-weight:bold">Résoudre :</span>
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">x</span><sup>2</sup>+2<span style="font-style:italic">x</span>+2=0<br>
+On tape :<br>
+<span style="font-family:monospace">csolve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2x+2=0)</span><br>
+Ou on tape si on a coché <span style="font-family:monospace">Complexe</span> dans la configuration du CAS :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2x+2=0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-1-i,-1+i]</span>
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sup>4</sup>−6<span style="font-style:italic">x</span><sup>2</sup>+6=0<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-6x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+6=0)</span><br>
+On obtient si on a coché <span style="font-family:monospace">Sqrt</span> dans la configuration du CAS :<br>
+<span style="font-family:monospace">[-(sqrt(sqrt(3)+3)),-(sqrt(-(sqrt(3))+3)),<br>
+sqrt(-(sqrt(3))+3),sqrt(sqrt(3)+3)]</span>
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sup>6</sup>−26<span style="font-style:italic">x</span><sup>5</sup>+250<span style="font-style:italic">x</span><sup>4</sup>−1160<span style="font-style:italic">x</span><sup>3</sup>+2749<span style="font-style:italic">x</span><sup>2</sup>−134<span style="font-style:italic">x</span>+1320=0<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">6-26x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5+250x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-1160x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+2749x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-3134x+1320=0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1,2,3,4,5,11]</span>
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sup>4</sup>−<span style="font-style:italic">ax</span><sup>3</sup>−6<span style="font-style:italic">x</span><sup>2</sup>+6<span style="font-style:italic">ax</span><sup>2</sup>+11<span style="font-style:italic">x</span><sup>2</sup>−11<span style="font-style:italic">ax</span>−6<span style="font-style:italic">x</span>+6=0<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-a*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-6*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+6a*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+11x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-11a*x-6x+6a=0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[3,2,1,a]</span>
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sup>4</sup>−π <span style="font-style:italic">x</span><sup>3</sup>−6<span style="font-style:italic">x</span><sup>2</sup>+6π <span style="font-style:italic">x</span><sup>2</sup>+11<span style="font-style:italic">x</span><sup>2</sup>−11π <span style="font-style:italic">x</span>−6<span style="font-style:italic">x</span>+6=0<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4-pi*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-6*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+6*pi*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+11x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-11*pi*x-6x+6*pi=0)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[3,2,1,pi]</span>
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sup>5</sup>−3<span style="font-style:italic">x</span>−1=0<br>
+On tape :<br>
+<span style="font-family:monospace">solve(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">5-3x-1=0)</span><br>
+On obtient :<br>
+Attention! Extension algébrique non implémentée pour les poly [1,0,0,0,-3,-1]<br>
+<span style="font-family:monospace">[-1.2146480427,0.8029510011728015413e-1+1.328355109820654077*i,<br>
+0.8029510011728015413e-1-1.328355109820654077*i,<br>
+-0.3347341419433526871,1.388791984407254183]</span>
+</li><li class="li-itemize">4sin(<span style="font-style:italic">x</span>)<sup>2</sup>cos(<span style="font-style:italic">x</span>)<sup>2</sup>+cos(2<span style="font-style:italic">x</span>)<sup>2</sup>=1<br>
+On simplifie, on tape :<br>
+<span style="font-family:monospace">simplify(4*sin(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+cos(2x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+On résoud, on tape :<br>
+<span style="font-family:monospace">solve(4*sin(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+cos(2x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2=1)</span><br>
+On obtient si <span style="font-family:monospace">All_trig_sol</span> est coché ou pas coché dans la configuration du CAS :<br>
+<span style="font-family:monospace">[x]</span>
+</li><li class="li-itemize">4cos(<span style="font-style:italic">x</span>)<sup>3</sup>−3cos(<span style="font-style:italic">x</span>)−sin(2<span style="font-style:italic">x</span>)−cos(3<span style="font-style:italic">x</span>)=0<br>
+On simplifie, on tape :<br>
+<span style="font-family:monospace">simplify(4*cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-3*cos(x)-sin(2x)-cos(3x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">-2*cos(x)*sin(x)</span>
+On résoud, on tape :<br>
+<span style="font-family:monospace">solve(4*cos(x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3-3*cos(x)-sin(2x)-cos(3x)=0)</span><br>
+On obtient si <span style="font-family:monospace">All_trig_sol</span> n’est pas coché dans la configuration du CAS :<br>
+<span style="font-family:monospace">[0,pi/2,-pi/2,pi]</span><br>
+On obtient si on a coché <span style="font-family:monospace">All_trig_sol</span> dans la configuration du CAS :<br>
+<span style="font-family:monospace">[2*n_0*pi,(4*n_1*pi+pi)/2,(4*n_2*pi-pi)/2,2*n_3*pi+pi]</span>
+</li><li class="li-itemize">4cos(<span style="font-style:italic">x</span>)cos(2<span style="font-style:italic">x</span>)cos(3<span style="font-style:italic">x</span>)=1<br>
+On tape :<br>
+<span style="font-family:monospace">solve(4*cos(x)*cos(2x)*cos(3x)=1)</span><br>
+On obtient si <span style="font-family:monospace">All_trig_sol</span> n’est pas coché dans la configuration du CAS :<br>
+<span style="font-family:monospace">[pi/3,-pi/3,2*pi/3,-2*pi/3,pi/8,-pi/8,7*pi/8,-7*pi/8,<br>
+3*pi/8,-3*pi/8,5*pi/8,-5*pi/8]</span><br>
+On obtient si on a coché <span style="font-family:monospace">All_trig_sol</span> dans la configuration du CAS :<br>
+<span style="font-family:monospace">[(6*n_6*pi+pi)/3,(6*n_6*pi-pi)/3,(6*n_7*pi+2*pi)/3,<br>
+(6*n_7*pi-2*pi)/3,(16*n_8*pi+pi)/8,(16*n_8*pi-pi)/8,<br>
+(16*n_9*pi+7*pi)/8,(16*n_9*pi-7*pi)/8,(16*n_10*pi+3*pi)/8,<br>
+(16*n_10*pi-3*pi)/8,(16*n_11*pi+5*pi)/8,(16*n_11*pi-5*pi)/8]</span>
+</li><li class="li-itemize">le système linéaire :<br>
+[<span style="font-style:italic">x</span>+2<span style="font-style:italic">y</span>+3<span style="font-style:italic">z</span>=1,<span style="font-style:italic">x</span>+3<span style="font-style:italic">y</span>+2<span style="font-style:italic">z</span>=1,3<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>+2<span style="font-style:italic">z</span>=1]<br>
+On tape :<br>
+<span style="font-family:monospace">linsolve([x+2y+3z=1,x+3y+2z=1,3x+y+2z=1],[x,y,z])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[1/6,1/6,1/6]</span>
+</li><li class="li-itemize">le système linéaire :<br>
+[<span style="font-style:italic">x</span>+2<span style="font-style:italic">y</span>+3<span style="font-style:italic">z</span>=π+5,2<span style="font-style:italic">x</span>+3<span style="font-style:italic">y</span>+2<span style="font-style:italic">z</span>=2π+5,3<span style="font-style:italic">x</span>+π <span style="font-style:italic">y</span>+π <span style="font-style:italic">z</span>=5π]<br>
+On tape :<br>
+<span style="font-family:monospace">linsolve([x+2y+3z=pi+5,2x+3y+2z=2*pi+5,3x+pi*y+pi*z=5*pi],[x,y,z])</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[pi,1,1]</span>
+</li></ul>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo002.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

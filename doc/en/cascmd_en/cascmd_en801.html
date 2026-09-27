@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Defining new giac functions</title>
+</head>
+<body >
+<a href="cascmd_en800.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en802.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec2070" class="subsection">25.7.2  Defining new <span style="font-family:monospace">giac</span> functions</h3>
+<p>New <span style="font-family:monospace">giac</span> functions can be defined with a C++
+program. All data in the program used in formal calculations needs to
+be <span style="font-family:monospace">gen</span> type. A variable <span style="font-family:monospace">g</span> can be declared to be
+<span style="font-family:monospace">gen</span> type with
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> gen g;</td></tr>
+</table><p>In this case, <span style="font-family:monospace">g.type</span> can have different values.
+The value of <span style="font-family:monospace">g</span> is fetched differently for different types:
+</p><ul class="itemize"><li class="li-itemize">
+If <span style="font-family:monospace">g.type</span> is <span style="font-family:monospace">_INT_</span>, then <span style="font-family:monospace">g.val</span>
+is an integer type <span style="font-family:monospace">int</span>.
+</li><li class="li-itemize">If <span style="font-family:monospace">g.type</span> is <span style="font-family:monospace">_DOUBLE_</span>, then
+<span style="font-family:monospace">g._DOUBLE_val</span> is a real <span style="font-family:monospace">double</span>.
+</li><li class="li-itemize">If <span style="font-family:monospace">g.type</span> is <span style="font-family:monospace">_SYMB</span>, then
+<span style="font-family:monospace">g._SYMBptr</span> points to a value of type <span style="font-family:monospace">symbolic</span>. The
+function is contained in the <span style="font-family:monospace">sommet</span> member and its argument(s) in
+the <span style="font-family:monospace">feuille</span> member.
+</li><li class="li-itemize">If <span style="font-family:monospace">g.type</span> is <span style="font-family:monospace">_VECT</span>, then
+<span style="font-family:monospace">g._VECTptr</span> points to a value of type <span style="font-family:monospace">vecteur</span>,
+which behaves like <span style="font-family:monospace">std::vector</span>.
+</li><li class="li-itemize">If <span style="font-family:monospace">g.type</span> is <span style="font-family:monospace">_ZINT</span>, then
+<span style="font-family:monospace">g._ZINTptr</span> points to a value of integer type <span style="font-family:monospace">zint</span>.
+</li><li class="li-itemize">If <span style="font-family:monospace">g.type</span> is <span style="font-family:monospace">_IDNT</span>, then
+<span style="font-family:monospace">g._IDNTptr</span> points to an identifier of type <span style="font-family:monospace">identificateur</span>.
+</li><li class="li-itemize">If <span style="font-family:monospace">g.type</span> will be <span style="font-family:monospace">_CPLX</span>, then
+<span style="font-family:monospace">g._CPLXptr</span> and <span style="font-family:monospace">g._CPLXptr+1</span> are pointers to
+the real and imaginary parts of <span style="font-family:monospace">g</span>.
+</li></ul><p>As an example, put the following program in a file called <span style="font-family:monospace">pgcd.cpp</span>.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-size:small"> </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">stdexcept</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">cmath</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">cstdlib</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">giac</span><span style="font-size:small">/</span><span style="font-size:small">config</span><span style="font-size:small">.</span><span style="font-size:small">h</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#include</span></span></span><span style="font-size:small"> &lt;</span><span style="font-size:small">giac</span><span style="font-size:small">/</span><span style="font-size:small">giac</span><span style="font-size:small">.</span><span style="font-size:small">h</span><span style="font-size:small">&gt;</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">using</span></span></span><span style="font-size:small"> </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">namespace</span></span></span><span style="font-size:small"> </span><span style="font-size:small">std</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#ifndef</span></span></span><span style="font-size:small"> </span><span style="font-size:small">NO_NAMESPACE_GIAC</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">namespace</span></span></span><span style="font-size:small"> </span><span style="font-size:small">giac</span><span style="font-size:small"> {</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#endif</span></span></span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">monpgcd</span><span style="font-size:small">(</span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">const</span></span></span><span style="font-size:small"> </span><span style="font-size:small">gen</span><span style="font-size:small"> &amp; </span><span style="font-size:small">a0</span><span style="font-size:small">,</span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">const</span></span></span><span style="font-size:small"> </span><span style="font-size:small">gen</span><span style="font-size:small"> &amp; </span><span style="font-size:small">b0</span><span style="font-size:small">) {</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">q</span><span style="font-size:small">,</span><span style="font-size:small">r</span><span style="font-size:small">,</span><span style="font-size:small">a</span><span style="font-size:small">=</span><span style="font-size:small">a0</span><span style="font-size:small">,</span><span style="font-size:small">b</span><span style="font-size:small">=</span><span style="font-size:small">b0</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">for</span></span></span><span style="font-size:small"> (;</span><span style="font-size:small">b</span><span style="font-size:small">!=0;) {</span><span style="font-size:small">
+ </span><span style="font-size:small">      </span><span style="font-size:small">r</span><span style="font-size:small">=</span><span style="font-size:small">irem</span><span style="font-size:small">(</span><span style="font-size:small">a</span><span style="font-size:small">,</span><span style="font-size:small">b</span><span style="font-size:small">,</span><span style="font-size:small">q</span><span style="font-size:small">);</span><span style="font-size:small">
+ </span><span style="font-size:small">      </span><span style="font-size:small">a</span><span style="font-size:small">=</span><span style="font-size:small">b</span><span style="font-size:small">; </span><span style="font-size:small">b</span><span style="font-size:small">=</span><span style="font-size:small">r</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">    }</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">return</span></span></span><span style="font-size:small"> </span><span style="font-size:small">a</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  }</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">gen</span><span style="font-size:small"> </span><span style="font-size:small">_monpgcd</span><span style="font-size:small">(</span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">const</span></span></span><span style="font-size:small"> </span><span style="font-size:small">gen</span><span style="font-size:small"> &amp; </span><span style="font-size:small">args</span><span style="font-size:small">,</span><span style="font-size:small">GIAC_CONTEXT</span><span style="font-size:small">) {</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">if</span></span></span><span style="font-size:small"> ((</span><span style="font-size:small">args</span><span style="font-size:small">.</span><span style="font-size:small">type</span><span style="font-size:small">!=</span><span style="font-size:small">_VECT</span><span style="font-size:small">) || (</span><span style="font-size:small">args</span><span style="font-size:small">.</span><span style="font-size:small">_VECTptr</span><span style="font-size:small">-&gt;</span><span style="font-size:small">size</span><span style="font-size:small">()!=2))</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">return</span></span></span><span style="font-size:small"> </span><span style="font-size:small">gensizeerr</span><span style="font-size:small">(</span><span style="font-size:small">contextptr</span><span style="font-size:small">);  </span><span style="font-size:small"><span style="color:#7F7F7F"><span style="font-size:small">// return an error</span></span></span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small">vecteur</span><span style="font-size:small"> &amp;</span><span style="font-size:small">v</span><span style="font-size:small">=*</span><span style="font-size:small">args</span><span style="font-size:small">.</span><span style="font-size:small">_VECTptr</span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">    </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">return</span></span></span><span style="font-size:small"> </span><span style="font-size:small">monpgcd</span><span style="font-size:small">(</span><span style="font-size:small">v</span><span style="font-size:small">[0],</span><span style="font-size:small">v</span><span style="font-size:small">[1]);</span><span style="font-size:small">
+ </span><span style="font-size:small">  }</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">const</span></span></span><span style="font-size:small"> </span><span style="font-size:small">string</span><span style="font-size:small"> </span><span style="font-size:small">_monpgcd_s</span><span style="font-size:small">[]=</span><span style="font-size:small"><span style="color:#006600"><span style="font-size:small">"monpgcd"</span></span></span><span style="font-size:small">;</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">unary_function_eval</span><span style="font-size:small"> </span><span style="font-size:small">__monpgcd</span><span style="font-size:small">(0,&amp;</span><span style="font-size:small">_monpgcd</span><span style="font-size:small">,</span><span style="font-size:small">_monpgcd_s</span><span style="font-size:small">);</span><span style="font-size:small">
+ </span><span style="font-size:small">  </span><span style="font-size:small">unary_function_ptr</span><span style="font-size:small"> </span><span style="font-size:small">at_monpgcd</span><span style="font-size:small">(&amp;</span><span style="font-size:small">__monpgcd</span><span style="font-size:small">,0,</span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">true</span></span></span><span style="font-size:small">);</span><span style="font-size:small">
+ </span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#ifndef</span></span></span><span style="font-size:small"> </span><span style="font-size:small">NO_NAMESPACE_GIAC</span><span style="font-size:small">
+ </span><span style="font-size:small">}</span><span style="font-size:small">
+ </span><span style="font-size:small"><span style="color:#0000CC"><span style="font-weight:bold">#endif</span></span></span></td></tr>
+</table><p>After compiling this with the commands with
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> g++ -I.. -fPIC -DPIC -g -c pgcd.cpp -o pgcd.lo &amp;&amp; ln -sf pgcd.lo pgcd.o &amp;&amp; \
+   gcc -shared pgcd.lo -lc -lgiac -Wl,-soname -Wl,libpgcd.so.0 -o \
+   libpgcd.so.0.0.0 &amp;&amp; ln -sf libpgcd.so.0.0.0 libpgcd.so.0 &amp;&amp; \
+   ln -sf libpgcd.so.0.0.0 libpgcd.so</td></tr>
+</table><p>the new command can be inserted with the <span style="font-family:monospace">insmod</span> command in
+<span style="font-family:monospace">giac</span>, where <span style="font-family:monospace">insmod</span> takes the full absolute path of
+the <span style="font-family:monospace">libpgcd.so</span> file as argument.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">insmod</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/path/to/file/libpgcd.so"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>Afterwards, the <span style="font-family:monospace">monpgcd</span> command will
+be another <span style="font-family:monospace">giac</span> command. For example, input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">monpgcd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(30,36)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+6
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en800.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en802.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

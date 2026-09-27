@@ -1,0 +1,6 @@
+##
+julia
+using BinaryBuilderBase
+BinaryBuilderBase.runshell(Platform("x86_64","macos"))
+##
+./configure --host=x86_64-apple-darwin --disable-fltk --enable-libbf --disable-micropy

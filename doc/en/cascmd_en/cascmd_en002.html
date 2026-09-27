@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Command-line interface</title>
+</head>
+<body >
+<a href="cascmd_en001.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en003.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:cli" class="subsection">1.2.2  Command-line interface</h3>
+<p>In Unix and MacOS you can run <span style="font-family:monospace">giac</span><a id="hevea_default1"></a>
+from a terminal with the command <span style="font-family:monospace">icas</span>
+(the command <span style="font-family:monospace">giac</span> also works).<a id="hevea_default2"></a>
+There are two ways to use the command-line interface.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+If you just want to evaluate one expression, you can give
+<span style="font-family:monospace">icas</span> the expression (in quotes) as a command line argument.
+For example, to factor the polynomial <span style="font-style:italic">x</span><sup>2</sup>−1, you can type
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> icas 'factor(x^2-1)'</td></tr>
+</table>in a command prompt. The result will be
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> (x-1)*(x+1)</td></tr>
+</table>and you will be returned to the operating system command line.
+</li><li class="li-enumerate">If you want to evaluate several commands, you can enter an interactive
+<span style="font-family:monospace">giac</span> session by entering the command <span style="font-family:monospace">icas</span> (or
+<span style="font-family:monospace">giac</span>) by itself at a command prompt. You will then be given
+a prompt specifically for <span style="font-family:monospace">giac</span> commands, which will look like
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> 0&gt;&gt;</td></tr>
+</table>You can enter a <span style="font-family:monospace">giac</span> command at this prompt and get the result.
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> 0&gt;&gt; factor(x^2-1)
+ (x-1)*(x+1)
+ 1&gt;&gt;</td></tr>
+</table>After the result, you will be given another prompt for <span style="font-family:monospace">giac</span>
+commands. You can exit this interactive session by typing
+<span style="font-family:sans-serif">Ctrl+D</span>.<p>Alternatively, you can run <span style="font-family:monospace">icas</span><a id="hevea_default3"></a>
+in batch mode; that is, you can have <span style="font-family:monospace">icas</span> run <span style="font-family:monospace">giac</span>
+commands stored in a file. This can be done in Windows as well as Unix
+and Mac OS. To do this, simply enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"> icas filename</td></tr>
+</table><p>in a command prompt, where <span style="font-family:monospace">filename</span> is the name of the file
+containing the <span style="font-family:monospace">giac</span> commands.
+</p></li></ol>
+<hr>
+<a href="cascmd_en001.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en003.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Unassigning variables</title>
+</head>
+<body >
+<a href="cascmd_en069.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en071.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:VARS" class="subsection">3.3.9  Unassigning variables</h3>
+<p><span style="font-variant:small-caps">Xcas</span> has commands that help you keep track of what variables
+you are using and resetting them if desired. The <span style="font-family:monospace">VARS</span><a id="hevea_default98"></a>
+command will list all the variables that you are using, the
+<span style="font-family:monospace">purge</span><a id="hevea_default99"></a>,
+<span style="font-family:monospace">DelVar</span><a id="hevea_default100"></a> and
+<span style="font-family:monospace">del</span><a id="hevea_default101"></a> commands will delete
+selected variables, and the <span style="font-family:monospace">rm_a_z</span><a id="hevea_default102"></a>
+and <span style="font-family:monospace">rm_all_vars</span><a id="hevea_default103"></a>
+commands will remove classes of variables. All variables can be removed by using
+<span style="font-family:monospace">restart</span><a id="hevea_default104"></a>.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">VARS</span> takes no arguments.
+</li><li class="li-itemize"><span style="font-family:monospace">VARS()</span> returns a list of the variables that you have assigned
+values or made assumptions on.
+</li></ul><p>The <span style="font-family:monospace">purge</span> command will clear the values and assumptions you
+make on variables (see Section <a href="cascmd_en069.html#ssec%3Aabout">3.3.8</a>). For <span style="font-variant:small-caps">TI</span>
+compatibility there is also <span style="font-family:monospace">DelVar</span>, and for <span style="font-variant:small-caps">Python</span>
+compatibility there is <span style="font-family:monospace">del</span>.
+</p><ul class="itemize"><li class="li-itemize">
+The <span style="font-family:monospace">purge</span> command takes
+<span style="font-style:italic">var</span>, the name of a variable.
+</li><li class="li-itemize"><span style="font-family:monospace">purge(</span><span style="font-style:italic">var</span><span style="font-family:monospace">)</span> clears the variable <span style="font-style:italic">var</span>
+of all values and assumptions.
+</li></ul><ul class="itemize"><li class="li-itemize">
+The <span style="font-family:monospace">DelVar</span> (and <span style="font-family:monospace">del</span>) commands take one argument:
+<span style="font-style:italic">var</span>, the name of a variable.
+</li><li class="li-itemize"><span style="font-family:monospace">Delvar</span> <span style="font-style:italic">var</span> (or <span style="font-family:monospace">del</span> <span style="font-style:italic">var</span>)
+removes the values attached to <span style="font-style:italic">var</span>. (Note that
+they do not take their argument in parentheses.
+</li></ul><p>The <span style="font-family:monospace">rm_all_vars</span> and <span style="font-family:monospace">restart</span> commands clear the
+values and assumptions you have made on all variables use.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">rm_all_vars</span> takes no arguments.
+</li><li class="li-itemize"><span style="font-family:monospace">rm_all_vars()</span> removes all the values that you have
+attached to variables.
+</li></ul><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">restart</span> takes no arguments.
+</li><li class="li-itemize"><span style="font-family:monospace">restart</span> removes all the values that you have
+attached to variables. (Note that it does not use parentheses.)
+</li></ul><p>The <span style="font-family:monospace">rm_a_z</span> command clears the values and assumptions on all
+variables with single lowercase letter names.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">rm_a_z</span> takes no arguments.
+</li><li class="li-itemize"><span style="font-family:monospace">rm_a_z()</span> purges all variables whose names are one letter
+and lowercase.
+</li></ul><h4 id="sec105" class="subsubsection">Examples</h4>
+<p>
+Enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=1; </span></span><span style="font-weight:bold"><span style="color:#BF0000">anothervar</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2</span></span></td></tr>
+</table><p>then:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">VARS</span></span><span style="font-weight:bold"><span style="color:#BF0000">()</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">a</span></span><span style="color:#0000CC">,</span><span style="color:#0000CC"><span style="font-style:italic">anothervar</span></span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To clear the variable <span style="font-family:monospace">a</span>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">purge</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or (for <span style="font-variant:small-caps">TI</span> compatibility):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">DelVar</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span></td></tr>
+</table><p>or (for <span style="font-variant:small-caps">Python</span> compatibility):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">del</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span></td></tr>
+</table><p>If you have variables names <span style="font-family:monospace">A,B,a,b,myvar</span>, then after:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rm_a_z</span></span><span style="font-weight:bold"><span style="color:#BF0000">()</span></span></td></tr>
+</table><p>you will only have the variables named <span style="font-family:monospace">A,B,myvar</span>.</p>
+<hr>
+<a href="cascmd_en069.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en071.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

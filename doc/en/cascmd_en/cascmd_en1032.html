@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Normalizing audio</title>
+</head>
+<body >
+<a href="cascmd_en1031.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1033.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:normalize-audio" class="subsection">28.2.15  Normalizing audio</h3>
+<p>The <span style="font-family:monospace">normalize</span><a id="hevea_default1962"></a>
+command scales the amplitude of an audio clip.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">normalize</span> takes two mandatory arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an audio clip.
+</li><li class="li-itemize"><span style="font-style:italic">level</span>, a negative real number specifying the
+maximum audio level in decibels (setting a positive value
+would result in clipping, i.e. audio distortion).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">normalize</span> returns the copy of <span style="font-style:italic">A</span> normalized to the desired <span style="font-style:italic">level</span>.
+</li></ul><h4 id="sec2576" class="subsubsection">Example</h4>
+<p>
+To normalize a sinusoidal sound to −6 dB:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*440*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*445*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">normalize</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">createwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">]),-6):;</span></span></td></tr>
+</table><p>Indeed, since <span style="font-family:monospace">about</span> computes the level of audio:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">about</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p><span style="font-family:sans-serif"><span style="font-size:small"><span style="color:#006600">
+Bit depth: 16<br>
+ Channels: 2 (stereo)<br>
+ Sample rate: 44100<br>
+ Length: 132300 samples<br>
+ Duration: 3 seconds<br>
+ Level: -6.00048 dB
+</span></span></span></p>
+<hr>
+<a href="cascmd_en1031.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1033.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

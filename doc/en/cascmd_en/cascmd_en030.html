@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Configuring the computations</title>
+</head>
+<body >
+<a href="cascmd_en029.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en031.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:confcomp" class="subsection">2.5.7  Configuring the computations</h3>
+<p>You can configure how <span style="font-variant:small-caps">Xcas</span> computes by using the menu item
+<span style="font-family:sans-serif">Cfg</span> ▸ <span style="font-family:sans-serif">CAS configuration</span> or by clicking on
+the status line. This will open a window with the following options:
+</p><dl class="description"><dt class="dt-description">
+<span style="font-weight:bold">Prog style</span></dt><dd class="dd-description"> (default: <span style="font-variant:small-caps">Xcas</span>) —
+This has a menu from which you can choose a different language
+to program in; you can choose from <span style="font-variant:small-caps">Xcas</span>, <span style="font-family:monospace">Python
+^==**</span> (<span style="font-variant:small-caps">Python</span> syntax, except that <span style="font-family:monospace">^</span> will be the
+exponentiation operator as in <span style="font-variant:small-caps">Xcas</span> rather than the
+<span style="font-style:oblique">exclusive or</span> operator as in <span style="font-variant:small-caps">Python</span>), <span style="font-family:monospace">Python ^==xor</span>
+(<span style="font-variant:small-caps">Python</span> syntax, where <span style="font-family:monospace">^</span> is the <span style="font-style:oblique">exclusive or</span> operator),
+<span style="font-variant:small-caps">Maple</span>, <span style="font-variant:small-caps">MuPAD</span> and <span style="font-variant:small-caps">TI</span>89/92.</dd><dt class="dt-description"><span style="font-weight:bold">eval</span></dt><dd class="dd-description"> (default: 25) —
+Here you can input a positive integer specifying the maximum number
+of recursions allowed when evaluating expressions.</dd><dt class="dt-description"><span style="font-weight:bold">prog</span></dt><dd class="dd-description"> (default: 1) —
+Here you can input a positive integer
+specifying the maximum number of recursions allowed when executing
+programs.</dd><dt class="dt-description"><span style="font-weight:bold">recurs</span></dt><dd class="dd-description"> (default: 100) —
+Here you can input a positive integer
+specifying the maximum number of recursive calls.</dd><dt class="dt-description"><span style="font-weight:bold">debug</span></dt><dd class="dd-description"> (default: 0) —
+Here you can input a 0 or 1. If this is 1, then
+<span style="font-variant:small-caps">Xcas</span> will display intermediate information on the
+algorithms used by <span style="font-variant:small-caps">Xcas</span>. If this is 0, then no such
+information is displayed.</dd><dt class="dt-description"><span style="font-weight:bold">maxiter</span></dt><dd class="dd-description"><a id="enum:maxiter"></a> (default: 20) —
+Here you can input an integer specifying
+the maximum number of iterations to be used in Newton’s method.</dd><dt class="dt-description"><span style="font-weight:bold">Float format</span></dt><dd class="dd-description"><a id="enum:float"></a> (default: <span style="font-family:monospace">standard</span>) —
+This has a menu from which you can choose how to display
+decimal numbers. Your choices will be:
+<dl class="description"><dt class="dt-description">
+<span style="font-weight:bold">standard</span></dt><dd class="dd-description"> In standard notation, a number will be
+written out completely without using exponentials; for example,
+<span style="font-family:monospace">15000.12</span> will be displayed as <span style="font-family:monospace">15000.12</span>.
+</dd><dt class="dt-description"><span style="font-weight:bold">scientific</span></dt><dd class="dd-description"> In scientific notation, a number will be
+written as a number between 1 and 10 times a power of ten; for example,
+<span style="font-family:monospace">15000.12</span> will be displayed as <span style="font-family:monospace">1.500012000000e+04</span>
+(where the number after <span style="font-family:monospace">e</span> indicates the power of 10).
+</dd><dt class="dt-description"><span style="font-weight:bold">engineer</span></dt><dd class="dd-description"> In engineering notation, a number will be
+written as a number between 1 and 1000 times a power of ten, where
+the power of 10 is a multiple of three. For example,
+<span style="font-family:monospace">15000.12</span> will be displayed as <span style="font-family:monospace">15.00012e3</span>.
+</dd></dl></dd><dt class="dt-description"><span style="font-weight:bold">Digits</span></dt><dd class="dd-description"><a id="enum:digs"></a> (default: 12) —
+Here you can input a positive integer which will
+indicate the number of significant digits that <span style="font-variant:small-caps">Xcas</span> will use.</dd><dt class="dt-description"><span style="font-weight:bold">epsilon</span></dt><dd class="dd-description"><a id="enum:eps"></a> (default: 10<sup>−12</sup>) —
+Here you can input a floating point number
+which will be the value of epsilon used by <span style="font-family:monospace">epsilon2zero</span>,
+which is a function that replaces numbers with absolute value less
+than epsilon by 0 (see Section <a href="cascmd_en278.html#ssec%3Aepsilon2zero">9.4.1</a>).</dd><dt class="dt-description"><span style="font-weight:bold">proba</span></dt><dd class="dd-description"> (default: 10<sup>−15</sup>) —
+Here you can input a floating point number.
+If this number is greater than zero, then in some cases
+<span style="font-variant:small-caps">Xcas</span> can use probabilistic algorithms and give a result
+with probability of being false less than this value. (One such
+example of a probabilistic algorithm that <span style="font-variant:small-caps">Xcas</span> can use is
+the algorithm to compute the determinant of a large matrix with
+integer coefficients.)</dd><dt class="dt-description"><span style="font-weight:bold">approx</span></dt><dd class="dd-description"> (default: unchecked) —
+If checked, then exact
+numbers such as √<span style="text-decoration:overline">2</span> will be given a floating point approximation,
+otherwise exact values will be used when possible.
+(See Section <a href="cascmd_en027.html#ssec%3Aapprox">2.5.4</a>.)</dd><dt class="dt-description"><span style="font-weight:bold">autosimplify</span></dt><dd class="dd-description"> (default: 1) —
+Here you can input 0, 1 or 2. A value of 0
+means no automatic simplification will be done, a value of 1 means
+grouped simplification will be automatic. A value of 2 means that
+all simplification will be automatic.</dd><dt class="dt-description"><span style="font-weight:bold">threads</span></dt><dd class="dd-description"> (default: 1) —
+Here you can enter a positive integer to
+indicate the number of threads (for a possible future threaded
+version).</dd><dt class="dt-description"><span style="font-weight:bold">Integer basis</span></dt><dd class="dd-description"><a id="enum:base"></a> (default: 10) —
+This has a menu from which you can choose an integer base
+to work in; your choices will be 8, 10 and 16.</dd><dt class="dt-description"><span style="font-weight:bold">radian</span></dt><dd class="dd-description"> (default: checked) —
+If checked, then angles will be measured in radians, otherwise they
+will be measured in degrees.</dd><dt class="dt-description"><span style="font-weight:bold">Complex</span></dt><dd class="dd-description"> (default: unchecked) —
+If checked, then <span style="font-variant:small-caps">Xcas</span> will work in complex mode, meaning, for example, that
+polynomials will be factored with complex numbers if necessary.</dd><dt class="dt-description"><span style="font-weight:bold">Cmplx_var</span></dt><dd class="dd-description"> (default: unchecked) —
+If checked, then variables will by default be assumed to be complex.
+For example, the expression <span style="font-family:monospace">re(z)</span> won’t be simplified, it will return
+<span style="font-family:monospace">re(z)</span>. If unchecked, then variables by default
+will be assumed to be real, and so <span style="font-family:monospace">re(z)</span> will be
+simplified to <span style="font-family:monospace">z</span>.</dd><dt class="dt-description"><span style="font-weight:bold">increasing power</span></dt><dd class="dd-description"> (default: unchecked) —
+If checked, then polynomials will be written out in increasing powers of the
+variable, otherwise they will be written in decreasing powers.</dd><dt class="dt-description"><span style="font-weight:bold">All_trig_sol</span></dt><dd class="dd-description"><a id="enum:trig"></a> (default: unchecked) —
+If checked, then <span style="font-variant:small-caps">Xcas</span> will give the complete solutions of
+trigonometric equations. For example, the solution of cos<span style="font-style:italic">x</span>=0
+will be given as [(2<span style="font-style:italic">n</span>_0π+π)/2], where <span style="font-style:italic">n</span><sub>0</sub> can be any
+integer. If unchecked, then only the primary solutions
+of trigonometric equations will be given. For example, the
+solutions of cos(<span style="font-style:italic">x</span>)=0 will be the pair [−π/2,π/2].</dd><dt class="dt-description"><span style="font-weight:bold">Sqrt</span></dt><dd class="dd-description"> (default: checked) —
+If checked, then the <span style="font-family:monospace">factor</span> command will factor second
+degree polynomials, even when the roots are not in the field determined by
+the coefficients. For example:
+
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">factor</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2-3)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">−</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎠</span></td><td class="dcell"><span style="color:#0000CC">⎛<br>
+⎜<br>
+⎝</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">+</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎞<br>
+⎟<br>
+⎠</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+If unchecked, then the same command line returns <span style="font-style:italic">x</span><sup>2</sup>−3.
+</dd></dl><p>
+This page also has buttons for applying the settings, saving the
+settings for future sessions, canceling any new settings, and restoring
+the default settings.</p>
+<hr>
+<a href="cascmd_en029.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en031.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

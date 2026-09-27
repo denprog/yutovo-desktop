@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Creating audio clips</title>
+</head>
+<body >
+<a href="cascmd_en1017.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1019.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:createwav" class="subsection">28.2.1  Creating audio clips</h3>
+<p>The <span style="font-family:monospace">createwav</span><a id="hevea_default1939"></a>
+command creates an audio object with specified parameters.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">createwav</span> takes its arguments as
+<span style="font-family:monospace">key=</span><span style="font-style:italic">value</span> pairs, in no particular order. The
+following arguments are all optional:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">size=</span><span style="font-style:italic">n</span> resp. <span style="font-family:monospace">duration=</span><span style="font-style:italic">T</span>, where <span style="font-style:italic">n</span>
+resp. <span style="font-style:italic">T</span> is the total number of samples resp. the length in seconds.
+</li><li class="li-itemize"><span style="font-family:monospace">bit_depth=</span><span style="font-style:italic">b</span>, where <span style="font-style:italic">b</span> is the number of bits
+reserved for each sample value and may be 8, 16 or 24 (by default 16).
+</li><li class="li-itemize"><span style="font-family:monospace">samplerate=</span><span style="font-style:italic">r</span>, where <span style="font-style:italic">r</span> is the number of samples
+per second (by default 44100).
+</li><li class="li-itemize"><span style="font-family:monospace">channels=</span><span style="font-style:italic">c</span> where <span style="font-style:italic">c</span> is the number of channels (by
+default 1).
+</li><li class="li-itemize"><span style="font-style:italic">D</span> or <span style="font-family:monospace">channel_data=</span><span style="font-style:italic">D</span>, where <span style="font-style:italic">D</span> is a list or a
+matrix.<p>If <span style="font-style:italic">D</span> is a matrix, it should contain the <span style="font-style:italic">k</span>th sample in the
+<span style="font-style:italic">j</span>th channel at position (<span style="font-style:italic">j</span>,<span style="font-style:italic">k</span>). The value of each sample must be
+a real number in range [−1.0,1.0]. Any value outside this interval
+is clamped to it (this effect is called <em>clipping</em> and
+it will distort the signal).</p><p>If <span style="font-style:italic">D</span> is a single list, it is copied across channels.</p><p><span style="font-style:italic">D</span> may be truncated or padded with zeros to match the appropriate
+number of samples or seconds.
+</p></li><li class="li-itemize"><span style="font-family:monospace">normalize=</span><span style="font-style:italic">db</span>, where <span style="font-style:italic">db</span>≤ 0 is a real number
+representing the amplitude peak level in dB FS (decibel “full
+scale”) units. If this option is given, audio data is normalized to
+the specified level prior to conversion. This can be used to avoid
+clipping. By default, the resulting audio is normalized to the
+−1 <span style="font-style:italic">dB</span> level.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">createwav(</span>⟨<span style="font-style:italic">keys=values</span>⟩<span style="font-family:monospace">)</span> returns an
+audio object with the requested parameters.
+</li><li class="li-itemize">If no sound data is provided, the resulting audio will be silent
+(all samples will be initialized to 0).
+</li></ul><h4 id="sec2548" class="subsubsection">Examples</h4>
+<p>
+(See Section <a href="cascmd_en1031.html#ssec%3Aplaysnd">28.2.14</a> for a description of <span style="font-family:monospace">playsnd</span> and
+Section <a href="cascmd_en1024.html#ssec%3Asoundsec">28.2.7</a> for a description of <span style="font-family:monospace">soundsec</span>.)
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">playsnd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">createwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*440*</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">=48000))</span></span></td></tr>
+</table><p>Output:
+Two seconds of the 440 Hz sine wave at rate 48000.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">soundsec</span></span><span style="font-weight:bold"><span style="color:#BF0000">(3):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*440*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">*445*</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">createwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">R</span></span><span style="font-weight:bold"><span style="color:#BF0000">]):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">playsnd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">s</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>Output:
+Three seconds of a vibrato effect on a sine wave (stereo).</p>
+<hr>
+<a href="cascmd_en1017.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1019.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

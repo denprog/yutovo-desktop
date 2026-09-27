@@ -1,0 +1,15 @@
+A:=point(-1,0);
+B:=point(1,0);
+assume(a=[1.1,-5,5,0.1]);
+assume(b=[1.4,-5,5,0.1]);
+I1:=point(-1,a);
+I2:=point(1,b);
+G1:=circle(I1,a);
+G2:=circle(I2,b);
+N,M:=inter(G1,G2);
+C:=reflection(line(A,I1),M);
+D:=reflection(line(B,I2),M);
+E:=single_inter( line(A,C),line(B,D));
+P:=single_inter( line(A,N),line(C,D));
+Q:=single_inter( line(B,N),line(C,D));
+normal( distance2(P,E)-distance2(Q,E));

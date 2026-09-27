@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Representation by hardware floats</title>
+</head>
+<body >
+<a href="cascmd_en744.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en746.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1926" class="subsection">23.1.2  Representation by hardware floats</h3>
+<p>A real is represented by a floating number <span style="font-style:italic">d</span>, that is
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">d</span>=2<sup>α</sup> (1+<span style="font-style:italic">m</span>),    0&lt;<span style="font-style:italic">m</span>&lt;1,   −2<sup>10</sup> &lt; α &lt; 2<sup>10</sup>.
+</td></tr>
+</table><p>
+If α&gt;1−2<sup>10</sup>, then <span style="font-style:italic">m</span> ≥ 1/2, and <span style="font-style:italic">d</span> is a normalized floating
+point number, otherwise <span style="font-style:italic">d</span> is denormalized (α=1−2<sup>10</sup>). The
+special exponent 2<sup>10</sup> is used to represent plus or minus infinity
+and NaN (Not a Number). A hardware float is made of 64 bits:
+</p><ul class="itemize"><li class="li-itemize">
+the first bit is for the sign of <span style="font-style:italic">d</span> (0 for + and 1 for −),
+</li><li class="li-itemize">the 11 following bits represents the exponent, more precisely
+if α denotes the integer given by the 11 bits,
+the exponent is α+2<sup>10</sup>−1,
+</li><li class="li-itemize">the 52 last bits codes the mantissa <span style="font-style:italic">m</span>, more precisely if
+<span style="font-style:italic">M</span> denotes the integer given by the 52 bits, then
+<span style="font-style:italic">m</span>=1/2+<span style="font-style:italic">M</span>/2<sup>53</sup> for normalized floats and <span style="font-style:italic">m</span>=<span style="font-style:italic">M</span>/2<sup>53</sup> for
+denormalized floats.
+</li></ul><p>
+Examples of representations of the exponent:
+</p><ul class="itemize"><li class="li-itemize">
+α=0 is coded by 011 1111 1111
+</li><li class="li-itemize">α=1 is coded by 100 0000 0000
+</li><li class="li-itemize">α=4 is coded by 100 0000 0011
+</li><li class="li-itemize">α=5 is coded by 100 0000 0100
+</li><li class="li-itemize">α=−1 is coded by 011 1111 1110
+</li><li class="li-itemize">α=−4 is coded by 011 1111 1011
+</li><li class="li-itemize">α=−5 is coded by 011 1111 1010
+</li><li class="li-itemize">α=2<sup>10</sup> is coded by 111 1111 1111
+</li><li class="li-itemize">α=2<sup>−10</sup>−1 is coded by 000 0000 000
+</li></ul><h5 id="sec1927" class="paragraph">Remark.</h5>
+<p> 2<sup>−52</sup>=0.2220446049250313<span style="font-style:italic">e</span>−15.</p><h4 id="sec1928" class="subsubsection">Examples of representations of normalized floats</h4>
+<h5 id="sec1929" class="paragraph">Representation of 3.1.</h5>
+<p>
+We have
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  3.1</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">=2·</td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell">1+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>5</sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>6</sup></td></tr>
+</table></td><td class="dcell">+
+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>9</sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>10</sup></td></tr>
+</table></td><td class="dcell">+⋯</td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">=2·</td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell">1+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">∞</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=1</td></tr>
+</table></td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4<span style="font-style:italic">k</span>+1</sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4<span style="font-style:italic">k</span>+2</sup></td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">,
+</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+hence α=1 and
+<span style="font-style:italic">m</span>=1/2+∑<sub><span style="font-style:italic">k</span>=1</sub><sup>∞</sup>(1/2<sup>4<span style="font-style:italic">k</span>+1</sup>+1/2<sup>4<span style="font-style:italic">k</span>+2</sup>).
+Hence the hexadecimal and binary representation of 3.1 is:
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <code>40 (01000000),  8 (00001000), cc (11001100), cc (11001100),</code></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <code>cc (11001100), cc (11001100), cc (11001100), cd (11001101),</code>
+</td></tr>
+</table>
+</div><p>
+the last octet is 1101, the last bit is 1, because the
+following digit is 1 (upper rounding).</p>
+<h5 id="sec1930" class="paragraph">Representation of 3.0.</h5>
+<p>
+We have 3=2· (1+1/2).
+Hence the hexadecimal and binary representation of 3 is:
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <code>40 (01000000), 8 (00001000), 0 (00000000), 0 (00000000),</code></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <code>0  (00000000), 0 (00000000), 0 (00000000), 0 (00000000)</code>
+</td></tr>
+</table>
+</div>
+<h5 id="sec1931" class="paragraph">The difference between representations of 3.1−3.0 and 0.1.</h5>
+<p>
+For the representation of 0.1:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" >  0.1</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">=2<sup>−4</sup>·</td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell">1+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4</sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>5</sup></td></tr>
+</table></td><td class="dcell">+
+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>8</sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>9</sup></td></tr>
+</table></td><td class="dcell">+⋯</td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+<tr><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">=2<sup>−4</sup>·</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">∞</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=0</td></tr>
+</table></td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4<span style="font-style:italic">k</span></sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4<span style="font-style:italic">k</span>+1</sup></td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">,
+</td></tr>
+</table></td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+hence α=1 and
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">m</span>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">∞</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=1</td></tr>
+</table></td><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4<span style="font-style:italic">k</span></sup></td></tr>
+</table></td><td class="dcell">+</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<sup>4<span style="font-style:italic">k</span>+1</sup></td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎠</td><td class="dcell">,
+</td></tr>
+</table><p>
+therefore the representation of 0.1 is
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <code>3f (00111111), b9 (10111001), 99 (10011001), 99 (10011001),</code></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <code>99 (10011001), 99 (10011001), 99 (10011001), 9a (10011010),</code>
+</td></tr>
+</table>
+</div><p>
+the last octet is 1010, indeed the 2 last bits
+01 became 10 because the following digit is 1 (upper rounding).</p><p>For the representation of <span style="font-style:italic">a</span>=3.1−3:
+computing <span style="font-style:italic">a</span> is done by adjusting exponents (here nothing
+to do), then subtracting the mantissa and adjusting the
+exponent of the result to have a normalized float.
+The exponent is α=−4 (that corresponds at 2·2<sup>−5</sup>)
+and the bits corresponding to the mantissa begin at 1/2=2·2<sup>−6</sup>:
+the bits of the mantissa are shifted to the left 5 positions
+and you get:
+</p><div class="center">
+<table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" > <code>3f (00111111), b9 (10111001), 99 (10011001), 99 (10011001),</code></td></tr>
+<tr><td style="text-align:left;white-space:nowrap" > <code>99 (10011001), 99 (10011001), 99 (10011001), a0 (10100000),</code>
+</td></tr>
+</table>
+</div><p>
+Therefore, <span style="font-style:italic">a</span>&gt;0.1 and <span style="font-style:italic">a</span>−0.1=1/2<sup>50</sup>+1/2<sup>51</sup>
+(since 100000−11010=110).</p><p>This is the reason why:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">floor</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1/(3.1-3))</span></span></td></tr>
+</table><p>returns <span style="font-family:monospace">9</span> and not <span style="font-family:monospace">10</span> when <span style="font-family:monospace">Digits:=14</span>.</p>
+<hr>
+<a href="cascmd_en744.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en746.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

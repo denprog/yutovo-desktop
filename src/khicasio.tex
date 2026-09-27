@@ -1,0 +1,2607 @@
+% Merci a Yannick Chevallier pour la version mathjax-enabled
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[francais]{babel}
+\usepackage{times}
+\usepackage{xspace}
+\usepackage{makeidx}
+\usepackage{ifpdf}
+\ifpdf
+ \usepackage[colorlinks,pdftex]{hyperref}
+\else
+ \usepackage[ps2pdf,breaklinks=true,colorlinks=true,linkcolor=red,citecolor=green]{hyperref}
+\fi
+\newcommand{\bs}{\symbol{92}}
+\newtheorem{thm}{Th\'eor\`eme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{defn}[thm]{D\'efinition}
+\makeindex
+
+% \renewcommand{\cuttingunit}{subsection} (add HEVEA after % for hacha)
+\input{giacfr.tex}
+\ifhevea
+\(
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\tr}{\mbox{tr\,}}
+\)
+\else
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\tr}{\mbox{tr\,}}
+\fi
+%HEVEA\htmlfoot{Retour \`a la page principale de \ahref{http://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/giac_fr.html}{Giac/Xcas}.}
+\giacmathjax
+%HEVEA\renewcommand{\footertext}{}
+
+\begin{document}
+\title{$\chi$CAS: Xcas sur calculatrices Casio Graph 90, 35+eii, Math+}
+\author{Bernard.Parisse@univ-grenoble-alpes.fr}
+\date{2019, 2022, 2025}
+
+\begin{giacjshere}
+
+\maketitle
+
+%% {\bf Demandez à Casio de conserver les addins sur les Graph Math+}:
+%% \ahref{mailto:education-france@casio.fr?subject=KhiCAS sur Graph Math&body=Bonjour\%0d\%0aEst\%2dil possible de rendre les Graph Math\%2b compatibles avec KhiCAS\%3f\%0d\%0aMerci d'avance\%21\%0d\%0a}{envoyez un email maintenant} 
+%% en personnalisant le contenu du message si possible.\\ \\
+%% Casio lance sur le marché à la rentrée 2024 une calculatrice
+%% qui remplace la Graph 90. {\bf Mais la Graph Math+ ne permet actuellement pas
+%% d'exécuter des addins, ce qui la rend incompatible avec KhiCAS}.
+%% Casio a annoncé une version 2 du logiciel pour 2025, il n'y a aucun
+%% obstacle technique à réactiver les addins, c'est vraiment une
+%% question ``politique''. Mes demandes à Casio de réactiver les addins
+%% n'ont pas abouti. Si vous voulez défendre l'accès de tous au
+%% calcul formel sur calculatrice, 
+%% et pas seulement aux élèves qui peuvent se payer
+%% une calculatrice haut de gamme deux fois plus chère, faites-le savoir
+%% à Casio {\bf et déconseillez l'achat de la Graph Math+ pour le moment.}
+%% En attendant, vous pouvez acheter
+%% ou/et conseiller la Graph 90 ou la Graph 35eii chez Casio, ou
+%% passer chez Numworks si la facilité d'utilisation est un critère primordial, 
+%% tous ces modèles permettent d'utiliser KhiCAS. 
+%% C'est à mon avis la meilleure stratégie pour faire bouger les positions
+%% chez Casio, qui va forcément regarder les ventes de Math+ à cette 
+%% rentrée 2024. 
+
+
+\tableofcontents
+
+%\printindex
+
+\begin{abstract}
+Ce document explique comment prendre en main et utiliser efficacement
+sur calculatrices Casio Graph 90+e, 35+eii ou Math+
+le syst\`eme de calcul formel et géométrie analytique
+$\chi$CAS, une version adapt\'ee
+du \ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/giac_fr.html}{logiciel Xcas} pour ces calculatrices.
+
+Ce document est interactif, vous pouvez modifier les commande
+et voir le r\'esultat de l'ex\'ecution des commandes
+propos\'ees en exemple en cliquant sur le bouton \framebox{ok} (ou en
+validant avec la touche Entr\'ee).
+\end{abstract}
+
+\section{Introduction et installation} \label{sec:install}
+$\chi$CAS est une version adapt\'ee du
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/giac_fr.html}{logiciel Xcas} 
+pour calculatrices, ici de la marque Casio. 
+KhiCAS est utilisable en mode examen sur les Graph 90 et 35eii.
+%% Si vous pensez comme moi qu'il s'agit d'une aberration, faites-le
+%% savoir \`a Casio France, plus il y aura de profs qui le demandent,
+%% plus il y aura de chances que Casio mette en place un m\'ecanisme
+%% pour rendre $\chi$CAS compatible avec le mode examen.
+
+%% Sur les Casio Graph 90 couleur, il existe deux versions, une version
+%% light en un seul fichier, et une version plus compl\`ete en 2
+%% fichiers. Cette version contient plus de commandes (par exemple des commandes de
+%% g\'eom\'etrie), un moteur d'affichage 3d, un tableur formel 
+%% et un interpr\'eteur MicroPython un peu plus
+%% r\'ecent que celui de Casio, ainsi que des modules plus complets et
+%% nombreux que ceux du constructeur. 
+%% Ces commandes suppl\'ementaires sont d\'ecrites dans la section \ref{sec:2}.
+
+{\bf Sur les Casio Graph Math+, le clavier a été notablement modifié}, il n'y
+a plus de touches F1 à F6 et les 6 menus en bas de l'écran
+sont remplacés dans l'OS par 2 onglets de navigation. 
+Notez que l'interface de $\chi$CAS ne suit pas cette nouvelle logique,
+elle conserve la logique des Casio 90/35. Les touches en correspondance 
+des légendes de menu permettent de les activer. La touche correspondant
+à F4 étant une touche de déplacement sur la Math+, elle n'a plus de 
+légende en menu. 
+L'action correspondante à F4 sur la 90, qui est l'accès au menu 
+de toutes les commandes, s'effectue avec la touche Tools sur la Math+.
+Il n'y a plus de touche MENU sur la Math+, c'est la touche Home
+qui joue ce rôle, à la position de la touche F2 sur la 90.
+Ainsi pour quitter $\chi$CAS sur la Math+, on tape shift OFF ou on 
+tape sur Home et on valide l'entrée de menu \verb|quit| qui apparait.
+Il peut être nécessaire de lancer une application Casio avant de relancer
+un addin, sinon on risque un crash, sauf si KhiCAS est le seul addin présent.
+
+
+\subsection{Compatibilité mode examen Graph 35eii et 90e.}
+{\bf KhiCAS est conforme à la réglementation du bac en France,
+\ahref{https://www.education.gouv.fr/bo/15/Hebdo42/MENS1523092C.htm}{circulaire 2015-178 du 1er octobre 2015}} et
+\ahref{http://www-fourier.ujf-grenoble.fr/\home{parisse}/irem/Calculatrices_examens_specifications_techniques.pdf}{cahier des charges},
+au même titre que les calculatrices CAS des constructeurs 
+(HP Prime, TI Nspire CX/CX2, Casio Classpad), il est donc utilisable
+aux épreuves de terminale de maths du bac. 
+Mais attention, certains autres
+concours ou examens interdisent l'utilisation
+de calculatrices formelles. Il est de la responsabilit\'e de l'utilisateur
+de v\'erifier que les calculatrices formelles sont autoris\'ees
+avant d'utiliser $\chi$CAS dans un autre examen ou concours. Les auteurs
+ne sauraient \^etre tenus pour responsables en cas d'utilisation
+non autoris\'ee.
+
+Pour utiliser KhiCAS en mode examen, il est nécessaire
+d'exécuter (une fois pour toutes) un programme de mise en compatibilité,
+utilisable sur les OS 3.80.1 (Graph 90, fonctionne aussi sur OS 3.60) 
+ou 3.70 (Graph 35eii, fonctionne aussi sur 3.40). 
+Ce programme sécurisé a été écrit par Sébastien Michelland de Planète Casio 
+et est disponible depuis le 23 mai 2025. Il n'est pas encore disponible
+pour les Graph Math+.
+
+Vérifiez votre version d'OS depuis MENU, Système, F5. 
+
+{\bf Si vous n'avez pas la bonne version},
+téléchargez l'installeur de la version compatible de l'OS
+\begin{itemize}
+\item 
+OS 3.80.1 (Graph 90), installeur pour
+\ahref{https://tiplanet.org/forum/archives_voir.php?id=4173827}{Windows},
+\ahref{https://tiplanet.org/forum/archives_voir.php?id=3338352}{Mac}
+ou \ahref{https://tiplanet.org/forum/archives_list.php?order=hit&cat=OS+cprizm&multi_chaine_search=3.60}{OS 3.60, Graph 90}.
+%\ahref{https://tiplanet.org/forum/archives_voir.php?id=4173827}{Windows},
+%\ahref{https://tiplanet.org/forum/archives_voir.php?id=3338352}{Mac}.
+\item
+\ahref{https://tiplanet.org/forum/archives_voir.php?id=3471077}{OS 3.70 (Graph 35eii) Windows} ou
+\ahref{https://tiplanet.org/forum/archives_voir.php?id=2648557}{OS 3.40 (Graph 35eii) Windows}
+\end{itemize}
+Lancez le programme de mise à jour sur votre ordinateur, sur la calculatrice,
+toujours depuis Système, il faut taper F6 puis F5 (OS Update).
+
+Si le programme d'installation refuse de se lancer parce que
+vous avez une version trop récente de l'OS, vérifiez qu'il s'agit bien
+de l'installeur de l'OS 3.80.1 pour la Graph 90 ou 3.70 sur la 35eii.
+Si le problème d'installation persiste, rendez-vous section
+\ref{sec:oserror}.
+
+{\bf Lorsque votre calculatrice a la bonne version de l'OS}, 
+récupérez le logiciel de mise en
+compatibilité de KhiCAS en mode examen pour Windows~:
+\begin{itemize}
+\item \ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/excas90.zip}{Graph 90} 
+\item \ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/excas35.zip}{Graph 35eii}
+\end{itemize}
+Sur la calculatrice, tapez MENU Système F6 F5 (OS update),
+branchez la calculatrice à un PC sous Windows et
+lancez le programme de mise en compatibilité inclus
+\verb|tai-installer-*| (trusted addins installer)
+et suivez les instructions sur la calculatrice. 
+
+Vous pouvez maintenant installer KhiCAS. Branchez la calculatrice
+sur un ordinateur, sélectionnez F1 sur la calculatrice, vous devez
+voir les fichiers de la calculatrice vue comme une clef USB
+sur votre gestionnaire de fichiers
+\begin{itemize}
+\item Graph 90e: copiez les fichiers {\tt khicasfr.g3a}, {\tt cas90a.mzs}
+et {\tt cas90b.mzs} sur la calculatrice-clef USB
+\item Graph 35eii: copiez le fichier {\tt excas.g1a} sur la
+calculatrice-clef USB.
+\end{itemize}
+
+Il est conseillé de tester que tout s'est bien passé.
+\begin{itemize}
+\item Vérifiez que Khicas apparait dans le menu principal
+Casio et se lance normalement. Tapez sur MENU pour revenir au menu principal
+Casio.
+\item \'Eteignez la calculatrice. Puis
+appuyez sur les touches M et E
+en même temps que la touche ON pour lancer le mode examen.
+\item Vérifiez que vous pouvez lancer KhiCAS.
+{\bf Attention, le lancement de KhiCAS en mode examen depuis le MENU 
+principal Casio prend environ 6 secondes sur une Graph 90e et 
+12 secondes sur une 35eii}.
+Ceci vient de l'authentification cryptographique
+de l'addin KhiCAS sur les deux modèles et des fichiers cas90*.mzs sur la 90. 
+(Si vous appuyez sur la touche MENU depuis KhiCAS sans ouvrir une
+autre application, vous pouvez réouvrir KhiCAS sans attendre ce
+délai en appuyant à nouveau sur la touche MENU).
+\item Quittez le mode examen en branchant la calculatrice sur un PC,
+tapez F1 sur la calculatrice,
+effacez un fichier inutile ou créez un fichier sur la calculatrice-clef USB.
+\end{itemize}
+
+Vous pouvez passer à la section \ref{sec:1erpas} Premier pas pour
+apprendre à utiliser l'interface du shell, stocker des valeurs
+dans des variables, saisir efficacement un nom de commande.
+Si vous êtes en terminale, vous pouvez ensuite consulter
+la section \ref{sec:bac25}
+qui donne des indications sur l'utilisation de KhiCAS
+pour vérifier ou effectuer les calculs d'un sujet de bac 2025. 
+
+\subsection{Installation sur calculatrices (hors mode examen)} 
+Pour installer ou mettre \`a jour $\chi$CAS
+r\'ecup\'erez sur votre ordinateur 
+\begin{itemize}
+\item Sur les Graph 90, la version plus compl\`ete de $\chi$CAS
+en trois fichiers~: le programme de lancement
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/khicasfr.g3a}{khicasfr.g3a}
+et les deux fichiers compressés
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/cas90a.mzs}{cas90a.mzs}
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/cas90b.mzs}{cas90b.mzs}
+%% \\
+%% ou si la version courte (sans g\'eom\'etrie, ...)
+%% vous suffit, le fichier
+%% \ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/khicas.g3a}{khicas.g3a}
+\item Sur Graph 35eii,
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/excas.g1a}{excas.g1a}
+\item Sur les Graph Math+, commencez par installer le
+\ahref{https://www.planet-casio.com/storage/forums/mpm-installer-1.0bw-199064.zip}{MPM (par Lephe)}
+(plus d'infos \ahref{https://www.planet-casio.com/Fr/forums/topic18534-1-mpm-mod-add-ins-math.html}{ici}). 
+Puis récupérez les fichiers
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/mpm/mpm.bin}{mpm.bin} (attention, il faut impérativement installer ce fichier
+en remplacement de celui proposé par Lephe),
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/mpm/khicasmp.g3a}{khicasmp.g3a},
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/mpm/mpcasa.mzs}{mpcasa.mpz} et
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/mpm/mpcasb.mzs}{mpcasb.mpz}.
+\end{itemize}
+
+Branchez le cable USB de la calculatrice, tapez F1 pour que la
+calculatrice soit consid\'er\'ee comme une clef USB et copiez le ou
+les fichiers 
+\begin{itemize}
+\item Graph90: \verb|khicasfr.g3a|, \verb|cas90a.mzs| 
+et \verb|cas90b.mzs| 
+\item Graph35eii: \verb|excas.g1a| 
+\item Graph Math+: \verb|mpm.bin|, \verb|khicasmp.g3a|,
+\verb|mpcasa.mpz| et \verb|mpcasb.mpz|
+\end{itemize}
+sur la ``clef''-calculatrice puis suivre
+la manipulation de votre ordinateur qui permet de d\'ebrancher
+une clef USB en toute s\'ecurit\'e. Le transfert s'effectue en 
+moins d'une minute. 
+
+%% {\bf Attention}, plusieurs utilisateurs ont fait part de
+%% crashes d'addins avec la version 3.80.0 de l'OS Casio
+%% (03.80.22{\bf 0}2 sur Graph 90+E, 03.80.02{\bf 0}2 sur fx-CG50, 
+%% 03.80.12{\bf 0}2 sur fx-CG50AU).
+%% Si vous avez des problèmes, essayez d'installer la version 3.80.1
+%% \ahref{https://tiplanet.org/forum/archives_voir.php?id=4173827}{Windows},
+%% \ahref{https://tiplanet.org/forum/archives_voir.php?id=3338352}{Mac}.
+%% Si vous rencontrez toujours des problèmes,
+%% il est possible de revenir à la
+%% \ahref{https://tiplanet.org/forum/archives_list.php?cat=OS+cprizm}{version 3.70}.
+
+
+\subsection{\'Emulateur}
+Si vous testez sur l'\'emulateur
+(\ahref{https://tiplanet.org/forum/archives_voir.php?id=1209556}{PC},
+\ahref{https://tiplanet.org/forum/archives_voir.php?id=1352720}{Mac}), 
+depuis le menu principal de la calculatrice (MENU), allez \`a M\'emoire,
+puis F3 (Import/Export), puis F1 (Import files),
+puis s\'electionnez le fichier \`a
+transf\'erez depuis le disque dur de votre ordinateur, tapez
+F1 pour sauvegarder sur la racine de la calculatrice, confirmez par F1 
+si vous effectuez une mise \`a jour. Le transfert est relativement
+long (plusieurs minutes) sur l'\'emulateur. 
+Une fois le transfert termin\'e, une nouvelle icone (avec le flocon
+de Xcas ou le mot Xcas) apparait dans le menu principal de la
+calculatrice.
+
+Attention, pour installer la version
+compl\`ete en 2 fichiers sur l'\'emulateur, il faut transf\'erer
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/khicas90.882}{khicas90.882}
+et 
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/emucas90.g3a}{emucas90.g3a}.
+
+{\bf Remarques}:
+\begin{itemize}
+\item $\chi$CAS n'est pas compatible avec le simulateur distribu\'e
+par Casio sur clef USB. Il faut bien installer l'\'emulateur, avec une
+licence d'essai de 90 jours, les enseignants peuvent obtenir gratuitement
+une licence, la demander \`a Casio Education France.
+\item la version Windows de l'\'emulateur Casio tourne sous Linux avec
+  wine, en utilisant la commande suivante apr\`es installation~:
+\verb|wine "C:\Program Files (x86)\CASIO\fx-CG Manager PLUS Subscription for fx-CG50series\fx-CG_Manager_PLUS_Subscription_for_fx-CG50series.exe" /n"fx-CG Manager PLUS Subscription for fx-CG50series" &|
+\end{itemize}
+
+\section{Premiers pas} \label{sec:1erpas}
+Depuis le menu principal, d\'eplacez le curseur jusqu'\`a l'icone de Xcas,
+puis tapez EXE. Lors de la premi\`ere ex\'ecution, on vous demandera de choisir
+entre syntaxe Xcas et Python. S\'electionnez l'un des deux avec
+F1 et F6. Pour changer de syntaxe plus tard, utilisez shift-SETUP ou
+le menu F6.
+
+%% N.B.~: si vous utilisez la version longue de Xcas en 2 fichiers et que
+%% le message ``Unable to load ram part'' apparait, il faut mettre \`a
+%% jour l'OS de votre calculatrice (vers la version 3.30 ou plus).
+
+Vous devez alors voir un historique de calculs (shell) vide 
+dans lequel vous pouvez
+taper la plupart des commandes de calcul formel de Xcas.
+
+Par exemple, tapez 
+\verb|1/2+1/6|
+puis EXE, vous devriez voir le r\'esultat \verb|2/3| s'afficher
+sur la ligne du dessous.
+
+Vous pouvez recopier dans la ligne de commande
+une commande de l'historique en utilisant le
+curseur vers le haut ou vers le bas puis EXE, puis vous pouvez
+modifier la commande et l'ex\'ecuter. Par exemple, taper sur la
+touche curseur vers le haut, EXE et remplacez \verb|1/6| par \verb|1/3|.
+
+{\bf Remarques~:}
+\begin{itemize}
+\item pour saisir un seul caract\`ere alphab\'etique en majuscule,
+taper ALPHA en rouge puis la lettre. Pour saisir plusieurs caract\`eres
+majuscules, taper SHIFT ALPHA. Pour saisir plusieurs caract\`eres en
+minuscules, taper F5. F5 permet ensuite de basculer entre majuscules
+et minuscules.
+\item si vous ne voyez pas un caractère sur le clavier de
+la calculatrice, vous pouvez sélectionner ce caractère depuis
+la table de caractères en tapant les touches shift INS.
+\item Lors de la premi\`ere utilisation, vous pouvez mettre \`a l'heure
+l'horloge de la calculatrice en tapant la
+commande \verb|hh,mm=>,|.
+Pour saisir \verb|=>|, tapez sur la touche $\rightarrow$
+située au-dessus de la touche AC/ON.\\
+Par exemple \verb|13,17=>,| pour 13h17.
+L'affichage de l'heure est utile en examen, car vous n'avez 
+alors pas accès à un smartphone ou à une montre connectée.
+\end{itemize}
+
+Vous pouvez utiliser le r\'esultat de la derni\`ere commande
+avec la touche \verb|Ans| de la calculatrice (taper sur shift 
+puis \verb|(-)|),
+mais il vaut en g\'en\'eral mieux d\'efinir une variable comme r\'esultat 
+d'une commande si on souhaite la r\'eutiliser. Pour cela, on
+utilise une des deux instructions d'affectation~:
+\begin{itemize}
+\item l'affectation vers la droite \verb|=>| s'obtient avec la 
+touche $\rightarrow$ de la 
+calculatricen (au-dessus de ON), 
+par exemple \verb|2=>A| met 2 dans la variable A.
+Vous pouvez ensuite utiliser \verb|A| dans un calcul, sa
+valeur sera remplac\'ee par 2.
+\item l'affectation vers la gauche se fait en tapant sur la touche
+shift-$\rightarrow$.
+Cela correspond \`a l'affectation en
+Python (\verb|=|) ou en Xcas (\verb|:=|, \verb|=|
+est accept\'e s'il n'y a pas de risque de confusion).
+Par exemple \verb|A:=2| fait la m\^eme chose que \verb|2=>A|.
+\end{itemize}
+%Si vous commencez une ligne de commande en tapant la touche $\rightarrow$,
+%le syst\`eme ins\'ere automatiquement \verb|Ans=>| ce qui permet 
+%facilement de donner un nom au r\'esultat d'une commande.
+
+Pour vous aider \`a saisir les commandes Xcas les plus utiles,
+$\chi$CAS dispose d'un catalogue d'une centaine de commandes
+par thèmes,
+avec une courte description et le plus souvent un exemple 
+d'ex\'ecution facile \`a recopier. 
+Appuyez sur la touche F4 (cmds), choisissez une cat\'egorie avec le curseur, 
+par exemple \verb|Algebre|, tapez EXE,
+puis choisissez une commande avec le curseur, par exemple \verb|factor|.
+La touche F6 vous affiche une courte description de la commande,
+en g\'en\'eral avec un exemple. En tapant sur F2, vous recopiez
+l'exemple en ligne de commande. S'il y a un deuxi\`eme exemple,
+on le recopie avec F3. Vous pouvez alors valider (EXE) ou
+modifier la commande et valider (EXE) 
+pour factoriser un autre polyn\^ome que celui
+donn\'e en exemple.
+
+Si vous connaissez le nom de la commande, vous pouvez aussi
+sélectionner la commande depuis l'index des commandes
+en tapant sur les touches shift CATALOG (touche 4).
+
+Lorsqu'une commande renvoie une expression (i.e. un r\'esultat qui
+n'est pas entier, ni r\'eel approch\'e, ni une fraction d'entiers), 
+celle-ci est affich\'ee
+en \'ecriture naturelle (affichage 2-d). Vous pouvez faire d\'efiler 
+l'affichage avec les touches du curseur lorsque l'expression est grande.
+Tapez sur EXIT pour revenir au shell.
+
+Maintenant essayez de taper la commande \verb|plot(sin(x))|.
+Indication: taper F4 (cmds), puis s\'electionner 
+\verb|Courbes|.
+
+Lorsqu'une commande renvoie un graphe, celui-ci est affich\'e. Vous
+pouvez modifier la fen\^etre graphique d'affichage 
+avec les touches \verb|+| ou \verb|-| 
+(zoom in ou out, utiliser la touche \verb|(-)|
+pour faire un zoom out partiel selon l'axe $Oy$),
+les touches du curseur, orthonormaliser le rep\`ere (touche \verb|/|)
+ou faire une recherche automatique de l'\'echelle (autoscale 
+touche \verb|*|). Pour enlever ou remettre les axes et graduations,
+tapez sur SIN.
+Tapez sur EXIT pour revenir au shell.
+
+Vous pouvez effacer l'historique des calculs et les variables
+pour commencer un nouvel exercice~: depuis le menu Fich,Cfg (F6) 
+s\'electionnez \verb|Effacer l'historique|. 
+
+Un certain nombre de raccourcis claviers sont pr\'evus pour faciliter 
+les taches les plus courantes: par exemple F1 (alg) et F2 (calc) ouvrent un menu
+avec des commandes d'alg\`ebre et d'analyse (calculus en anglais),
+cf. la section \ref{sec:raccourcis} pour une liste compl\`ete. 
+L'appui sur ON/AC efface la ligne courante, et si celle-ci
+est vide propose d'effacer l'historique des calculs.
+
+Pour quitter $\chi$CAS, appuyez sur la touche MENU. Lorsque vous lancez
+une autre application, les variables et l'historique des calculs
+sont sauvegard\'es dans le fichier {\tt session.xw}
+(mémoire de sauvegarde de la calculatrice, visible
+depuis l'application Mémoire de Casio), 
+ils seront restaur\'es lorsque vous reviendrez
+dans $\chi$CAS. 
+La premi\`ere sauvegarde prend un peu de temps, en particulier 
+sur l'\'emulateur,
+ensuite les sauvegardes sont plus rapides. 
+Vous pouvez sauvegarder plusieurs sessions distinctes (historique et
+programmes \'eventuels) depuis le menu F6 de KhiCAS, et les
+restaurer ult\'erieurement.
+
+\section{Utilisation de la calculatrice et de KhiCAS au bac, exemples} \label{sec:bac25}
+\subsection{Observations générales}
+\subsubsection{100\% du sujet de Terminale.}
+Sur les sujets de 2025, il y a toujours 4 exercices (4 à 6 points par exercice)
+\begin{itemize}
+\item un exercice de proba/stats. Pour cet exercice, une simple
+calculatrice scientifique suffit, sauf en général pour une petite
+question demandant un calcul de distribution binomiale cumulée qui
+serait un peu fastidieux avec une calculatrice collège. Ce sera l'occasion
+de tester le shell de KhiCAS sur des calculs simples. Les
+commandes à connaitre sont {\tt binomial} et
+{\tt binomial\_cdf} du menu 9. Probabilités.
+\item presque toujours un exercice faisant intervenir une suite récurrente.
+Pour cet exercice, on peut obtenir une représentation graphique
+et la valeur numérique des premiers termes (N.B.: le calcul de 
+quelques termes d'une suite
+récurrente se fait déjà sur certains modèles college)
+avec l'application Suites de la Casio, mais on ne peut pas faire
+grand chose d'autre. 
+L'équivalent dans KhiCAS est la commande
+{\tt plotseq} (menu F3) qui permet de faire cela depuis le shell.\\
+En exclusivité dans KhiCAS,
+la commande {\tt rsolve} permet de déterminer l'expression
+explicite d'une partie des suites récurrentes données (les
+arithmético-géométriques, mais pas les logistiques). Dans
+ce cas {\tt limit} permet de déterminer la limite de la suite.
+Sinon, la commande {\tt solve} ou {\tt fsolve}
+permet d'appliquer le théorème du point fixe pour trouver
+la limite.
+\item un exercice de géométrie analytique dans l'espace
+souvent présenté sous la forme d'un vrai/faux. Les
+applis intégrées Casio ne servent pas directement sur cet exercice.
+Sur les Graph 90, KhiCAS permet de résoudre ou vérifier toutes les 
+questions (exclusivité KhiCAS!),
+et c'est probablement l'exercice où KhiCAS est vraiment utile,
+car contrairement aux autres exercices, les réponses ne sont
+pas données.\\
+Les commandes sont dans le menu F4 Géométrie ou F4 3d ou directement
+depuis shift CATALOG. Les noms de commande sont très simple à mémoriser,
+il s'agit en général
+d'un nom commun en français, par exemple {\tt point, droite,
+plan, coordonnees, distance, equation, parameq}, etc.\\
+Ces commandes ne sont hélas pas disponibles sur la 35eii par manque
+de place.
+\item Un exercice d'analyse, avec tableau de variations,
+étude de convexité, calcul d'intégrale ou/et équation
+différentielle. Le CAS de KhiCAS permet alors de vérifier tous les calculs
+littéraux alors que les applis intégrées de Casio permettent
+seulement de faire un graphe et des calculs numériques.
+On utilise les commandes des menus F1, F2, F3 ainsi que F4 4 Analyse.
+\end{itemize}
+Grosso modo, on peut dire qu'une calculatrice scientifique couvre environ 
+de 25\% à 40\% d'un sujet de bac
+(40\% pour une scientifique avec distribution binomiale,
+solveur numérique et calcul approché d'intégrale), 
+une calculatrice graphique sans CAS couvre
+environ 50\%, une calculatrice CAS du constructeur environ 75\%, une 
+Graph 90 avec KhiCAS couvre 100\%.
+
+Remarques~:
+\begin{itemize}
+\item
+Attention, les rédacteurs de sujet de bac utilisent souvent des
+``nombres à virgule'' pour représenter des quantités numériques,
+par exemple 0,6, sans indiquer s'il s'agit de valeurs exactes ou
+d'estimations approchées. 
+Dans KhiCAS, on distingue deux représentations
+pour les nombres, la représentation approchée qui ici serait
+{\tt 0.6} (avec un point séparant la partie entière de la partie
+décimale) et la représentation exacte qui ici serait
+{\tt 3/5}. Il est presque toujours indispensable d'utiliser la représentation
+exacte pour faire du calcul littéral avec KhiCAS, et ne faire un
+calcul approché qu'à la fin si c'est demandé. Il y a quelques
+exceptions, par exemple si on souhaite calculer une 
+solution approchée d'une équation (lorsqu'il n'y a pas
+de méthode exacte pour le faire) ou calculer la valeur
+approchée d'une intégrale 
+(s'il n'existe pas de primitive explicite de la fonction).
+\item Si vous êtes pris par le temps en examen ou si le résultat que
+vous obtenez n'est pas cohérent, je vous conseille de l'indiquer 
+sur votre copie, indiquez ensuite
+la commande KhiCAS que vous avez utilisée sur la calculatrice sur votre 
+copie ainsi que la réponse obtenue.\\
+Si vous avez montré votre capacité à faire des calculs 
+à la main ailleurs sur votre copie, vous pouvez espérer récupérer 
+une partie des points de la question, à moins que le correcteur 
+ne soit obtus.
+\end{itemize}
+
+\subsubsection{\`A propos de l'algorithmique au bac}
+Il y a au plus une question dans le sujet (sur les sujets de métropole
+dans un sujet sur les deux en 2024 et 2025). Elle est posée 
+dans l'exercice sur les suites (je n'ai pas vu d'exception pour 2025, 
+c'est en général une question stéréotypée sur un seuil). L'énoncé donne 
+un script Python, soit avec des {\tt ...} à compléter (expliciter
+le test d'arrêt ou/et traduire la récurrence en une instruction),
+soit sous forme d'une fonction {\tt mystere} à interpréter, c'est
+essentiellement évident dans le contexte de l'exercice. Il est
+parfois demandé de donner le résultat d'exécution du script,
+impliquant les premiers termes de la récurrence \\
+L'utilisation de l'application Python de la calculatrice
+n'a guère d'intérêt en pratique, il est nettement plus efficace d'utiliser
+l'application Suites de la calculatrice ou la commande {\tt plotseq}
+de KhiCAS (et regarder une dizaine de termes). Dans quelques cas
+(exécution de script), on peut effectivement saisir le script
+et l'exécuter, mais d'un point de vue compréhension, cela revient
+à donner des points à un élève qui est un bon presse-bouton au lieu
+de donner des points à un élève qui a compris l'algorithme!\\
+Dans d'autres cas, exécuter le script risque fort de dérouter les
+candidats, parce que
+les concepteurs de sujet ne semblent pas tester systématiquement
+les scripts donnés. Par exemple le script donné dans le sujet
+de \ahref{https://www.apmep.fr/IMG/pdf/Polynesie_spe_J1_17_06_2025_DV.pdf}{Polynésie du 17 juin 2025}, est le suivant
+\begin{giaconload}
+from math import *
+def mystere(n):
+    I = 1 - 1.0/e
+    L = [I]
+    for i in range(n):
+        I = (i+1)*I - 1/e
+        L.append(I)
+    return L
+\end{giaconload}
+et on demande ce que renvoie \\
+\giacinput{mystere(100)}\\
+Cela correspond aux 101 premiers termes (d'indice 0 à 100) de la suite
+récurrente étudiée dans l'exercice
+$$ I_n=\int_0^1 x^n e^{-x} \ dx, \quad I_{n+1}=(n+1)I_n-1/e $$
+Or ce script est numériquement instable, et ne donne pas du tout les 
+valeurs attendues. Les éléments de la liste $L$ deviennent négatifs au
+bout d'une vingtaine de termes, et le dernier terme vaut 
+{\tt -3.1530126806564304e+141} (avec CPython), laissant croire
+que $\lim_{n \rightarrow +\infty}I_n=-\infty$ alors que la limite est nulle.
+Cela s'explique par le fait qu'à chaque itération on soustrait des nombres
+qui devraient être de plus en plus proche, ce qui est la principale
+source de perte de précision dans un calcul numérique. Comprendre
+cela est hors de portée d'un lycéen normal, surtout en examen, j'en
+veux pour preuve que cela
+a échappé aux concepteurs de sujet, aux testeurs, et la première
+version du corrigé du site de l'APMEP n'en parle pas non plus.
+
+Conclusion~: pendant l'examen, je vous déconseille d'utiliser
+l'appli Python du constructeur de votre calculatrice ou celle 
+incluse dans KhiCAS. Les questions sont suffisamment simples
+pour être résolues papier-crayon ou plus efficacement
+avec l'application Suites de la calculatrice.
+Et du coup, on se demande à quoi cela rime d'avoir imposé Python
+comme unique langage au lycée, en tout cas pour les sujets de bac.
+il serait bien plus raisonnable à mon avis d'écrire des algorithmes 
+en langage naturel puisque visiblement on se dispense de l'étape de test 
+des scripts, seul intérêt de fixer un langage, surtout à l'heure où
+l'IA générative n'a aucun mal à traduire vers un langage donné.
+On éviterait en tout cas les problèmes
+liés à la représentation approchée des nombres.
+
+\subsubsection{L'épreuve anticipée de 1ère et le DPE calculatrice}
+En juin 2025, l'épreuve anticipée de math de 1ère a été confirmée
+avec deux parties (automatismes et résolution de problèmes).
+La calculatrice est pour le moment interdite pendant toute
+l'épreuve. C'est à mon sens ridicule d'interdire la calculatrice
+dans la 2ème partie, résolution de problèmes, alors que c'est
+légitime pour juger les automatismes. C'est aussi ce que
+demandait l'APMEP, mais nos décideurs ont choisi de passer outre,
+suivant les demandes des intégristes anti-calculatrice.
+On voit ainsi sur les sujets 0 un encadré ``Aide au calcul''
+qui peut par exemple souffler aux candidats que 0,5*0,5=0,25 (sic). 
+On n'est pas loin
+du retour à des tables d'exponentielles (le log n'est pas au programme
+de 1ère) et trigonométriques.
+
+Le coefficient de cette épreuve est faible pour le bac (2/100), 
+mais il s'agit de la seule épreuve de sciences hors controle continu
+qui figurera dans le dossier des candidats à Parcoursup, elle aura
+donc un impact bien au-delà de ce coefficient. Il est donc
+probable qu'on assiste à un recul massif de l'utilisation un peu évoluée
+de calculatrices graphiques (et de logiciels de calcul) au lycée, 
+au moins en première (en vue de la préparation à l'épreuve
+anticipée), mais aussi
+en seconde~: les élèves de seconde ne vont probablement plus s'équiper,
+ce sera reporté à la fin de 1ère début terminale
+pour les élèves ayant choisi la spécialité maths en terminale
+(175 000 en 2025). Une partie de ces élèves
+va sans doute trouver l'achat
+d'une calculatrice graphique milieu de gamme
+(TI83, Casio Graph90/math+, Numworks) trop onéreux 
+juste pour quelques mois (septembre à
+mars, date de fin des dépôts de dossier Parcoursup), ils vont utiliser
+une calculatrice scientifique (qui permet de traiter de 20\% à
+40\% d'un sujet de bac selon le modèle). 
+On peut anticiper une division par un facteur 2
+de la taille du marché français des calculatrices graphiques,
+peut-être plus si un cercle vicieux se met en place (hausse
+du prix de vente car moins d'achats, pressions pour que les sujets de 
+terminale soient faisable avec une calculatrice collège). 
+
+L'élève
+qui achètera une calculatrice le fera ssouvent deux ans après son entrée
+au lycée,
+il sera plus autonome dans le choix  entre calculatrices
+selon les capacités utiles pour la terminale et éventuellement la poursuite
+d'études dans le supérieur. Pour aider à faire ce choix,
+je propose d'établir un 
+{\bf DPE, diagnostic perfomance examen}, de quelques calculatrices
+en fonction des sujets de bac de spé maths terminale de 2025.
+Un + désigne une fonctionnalité présente, un - présente mais peu confortable.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} \hline 
+Calculatrice   &{\bf Graph 90}& Graph Math+&{\bf Graph 35eii}& Graph Light & FX92 & Numworks 110 & Numworks 115/120 & TI83CE &TI82AEP& {\bf TI36XPRO} \\ 
+observation    & KhiCAS   &             & KhiCAS      &             &      & déverrouillée&verrouillée       & KhiCAS & \\
+prix rentrée   & occas ($\approx$60?) & 70-90    & {\bf 50}          &   35        & 15-20 & occas ($\approx$60?)  &  83            &  80-90  & 60  & {\bf 20} \\
+DPE            &  {\bf A+}  &  C          &  {\bf B}        &   D         & E    & A            &    C             & B      &  C   &  D \\
+proba-stats    & +        & +           &  +          &  +          &  +   & +            &    +             &  +     & +    &   + \\ 
+binomial\_cdf  & +        & -           &  +          &   +         &  +   &  +           &    +             &  +     & +    &   + \\ 
+graphe suite   &  +       & +           &  +          &             &     &   +          &     +            &   +    &  +   &    \\ 
+premiers termes&  +       & +           &  +          &   -         &  -   & +            &    +             &  +     & +    &   - \\ 
+rsolve         &   +      &             &   +         &             &      &  +           &                  &        &      &    \\ 
+limit          &   +      &             &   +         &             &      &  +           &                  &  +     &      &    \\ 
+solve          & +        &             &  +          &             &      &  +           &                  &  +     &      &    \\ 
+fsolve         &  +       &  +          &  +          &   +         &      &  +           &    +             &  +     &  +   &   + \\ 
+analytique 3D &   +       &             &             &             &      &  +           &                  &        &      &    \\ 
+tests 3D      &   +       &             &             &             &      &  +           &                  &        &     &    \\ 
+géométrie 3D  &   +       &             &             &             &      &  +           &                  &        &     &    \\ 
+linsolve      &   +       &  +          & +           &  +          &   -  &  +           &   +              &  +     &   +  &   + \\ 
+graphe fct    &   +       &  +          &  +          &   +         &      &  +           &   +              &  +     &   +  &    \\ 
+dérivée       &   +       &             &   +         &             &      &  +           &                  &  +     &      &    \\ 
+primitive     &   +       &             &   +         &             &      &  +           &                  &  +     &      &    \\ 
+aire/courbe   &   +      &  +           &  +          &   +         &      &  +           &   +              &  +     &      &    + \\ 
+tableau var.  &  +        &             &   +         &             &      &  -           &                  &  +     &      &    \\ 
+mémoire RAM   &  8M      & 8M         & 512K        &  24K          &24K   & 256K         &  256K           & 256K    & 256K & N.A. \\
+stockage flash&  13M/32  & 4.7M/32    & 1M/8        &  0/512K       &0/512K& 2M/8        & 5M/8             & 192K/4M & /4M  & 0/128K \\
+\end{tabular}
+\end{center}
+Voir aussi \ahref{https://tiplanet.org/forum/compare.php}{le QCC de tiplanet}
+qui établit une comparaison beaucoup plus complète, mais celui-ci
+est adapté au programme de spé maths de terminale. Pour les prix
+de calculatrices neuves, cf. 
+\ahref{https://tiplanet.org/prix/}{le comparateur de tiplanet}.
+
+Remarques~:
+\begin{itemize}
+\item Les deux calculatrices classées A sont donc des calculatrices qui ne
+sont plus produites, à acheter principalement d'occasion. Attention,
+pour la Numworks, bien demander si elle est déverrouillée, pas
+de risques de ce type avec la Graph 90.
+La Graph 90 est de toutes façons un meilleur choix à mon avis, 
+le clavier a plus de touches,
+il y a beaucoup plus de mémoire RAM disponible (peu de risque
+que KhiCAS doive interrompre un calcul par manque de mémoire), il
+y a beaucoup plus d'espace de stockage disponible, et il est très facile
+d'y accéder (la calculatrice se comporte comme une clef USB).
+La Numworks a un processeur plus rapide.
+\item La Graph Math+ ressemble beaucoup à la Graph 90, et pourrait passer
+de C à A si on rend KhiCAS compatible en mode examen. De même pour les
+Numworks N0115/N0120.
+\item Si on se tourne vers une calculatrice scientifique 
+pour des raisons économiques, la fx92 collège,
+qui est le modèle le plus populaire au collège en France, 
+me parait quand même trop limitée,
+sauf si Casio décidait d'y ajouter les fonctionnalités qu'on retrouve
+dans les calculatrices scientifiques non destinées aux scolaires. La Graph
+Light est vendue bien trop chère, alors que son coût de fabrication
+matériel est certainement très proche de la fx92, on devrait 
+la trouver vers les 25 euros, et pas 35! Pour
+un prix essentiellement équivalent à la fx92 (soit 20 euros), je conseillerais
+plutôt la TI36XPRO, qui est moins profilée scolaire, mais permet
+de traiter 40\% d'un sujet de bac de terminale spé maths (et dispose
+en plus d'un peu de calcul matriciel pour maths expertes), 
+on est très proche (le confort en moins) d'une
+Numworks verrouillée ou d'une Graph Math+ pour 4 fois moins cher
+(et même 5 fois si on l'achète dès le collège!).
+\end{itemize}
+{\bf Conclusion}~: selon votre budget, je vous conseille la Graph 90 
+graphique couleur (à trouver d'occasion vers les 60 euros, 
+les prix neufs sont en général bien trop élevés), 
+ou la Graph 35eii graphique monochrome 
+(neuf 50 euros avec la remise différée de 14 euros de Casio) ou
+ou la TI36XPRO scientifique monochrome (neuf 20 euros).
+
+\subsection{Premier exemple de sujet}
+Le sujet du 17 juin
+\ahref{https://www.apmep.fr/IMG/pdf/Metro_J1_17_06_2025_DV.pdf}{métropole 2025 jour 1}
+
+\subsubsection{Exercice 1}
+Tout le début peut se faire avec une calculatrice scientifique, 
+on peut bien sur aussi utiliser le shell de KhiCAS.
+
+Question 1.b, on gagne un peu de temps avec\\
+\giacinput{binomial_cdf(100,0.0714,7)}\\
+qui renvoie 0.577. Pour saisir la commande, le plus efficace est
+de taper shift CATALOG puis b i n, descendre jusqu'à 
+\verb|binomial_cdf|. F5 affiche alors l'aide de la commande, puis
+on tape F1 ou F2 pour recopier un exemple, on modifie et on tape EXE.
+On peut vérifier que c'est vraissemblable avec le graphe\\
+\giacinput{plot(binomial(100,0.0714))}
+
+1.c
+\giacinput{stddev(binomial,100,0.0714)=>S}\\
+permet de calculer l'écart-type de la loi qui vaut 2.57.. et
+de la stocker dans {\tt S}.
+Ensuite \verb|S^2| donne la variance 6.63...
+
+2.d
+\giacinput{S/sqrt(N) => s}
+nous donne l'écart-type de $M_N$ qui 
+va servir ensuite pour Bienaymé-Tchebycheff. 
+On veut $P(|X-7.14|>=0.14)<0.05$, on pose donc $0.14=a*s$, 
+avec $a$ tel que \\
+\giacinput{solve(1/a^2=0.05,a) => A}, 
+puis $N$ tel que \\
+\giacinput{solve(A[1]*s=0.14,N)} qui renvoie N=6766.
+
+Discussion : cela fait beaucoup de villes, mais on surestime avec l'inégalité de Bienaymé-Tchebycheff, en utilisant la loi normale $a$ passe de 4.47 à 1.96, 
+une estimation plus réaliste diviserait donc $N$ par 5 environ, 
+ce qui correspond au nombre de villes de plus de 5000 habitants 
+(ça reste 10 fois plus que le nombre de maisons du don, mais beaucoup 
+moins que le nombre de collectes mobiles). 
+
+\subsubsection{Exercice 2}
+{\bf Partie A}~:\\
+Cette partie est prévue pour tester la lecture graphique 
+et ne pas utiliser d'outil de calcul,
+mais comme la fonction est donnée en partie B, on peut quand même 
+vérifier (trouver?) les valeurs de la partie A avec KhiCAS.
+On commence par saisir la valeur de f donnée en partie B\\
+\giacinput{x*(2*ln(x)^2-3*ln(x)+2) => F}\\
+puis on vérifie qu'elle correspond au graphe de la partie A\\
+\giacinput{plot(F,x=0..3)}
+
+Pour ajouter la tangente en $x=1$, il faut donner un nom au graphe, 
+on remonte dans l'historique pour recopier la commande précédente et on ajoute
+\verb|G:=| (taper shift $\rightarrow$ pour saisir \verb|:=|)\\
+\giacinput{G:=plot(F,x=0..3)}
+puis on tape \\
+\giacinput{TA:=tangent(G,1)}
+et pour voir $G$ et $TA$ simultanément\\
+\giacinput{G,TA}
+
+La commande\\
+\giacinput{equation(TA)}
+nous renvoie $y=-x+3$ et permet de vérifier qu'on passe par le point $C$, 
+le coefficient directeur -1 nous donne la valeur de $f'(1)$, qu'on
+peut ausi obtenir par les deux commandes\\
+\giacinput{diff(F)=>F1} 
+(taper F2 pour saisir \verb|diff| ou \verb|'|)\\
+\giacinput{F1(x=1)}\\
+On vérifie que \\
+\giacinput{solve(F1=0)} \\
+renvoie 2 solutions ($1/e$ et $e^{1/2}$).
+On calcule\\
+\giacinput{F1'=>F2}\\
+puis\\
+\giacinput{F2(x=0.2)}
+
+{\bf Partie B}~:\\
+Utiliser les menus F1 et F2 pour saisir rapidement les commandes\\
+\giacinput{solve(2X^2-3X+2,X)}\\
+\giacinput{limit(F,x,oo)}\\
+\giacinput{limit(F,x,0)} (admis dans l'énoncé)\\
+\giacinput{simplify(F2)}\\
+\giacinput{solve(F2>0)}
+
+{\bf Partie C:}\\
+\giacinput{equation(tangente(G,e))}
+\giacinput{integrate(x*ln(x),x)} (pour vérifier la primitive)\\
+\giacinput{integrate(x*ln(x),x,1,e)} (pour vérifier l'énoncé)\\
+\giacinput{integrate(F-(2x-e),x,1,e)}
+renvoie $3*exp(1)^2/4-(4*exp(1)+5)/4$\\
+En mettant 1.0 au lieu de 1 on a une valeur numérique 1.57... 
+et on peut juger si c'est vraisemblable en comparant à l'aire 
+de la partie hachurée sur l'énoncé.
+
+\subsubsection{Exercice 3}
+Pour saisir les commandes, taper les touches F4 * (3d) ou F4 $\rightarrow$
+(géométrie) ou shift CATALOG et les premières lettres de la commande\\
+\giacinput{point(-1,0,5)=>A}
+
+\giacinput{point(3,2,-1)=>B}
+
+\giacinput{point(0,0,0)=>O}
+
+Sur la calculatrice taper EXIT pour quitter le graphe 3d.
+Pour visualiser plusieurs objets géométriques simultanément, on peut taper ici
+\giacinput{A,B,O}. Les touches du curseur permettent de changer le point de vue
+3d.
+
+Affirmation 1:VRAI \\
+\giacinput{B-A} renvoie les coordonnées du vecteur 
+$\overrightarrow{AB}$ et on regarde si c'est colinéaire avec 
+le vecteur directeur déduit de l'équation paramétrique, 
+qui passe en $t=0$ par $B$. 
+Attention une droite admet une infinité de représentations paramétriques, 
+{\tt parameq(droite(A,B))} 
+ne donne pas la même équation que celle de l'énoncé.
+
+Affirmation 2: FAUX\\
+\giacinput{equation(plan(O,A,B))} 
+renvoie $-10*x+14*y-2*z=0$ donc vecteur normal au plan $(-10,14,-2)$ 
+non colinéaire au vecteur $n$. 
+Autre solution \giacinput{cross(A-O,B-O)}
+
+Affirmation 3: VRAI\\
+On voit sans calcul que les 2 droites ne sont pas parallèles 
+(les vecteurs directeurs ne sont pas colinéaires),
+on teste si elles sont sécantes
+\giacinput{solve([15+k=1+4s,8-k=2+4s,-6+2k=1-6s],[k,s])} 
+renvoie [[-4,5/2]] donc oui, donc les droites sont coplanaires.
+
+Affirmation 4: VRAI\\
+\giacinput{point(2,-1,2)=>C}
+
+\giacinput{distance(plan(x-y+z+1=0),C)} renvoie $2\sqrt{3}$.
+On peut aussi le faire de tête en remplaçant les coordonnées de $C$ 
+dans l'équation du plan (ce qui donne 6) et en divisant par la racine 
+carrée de la somme des carrés des coefficients de x,y,z 
+(norme du vecteur normal, $\sqrt{3}$)
+
+\subsubsection{Exercice 4}
+{\bf Partie A}\\
+\giacinput{-0.02*x^2+1.3*x=>H}\\
+\giacinput{H(x=1)} nous donne u1=1.28
+\giacinput{solve(H=x)} nous donne la limite $L=15$ ($L=0$ est exclus ici)
+
+{\bf Partie B}\\
+La résolution de la question 1 à la machine est un peu technique, 
+je pense qu'il vaut mieux le faire sans la calculatrice 
+d'autant plus que la réponse est donnée. Si on veut vraiment le vérifier,\\
+\giacinput{eq:=diff(y(t),t)=0.02*y(t)*(15-y(t))}\\
+\giacinput{normal(equal2diff(subst(eq,y(t)=1/f(t))))}\\
+qui affiche \verb|-diff(f(t),t)-0.3*f(t)+0.02|\\
+Pour vérifier la solution de l'équation différentielle, il faut
+saisir les coefficients sous forme de fraction
+\begin{itemize}
+\item sans condition initiale \\
+\giacinput{desolve(y'=-3/10*y+2/100)} renvoie \verb|(15*c_0*exp(-3*x/10)+1)/15|
+\item
+avec condition initiale\\
+\giacinput{desolve([y'=-3/10*y+2/100,y(0)=1])=>g} 
+renvoie \verb|(14*exp(-3*x/10)+1)/15|
+\end{itemize}
+Puis on inverse 
+\giacinput{1/g=>f}\\
+puis on vérifie 
+\giacinput{limit(f,x,oo)} 
+on retrouve le $L$ de la partie A. Enfin
+\giacinput{solve(f>14)}  renvoie $x>10*\ln(196)/3$
+
+
+\subsection{Deuxième exemple de sujet}
+Le sujet du 18 juin
+\ahref{https://www.apmep.fr/IMG/pdf/Metropole_spe_J2_18_06_2025_DV.pdf}{métropole 2025 jour 2}
+
+\subsubsection{Exercice 1}
+Exercice de proba/stats: une calculatrice scientifique suffit ici, 
+sauf pour A5b/ où ce serait fastidieux, dans KhiCAS on peut taper\\
+\giacinput{binomial_cdf(100,0.24,20,100)} 
+ou son équivalent à 3 arguments \\
+\giacinput{1-binomial_cdf(100,0.24,19)}\\
+(pour saisir {\tt binomial\_cdf}, taper shift CATALOG puis b i n
+puis déplacer le curseur sur la commande, taper F5 si vous voulez
+consulter l'aide en ligne, puis F1 ou F2 pour recopier un exemple,
+le modifier et calculer avec EXE).
+
+\subsubsection{Exercice 2}
+{\bf Partie A}\\
+Question 1/ sélectionner solve dans le menu rapide F2, puis saisir\\
+\giacinput{solve([3/2+2t=s,2+t=3/2+s,3-t=3-2s],[t,s])}
+(pour taper {\tt t} ou {\tt s}, taper F5 puis la touche avec
+le label en rouge correspondant puis ALPHA pour quitter le mode alphabétique).
+On obtient {\tt [[-1,-1/2]]} donc $t=-1$ (et $s=-1/2$), 
+les droites sont bien sécantes, pour déterminer l'intersection on peut
+faire\\
+\giacinput{subst([3/2+2t,2+t,3-t],t=-1)=>S} ({\tt =>} s'obtient
+en tapant sur la touche $\rightarrow$ située au-dessus de AC/ON).
+Attention {\tt S} n'est pas un point géométrique 
+mais la liste des coordonnées de l'intersection.
+
+Question 2/
+On crée les points avec la commande {\tt point} du menu F4 * (3d)
+ou shift CATALOG taper le début de point et déplacer le curseur
+à la commande point.\\
+\giacinput{point(-1,2,1)=>A} (taper ALPHA puis la touche de label A pour saisir A)
+
+\giacinput{point(1,-1,2) => B}
+
+\giacinput{point(1,1,1) => C}
+
+\giacinput{[1,2,4] => n}\\
+$A, B, C$ sont des objets géométriques 3d, qui sont représentés graphiquement
+lorsqu'on exécute la commande. Taper EXIT pour quitter la représentation
+graphique. Si vous voulez voir les trois points simultanément, taper
+dans une ligne de commande \\
+\giacinput{A,B,C}
+
+Vous pouvez utiliser les touches 
+curseur pour changer de point de vue 3d, EXIT pour quitter.\\
+\giacinput{(B-A)*n} renvoie 0. La différence de 2 points est la liste
+des coordonnées du vecteur les reliant ($\overrightarrow{AB}$ ici), 
+et {\tt *} entre 2 vecteurs calcule leur produit scalaire.
+\giacinput{(C-A)*n} renvoie aussi 0.
+Donc $n$ est normal au plan.\\
+\giacinput{subst(x+2y+4z,[x,y,z],coordonnees(A))} renvoie 7, 
+c'est la bonne constante.
+
+Question 3/ \\
+\giacinput{subst(x+2y+4z,[x,y,z],S)} renvoie 35/2 donc le point $S$ dont les
+coordonnées sont dans la variable {\tt S} n'est pas dans le plan $ABC$.
+
+Question 4a/ \\
+\giacinput{[-1,0,2]=>H}\\
+\giacinput{H-S} renvoie [-1/2,-1,-2] soit $-n/2$ et\\
+\giacinput{subst(x+2y+4z,[x,y,z],H)} renvoie 7.
+
+Question 4b/ 
+\giacinput{distance(H,S)} renvoie $\sqrt{21}/2$.
+
+{\bf Partie B}\\
+\giacinput{coordonnees(C)=>c}\\
+\giacinput{c+k*(S-c)=>M} (représentation paramétrique des coordonnées de $M$)\\
+\giacinput{(M-coordonnees(A))*(M-coordonnees(B))=>eq} (produit scalaire
+$\overrightarrow{AM}.\overrightarrow{BM}$)\\
+\giacinput{solve(eq=0,k)} renvoie {\tt list[(-6*sqrt(14)+12)/45,(6*sqrt(14)+12)/45]}, ou numériquement\\
+\giacinput{fsolve(eq=0,k)}, il y a une seule solution sur le segment 
+($k=0.76...$)
+
+\subsubsection{Exercice 3}
+1/ faux (Evident!) pour vérifier \\
+\giacinput{limit((1+5^n)/(1+3^n),n,oo)} renvoie $+\infty$.
+
+2/ N.B.: $w_0==0$ donc faux sur l'énoncé de l'apmep mis en lien, 
+mais sur le vrai sujet on a inégalité large, donc c'est vrai.
+Si on n'aime pass trop les inéquations, on peut montrer par récurrence que 
+$w_n=n+3^n-1$ et conclure puisque $3^n-1>=0$.
+En effet, KhiCAS permet de calculer l'expression explicite de $w_n$ \\
+\giacinput{rsolve(w(n+1)=3*w(n)-2n+3,w(n),w(0)=0)} (rsolve est dans
+le menu F2) qui renvoie $[n+3^n-1]$. Il suffit ensuite de le justifier.
+
+3/ c'est concave en $A$
+
+4/ \giacinput{tabvar(ln(x)-x+1)} (tabvar est dans le menu F4 Analyse,
+ou bien shift CATALOG taper le premières lettres de la commande).
+N.B. l'inégalité est large sur le ``vrai'' sujet. Donc vrai.
+
+\subsubsection{Exercice 4}
+{\bf Partie A lecture graphique}\\
+Cette partie d'énoncé avec un graphique sur papier millimétré qui fleure
+bon le 20ème siècle est prévu pour faire des lectures graphiques,
+sans calculatrices. Mais en exclusivité ici, comme on ne demande pas 
+de justifier dans cette partie, je vous explique comment le résoudre 
+avec des outils du 21ème siècle. \\
+Il suffit en effet de lire l'énoncé jusqu'au bout pour obtenir 
+l'expression de $d$:\\
+\giacinput{(12+x)*exp(-3/5*x) =>v}\\
+\giacinput{integrate(v,x,0,t) => d} (menu F2)\\
+\giacinput{plot(d,t=0..15)} (menu F3) permet de reproduire la figure pour
+vérifier la saisie.
+\giacinput{fsolve(d=15,t=2)} renvoie 2.02..., en lecture graphique 2
+\giacinput{limit(d,t,oo)} renvoie 205/9 soit environ 22.8
+\giacinput{v(x=4.7)} vaut 0.99... donc en lecture graphique 1.
+
+{\bf Partie B}\\
+1a/ 
+\giacinput{desolve(y'+3/5*y=0)} ou \giacinput{desolve(y'+0.6*y=0)} (pour les 
+étourdis qui ont oublié que ça se résoud de tête, desolve est dans le 
+menu rapide F2).
+
+1b/ \giacinput{desolve(y'+3/5*y=exp(-3/5*t))}
+
+1c/ \giacinput{desolve([y'+3/5*y=exp(-3/5*t),y(0)=12])} 
+(ou \giacinput{desolve(y'+3/5*y=exp(-3/5*t) and y(0)=12)})
+renvoie {\tt t*exp(-3*t/5)+12*exp(-3*t/5)}\\
+Ou en approché\\
+\giacinput{desolve([y'+0.6*y=exp(-0.6*t),y(0)=12])}
+renvoie t*exp(-0.6*t)+12.0*exp(-0.6*t)
+
+1d/ Pour trouver $v$ sans se fatiguer à dériver, 
+on peut utiliser l'équation différentielle
+
+2/ 
+\giacinput{v'=>v1}\\
+\giacinput{normal(v1)} renvoie le résultat de l'énoncé en exact\\
+\giacinput{limit(v,x,oo)} renvoie 0, on s'en doutait puisque $d$ converge (graphiquement ou vers 205/9).\\
+\giacinput{tabvar(v,x=0..oo)} (menu F4 Analyse)\\
+\giacinput{fsolve(v=1,x=4.7)=>T} permet de vérifier le résultat de la partie A (à recopier en 2d et 3)
+
+{\bf partie C}: les calculs ont déjà été faits:\\
+\giacinput{normal(d)}
+\giacinput{d(t=T)} renvoie 20.94...
+on vérifie sur le graphique l'ordonnée du point $A$.
+
+Remarque~: ce modèle me semble partiellement sorti du chapeau, en effet 
+si la partie homogène de l'équation différentielle sur $v$ 
+correspond au principe fondemental de la dynamique avec
+un frottement proportionnel à la vitesse, je ne vois
+pas ce que modélise le terme de forçage
+non homogène en $e^{-0.6t}$, dépendant du temps compté à partir du moment
+où le chariot entre dans la zone de freinage. 
+Est-ce un habillage artificiel, le but étant d'avoir une solution particulière
+multipliée par $t$ (-0.6 solution de l'équation caractéristique)~?
+
+
+\section{Commandes usuelles de calcul formel}
+\subsection{D\'evelopper et factoriser}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Algebre|
+ou tapez F1~:
+\begin{itemize}
+\item \verb|factor|~: factorisation. Raccourci clavier \verb|=>*|
+(touche $\rightarrow$ puis *),
+par exemple \giacinputmath{x^4-1=>*}.
+Utiliser \verb|cfactor| pour factoriser sur $\C$.
+\item \verb|partfrac|~: d\'eveloppement d'un polyn\^ome ou
+d\'ecomposition en \'el\'ements simples pour une fraction. Raccourci
+clavier \verb|=>+| (touche $\rightarrow$ puis +), 
+par exemple \giacinputmath{ (x+1)^4=>+} 
+ou \giacinputmath{1/(x^4-1)=>+}.
+\item \verb|simplify|~: essai de simplifier une expression.
+Raccourci clavier \verb|=>/| (touche $\rightarrow$ puis /), 
+par exemple \giacinputmath{sin(3x)/sin(x)=>/}
+\item \verb|ratnormal|~: d\'evelopper une expression,
+\'ecrire une fraction sous forme irr\'eductible.
+\end{itemize}
+
+\subsection{Analyse}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Analyse|, ou
+tapez F2
+\begin{itemize}
+\item \verb|diff|~: d\'erivation. On peut aussi utiliser la notation
+\verb|'| (raccourci clavier F3) pour d\'eriver par rapport \`a $x$, ainsi
+\giacinputmath{diff(sin(x),x)} et \giacinputmath{sin(x)'} sont \'equivalents.
+Pour d\'eriver plusieurs fois, ajouter le nombre de d\'erivations
+par exemple \giacinputmath{diff(sin(x^2),x,3)}.
+\item \verb|integrate|~: primitive si 1 ou 2 arguments,
+par exemple 
+\giacinputmath{integrate(sin(x))} ou \giacinputmath{integrate(1/(t^4-1),t)}
+pour $\int \frac{1}{t^4-1} \ dt $\\
+Calcul d'int\'egrale d\'efinie si 4 arguments, par
+exemple \giacinputmath{integrate(sin(x)^4,x,0,pi)}
+pour $\int_0^\pi \sin(x)^4 \ dx$. Mettre une des bornes
+d'int\'egration sous forme approch\'ee si on souhaite un calcul
+approch\'e d'int\'egrale d\'efinie, par exemple
+\giacinputmath{integrate(sin(x)^4,x,0.0,pi)}\\
+Raccourci clavier shift F3.
+\item \verb|limit|~: limite d'une expression.
+Exemple \giacinputmath{limit((cos(x)-1)/x^2,x=0)}\\
+Pour une limite \`a droite [resp. \`a gauche], ajouter 1 [resp. -1]
+en dernier argument, par exemple
+\giacinputmath{limit(1/x,x=0,1)}
+\item \verb|tabvar|~: tableau de variations d'une expression.
+Par exemple \giacinputmath{tabvar(x^3-7x+5)}
+on peut v\'erifier avec le graphe \giacinput{plot(x^3-7x+5,x,-4,4)}
+\item \verb|taylor| et \verb|series|~: d\'eveloppement de Taylor
+(ou d\'eveloppement limit\'e ou asymptotique). Par exemple
+\giacinput{taylor(sin(x),x=0,5)}
+\item \verb|sum|~: somme discr\`ete. Par exemple
+\giacinputmath{sum(k^2,k,1,n)} calcule $\sum_{k=1}^n k^2$,
+\giacinputmath{sum(k^2,k,1,n)=>*} calcule la somme et l'\'ecrit sous
+forme factoris\'ee.\\
+Raccourci clavier ALPHA F3.
+\end{itemize}
+
+\subsection{R\'esoudre}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Resoudre|.
+\begin{itemize}
+\item \verb|solve| permet de r\'esoudre de mani\`ere exacte
+une \'equation (se ramenant \`a une \'equation polynomiale).
+Il faut pr\'eciser la variable si ce n'est pas \verb|x| par
+exemple \giacinputmath{solve(t^2-1=0,t)}. Si la
+variable est \verb|x|, on peut \'ecrire l'expression
+ou l'\'equation suivie de 2 appuis sur la touche $\rightarrow$,
+par exemple \verb|x^2-1=>|\\
+Si la recheche exacte \'echoue, la commande \verb|fsolve|
+permet de faire une r\'esolution approch\'ee, soit par
+une m\'ethode it\'erative en partant d'une valeur
+initiale \giacinputmath{fsolve(cos(x)=x,x=0.0)}, soit par
+dichotomie  \giacinputmath{fsolve(cos(x)=x,x=0..1)}.\\
+Pour avoir des solutions complexes, utiliser \verb|csolve|.\\
+On peut faire des hypoth\`eses sur la variable que l'on cherche,
+par exemple \giacinputmath{assume(m>1)} puis \giacinputmath{solve(m^2-4=0,m)}.
+\item \verb|solve| permet aussi de r\'esoudre des syst\`emes
+polynomiaux simples, on donne en 1er argument la liste des
+\'equations, en 2\`eme argument la liste des variables.
+Par exemple intersection d'un cercle et d'une droite
+\giacinputmath{solve([x^2+y^2+2y=3,x+y=1],[x,y])}
+\item \verb|linsolve| permet de r\'esoudre des syst\`emes
+lin\'eaires. On lui passe la liste des \'equations et la liste
+des variables (par convention une expression \'equivaut
+\`a l'\'equation expression=0). Par exemple
+\giacinputmath{linsolve([x+2y=3,x-y=7],[x,y])}
+\verb|linsolve| renvoie la solution g\'en\'erale du syst\`eme 
+(y compris si la solution n'est pas unique).
+\item \verb|desolve| permet de r\'esoudre de mani\`ere exacte
+certaines \'equations diff\'erentielles, par exemple 
+pour r\'esoudre $y'=2y$, on tape \verb|desolve(y'=2y)|.\\
+Un exemple o\`u on indique une condition initiale, 
+la variable ind\'ependante
+et la fonction inconnue~:\\
+\verb|desolve([y'=2y,y(0)=1],x,y)|
+Utiliser \verb|odesolve|
+pour une r\'esolution approch\'ee et \verb|plotode| pour une
+repr\'esentation graphique de solution calcul\'ee de mani\`ere
+approch\'ee. 
+\item \verb|rsolve| permet de r\'esoudre de mani\`ere exacte
+certaines relations de r\'ecurrences $u_{n+1}=f(u_n,...)$,
+par exemple les suites arithm\'etico-g\'eom\'etriques, par
+exemple $u_{n+1}=2u_n+3, u_0=1$
+\giacinputmath{rsolve(u(n+1)=2*u(n)+3,u(n),u(0)=1)}
+\end{itemize}
+
+\subsection{Arithm\'etique}
+Lorsque cela est n\'ecessaire,
+on distingue l'arithm\'etique des entiers de celle des polyn\^omes
+par l'existence du pr\'efixe \verb|i| (comme \verb|integer|) dans
+un nom de commande, par exemple \verb|ifactor| factorise un entier
+(pas trop grand) alors que \verb|factor| factorise un polyn\^ome
+(et \verb|cfactor| factorise un polyn\^ome sur les complexes).
+Certaines commandes fonctionnent \`a la fois pour les entiers et
+les polyn\^omes, par exemple \verb|gcd| et \verb|lcm|.
+
+\subsubsection{Entiers}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Arithmetic, Crypto|
+\begin{itemize}
+\item \verb|iquo(a,b)|, 
+\verb|irem(a,b)| quotient et reste de la division euclidienne
+de deux entiers.\\
+\giacinputmath{iquo(23,13),irem(23,13)}
+\item \verb|isprime(n)| teste si $n$ est un nombre premier.
+Le test est probabiliste pour de grandes valeurs de $n$.
+\giacinputmath{isprime(2^64+1)}
+\item \verb|ifactor(n)| factorise un entier pas trop grand
+(les algorithmes utilis\'es se limitent \`a la division et Pollard-$\rho$,
+il n'y avait pas de place pour le crible quadratique).
+Par exemple
+\giacinputmath{ifactor(2^64+1)}\\
+Raccourci clavier touches $\rightarrow$ puis * (\verb|=>*|)
+\item \verb|gcd(a,b)|, \verb|lcm(a,b)| PGCD et PPCM de deux entiers
+ou de deux poln\^omes\\
+\giacinputmath{gcd(25,15),lcm(25,15)}\\
+\giacinputmath{gcd(x^3-1,x^2-1),lcm(x^3-1,x^2-1)}
+\item \verb|iegcd(a,b)| renvoie 3 entiers $u,v,d$ tels que
+$au+bv=d$ o\`u $d$ est le PGCD de $a$ et $b$, avec $|u|<|b|$ et
+$|v|<|a|$.\\
+\giacinputmath{u,v,d:=iegcd(23,13); 23u+13v}
+\item \verb|ichinrem([a,m],[b,n])| lorsque cela est possible,
+renvoie $c$ tel que $c=a \pmod m$ et $c=b \pmod n$ (si $m$ et $n$
+sont premiers entre eux, $c$ existe).
+\giacinputmath{c,n:=ichinrem([1,23],[2,13]); irem(c,23); irem(c,13)}
+\item \verb|powmod(a,n,m)| calcule $a^n \pmod m$ par
+l'algorithme de la puissance rapide modulaire.
+\giacinputmath{powmod(7,22,23)}
+\end{itemize}
+Les commandes \verb|asc| et \verb|char| permettent de convertir
+une chaine de caract\`eres en liste d'entiers (entre 0 et 255) et
+r\'eciproquement, ce qui permet de faire facilement de la cryptographie
+avec des messages sous forme de chaines de caract\`eres.
+
+\subsubsection{Polyn\^omes}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Polynomes|.
+La variable est par d\'efaut $x$, sinon il faut la sp\'ecifier en
+g\'en\'eral en dernier argument, par exemple \verb|degree(x^2*y)|
+ou \verb|degree(x^2*y,x)| renvoient 2, alors que \verb|degree(x^2*y,y)|
+renvoie 1
+\begin{itemize}
+\item \verb|coeff(P,n)| coefficient de $x^n$ dans $P$, \verb|lcoeff(P)|
+coefficient dominant de $P$, par exemple
+\giacinputmath{P:=x^3+3x; coeff(P,1); lcoeff(P)}
+\item \verb|degre(P)| degr\'e du polyn\^ome $P$.
+\giacinput{degree(x^3)}
+\item \verb|quo(P,Q)|, \verb|rem(P,Q)| quotient et reste de la division
+euclidienne de \verb|P| par \verb|Q|
+\giacinputmath{P:=x^3+7x-5; Q:=x^2+x; quo(P,Q); rem(P,Q)}
+\item \verb|proot(P)|~: racines approch\'ees de $P$ (r\'eelles et complexes)\\
+\giacinput{proot(x^5+x+1)}
+Repr\'esentation graphique~:\\
+\giacinput{point(proot(x^5+x+1))}
+\item \verb|interp(X,Y)|~: pour deux listes
+de m\^eme taille, polyn\^ome d'interpolation
+passant par les points $(X_i,Y_i)$. \\
+\giacinputmath{X,Y:=[0,1,2,3],[1,-3,-2,0]; P:=interp(X,Y)=>+}
+Repr\'esentation graphique\\
+\giacinput{scatterplot(X,Y); plot(P,x,-1,4)}
+\item \verb|resultant(P,Q)|~: r\'esultant des polyn\^omes
+$P$ et $Q$
+\giacinput{P:=x^3+7x-5; Q:=x^2+x; resultant(P,Q)}
+\item \verb|hermite(x,n)|~: n-i\`eme polyn\^ome de Hermite,
+orthogonal pour la densit\'e $e^{-x^2}dx$ sur $\R$
+\item \verb|laguerre(x,n,a)|~: n-i\`eme polyn\^ome de Laguerre,
+\item \verb|legendre(x,n)|~: n-i\`eme polyn\^ome de Legendre,
+orthogonal pour la densit\'e $dx$ sur $[-1,1]$
+\item \verb|tchebyshev1(n)| et \verb|tchebyshev2(n)|
+polyn\^omes de Tchebyshev de 1\`ere et 2\`eme esp\`ece
+d\'efinis par~:
+$$T_n(\cos(x))=\cos(nx), \quad U_n(\cos(x))\sin(x)=\sin((n+1)x)$$
+%\item \verb|bernoulli(n,x)| polyn\^ome de Bernoulli
+\end{itemize}
+
+\subsection{Alg\`ebre lin\'eaire, vecteurs, matrices}
+Xcas ne fait pas de diff\'erence entre vecteur et liste. Par
+exemple pour faire le produit scalaire de deux vecteurs, on peut
+saisir~:
+\begin{giaconload}v:=[1,2]; w:=[3,4]\end{giaconload}
+\giacinput{dot(v,w)}
+
+Pour saisir une matrice \'el\'ement par \'el\'ement, taper
+sur shift-MATR et s\'electionner \verb|matrix| 
+ou F6, puis 10 (editer matrice). Vous pouvez ensuite
+cr\'eer une nouvelle matrice ou \'editer
+une matrice existante parmi la liste de variables propos\'ees. 
+Notez que la touche \verb|,| permet d'ins\'erer une ligne ou une colonne,
+alors que la touche d'effacement \verb|DEL| efface la ligne ou la colonne de la
+s\'election (tapez \verb|UNDO| si vous avez effac\'e par erreur
+une ligne ou colonne).
+Pour de petites matrices, vous pouvez aussi
+entrer en ligne de commandes
+une liste de listes de m\^eme taille. Par exemple
+pour d\'efinir la matrice
+$$ A=\left(\begin{array}{cc} 1 & 2 \\ 3 & 4 \end{array}\right)$$
+on peut taper \begin{giaconload}A:=[[1,2],[3,4]]\end{giaconload} 
+ou \giacinputmath{[[1,2],[3,4]]=>A}
+
+Il est fortement conseill\'e de stocker les matrices dans des variables
+pour \'eviter de les saisir plusieurs fois.
+
+Pour entrer une matrice dont les coefficients sont
+donn\'es par une formule d\'efinissant l'\'el\'ement $a_{ij}$
+en fonction de la ligne $i$ et colonne $j$,
+on peut utiliser la commande \verb|matrix(|.
+Par exemple 
+\giacinputmath{matrix(2,2,(j,k)->1/(j+k+1))} 
+renvoie
+la matrice dont le coefficient ligne $j$ et colonne $k$ vaut
+$\frac{1}{j+k+1}$ (attention les indices commencent \`a 0). 
+Pour obtenir la commande \verb|matrix(|, taper F4 (cmds) puis
+17 Matrices ou utiliser le raccourci shift-MATR, EXE, \verb|AC/ON|.
+
+La matrice identit\'e de taille $n$ 
+est renvoy\'ee par la commande \verb|idn(n)| (F4 17),
+alors que \verb|ranm(n,m,loi,[parametres])| (menu shift-MATR ou F4 17)
+renvoie une matrice \`a coefficients al\'eatoires de taille $n,m$.
+Par exemple 
+\giacinputmath{U:=ranm(4,4,uniformd,0,1)}
+\giacinputmath{N:=ranm(4,4,normald,0,1)}
+
+Pour ex\'ecuter une commande sur des matrices, s'il s'agit
+d'arithm\'etique de base (\verb|+,-,*| inverse), on utilise
+les op\'erations au clavier. Pour les autres commandes.
+depuis le catalogue F4, s\'electionner le sous-menu \verb|Matrices|
+\begin{itemize}
+\item \giacinputmath{eigenvals(A)}
+\giacinputmath{eigenvects(A)} 
+renvoient les valeurs
+propres et vecteurs propres d'une matrice carr\'ee $A$. 
+\item \giacinputmath{P,D:=jordan(A)} 
+calcule la forme normale de Jordan d'une matrice $A$
+(\`a coefficients exacts) et renvoie les matrices $P$ et $D$ telles que
+$P^{-1}AP=D$, avec $D$ triangulaire sup\'erieure (diagonale si $A$ est
+diagonalisable)
+\item \giacinputmath{Ak:=matpow(A,k)} calcule la puissance $k$-i\`eme
+d'une matrice $A$ avec $k$ une variable formelle.
+\item \verb|rref| effectue la r\'eduction sous forme \'echelonn\'ee
+d'une matrice $A$ (pivot de Gauss)
+\item \verb|lu| calcule la d\'ecomposition $LU$ d'une matrice $A$
+et renvoie une permutation de matrice $P$ et deux matrices $L$
+triangulaire inf\'erieure et $U$ triangulaire sup\'erieure telles que
+$PA=LU$. Le r\'esultat de la commande 
+\giacinput{P,L,U:=lu(A)} peut
+\^etre pass\'e en argument \`a la commande \giacinput{linsolve(P,L,U,v)}
+pour r\'esoudre un syst\`eme $Ax=b$ de matrice $A$ en r\'esolvant
+deux syst\`emes triangulaires (calcul en $O(n^2)$ au lieu
+de $O(n^3)$).
+\item \verb|qr| calcule la d\'ecomposition $QR$ d'une matrice $A$
+et renvoie deux matrices $Q$ orthogonale et $R$ triangulaire sup\'erieure
+telles que $A=QR$.
+\item \verb|svd(A)| calcule la factorisation en valeurs
+singuli\`eres d'une matrice $A$, et renvoie 
+$U$ orthogonale, $S$ vecteur des valeurs singulières, $Q$
+orthogonale tels que \verb|A=U*diag(S)*tran(Q)|. Le rapport
+de la plus grande valeur singuli\`ere de $S$ sur la plus petite
+donne le nombre de condition de $A$ relativement \`a la norme euclidienne,
+plus ce nombre est grand, plus on perd en pr\'ecision en r\'esolvant
+un syst\`eme $Ax=b$ lorsque $b$ n'est pas connu exactement.
+\end{itemize}
+
+
+\section{Probabilit\'es et statistiques}
+
+\subsection{Tirages al\'eatoires}
+Depuis le catalogue F4, s\'electionner le sous-menu \verb|Probabilites|
+puis s\'electionnez \giacinput{rand()} (r\'eel selon
+la loi uniforme dans $[0,1]$) ou 
+\giacinput{n:=6:; randint(n)} 
+(entier
+entre 1 et $n$). De nombreuses autres fonctions al\'eatoires
+existent, avec comme pr\'efixe \verb|rand|, suivi par le nom
+de la loi, par exemple \verb|randbinomial(n,p)| renvoie
+un entier al\'eatoire selon la loi binomiale de param\`etres $n,p$.
+Pour cr\'eer un vecteur ou une matrice al\'eatoire, utiliser la commande
+\verb|ranv| ou \verb|ranm| (menu F4 \verb|Matrice| ou shift-MATR), 
+par exemple pour un vecteur de 10 composantes
+selon la loi normale centr\'ee r\'eduite 
+\giacinputmath{ranv(10,normald,0,1)}
+
+\subsection{Lois de probabilit\'es}
+Depuis F4, s\'electionner le sous-menu \verb|Probabilites|.
+Les lois propos\'ees dans le catalogue sont la loi binomiale, la loi normale,
+la loi exponentielle et la loi uniforme. 
+D'autres lois sont disponibles mais il n'y a pas assez de place pour
+les documenter~:
+\verb|chisquared|, \verb|geometric|, \verb|multinomial|
+\verb|studentd|, \verb|fisherd|, \verb|poisson|.
+
+Pour obtenir la distribution cumul\'ee d'une loi, on saisit le nom de la loi
+et le suffixe \verb|_cdf| (s\'electionner \verb|cdf| dans le catalogue
+sous-menu Probabilit\'es et taper F1). 
+Pour obtenir la distribution cumul\'ee inverse,
+on saisit le nom de la loi et le suffixe \verb|_icdf|  
+(s\'electionner \verb|cdf| dans le catalogue
+sous-menu Probabilit\'es et taper F2).
+
+Exemple~: calcul de l'intervalle centr\'e $I$
+pour la loi normale de moyenne 5000 et d'\'ecart-type 200
+tel que la probabilit\'e d'\^etre en-dehors de $I$ soit de 5\%~:
+\giacinput{M:=5000; S:=200; normald_icdf(M,S,0.025);normald_icdf(M,S,0.975)}
+
+\subsection{Statistiques descriptives 1-d}
+Ces fonctions agissent sur des listes
+par exemple \begin{giaconload}l:=[9,11,6,13,17,10]\end{giaconload}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Statistiques|.
+\begin{itemize}
+\item \giacinput{mean(l)}~: moyenne arithm\'etique d'une liste
+\item \giacinput{stddev(l)}~: \'ecart-type d'une liste\\
+Utiliser
+\giacinput{stddevp(l)} pour avoir un estimateur non biais\'e
+de l'\'ecart-type d'une population dont \verb|l| est un \'echantillon
+\item \giacinput{median(l)}, \giacinput{quartile1(l)}, 
+\giacinput{quartile3(l)}
+renvoient respectivement la m\'ediane, le 1er et 3\`eme quartiles
+d'une liste
+\end{itemize}
+Pour les statistiques 1-d de listes avec effectifs, on remplace
+\verb|l| par deux listes de m\^eme longueur, la 1\`ere liste
+est la liste des valeurs de la s\'erie statistique, la 2\`eme
+liste est la liste des effectifs.
+Voir aussi les commandes du menu \verb|Graphique| 
+\verb|histogram| et \verb|barplot|.
+
+\subsection{Statistiques descriptives 2-d}
+Depuis le catalogue, s\'electionner le sous-menu \verb|Statistiques|.
+\begin{itemize}
+\item \verb|correlation(X,Y)| calcule la corr\'elation entre 
+2 listes de m\^eme taille.
+\item \verb|covariance(X,Y)| calcule la covariance entre 
+2 listes de m\^eme taille.
+\item les commandes de suffixe \verb|_regression(X,Y)| calculent
+des ajustements par r\'egression au sens des moindres carr\'es,
+par exemple \verb|linear_regression(X,Y)| renvoie
+les coefficients $m,p$ de la droite de r\'egression lin\'eaire
+$y=mx+p$.\\
+\item \verb|linear_regression_plot(X,Y)| (respectivement
+ toutes les commandes
+de suffixe \verb|_regression_plot|) trace une droite (respectivement
+une courbe) d'ajustement des donn\'ees contenues dans les listes
+\verb|X,Y| de m\^eme taille.
+Ces commandes affichent
+de plus le coefficient $R^2$ qui permet de quantifier la qualit\'e
+de l'ajustement (plus $R^2$ est proche de 1, meilleur est
+l'ajustement).
+\end{itemize}
+
+\section{Graphes}
+Pour obtenir une repr\'esentation graphique, on saisit une commande
+de trac\'e (ou plusieurs commandes s\'epar\'ees par \verb|;|).
+Depuis le catalogue F4, s\'electionner le sous-menu \verb|Graphes|
+(7).
+\begin{itemize}
+\item \verb|plot(f(x),x=a..b)| graphe de $f(x)$ pour $x\in [a,b]$.
+On peut sp\'ecifier un pas de discr\'etisation avec \verb|xstep=|,
+par exemple \giacinput{plot(x^2,x=-4..4,xstep=1)}
+\item \verb|plotseq(f(x),x=[u0,a,b])| graphe ``en toile d'araign\'ee''
+de la suite r\'ecurrente $u_{n+1}=f(u_n)$ de premier terme $u_0$ donn\'e.
+Par exemple si $u_{n+1}=\sqrt{2+u_n}, u_0=6$ avec une repr\'esentation
+sur $[0,7]$
+\giacinput{plotseq(sqrt(2+x),x=[6,0,7])}
+\item \verb|plotparam([x(t),y(t)],t=tm..tM)| courbe en param\'etriques
+$(x(t),y(t))$ pour $t\in [t_m,t_M]$.
+On peut sp\'ecifier un pas de discr\'etisation avec \verb|tstep=|
+par exemple
+\giacinput{plotparam([sin(2t),cos(3t)],t,0,2*pi)}
+%On peut sp\'ecifier la fen\^etre graphique avec
+\item \verb|plotpolar(r(theta),theta=a..b)| courbe
+en polaires $r(\theta)$ pour $\theta \in [a,b]$,
+par exemple
+\giacinput{plotpolar(sin(3*theta),theta,0,2*pi)}
+\item \verb|plotlist(l)| pour une liste \verb|l|,
+trace la ligne polygonale reliant
+les points de coordonn\'ees $(i,l_i)$ (indice $i$ commen\c{c}ant \`a 0).\\
+\verb|plotlist([X1,Y1],[X2,Y2],...)| 
+trace la ligne polygonale reliant
+les points de coordonn\'ees $(X_i,Y_i)$ 
+\item \verb|scatterplot(X,Y)|, \verb|polygonscatterplot(X,Y)|
+pour 2 listes \verb|X,Y| de m\^eme taille, trace un nuage de points
+ou une ligne polygonale reliant
+les points de coordonn\'ees $(X_i,Y_i)$ 
+\item \verb|histogram(l,class_min,class_size)| trace
+l'histogramme des donn\'ees de la liste \verb|l| avec
+comme largeur de classe \verb|class_size| en commen\c{c}ant
+\`a \verb|class_min|. Par exemple, on peut tester la qualit\'e
+du g\'en\'erateur al\'eatoire avec
+\giacinput{l:=ranv(500,normald,0,1); histogram(l,-4,0.25); plot(normald(x),x,-4,4)}
+\item \verb|plotcontour(f(x,y),[x=xmin..xmax,y=ymin..ymax],[l0,l1,...])|
+trace les courbes de niveaux $f(x,y)=l_0, f(x,y)=l_1, ...$.
+\item (Graph 90)
+\verb|plotfield(f(t,y),[t=tmin..tmax,y=ymin..ymax])|
+trace le champ des tangentes \`a l'\'equation diff\'erentielle
+$y'=f(t,y)$. On peut ajouter en dernier param\`etre
+optionnel \verb|,plotode=[t0,y0]|
+pour tracer simultan\'ement la solution passant par la condition
+initiale $y(t_0)=y_0$. Exemple $y'=\sin(ty)$ sur l'intervalle $[-3,3]$
+en temps et $[-2,2]$ en $y$\\
+\giacinput{plotfield(sin(t*y),[t=-3..3,y=-3..3],plotode=[0,1])}
+On peut aussi utiliser la commande \verb|plotode| en-dehors d'une commande
+\verb|plotfield|.\\
+Sur la graph 35eii, 
+la m\'emoire est insuffisante pour utiliser \verb|plotfield|
+avec l'option \verb|plotode|.
+\item On peut tracer simultan\'ement plusieurs graphiques, en s\'eparant
+les commandes de trac\'e par \verb|;|
+\end{itemize}
+Lorsqu'un graphique comporte des trac\'es de courbes (graphes de
+fonction, courbes en param\'etriques ou en polaires), le mode
+``trace'' est activ\'e par d\'efaut sur $\chi$CAS en 2 addins pour Graph 90
+et sur $\chi$CAS pour Graph 35eii. Dans ce mode, l'appui sur la
+touche curseur vers la droite ou la gauche permet de d\'eplacer
+un pointeur sur la courbe active, en affichant les coordonn\'ees
+du pointeur (et du param\`etre pour une courbe en param\'etriques)
+et d'un vecteur tangent. S'il y a plusieurs arcs de courbe, les
+touches de curseur haut et bas permettent de changer l'arc d'\'etude.
+L'appui sur F2 permet d'afficher les informations sur la courbe
+courante, si on confirme par EXE on acc\`ede \`a un tableau de valeurs.
+
+Le menu F1 \'etude de graphes (raccourci touche x,$\theta$,t)
+permet d'ajouter un vecteur normal pointant vers le centre de courbure
+(F4),
+ou/et le cercle osculateur (F5) et le rayon de courbure. On peut
+aussi \`a partir de ce menu d\'eplacer le pointeur vers une position d\'etermin\'ee, ou
+vers un point remarquable: racine, tangente horizontale ou verticale,
+point d'inflexion, intersection avec un autre arc de courbe 
+(fonctionnalit\'e limit\'ee \`a l'intersection de graphes de fonctions 
+sur la 35eii par manque de place). On peut
+enfin calculer une longueur d'arc ou l'aire sous la courbe entre
+le pointeur et la marque. 
+
+Lorsque vous faites une \'etude de courbe, les variables
+\verb|X0,X1,X2,Y0,Y1,Y2|
+sont automatiquement affect\'ees avec l'expression de la position, vitesse
+et acc\'el\'eration sur la courbe \'etudi\'ee. Lors de la recherche
+d'une racine, tangente horizontale, inflexion, longueur d'arc, aire
+sous la courbe, des variables contenant la derni\`ere recherche
+sont cr\'ees.
+
+La touche OPTN vous permet de sp\'ecifier certaines options graphiques~:
+\begin{itemize}
+\item Pour modifier les couleurs des graphes, utiliser la touche OPTN
+et s\'electionnez une couleur puis tapez F2 (Exemple 1) pour ins\'erer
+\verb|display=|{\em couleur}, par exemple OPTN r e d F2 pour
+\giacinput{plot(sin(x),display=red)}
+\item Pour changer l'\'epaisseur des segments (y compris les lignes
+polygonales utilis\'ees pour tracer une courbe), utiliser
+\verb|display=line_width_2| \`a \verb|display=line_width_8|.
+OPTN l i puis curseur vers le bas si n\'ecessaire puis F2
+Pour changer \`a la fois la couleur et l'\'epaisseur, additionnez les
+attributs, par exemple~:
+\verb|display=red+line_width_2|
+\item Les cercles ainsi que les polygones 
+peuvent \^etre remplis avec l'attribut
+\verb|display=filled| (qui peut s'additionner \`a d'autres attributs).
+\item Pour remplacer la fen\^etre graphique calcul\'ee automatiquement
+par des valeurs pr\'ed\'efinies, utiliser la touche OPTN,
+s\'electionner \verb|gl_x| ou/et \verb|gl_y| et indiquer l'intervalle
+en $x$ ou en $y$ souhait\'e, la commande doit pr\'ec\'der une
+commande de trac\'e. Par exemple 
+\giacinput{gl_x=-2..2;gl_y=-1..4;plot(exp(x))}
+\item
+Pour enlever les axes, s\'electionner \verb|axes| puis taper F2 
+(\verb|axes=0|). La commande doit pr\'ec\'eder une commande de
+trac\'e.
+\end{itemize}
+
+\section{L'\'editeur d'expressions}
+Lorsqu'un calcul renvoie une expression, elle est affich\'ee en plein 
+\'ecran dans
+l'\'editeur d'expression 2d. Depuis l'historique des calculs, si le niveau
+s\'electionn\'e est une expression, l'appui sur F3 (voir) affiche
+l'expression dans l'\'editeur 2d. En ligne de commande, l'appui
+sur F3 (voir) ouvre aussi l'\'editeur 2d, soit avec 0 si la ligne
+de commande \'etait vide, ou avec le contenu de la ligne de commande si
+celle-ci est syntaxiquement correcte.
+
+Lorsque l'\'editeur 2d est ouvert, l'expression est affich\'ee en
+plein \'ecran et une
+partie de l'expression est s\'electionn\'ee. On peut alors agir sur
+la s\'election en ex\'ecutant des commandes saisies via les menus
+ou le clavier, on peut aussi \'editer la s\'election (en mode de saisie
+1d). Ceci permet de retravailler des sous-expressions
+ou d'\'editer une expression en \'ecriture naturelle.
+
+Exemple 1~: nous allons saisir 
+$$ \lim_{x \rightarrow 0} \frac{\sin(x)}{x}$$
+Depuis une ligne de commande vide, taper F3 (voir), vous devez voir 0 
+s\'electionn\'e. Tapez sur la touche x et EXE, maintenant c'est x qui
+est en surbrillance. Tapez sur la touche SIN, c'est $\sin(x)$ qui
+est en surbrillance. Tapez sur la touche de division (au-dessus de -), 
+vous devez voir $\frac{\sin(x)}{0}$ avec 0 en surbrillance, tapez
+x puis EXE, vous devez voir $\frac{\sin(x)}{x}$ avec
+x au d\'enominateur en surbrillance. Tapez sur le curseur
+fl\`eche vers le haut pour mettre $\frac{\sin(x)}{x}$ en surbrillance,
+puis F2 4 (pour limit). L'expression est correcte, vous pouvez taper EXE
+pour la recopier en ligne de commande and EXE again to eval it. 
+Si on avait voulu
+une limite en $+\infty$, il aurait fallu d\'eplacer la s\'election
+avec curseur vers la droite, puis faire F1 8 (oo) EXE.
+
+Exemple 2~: nous allons saisir
+$$ \int_0^{+\infty} \frac{1}{x^4+1} \ dx $$
+Depuis une ligne de commande vide, taper F3 (voir), puis F2 3 (integrate),
+vous devez voir
+$$ \int_0^1 0 \ dx$$
+avec $x$ s\'electionn\'e. Il faut donc changer le 1 de la borne sup\'erieure
+et le 0 \`a int\'egrer. Pour modifier le 0, curseur vers la gauche pour
+le s\'electionner puis \verb|1/(x^4+1)| EXE, puis curseur vers
+la gauche F1 8 EXE. Taper sur EXE pour recopier vers la ligne
+de commande puis EXE pour effectuer le calcul, le r\'esultat s'affiche
+dans l'\'editeur 2d, EXE quitte l'\'editeur avec dans l'historique
+l'int\'egrale et sa valeur (en syntaxe alg\'ebrique 1d).
+
+Exemple 3~: nous allons calculer et simplifier 
+$$ \int \frac{1}{x^4+1} \ dx $$
+Depuis une ligne de commande vide, taper F3 (voir), puis F2 3 (integrate),
+vous devez voir
+$$ \int_0^1 0 \ dx$$
+D\'eplacez le curseur sur le 0 de la borne inf\'erieure de l'int\'egrale
+et tapez sur la touche DEL, vous devez voir
+$$ \int 0 \ dx$$
+avec le tout s\'electionn\'e. Utilisez le curseur vers le bas
+pour s\'electionner 0 et tapez \verb|1/(x^4+1)| EXE puis EXE pour
+recopier en ligne de commande puis EXE pour ex\'ecuter le calcul,
+le r\'esultat s'affiche maintenant dans l'\'editeur 2d.\\
+On peut alors s\'electionner avec les touches du curseur par exemple
+l'argument d'un des arctangentes et ex\'ecuter F1 EXE (simplify) 
+pour effectuer une simplification partielle du r\'esultat, puis
+recommencer avec l'autre arctangente.\\
+On peut simplifier encore plus, en rassemblant les logarithmes. Pour
+cela il faut d'abord \'echanger deux des arguments de la somme. 
+S\'electionnez un des logarithmes avec des d\'eplacements du curseur,
+puis tapez
+\begin{itemize}
+\item Graph 90: shift-curseur droit ou gauche
+\item Graph 35: F5 curseur droit ou gauche, ensuite ALPHA
+\end{itemize}
+cela \'echange l'argument s\'electionn\'e avec son fr\`ere de droite ou
+de gauche. Tapez ensuite 
+ ALPHA curseur vers la droite ou vers la gauche, ceci augmente la
+s\'election en ajoutant le fr\`ere de droite ou de gauche.
+Une fois les deux logarithmes s\'electionn\'es, menu F1 2 EXE (factor), puis
+descendez la s\'election sur la somme ou diff\'erence de logarithmes,
+allez dans le menu F4 (cmds) puis EXE (Tout), tapez les lettres l, n, c
+ce qui d\'eplace \`a la premi\`ere commande commen\c{c}ant par \verb|lnc|,
+s\'electionnez \verb|lncollect|, validez et tapez enfin sur F6 (eval).
+
+\section{Sessions de calculs}
+\subsection{Edition de l'historique.}
+En utilisant la touche curseur vers le haut/bas, on se d\'eplace dans
+l'historique des calculs, le niveau courant est en surbrillance. 
+
+Pour modifier l'ordre des niveaux dans l'historique des calculs,
+tapez ALPHA-curseur vers le haut ou vers le bas.
+Pour effacer un niveau, appuyez sur la touche DEL (le niveau
+est recopi\'e dans le presse-papiers).
+
+Pour
+modifier un niveau existant, on tape sur F3 ou sur ALPHA-F3. Dans le
+premier cas, c'est l'\'editeur 2d qui est appel\'e si le niveau
+est une expression, dans le
+deuxi\`eme cas, c'est l'\'editeur texte qui est appel\'e.
+Taper EXIT pour annuler les modifications ou EXE pour valider.
+Si les modifications sont valid\'ees, les lignes de commande situ\'ees
+en-dessous de la ligne modifi\'ee seront automatiquement calcul\'ees,
+tenant compte des modifications, par exemple si vous modifiez un niveau
+comme \verb|A:=1|, les lignes situ\'ees en-dessous d\'ependant de \verb|A|
+seront actualis\'ees.
+
+Ce processus peut \^etre automatis\'e en utilisant un curseur,
+que l'on peut cr\'eer avec un assistant, depuis le menu F6,
+Parameter. Une fois cr\'e\'e, vous pouvez modifier un curseur
+en tapant sur les touches + ou - lorsque le niveau contenant
+la commande \verb|assume| ou \verb|parameter| est s\'electionn\'e
+(tapez * ou / pour une modification plus rapide).
+
+\subsection{Variables}
+En appuyant sur la touche \verb|VARS| vous affichez la liste
+des variables qui ont une valeur, ainsi que des commandes de gestion
+de variables. D\'eplacez le curseur vers une variable puis EXE pour
+la recopier en ligne de commande, DEL copie en ligne de commande
+la commande d'effacement de la variable (confirmez ensuite avec EXE).
+La commande \verb|restart| permet d'effacer toutes les variables.
+La commande \verb|assume| permet de faire une hypoth\`ese sur
+une variable, par exemple \verb|assume(x>5)| (\verb|>| se trouve
+dans le menu shift-PRGM).
+
+\subsection{Sauvegarde et \'echange de sessions avec Xcas.}
+Depuis l'historique des calculs, avec le menu F6, vous pouvez sauvegarder
+une session de travail sur la m\'emoire de stockage de la
+calculatrice. Les fichiers ont comme extension \verb|xw|.
+Vous pouvez alors sauvegarder ces fichiers sur votre ordinateur en
+connectant la calculatrice comme clef USB (choix F1), depuis
+l'explorateur de fichiers de votre ordinateur.
+
+Ces fichiers sont compatibles avec Xcas et Xcas pour Firefox. Vous
+pouvez ouvrir une session depuis le menu Fich, Ouvrir de Xcas
+ou depuis le bouton Charger/Parcourir de la page de 
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/xcasfr.html}{Xcas pour Firefox}.
+Vous pouvez sauvegarder des sessions Xcas et Xcas pour Firefox au format
+\verb|xw| dans le menu Fich, Exporter comme Khicas de Xcas, 
+ou le bouton Export de Xcas pour Firefox.
+
+
+
+\section{Programmation}
+Vous pouvez programmer en utilisant
+les structures de commande en fran\c{c}ais de Xcas
+ou en utilisant la compatibilit\'e de
+syntaxe Python. Les programmes tr\`es courts (en une ligne)
+peuvent \^etre saisis directement en ligne de commande. Les
+programmes plus longs ou que l'on souhaite sauvegarder
+seront saisis dans l'\'editeur de programmes sur
+la calculatrice, ou bien transf\'er\'es depuis un PC ou
+une autre calculatrice.
+
+\subsection{Utilisation en exemples}
+{\bf Un premier exemple en ligne de commande~}:\\
+une fonction d\'efinie par une expression alg\'ebrique. On
+saisit \verb|nom_fonction(parametres):=expression|
+Par exemple, pour d\'efinir le p\'erim\`etre d'un cercle de
+rayon $r$, on peut taper
+\giacinput{peri(r):=2*pi*r}
+puis on peut calculer \giacinput{peri(1)}.
+Pour saisir \verb|:=| on peut utiliser le raccourci
+shift-$\rightarrow$ ou shift-INS selon la version de $\chi$CAS.
+
+{\bf Autre exemple, pour calculer l'intervalle de confiance de seconde}
+connaissant une fr\'equence $p$ et un effectif $n$, on tape\\
+\giacinput{F(P,N):=[P-1/sqrt(N),P+1/sqrt(N)]}\\
+puis on teste \giacinput{F(0.4,30)}
+
+{\bf Autre exemple~: avec la tortue de Xcas}\\
+La tortue de Xcas est un petit robot qui se d\'eplace selon des 
+ordres qui lui sont donn\'es en laissant une trace de son passage.
+Les commandes de la tortue sont accessibles depuis le dernier item
+du menu F6, ou par le raccourci shift-QUIT.
+Saisir la commande {\tt avance} dans ce menu puis valider, vous
+devez voir la tortue (symbolis\'ee par un triangle) avancer de 10 pixels.
+Taper EXIT pour revenir en ligne de commande.
+Saisir la commande \verb|tourne_gauche| et valider, la tortue a tourn\'e
+de 90 degr\'es. R\'ep\'eter
+3 fois ces deux commandes pour afficher un carr\'e.\\
+Pour effacer le dessin et ramener la tortue \`a l'origine,
+saisir la commande {\tt efface}.
+Pour faire des dessins tortue, il est conseill\'e d'utiliser l'\'editeur
+de programmes (cf. ci-dessous).
+
+{\bf Autre exemple~: une boucle ``oneliner'' en syntaxe Xcas.}\\
+Tapez shift-PRGM, puis s\'electionnez l'exemple
+de \verb|pour (boucle Xcas)|\\
+\giacinput{pour j de 1 jusque 10 faire print(j,j^2); fpour;}
+tapez sur EXE, vous devez voir les carr\'es des entiers de 1 \`a 10.
+
+{\bf Exercice~:} faire faire un carr\'e \`a la tortue en utilisant
+une boucle.
+
+{\bf Utilisation de l'\'editeur}\\
+Modifions cet exemple pour faire afficher les carr\'es de 1 \`a $n$
+en utilisant la syntaxe compatible Python et
+l'\'editeur de programmes. V\'erifiez que la syntaxe Python
+est coch\'ee (F6 ou shift-SETUP), sinon cochez-la.
+Tapez F6 (Fich,Cfg) puis s\'electionner
+Editeur script
+pour ouvrir l'\'editeur. S'il n'y a pas encore de script,
+on vous propose de choisir entre Tortue ou Programme, s\'electionnez
+Programme, vous devriez obtenir
+\verb|def session(x):|. Remplacez \verb|session| par \verb|f| et
+\verb|x| par \verb|n|, puis 
+d\'eplacez le curseur en fin de ligne et passez \`a la
+ligne (shift-EXE).
+Tapez Shift-PRGM puis \verb|1 for|, placez le curseur entre \verb|for|
+et \verb|in| et tapez F5 j, placez le curseur entre les parenth\`eses
+de \verb|range| tapez \verb|1,n+1| puis
+d\'eplacez le curseur \`a la ligne suivante
+F4 (cmds), EXE (\verb|1 Tout|), P, R, d\'eplacez
+la surbrillance avec le curseur vers le bas jusque \verb|print| 
+et validez (EXE), puis tapez \verb|j,j^2)| (F5 j ALPHA , F5 j ALPHA $x^2$). 
+Vous devriez avoir le  programme suivant~:
+\begin{giacprog}
+def f(n):
+  for j in range(1,n+1):
+    print(j,j**2)
+  return 
+\end{giacprog}
+N.B.: pour la puissance, on peut utiliser \verb|^| ou \verb|**| dans 
+KhiCAS (sauf si on a ex\'ecut\'e la commande \verb|python_compat(2)|),
+notez qu'il faut utiliser \verb|**| en Python.
+
+Maintenant, tapez F6 (Fich,Cfg) et s\'electionnez \verb|1. Tester syntaxe|
+ou tapez EXE.
+Si tout va bien, vous devez voir \verb|Syntaxe correcte| 
+dans la ligne d'\'etat.
+Sinon, le num\'ero de ligne de la premi\`ere erreur est indiqu\'e ainsi que
+le mot qui a provoqu\'e l'erreur. Le curseur est positionn\'e sur la ligne
+o\`u l'erreur a \'et\'e d\'etect\'ee (il peut arriver que l'erreur soit 
+situ\'ee avant mais d\'etect\'ee un peu plus loin seulement). Si vous
+utilisez la syntaxe en Python, notez que les structures de programmation
+sont traduites en langage Xcas, les erreurs affich\'ees le sont par
+rapport \`a cette traduction (donc des mots-clefs de fin de structure
+comme \verb|end| rajout\'es par le traducteur
+peuvent apparaitre dans le message d'erreur).
+
+Si le programme est syntaxiquement correct, vous pouvez le sauvegarder
+depuis le menu F6 (File). Pour l'ex\'ecuter, revenez \`a la
+ligne de commande en tapant la touche EXIT. En tapant la touche
+VARS, \verb|f| doit apparaitre, s\'electionnez \verb|f|
+puis compl\'etez pour obtenir par
+exemple la commande \verb|f(10)|, puis EXE, vous devriez voir s'afficher
+les carr\'es de 1 \`a 10.
+
+
+{\bf 3i\`eme exemple~: Calcul de l'intervalle de confiance de terminale S}\\
+On peut le saisir en ligne de commande
+\giacinput{F(P,N):=[P-1.96*sqrt(P*(1-P)/N),P+1.96*sqrt(P*(1-P)/N)]}
+On peut \'eviter les calculs redondants en utilisant une variable
+locale (utiliser shift-PRGM pour saisir def et return)\\
+\begin{giacprog}
+def F(P,N):
+  D=1.96*sqrt(P*(1-P)/N)
+  return [P-D,P+D]
+\end{giacprog}
+
+{\bf Exercice~} Cr\'eez une nouvelle session  contenant
+un script pour afficher un carr\'e avec la tortue.
+Cr\'eez ensuite une fonction \verb|f| d'argument $n$
+pour afficher un carr\'e de $n$ pixels.
+
+{\bf Solution~}
+Faire F6, Nouvelle session, taper \verb|carre| puis F6, Editeur script,
+choisir Tortue ce qui cr\'ee un script contenant
+l'instruction \verb|efface|. Ajouter 4 fois \verb|avance; tourne_gauche;|.
+Appuyer sur EXE pour tester.
+Quitter avec EXIT (et sauvegardez avec F1).
+
+Taper EXIT. Modifiez avant la ligne \verb|efface| en
+\begin{verbatim}
+def f(n):
+  for j in range(4):
+    avance(n)
+    tourne_gauche
+\end{verbatim}
+puis apr\`es la ligne \verb|efface;| tapez par exemple \verb|f(40)|
+puis F6 1 Tester syntaxe ou EXE.
+
+{\bf Un exemple de fonction non alg\'ebrique~: le calcul du PGCD de 2 entiers.}\\
+Utiliser shift-EXE pour passer \`a la ligne. Le caract\`ere \verb|!|
+est accessible depuis le menu \verb|Programmation_cmds| (F4 10, 
+raccourci F4 0).
+En syntaxe Xcas 
+\begin{giacprog}
+fonction pgcd(a,b)
+  tantque b!=0 faire
+    a,b:=b,irem(a,b);
+  ftantque;
+  return a;
+ffonction
+\end{giacprog}
+Le m\^eme en syntaxe Python 
+\begin{giacprog}
+def pgcd(a,b):
+  while b!=0:
+    a,b=b,irem(a,b)
+  return a
+\end{giacprog}
+On v\'erifie \giacinput{pgcd(12345,3425)}
+
+{\bf Mise au point}\\
+Depuis l'historique des calculs,
+la commande \verb|debug| (disponible depuis shift-PRGM) permet 
+d'ex\'ecuter une fonction en mode pas-\`a-pas, i.e.
+visualiser l'\'evolution des variables instruction par instruction,
+par exemple\\
+\verb|debug(pgcd(12345,3425))|
+
+\subsection{Quelques exemples}
+Vous trouverez
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/sessions}{en ligne} des exemples de sessions
+dont certains sont des TP pour classes de seconde de l'IREM de Grenoble.
+
+\subsection{Commandes utilisables}
+Contrairement aux adaptations de MicroPython propos\'ees par
+les constructeurs (dont
+celui de la Casio Graph 90+e), la programmation en (simili-)Python 
+dans KhiCAS n'est pas une application ind\'ependante. 
+Vous pouvez donc utiliser tous les types
+de Xcas (par exemple les rationnels) et appliquer toutes
+les commandes de Xcas dans vos programmes. Ceci correspond
+plus ou moins \`a un environnement Python avec les modules
+\verb|math|, \verb|cmath|, \verb|random| (plus complet
+que le module \verb|urandom| fourni par les constructeurs),
+\verb|scipy|, \verb|numpy|, un petit module de graphiques
+pixelis\'e 
+(\verb|set_pixel(x,y,c)|, \verb|set_pixel()|
+pour synchroniser l'affichage, \verb|clear()|,
+\verb|draw_line(x1,y1,x2,y2,c)|, 
+\verb|draw_polygon([[x1,y1],[x2,y2],...],c)|,
+\verb|draw_rectangle(x,y,w,h,c)|, \verb|draw_circle(x,y,r,c)|,
+la couleur+epaisseur+remplissage \verb|c| est un param\`etre optionnel,
+\verb|draw_arc(x,y,rx,ry,t1,t2,c)| permet de tracer un arc
+d'ellipse).
+et pour remplacer \verb|matplotlib| on peut utiliser
+les commande graphiques dans un rep\`ere de $\chi$CAS
+(\verb|point|, \verb|line|, \verb|segment|, \verb|circle|,
+\verb|barplot|, \verb|histogram| et les commandes \verb|plot...|).
+De plus, vous pouvez travailler avec des expressions et faire
+du calcul formel dessus.
+La liste compl\`ete des commandes port\'ees se trouve en annexe,
+pour une pr\'esentation d\'etaill\'ee, on renvoie \`a la documentation
+de Xcas.
+
+\section{Raccourcis claviers.} \label{sec:raccourcis}
+\subsection{KhiCAS 90 et 50 (version en 2 fichiers)}
+Ces raccourcis sont utilisables dans le shell et l'\'editeur texte
+\begin{itemize}
+  \item shift INS: table de caractères
+\item F1 \`a F6, shift-F1 \`a shift F6: selon le bandeau en bas
+\item OPTN: menu rapide des options de couleur
+\item shift-OPTN: commandes de programmation
+\item VARS: liste des variables
+\item shift-PRGM: menu rapide utile en programmation
+\item MENU: retour au menu principal Casio
+\item shift-SETUP: configuration
+\item EXIT: passage du shell \`a l'\'editeur et r\'eciproquement
+\item shift-EXIT: affiche l'\'ecran de la tortue logo
+\item ALPHA-EXIT: si le mode alpha n'est pas verrouill\'e, affiche le dernier graphe 2d ou 3d
+\item shift angle: menu rapide g\'eom\'etrie 
+\item fraction: menu rapide polyn\^omes dans le shell, indentation
+  dans   l'\'editeur, force l'\'evaluation dans le tableur
+\item shift-fraction: aide/compl\'etion
+\item touche S$\leftrightarrow$D: applications additionnelles
+  (tableur, finance, ...). Dans le tableur, affiche les graphes du tableur.
+\item shift \verb|,|: \verb|;|
+\item shift $\rightarrow$: \verb|:=| ou \verb|:| selon l'interpr\'eteur
+  Xcas ou Python
+\item AC/ON: annule la s\'election ou annule la recherche, sinon
+efface la ligne courante et la copie dans le presse-papier
+\item shift CAPTURE: sauve la session ou le fichier texte courant
+\item shift CLIP: d\'ebut de s\'election de zone ou copie de
+  s\'election dans le presse-papier
+\item shift PASTE: colle le presse-papier
+\item shift CATALOG: liste toutes les commandes Xcas
+\item shift FORMAT: commandes de programmation
+\item shift 6: menu rapide avec \verb|<>_!| et \verb|comb, rand, binomial,  normald|
+\item shift List: menu rapide liste
+\item shift Mat: menu rapide matrice
+\item shift 3: menu rapide alg\`ebre (bi-)lin\'eaire
+\item shift EXE: passe \`a la ligne dans l'\'editeur
+\end{itemize}
+Les raccourcis claviers ouvrant un menu rapide sont configurables, en
+\'editant le fichier \verb|FMENU.py|. Pour revenir \`a la
+configuration par d\'efaut, effacez ce fichier depuis l'application
+Memory de la Casio.
+
+\subsection{KhiCAS (version courte en 1 fichier)}
+\begin{itemize}
+\item F1 \`a F3~: selon  les l\'egendes
+\item F4: catalogue de commandes.
+\item F5: passage majuscules minusucules. Si le mode alphab\'etique
+n'est pas actif, bloque le clavier en mode alpha minuscule.
+\item F6: menu Fichier et configuration.
+\item \verb|(-)|: dans l'\'editeur de programmes,
+renvoie le caract\`ere \verb|_|. 
+\item shift PRGM: commandes de programmation
+\item OPTN: toutes les options 
+\item shift-QUIT: commandes tortues
+\item shift-List: commandes et \'edition de listes
+\item shift-Mat: commandes et \'edition de matrices
+\item touche angle: commande nombres complexes
+\item touche fraction: indentation dans l'\'editeur, menu
+divers dans l'historique
+\item touche fraction shift\'ee (jaune): graphes
+\item touche r rouge: \verb|abs|
+\item touche $\theta$ rouge: \verb|arg|
+\item touche S$\leftrightarrow$D: commandes sur les nombres r\'eels
+\item touche S$\leftrightarrow$D shift\'ee (jaune): commandes sur les entiers
+\item Shift-INS (touche DEL): \verb|:=|
+\item Depuis le shell, taper sur la touche fl\`eche vers le bas 
+pour obtenir de l'aide ou/et compl\'etion.
+Depuis l'\'editeur de programmes, taper sur shift touche de fraction (G).
+\end{itemize}
+
+Dans l'\'editeur de programmes~:
+\begin{itemize}
+\item touches curseur shift\'ees: d\'eplacement en d\'ebut/fin de ligne/fichier.
+\item shift CLIP: s\'election. D\'eplacer le curseur \`a l'autre
+extr\'emit\'e puis taper sur DEL pour effacer la s\'election
+et la copier dans le presse-papier ou \`a nouveau sur
+shift CLIP pour copier la s\'election sans l'effacer.
+Taper sur AC/ON pour annuler.
+\item EXE: si une recherche/remplacement
+de mot est active (apr\`es avoir fait F6 6),
+recherche l'occurence suivante d'un mot. Sinon, teste la syntaxe.
+\item shift EXE: passe \`a la ligne
+\item DEL efface le caract\`ere pr\'ec\'edent ou la s\'election.
+\item shift PASTE: copie le presse-papier
+\item AC/ON: annule la s\'election ou annule la recherche, sinon
+efface la ligne courante et la copie dans le presse-papier
+%\item VARS: bascule entre l'\'editeur et la figure tortue
+\item EXIT: quitte l'\'editeur et revient en ligne de commandes. On
+peut revenir ensuite \`a l'\'editeur en tapant \`a nouveau EXIT.
+\end{itemize}
+
+\section{Remarques}
+Pour \'eteindre la Graph 90 depuis KhiCAS, taper d'abord 
+sur la touche MENU puis shift ON. Lorsque vous rallumez la
+calculatrice, taper sur MENU.
+
+Pour connecter la Graph 90 au PC comme une clef USB lorsqu'on
+est dans KhiCAS, il faut 
+taper sur une touche  apr\`es avoir tap\'e sur F1, sinon
+rien ne se passe.
+
+Si $\chi$CAS se bloque dans un long calcul, essayez de taper sur la
+touche AC/ON. Si cela n'a pas d'effet, vous pouvez toujours
+r\'einitialiser la calculatrice avec le bouton reset \`a l'arri\`ere.
+
+Si $\chi$CAS plante avec un affichage du type SYSTEM ERROR, etc.
+essayez de taper sur la touche MENU puis de lancer une autre application,
+si tout se passe bien, vous pourrez sauvegarder votre session et
+relancer $\chi$CAS sans avoir \`a effectuer une r\'einitialisation
+compl\`ete. En cas de probl\`emes persistants, 
+depuis le MENU principal, ouvrir l'application M\'emoire, puis F2
+(m\'emoire de stockage) puis effacez le fichier \verb|session.xw|
+(d\'eplacez le curseur sur le fichier, puis F1 pour SELECT puis
+F6 pour DELETE). Si $\chi$CAS90 se lance (la version en deux fichiers), 
+vous pouvez aussi  depuis le menu F6 s\'electionner le dernier item 
+Quit et choisir la r\'einitialisation de KhiCAS.
+
+Vous disposez dor\'enavant d'environ 500K pour vos donn\'ees sur une Graph 90
+(ce qui permet de travailler assez confortablement)
+et de 58K sur une Graph 35eii (ce qui est vite rempli).
+Sur la Graph 90, il est conseill\'e d'ouvrir le menu VARS de temps
+en temps, si vous constatez que la m\'emoire disponible descend en-dessous
+des 100K, relancez $\chi$CAS (touche MENU, puis ouvrir n'importe
+quelle autre application puis MENU et r\'eouvrir $\chi$CAS).
+
+\section{Version plus compl\`ete (en 2 fichiers)} \label{sec:2}
+Cette version de $\chi$CAS en deux fichiers contient un portage de
+MicroPython avec plusieurs modules utiles pour l'enseignement, plus de 
+commandes de Xcas, en particulier des commandes de g\'eom\'etrie,
+d'alg\`ebre avanc\'ee, le support de flottants avec grande
+pr\'ecision, un moteur d'affichage 3d. Le menu Fichier permet d'acc\'eder
+\`a des applications additionnelles : tableur formel, géométrie,
+finance, table p\'eriodique des \'el\'ements ...
+
+Pour installer cette version plus compl\`ete, cf. la section
+\ref{sec:install}. 
+
+\subsection{MicroPython 1.12}
+Pour passer du shell de Xcas \`a celui de MicroPython, tapez
+shift-SETUP et s\'electionnez MicroPython. 
+Lorsque MicroPython est actif, les menus sont sur fonds
+jaune-brun, sinon sur fonds rose (Xcas) ou bleu (Xcas compatible Python).
+Les modules disponibles sont: turtle (version plus compl\`ete que
+celle de Casio, avec en particulier la possibilit\'e de remplir des formes),
+graphic (version plus compl\`ete de casioplot, avec compatibilit\'e
+Numworks), matplotl (graphes rep\'er\'es), 
+arit (arithm\'etique enti\`ere), linalg/numpy (alg\`ebre lin\'eaire),
+ulab (compatibilit\'e scipy), cas (calcul formel dans Python).
+
+\subsection{Graphes 3d et 4d}
+Cette version de $\chi$CAS en deux fichiers contient 
+toutes les commandes de base de Xcas de g\'eom\'etrie 2d et 3d. 
+On peut en particulier tracer des graphes de fonction de 2 variables,
+des cones, des plans, etc. Par exemple tapez 
+\verb|F4 * 5 F2| pour s\'electionner un exemple de cube
+ou \verb|shift F4 1| pour s\'electionner la commande plot,
+puis tapez \verb|x^2-y^2|.
+
+Pour tracer rapidement le graphe d'une fonction de $\mathbb{C}$ dans
+$\mathbb{C}$, on peut utiliser la commande \verb|plot| avec
+en argument une fonction de 2 variables (partie réelle
+et imaginaire) à valeurs complexes,
+par exemple \verb|plot((x+i*y)^2-9)| ou pour les fonctions
+holomorphes/méromorphes ayant une expression en fonction de la variable
+complexe sans passer par partie réelle et imaginaire,
+on peut utiliser la commande \verb|plot3d| par exemple
+\verb|plot3d(x^2-9)| (la commande \verb|plot(x^2-9)| ne
+convient pas car déjà utilisée pour un graphe de $\mathbb{R}$ dans
+$\mathbb{R}$. Le module de la fonction est représenté selon $z$,
+l'argument est représenté par les couleurs de l'arc en ciel, de $-\pi$
+en bleu violet à 0 en vert (en passant par jaune et orange) et de 0 à $\pi$
+en passant par cyan.
+
+Pour préciser des options, il faut utiliser la commande \verb|plotfunc|,
+par exemple\\
+\verb|plotfunc((x+i*y)^3-1,[x=-2..2,y=-2..2],nstep=500)|\\
+pour tracer $z \rightarrow z^3-1$ depuis le carré du plan complexe
+centré en l'origine
+de coté 4, avec une discrétisation utilisant 500 petits rectangles.
+
+Le moteur de rendu 3d \'etant relativement lent sur la calculatrice, la
+pr\'ecision de trac\'e par d\'efaut est moyenne ce qui impacte
+en premier lieu le rendu des objets avec des angles, comme les poly\`edres. 
+On peut changer
+la pr\'ecision du trac\'e en tapant F2 (plus rapide, moins pr\'ecise) 
+ou F3 (moins rapide, plus pr\'ecis). Notez qu'il est possible
+d'accélérer la vitesse du processeur 
+au lancement de $\chi$CAS (utilise du code de
+S\'ebastien Michelland, semblable \`a l'addin
+\ahref{https://www.planet-casio.com/Fr/programmes/dl.php?id=3710&num=1}{Ptune3})
+
+Pour obtenir un unique trac\'e pr\'ecis sans changer la pr\'ecision
+par d\'efaut, tapez sur la touche \verb|^| et
+soyez patients. On peut interrompre un trac\'e pr\'ecis en cours en tapant
+sur la touche DEL.
+Les touches de d\'eplacement permettent de changer de point de vue, 
+taper 5 pour revenir au point de vue initial,
+\verb|-| ou \verb|+| pour faire un zoom in ou out. Lorsqu'on laisse
+une touche de d\'eplacement appuy\'ee, la pr\'ecision de trac\'e est
+diminu\'ee temporairement pour donner une certaine fluidit\'e,
+lorsqu'on rel\^ache la touche, la derni\`ere position est retrac\'ee
+avec la pr\'ecision par d\'efaut. 
+F4 permet de montrer ou cacher une 2\`eme surface cach\'ee, F5
+affiche ou cache des points interm\'ediaires, F6 montre ou cache
+les ar\^etes des poly\`edres.
+
+\subsection{G\'eom\'etrie interactive 2d/3d}
+L'application de géométrie
+permet de construire des figures dans le plan ou dans l'espace,
+et de faire bouger un point et tout ce qui en d\'epend pour illustrer
+certaines propriétés (géométrie
+dynamique). On peut faire des constructions de géométrie euclidienne
+pure, mais aussi avec des graphes de fonction, des coniques, etc.
+L'application possède deux ``vues'': la vue graphique et la vue
+symbolique qui contient les commandes Xcas permettant de créer la figure
+(la philosophie de cette application est proche de celle du logiciel
+Geogebra, avec les commandes de Xcas).
+
+Cette section donne un aper\c{c}u rapide de l'application,
+pour une documentation plus compl\`ete avec quelques captures d'\'ecran, cf.
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/geo.html}{ici}
+
+\subsubsection{Modes, vue graphique et symbolique.}
+Taper F6 1 (ou la touche S$\leftrightarrow$D) pour afficher la liste des
+applications additionnelles, puis EXE puis sélectionnez soit une nouvelle
+figure 2d ou 3d soit une figure existante. Vous pouvez aussi ouvrir
+l'application de géométrie depuis un graphe (par exemple après avoir
+tapé \verb|plot(sin(x))|) en tapant F6 puis Sauvegarder figure.
+
+Au lancement on est dans la vue graphique en mode repère, les touches de curseur
+permettent de changer de point de vue. Pour changer le mode, utiliser
+la touche F4, pour passer en vue symbolique et vice-versa taper EXE.
+Par exemple tapez F4 3 pour passer en mode point
+qui permet de construire des points en déplaçant
+le pointeur et en tapant EXE ou tapez F4 5 pour passer
+en mode triangle qui permet de construire
+un triangle à partir de ses 3 sommets, on déplace le pointeur et on tape EXE
+trois fois. Pour déplacer le pointeur, utiliser les touches de déplacement,
+pour se déplacer plus rapidement, faire shift touche de curseur. Si on
+est proche d'un point existant, son nom apparait en bas. Pour
+déplacer le pointeur vers un point existant, vous pouvez aussi
+taper le nom du point (par exemple touche alpha A).
+Pour une figure 3d, les objets créé depuis la vue graphique seront situés
+dans le plan qui apparait en jaune sur la figure. On peut modifier ce plan
+en utilisant les touches 4 et 6. Il est fortement conseillé de
+conserver un point de vue avec l'axe $Oz$ vertical (donc changer
+de point de vue uniquement avec les touches flèche droite ou gauche
+qui effectuent une rotation autour de $Oz$).
+
+Le mode pointeur permet de sélectionner un point et de le
+déplacer pour observer comment la construction varie, ce qui permet
+de mettre en évidence des propriétés de la figure, par exemple concurrence
+de 3 droites.
+
+Si vous tapez sur la touche EXIT depuis la vue graphique
+de l'application, vous revenez au mode repère ou si vous y étiez
+vous passez en vue symbolique. Vous pouvez ajouter
+des objets à la construction depuis cette vue, en mettant une commande
+par ligne. Tapez shift-EXE pour passer à la ligne. Tapez EXE
+pour revenir à la vue graphique. Dans la vue symbolique, vous
+pouvez sauvegarder la construction géométrique au format texte
+(avec une extension \verb|.py|, même s'il ne s'agit pas
+d'un script Python).
+Tapez EXIT pour quitter l'application de géométrie.
+
+Lorsque vous quittez l'application de géométrie,
+la figure est automatiquement sauvegardée
+dans une variable Xcas qui a le même nom que celui du nom de fichier
+affiché dans la vue symbolique. Vous pouvez purger la variable Xcas
+si vous voulez effacer la figure de la session.
+
+{\bf Exemple~: cercle circonscrit.}\\
+Depuis le shell, taper F6 1 sélectionner nouvelle figure 2d et valider EXE.
+Puis F4 5 Triangle, EXE pour créer le premier sommet du triangle
+puis déplacer le pointeur avec les touches de déplacement, EXE pour créer
+le 2ème sommet du triangle, déplacer le pointeur à nouveau et EXE
+pour créer le triangle.
+
+Version longue en construisant le centre~:
+Taper F4 7, sélectionner 8 Mediatrice, déplacer
+le pointeur de sorte que seul un segment du triangle
+soit sélectionné (affichage
+en bas à droite \verb|perpen_bisector D5,D|),
+taper EXE pour créer la médiatrice du segment, déplacer le pointeur
+sur une autre arête du triangle et EXE pour créer la 2ème médiatrice,
+optionnellement sur le 3ème segment pour avoir les 3 médiatrices.
+Puis F4 6 et 4 Intersection unique. Déplacer le pointeur vers
+une des médiatrices, taper EXE puis vers une autre médiatrice, taper EXE,
+ceci crée le centre du cercle circonscrit. Pour tracer le cercle,
+taper F4 4, déplacer le pointeur au centre du cercle (vous pouvez
+utiliser les touches de déplacement ou juste taper
+ALPHA H ou la bonne lettre si le centre du cercle s'appelle autrement),
+puis EXE puis sur un des sommets et EXE.
+
+Version courte avec la commande \verb|circonscrit|~:
+taper F4 9 puis circonscrit puis sélectionner chaque
+sommet avec EXE (ALPHA A EXE ALPHA B EXE ALPHA C EXE, remplacez A, B, C
+par les lettres du sommet du triangle).
+
+Version en vue symbolique~:
+taper EXIT puis en fin de script sur une ligne vide (taper shift EXE s'il
+faut en créer une), taper\\
+\verb|c:=circonscrit(A,B,C)| EXE
+
+{\bf Exemple 3d: bac septembre 2019~}\\
+Taper F6 1 pour lancer l'application de géométrie puis nouvelle figure 3d.
+Puis EXIT ou EXE pour passer en vue symbolique. Puis F5 c ALPHA shift =
+puis F4 flèche haut deux fois pour sélectionner 3D puis EXE puis 5 pour cube
+puis F6 (aide), qui explique que
+les 2 premiers arguments de cube sont les sommets d'une ar\^ete,
+le troisième est un point d'un plan d'une face. Le premier
+exemple nous convient ici exactement, on tape F2 et on obtient
+\verb|c=cube([0,0,0],[1,0,0],[0,1,0])|
+On tape EXE pour voir le cube puis + plusieurs fois pour zoomer et EXE
+pour revenir à la vue symbolique.
+Vous pouvez sauvegarder à tout moment la construction au format
+texte depuis
+le menu F6.
+On passe à la ligne en tapant shift EXE. Puis on définit les sommets
+du cube en tapant \verb|A,B,C,D,E,F,G,H=|
+(taper ALPHA A , ALPHA B etc.), puis F4 et flèche vers le haut 3 fois
+pour sélectionner Géometrie puis flèche vers le haut 4 fois pour sélectionner
+\verb|sommets| EXE et mettre c en argyument \verb|sommets(c)|.
+Taper EXE pour visualiser puis EXE à nouveau pour revenir en vue
+symbolique. Passer à la ligne avec shift EXE puis créer le plan ABG
+en tapant ALPHA P = puis F2 pour
+ouvrir le menu rapide lines et 8 pour saisir plane. La commande plan
+prend en arguments 3 points pour définir le plan (on peut aussi donner
+une équation cartésienne, ici A,B,G, \verb|P=plan(A,B,G,|
+on va lui ajouter une couleur avec le menu rapide F3 disp
+\verb|display=filled+green|, vérifier en visualisant avec EXE EXE.
+On passe à la ligne (shift EXE) et on crée le segment DE
+ALPHA S = F2 sélectionner la commande segment avec EXE
+puis D,E et F3 pour lui donner une couleur
+\verb|S=segment(D,E,color=cyan)|
+(on pouvait aussi créer le segment depuis la vue graphique en mode Lignes
+mais sur la Casio c'est un peu lent).
+La construction est donc la suivante:
+\begin{verbatim}
+c=cube([0,0,0],[1,0,0],[0,1,0])
+A,B,C,D,E,F,G,H=sommets(c)
+P=plan(A,B,G,display=filled+green)
+S=segment(D,E,display=cyan)
+\end{verbatim}
+Vous pouvez taper EXE pour la visualiser et utiliser les flèches de
+déplacement pour changer de point de vue. Taper EXE ou EXIT pour revenir
+en vue symbolique. Pour quitter l'application taper EXIT. Taper F1 pour
+sauvegarder la figure si nécessaire.
+Vous pouvez depuis le shell de KhiCAS accéder à de nombreuses informations
+de géométrie analytique, par exemple \verb|equation(P)| (menu
+F4 Géométrie) vous donnera
+l'équation cartésienne du plan $P$ ou \verb|is_orthogonal(P,S)|
+(F4 Géométrie) vous confirmera que le plan $P$ est orthogonal au segment $S$.
+
+
+%% {\bf Exemple 3d~: intersection d'un cône avec un plan}\\
+%% Taper F6 1 pour lancer l'application de géométrie puis nouvelle figure 3d.
+%% Puis EXIT ou EXE pour passer en vue symbolique. Saisir ALPHA C shift =
+%% puis F4 flèche haut deux fois pour sélectionner 3D puis EXE, puis 3 (cone) F2 (exemple 1), ceci affiche la commande pour générer un cône de centre l'origine
+%% et d'axe vertical, d'angle $\pi/6$. Taper EXE pour revenir en vue
+%% graphique. Après l'affichage du cone, taper F4 et flèche vers le haut trois fois
+%% pour sélectionner Curseur, EXE, ce qui repasse en vue symbolique et génère
+%% une commande de type \verb|a:=element(0..1,0.5)|, modifiez-la
+%% en \verb|a:=element(-4..4,-2)|. Taper
+%% alors sur une nouvelle ligne la commande
+%% \verb|P:=plan(z=a*y+3,display=filled+cyan)|
+%% en utilisant F5 plan puis shift-F3 pour taper display, filled et cyan.
+%% Ceci crée un plan penché dont on peut modifier l'inclinaison
+%% en changeant le curseur.
+
+
+\subsubsection{Curseurs}
+Vous pouvez créer un paramètre qui se déplace entre 2 valeurs extrêmes
+par saut de 1\% depuis le menu F4 Curseur en vue graphique ou
+la commande \verb|element| en vue symbolique.
+
+{\bf Exemple~: explorateur quadratique avec des curseurs}\\
+pour explorer comment une parabole d'équation $y=ax^2+bx+c$
+dépend de la valeur de $a,b,c$, créer 3 curseurs
+(F4 curseur vers le haut 4 fois EXE EXE). En vue symbolique
+on doit avoir quelque chose ressemblant à
+\begin{verbatim}
+a:=element(-1..1)
+b:=element(0..1,0.5)
+c:=element(-1..1)
+\end{verbatim}
+puis ajouter un graphe, depuis la vue graphique taper F4 0 (pour 10 Courbe)
+et sélectionner plot,
+ou en vue symbolique shift F6 et sélectionner plot,
+remplir entre les parenthèses par \verb|a*x^2+b*x+c| (attention
+à ne pas oublier les \verb|*|), puis valider avec EXE. En vue graphique,
+vous devez voir 3 curseurs \verb|a|, \verb|b| et \verb|c| et le
+graphe correspondant. Vous pouvez maintenant faire varier les valeurs
+de $a,b,c$ depuis la vue graphique en mode pointeur (F4 2) en déplaçant le
+pointeur vers $a,b,c$ et en tapant EXE puis les flèches de déplacement
+gauche ou droit et EXE pour arrêter.
+
+On peut bien sur faire des exemples plus simples avec un ou deux curseurs
+et une courbe dépendant d'un ou de deux paramètres. Par exemple
+un explorateur linéaire \verb|droite(y=a*x+b)| ou
+trigonométrique \verb|plot(sin(a*x+b))|.
+
+\subsubsection{Mesures et légendes}
+En tapant F4 puis en sélectionnant 13 Mesures,
+on peut afficher une mesure en un point de la figure. Par exemple
+après avoir construit un triangle, on peut afficher son périmètre
+ou son aire en tapant F4 puis deux fois flèche vers le haut, EXE.
+Déplacer le pointeur près du triangle, taper EXE, puis déplacer
+le curseur à l'endroit où on souhaite mettre la mesure et taper EXE.
+
+On peut afficher n'importe quelle légende avec la commande
+\verb|legende()| depuis la vue symbolique. Le premier argument
+de légende peut être un point de la figure, ou bien un vecteur
+de deux entiers donnant la position absolue en pixels mesuré
+depuis le coin en haut à gauche. Le deuxième argument est la légende,
+cela peut être une chaine de caractères ou n'importe quelle expression.
+
+Si la légende est une valeur numérique, elle peut être utilisée pour
+un paramètre numérique d'une commande, par exemple le rapport d'une
+homothétie ou l'angle d'une rotation en utilisant la commande
+\verb|extract_measure|. Par exemple
+\verb|r:=legend([20,40],"2")|\\
+\verb|homothetie(A,extract_measure(r),B)| 
+
+\subsubsection{Traces}
+La commande \verb|trace()| permet de conserver la trace du
+déplacement d'un objet géométrique.
+
+{\bf Exemple} Enveloppe des normales à une courbe paramétrée
+(ici une ellipse).\\
+\begin{verbatim}
+E:=plotparam([cos(t),2*sin(t)],t=-pi..pi)
+a:=element(-pi..pi)
+M:=element(E,a)
+T:=tangent(M)
+N:=perpendiculaire(M,T)
+trace(N)
+\end{verbatim}
+En faisant varier $a$,
+on observe une courbe séparant la zone des normales à une zone sans point
+tracé qui est l'enveloppe des normales, c'est la développée de l'ellipse\\
+\verb|evolute(E,color=red)|\\
+On peut effacer les traces à tout moment
+avec la touche F6, puis touche vers le haut pour sélectionner
+le dernier item du menu de configuration.
+
+\subsection{Tableur formel}
+Le tableur de $\chi$CAS est un tableur utilisant la syntaxe standard des
+tableurs pour les références de cellule, mais il
+est capable de travailler avec des donn\'ees exactes
+(par exemple fraction ou racines carr\'ees) et symboliques (par
+exemple on peut calculer la d\'eriv\'ee d'une cellule du tableur),
+et on dispose de l'ensemble des commandes de Xcas, ainsi que les
+fonctions définies par l'utilisateur.
+
+Taper F6 1 (ou la touche S$\leftrightarrow$D) pour afficher la liste des
+applications additionnelles, s\'electionner le tableur et valider avec
+EXE. 
+
+Pour donner une valeur fixe \`a une cellule, tapez simplement
+un nombre. Vous pouvez aussi taper une chaine de caract\`ere
+ou un autre objet reconnu par Xcas. Si vous saisissez une
+liste ou une commande renvoyant une liste, celle-ci remplira
+plusieurs cellules (en allant vers le bas ou vers la droite selon
+la configuration du tableur). Par exemple \verb|range(10)|
+remplira 10 cellules cons\'ecutives avec les entiers de 0 \`a 9
+(pour saisir \verb|range|, vous pouvez utiliser le menu rapide F1).
+
+Pour d\'efinir le contenu d'une cellule en faisant r\'ef\'erence
+\`a d'autres cellules, taper \verb|=|
+puis utilisez la syntaxe
+habituelle des tableurs,  les
+caract\`eres \verb|:| et \verb|$| sont accessibles depuis
+le menu F3 edit, \verb|:| est aussi accessible par shift
+$\rightarrow$. 
+On peut s\'electionner une cellule lorsqu'on \'edite
+le contenu d'une autre cellule en d\'epla\c{c}ant le curseur vers
+le haut ou vers le bas, puis vers n'importe quelle direction.
+Pour s\'electionner une plage de cellules, d\'eplacez-vous
+vers un des coins de la plage, taper shift-CLIP, puis
+d\'eplacez-vous vers l'autre coin et tapez EXE. 
+
+Dans la d\'efinition d'une cellule ,
+vous pouvez utiliser toutes les commandes de Xcas 
+via le menu F4
+ou les menus rapides (F1 \`a F6 \'eventuellement pr\'ec\'ed\'es
+de alpha ou shift) ou shift CATALOG. Vous pouvez aussi utiliser les structures
+de controle Xcas (test/boucle) ainsi que des fonctions
+Xcas que vous avez d\'efinis. Attention, seules les fonctions
+d\'efinies dans l'interpr\'eteur Xcas sont reconnus (quelle que soit
+la syntaxe utilis\'ee), les programmes
+\'ecrits en MicroPython ne sont pas reconnus.
+
+
+Une cellule peut contenir une commande renvoyant un r\'esultat 
+graphique. Pour voir le graphique correspondant \`a toutes les cellules du tableur ayant
+un r\'esultat graphique, taper la touche S$\leftrightarrow$D.
+
+\section{Copyright et Remerciements}
+\begin{itemize}
+\item Giac et $\chi$CAS, noyau de calcul (c) B. Parisse et R. De Graeve, 2019.
+\item Interface de $\chi$CAS adapt\'ee par B. Parisse \`a partir
+de l'interface utilisateur du code source d'Eigenmath
+cr\'e\'ee par Gabriel Maia pour la 90 et par Mike Smith et Nemh pour
+la 35eii, et de l'interface utilisateur de Xcas.
+\item
+License d'utilisation de $\chi$CAS: GPL2. Voir le d\'etail
+des conditions dans le fichier \verb|LICENSE.GPL2| de l'archive
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/khicasio.zip}{khicasio.zip}
+ou sur la page
+\ahref{https://www.gnu.org/licenses/old-licenses/gpl-2.0.fr.html}{GPL2}
+du site de la Free Software Foundation.
+Le code source de $\chi$CAS ainsi que des librairies 
+libtommath et USTL, se trouvent sur
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/}{la section
+Casio} de ma page web (cf. la section \ref{sec:dev})
+\item Certaines parties du code sont sous licence MIT: 
+\begin{itemize}
+\item \ahref{https://github.com/micropython/micropython/blob/master/LICENSE}
+{MicroPython 1.12 (c) Damien P. George}
+\item \ahref{https://www.nayuki.io/page/qr-code-generator-library}
+{QR code generator, project Nayuki}
+\end{itemize}
+\item Remerciements \`a tous les membres actifs de tiplanet et
+de Plan\`ete Casio pour l'aide qu'ils m'ont apport\'es
+en r\'epondant \`a mes questions ou/et en testant $\chi$CAS,
+en particulier \`a LePhenixNoir pour son expertise 
+et son aide technique pour la 35 et la 90, Redoste pour le
+debugger, Nemhardy pour la 90, et \`a critor
+pour les articles, tests et la diffusion de KhiCAS via tiplanet.
+Remerciements \`a tous les contributeurs du
+\ahref{http://prizm.cemetech.net/index.php/Prizm_Programming_Portal#Native_OS_reference}{Prizm programming portal}.
+Remerciements \`a Pavel Demin pour les astuces de compilation ayant
+permis d'\'economiser 135K environ.
+\item Remerciements \`a Camille Margot pour l'int\'er\^et
+port\'e au projet et \`a Casio France pour le soutien par le pr\^et de
+calculatrices Graph 90/35 et l'attribution 
+d'une licence d'utilisation de l'\'emulateur.
+\end{itemize}
+
+\section{Réinstallation de l'OS d'origine} \label{sec:oserror}
+Téléchargez un installeur, par exemple
+\ahref{https://tiplanet.org/forum/archives_list.php?order=hit&cat=OS+cprizm&multi_chaine_search=3.60}{ici}.
+Lancez le programmes
+d'installation de Casio sur le PC jusqu'à la dernière confirmation,
+mais au lieu de taper F5 OS Update sur la calculatrice,
+effectuez les manipulations suivantes (merci à critor, TI-Planet)~:
+\begin{enumerate}
+     \item maintenir enfoncé le bouton restart    au dos
+    sans le relâcher, maintenir enfoncées les touches
+    F2,   4 et    AC
+\item
+  sans rien relâcher d'autre, relâcher le bouton restart
+  \item
+    maintenant relâcher uniquement les touches
+    F2 et    4
+\item
+  patienter une seconde
+  \item
+    maintenant relâcher enfin la touche    AC
+\item
+    maintenir enfoncée la touche    9,
+    patienter une seconde
+    relâcher la touche    9
+\item
+    maintenir enfoncée la touche *
+\item
+  La calculatrice doit se rallumer seulement maintenant
+  sur un écran "OS ERROR",  relâcher la touche *
+\item vous pouvez maintenant exécuter la dernière confirmation
+  d'installation de l'OS sur l'ordinateur.
+\end{enumerate}
+N.B.: la manipulation ci-dessus est assez acrobatique, il faudra probablement
+faire plusieurs essais avant d'avoir l'écran OS Error.
+Il peut aussi être nécessaire de laisser reposer la calculatrice (éteinte)
+environ 1h avant.
+Cette manipulation fonctionne aussi sur les Math+, mais
+{\bf pour l'instant $\chi$CAS n'est
+pas compatible avec le mode examen sur les Graph Math+.}.
+
+\section{\`A propos du d\'eveloppement.} \label{sec:dev}
+\subsection{Install rapide sous linux} 
+Installer
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/libmpfr.so.4}{la
+librairie dynamique libmpfr.so.4} dans \verb|/usr/local/lib|,
+v\'erifiez que \verb|/usr/local/lib| est dans la liste des chemins de
+\verb|/etc/ld.so.conf| 
+et ex\'ecutez
+\verb|sudo ldconfig|. Puis d\'esarchivez
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/casiolocal.tgz}{casiolocal.tgz},
+c'est une version du cross-compiler gcc avec certaines librairies
+(libc, ustl, tommath). Pour cr\'eer des addins pour la 90, vous devez aussi installer 
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/mkg3a.tgz}{mkg3a}.
+
+\subsection{Source de giac}
+Le source pour la 90 est 
+%\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/giac2.tgz}{giac2.tgz}
+% ou
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/giacbf.tgz}{giacbf.tgz}
+(avec support des flottants multi-pr\'ecision). Il devrait se compiler avec
+\verb|make|.
+La version light en un seul fichier est 
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/giac90.tgz}{giac90.tgz}.
+Pour la 35gii, c'est
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/giac35.tar.bz2}{giac35.tar.bz2}
+et on fait \verb|make| dans le r\'epertoire \verb|giac35/src0|.
+
+Si quelque chose ne fonctionne pas, voici quelques d\'etails.
+Pour d\'evelopper l'add-in, j'ai install\'e le cross-compiler
+gcc pour processeur sh3eb, en m'inspirant de ce
+\ahref{https://www.planet-casio.com/Fr/forums/topic12970-1-Tutoriel_Compiler_sous_Linux_avec_un_cross-compilateur_gcc.html}{tutoriel}.
+T\'el\'echargez gcc puis 
+(remplacer la version de gcc par la version t\'el\'echarg\'ee)\\
+\verb|../gcc-5.3.0/configure --target=sh3eb-elf --prefix="$HOME/opt/sh3eb-elf" --disable-nls --disable-shared --disable-multilib --enable-languages=c,c++ --without-headers|\\
+Malheureusement, il n'y a pas de support pour sh3eb dans la \verb|newlib|
+(librairie C) fournie avec gcc, encore moins pour la \verb|libstdc++|.
+
+J'ai donc install\'e \verb|libfxcg.tar.gz|, 
+quelque peu modifi\'ee par mes soins 
+(corrections de plusieurs petits bugs dans la librairie C, ajout
+de fonctions manquantes comme qsort, ...), \`a r\'ecup\'erer dans
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/}
+{ce r\'epertoire} (d\'esarchiver et compiler avec make). Toujours
+dans ce r\'epertoire, on trouve \verb|tommath.tgz| (gestion des
+entiers multi-pr\'ecision) et \verb|ustl.tar.gz| (impl\'ementation
+de la standard template library) que j'ai du pas mal modifier
+pour le faire fonctionner avec sh3eb-elf-g++, avec un r\'esultat
+partiel qui est suffisant pour porter Giac (support de vector/string/map
+mais pas des flux E/S fichiers, j'ai cr\'e\'e \`a part un fichier
+iostream pour avoir un ersatz de cin/cout, cf. le r\'epertoire 
+\ahref{https://www-fourier.univ-grenoble-alpes.fr/\home{parisse}/casio/ustl}{ustl}). 
+Tout ces fichiers se d\'esarchivent
+et on compile en principe avec make.
+
+Comme il n'y
+a pas de support du compilateur pour la newlib et la libstdc++ et pour
+\'eviter les probl\`emes d'ordre d'initialisation des variables statiques,
+ce portage de Giac se caract\'erise par l'absence de variables statiques
+classes, il n'y a que des variables statiques C. La tr\`es grande
+majorit\'e des variables
+globales (tous les noms de commandes Xcas par exemple) sont d\'eclar\'ees via
+des alias sur des structures C en constantes pour ne
+pas occuper de place en m\'emoire vive. Il a fallu tenir compte
+de l'endianness du CPU par rapport \`a d'autres portages de Giac
+(plus pr\'ecis\'ement le CPU peut se comporter des deux mani\`eres
+little ou big endian mais on est oblig\'e de choisir le m\^eme
+ordre que celui de l'OS Casio, et c'est l'inverse de celui qu'on
+rencontre sur les architectures Intel).
+
+\subsection{Mise au point}
+Les etapes pour utiliser gdb pour Casio sous linux avec wine sont les suivantes:
+\begin{enumerate}
+\item installer wine si n\'ecessaire 
+\item installer l'emulateur casio avec wine avec une commande qui
+ressemble \`a\\
+\verb|wine /chemin_vers/fx-CG_Manager_PLUS_Subscription_for_fx-CG50series_Ver.3.40.exe|
+\item
+installer l'equivalent de gdb-server
+\begin{verbatim}
+cd .wine/drive_c/Program\ Files\ \(x86\)/CASIO/fx-CG\ Manager\ PLUS\ Subscription\ for\ fx-CG50series/
+mv CPU73050.dll CPU73050.real.dll
+wget https://www-fourier.univ-grenoble-alpes.fr/~parisse/casio/CPU73050.dll
+cp CPU73050.dll CPU73050.dbg.dll
+\end{verbatim}
+(j'ai mis la dll sur ma page, parce que j'ai eu un peu de mal a le
+compiler, le source est 
+\verb|https://github.com/redoste/fx-CG50_Manager_PLUS-gdbserver|).
+
+\item compiler gdb pour sh3:
+\begin{verbatim}
+wget https://ftp.gnu.org/gnu/gdb/gdb-11.1.tar.gz
+cd casio (ou autre repertoire de build)
+tar xvfz ../gdb-11.1.tar.gz
+mkdir sh3eb-gdb
+cd sh3eb-gdb
+../gdb-11.1/configure --srcdir=../gdb-11.1 --target=sh3eb-elf
+\end{verbatim}
+(ajouter --prefix=chemin dans la commande configure si on n'a pas les
+droits sur /usr/local/bin).
+Puis
+\begin{verbatim}
+make
+sudo make install
+\end{verbatim}
+
+Ensuite on cr\'ee deux scripts, \verb|casioemu| pour lancer
+en mode normal
+\begin{verbatim}
+#! /bin/bash
+cd ~/.wine/drive_c/Program\ Files\ \(x86\)/CASIO/fx-CG\ Manager\ PLUS\ Subscription\ for\ fx-CG50series
+/bin/cp CPU73050.real.dll CPU73050.dll
+cd
+wine "C:\Program Files (x86)\CASIO\fx-CG Manager PLUS Subscription for fx-CG50series\fx-CG_Manager_PLUS_Subscription_for_fx-CG50series.exe" /n"fx-CG Manager PLUS Subscription for fx-CG50series" > /dev/null &
+\end{verbatim}
+et \verb|casiodbg| pour lancer en mode debug
+\begin{verbatim}
+#! /bin/bash
+cd ~/.wine/drive_c/Program\ Files\ \(x86\)/CASIO/fx-CG\ Manager\ PLUS\ Subscription\ for\ fx-CG50series
+/bin/cp CPU73050.dbg.dll CPU73050.dll
+cd
+wine "C:\Program Files (x86)\CASIO\fx-CG Manager PLUS Subscription for fx-CG50series\fx-CG_Manager_PLUS_Subscription_for_fx-CG50series.exe" /n"fx-CG Manager PLUS Subscription for fx-CG50series" > /dev/null &
+\end{verbatim}
+
+\item Pour utiliser l'\'emulateur en mode normal 
+taper simplement \verb|casioemu|, pour le mode debug taper
+\begin{verbatim}
+casiodbg
+sh3eb-elf-gdb
+target remote localhost:31188
+\end{verbatim}
+
+Ou directement pour utiliser avec les infos de debug de emucas.elf\\
+\verb|sh3eb-elf-gdb -i=mi -ex "target remote localhost:31188" emucas.elf|
+
+Pour mettre un point d'arret utiliser \verb|b| ou \verb|hb| (\verb|hbreak|
+(hardware break, n\'ecessaire pour le premier point d'arr\^et).
+\end{enumerate}
+
+\end{giacjshere}
+\end{document}

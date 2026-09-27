@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Derivatives and partial derivatives
+</title>
+</head>
+<body >
+<a href="cascmd_en445.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en447.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:diff" class="subsection">13.2.1  Derivatives and partial derivatives
+</h3>
+<p>The <span style="font-family:monospace">diff</span><a id="hevea_default740"></a> or
+<span style="font-family:monospace">derive</span><a id="hevea_default741"></a> or
+<span style="font-family:monospace">deriver</span><a id="hevea_default742"></a> command
+computes derivatives and partial derivatives of expressions.</p><ul class="itemize"><li class="li-itemize">
+To compute first-order derivatives, <span style="font-family:monospace">diff</span> takes one mandatory
+argument and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression or a list of expressions.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span>, a variable (resp. a list of
+variable names, see several variable functions in
+Section <a href="index.html#sec%3Aplusvar">13.7</a>). If the only variable is <span style="font-family:monospace">x</span>, this
+second argument can be omitted.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">diff(</span><span style="font-style:italic">expr</span> ⟨,<span style="font-style:italic">x</span> ⟩<span style="font-family:monospace">)</span>
+returns the derivative (resp. a vector of derivatives) of the
+expression <span style="font-style:italic">expr</span> (or list of expressions) with respect to the
+variable <span style="font-style:italic">x</span> (resp. with respect to each variable in the list <span style="font-style:italic">x</span>).
+</li><li class="li-itemize">To compute higher order derivatives, <span style="font-family:monospace">diff</span> takes more than two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression.
+</li><li class="li-itemize"><span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub><span style="font-style:italic">…</span>, the names of the
+derivation variables. Note that for repeated variables, you can
+use the <span style="font-family:monospace">$</span> operator (see Section <a href="cascmd_en108.html#ssec%3Amakeseq">6.1.2</a>) followed by
+the number of derivations with respect to the variable; for
+example, instead of writing <span style="font-family:monospace">x,x,x</span> you could write <span style="font-family:monospace">x$3</span>.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">diff(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,…<span style="font-family:monospace">)</span> returns the
+partial derivative of <span style="font-style:italic">expr</span> with respect to the variables
+<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>2</sub>,…
+</li></ul><h4 id="sec999" class="subsubsection">Examples</h4>
+<p>
+Compute ∂/∂ <span style="font-style:italic">z</span>(<span style="font-style:italic">x</span> <span style="font-style:italic">y</span><sup>2</sup> <span style="font-style:italic">z</span><sup>3</sup>+<span style="font-style:italic">x</span> <span style="font-style:italic">y</span> <span style="font-style:italic">z</span>).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+3 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Compute the first order partial derivatives of <span style="font-style:italic">x</span> <span style="font-style:italic">y</span><sup>2</sup> <span style="font-style:italic">z</span><sup>3</sup>+<span style="font-style:italic">x</span> <span style="font-style:italic">y</span> <span style="font-style:italic">z</span>.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><span style="color:#0000CC">,2 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC">,3 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><sup><span style="color:#0000CC">2</span></sup></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Compute ∂<sup>3</sup>/∂ <span style="font-style:italic">y</span> ∂<sup>2</sup> <span style="font-style:italic">z</span>(<span style="font-style:italic">x</span> <span style="font-style:italic">y</span><sup>2</sup> <span style="font-style:italic">z</span><sup>3</sup>+<span style="font-style:italic">x</span> <span style="font-style:italic">y</span> <span style="font-style:italic">z</span>).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000"> ^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z$2</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+12 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Compute ∂<sup>2</sup>/∂ <span style="font-style:italic">x</span>∂ <span style="font-style:italic">z</span>(<span style="font-style:italic">x</span> <span style="font-style:italic">y</span><sup>2</sup> <span style="font-style:italic">z</span><sup>3</sup>+<span style="font-style:italic">x</span> <span style="font-style:italic">y</span> <span style="font-style:italic">z</span>).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+3 </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Compute ∂<sup>3</sup>/∂ <span style="font-style:italic">x</span>∂<sup>2</sup> <span style="font-style:italic">z</span>(<span style="font-style:italic">x</span> <span style="font-style:italic">y</span><sup>2</sup> <span style="font-style:italic">z</span><sup>3</sup>+<span style="font-style:italic">x</span> <span style="font-style:italic">y</span> <span style="font-style:italic">z</span>).
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3+</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">y</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">z</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">z$2</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+6 </span><span style="color:#0000CC"><span style="font-style:italic">y</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC"> </span><span style="color:#0000CC"><span style="font-style:italic">z</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Compute the third derivative of 1/<span style="font-style:italic">x</span><sup>2</sup>+2.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">((1)/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+2),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">diff</span></span><span style="font-weight:bold"><span style="color:#BF0000">((1)/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+2),</span></span><span style="font-weight:bold"><span style="color:#BF0000">x$3</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">−24 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">3</span></sup><span style="color:#0000CC">+48 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">8</span></sup><span style="color:#0000CC">+8 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">6</span></sup><span style="color:#0000CC">+24 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">4</span></sup><span style="color:#0000CC">+32 </span><span style="color:#0000CC"><span style="font-style:italic">x</span></span><sup><span style="color:#0000CC">2</span></sup><span style="color:#0000CC">+16</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="sec1000" class="paragraph">Remarks.</h5>
+<ul class="itemize"><li class="li-itemize">
+Note the difference between <span style="font-family:monospace">diff(</span><span style="font-style:italic">f</span>,<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span><span style="font-family:monospace">)</span> and
+<span style="font-family:monospace">diff(</span><span style="font-style:italic">f</span><span style="font-family:monospace">,[</span><span style="font-style:italic">x</span>,<span style="font-style:italic">y</span><span style="font-family:monospace">])</span>:
+the first returns ∂<sup>2</sup><span style="font-style:italic">f</span>/∂ <span style="font-style:italic">x</span> ∂ <span style="font-style:italic">y</span> while
+the second returns [∂ <span style="font-style:italic">f</span>/∂ <span style="font-style:italic">x</span>,
+∂ <span style="font-style:italic">f</span>/∂ <span style="font-style:italic">y</span>].
+</li><li class="li-itemize">Never define a derivative function with
+<span style="font-family:monospace">f1(x):=diff(f(x),x)</span>.
+Indeed, <span style="font-family:monospace">x</span> would mean two different things <span style="font-variant:small-caps">Xcas</span> is unable to
+deal with: on the left hand side, <span style="font-family:monospace">x</span> is the variable name to
+define the <span style="font-style:italic">f</span><sub>1</sub> function, and on the right hand side, <span style="font-family:monospace">x</span> is
+the differentiation variable. The right way to define a derivative is
+either with <span style="font-family:monospace">function_diff</span> (see Section <a href="cascmd_en447.html#ssec%3Afunction-diff">13.2.2</a>)
+or with <span style="font-family:monospace">f1:=unapply(diff(f(x),x),x)</span>.
+</li></ul>
+<hr>
+<a href="cascmd_en445.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en447.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

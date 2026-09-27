@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Conjugate gradient algorithm</title>
+</head>
+<body >
+<a href="cascmd_en569.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en571.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1329" class="subsection">15.6.4  Conjugate gradient algorithm</h3>
+<p>The <span style="font-family:monospace">conjugate_gradient</span><a id="hevea_default986"></a>
+command uses the conjugate gradient algorithm to solve a linear system of equations.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">conjugate_gradient</span> takes two mandatory arguments
+and two optional arguments.
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an <span style="font-style:italic">n</span>× <span style="font-style:italic">n</span> positive definite symmetric matrix.
+</li><li class="li-itemize"><span style="font-style:italic">y</span>, a vector of length <span style="font-style:italic">n</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">x</span><sub>0</sub>, a vector of length <span style="font-style:italic">n</span>, an initial
+approximation.
+</li><li class="li-itemize">ε, a positive number (by default <span style="font-family:monospace">epsilon</span>,
+see Section <a href="cascmd_en030.html#ssec%3Aconfcomp">2.5.7</a>, item <a href="cascmd_en030.html#enum%3Aeps">2.5.7</a>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">conjugate_gradient(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">y</span> ⟨,<span style="font-style:italic">x</span><sub>0</sub>,ε⟩<span style="font-family:monospace">)</span>
+returns the solution to <span style="font-style:italic">Ax</span>=<span style="font-style:italic">y</span> to within ε.
+</li></ul><h4 id="sec1330" class="subsubsection">Examples</h4>
+<p>
+We can solve the system {</p><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:left;white-space:nowrap" >2<span style="font-style:italic">x</span>+<span style="font-style:italic">y</span>=1</td></tr>
+<tr><td style="text-align:left;white-space:nowrap" ><span style="font-style:italic">x</span>+5<span style="font-style:italic">y</span>=0</td></tr>
+</table><p>
+by entering one of the following commandlines.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">conjugate_gradient</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[2,1],[1,5]],[1,0])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">5</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">9</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">9</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">conjugate_gradient</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[2,1],[1,5]],[1,0],[0.55,-0.11],1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.555,−0.11</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">conjugate_gradient</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[2,1],[1,5]],[1,0],[0.55,-0.11],1</span></span><span style="font-weight:bold"><span style="color:#BF0000">e</span></span><span style="font-weight:bold"><span style="color:#BF0000">-10)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.555555555556,−0.111111111111</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en569.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en571.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Copying lists</title>
+</head>
+<body >
+<a href="cascmd_en064.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en066.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:copy" class="subsection">3.3.4  Copying lists</h3>
+<p>If you enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">list1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[1,2,3]</span></span></td></tr>
+</table><p>and then
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">list2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">list1</span></span></td></tr>
+</table><p>then <span style="font-family:monospace">list1</span> and <span style="font-family:monospace">list2</span> will be equal to the same list,
+not simply two lists with the same elements. In particular, if you
+change (by reference) the value of an element of <span style="font-family:monospace">list1</span>, then
+the change will also be reflected in <span style="font-family:monospace">list2</span>. For example, if
+you enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">list1</span></span><span style="font-weight:bold"><span style="color:#BF0000">[1]=&lt;5</span></span></td></tr>
+</table><p>then both <span style="font-family:monospace">list1</span> and <span style="font-family:monospace">list2</span> will be equal to
+<span style="font-family:monospace">[1,5,3]</span>.</p><p>The <span style="font-family:monospace">copy</span><a id="hevea_default80"></a>
+command creates a copy of a list (or vector or matrix) which is equal to
+the original list, but distinct from it. For example, if you enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">list1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[1,2,3]</span></span></td></tr>
+</table><p>and then
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">list2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">copy</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">list1</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>then <span style="font-family:monospace">list1</span> and <span style="font-family:monospace">list2</span> will both be <span style="font-family:monospace">[1,2,3]</span>,
+but now if you enter
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">list1</span></span><span style="font-weight:bold"><span style="color:#BF0000">[1]=&lt;5</span></span></td></tr>
+</table><p>then <span style="font-family:monospace">list1</span> will be equal to <span style="font-family:monospace">[1,5,3]</span> but
+<span style="font-family:monospace">list2</span> will still be <span style="font-family:monospace">[1,2,3]</span>.</p>
+<hr>
+<a href="cascmd_en064.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en066.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

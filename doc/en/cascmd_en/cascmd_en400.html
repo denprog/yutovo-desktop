@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title></title>
+</head>
+<body >
+<a href="cascmd_en399.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en401.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h4 id="sec896" class="subsubsection">Examples</h4>
+<p>
+An integer <span style="font-family:monospace">n</span> in ℤ/13ℤ:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=12%13</span></span></td></tr>
+</table><p>A vector <span style="font-family:monospace">V</span> in ℤ/13ℤ:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">V</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[1,2,3]%13}</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">V</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[1%13,2%13,3%13]</span></span></td></tr>
+</table><p>A matrix <span style="font-family:monospace">A</span> in ℤ/13ℤ:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[1,2,3],[2,3,4]]%13</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[[1%13,2%13,3%13],[[2%13,3%13,4%13]]</span></span></td></tr>
+</table><p>A polynomial <span style="font-family:monospace">A</span> in ℤ/13ℤ[<span style="font-style:italic">x</span>] in symbolic representation:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1)%13</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2%13*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^2+3%13*</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1%13</span></span></td></tr>
+</table><p>A polynomial <span style="font-family:monospace">A</span> in ℤ/13ℤ[<span style="font-style:italic">x</span>] in list representation:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">poly1</span></span><span style="font-weight:bold"><span style="color:#BF0000">[1,2,3]%13</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">A</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">poly1</span></span><span style="font-weight:bold"><span style="color:#BF0000">[1%13,2%13,3%13]</span></span></td></tr>
+</table><p>To recover an object <span style="font-family:monospace">obj</span> with integer coefficients instead of modular
+coefficients, input <span style="font-family:monospace">obj%0</span>. For example:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">obj</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=4%7;:</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">obj</span></span><span style="font-weight:bold"><span style="color:#BF0000">%0</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+−3
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><h5 id="sec897" class="paragraph">Remark.</h5>
+<p>
+Most <span style="font-variant:small-caps">Xcas</span> functions that work on integers or polynomials with
+integer coefficients will often work analogously on
+ℤ/<span style="font-style:italic">p</span>ℤ or ℤ/<span style="font-style:italic">p</span>ℤ[<span style="font-style:italic">x</span>], with the
+obvious exception that the input and output will be modular. They
+will be listed in the remaining subsections.
+For some commands in ℤ/<span style="font-style:italic">p</span>ℤ or in ℤ/<span style="font-style:italic">p</span>ℤ[<span style="font-style:italic">x</span>],
+<span style="font-family:monospace">p</span> must be a prime integer.</p>
+<hr>
+<a href="cascmd_en399.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en401.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

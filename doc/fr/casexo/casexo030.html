@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Exercices de probabilités</title>
+</head>
+<body >
+<a href="casexo029.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo031.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec461" class="chapter">Chapitre 30  Exercices de probabilités</h1>
+<h2 id="sec462" class="section">30.1  Loi géométrique</h2>
+<h3 id="sec463" class="subsection">30.1.1  Exercice</h3>
+<p>
+Une urne contient 5 boules blanches et 5 boules rouges. On les tire une à
+une avec remise jusqu’à ce que l’on obtienne une boule blanche.
+Soit <span style="font-style:italic">X</span> la variable aléatoire "rang de la première boule blanche".
+Déterminer la loi de <span style="font-style:italic">X</span>, son espérance et sa variance.<br>
+
+<span style="font-style:italic">X</span> suit une loi géométrique de paramètre <span style="font-style:italic">p</span>=1/2.<br>
+On a :<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=<span style="font-style:italic">n</span>)=(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span>−1</sup>*<span style="font-style:italic">p</span>=1/2<sup><span style="font-style:italic">n</span></sup><br>
+On a bien :<br>
+∑<sub><span style="font-style:italic">k</span>=1</sub><sup>+∞</sup> 1/2<sup><span style="font-style:italic">k</span></sup>=1/2*
+∑<sub><span style="font-style:italic">k</span>=0</sub><sup>+∞</sup>1/2<sup><span style="font-style:italic">k</span>−1</sup>=1/2*2=1<br>
+La fonction de répartition de <span style="font-style:italic">X</span> est :<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>≤ <span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/2<sup><span style="font-style:italic">k</span></sup>=1−1/2<sup><span style="font-style:italic">n</span>+1</sup><br>
+On sait que :
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=1/<span style="font-style:italic">p</span>=2<br>
+σ<sup>2</sup>(<span style="font-style:italic">X</span>)=1/<span style="font-style:italic">p</span>=2<br>
+On vérifie avec <span style="font-family:monospace">Xcas</span> :<br>
+<span style="font-family:monospace">sum(k/2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">k,k=0..inf)</span> renvoie 2<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span><sup>2</sup>)=1/<span style="font-style:italic">p</span>=2<br>
+On vérifie avec <span style="font-family:monospace">Xcas</span> :<br>
+<span style="font-family:monospace">sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2/2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">k,k=0..inf)</span> renvoie 6<br>
+donc σ<sup>2</sup>(<span style="font-style:italic">X</span>)=<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span><sup>2</sup>)−<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)<sup>2</sup>=2<br>
+</p>
+<h3 id="sec464" class="subsection">30.1.2  Exercice variante non géométrique</h3>
+<p>
+Une urne contient 5 boules blanches et 5 boules rouges. On les tire une à
+une sans remise jusqu’à ce que l’urne soit vide.<br>
+Soit <span style="font-style:italic">X</span> la variable aléatoire "rang de la première boule blanche".
+Déterminer la loi de <span style="font-style:italic">X</span>, son espérance et sa variance. </p><p>La loi de Bernouilli que l’on repète n’est pas la même car on ne remet 
+pas les boules dans l’urne : ce n’est donc pas une loi géométrique.
+Trouver la loi de <span style="font-style:italic">X</span> c’est trouver :
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=<span style="font-style:italic">n</span>) puis sa fonction de repartition <span style="font-style:italic">F</span>.<br>
+<span style="font-style:italic">X</span> ne peut prendre que les valeurs 1,2,3,4,5,6.<br>
+On a (on fait les calculs avec <span style="font-weight:bold">Xcas</span>) :<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=1)=5/10=1/2 (car on a 10 boules dont 5 blanches)<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=2)=1/2*5/9=5/18=comb(5,1)/comb(10,1)*5/9 (car au 2ième tirage il 
+reste 9 boules dont 5 blanches)<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=3)=1/2*4/9*5/8=5/36=comb(5,2)/comb(10,2)*5/8 (car au 3ième tirage 
+il reste 8 boules dont 5 blanches)<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=4)=1/2*4/9*3/8*5/7=5/84=comb(5,3)/comb(10,3)*5/7<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=5)=1/2*4/9*3/8*2/7*5/6=5/252=comb(5,4)/comb(10,4)*5/6<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=6)=1/2*4/9*3/8*2/7*1/6*5/5=1/252=comb(5,5)/comb(10,5)*5/5<br>
+On a la formule :
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=<span style="font-style:italic">n</span>)=<span style="font-style:italic">comb</span>(5,<span style="font-style:italic">n</span>−1)/<span style="font-style:italic">comb</span>(10,<span style="font-style:italic">n</span>−1)*5/(11−<span style="font-style:italic">n</span>)
+Donc :<br>
+<span style="font-style:italic">F</span>(1)=1/2<br>
+<span style="font-style:italic">F</span>(2)=1/2+5/18=7/9<br>
+<span style="font-style:italic">F</span>(3)=7/9+5/36 =11/12<br>
+<span style="font-style:italic">F</span>(4)=11/12+5/84=41/42<br>
+<span style="font-style:italic">F</span>(5)=41/42+5/252=251/252<br>
+<span style="font-style:italic">F</span>(6)=251/252+1/252=1<br>
+On vérifie avec <span style="font-weight:bold">Xcas</span> par exemple :<br>
+<span style="font-family:monospace">sum(comb(5,n-1)/comb(10,n-1)*5/(11-n),n=1..2)</span> renvoie <span style="font-family:monospace">7/9</span><br>
+<span style="font-family:monospace">sum(comb(5,n-1)/comb(10,n-1)*5/(11-n),n=1..2)</span> renvoie <span style="font-family:monospace">41/42</span><br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=1/2+5/9+5/12+4/21+25/252+6/252=25/14<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span><sup>2</sup>)=1/2+10/9+15/12+16/21+125/252+36/252=179/42<br>
+σ<sup>2</sup>(<span style="font-style:italic">X</span>)=179/42-25*25/14/14=631/588
+</p>
+<h2 id="sec465" class="section">30.2  La loi négbinomiale</h2>
+<h3 id="sec466" class="subsection">30.2.1  Définition</h3>
+<p>
+La loi binomiale négative est une distribution de probabilité 
+discrète. Elle dépend de 2 paramètres : un entier <span style="font-style:italic">n</span> (le nombre de 
+succès attendus) et un réel <span style="font-style:italic">p</span> de ]0,1[ (la probabilité d’un succés).<br>
+On la note <span style="color:red"><span style="font-style:italic">N</span></span><span style="font-style:italic">eg</span><span style="color:red"><span style="font-style:italic">B</span></span><span style="font-style:italic">in</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>).<br>
+Elle permet de décrire la situation suivante : on fait une suite de tirages 
+indépendants (avec pour chaque tirage, la probabilité <span style="font-style:italic">p</span> d’avoir un 
+succès) jusqu’à obtenir <span style="font-style:italic">n</span> succès.
+La variable aléatoire représentant le nombre d’échecs qu’il a fallut avant 
+d’avoir <span style="font-style:italic">n</span> succès, suit alors une loi binomiale négative. <br>
+Si on définit <span style="font-family:monospace">comb(n,k)</span> pour <span style="font-style:italic">n</span>&lt;0 par <span style="font-family:monospace">comb(n,k)=n*(n-1)*..*(n-k-1)/k!</span>, alors
+Si <span style="font-style:italic">X</span> ∈ <span style="color:red"><span style="font-style:italic">N</span></span><span style="font-style:italic">eg</span><span style="color:red"><span style="font-style:italic">B</span></span><span style="font-style:italic">in</span>(<span style="font-style:italic">n</span>,<span style="font-style:italic">p</span>) (<span style="font-style:italic">n</span> ∈ ℕ et <span style="font-style:italic">p</span> ∈ ]0;1[) alors
+<span style="font-family:monospace"><span style="font-style:italic">Proba</span></span><span style="font-family:monospace">(</span><span style="font-family:monospace"><span style="font-style:italic">X</span></span><span style="font-family:monospace">=</span><span style="font-family:monospace"><span style="font-style:italic">k</span></span><span style="font-family:monospace">)=</span><span style="font-family:monospace"><span style="font-style:italic">p</span></span><sup><span style="font-family:monospace"><span style="font-style:italic">n</span></span></sup><span style="font-family:monospace">*(</span><span style="font-family:monospace"><span style="font-style:italic">p</span></span><span style="font-family:monospace">-1)</span><sup><span style="font-family:monospace"><span style="font-style:italic">k</span></span></sup><span style="font-family:monospace">*</span><span style="font-family:monospace"><span style="font-style:italic">comb</span></span><span style="font-family:monospace">(-</span><span style="font-family:monospace"><span style="font-style:italic">n</span></span><span style="font-family:monospace">,</span><span style="font-family:monospace"><span style="font-style:italic">k</span></span><span style="font-family:monospace">)</span>
+ce qui justifie le nom de loi binomiale négative et qui facilite le calcul de
+l’espérance (égale à <span style="font-style:italic">n</span>(1−<span style="font-style:italic">p</span>)/<span style="font-style:italic">p</span>) et de la variance (égale à 
+<span style="font-style:italic">n</span>(1−<span style="font-style:italic">p</span>)/<span style="font-style:italic">p</span><sup>2</sup>).<br>
+</p>
+<h3 id="sec467" class="subsection">30.2.2  Exercice</h3>
+<p>
+Dans un pays imaginaire on impose aux familles d’avoir des enfants jusquà la
+naissance d’un garçon et de ne plus avoir d’enfants après 
+la naissance de ce garçon.<br>
+Est-ce que cette loi favorise la naissance des filles ?
+On répondra à cette question en supposant que dans ce pays :
+</p><ul class="itemize"><li class="li-itemize">
+la probabilité d’avoir un garçon est égale à 0.5 et qu’une 
+famille peut avoir un nombre infini d’enfants.
+</li><li class="li-itemize">la probabilité d’avoir un garçon est égale à 0.5 et qu’une 
+famille ne peut pas avoir plus de 10 enfants.
+</li><li class="li-itemize">la probabilité d’avoir un garçon est égale à <span style="font-style:italic">p</span> (par exemple 
+<span style="font-style:italic">p</span>=105/205=21/41) et qu’une famille ne peut pas avoir plus de <span style="font-style:italic">n</span> enfants (par
+exemple <span style="font-style:italic">n</span>=10).
+</li></ul><p>
+<span style="font-weight:bold">Une solution</span>
+</p><ul class="itemize"><li class="li-itemize">
+Soit <span style="font-style:italic">X</span> la variable aléatoire égale au nombre de filles d’une 
+famille. <span style="font-style:italic">X</span> suit une loi négbinomiale <span style="color:red"><span style="font-style:italic">N</span></span><span style="font-style:italic">eg</span><span style="color:red"><span style="font-style:italic">B</span></span><span style="font-style:italic">in</span>(1,0.5) 
+Donc <span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=(1−0.5)/0.5=1.<br>
+Soit <span style="font-style:italic">Y</span> la variable aléatoire égale au nombre de 
+garçons d’une famille. <span style="font-style:italic">Y</span> est constant et on a <span style="font-style:italic">Y</span>=1 donc <span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)=1
+Donc cette loi ne favorise pas la naissance des filles ni celle des garçons.
+</li><li class="li-itemize">Soit <span style="font-style:italic">X</span> la variable aléatoire égale au nombre de filles d’une 
+famille. Notons <span style="font-style:italic">p</span>=1/2. <br>
+On a <span style="font-style:italic">p</span>=1−<span style="font-style:italic">p</span> donc :<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=0)=<span style="font-style:italic">p</span><br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=1)=<span style="font-style:italic">p</span><sup>2</sup><br>
+....<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=<span style="font-style:italic">k</span>)=<span style="font-style:italic">p</span><sup><span style="font-style:italic">k</span>+1</sup> pour <span style="font-style:italic">k</span>=0..9<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=10)=<span style="font-style:italic">p</span><sup>10</sup><br>
+Donc :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup>9</sup><span style="font-style:italic">kp</span><sup><span style="font-style:italic">k</span>+1</sup>+10*<span style="font-style:italic">p</span><sup>10</sup><br>
+On peut faire en exercice le calcul de ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">ka</span><sup><span style="font-style:italic">k</span>−1</sup> en dérivant 
+∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">a</span><sup><span style="font-style:italic">k</span></sup>=(<span style="font-style:italic">a</span><sup>(</sup><span style="font-style:italic">n</span>+1)−1)/(<span style="font-style:italic">a</span>−1).<br>
+On obtient :<br>
+∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">ka</span><sup><span style="font-style:italic">k</span>−1</sup>=(<span style="font-style:italic">n</span>*<span style="font-style:italic">a</span><sup><span style="font-style:italic">n</span>+1</sup>−(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">a</span><sup><span style="font-style:italic">n</span></sup>+1)/(<span style="font-style:italic">a</span>−1)<sup>2</sup><br>
+Calculons avec <span style="font-family:monospace">Xcas</span> ∑<sub><span style="font-style:italic">k</span>=0</sub><sup>9</sup><span style="font-style:italic">kp</span><sup><span style="font-style:italic">k</span>+1</sup>+10*<span style="font-style:italic">p</span><sup>10</sup>, on tape :<br>
+<span style="font-family:monospace">p:=1/2</span><br>
+<span style="font-family:monospace">sum(k*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(k+1),k=0..9)+10*p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">10</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1023/1024</span><br>
+On a bien : <br>
+<span style="font-style:italic">p</span><sup>2</sup>∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">kp</span><sup><span style="font-style:italic">k</span>−1</sup>=<span style="font-style:italic">p</span><sup>2</sup>(9<span style="font-style:italic">p</span><sup>10</sup>−10<span style="font-style:italic">p</span><sup>9</sup>+1)/<span style="font-style:italic">p</span><sup>2</sup>+10*<span style="font-style:italic">p</span><sup>10</sup>=19*<span style="font-style:italic">p</span><sup>10</sup>−10*<span style="font-style:italic">p</span><sup>9</sup>+1=<span style="font-style:italic">p</span><sup>10</sup>*(19−20)+1=1−<span style="font-style:italic">p</span><sup>10</sup>=1023/1024
+Avec <span style="font-family:monospace">evalf</span> on obtient :<br>
+<span style="font-family:monospace">0.990234375</span><br>
+Soit <span style="font-style:italic">Y</span> la variable aléatoire égale au nombre de 
+garçons d’une famille.<br>
+On a :<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">Y</span>=0)=<span style="font-style:italic">p</span><sup>10</sup><br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">Y</span>=1)=1−<span style="font-style:italic">p</span><sup>10</sup><br>
+Donc :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)=1−<span style="font-style:italic">p</span><sup>10</sup>
+On tape :<br>
+<span style="font-family:monospace">1-p</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">10</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1023/1024</span><br>
+Avec <span style="font-family:monospace">evalf</span> on obtient :<br>
+<span style="font-family:monospace">0.990234375</span><br>
+Donc cette loi ne favorise pas la naissance des filles ni celle des garçons.</li><li class="li-itemize">Soit <span style="font-style:italic">X</span> la variable aléatoire égale au nombre de filles d’une 
+famille. Notons <span style="font-style:italic">p</span> la probabilité d’avoir un garçon.<br>
+On a :<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=0)=<span style="font-style:italic">p</span><br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=1)=<span style="font-style:italic">p</span>(1−<span style="font-style:italic">p</span>)<br>
+....<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=<span style="font-style:italic">k</span>)=<span style="font-style:italic">p</span>(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">k</span></sup> pour <span style="font-style:italic">k</span>=0..<span style="font-style:italic">n</span>−1<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">X</span>=<span style="font-style:italic">n</span>)=(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup><br>
+Donc :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>(<span style="font-style:italic">kp</span>(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">k</span></sup>)+<span style="font-style:italic">n</span>(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup><br>
+Calculons ∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>(<span style="font-style:italic">kp</span>(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">k</span></sup>)+<span style="font-style:italic">n</span>(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup>, on tape :<br>
+<span style="font-family:monospace">EX:=simplify(sum(k*p*(1-p)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">k,k=0..n-1)+1n*(1-p)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(p*(1-p)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n-p-(1-p)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+1)/p</span><br>
+Donc :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=1−<span style="font-style:italic">p</span>/<span style="font-style:italic">p</span>(1−(1−<span style="font-style:italic">p</span>)<code>^</code><span style="font-style:italic">n</span>)<br>
+Soit <span style="font-style:italic">Y</span> la variable aléatoire égale au nombre de 
+garçons d’une famille.<br>
+On a :<br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">Y</span>=0)=(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup><br>
+<span style="font-style:italic">Proba</span>(<span style="font-style:italic">Y</span>=1)=1−(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup><br>
+Donc :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)=1−(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup><br>
+On a donc :
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>+<span style="font-style:italic">Y</span>)=<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)+<span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)=1−(1−<span style="font-style:italic">p</span>)<sup><span style="font-style:italic">n</span></sup>)/<span style="font-style:italic">p</span><br>
+Donc :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)/<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>+<span style="font-style:italic">Y</span>)=1−<span style="font-style:italic">p</span> et <span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)/<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>+<span style="font-style:italic">Y</span>)=<span style="font-style:italic">p</span><br>
+Donc cette loi ne change pas rien quant aux nombres de naissances de filles et 
+de garçons.<br>
+<span style="font-weight:bold">Application numérique</span><br>
+On tape :<br>
+<span style="font-family:monospace">p:=21/41</span><br>
+<span style="font-family:monospace">(1-p)*(1-(1-p)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">10)/p</span><br>
+On obtient <span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>) :<br>
+<span style="font-family:monospace">12773732676335620/13422659310152401</span><br>
+Avec <span style="font-family:monospace">evalf</span> on obtient <span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>) :<br>
+<span style="font-family:monospace">0.951654391367</span><br>
+<span style="font-family:monospace">1-(1-p)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">10</span><br>
+On obtient <span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>) :<br>
+<span style="font-family:monospace">13412419310152401/13422659310152401</span><br>
+Avec <span style="font-family:monospace">evalf</span> on obtient <span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>) :<br>
+<span style="font-family:monospace">0.999237110936</span><br>
+On tape (calcul de <span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)+<span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)) :<br>
+<span style="font-family:monospace">12773732676335620/13422659310152401+13412419310152401/13422659310152401</span>
+On obtient :<br>
+<span style="font-family:monospace">638686633816781/327381934393961</span><br>
+On tape (calcul de <span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)/(<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)+<span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>))) :<br>
+<span style="font-family:monospace">12773732676335620/13422659310152401/(638686633816781/327381934393961)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">20/41</span><br>
+On retrouve la probabilité 1−<span style="font-style:italic">p</span>.
+On tape (calcul de <span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>)/(<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)+<span style="font-style:italic">E</span>(<span style="font-style:italic">Y</span>))) :<br>
+<span style="font-family:monospace">13412419310152401/13422659310152401/(638686633816781/327381934393961)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">21/41</span><br>
+On retrouve la probabilité <span style="font-style:italic">p</span>.<br>
+Donc cette loi ne change pas rien quant aux nombres de naissances de filles et 
+de garçons.
+</li></ul>
+<h2 id="sec468" class="section">30.3  La loi uniforme</h2>
+<h2 id="sec469" class="section">30.4  La loi uniforme</h2>
+<h3 id="sec470" class="subsection">30.4.1  Définition</h3>
+<h3 id="sec471" class="subsection">30.4.2  Exercice1</h3>
+<p>
+On considère un point aléatoire <span style="font-style:italic">M</span> uniformément réparti sur le disque 
+de centre <span style="font-style:italic">O</span> et de rayon <span style="font-style:italic">R</span> c’est à dire que la probabilité pour que <span style="font-style:italic">M</span> 
+appartienne à un domaine <span style="font-style:italic">G</span> du disque est proportionnelle à l’aire de <span style="font-style:italic">G</span>.</p><p>On a donc <span style="font-style:italic">Proba</span>(<span style="font-style:italic">x</span>∈ <span style="font-style:italic">G</span>)=(aire de <span style="font-style:italic">G</span>)/(<span style="font-style:italic">R</span><sup>2</sup>).<br>
+Étude de la variable aléatoire <span style="font-style:italic">X</span>=<span style="font-style:italic">OM</span><br>
+
+<span style="font-style:italic">X</span> varie de 0 à <span style="font-style:italic">R</span> et la fonction de répartition de <span style="font-style:italic">X</span> est donc :<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)=0 si <span style="font-style:italic">x</span>≤ 0<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)=π <span style="font-style:italic">x</span><sup>2</sup>/π <span style="font-style:italic">R</span><sup>2</sup>=<span style="font-style:italic">x</span><sup>2</sup>/<span style="font-style:italic">R</span><sup>2</sup>= si 0&lt;<span style="font-style:italic">x</span> ≤ <span style="font-style:italic">R</span><br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>)=1 si <span style="font-style:italic">x</span> &gt; <span style="font-style:italic">R</span><br>
+La densité de probabilité est donc :<br>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=0 si <span style="font-style:italic">x</span>≤ 0 ou <span style="font-style:italic">x</span>&gt; <span style="font-style:italic">R</span><br>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=2<span style="font-style:italic">x</span>/<span style="font-style:italic">R</span><sup>2</sup> si 0&lt;<span style="font-style:italic">x</span>≤ <span style="font-style:italic">R</span><br>
+L’éspérance de <span style="font-style:italic">X</span> est :<br>
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)=∫<sub>0</sub><sup><span style="font-style:italic">R</span></sup><span style="font-style:italic">xf</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">dx</span>=∫<sub>0</sub><sup><span style="font-style:italic">R</span></sup>2<span style="font-style:italic">x</span><sup>2</sup>/<span style="font-style:italic">R</span><sup>2</sup><span style="font-style:italic">dx</span>=2<span style="font-style:italic">R</span>/3
+On calcule <span style="font-style:italic">E</span>(<span style="font-style:italic">X</span><sup>2</sup>) :
+<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span><sup>2</sup>)=∫<sub>0</sub><sup><span style="font-style:italic">R</span></sup><span style="font-style:italic">x</span><sup>2</sup><span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)<span style="font-style:italic">dx</span>=∫<sub>0</sub><sup><span style="font-style:italic">R</span></sup>2<span style="font-style:italic">x</span><sup>3</sup>/<span style="font-style:italic">R</span><sup>2</sup><span style="font-style:italic">dx</span>=<span style="font-style:italic">R</span><sup>2</sup>/2
+La variance de <span style="font-style:italic">X</span> est :<br>
+σ<sup>2</sup>(<span style="font-style:italic">X</span>)=<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span><sup>2</sup>)−<span style="font-style:italic">E</span>(<span style="font-style:italic">X</span>)<sup>2</sup>=<span style="font-style:italic">R</span><sup>2</sup>/2−4<span style="font-style:italic">R</span><sup>2</sup>/9=<span style="font-style:italic">R</span><sup>2</sup>/18
+</p>
+<h3 id="sec472" class="subsection">30.4.3  Exercice2</h3>
+<p>
+Soit la variable aléatoire à 2 dimensions (<span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span>) uniformément distribué
+sur le quart de disque <span style="font-style:italic">D</span> de centre <span style="font-style:italic">O</span>, de rayon <span style="font-style:italic">R</span> situé dans le quart de
+plan <span style="font-style:italic">x</span>&gt;0 et <span style="font-style:italic">y</span>&gt;0.<br>
+On demande la fonction de répartition de (<span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span>).<br>
+La probabilité pour que <span style="font-style:italic">M</span>=(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) appartienne à un domaine <span style="font-style:italic">G</span> du quart de
+disque <span style="font-style:italic">D</span> est proportionnelle à l’aire de <span style="font-style:italic">G</span>.<br>
+
+Pour calculer la fonction de répartition, on va calculer :
+l’aire <span style="font-style:italic">A</span> du quart de disque : <span style="font-style:italic">A</span>=π <span style="font-style:italic">R</span><sup>2</sup>/4 et<br>
+l’aire <span style="font-style:italic">AS</span><sub><span style="font-style:italic">a</span></sub> du secteur :
+<span style="font-style:italic">S</span><sub><span style="font-style:italic">a</span></sub>={(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)∈ <span style="font-style:italic">D</span> : <span style="font-style:italic">a</span>&lt;<span style="font-style:italic">x</span>&lt;<span style="font-style:italic">R</span>} qui est aussi l’aire du secteur 
+{(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)∈ <span style="font-style:italic">D</span> : <span style="font-style:italic">a</span>&lt;<span style="font-style:italic">y</span>&lt;<span style="font-style:italic">R</span>}.<br>
+Soit α l’angle <span style="font-style:italic">OxM</span> où <span style="font-style:italic">M</span> est le point du quart de cercle d’abscisse 
+<span style="font-style:italic">x</span>. 
+On a :
+α=  acos (<span style="font-style:italic">x</span>/<span style="font-style:italic">R</span>)
+aire de <span style="font-style:italic">S</span><sub><span style="font-style:italic">a</span></sub>=<span style="font-style:italic">AS</span><sub><span style="font-style:italic">a</span></sub>=α <span style="font-style:italic">R</span><sup>2</sup>/2−<span style="font-style:italic">x</span>√<span style="text-decoration:overline">(</span><span style="font-style:italic">R</span><sup>2</sup>−<span style="font-style:italic">ax</span><sup>2</sup>)/2
+<span style="font-style:italic">X</span> et <span style="font-style:italic">Y</span> varient de 0 à <span style="font-style:italic">R</span> et la fonction de répartition de <span style="font-style:italic">X</span>,<span style="font-style:italic">Y</span> est 
+donc :<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=0 si <span style="font-style:italic">x</span>≤ 0 ou <span style="font-style:italic">y</span>≤ 0<br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=1 si <span style="font-style:italic">x</span>≥ <span style="font-style:italic">R</span> et <span style="font-style:italic">y</span>≥ <span style="font-style:italic">R</span><br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=4<span style="font-style:italic">xy</span>/π <span style="font-style:italic">R</span><sup>2</sup>/<span style="font-style:italic">A</span> si <span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>≤ <span style="font-style:italic">R</span><sup>2</sup> <br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=(π <span style="font-style:italic">R</span><sup>2</sup>/4−<span style="font-style:italic">AS</span><sub><span style="font-style:italic">x</span></sub>)/<span style="font-style:italic">A</span> si <span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>&gt; <span style="font-style:italic">R</span><sup>2</sup> et <span style="font-style:italic">x</span>≤ <span style="font-style:italic">R</span> et <span style="font-style:italic">y</span>≥ <span style="font-style:italic">R</span><br>
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=(π <span style="font-style:italic">R</span><sup>2</sup>/4−<span style="font-style:italic">AS</span><sub><span style="font-style:italic">y</span></sub>)/<span style="font-style:italic">A</span> si <span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>&gt; <span style="font-style:italic">R</span><sup>2</sup> et <span style="font-style:italic">x</span>≥ <span style="font-style:italic">R</span> et <span style="font-style:italic">y</span>≤ <span style="font-style:italic">R</span><br>
+ 
+<span style="font-style:italic">F</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=(4<span style="font-style:italic">xy</span>/π <span style="font-style:italic">R</span><sup>2</sup>−<span style="font-style:italic">AS</span><sub><span style="font-style:italic">x</span></sub>−<span style="font-style:italic">AS</span><sub><span style="font-style:italic">y</span></sub>)/<span style="font-style:italic">A</span> si <span style="font-style:italic">x</span><sup>2</sup>+<span style="font-style:italic">y</span><sup>2</sup>&gt; <span style="font-style:italic">R</span><sup>2</sup> et <span style="font-style:italic">x</span>&lt;<span style="font-style:italic">R</span> et <span style="font-style:italic">y</span>&lt;<span style="font-style:italic">R</span>
+</p><pre class="verbatim">F(x,y,R):={
+  local a,b,AS,BS,A;
+  si type(x)!=DOM_FLOAT ou  type(y)!=DOM_FLOAT alors 
+    retourne 'F'(x,y,R); 
+  fsi;
+  si x&lt;=0 ou y&lt;=0 alors retourne 0; fsi;
+  si x&gt;=R et y&gt;=R alors retourne 1; fsi;
+  A:=pi*R^2/4;
+  si (x^2+y^2&lt;=R^2) alors retourne x*y/A; fsi;
+  si x^2+y^2&gt;R^2 et x&lt;R et y&gt;R alors 
+    a:=acos(x/R); 
+    AS:=a*R^2/2-x*sqrt(R^2-x^2)/2;
+    retourne (pi*R^2/4-AS)/A; 
+  fsi;
+  si x^2+y^2&gt;R^2 et y&lt;R et x&gt;R alors 
+    a:=acos(y/R); 
+    AS:=a*R^2/2-y*sqrt(R^2-y^2)/2;
+    retourne (pi*R^2/4-AS)/A; 
+  fsi;
+  si x^2+y^2&gt;R^2 et x&lt;R et y&lt;R alors 
+    a:=acos(x/R); b:=acos(y/R); 
+    AS:=a*R^2/2-x*sqrt(R^2-x^2)/2;
+    BS:=b*R^2/2-y*sqrt(R^2-y^2)/2;
+    retourne (pi*R^2/4-AS-BS)/A; 
+  fsi;
+}:;
+</pre><p>
+On tape :<br>
+<span style="font-family:monospace">plotfunc(F(x,y,1),[x=-1..2,y=-1..2]);</span><br>
+<span style="font-family:monospace">affichage(plotparam([x,sqrt(1-x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),0],x=0..1),
+4+epaisseur_ligne_2)</span><br>
+On obtient :
+</p><div class="center"><img src="casexo112.png"></div>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo029.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo031.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

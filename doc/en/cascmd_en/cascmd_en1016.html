@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Trimming image margins</title>
+</head>
+<body >
+<a href="cascmd_en1015.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1017.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:trim-image" class="subsection">28.1.9  Trimming image margins</h3>
+<p>Margins of an image, consisting of “empty” pixels with value 0 in all color
+channels, can be found and removed by using the <span style="font-family:monospace">trim</span><a id="hevea_default1937"></a>
+command (see Section <a href="cascmd_en090.html#ssec%3Atrim-string">5.2.5</a>, Section <a href="cascmd_en706.html#ssec%3Atrim-vector">21.2.2</a>
+and Section <a href="cascmd_en1019.html#ssec%3Aaudio-clips-from-old">28.2.2</a> for other usages of <span style="font-family:monospace">trim</span>).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">trim</span> takes one mandatory argument and one or two optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">img</span>, an image object.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">inv</span>, the symbol.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">index</span>, the symbol.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">trim(</span><span style="font-style:italic">img</span> ⟨,<span style="font-family:monospace">inv</span> ⟩ ⟨,<span style="font-family:monospace">index</span> ⟩<span style="font-family:monospace">)</span>
+finds largest zero-pixel margins in <span style="font-style:italic">img</span> or its inversion if <span style="font-family:monospace">inv</span> is given.
+If <span style="font-family:monospace">index</span> is given, then the trimmed slice location (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>) and dimensions (<span style="font-style:italic">w</span>,<span style="font-style:italic">h</span>) are
+returned as a sequence (<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>,<span style="font-style:italic">w</span>,<span style="font-style:italic">h</span>). Otherwise, a trimmed version of <span style="font-style:italic">img</span> is returned.
+</li><li class="li-itemize">To remove white margins, include the option <span style="font-family:monospace">inv</span> when calling <span style="font-family:monospace">trim</span>.
+</li></ul><h4 id="sec2543" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">image</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/mnist_png/training/1/552.png"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">an image of size 28×28 (grayscale)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en452.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en453.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">trim</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">img</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">index</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+7,3,11,20
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en1015.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1017.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

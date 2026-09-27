@@ -1,0 +1,21 @@
+B:=point(0);
+C:=point(1);
+assume(a=[0.5,-5,5,0.1]);
+assume(b=[0.4,-5,5,0.1]);
+A:=point(a,b);
+assume(d=[0.2,-5,5,0.1]);
+D:=A+(1+i*d)/(1-i*d);
+assume(c=[0.6,0,1,0.1]);
+E:=B+c*(C-B);
+F:=D+c*(A-D);
+P:=single_inter(line(A,C),line(B,D));
+Q:=single_inter(line(E,F),line(B,D));
+R:=single_inter(line(A,C),line(E,F));
+K:=circumcircle(P,Q,R);
+K0:=color(normal(subst(K,c=0)),green); 
+K1:=color(normal(subst(K,c=1)),green); 
+L:=inter(K0,K1);
+
+eq:=equation(K); EQ:=left(eq)-right(eq);
+j:=0; xy:=normal(coordinates(L[j])); normal(subst(EQ,[x,y],xy));
+j:=1; xy:=normal(coordinates(L[j])); normal(subst(EQ,[x,y],xy));

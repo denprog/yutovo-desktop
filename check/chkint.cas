@@ -1,0 +1,115 @@
+// -*- mode:C -*-
+if tout=='tout' then tout:=5; fi; // Timeout should be 180 for 12000 testing
+if fork=='fork' then fork:=1; fi; // Set to 1 for fork_timeout, 0 for thread_timeout
+//auto_assume(1);
+file:=fopen("int"+testname+".tst");
+file2:=fopen("int"+testname+".rep");        
+res:=[]:;
+S:=size(eval(lst,1));
+print(testname+" number of tests "+S);
+failint:=[]; failsimp:=[]; nock:=[]; ass:=[]; infos:=[]; timings:=[]; agrade:=0; bgrade:=0; cgrade:=0; fgrade:=0; timeouts:=[];
+T0:=time(real);
+tsts:=0;
+jstart:=0;
+purge(unquote(lname(eval(lst,1))));
+for (j:=jstart;j<S;j++){
+  print(j+1,"loop start");
+  // complex_mode(false);
+  tsts++;
+  lj:=eval(at(eval(lst,1),j),1); 
+  print(j+1,"loop get");
+  fff:=eval(lj[0],1); v:=eval(lj[1],1); hyp:=eval(lj[2],1); solution:=eval(lj[3],1); 
+  if (hyp=="nock") then print("Warning:",j+1,"not checked"); fprint(file,"Warning:",j+1,"not checked"); fi;
+  purge(unquote(v));
+  if (type(hyp)==string) expr(hyp); // eval assumption
+  print(j+1,"integrate start",fff,"var=",v,"hyp=",hyp,"about=",about(unquote(v)));
+  prevtime:=time(real);
+  //g:=timeout(try_catch(integrate(f,unquote(v)),err,"integrate("+err),tout);
+  try { if (fork) ggg:=fork_timeout(integrate(fff,unquote(v)),tout); else ggg:=thread_timeout(integrate(fff,unquote(v)),tout); }
+  catch(err){
+    // if (g=='g') g:="timeout"; print(g); break;
+    ggg:="integrate(err)";
+  }
+  nxttime:=time(real);         
+  print(j+1,"End integration",nxttime-prevtime);
+  // try { g:=risch(f,unquote(v)); } catch(err){ g:="integrate(err)"; }
+  if (type(eval(ggg,1))==DOM_STRING && eval(ggg,1)=="timeout"){
+    print(j+1,"Timeout "+tout);
+    timeouts.append(j+1);
+    grade:="F(-1)"; fgrade++;
+    timings.append(0);
+    failint.append(j+1);
+    failure:=1;
+    ratio:=0;
+    infos.append([j+1,1-failure,tout,1]);        
+    fgh:=""+eval([j+1,fff,ggg,hhh],1);
+    fprint(file,"",fgh);
+    // using Nasser Abassi format for 12000
+  fgh:=""+(j+1)+","+(1-failure)+","+size(eval(ggg,1),size)+","+round(nxttime-prevtime,4)+","+size(eval(solution,1),size)+",\"\\int "+latex(eval(fff,1))+"\",\""+eval(fff,1)+"\",\""+latex(eval(ggg,1))+"\",\""+latex(eval(solution,1))+"\","+(1-(size(ssolution)>0))+","+eval(ggg,1)+",\""+grade+"\",\"N/A\","+(0+verif)+"\n";
+    fprint(file2,Unquoted,fgh);
+  }
+  else {
+    if eval(ggg,1)==undef or size(eval(ggg,1),size)>fork_timeout() then sss:="integrate("+fff+","+v+")"; else sss:=""+eval(ggg,1); fi;
+   hhh:=false;
+   print(j+1,"integration done in "+(nxttime-prevtime)+" "+sss[0..min(size(s)-1,32)]+" for "+fff);
+   ssolution:=" "+eval(solution,1); if type(ssolution)!=DOM_STRING then ssolution:=" "; fi;
+   ssolution:=concat(concat(ssolution.find("Defer"),ssolution.find("Unintegrable")),ssolution.find("integrate"));
+   if (size(ssolution)>0)
+     failure := (fff==fail || size(sss.find("integrate("))==0) ;
+   else
+     failure := (fff==fail || size(sss.find("integrate("))>0 || hyp==x);
+   ratio:=evalf(size(eval(ggg,1),size)/size(eval(solution,1),size));
+   grade:="F";
+   if (failure){ failint.append(j+1); fgrade++; }
+   else {
+     if (has_i(eval(ggg,1))){ cgrade++; grade="C";}
+     else {
+       if (ratio<2){ agrade++; grade="A";}
+       else { bgrade++; grade:="B";}
+     }
+   }
+   print(j+1,"grade "+grade,"failure "+failure,"hyp "+hyp);
+   timings.append(round(nxttime-prevtime,6));
+   infos.append([j+1,1-failure,round(nxttime-prevtime,6),round(ratio,1)]);        
+   if (hyp=="nock") nock.append(j+1);
+   if (hyp.type==string && size(hyp.find("assume("))>0) ass.append(j+1);
+   if (hyp!="nock" && !failure){
+     if (fork)
+       hhh:=fork_timeout(simplify(diff(eval(ggg,1),unquote(v))-fff),tout);
+     else
+       hhh:=thread_timeout(simplify(diff(eval(ggg,1),unquote(v))-fff),tout);
+   } else print("nock");
+   purge(unquote(assumptions));
+   fgh:=""+eval([j+1,fff,ggg,hhh],1);
+   verif:=eval(hhh,1)==0;
+   if (!verif) failsimp.append(j+1);
+   print(fgh);
+   //res.append([f,g,hhh]); print(res[size(res)-1]);
+   fprint(file,"",fgh);
+   // using Nasser Abassi format for 12000
+   fgh:=""+(j+1)+","+(1-failure)+","+size(eval(ggg,1),size)+","+round(nxttime-prevtime,4)+","+size(eval(solution,1),size)+",\"\\int "+latex(eval(fff,1))+"\",\""+eval(fff,1)+"\",\""+latex(eval(ggg,1))+"\",\""+latex(eval(solution,1))+"\","+(1-(size(ssolution)>0))+","+eval(ggg,1)+",\""+grade+"\",\"N/A\","+(0+verif)+"\n";
+   fprint(file2,Unquoted,fgh);
+  }      
+};
+//res;
+  report:= "\n===="+testname+" ====\ninfos [testno,ok,time,leafsize_ratio]: \n"+infos+
+  "\ntime list with timeouts:"+timings+
+  "\nTotal real time (not CPU time):"+round(time(real)-T0,2)+
+  "\ntimeouts: "+size(timeouts)+", "+timeouts+
+  "\nmedian time w/o timeouts: "+median(remove(0,timings))+", mean time: "+round(mean(remove(0,timings)),6)+
+  "\ntests: "+tsts+
+  "\nsolved: "+(agrade+bgrade+cgrade)+" "+round(100.0*(agrade+bgrade+cgrade)/S,2)+"%"+
+  "\nA: "+agrade+" "+round(100.0*agrade/S,2)+"%"+
+  "\nB: "+bgrade+" "+round(100.0*bgrade/S,2)+"%"+
+  "\nC: "+cgrade+" "+round(100.0*cgrade/S,2)+"%"+
+  "\nF: "+fgrade+" "+round(100.0*fgrade/S,2)+"%"+
+  "\nintegration failures: "+size(failint)+", "+failint+
+  "\nsimplification failures: "+size(failsimp)+", "+failsimp+
+  "\nnot cheked: "+size(nock)+", "+nock+
+  "\nassumptions: "+size(ass)+", "+ass+
+   "\ntimeout: " +tout+", maxleafsize: "+fork_timeout()
+  :;        
+fprint(file,report);
+fclose(file);
+fclose(file2);        
+print(report);

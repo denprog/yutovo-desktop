@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Extracting samples from audio clips</title>
+</head>
+<body >
+<a href="cascmd_en1024.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1026.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:channeldata" class="subsection">28.2.8  Extracting samples from audio clips</h3>
+<p>The <span style="font-family:monospace">channel_data</span><a id="hevea_default1954"></a>
+command gets samples from an audio clip.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">channel_data</span> takes one mandatory argument and up to
+two optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an audio clip.
+</li><li class="li-itemize">Optionally <span style="font-family:monospace">options</span>, which can be the following (the
+order is unimportant):
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">n</span>, a postive integer (channel number, zero-based) or
+<span style="font-family:monospace">matrix</span>, the symbol.
+</li><li class="li-itemize"><span style="font-family:monospace">range=[</span><span style="font-style:italic">offset</span>,<span style="font-style:italic">length</span><span style="font-family:monospace">]</span> for
+nonnegative integer <span style="font-style:italic">offset</span> and positive integer <span style="font-style:italic">length</span>, or
+<span style="font-family:monospace">range=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span> for floating point numbers <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>.
+</li></ul>
+Instead of channel number <span style="font-style:italic">n</span>, the symbol <span style="font-family:monospace">left</span> resp. <span style="font-family:monospace">right</span>
+may be used to specify the left resp. right channel.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">channel_data(</span><span style="font-style:italic">A</span> ⟨,<span style="font-style:italic">options</span>⟩<span style="font-family:monospace">)</span>
+returns data from the channels as a sequence of lists. The returned
+sample values are all within the interval [−1.0,1.0], i.e. the
+amplitude of the returned signal is relative. The maximum possible
+amplitude is represented by the value 1.0.
+<ul class="itemize"><li class="li-itemize">
+With no options, data from all channels are returned as a
+sequence of lists.
+</li><li class="li-itemize">With the option <span style="font-style:italic">n</span> (the channel number) or if there is only
+one channel, only data from this channel is returned in a
+single list.
+</li><li class="li-itemize">With the option <span style="font-family:monospace">matrix</span>, the lists representing the
+channel data are returned as the rows of a matrix.
+</li><li class="li-itemize">With the option <span style="font-family:monospace">range=[</span><span style="font-style:italic">offset</span>,<span style="font-style:italic">length</span><span style="font-family:monospace">]</span>,
+the block of <span style="font-style:italic">length</span> samples is extracted starting at <span style="font-style:italic">offset</span>.
+</li><li class="li-itemize">With the option <span style="font-family:monospace">range=</span><span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>, with floating point
+numbers <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>, then <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span> are bounds in seconds.
+</li></ul>
+</li><li class="li-itemize">Alternatively, channel data can be extracted by using the
+<span style="font-family:monospace">[]</span> operator<a id="hevea_default1955"></a>
+on an audio clip <span style="font-style:italic">A</span> with one to three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">n</span>, a channel number (<span style="font-family:monospace">left</span> and <span style="font-family:monospace">right</span> are allowed).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">offset</span>, an integer specifying the offset in samples
+(by default, <span style="font-style:italic">offset</span>=0).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">len</span>, a positive integer (by default,
+<span style="font-style:italic">len</span>=<span style="font-style:italic">L</span>−<span style="font-style:italic">offset</span>, where <span style="font-style:italic">L</span> is the length
+of <span style="font-style:italic">A</span> in samples).
+</li></ul>
+Instead of specifying <span style="font-style:italic">offset</span> and <span style="font-style:italic">len</span> parameters, you can enter
+an interval <span style="font-style:italic">t</span><sub>1</sub><span style="font-family:monospace">..</span><span style="font-style:italic">t</span><sub>2</sub> as the second argument. In that case, the channel data
+between timestamps <span style="font-style:italic">t</span><sub>1</sub> and <span style="font-style:italic">t</span><sub>2</sub> (in seconds) is returned. The <span style="font-family:monospace">floor</span>
+command is used for rounding the corresponding offsets during conversion to sample units.
+</li></ul><h4 id="sec2563" class="subsubsection">Example</h4>
+<p>
+Assuming that the directory <span style="font-family:monospace">sounds</span> contains <span style="font-family:monospace">example.wav</span>, a
+<span style="font-family:monospace">wav</span> file with three seconds of stereo sound, input:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/path/to/sounds/example.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">left</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1.2..1.5)</span></span></td></tr>
+</table><p>Output:
+A list <span style="font-family:monospace">L</span> resp. <span style="font-family:monospace">R</span> containing data between 1.2 and
+1.5 seconds in the left resp. right channel of the original file.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">left</span></span><span style="font-weight:bold"><span style="color:#BF0000">,27400,100]</span></span></td></tr>
+</table><p>Output:
+A list of 100 samples from the left channel, starting from the sample with index 27400.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">left</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1.2..1.5]</span></span></td></tr>
+</table><p>Output:
+A list of samples from the left channel falling between 1.2 and 1.5 seconds.</p>
+<hr>
+<a href="cascmd_en1024.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en1026.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

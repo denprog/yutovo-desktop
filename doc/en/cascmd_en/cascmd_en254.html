@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Preventing evaluation</title>
+</head>
+<body >
+<a href="cascmd_en253.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en255.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:qt" class="subsection">9.1.4  Preventing evaluation</h3>
+<p>You can prevent an expression from being evaluated by <em>quoting</em>
+it, either by preceding it with <span style="font-family:monospace">’</span><a id="hevea_default465"></a> or with the
+<span style="font-family:monospace">quote</span><a id="hevea_default466"></a>
+or <span style="font-family:monospace">hold</span><a id="hevea_default467"></a> command.</p><h5 id="sec578" class="paragraph">Remark.</h5>
+<p>
+If <span style="font-style:italic">a</span> is a variable, then <span style="font-style:italic">a</span><span style="font-family:monospace">:=quote(</span><span style="font-style:italic">a</span><span style="font-family:monospace">)</span> (or
+<span style="font-style:italic">a</span><span style="font-family:monospace">:=hold(</span><span style="font-style:italic">a</span><span style="font-family:monospace">)</span>) is equivalent to <span style="font-family:monospace">purge(</span><span style="font-style:italic">a</span><span style="font-family:monospace">)</span> (for the
+sake of <span style="font-variant:small-caps">Maple</span> compatibility). It returns the value of this variable
+(or the hypothesis done on this variable).</p><h4 id="sec579" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2;</span></span><span style="font-weight:bold"><span style="color:#BF0000">quote</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2+3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=2;'2+3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">a</span></span><span style="font-weight:bold"><span style="color:#BF0000">'</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+2,2+3 </span><span style="color:#0000CC"><span style="font-style:italic">a</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en253.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en255.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

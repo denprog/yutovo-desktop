@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_fr.css">
+<title>Tableau de variation d’une fonction de ℝ dans ℝ : tabvar</title>
+</head>
+<body >
+<a href="cascmd_fr302.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_fr304.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec394" class="subsection">6.19.3  Tableau de variation d’une fonction de ℝ dans ℝ : <span style="font-family:monospace">tabvar</span></h3>
+<p><a id="hevea_default566"></a>
+<span style="font-family:monospace">tabvar(expr,x)</span> où <span style="font-family:monospace">expr</span> est une expression dépendant de <span style="font-family:monospace">x</span>,
+renvoie le tableau de variation de la fonction <span style="font-family:monospace">f(x):=expr</span> et trace son graph
+dans l’écran <span style="font-family:monospace">DispG</span> (que l’on ouvre avec <span style="font-family:monospace">Cfg-&gt;Montrer-&gt;DispG</span>).<br>
+On tape :
+</p><div class="center"><span style="font-family:monospace">tabvar(y</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-y-2,y)</span></div><p>
+On obtient :<br>
+en commentaire, on a les branches infinies ici branches paraboliques en 
++∞ et −∞, puis, 
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">y</span></td><td style="text-align:center;white-space:nowrap" >−∞</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >+∞  </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">y</span><sup>2</sup>−<span style="font-style:italic">y</span>−2</td><td style="text-align:center;white-space:nowrap" >+∞</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell">−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">9</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">4</td></tr>
+</table></td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >+∞  </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">expr</span></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">diff</span>(<span style="font-style:italic">y</span><span style="font-family:monospace">^</span>2−<span style="font-style:italic">y</span>−2,<span style="font-style:italic">y</span>),0</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">=(2· <span style="font-style:italic">y</span>−1)</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >−∞</td><td style="text-align:center;white-space:nowrap" >−</td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >+</td><td style="text-align:center;white-space:nowrap" >+∞ 
+</td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎠</td></tr>
+</table><p>
+On tape :
+</p><div class="center"><span style="font-family:monospace">tabvar((2t-1)/(t+1),t)</span></div><p>
+On obtient :<br>
+en commentaire, on a les branches infinies ici :
+Vertical asymptote x=-1, Horizontal asymptote y=2, Horizontal asymptote y=2 <br>
+puis,
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">⎛<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎜<br>
+⎝</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">t</span></td><td style="text-align:center;white-space:nowrap" >−∞</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >−1</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >+∞  </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr><td class="dcell" style="text-align:center">2· <span style="font-style:italic">t</span>−1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">t</span>+1</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >2</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >+∞</td><td style="text-align:center;white-space:nowrap" >−∞</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >2 </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">expr</span></td><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">diff</span>((2*<span style="font-style:italic">t</span>−1)/(<span style="font-style:italic">t</span>+1),<span style="font-style:italic">t</span>),0</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell">=(</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">−2· <span style="font-style:italic">t</span>+1+2· (<span style="font-style:italic">t</span>+1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎛<br>
+⎝</td><td class="dcell"><span style="font-style:italic">t</span>+1</td><td class="dcell">⎞<br>
+⎠</td><td class="dcell"><sup>2</sup></td></tr>
+</table></td></tr>
+</table></td><td class="dcell">)</td></tr>
+</table></td><td style="text-align:center;white-space:nowrap" >0</td><td style="text-align:center;white-space:nowrap" >+</td><td style="text-align:center;white-space:nowrap" >||</td><td style="text-align:center;white-space:nowrap" >||</td><td style="text-align:center;white-space:nowrap" >+</td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table></td><td class="dcell">⎞<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎟<br>
+⎠</td></tr>
+</table>
+<hr>
+<a href="cascmd_fr302.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_fr304.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

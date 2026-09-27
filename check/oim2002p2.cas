@@ -1,0 +1,14 @@
+B:=point(1);
+C:=point(-1);
+O:=midpoint(B,C);
+c:=circle(B,C);
+assume(t=[0.2,-5,5,0.1]);
+d:=(1+i*t)/(1-i*t);
+D:=point(d);
+A:=point(d^2);
+E,F:=inter(perpen_bisector(O,A),c);
+J:=single_inter(line(A,C),parallel(O,line(A,D)));
+incircle(C,E,F);
+K:=center(incircle(C,E,F)):;
+triangle(E,C,F);
+simplify(coordinates(K),coordinates(J));

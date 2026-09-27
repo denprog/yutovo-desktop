@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Integer Euclidean quotient</title>
+</head>
+<body >
+<a href="cascmd_en177.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en179.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:iquo" class="subsection">7.1.8  Integer Euclidean quotient</h3>
+<p>The quotient and remainder of ordinary integers <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span> are
+respectively integers <span style="font-style:italic">q</span> and <span style="font-style:italic">r</span>, where <span style="font-style:italic">a</span>=<span style="font-style:italic">b</span> <span style="font-style:italic">q</span>+<span style="font-style:italic">r</span> and 0 ≤ <span style="font-style:italic">r</span> &lt; <span style="font-style:italic">b</span>.</p><p>The quotient and remainder of Gaussian integers <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span> are
+respectively Gaussian integers <span style="font-style:italic">q</span> and <span style="font-style:italic">r</span> where <span style="font-style:italic">r</span>=<span style="font-style:italic">a</span>−<span style="font-style:italic">b</span> <span style="font-style:italic">q</span> is as small
+as possible. It can be proven that <span style="font-style:italic">r</span> can be found so that |<span style="font-style:italic">r</span>|<sup>2</sup>
+≤ |<span style="font-style:italic">b</span>|<sup>2</sup>/2.</p><p>The <span style="font-family:monospace">iquo</span><a id="hevea_default295"></a> 
+or <span style="font-family:monospace">intDiv</span><a id="hevea_default296"></a>
+command finds the integer quotient of two integers.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">iquo</span> takes two arguments:
+<span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>, integers.
+</li><li class="li-itemize"><span style="font-family:monospace">iquo(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span><span style="font-family:monospace">)</span> returns
+the quotient <span style="font-style:italic">q</span> of <span style="font-style:italic">a</span> and <span style="font-style:italic">b</span>.
+</li></ul><p>The <span style="font-family:monospace">div</span><a id="hevea_default297"></a> operator
+is the infixed version of <span style="font-family:monospace">iquo</span>.</p><h4 id="sec359" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">iquo</span></span><span style="font-weight:bold"><span style="color:#BF0000">(148,5)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+29
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">iquo</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">factorial</span></span><span style="font-weight:bold"><span style="color:#BF0000">(148),</span></span><span style="font-weight:bold"><span style="color:#BF0000">factorial</span></span><span style="font-weight:bold"><span style="color:#BF0000">(145)+2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+3176375
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">iquo</span></span><span style="font-weight:bold"><span style="color:#BF0000">(25+12*</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,5+7*</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+3−2 </span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Here <span style="font-style:italic">r</span>=<span style="font-style:italic">a</span>−<span style="font-style:italic">b</span> <span style="font-style:italic">q</span>=−4+<span style="font-style:italic">i</span> and |−4+<span style="font-style:italic">i</span>|<sup>2</sup>=17&lt;|5+7 <span style="font-style:italic">i</span>|<sup>2</sup>/2=74/2=37.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">148 </span></span><span style="font-weight:bold"><span style="color:#BF0000">div</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 5</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+29
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en177.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en179.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

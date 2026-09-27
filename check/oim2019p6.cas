@@ -1,0 +1,22 @@
+omega:=circle(0,1); I:=point(0);
+F:=point(-1);
+assume(a=[0.9,-5,5,0.1]);
+E:=point((1+i*a)/(1-i*a));
+assume(b=[-0.3,-5,5,0.1]);
+D:=point((1+i*b)/(1-i*b));
+L1:=perpendicular(F,line(0,F)):;
+L2:=perpendicular(E,line(0,E)):;
+L3:=perpendicular(D,line(0,D)):;
+A:=single_inter(L1,L2);
+B:=single_inter(L1,L3);
+C:=single_inter(L2,L3);
+triangle(A,B,C);
+R:=reflection(projection(perpendicular(D,line(E,F)),I),D);
+P:=reflection(projection(A,R,I),R);
+c1:=circumcircle(P,C,E):; c2:=circumcircle(P,B,F):;
+Q:=reflection(line(center(c1),center(c2)),P);
+J:=single_inter(line(D,I),line(P,Q));
+p:=perpendicular(A,line(A,I));
+
+eq:=subst(equation(p),[x,y],coordinates(J));
+normal(left(eq)-right(eq));

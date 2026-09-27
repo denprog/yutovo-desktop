@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Short-time Fourier transform</title>
+</head>
+<body >
+<a href="cascmd_en717.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en719.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:stft" class="subsection">21.4.5  Short-time Fourier transform</h3>
+<p>The <span style="font-family:monospace">stft</span><a id="hevea_default1443"></a> command computes the short-time
+Fourier transform (STFT) of a real signal. Input data is split into chunks of the
+specified size with half-overlap, and FFT is computed on each chunk separately,
+producing a time-evolving spectrum.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">stft</span> takes one mandatory argument and one or two optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>, a list of <span style="font-style:italic">n</span> real numbers.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">m</span>, a positive integer which is a power of 2 (by default, <span style="font-style:italic">m</span>=128).
+This is the half-size of a chunk.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">wf</span>, a window function
+(by default, <span style="font-style:italic">wf</span>=<span style="font-family:monospace">hamming_window</span>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">stft(</span><span style="font-style:italic">L</span> ⟨,<span style="font-style:italic">m</span>,<span style="font-style:italic">wf</span> ⟩<span style="font-family:monospace">)</span> returns a matrix
+with <span style="font-style:italic">N</span>=<span style="font-style:italic">n</span>/<span style="font-style:italic">m</span>−1 rows and <span style="font-style:italic">m</span> columns, where <span style="font-style:italic">n</span> is first snapped to the smallest multiple of <span style="font-style:italic">m</span>
+greater than or equal to <span style="font-style:italic">n</span> (the list <span style="font-style:italic">L</span> is padded with zeros). The <span style="font-style:italic">k</span>th row of
+the matrix is the left half of the FFT spectrum (since the signal <span style="font-style:italic">L</span> is real, we only
+go up to the Nyquist frequency) of the <span style="font-style:italic">k</span>th chunk of length 2<span style="font-style:italic">m</span> starting at
+offset <span style="font-style:italic">k</span> <span style="font-style:italic">m</span> for <span style="font-style:italic">k</span>=0,1,…,<span style="font-style:italic">N</span>−1. The window function <span style="font-style:italic">wf</span> is applied
+to each chunk before computing FFT.
+</li></ul><p>The <span style="font-family:monospace">istft</span><a id="hevea_default1444"></a> command computes the inverse
+short-time Fourier transform by restoring the individual chunks and summing them
+up to restore the original signal.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">istft</span> takes <span style="font-style:italic">S</span>, a matrix of complex numbers with <span style="font-style:italic">N</span> rows and <span style="font-style:italic">m</span> columns.
+</li><li class="li-itemize"><span style="font-family:monospace">istft</span> returns <span style="font-style:italic">L</span>, a list of (<span style="font-style:italic">m</span>+1)<span style="font-style:italic">N</span> real numbers represeting the
+signal with STFT equal to <span style="font-style:italic">S</span>. Note that the restoration is generally not perfect:
+the restored signal will have a fade-in and fade-out of length <span style="font-style:italic">m</span>, resulting from
+applying the window function when perfoming STFT, and possibly trailing zeros at the end.
+Also, the window function for STFT must be chosen so that it sums to a constant on the
+half-overlap (e.g. Hamming, Hann, and Bartlett-Hann window, see Section <a href="index.html#sec%3Awindow-functions">21.5</a>).
+</li></ul><p>The STFT is a tool for spectral manipulation of a signal. Individual chunk spectra
+can be modified (e.g. in order to remove the noise or do a sharp lowpass/bandpass/highpass filtering)
+after calling <span style="font-family:monospace">stft</span> and before calling <span style="font-family:monospace">istft</span>. Overlap summation in inverse
+STFT provides for seamless crossfading between the modified chunks.</p><p>Note that by choosing the window size <span style="font-style:italic">m</span> you also set the number of bins for frequency
+spectra to <span style="font-style:italic">m</span>. Thus smaller <span style="font-style:italic">m</span> means finer time resolution and coarser frequency resolution,
+while larger <span style="font-style:italic">m</span> means coarser time resolution and finer frequency resolution.</p><h4 id="sec1858" class="subsubsection">Example</h4>
+<p>With the file <span style="font-family:monospace">CantinaBand60.wav</span> downloaded from
+<a href="https://www2.cs.uic.edu/~i101/SoundFiles/">here</a>, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">music</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/CantinaBand60.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)(0.0..15.0)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 330750 samples at 22050 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To hear the loaded audio, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">playsnd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">music</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>The clip contains 15 seconds of a band playing.
+To hear only the bass part and hi-hat drum, you can use <span style="font-family:monospace">stft</span> to transform
+the original clip, apply a spectral band-reject filter between 180 and 6000 Hz,
+and obtain the filtered version with <span style="font-family:monospace">istft</span>. In this example the
+filter decays over time, so it appears as if the rest of the band enter with a fade-in.</p><p>A window of half-size <span style="font-style:italic">m</span>=8192 is used in order to obtain a good frequency
+resolution. Enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">N</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">lo</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">hi</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">channel_data</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">music</span></span><span style="font-weight:bold"><span style="color:#BF0000">),8192,180,6000,</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">music</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>Boundary bin indices for the band-reject filter are obtained by multiplying <span style="font-style:italic">m</span> resp. <span style="font-style:italic">n</span>
+with the quotient of <span style="font-family:monospace">lo</span> resp. <span style="font-family:monospace">hi</span> and the upper frequency bound of
+the spectrum (i.e. the Nyquist frequency <span style="font-family:monospace">sr/2</span>):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">round</span></span><span style="font-weight:bold"><span style="color:#BF0000">(2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">N</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">lo</span></span><span style="font-weight:bold"><span style="color:#BF0000">/</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,2*</span></span><span style="font-weight:bold"><span style="color:#BF0000">N</span></span><span style="font-weight:bold"><span style="color:#BF0000">*</span></span><span style="font-weight:bold"><span style="color:#BF0000">hi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+134,4458
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To compute the STFT:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spctrm</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">stft</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">data</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">N</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span></td></tr>
+</table><p>To attenuate the bins between <span style="font-style:italic">m</span> and <span style="font-style:italic">n</span> from zero to one over time, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">tmp</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">spctrm</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">alpha</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">linspace</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0.0,1.0,</span></span><span style="font-weight:bold"><span style="color:#BF0000">length</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">spctrm</span></span><span style="font-weight:bold"><span style="color:#BF0000">)).^4:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">band</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">mid</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tmp</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#0000CC">for</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#0000CC">from</span></span><span style="font-weight:bold"><span style="color:#BF0000"> 0 </span></span><span style="font-weight:bold"><span style="color:#0000CC">to</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">-1 </span></span><span style="font-weight:bold"><span style="color:#0000CC">do</span></span><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">band</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">]=&lt;</span></span><span style="font-weight:bold"><span style="color:#BF0000">band</span></span><span style="font-weight:bold"><span style="color:#BF0000">[</span></span><span style="font-weight:bold"><span style="color:#BF0000">k</span></span><span style="font-weight:bold"><span style="color:#BF0000">].*</span></span><span style="font-weight:bold"><span style="color:#BF0000">alpha</span></span><span style="font-weight:bold"><span style="color:#BF0000">; </span></span><span style="font-weight:bold"><span style="color:#0000CC">od</span></span><span style="font-weight:bold"><span style="color:#BF0000">:;</span></span></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">spctrm2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">concat</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">left</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tmp</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">band</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">right</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tmp</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">N</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">n</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">m</span></span><span style="font-weight:bold"><span style="color:#BF0000">))):;</span></span></td></tr>
+</table><p>The last commandline assembles the modified spectrum.
+Now compute the inverse STFT and create an audio clip
+from the obtained data:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fadein</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">createwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">istft</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">spctrm2</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">samplerate</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">sr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">normalize</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 341366 samples at 22050 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Now by entering
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">playsnd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">fadein</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><p>you can clearly hear the bass part accompanied by the hi-hat rhythm, but no other instruments
+in the beginning. About halfway into the excerpt, other instruments fade in gradually, reaching
+the full intensity in the end.</p>
+<hr>
+<a href="cascmd_en717.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en719.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

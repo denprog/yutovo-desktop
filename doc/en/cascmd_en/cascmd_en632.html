@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Curves in polar coordinates</title>
+</head>
+<body >
+<a href="cascmd_en631.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en633.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1543" class="subsection">19.8.2  Curves in polar coordinates</h3>
+<p>The <span style="font-family:monospace">plotpolar</span><a id="hevea_default1224"></a> or
+<span style="font-family:monospace">polarplot</span><a id="hevea_default1225"></a> or
+<span style="font-family:monospace">DrawPol</span><a id="hevea_default1226"></a> or
+<span style="font-family:monospace">courbe_polaire</span><a id="hevea_default1227"></a>
+command draws a curve given in polar coordinates.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">polarplot</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression involving a variable (which
+will represent the angle).
+</li><li class="li-itemize"><span style="font-family:monospace">var</span>, the variable. This can optionally include the
+range <span style="font-style:italic">var</span>=<span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span>.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">tstep=</span><span style="font-style:italic">n</span> to specify the discretization.
+<a id="hevea_default1228"></a>
+</li></ul>
+<span style="font-family:monospace">polarplot(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">var</span> ⟨,<span style="font-family:monospace">tstep=</span><span style="font-style:italic">n</span> ⟩<span style="font-family:monospace">)</span>
+draws the
+curve defined by ρ=<span style="font-style:italic">expr</span> for θ=<span style="font-style:italic">var</span>; in
+Cartesian coordinates that is the curve
+(<span style="font-style:italic">expr</span>·cos(<span style="font-style:italic">var</span>),<span style="font-style:italic">expr</span>·sin(<span style="font-style:italic">var</span>)).
+</li></ul><h4 id="sec1544" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotpolar</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en113.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotpolar</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">tstep</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1)</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotpolar</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t</span></span><span style="font-weight:bold"><span style="color:#BF0000">=0..10,</span></span><span style="font-weight:bold"><span style="color:#BF0000">tstep</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en114.png">
+
+</div>
+<hr>
+<a href="cascmd_en631.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en633.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

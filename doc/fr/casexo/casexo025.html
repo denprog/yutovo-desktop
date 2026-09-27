@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Des calculs de différentes sommes</title>
+</head>
+<body >
+<a href="casexo024.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo026.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec414" class="chapter">Chapitre 25  Des calculs de différentes sommes</h1>
+<h2 id="sec415" class="section">25.1  La fonction <span style="font-family:monospace">sum</span> de <span style="font-family:monospace">Xcas</span></h2>
+<p>
+Cette fonction permet de calculer :
+</p><ul class="itemize"><li class="li-itemize">
+la somme d’une liste ou d’une séquence <br>
+<span style="font-family:monospace">sum(n$(n=1..5))=sum(n$(n=5..1))=15</span>, 
+</li><li class="li-itemize">une somme ayant une primitive discréte. Par exemple<br>
+<span style="font-family:monospace">sum(n,n=1..5)=15</span> mais <span style="font-family:monospace">sum(n,n=5..1)=-9=-sum(n,n=2..4)</span> et<br>
+<span style="font-family:monospace">sum(n,n)=(n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-n)/2=F(n)</span> qui est la primitive discréte de <span style="font-family:monospace">n</span>
+(<span style="font-family:monospace">sum(n,n=1..5)=F(5+1)-F(1)</span>),
+</li><li class="li-itemize">d’autres sommes en particulier de sommes avec un pas (quand il y a un 
+pas le pas est le 5ième argument et il n’y a pas de différence entre 
+<span style="font-family:monospace">sum(xpr,n,a,b,2)=sum(xpr,n,b,a,2)</span>. Par exemple<br>
+<span style="font-family:monospace">sum(n,n,1,5,2)=sum(n,n,5,1,2)=sum(n,n,1,5,-2)=sum(n,n,5,1,-2)=9</span>
+</li></ul><p>
+Voici quelques exercices...</p>
+<h2 id="sec416" class="section">25.2  Calcul de ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup><span style="font-style:italic">p</span></sup> pour <span style="font-style:italic">p</span>=1,2,3</h2>
+<h3 id="sec417" class="subsection">25.2.1  Calcul de <span style="font-style:italic">s</span><sub>1</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>)</h3>
+<p>
+On a :<br>
+2*<span style="font-style:italic">s</span><sub>1</sub>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>)+∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">n</span>+1−<span style="font-style:italic">k</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">n</span>+1)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)<br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>0</sub>(<span style="font-style:italic">n</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td></tr>
+</table><p>
+On peut aussi remarquer que :<br>
+<span style="font-style:italic">p</span>(<span style="font-style:italic">p</span>+1)/2−(<span style="font-style:italic">p</span>−1)<span style="font-style:italic">p</span>/2=<span style="font-style:italic">p</span><br>
+On dit que le polynôme <span style="font-style:italic">x</span>(<span style="font-style:italic">x</span>−1)/2 est la primitive discrète du polynôme
+<span style="font-style:italic">x</span>
+On a donc :<br>
+2<span style="font-style:italic">s</span><sub>1</sub>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>2<span style="font-style:italic">p</span>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">p</span>(<span style="font-style:italic">p</span>+1)−(<span style="font-style:italic">p</span>−1)<span style="font-style:italic">p</span>)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)<br>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">sum(k,k=1..n)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(n*(n+1))/2</span>
+<span style="font-weight:bold">Remarque</span><br>
+On peut en déduire le calcul de <span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(2<span style="font-style:italic">k</span>−1)).<br>
+On a en effet :<br>
+<span style="font-style:italic">s</span>=2∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>−<span style="font-style:italic">n</span>=<span style="font-style:italic">n</span>*(<span style="font-style:italic">n</span>+1)−<span style="font-style:italic">n</span>=<span style="font-style:italic">n</span><sup>2</sup><br>
+On aurait aussi pu remarquer que :<br>
+2<span style="font-style:italic">p</span>−1=(<span style="font-style:italic">p</span>+1)(<span style="font-style:italic">p</span>−1)−<span style="font-style:italic">p</span>(<span style="font-style:italic">p</span>−2)<br>
+Donc que la primitive discète du polynôme
+2<span style="font-style:italic">x</span>−1 est le polynôme <span style="font-style:italic">x</span>(<span style="font-style:italic">x</span>−2).<br>
+On a donc :<br>
+<span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>2<span style="font-style:italic">p</span>−1=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">p</span><sup>2</sup>−(<span style="font-style:italic">p</span>−1)<sup>2</sup>)=<span style="font-style:italic">n</span><sup>2</sup><br>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">normal(sum(2k-1,k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span></p>
+<h3 id="sec418" class="subsection">25.2.2  Calcul de <span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup></h3>
+<p>
+On a :<br>
+1<sup>3</sup>=1<br>
+2<sup>3</sup>=1<sup>3</sup>+3*1<sup>2</sup>+3*1+1<br>
+....<br>
+<span style="font-style:italic">k</span><sup>3</sup>=(<span style="font-style:italic">k</span>−1)<sup>3</sup>+3*(<span style="font-style:italic">k</span>−1)<sup>2</sup>+3*(<span style="font-style:italic">k</span>−1)+1<br>
+(<span style="font-style:italic">k</span>+1)<sup>2</sup>=<span style="font-style:italic">k</span><sup>3</sup>+3*<span style="font-style:italic">k</span><sup>2</sup>+3*<span style="font-style:italic">k</span>+1<br>
+....<br>
+<span style="font-style:italic">n</span><sup>3</sup>=(<span style="font-style:italic">n</span>−1)<sup>3</sup>+3*(<span style="font-style:italic">n</span>−1)<sup>2</sup>+3*(<span style="font-style:italic">n</span>−1)+1<br>
+(<span style="font-style:italic">n</span>+1)<sup>3</sup>=<span style="font-style:italic">n</span><sup>3</sup>+3*<span style="font-style:italic">n</span><sup>2</sup>+3*<span style="font-style:italic">n</span>+1<br>
+En sommant tous les termes :<br>
+(<span style="font-style:italic">n</span>+1)<sup>3</sup>=3*∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup>+3∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>+<span style="font-style:italic">n</span>=3<span style="font-style:italic">s</span><sub>2</sub>+3<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)/2+<span style="font-style:italic">n</span>+1<br>
+Donc :<br>
+3<span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)=(<span style="font-style:italic">n</span>+1)((<span style="font-style:italic">n</span>+1)<sup>2</sup>−3<span style="font-style:italic">n</span>/2−<span style="font-style:italic">n</span>−1)=(<span style="font-style:italic">n</span>+1)(2<span style="font-style:italic">n</span><sup>2</sup>+<span style="font-style:italic">n</span>)/2
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)(2*<span style="font-style:italic">n</span>+1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">6</td></tr>
+</table></td></tr>
+</table><p>
+On peut aussi remarquer que :<br>
+<span style="font-style:italic">p</span>(<span style="font-style:italic">p</span>+1)*(2<span style="font-style:italic">p</span>+1)/6−(<span style="font-style:italic">p</span>−1)*<span style="font-style:italic">p</span>*(2<span style="font-style:italic">p</span>−1)/6=<span style="font-style:italic">p</span><sup>2</sup><br>
+Donc que la primitive discète du polynôme
+<span style="font-style:italic">x</span><sup>2</sup> est le polynôme <span style="font-style:italic">x</span>(<span style="font-style:italic">x</span>−1)(2<span style="font-style:italic">x</span>−1)/6.<br>
+On a donc :<br>
+6<span style="font-style:italic">s</span><sub>2</sub>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>6<span style="font-style:italic">p</span><sup>2</sup>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">p</span>(<span style="font-style:italic">p</span>+1)(2<span style="font-style:italic">p</span>+1)−(<span style="font-style:italic">p</span>−1)<span style="font-style:italic">p</span>(2<span style="font-style:italic">p</span>−1))=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)(2*<span style="font-style:italic">n</span>+1)<br>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">factor(sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2,k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n*(n+1)*(2*n+1)/6</span>
+</p>
+<h3 id="sec419" class="subsection">25.2.3  Calcul de <span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>3</sup></h3>
+<p>
+On a :<br>
+1<sup>4</sup>=1<br>
+2<sup>4</sup>=1<sup>4</sup>+4*1<sup>3</sup>+6*1<sup>2</sup>+4+1<br>
+....<br>
+<span style="font-style:italic">k</span><sup>4</sup>=(<span style="font-style:italic">k</span>−1)<sup>4</sup>+4*(<span style="font-style:italic">k</span>−1)<sup>3</sup>+6*(<span style="font-style:italic">k</span>−1)<sup>2</sup>+4*(<span style="font-style:italic">k</span>−1)+1<br>
+(<span style="font-style:italic">k</span>+1)<sup>4</sup>=<span style="font-style:italic">k</span><sup>4</sup>+4*<span style="font-style:italic">k</span><sup>3</sup>+6*<span style="font-style:italic">k</span><sup>2</sup>+4*<span style="font-style:italic">k</span>+1<br>
+....<br>
+(<span style="font-style:italic">n</span>+1)<sup>4</sup>=<span style="font-style:italic">n</span><sup>4</sup>+4*<span style="font-style:italic">n</span><sup>3</sup>+6<span style="font-style:italic">n</span><sup>2</sup>+4*<span style="font-style:italic">n</span>+1<br>
+Donc :<br>
+(<span style="font-style:italic">n</span>+1)<sup>4</sup>=<span style="font-style:italic">n</span><sup>4</sup>+4<span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)+6<span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)+4<span style="font-style:italic">s</span><sub>1</sub>(<span style="font-style:italic">n</span>)+<span style="font-style:italic">n</span>
+Donc :
+4<span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)= (<span style="font-style:italic">n</span>+1)<sup>4</sup>−<span style="font-style:italic">n</span>*(<span style="font-style:italic">n</span>+1)*(2*<span style="font-style:italic">n</span>+1)−2<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)−<span style="font-style:italic">n</span>−1=(<span style="font-style:italic">n</span>+1)((<span style="font-style:italic">n</span>+1)<sup>3</sup>−<span style="font-style:italic">n</span>(2*<span style="font-style:italic">n</span>+1)−2<span style="font-style:italic">n</span>−1)<br>
+4<span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)=(<span style="font-style:italic">n</span>+1)<sup>2</sup>((<span style="font-style:italic">n</span>+1)<sup>2</sup>−(2*<span style="font-style:italic">n</span>+1))=(<span style="font-style:italic">n</span>+1)<sup>2</sup><span style="font-style:italic">n</span><sup>2</sup>
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span><sup>2</sup>(<span style="font-style:italic">n</span>+1)<sup>2</sup></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">4</td></tr>
+</table></td></tr>
+</table><p>
+On peut aussi remarquer que :<br>
+<span style="font-style:italic">p</span><sup>2</sup>*(<span style="font-style:italic">p</span>+1)<sup>2</sup>/4−(<span style="font-style:italic">p</span>−1)<sup>2</sup>*<span style="font-style:italic">p</span><sup>2</sup>/4=<span style="font-style:italic">p</span><sup>3</sup><br>
+Donc la primitive discète du polynôme
+<span style="font-style:italic">x</span><sup>3</sup> est le polynôme (<span style="font-style:italic">x</span>−1)<sup>2</sup><span style="font-style:italic">x</span><sup>2</sup>/4.<br>
+On a donc :<br>
+4<span style="font-style:italic">s</span><sub>3</sub>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>4<span style="font-style:italic">p</span><sup>3</sup>=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>(<span style="font-style:italic">p</span><sup>2</sup>(<span style="font-style:italic">p</span>+1)<sup>2</sup>−(<span style="font-style:italic">p</span>−1)<sup>2</sup><span style="font-style:italic">p</span><sup>2</sup>)=<span style="font-style:italic">n</span><sup>2</sup>(<span style="font-style:italic">n</span>+1)<sup>2</sup><br>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">factor(sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3,k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(n+1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/4</span>
+</p>
+<h2 id="sec420" class="section">25.3  Primitive discrète d’un polynôme</h2>
+<h3 id="sec421" class="subsection">25.3.1  Comment trouver la primitive discrète d’un polynôme</h3>
+<p>
+Soit <span style="font-style:italic">P</span> un polynôme de degré <span style="font-style:italic">d</span>.<br>
+On veut calculer pour tout entier <span style="font-style:italic">n</span> ∈ ℕ les sommes :
+ ∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">P</span>(<span style="font-style:italic">k</span>)<br>
+On cherche donc une primitive discrète de <span style="font-style:italic">P</span> c’est à dire une fonction <span style="font-style:italic">f</span>
+telle qu’on ait pour tout <span style="font-style:italic">x</span> ∈ ℝ <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>+1)−<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>).<br>
+Cela entraine que pour tout entier <span style="font-style:italic">n</span> ∈ ℕ on a :<br>
+ <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>+1)−<span style="font-style:italic">f</span>(0)=∑<sub><span style="font-style:italic">k</span>=<span style="font-style:italic">p</span></sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">P</span>(<span style="font-style:italic">k</span>).<br>
+Donc pour tout entier <span style="font-style:italic">n</span> ∈ ℕ on doit avoir  <span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>+1)−<span style="font-style:italic">f</span>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">P</span>(<span style="font-style:italic">n</span>)
+On cherche si <span style="font-style:italic">P</span> a comme primitive discrète un polynôme <span style="font-style:italic">Q</span>.
+Si c’est le cas le polynôme <span style="font-style:italic">Q</span> doit vérifier : 
+<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>+1)−<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>) avec <span style="font-style:italic">P</span> un polynôme de degré <span style="font-style:italic">d</span> donc <span style="font-style:italic">Q</span> est défini 
+à une constante près et est de degré <span style="font-style:italic">d</span>+1. Donc <span style="font-style:italic">Q</span> est 
+entièrement défini par <span style="font-style:italic">d</span>+2 valeurs qui sont par exemple :<br>
+<span style="font-style:italic">Q</span>(0)=0=<span style="font-style:italic">q</span><sub>0</sub>
+<span style="font-style:italic">Q</span>(1)=<span style="font-style:italic">P</span>(0)=<span style="font-style:italic">q</span><sub>1</sub> <br>
+<span style="font-style:italic">Q</span>(2)=<span style="font-style:italic">P</span>(0)+<span style="font-style:italic">P</span>(1)=<span style="font-style:italic">q</span><sub>2</sub> <br>
+<span style="font-style:italic">Q</span>(3)=<span style="font-style:italic">P</span>(0)+<span style="font-style:italic">P</span>(1)+<span style="font-style:italic">P</span>(2)=<span style="font-style:italic">q</span><sub>3</sub> <br>
+.....<br>
+<span style="font-style:italic">Q</span>(<span style="font-style:italic">d</span>+1)=<span style="font-style:italic">P</span>(0)+<span style="font-style:italic">P</span>(1)+...+<span style="font-style:italic">P</span>(<span style="font-style:italic">d</span>)=<span style="font-style:italic">q</span><sub><span style="font-style:italic">d</span>+1</sub> <br>
+On calcule <span style="font-style:italic">q</span><sub>0</sub>,<span style="font-style:italic">q</span><sub>1</sub>...,<span style="font-style:italic">q</span><sub><span style="font-style:italic">d</span>+1</sub> et on définit <span style="font-style:italic">Q</span> comme étant le polynôme
+d’interpolation de Lagrange des points (<span style="font-style:italic">k</span>,<span style="font-style:italic">p</span><sub><span style="font-style:italic">k</span></sub>) pour <span style="font-style:italic">k</span>=0..<span style="font-style:italic">d</span>+1.<br>
+Soit <span style="font-style:italic">R</span> le polynôme définit par <span style="font-style:italic">R</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>+1)−<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>).<br>
+Puisque <span style="font-style:italic">Q</span> est de degré <span style="font-style:italic">d</span>+1, on en déduit que <span style="font-style:italic">R</span> est de degré <span style="font-style:italic">d</span>.<br>
+Comme  <span style="font-style:italic">Q</span>(<span style="font-style:italic">k</span>+1)−<span style="font-style:italic">Q</span>(<span style="font-style:italic">k</span>)=<span style="font-style:italic">P</span>(<span style="font-style:italic">k</span>) pour <span style="font-style:italic">k</span>=0..<span style="font-style:italic">d</span>, on a :<br>
+<span style="font-style:italic">R</span>(<span style="font-style:italic">k</span>)=<span style="font-style:italic">P</span>(<span style="font-style:italic">k</span>) pour <span style="font-style:italic">k</span>=0..<span style="font-style:italic">d</span>.<br>
+<span style="font-style:italic">R</span> et <span style="font-style:italic">P</span> ont même degré <span style="font-style:italic">d</span> et ils sont égaux en <span style="font-style:italic">d</span>+1 valeurs donc :<br>
+pour tout <span style="font-style:italic">x</span> ∈ ℝ on a <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">R</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>+1)−<span style="font-style:italic">Q</span>(<span style="font-style:italic">x</span>).<br>
+Donc <span style="font-style:italic">Q</span> est bien une primitive discrète de <span style="font-style:italic">P</span>.</p>
+<h3 id="sec422" class="subsection">25.3.2  Reprenons les exemples précédents</h3>
+<p>
+Cherchons la primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><br>
+La primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span> est égale au
+polynôme de d’interpolation de Lagrange des points :<br>
+(0,0), (1,0), (2,1).<br>
+On tape :<br>
+<span style="font-family:monospace">factor(lagrange([0,1,2],[0,0,1]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x*(x-1))/2x</span><br>
+Cherchons la primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=2*<span style="font-style:italic">x</span>−1<br>
+La primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>2</sup> est égale au
+polynôme de d’interpolation de Lagrange des points :<br>
+(0,0), (1,−1), (2,0).<br>
+On tape :<br>
+<span style="font-family:monospace">factor(lagrange([0,1,2],[0,-1,0]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">x*(x-2)</span><br>
+Cherchons la primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>2</sup>.<br>
+La primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>2</sup> est égale au polynôme de 
+d’interpolation de Lagrange des points :<br>
+(0,0), (1,0), (2,1), (3,5).<br>
+On tape :<br>
+<span style="font-family:monospace">factor(lagrange([0,1,2,3],[0,0,1,5]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x*(x-1)*(2*x-1))/6</span><br>
+Cherchons la primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>3</sup>.<br>
+La primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>3</sup> est égale au polynôme de 
+d’interpolation de Lagrange des points :<br>
+(0,0), (1,0), (2,1), (3,9), (4,36).<br>
+On tape :<br>
+<span style="font-family:monospace">factor(lagrange([0,1,2,3,4],[0,0,1,9,36]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(x-1)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2)/4</span>
+Cherchons la primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>4</sup>.<br>
+La primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>4</sup> est égale au polynôme de 
+d’interpolation de Lagrange des points :<br>
+(0,0), (1,0), (2,1), (3,17), (4,98), (5,354).<br>
+On tape :<br>
+<span style="font-family:monospace">factor(lagrange([0,1,2,3,4,5],[0,0,1,17,98,354]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x*(x-1)*(2*x-1)*(3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-3*x-1))/30</span><br>
+On en déduit le calcul de <span style="font-style:italic">s</span><sub>4</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>4</sup> :<br>
+On tape :<br>
+<span style="font-family:monospace">factor(subst((x*(x-1)*(2*x-1)*(3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-3*x-1))/30,x=n+1))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(n*(n+1)*(2*n+1)*(3*n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+3*n-1))/30</span><br>
+<span style="font-style:italic">s</span><sub>4</sub>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">n</span>*(<span style="font-style:italic">n</span>+1)*(2*<span style="font-style:italic">n</span>+1)*(3*<span style="font-style:italic">n</span><sup>2</sup>+3*<span style="font-style:italic">n</span>−1)/30
+Ou on tape :<br>
+<span style="font-family:monospace">factor(sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">4,k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(n*(n+1)*(2*n+1)*(3*n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+3*n-1))/30</span>
+</p>
+<h3 id="sec423" class="subsection">25.3.3  Exercice</h3>
+<p>
+Calculer   ∑<sub><span style="font-style:italic">k</span>=4</sub><sup>10</sup><span style="font-style:italic">k</span><sup>2</sup>+2*<span style="font-style:italic">k</span>−1 
+et   ∑<sub><span style="font-style:italic">k</span>=4+√<span style="text-decoration:overline">2</span></sub><sup>10+√<span style="text-decoration:overline">2</span></sup><span style="font-style:italic">k</span><sup>2</sup>+2*<span style="font-style:italic">k</span>−1<br>
+Cherchons la primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>2</sup>+2<span style="font-style:italic">x</span>−1.<br>
+La primitive discrète de <span style="font-style:italic">P</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup>2</sup>+2<span style="font-style:italic">x</span>−1 est égale au polynôme de 
+d’interpolation de Lagrange des points :<br>
+(0,0), (1,−1), (2,1), (3,8).<br>
+On tape :<br>
+<span style="font-family:monospace">factor(lagrange([0,1,2,3],[0,-1,1,8]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x*(2*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+3*x-11))/6</span><br>
+On tape :<br>
+<span style="font-family:monospace">f(x):=(x*(2*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+3*x-11))/6</span><br>
+Ou on tape directement pour définir <span style="font-family:monospace">f</span> :<br>
+<span style="font-family:monospace">f:=unapply(factor(lagrange([0,1,2,3],[0,-1,1,8])),x)</span><br>
+On tape :<br>
+<span style="font-family:monospace">f(11)-f(4)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">462</span><br>
+On vérifie :<br>
+On tape :<br>
+<span style="font-family:monospace">sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2*k-1,k=4..10)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">462</span><br>
+On tape :<br>
+<span style="font-family:monospace">normal(f(11+sqrt(2))-f(4+sqrt(2)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">112*sqrt(2)+476</span><br>
+On vérifie :<br>
+On tape :<br>
+<span style="font-family:monospace">normal(sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2*k-1,k=4+sqrt(2)..10+sqrt(2)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">112*sqrt(2)+476</span></p>
+<h2 id="sec424" class="section">25.4  Calcul de ∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup><span style="font-style:italic">p</span></sup>comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>) pour <span style="font-style:italic">p</span>=0,1,2,3</h2>
+<h3 id="sec425" class="subsection">25.4.1  Calcul de <span style="font-style:italic">s</span><sub>0</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup>comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)</h3>
+<p>
+On sait que :<br>
+(<span style="font-style:italic">a</span>+<span style="font-style:italic">b</span>)<sup><span style="font-style:italic">n</span></sup>=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup>comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)<span style="font-style:italic">a</span><sup><span style="font-style:italic">k</span></sup><span style="font-style:italic">b</span><sup><span style="font-style:italic">n</span>−<span style="font-style:italic">k</span></sup> <br>
+donc<br>
+<span style="font-style:italic">s</span><sub>0</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup>comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=(1+1)<sup><span style="font-style:italic">n</span></sup>=2<sup><span style="font-style:italic">n</span></sup><br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>0</sub>(<span style="font-style:italic">n</span>)=2<sup><span style="font-style:italic">n</span></sup></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">sum(comb(n,k),k=0..n)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n</span></p>
+<h3 id="sec426" class="subsection">25.4.2  Calcul de <span style="font-style:italic">s</span><sub>1</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)</h3>
+<p>
+On sait que :<br>
+comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>!/<span style="font-style:italic">k</span>!(<span style="font-style:italic">n</span>−<span style="font-style:italic">k</span>)!<br>
+Donc :<br>
+<span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>−1)<br>
+On a :<br>
+<span style="font-style:italic">s</span><sub>1</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<br>
+<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>−1)=<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>*2<sup><span style="font-style:italic">n</span>−1</sup><br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>1</sub>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">n</span>*2<sup><span style="font-style:italic">n</span>−1</sup></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">sum(k*comb(n,k),k=0..n)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-1)</span>
+</p>
+<h3 id="sec427" class="subsection">25.4.3  Calcul de <span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)</h3>
+<p>
+On sait que :<br>
+comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>!/<span style="font-style:italic">k</span>!(<span style="font-style:italic">n</span>−<span style="font-style:italic">k</span>)! et<br>
+∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>*2<sup><span style="font-style:italic">n</span>−1</sup><br>
+Donc :<br>
+<span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>*<span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>−1)
+On a :<br>
+<span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)=∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<br>
+<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>−1)=<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>(<span style="font-style:italic">k</span>+1)*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>)=<br>
+<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup><span style="font-style:italic">k</span>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>)+<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>)=<br>
+<span style="font-style:italic">n</span>*(<span style="font-style:italic">n</span>−1)*2<sup><span style="font-style:italic">n</span>−2</sup>+<span style="font-style:italic">n</span>*2<sup><span style="font-style:italic">n</span>−1</sup>=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)2<sup><span style="font-style:italic">n</span>−2</sup>=<span style="font-style:italic">n</span>(<span style="font-style:italic">s</span><sub>(</sub><span style="font-style:italic">n</span>−1)+<span style="font-style:italic">s</span><sub>0</sub>(<span style="font-style:italic">n</span>−1))<br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)2<sup><span style="font-style:italic">n</span>−2</sup></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">s2:=sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*comb(n,k),k=0..n)</span><br>
+<span style="font-family:monospace">factor(subst(s2,2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-1),2*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-2)))</span>
+On obtient :<br>
+<span style="font-family:monospace">n*(n+1)*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-2)</span>
+</p>
+<h3 id="sec428" class="subsection">25.4.4  Calcul de ∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>3</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)</h3>
+<p>
+On sait que :<br>
+comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>!/<span style="font-style:italic">k</span>!(<span style="font-style:italic">n</span>−<span style="font-style:italic">k</span>)! et<br>
+∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+1)2<sup><span style="font-style:italic">n</span>−2</sup><br>
+Donc :<br>
+<span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">k</span><sup>3</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<span style="font-style:italic">n</span>*<span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>−1)
+On a :<br>
+∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>3</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>3</sup>*comb(<span style="font-style:italic">n</span>,<span style="font-style:italic">k</span>)=<br>
+<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup><span style="font-style:italic">k</span><sup>2</sup>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>−1)=<span style="font-style:italic">n</span>*∑<sub><span style="font-style:italic">k</span>=0</sub><sup><span style="font-style:italic">n</span>−1</sup>(<span style="font-style:italic">k</span>+1)<sup>2</sup>*comb(<span style="font-style:italic">n</span>−1,<span style="font-style:italic">k</span>)=<br>
+<span style="font-style:italic">n</span>(<span style="font-style:italic">s</span><sub>2</sub>(<span style="font-style:italic">n</span>−1)+2*<span style="font-style:italic">s</span><sub>1</sub>(<span style="font-style:italic">n</span>−1)+<span style="font-style:italic">s</span><sub>0</sub>(<span style="font-style:italic">n</span>−1))=<br>
+<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>−1)*2<sup><span style="font-style:italic">n</span>−3</sup>+2(<span style="font-style:italic">n</span>−1)2<sup><span style="font-style:italic">n</span>−2</sup>+2<sup><span style="font-style:italic">n</span>−1</sup>)=<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>−1)+4(<span style="font-style:italic">n</span>−1)+4)2<sup><span style="font-style:italic">n</span>−3</sup>=<span style="font-style:italic">n</span><sup>2</sup>(<span style="font-style:italic">n</span>+3)2<sup><span style="font-style:italic">n</span>−3</sup><br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span><sub>3</sub>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">n</span><sup>2</sup>(<span style="font-style:italic">n</span>+3)2<sup><span style="font-style:italic">n</span>−3</sup></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">s3:=sum(k</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*comb(n,k),k=0..n)</span><br>
+<span style="font-family:monospace">factor(subst(subst(s3,2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-2),2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-3)*2),2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-1),2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-3)*4))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2*(n+3)*2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">(n-3)</span>
+</p>
+<h2 id="sec429" class="section">25.5  Calcul de ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">f</span>(<span style="font-style:italic">k</span>)</h2>
+<h3 id="sec430" class="subsection">25.5.1  Calcul de ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>(<span style="font-style:italic">k</span>+1)</h3>
+<p>
+On remarque que :<br>
+1/<span style="font-style:italic">k</span>(<span style="font-style:italic">k</span>+1)=1/<span style="font-style:italic">k</span>−1/<span style="font-style:italic">k</span>+1<br>
+Donc que :<br>
+<span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>(<span style="font-style:italic">k</span>+1)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>−1/<span style="font-style:italic">k</span>+1=1−1/<span style="font-style:italic">n</span>+1=<span style="font-style:italic">n</span>/<span style="font-style:italic">n</span>+1<br>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">normal(sum(1/(k*(k+1)),k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n/(n+1)</span></p>
+<h3 id="sec431" class="subsection">25.5.2  Calcul de <span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/(2<span style="font-style:italic">k</span>−1)(2<span style="font-style:italic">k</span>+1)</h3>
+<p>
+On remarque que :<br>
+2/(2<span style="font-style:italic">k</span>−1)(2<span style="font-style:italic">k</span>+1)=1/2<span style="font-style:italic">k</span>−1−1/2<span style="font-style:italic">k</span>+1<br>
+Donc que :<br>
+2<span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/(2<span style="font-style:italic">k</span>−1)(2<span style="font-style:italic">k</span>+1)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/2<span style="font-style:italic">k</span>−1−1/2<span style="font-style:italic">k</span>+1=1−1/2<span style="font-style:italic">n</span>+1=2<span style="font-style:italic">n</span>/2<span style="font-style:italic">n</span>+1<br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2<span style="font-style:italic">n</span>+1</td></tr>
+</table></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">normal(sum(1/((2k-1)*(2k+1)),k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n/(2n+1)</span></p>
+<h3 id="sec432" class="subsection">25.5.3  Calcul de ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>(<span style="font-style:italic">k</span>+2)</h3>
+<p>
+On remarque que :<br>
+2/(<span style="font-style:italic">k</span>)(<span style="font-style:italic">k</span>+2)=1/<span style="font-style:italic">k</span>−1/<span style="font-style:italic">k</span>+2<br>
+Donc que :<br>
+ 2<span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>(<span style="font-style:italic">k</span>+2)=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>−1/<span style="font-style:italic">k</span>+2=∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">p</span>−∑<sub><span style="font-style:italic">p</span>=3</sub><sup><span style="font-style:italic">n</span>+2</sup>1/<span style="font-style:italic">p</span>=1+1/2−1/<span style="font-style:italic">n</span>+1−1/<span style="font-style:italic">n</span>+2=3*<span style="font-style:italic">n</span><sup>2</sup>+5*<span style="font-style:italic">n</span>/2*<span style="font-style:italic">n</span><sup>2</sup>+6*<span style="font-style:italic">n</span>+4<br>
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">3*<span style="font-style:italic">n</span><sup>2</sup>+5*<span style="font-style:italic">n</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">4*<span style="font-style:italic">n</span><sup>2</sup>+12*<span style="font-style:italic">n</span>+8</td></tr>
+</table></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">normal(sum(1/(k*(k+2)),k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(3*n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+5*n)/(4*n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+12*n+8)</span></p>
+<h3 id="sec433" class="subsection">25.5.4  Calcul de ∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>(<span style="font-style:italic">k</span>+1)(<span style="font-style:italic">k</span>+2)</h3>
+<p>
+On tape :
+<span style="font-family:monospace">partfrac(1/(k*(k+1)*(k+2)),k)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/(k*2)-1/(k+1)+1/((k+2)*2)</span><br>
+Donc :<br>
+2*<span style="font-style:italic">s</span>=∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>−1/(<span style="font-style:italic">k</span>+1)−(1/(<span style="font-style:italic">k</span>+1)−1/(<span style="font-style:italic">k</span>+2))=<br>
+∑<sub><span style="font-style:italic">p</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">p</span>−1/(<span style="font-style:italic">p</span>+1)−∑<sub><span style="font-style:italic">k</span>=2</sub><sup><span style="font-style:italic">n</span>+1</sup>1/<span style="font-style:italic">p</span>−1/(<span style="font-style:italic">p</span>+1)=<br>
+2<span style="font-style:italic">s</span>=1−1/2−1/<span style="font-style:italic">n</span>+1+1/(<span style="font-style:italic">n</span>+2)=(<span style="font-style:italic">n</span><sup>2</sup>+3*<span style="font-style:italic">n</span>)/(2*<span style="font-style:italic">n</span><sup>2</sup>+6*<span style="font-style:italic">n</span>+4)
+Donc :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">s</span>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">n</span><sup>2</sup>+3*<span style="font-style:italic">n</span></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">4*<span style="font-style:italic">n</span><sup>2</sup>+12*<span style="font-style:italic">n</span>+8</td></tr>
+</table></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on tape :<br>
+<span style="font-family:monospace">normal(sum(1/(k*(k+2)),k=1..n))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+3*n)/(4*n</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+12*n+8)</span>)</p>
+<h2 id="sec434" class="section">25.6  Des calculs de sommes avec un programme</h2>
+<p>
+On veut savoir si la convergence d’une série est lente ou rapide, par exemple 
+savoir combien il faut de termes pour que
+∑<sub><span style="font-style:italic">k</span>=1</sub><sup><span style="font-style:italic">n</span></sup>1/<span style="font-style:italic">k</span>&gt;10.<br>
+On peut taper :<br>
+<span style="font-family:monospace">sum(1./n,n=1..20000)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.1048072821722932757281444e2</span><br>
+ou faire un calcul exact plus long :<br>
+<span style="font-family:monospace">s:=sum(1/n,n=1..20000)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">Integer_too_large_for_display/Integer_too_large_for_display</span>
+On tape alors :<br>
+<span style="font-family:monospace">evalf(s)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.1048072821722932757281444e2</span>
+On veut voir l’incidence qu’il y a sur la précision et sur le temmps 
+d’exécution selon que l’on commence à faire la somme par le plus petit 
+indice ou par le plus grand indice ou faire la somme avec une procédure 
+récursive.<br>
+On suppose <span style="font-style:italic">a</span>≤ <span style="font-style:italic">b</span> sinon on échange <span style="font-style:italic">a</span> et <span style="font-style:italic">b</span>.
+</p><pre class="verbatim">//som1 fait la somme de a jusque b 
+som1(u,a,b):={
+local k,c,s;
+si b&lt;a alors c:=b;b:=a;a:=c;fsi;
+s:=0;
+pour k de a jusque b faire
+s:=s+u(k);
+fpour;
+return s;
+}
+:;
+//som2 fait la somme de b jusque a
+som2(u,a,b):={
+local k,c,s;
+si b&lt;a alors c:=b;b:=a;a:=c;fsi;
+s:=0;
+pour k de b jusque a pas -1 faire
+s:=s+u(k);
+fpour;
+return s;
+}
+:;
+//som3 fait la somme recusivement en partageant en 2
+som3(u,a,b):={
+local k,c,s;
+si a&gt;b alors return som3(u,b,a); fsi;
+si a==b alors return u(a); fsi;
+si b==a+1 alors return u(a)+u(b); fsi; 
+c:=floor((a+b)/2);
+return som3(u,a,c)+som3(u,c+1,b);
+}:;
+</pre><p>
+On pose :<br>
+<span style="font-family:monospace">u(n):=1/n</span><br>
+et<br>
+<span style="font-family:monospace">v(n):=1./n</span></p><p>Pour faire des calculs exacts, on tape :<br>
+<span style="font-family:monospace">evalf(som1(u,1,100000))</span> (Evaluation time: 22.6)<br>
+<span style="font-family:monospace">evalf(som2(u,1,100000))</span> (Evaluation time: 33.24)<br>
+<span style="font-family:monospace">evalf(som3(u,1,100000))</span> (Evaluation time: 29.92)<br>
+On obtient avec 24 digits :<br>
+<span style="font-family:monospace">0.1209014612986342794736320e2</span><br>
+Le résultat est bien sûr le même car les calculs sont faits de façon
+exacte et seule la réponse est donnée de façon approchée. <span style="font-family:monospace">som1</span> est plus rapide car on ajoute au début des fractions qui 
+ont un petit dénominateur, <span style="font-family:monospace">som2</span> est plus lente car on ajoute au 
+toujours des fractions qui ont un grand dénominateur et <span style="font-family:monospace">som3</span> est 
+intermédiaire mais plutot plus lente car on fait appel à <span style="font-family:monospace">som3(u,c+1,b)</span>
+où on ajoute des fractions qui ont un grand dénominateur à
+<span style="font-family:monospace">som3(u,a,c)</span> qui elle aussi comporte des termes ayant un grand 
+dénominateur.</p><p>Pour faire des calculs approchés, on tape :<br>
+<span style="font-family:monospace">som1(v,1,100000)</span><br>
+On obtient avec 24 digits (Evaluation time: 7.14) :<br>
+<span style="font-family:monospace">0.1209014612986342794736311e2</span><br>
+<span style="font-family:monospace">som2(v,1,100000)</span> <br>
+On obtient avec 24 digits (Evaluation time: 7.16) :<br>
+<span style="font-family:monospace">0.1209014612986342794736294e2</span><br>
+<span style="font-family:monospace">som3(v,1,100000)</span> <br>
+On obtient avec 24 digits (Evaluation time: 30.74) :<br>
+<span style="font-family:monospace">0.1209014612986342794736320e2</span><br>
+La procédure récursive est nettement plus longue à exécuter mais par 
+contre elle donne un meilleur résultat.
+</p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo024.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo026.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

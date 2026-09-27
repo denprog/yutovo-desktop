@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Rewriting an expression with different options</title>
+</head>
+<body >
+<a href="cascmd_en294.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en296.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:convert" class="subsection">10.1.10  Rewriting an expression with different options</h3>
+<p><span style="font-variant:small-caps">Xcas</span> has many commands to convert expressions into different
+forms; the <span style="font-family:monospace">convert</span><a id="hevea_default521"></a> command
+(or its infixed version <span style="font-family:monospace">=&gt;</span><a id="hevea_default522"></a>) is
+a different way to call most of these functions.<a id="hevea_default523"></a>
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">convert</span> takes two or more arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression.
+</li><li class="li-itemize"><span style="font-style:italic">option</span>, an option specifying which rewrite rules to
+use. A third argument might be necessary for some options.
+Possible values of <span style="font-style:italic">option</span> are:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">sin</span><a id="hevea_default524"></a>,
+to convert an expression like <span style="font-family:monospace">trigsin</span>
+(see Section <a href="cascmd_en318.html#ssec%3Atrigsin">10.2.23</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">cos</span><a id="hevea_default525"></a>,
+to convert an expression like <span style="font-family:monospace">trigcos</span>
+(see Section <a href="cascmd_en319.html#ssec%3Atrigcos">10.2.24</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">sincos</span><a id="hevea_default526"></a>,
+to convert an expression like <span style="font-family:monospace">sincos</span>
+(see Section <a href="cascmd_en308.html#ssec%3Asincos">10.2.13</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">trig</span>, to convert an expression like <span style="font-family:monospace">sincos</span>
+(see Section <a href="cascmd_en308.html#ssec%3Asincos">10.2.13</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">tan</span><a id="hevea_default527"></a>,
+to convert an expression like <span style="font-family:monospace">halftan</span>
+(see Section <a href="cascmd_en314.html#ssec%3Ahalftan">10.2.19</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">exp</span><a id="hevea_default528"></a>,
+to convert an expression like <span style="font-family:monospace">trig2exp</span>
+(see Section <a href="cascmd_en316.html#ssec%3Atrig2exp">10.2.21</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">ln</span><a id="hevea_default529"></a>,
+to convert an expression like <span style="font-family:monospace">trig2exp</span>
+(see Section <a href="cascmd_en316.html#ssec%3Atrig2exp">10.2.21</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">expln</span><a id="hevea_default530"></a>,
+to convert an expression like <span style="font-family:monospace">trig2exp</span>
+(see Section <a href="cascmd_en316.html#ssec%3Atrig2exp">10.2.21</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">string</span><a id="hevea_default531"></a>,
+to convert a expression into a string.
+</li><li class="li-itemize"><span style="font-family:monospace">matrix</span><a id="hevea_default532"></a>,
+to convert a list of lists into a matrix.
+</li><li class="li-itemize"><span style="font-family:monospace">array</span><a id="hevea_default533"></a>,
+to turn a table into an array (see
+Section <a href="cascmd_en515.html#ssec%3Aspmatrices">14.4.2</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">polynom</span><a id="hevea_default534"></a>,
+to convert a series (see Section <a href="cascmd_en462.html#ssec%3Ataylor">13.5.2</a>)
+into a polynomial
+by removing the remainder (see Section <a href="cascmd_en356.html#ssec%3Aconvertpoly">11.1.25</a>) or
+to convert a list representing a polynomial into a polynomial
+in internal sparse multivariate form (see
+Section <a href="cascmd_en333.html#ssec%3Amultipoly">11.1.2</a> and Section <a href="cascmd_en337.html#ssec%3Apolytrans">11.1.6</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">parfrac</span><a id="hevea_default535"></a>
+(or <span style="font-family:monospace">partfrac</span><a id="hevea_default536"></a> or
+<span style="font-family:monospace">fullparfrac</span><a id="hevea_default537"></a>),
+to convert a rational function into its partial fraction decomposition (see
+Section <a href="cascmd_en397.html#ssec%3Aconvertparf">11.6.9</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">interval</span><a id="hevea_default538"></a>,
+to convert an expression which evaluates to a
+number into an interval (see Section <a href="cascmd_en169.html#ssec%3Anumb2intvl">6.6.8</a>).
+</li><li class="li-itemize"><span style="font-family:monospace">list</span><a id="hevea_default539"></a> (or no argument),
+to convert a polynomial in internal sparse multivariate format
+(see Section <a href="cascmd_en333.html#ssec%3Amultipoly">11.1.2</a>) into a list.
+</li><li class="li-itemize"><span style="font-style:italic">unit</span>, a unit, to convert a unit object to a new
+compatible unit (see Section <a href="cascmd_en759.html#sec%3Aconvertunit">24.1.4</a>).
+</li></ul>
+The values of <span style="font-style:italic">option</span> that require a third argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">contfrac</span><a id="hevea_default540"></a>,
+to convert a number into a continued
+fraction. (See Section <a href="cascmd_en205.html#ssec%3Aconvertdfc">7.2.7</a>.) The third argument
+will be the name of a variable to store the continued fraction
+into (which must be quoted the variable was assigned).
+</li><li class="li-itemize"><span style="font-family:monospace">base</span><a id="hevea_default541"></a>,
+to convert a number into a different base
+(beginning with the units digit). If <span style="font-family:monospace">expr</span> is a number,
+then the third argument will be base to convert to (see
+Section <a href="cascmd_en106.html#sec%3Aconvertbase">5.4.2</a>), if <span style="font-style:italic">expr</span> is a list of
+numbers, then the third argument will be the base to convert
+from (and <span style="font-style:italic">expr</span> will be a list of the digits in this
+base, starting with the units digit).
+</li></ul>
+Finally, if <span style="font-style:italic">expr</span> is an expression with units (see
+Section <a href="cascmd_en756.html#ssec%3Aunits">24.1.1</a>), then <span style="font-style:italic">option</span> can be new units to convert to
+(see Section <a href="cascmd_en759.html#sec%3Aconvertunit">24.1.4</a>).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">convert(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">option</span> ⟨,<span style="font-style:italic">extraop</span> ⟩<span style="font-family:monospace">)</span>
+returns the expression with the requested conversions done.
+</li></ul><h4 id="sec670" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1.2,</span></span><span style="font-weight:bold"><span style="color:#BF0000">confrac</span></span><span style="font-weight:bold"><span style="color:#BF0000">,'</span></span><span style="font-weight:bold"><span style="color:#BF0000">fc</span></span><span style="font-weight:bold"><span style="color:#BF0000">')</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1,5</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+and <span style="font-family:monospace">fc</span> contains the continued fraction equal to 1.2.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(123,</span></span><span style="font-weight:bold"><span style="color:#BF0000">base</span></span><span style="font-weight:bold"><span style="color:#BF0000">,10)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">3,2,1</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">([3,2,1],</span></span><span style="font-weight:bold"><span style="color:#BF0000">base</span></span><span style="font-weight:bold"><span style="color:#BF0000">,10)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+123
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">convert</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1000</span></span><span style="font-weight:bold"><span style="color:#BF0000">_g</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">_kg</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1.0 </span><span style="color:#0000CC"><span style="font-style:italic">kg</span></span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en294.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en296.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

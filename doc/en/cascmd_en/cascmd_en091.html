@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Splitting strings into lists of tokens</title>
+</head>
+<body >
+<a href="cascmd_en090.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en092.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:split-string" class="subsection">5.2.6  Splitting strings into lists of tokens</h3>
+<p>The <span style="font-family:monospace">split</span><a id="hevea_default162"></a> command splits a string into
+a sequence of substrings with respect to a given separator.</p><p>See Section <a href="cascmd_en259.html#ssec%3Asepvars">9.1.9</a> for other uses of <span style="font-family:monospace">split</span>.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">split</span> takes two arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">str</span>, a string.
+</li><li class="li-itemize"><span style="font-style:italic">sep</span>, a string specifying the separator.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">split(</span><span style="font-style:italic">str</span>,<span style="font-style:italic">sep</span><span style="font-family:monospace">)</span> returns a list of
+substrings [<span style="font-style:italic">s</span><sub>1</sub>,<span style="font-style:italic">s</span><sub>2</sub>,…,<span style="font-style:italic">s</span><sub><span style="font-style:italic">n</span></sub>] of <span style="font-style:italic">str</span> such that
+<span style="font-family:monospace">s1+sep+s2+sep+..+sn</span> returns <span style="font-style:italic">str</span>.
+</li><li class="li-itemize">To trim the returned substrings, you can enter the command
+<span style="font-family:monospace">apply(trim,res)</span> provided that <span style="font-family:monospace">res</span> holds the return value
+of <span style="font-family:monospace">split</span> (see Section <a href="cascmd_en090.html#ssec%3Atrim-string">5.2.5</a>).
+</li></ul><h4 id="sec155" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">split</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"this is a phrase"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">" "</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">“this”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“is”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“a”</span><span style="color:#0000CC">,</span><span style="color:#0000CC">“phrase”</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">expr</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">split</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"112--34--567--89"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"--"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">112,34,567,89</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en090.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en092.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

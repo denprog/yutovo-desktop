@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Box-and-whisker diagrams</title>
+</head>
+<body >
+<a href="cascmd_en646.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en648.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1578" class="subsection">20.1.8  Box-and-whisker diagrams</h3>
+<p>
+<a id="hevea_default1267"></a></p><p>A box-and-whisker diagram is a graphical view of the quartiles of a list of
+numbers. The diagram consists of a line segment from the the
+minimum of the list to the first quartile, leading to a rectangle from
+the first quartile to the third quartile, followed by a line segment
+from the third quartile to the maximum of the list. The rectangle
+contains a vertical segment indicating the median.</p><p>The <span style="font-family:monospace">boxwhisker</span><a id="hevea_default1268"></a>
+or <span style="font-family:monospace">mustache</span><a id="hevea_default1269"></a>
+or <span style="font-family:monospace">boxplot</span><a id="hevea_default1270"></a>
+command creates boxwhisker(s) for given list(s).
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">boxwhisker</span> takes one mandatory argument and four optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">L</span>, a list or matrix of real numbers.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">x=</span><span style="font-style:italic">xmin</span><span style="font-family:monospace">..</span><span style="font-style:italic">xmax</span> or
+<span style="font-family:monospace">y=</span><span style="font-style:italic">ymin</span><span style="font-family:monospace">..</span><span style="font-style:italic">ymax</span>, which spreads several
+boxwhiskers horizontally (with <span style="font-family:monospace">x</span>) or vertically (with <span style="font-family:monospace">y</span>, which
+is the default).
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">color=</span><span style="font-style:italic">c</span>, where <span style="font-style:italic">c</span> is a color or a list of colors specifying
+the fill color for each boxwhisker (if <span style="font-style:italic">c</span> is a single color, then all boxwhiskers
+are colored with that color).
+The list may be empty, in which case light grey color is used. By default,
+no fill color is specified and boxwhiskers are drawn only with lines.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">legend=</span><span style="font-style:italic">d</span>, where <span style="font-style:italic">d</span> is a list of strings which
+are drawn next to boxwhiskers, in the given order.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">axes</span>, the symbol specifying that the usual axes
+should be drawn.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">boxwhisker(</span><span style="font-style:italic">L</span> ⟨,<span style="font-style:italic">options</span> ⟩<span style="font-family:monospace">)</span>
+draws a boxwhisker for the list <span style="font-style:italic">L</span> or one for each column of the matrix <span style="font-style:italic">L</span>,
+aligning them vertically (topmost is the first) or horizontally (leftmost is
+the first).
+</li></ul><h4 id="sec1579" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">boxwhisker</span></span><span style="font-weight:bold"><span style="color:#BF0000">([-1,1,2,2.2,3,4,-2,5])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en137.png">
+
+</div><p>
+
+To generate some normally distributed data, enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">([</span></span><span style="font-weight:bold"><span style="color:#BF0000">seq</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">randvector</span></span><span style="font-weight:bold"><span style="color:#BF0000">(10,</span></span><span style="font-weight:bold"><span style="color:#BF0000">randvar</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">mean</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">ln</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">stddev</span></span><span style="font-weight:bold"><span style="color:#BF0000">=2)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">j</span></span><span style="font-weight:bold"><span style="color:#BF0000">=1..10)]):;</span></span></td></tr>
+</table><p>Vertical alignment (the default, suitable for a small number of boxwhiskers):
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">colormap</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"discrete"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"vivid"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">):;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">names</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"first"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"second"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"third"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"fourth"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"fifth"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"sixth"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"seventh"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">]:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">boxplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">tran</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">col</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,0..6)),</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">names</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en138.png">
+
+</div><p>
+
+Horizontal alignment:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">boxplot</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">L</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">=-5..5,</span></span><span style="font-weight:bold"><span style="color:#BF0000">color</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">c</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">legend</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">zip</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">concat</span></span><span style="font-weight:bold"><span style="color:#BF0000">,[</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"L"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">$10</span></span><span style="font-weight:bold"><span style="color:#BF0000">],</span></span><span style="font-weight:bold"><span style="color:#BF0000">apply</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">cat</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">range</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0,10))))</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en139.png">
+
+</div>
+<hr>
+<a href="cascmd_en646.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en648.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

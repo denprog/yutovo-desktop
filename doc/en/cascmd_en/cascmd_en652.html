@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Cumulative frequencies</title>
+</head>
+<body >
+<a href="cascmd_en651.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en653.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1589" class="subsection">20.1.13  Cumulative frequencies</h3>
+<p>Given a list of numbers <span style="font-style:italic">L</span>, the cumulated frequency at <span style="font-style:italic">x</span> is the
+fraction of numbers in the list less than <span style="font-style:italic">x</span>.
+The <span style="font-family:monospace">cumulated_frequencies</span><a id="hevea_default1277"></a>
+command plots the cumulated frequency of the numbers in a list or given by a matrix.
+<a id="hevea_default1278"></a></p><p>For numbers in a list:
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">cumulated_frequencies</span> takes
+<span style="font-style:italic">L</span>, a list of numbers.
+</li><li class="li-itemize"><span style="font-family:monospace">cumulated_frequencies(</span><span style="font-style:italic">L</span><span style="font-family:monospace">)</span> draws the cumulated
+frequency of the numbers in <span style="font-style:italic">L</span>, where if <span style="font-style:italic">L</span> is a matrix, each
+number in the first column is repeated the number of times given in
+the second column.
+</li></ul><p>For numbers in a matrix:
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">cumulated_frequencies</span> takes
+<span style="font-style:italic">M</span>, a matrix.
+</li><li class="li-itemize"><span style="font-family:monospace">cumulated_frequencies(</span><span style="font-style:italic">M</span><span style="font-family:monospace">)</span> (for a matrix with two
+columns, whose first column consists of numbers and whose second
+column consists of positive integers) draws the cumulated frequency
+of the numbers in the first column, where number in the first column
+is repeated the number of times given in the second column.
+</li><li class="li-itemize"><span style="font-family:monospace">cumulated_frequencies(</span><span style="font-style:italic">M</span><span style="font-family:monospace">)</span> (for a matrix with more
+than two columns, whose first column consists of numbers and whose
+remaining columns consist of positive integers) draws the cumulated
+frequencies for the first column paired with each remaining column.
+</li><li class="li-itemize"><span style="font-family:monospace">cumulated_frequencies(</span><span style="font-style:italic">M</span><span style="font-family:monospace">)</span> (for a matrix with two
+columns, whose first column consists of ranges <span style="font-style:italic">a</span><span style="font-family:monospace">..</span><span style="font-style:italic">b</span> and whose
+second column consists of positive numbers), will normalize the second
+column so the elements add up to 1 and draw the cumulated
+frequencies where the second column gives the frequency for the
+intervals in the first column.
+</li></ul><h4 id="sec1590" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cumulated_frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,2,1,1,2,1,2,4,3,3])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cumulated_frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,4],[2,3],[3,2],[4,1]])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en142.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cumulated_frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1..2,30],[2..4,40],[4..5,30]])</span></span></td></tr>
+</table><p>or:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cumulated_frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1..2,0.3],[2..4,0.4],[4..5,0.3]])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en143.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cumulated_frequencies</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,4,1],[2,3,4],[3,2,1],[4,1,2]])</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en144.png">
+
+</div><p>
+
+Here, both the distributions given by
+<span style="font-family:monospace">[[1,4],[2,3],[3,2],[4,1]]</span>
+and
+<span style="font-family:monospace">[[1,1],[2,4],[3,1],[4,2]]</span>
+are drawn on the same axes.</p>
+<hr>
+<a href="cascmd_en651.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en653.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

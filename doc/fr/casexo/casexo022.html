@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Les suites</title>
+</head>
+<body >
+<a href="casexo021.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo023.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec363" class="chapter">Chapitre 22  Les suites</h1>
+<h2 id="sec364" class="section">22.1  Les suites récurrentes</h2>
+<h3 id="sec365" class="subsection">22.1.1  L’énoncé d’une suite d’itérations</h3>
+<p>
+Soit la suite définie par :<br>
+<span style="font-style:italic">u</span><sub>0</sub>=1<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=1/10<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>(20−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>)<br>
+Calculer <span style="font-style:italic">u</span><sub>1</sub> édutier les variations de la fonction <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=1/10<span style="font-style:italic">x</span>(20−<span style="font-style:italic">x</span>).<br>
+En déduire que pour tout <span style="font-style:italic">n</span> <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> ∈ [0;10] et que <span style="font-style:italic">u</span> est croissante.<br>
+l’expression de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span>.
+</p>
+<h3 id="sec366" class="subsection">22.1.2  La réponse</h3>
+<p>
+On montre facilement que <span style="font-style:italic">f</span> est une bijection de [0;10] sur [0;10] et donc
+puisque <span style="font-style:italic">u</span><sub>0</sub> ∈ [0;10] et que <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>), 
+pour tout <span style="font-style:italic">n</span>≥ 0 <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> ∈ [0;10].
+On a <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>(10−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>)/10 donc puisque pour tout <span style="font-style:italic">n</span> <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> ∈ [0;10],
+la suite <span style="font-style:italic">u</span> est croissante et majorée par 10, donc <span style="font-style:italic">u</span> est convergente et 
+sa limite <span style="font-style:italic">l</span> vérifie <span style="font-style:italic">l</span>≥ <span style="font-style:italic">u</span><sub>0</sub> et <span style="font-style:italic">l</span>=1/10<span style="font-style:italic">l</span>(20−<span style="font-style:italic">l</span>) 
+puisque <span style="font-style:italic">f</span> est continue.<br>
+Donc <span style="font-style:italic">u</span> converge vers <span style="font-style:italic">l</span>=10. 
+</p>
+<h3 id="sec367" class="subsection">22.1.3  La réponse avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On tape pour définir la fonction <span style="font-style:italic">f</span> :<br>
+<span style="font-family:monospace">f(x):=x*(20-x)/10</span><br>
+On tape pour voir les 6 premiers termes de la suite <span style="font-style:italic">u</span> :<br>
+<span style="font-family:monospace">plotseq(f(x),x=1,6)</span><br>
+On obtient :<br>
+ <img src="casexo107.png"><br>
+On tape pour avoir le signe de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> :<br>
+<span style="font-family:monospace">factor(f(un)-un)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-(un-10)*un)/10</span><br>
+On tape pour résoudre <span style="font-style:italic">l</span>=1/10<span style="font-style:italic">l</span>(20−<span style="font-style:italic">l</span>) :<br>
+<span style="font-family:monospace">solve(f(x)=x)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[0,10]</span><br>
+</p>
+<h3 id="sec368" class="subsection">22.1.4  L’énoncé</h3>
+<p>
+Soit la suite définie par :<br>
+<span style="font-style:italic">u</span><sub>0</sub>=1<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>/3+<span style="font-style:italic">n</span>−1<br>
+Déterminer <span style="font-style:italic">a</span> et <span style="font-style:italic">b</span> pour que la suite :<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">k</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">b</span> soit une suite géométrique dont on déterminera la 
+raison.<br>
+En déduire l’expression de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span>.
+</p>
+<h3 id="sec369" class="subsection">22.1.5  La réponse</h3>
+<p>
+On a :<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">k</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>+<span style="font-style:italic">a</span>*(<span style="font-style:italic">n</span>+1)+<span style="font-style:italic">b</span>=<span style="font-style:italic">k</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>/3+<span style="font-style:italic">k</span>*<span style="font-style:italic">n</span>−<span style="font-style:italic">k</span>+<span style="font-style:italic">a</span>*(<span style="font-style:italic">n</span>+1)+<span style="font-style:italic">b</span><br>
+donc :<br>
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">k</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>/3+(<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">b</span>)/3+2*(<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">b</span>)/3+<span style="font-style:italic">k</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">a</span>−<span style="font-style:italic">k</span><br>
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>/3+2*(<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">b</span>)/3+<span style="font-style:italic">k</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">a</span>−<span style="font-style:italic">k</span><br>
+Si on veut que <span style="font-style:italic">v</span> soit une suite géométrique , il faut que :<br>
+2*(<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">b</span>)+3*<span style="font-style:italic">k</span>*<span style="font-style:italic">n</span>+3*<span style="font-style:italic">a</span>−3*<span style="font-style:italic">k</span>=0<br>
+ou encore :<br>
+2*<span style="font-style:italic">a</span>+3*<span style="font-style:italic">k</span>=0 et 2*<span style="font-style:italic">b</span>+3*<span style="font-style:italic">a</span>−3*<span style="font-style:italic">k</span>=0 
+cela donne :<br>
+3*<span style="font-style:italic">k</span>=−2*<span style="font-style:italic">a</span> et 2*<span style="font-style:italic">b</span>=−5*<span style="font-style:italic">a</span><br>
+On choisit <span style="font-style:italic">a</span>=−6 et alors <span style="font-style:italic">k</span>=4 et <span style="font-style:italic">b</span>=15 et alors :<br>
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>/3 avec <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=4*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−6*<span style="font-style:italic">n</span>+15 donc <span style="font-style:italic">v</span><sub>0</sub>=19<br>
+On en déduit que :<br>
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>= 19*1/3<sup><span style="font-style:italic">n</span></sup><br>
+donc<br>
+ <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>= 19/4*1/3<sup><span style="font-style:italic">n</span></sup>+3/2*<span style="font-style:italic">n</span>−15/4</p>
+<h3 id="sec370" class="subsection">22.1.6  L’énoncé</h3>
+<p>
+Soit la suite définie par :<br>
+<span style="font-style:italic">u</span><sub>0</sub>=1<br>
+<span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+1 si <span style="font-style:italic">n</span>&gt;0<br>
+Calculer <span style="font-style:italic">u</span><sub>1</sub>,<span style="font-style:italic">u</span><sub>2</sub>,<span style="font-style:italic">u</span><sub>3</sub>,<span style="font-style:italic">u</span><sub>4</sub>,<span style="font-style:italic">u</span><sub>5</sub>.<br>
+À votre avis quelle est l’expression de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span> ?<br>
+Démontrez que cette expression est la bonne.<br>
+Généraliser lorsque <span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span> et <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+1 si <span style="font-style:italic">n</span>&gt;0<br>
+
+</p>
+<h3 id="sec371" class="subsection">22.1.7  La réponse avec <span style="font-family:monospace">Xcas</span></h3>
+<p>
+On tape :<br>
+<span style="font-family:monospace">u(n):=ifte(n==0,1,u(n-1)*(n+1)/n+1/n)</span><br>
+<span style="font-family:monospace">u(n)$(n=0..5)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1,3,5,7,9,11</span><br>
+On pense que <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=2*<span style="font-style:italic">n</span>+1 et on va le montrer par récurrence.
+La relation est vrai pour <span style="font-style:italic">n</span>=0 : <span style="font-style:italic">u</span><sub>0</sub>=2*0+1=1
+Supposons que pour tout 0≤ <span style="font-style:italic">k</span>&lt;<span style="font-style:italic">n</span>, <span style="font-style:italic">u</span><sub><span style="font-style:italic">k</span></sub>=2*<span style="font-style:italic">k</span>+1 donc <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=2*<span style="font-style:italic">n</span>−1
+On a <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)*(2*<span style="font-style:italic">n</span>−1)+1<br>
+On tape :<br>
+<span style="font-family:monospace">factor((n+1)*(2*n-1)+1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(2*n+1)*n</span><br>
+donc <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(2*<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">n</span> et comme <span style="font-style:italic">n</span>&gt;0 on peut diviser par <span style="font-style:italic">n</span> donc
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=2*<span style="font-style:italic">n</span>+1.<br>
+<span style="font-weight:bold">Généralisation</span><br>
+On tape :<br>
+<span style="font-family:monospace">u(n):=ifte(n==a,1,u(n-1)*(n+1)/n+1/n)</span><br>
+<span style="font-family:monospace">normal(u(n)$(n=0..5))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">a,2*a+1,3*a+2,4*a+3,5*a+4,6*a+5</span><br>
+On pense que <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span> et on va le montrer par récurrence.
+La relation est vrai pour <span style="font-style:italic">n</span>=0 : <span style="font-style:italic">u</span><sub>0</sub>=(0+1)*<span style="font-style:italic">a</span>+0=<span style="font-style:italic">a</span>
+Supposons que pour tout 0≤ <span style="font-style:italic">k</span>&lt;<span style="font-style:italic">n</span>, <span style="font-style:italic">u</span><sub><span style="font-style:italic">k</span></sub>=(<span style="font-style:italic">k</span>+1)+<span style="font-style:italic">k</span> donc <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">n</span>*<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span>−1
+On a <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)*(<span style="font-style:italic">n</span>*<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span>−1)+1<br>
+On tape :<br>
+<span style="font-family:monospace">factor((n+1)*(n*a+n-1)+1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">n*(a*n+a+n)</span><br>
+donc <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>*(<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span>) et comme <span style="font-style:italic">n</span>&gt;0 on peut diviser par <span style="font-style:italic">n</span> donc
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>*<span style="font-style:italic">n</span>+<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span>=(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span>.</p><p>On peut aussi chercher à calculer :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> en fonction de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>.<br>
+On a :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=(<span style="font-style:italic">n</span><sup>2</sup>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−<span style="font-style:italic">n</span><sup>2</sup>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−1)/(<span style="font-style:italic">n</span><sup>2</sup>−<span style="font-style:italic">n</span>) <br>
+On sait que :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>+<span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−1 donc <br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>=...=<span style="font-style:italic">u</span><sub>1</sub>−<span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span>+1<br>
+Ainsi, <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> est une suite arithmétique de raison <span style="font-style:italic">a</span>+1 et donc
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>(<span style="font-style:italic">a</span>+1)+<span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">n</span>(<span style="font-style:italic">a</span>+1)+<span style="font-style:italic">a</span>=<span style="font-style:italic">a</span>(<span style="font-style:italic">n</span>+1)+<span style="font-style:italic">n</span></td></tr>
+</table><p>
+Avec <span style="font-family:monospace">Xcas</span>, on pose <span style="font-family:monospace">un</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-family:monospace">un1</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> et 
+<span style="font-family:monospace">un2</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>.<br>
+On tape :<br>
+<span style="font-family:monospace">un:=(n*un1+un1+1)/n</span><br>
+<span style="font-family:monospace">un1:=(n*un2+1)/(n-1)</span><br>
+<span style="font-family:monospace">simplify(un-un1)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(un2+1)/(n-1)</span><br>
+<span style="font-family:monospace">simplify(un1-un2)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(un2+1)/(n-1)</span><br>
+Donc <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>=...<span style="font-style:italic">u</span><sub>1</sub>−<span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span>+1.<br>
+Avec <span style="font-family:monospace">Xcas</span>, si on veut obtenir directement <span style="font-family:monospace">un-un1=un1-un2</span>,
+on doit faire la différence entre :
+<span style="font-family:monospace">un11</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> que l’on exprime en fonction de <span style="font-family:monospace">un2</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub> et
+<span style="font-family:monospace">un1</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> qui ne doit pas changer. La difficulté ici est que dans
+<span style="font-family:monospace">un</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>, il y a (<span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+1) et on doit laisser <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub> 
+inchangé alors qu’il faut exprimer <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+1 en fonction de 
+<span style="font-family:monospace">un2</span>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>.<br>
+On tape :<br>
+<span style="font-family:monospace">un:=(n*un1+un11+1)/n</span><br>
+<span style="font-family:monospace">un11:=(n*un2+1)/(n-1)</span><br>
+<span style="font-family:monospace">simplify(un-un11)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">un1-un2</span><br>
+Donc on a :<br>
+ <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub>=...=<span style="font-style:italic">u</span><sub>1</sub>−<span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span>+1<br>
+<span style="font-weight:bold">Remarque</span><br>
+On peut aussi remarquer que <span style="font-style:italic">l</span>=−1 est solutipon de <span style="font-style:italic">n</span>*<span style="font-style:italic">l</span>=(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">l</span>+1.<br>
+Donc si <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+1, alors <span style="font-style:italic">v</span> vérifie :<br>
+<span style="font-style:italic">v</span><sub>0</sub>=<span style="font-style:italic">a</span>+1 et <span style="font-style:italic">nv</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub> ou encore <br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>+1/<span style="font-style:italic">n</span><span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">n</span>+1/<span style="font-style:italic">n</span>−1<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−2</sub>=...=(<span style="font-style:italic">n</span>+1)<span style="font-style:italic">v</span><sub>0</sub>=(<span style="font-style:italic">n</span>+1)(<span style="font-style:italic">a</span>+1)<br>
+donc 
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)(<span style="font-style:italic">a</span>+1)−1=(<span style="font-style:italic">n</span>+1)<span style="font-style:italic">a</span>+<span style="font-style:italic">n</span></td></tr>
+</table>
+<h3 id="sec372" class="subsection">22.1.8  Un énoncé du même type</h3>
+<p>
+Soit la suite définie par :<br>
+<span style="font-style:italic">u</span><sub>0</sub>=5=<span style="font-style:italic">a</span><br>
+<span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+2)*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+6 si <span style="font-style:italic">n</span>&gt;0<br>
+et soit <span style="font-style:italic">d</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>+1</sub>−<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>.<br>
+Calculer <span style="font-style:italic">u</span><sub>1</sub>,<span style="font-style:italic">u</span><sub>2</sub>,<span style="font-style:italic">u</span><sub>3</sub>,<span style="font-style:italic">u</span><sub>4</sub>,<span style="font-style:italic">u</span><sub>5</sub> et <span style="font-style:italic">d</span><sub>0</sub>,<span style="font-style:italic">d</span>1,<span style="font-style:italic">d</span><sub>2</sub>,<span style="font-style:italic">d</span><sub>3</sub>,<span style="font-style:italic">d</span><sub>4</sub>.
+À votre avis quelle est l’expression de <span style="font-style:italic">d</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span> ?
+Démontrez que cette expression est la bonne.
+En déduire l’expression de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span>
+Généraliser lorsque <span style="font-style:italic">u</span><sub>0</sub>=<span style="font-style:italic">a</span> et <span style="font-style:italic">n</span>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=(<span style="font-style:italic">n</span>+1)*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+1 si <span style="font-style:italic">n</span>&gt;0<br>
+</p>
+<h3 id="sec373" class="subsection">22.1.9  La solution</h3>
+<p>
+On peut suivre les questions et montrer que :<br>
+<span style="font-style:italic">d</span><sub><span style="font-style:italic">n</span></sub>=8(<span style="font-style:italic">n</span>+2) et que <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=4<span style="font-style:italic">n</span>(<span style="font-style:italic">n</span>+3).<br>
+On peut aussi remarquer que l’équation en <span style="font-style:italic">x</span> :<br>
+<span style="font-style:italic">n</span>*<span style="font-style:italic">x</span>=(<span style="font-style:italic">n</span>+2)*<span style="font-style:italic">x</span>+6 a une solution indépendante de <span style="font-style:italic">n</span> qui est <span style="font-style:italic">l</span>=−3.<br>
+On pose alors <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+3 et <span style="font-style:italic">v</span> vérifie :<br>
+<span style="font-style:italic">v</span><sub>0</sub>=<span style="font-style:italic">u</span><sub>0</sub>+3 et <span style="font-style:italic">n</span>*<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>*(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+3)=(<span style="font-style:italic">n</span>+2)*(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+3)=(<span style="font-style:italic">n</span>+2)*<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub>, donc <br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">n</span>+2/<span style="font-style:italic">n</span><span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">n</span>+2/<span style="font-style:italic">n</span><span style="font-style:italic">n</span>+1/<span style="font-style:italic">n</span>−1=....(<span style="font-style:italic">n</span>+2)(<span style="font-style:italic">n</span>+1)/2<span style="font-style:italic">v</span><sub>0</sub><br>
+Donc
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>−3=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">n</span>+2)(<span style="font-style:italic">n</span>+1)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">(<span style="font-style:italic">u</span><sub>0</sub>+3)−3=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">a</span>−3)<span style="font-style:italic">n</span><sup>2</sup>+(3<span style="font-style:italic">a</span>−9)<span style="font-style:italic">n</span>+2<span style="font-style:italic">a</span>−12</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell">=</td></tr>
+</table><p>
+Pour <span style="font-style:italic">a</span>=5 on trouve :
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=4<span style="font-style:italic">n</span><sup>2</sup>+12<span style="font-style:italic">n</span>+5</td></tr>
+</table>
+<h2 id="sec374" class="section">22.2  Les suites homographiques</h2>
+<h3 id="sec375" class="subsection">22.2.1  L’énoncé</h3>
+<h4 id="sec376" class="subsubsection">Partie A</h4>
+<p>
+Soit <span style="font-style:italic">f</span> la fonction définie sur ]−∞;−1[∪]−1;+∞[ par 
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span>+2/<span style="font-style:italic">x</span>+1.<br>
+1/ Résoudre <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span>.<br>
+On notera <span style="font-style:italic">r</span><sub>1</sub> la racine positive et <span style="font-style:italic">r</span><sub>2</sub> la racine négative.<br>
+2/ Soit (u) la suite définie par :<br>
+<span style="font-style:italic">u</span><sub>1</sub>=1<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>) pour <span style="font-style:italic">n</span>&gt;1<br>
+Calculer <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> pour <span style="font-style:italic">n</span>=1,2,3,4,5<br>
+3/ Soit (v) la suite définie par :<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">r</span><sub>1</sub>/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">r</span><sub>2</sub>=<span style="font-style:italic">g</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>)<br>
+a) Démontrer que (v) est une suite géométrique.<br>
+b) Expliciter <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span><br>
+c) Expliciter <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">n</span><br>
+d) Calculer <span style="font-style:italic">l</span>=lim<sub><span style="font-style:italic">n</span> → +∞</sub> <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub><br>
+4/ Donner la plus petite valeur de <span style="font-style:italic">n</span> pour laquelle |<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup>
+</p>
+<h4 id="sec377" class="subsubsection">Partie B</h4>
+<p>
+1/ Exprimer <span style="font-style:italic">u</span><sub>2<span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>.<br>
+2/ Determiner et étudier la fonction <span style="font-style:italic">f</span><sub>2</sub> telle que <span style="font-style:italic">u</span><sub>2<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>).<br>
+3/ Soit (<span style="font-style:italic">w</span>) la suite définie par :<br>
+<span style="font-style:italic">w</span><sub>0</sub>=1 et <span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span>−1</sub>) pour tout <span style="font-style:italic">n</span>&gt;0.<br>
+Montrer que (<span style="font-style:italic">w</span>) a la même limite <span style="font-style:italic">l</span> que (<span style="font-style:italic">u</span>).<br>
+4/ Donner la plus petite valeur de <span style="font-style:italic">n</span> pour laquelle |<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup>
+</p>
+<h4 id="sec378" class="subsubsection">Partie C</h4>
+<p>
+1/ Exprimer <span style="font-style:italic">u</span><sub>3<span style="font-style:italic">n</span></sub> en fonction de <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>.<br>
+2/ Determiner et étudier la fonction <span style="font-style:italic">f</span><sub>3</sub> telle que <span style="font-style:italic">u</span><sub>3<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>).<br>
+3/ Soit (<span style="font-style:italic">t</span>) la suite définie par :<br>
+<span style="font-style:italic">t</span><sub>0</sub>=1 et <span style="font-style:italic">t</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">t</span><sub><span style="font-style:italic">n</span>−1</sub>) pour tout <span style="font-style:italic">n</span>&gt;0.<br>
+Montrer que (<span style="font-style:italic">t</span>) a la même limite <span style="font-style:italic">l</span> que (<span style="font-style:italic">u</span>).<br>
+4/ Donner la plus petite valeur de <span style="font-style:italic">n</span> pour laquelle |<span style="font-style:italic">t</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup>
+</p>
+<h4 id="sec379" class="subsubsection">Partie D</h4>
+<p>
+Étant donné <span style="font-style:italic">p</span> entier positif, refaire la même chose à partir de la 
+fonction :<br>
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span>+<span style="font-style:italic">p</span>/<span style="font-style:italic">x</span>+1 <br>
+pour trouver une valeur approchée de √<span style="text-decoration:overline"><span style="font-style:italic">p</span></span>.</p>
+<h3 id="sec380" class="subsection">22.2.2  La correction</h3>
+<h4 id="sec381" class="subsubsection">Partie A</h4>
+<p>
+1/ On tape :<br>
+<span style="font-family:monospace">f(x):=(x+2)/(x+1)</span><br>
+puis :<br>
+<span style="font-family:monospace">solve(f(x)=x)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-sqrt(2),sqrt(2)]</span></p><p>2/ On tape :<br>
+<span style="font-family:monospace">1</span>
+puis :<br>
+<span style="font-family:monospace">f(ans())</span><br>
+puis :<br>
+<span style="font-family:monospace">enter enter enter enter</span> <br>
+On obtient :<br>
+ <span style="font-family:monospace">3/2</span>, <span style="font-family:monospace">7/5</span>,  <span style="font-family:monospace">17/12</span>, <span style="font-family:monospace">41/29</span></p><p>3/ On a :<br>
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−√<span style="text-decoration:overline">2</span>/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>+√<span style="text-decoration:overline">2</span><br>
+On tape :<br>
+<span style="font-family:monospace">g(x):=(x-sqrt(2))/(x+sqrt(2))</span><br>
+Puis, on tape :<br>
+<span style="font-family:monospace">v(n):=g(u(n))</span><br>
+puis :<br>
+<span style="font-family:monospace">h(x):=solve(g(y)=x,y)[0]</span>
+puis :<br>
+<span style="font-family:monospace">h(x)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x*sqrt(2)+sqrt(2))/(-x+1)</span>
+donc <br>
+ <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=√<span style="text-decoration:overline">2</span> <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>+1/−<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>+1 et<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">g</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>)=<span style="font-style:italic">g</span>(<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>))=<span style="font-style:italic">g</span>(<span style="font-style:italic">f</span>(<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>)))<br>
+On tape :<br>
+<span style="font-family:monospace">k:=g@f@h</span>
+puis :<br>
+<span style="font-family:monospace">normal(k(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">((sqrt(2)-2)*x)/(sqrt(2)+2)</span><br>
+ donc  <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=(√<span style="text-decoration:overline">2</span>−2)*<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>/√<span style="text-decoration:overline">2</span>+2<br>
+la suite (<span style="font-style:italic">v</span>) est donc une suite géométrique de raison :<br>
+<span style="font-family:monospace">(sqrt(2)-2)/(sqrt(2)+2)=2*sqrt(2)-3</span><br>
+puis on tape :<br>
+<span style="font-family:monospace">normal(expand(mult_conjugate(g(1))))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">2*sqrt(2)-3</span><br>
+Donc :<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=(2*√<span style="text-decoration:overline">2</span>−3)<sup><span style="font-style:italic">n</span></sup><br>
+Donc on tape <span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>) :<br>
+<span style="font-family:monospace">h((2*sqrt(2)-3)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n)</span><br>
+On obtient <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> :<br>
+<span style="font-family:monospace">((2*sqrt(2)-3)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*sqrt(2)+sqrt(2))/(-(2*sqrt(2)-3)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+1)</span><br>
+On sait que (<span style="font-style:italic">v</span>) converge vers 0 car on a :<br>
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=(2*√<span style="text-decoration:overline">2</span>−3)<sup><span style="font-style:italic">n</span></sup> et −1&lt;2*√<span style="text-decoration:overline">2</span>−3&lt;0.<br>
+Quand <span style="font-style:italic">x</span> tend vers 0, <span style="font-style:italic">h</span>(<span style="font-style:italic">x</span>) tend vers <span style="font-style:italic">h</span>(0)=√<span style="text-decoration:overline">2</span>, donc (<span style="font-style:italic">u</span>) converge 
+vers √<span style="text-decoration:overline">2</span>.<br>
+On a <span style="font-family:monospace">normal(h(x)-h(0))=(-(2*sqrt(2))*x)/(x-1)</span></p><p>4/ On tape :<br>
+<span style="font-family:monospace">normal(diff(h(x)))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(2*sqrt(2))/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-2*x+1)</span><br>
+On a :<br>
+pour tout <span style="font-style:italic">n</span>, −|<span style="font-style:italic">v</span><sub>0</sub>|=−3+2√<span style="text-decoration:overline">2</span> ≤ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub> ≤ 3−2√<span style="text-decoration:overline">2</span>=|<span style="font-style:italic">v</span><sub>0</sub>|, donc :<br>
+−1.2&lt;−4+2 √<span style="text-decoration:overline">2</span> ≤ <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>−1 ≤ 2−2 √<span style="text-decoration:overline">2</span>&lt;−0.8, donc :<br>
+si −3+2 √<span style="text-decoration:overline">2</span> ≤ <span style="font-style:italic">x</span> ≤ 3−2√<span style="text-decoration:overline">2</span>, <br>
+On a<br>
+|<span style="font-style:italic">h</span>′(<span style="font-style:italic">x</span>)|&lt;(2*√<span style="text-decoration:overline">2</span>)/(2−2*√<span style="text-decoration:overline">2</span>)<sup>2</sup>=(3*√<span style="text-decoration:overline">2</span>+4)/2<br>
+ et<br>
+|<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>−√<span style="text-decoration:overline">2</span>|=|<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>)−<span style="font-style:italic">h</span>(0)|&lt;|<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>|*(3*√<span style="text-decoration:overline">2</span>+4)/2 &lt;5* (0.2)<sup><span style="font-style:italic">n</span></sup><br>
+On tape :<br>
+<span style="font-family:monospace">solve(5*0.2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n&lt;10</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">-1000,n)</span><br>
+log10(5)+<span style="font-style:italic">n</span>*log10(0.2)&lt;−1000<br>
+donc<br>
+<span style="font-style:italic">n</span>&gt;=1432&gt;(1000+log10(5))/(1−log10(2))&gt;1431
+</p>
+<h4 id="sec382" class="subsubsection">Partie B</h4>
+<p>
+1/ On a :<br>
+<span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span></sub>=(2√<span style="text-decoration:overline">2</span>−3)<sup>(</sup>2<span style="font-style:italic">n</span>)=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>,<br>
+donc <br>
+<span style="font-style:italic">u</span><sub>2<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>)=<span style="font-style:italic">h</span>((<span style="font-style:italic">g</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>))<sup>2</sup> </p><p>2/ On tape puisque <span style="font-family:monospace">sq(x)=x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span> :<br>
+<span style="font-family:monospace">f2(x):=normal((h@sq@g)(x))</span><br>
+puis <br>
+<span style="font-family:monospace">f2(x)</span><br>
+On obtient :<br>
+ <span style="font-family:monospace">((x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2)*1/2)/x</span><br>
+On reconnait la fonction obtenue par la méthode de Newton et
+qu’il faut itérer pour obtenir une approximation de √<span style="text-decoration:overline">2</span>.</p><p>3/ On a :<br>
+<span style="font-style:italic">w</span><sub>0</sub>=<span style="font-style:italic">u</span><sub>1</sub><br>
+<span style="font-style:italic">w</span><sub>1</sub>=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">w</span><sub>0</sub>)=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">w</span><sub>1</sub>)=<span style="font-style:italic">u</span><sub>2</sub><br>
+<span style="font-style:italic">w</span><sub>2</sub>=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">w</span><sub>1</sub>)=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">u</span><sub>2</sub>)=<span style="font-style:italic">u</span><sub>4</sub><br>
+<span style="font-style:italic">w</span><sub>3</sub>=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">w</span><sub>2</sub>)=<span style="font-style:italic">f</span><sub>2</sub>(<span style="font-style:italic">u</span><sub>4</sub>)=<span style="font-style:italic">u</span><sub>8</sub><br>
+....donc <br>
+<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub>2<sup><span style="font-style:italic">n</span></sup></sub></p><p>4/ Si on prend 2<sup><span style="font-style:italic">n</span></sup> ≥ 1432, on aura |<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup><br>
+On tape :<br>
+<span style="font-family:monospace">solve(2</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n&gt;1432.,n)</span><br>
+On obtient :<br>
+ <span style="font-family:monospace">n&gt;10.48...</span><br>
+Donc si <span style="font-style:italic">n</span>≥ 11), on aura |<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup>
+</p>
+<h4 id="sec383" class="subsubsection">Partie C</h4>
+<p>
+1/ On a :<br>
+<span style="font-style:italic">v</span><sub>3<span style="font-style:italic">n</span></sub>=(2√<span style="text-decoration:overline">2</span>−3)<sup>(</sup>3<span style="font-style:italic">n</span>)=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>3</sup>, <br>
+donc :<br>
+<span style="font-style:italic">u</span><sub>3<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub>3<span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>3</sup>)=<span style="font-style:italic">h</span>((<span style="font-style:italic">g</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>))<sup>3</sup> </p><p>2/ On tape :<br>
+<span style="font-family:monospace">p3(x):=x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3</span><br>
+<span style="font-family:monospace">f3(x):=normal((h@p3@g)(x))</span><br>
+puis <br>
+<span style="font-family:monospace">f3(x)</span><br>
+On obtient :<br>
+ <span style="font-family:monospace">(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+6*x)/(3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+2)</span></p><p>3/ On a :<br>
+<span style="font-style:italic">t</span><sub>0</sub>=<span style="font-style:italic">u</span><sub>1</sub><br>
+<span style="font-style:italic">t</span><sub>1</sub>=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">t</span><sub>0</sub>)=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">u</span><sub>1</sub>)=<span style="font-style:italic">u</span><sub>3</sub><br>
+<span style="font-style:italic">t</span><sub>2</sub>=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">t</span><sub>1</sub>)=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">u</span><sub>3</sub>)=<span style="font-style:italic">u</span><sub>9</sub><br>
+<span style="font-style:italic">t</span><sub>3</sub>=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">t</span><sub>2</sub>)=<span style="font-style:italic">f</span><sub>3</sub>(<span style="font-style:italic">u</span><sub>9</sub>)=<span style="font-style:italic">u</span><sub>2</sub>7<br>
+....donc <br>
+<span style="font-style:italic">t</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">u</span><sub>3<sup><span style="font-style:italic">n</span></sup></sub></p><p>4/Si on prend 3<sup><span style="font-style:italic">n</span></sup> ≥ 1432, on aura |<span style="font-style:italic">t</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup>
+On tape :<br>
+<span style="font-family:monospace">solve(3</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n&gt;1432.,n)</span><br>
+On obtient :<br>
+ <span style="font-family:monospace">n&gt;6.61...</span><br>
+Donc si <span style="font-style:italic">n</span>≥ 7), on aura |<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">l</span>|&lt;10<sup>−1000</sup>
+</p>
+<h4 id="sec384" class="subsubsection">Partie D</h4>
+<p>
+1/ Étant donné <span style="font-style:italic">p</span> entier positif, on peut refaire la même chose pour 
+trouver une valeur approchée de 
+√<span style="text-decoration:overline"><span style="font-style:italic">p</span></span> en prenant comme fonction <span style="font-style:italic">f</span> : <br>
+ <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span>+<span style="font-style:italic">p</span>/<span style="font-style:italic">x</span>+1<br>
+On tape :<br>
+<span style="font-family:monospace">f(x):=(x+p)/(x+1)</span> <br>
+On tape :<br>
+<span style="font-family:monospace">solve(f(x)=x,x)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[-(sqrt(p)),sqrt(p)]</span><br>
+On tape :<br>
+<span style="font-family:monospace">g(x):=(x-sqrt(p))/(x+sqrt(p))</span> <br>
+On tape :<br>
+<span style="font-family:monospace">h(x):=solve(g(y)=x,y)[0]</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(x*sqrt(p)+sqrt(p))/(-x+1)</span><br>
+donc <br>
+ <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=√<span style="text-decoration:overline"><span style="font-style:italic">p</span></span> <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>+1/−<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>+1 et<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">g</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>)=<span style="font-style:italic">g</span>(<span style="font-style:italic">f</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>))=<span style="font-style:italic">g</span>(<span style="font-style:italic">f</span>(<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>)))<br>
+On tape :<br>
+<span style="font-family:monospace">k:=g@f@h</span>
+puis :<br>
+<span style="font-family:monospace">normal(k(x))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">((sqrt(p)-p)*x)/(sqrt(p)+p)</span><br>
+ donc <br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+1</sub>=((√<span style="text-decoration:overline"><span style="font-style:italic">p</span></span>−<span style="font-style:italic">p</span>)*<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>)/(√<span style="text-decoration:overline"><span style="font-style:italic">p</span></span>+<span style="font-style:italic">p</span>)<br>
+La suite (<span style="font-style:italic">v</span>) est donc une suite géométrique de raison :<br>
+<span style="font-family:monospace">(sqrt(p)-p)/(sqrt(p)+p)=-g(1)</span><br>
+puis on tape :<br>
+<span style="font-family:monospace">normal(expand(mult_conjugate(k(1))))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">(-p-1+2*sqrt(p))/(p-1)</span><br>
+la suite (<span style="font-style:italic">v</span>) est donc une suite géomtrique de raison :<br>
+<span style="font-family:monospace">(-p-1+2*sqrt(p))/(p-1)</span><br>
+Donc :<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=((−<span style="font-style:italic">p</span>−1+2*√<span style="text-decoration:overline"><span style="font-style:italic">p</span></span>)/(<span style="font-style:italic">p</span>−1))<sup><span style="font-style:italic">n</span></sup><br>
+Donc on tape <span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>) :<br>
+<span style="font-family:monospace">h((((sqrt(p)-p)*x)/(sqrt(p)+p))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n)</span><br>
+On obtient <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> :<br>
+<span style="font-family:monospace">((((sqrt(p)-p)*x)/(sqrt(p)+p))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n*sqrt(p)+sqrt(p))/<br>
+(-(((sqrt(p)-p)*x)/(sqrt(p)+p))</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">n+1)</span></p><p>2/ On a :<br>
+<span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>, donc 
+<span style="font-style:italic">u</span><sub>2<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>2</sup>)=<span style="font-style:italic">h</span>((<span style="font-style:italic">g</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>))<sup>2</sup>) car <span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>)<sup>2</sup> et <span style="font-style:italic">v</span>(<span style="font-style:italic">n</span>)=<span style="font-style:italic">g</span>(<span style="font-style:italic">u</span>(<span style="font-style:italic">n</span>))<br>
+On tape puisque <span style="font-family:monospace">sq(x)=x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2</span> :<br>
+<span style="font-family:monospace">f2(x):=normal((h@sq@g)(x))</span><br>
+puis <br>
+<span style="font-family:monospace">f2(x)</span><br>
+On obtient :<br>
+ <span style="font-family:monospace">((x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+p)*1/2)/x</span><br>
+On reconnait la fonction obtenue par la méthode de Newton et
+qu’il faut itérer pour obtenir une approximation de √<span style="text-decoration:overline"><span style="font-style:italic">p</span></span>.</p><p>3/ On a :<br>
+<span style="font-style:italic">v</span><sub>3<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>3</sup>, donc 
+<span style="font-style:italic">u</span><sub>3<span style="font-style:italic">n</span></sub>=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub>3<span style="font-style:italic">n</span></sub>)=<span style="font-style:italic">h</span>(<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub><sup>3</sup>)=<span style="font-style:italic">h</span>((<span style="font-style:italic">g</span>(<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>))<sup>3</sup>) <br>
+On tape :<br>
+<span style="font-family:monospace">p3(x):=x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3</span>
+<span style="font-family:monospace">f3(x):=normal((h@p3@g)(x))</span><br>
+puis <br>
+<span style="font-family:monospace">f3(x)</span><br>
+On obtient :<br>
+ <span style="font-family:monospace">(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3+3*p*x)/(3*x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+p)</span>
+</p>
+<h4 id="sec385" class="subsubsection">Avec le tableur</h4>
+<p>
+Avec le tableur, on voit les différentes vitesses de convergences des suites
+<span style="font-family:monospace">(u)</span>, <span style="font-family:monospace">(v)</span> et <span style="font-family:monospace">(t)</span>.
+Il faut prévoir 6 colonnes : une colonne des valeurs exactes des termes de 
+la suite et une colonne donnant les valeurs approchées des termes de 
+la suite et cela pour chacune des suites.</p>
+<h2 id="sec386" class="section">22.3  Exemple d’une suite instable</h2>
+<h3 id="sec387" class="subsection">22.3.1  L’énoncé</h3>
+<p>
+Soient les suites <span style="font-style:italic">u</span> et <span style="font-style:italic">v</span> définies par :
+<span style="font-style:italic">u</span><sub>0</sub>=11/2<br>
+<span style="font-style:italic">u</span><sub>1</sub>=61/11<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=111−1130/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>+3000/<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−1</sub>*<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span>−2</sub><br>
+et <br>
+<span style="font-style:italic">v</span><sub>0</sub>=5.5<br>
+<span style="font-style:italic">v</span><sub>1</sub>=<span style="font-style:italic">evalf</span>(61/11)<br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=111−1130/<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub>+3000/<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub>*<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−2</sub><br>
+Quelles sont les limites possibles de ces suites ?
+À l’aide de <span style="font-family:monospace">Xcas</span>, calculer la valeur approchée des 30 premiers termes
+de ces deux suites en utilisant 20 digits.
+</p>
+<h3 id="sec388" class="subsection">22.3.2  Le programme</h3>
+<p>
+On tape :
+</p><pre class="verbatim">  instable(n,u0,u1):={
+    local j,un;
+    if (n==0) return u0;
+    if (n==1) return u1;
+    for(j:=2;j&lt;=n;j++){
+      un:=111-1130/u1+3000/(u0*u1);
+      u0:=u1;
+      u1:=un;
+    }
+    return un;
+  }
+:;
+</pre><p>
+On a alors :<br>
+<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">instable</span>(<span style="font-style:italic">n</span>,11/2,61/11) <br>
+<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">instable</span>(<span style="font-style:italic">n</span>,5.5,<span style="font-style:italic">evalf</span>(61/11))
+</p>
+<h3 id="sec389" class="subsection">22.3.3  Les résultats</h3>
+<p>
+Soit <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">y</span>)=111−1130/<span style="font-style:italic">x</span>+3000/<span style="font-style:italic">x</span>*<span style="font-style:italic">y</span>.<br>
+Si une suite <span style="font-style:italic">w</span> vérifie la relation de récurrence :
+<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">f</span>(<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span>−1</sub>*<span style="font-style:italic">w</span><sub><span style="font-style:italic">n</span>−2</sub>), les limites possibles d’une telle suite sont les 
+solutions de <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>,<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">solve(111-1130/x+3000/x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2=x,x)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[100,6,5]</span><br>
+Les limites possibles sont donc 5,6 et 100.<br>
+<span style="font-weight:bold">Remarque</span>
+La suite <span style="font-style:italic">v</span> dépend de la valeur de <span style="font-family:monospace">evalf(61/11)</span>, donc dépend du 
+nombre de digits utilisés et du mode de calcul utilisé.<br>
+On tape :
+</p><pre class="verbatim">Digits:=20;
+for(n:=0;n&lt;=30;n++){
+print(n);
+print(instable(n,5.5,evalf(61/11)));
+print(evalf(instable(n,11/2,61/11)));}
+</pre><p>
+On obtient :
+</p><pre class="verbatim">n:0
+5.50000000000000000000
+5.50000000000000000000
+n:1
+5.54545454545454545456
+5.54545454545454545456
+n:2
+5.59016393442622950768
+5.59016393442622950817
+n:3
+5.63343108504398826144
+5.63343108504398826979
+n:4
+5.67464862051015081490
+5.67464862051015096306
+n:5
+5.71332905238051293965
+5.71332905238051554900
+n:6
+5.74912091970259238934
+5.74912091970263804374
+n:7
+5.78181092048482174472
+5.78181092048561557945
+n:8
+5.81131423828027015958
+5.81131423829399572318
+n:9
+5.83765654872259110580
+5.83765654895871196153
+n:10
+5.86095151847234420526
+5.86095152251613197273
+n:11
+5.88137714686097474136
+5.88137721584141860362
+n:12
+5.89915273314948416898
+5.89915390579006532873
+n:13
+5.91450507580732900460
+5.91452495067898343240
+n:14
+5.92740541888982367183
+5.92774140777679525195
+n:15
+5.93338276962798092957
+5.93905048546111815120
+n:16
+5.85317477456212541080
+5.94868749248041657029
+n:17
+4.32520225792017284829
+5.95687073191822040100
+n:18
+-0.317580966868753489379e2
+5.96379872081940311587
+n:19
+0.124741088526995943127e3
+5.96964914404788717708
+n:20
+0.101183955312637480034e3
+5.97457902866672280000
+n:21
+0.100069905575441095835e3
+5.97872572175269217080
+n:22
+0.100004176388280681510e3
+5.98220835071100136336
+n:23
+0.100000249822052284540e3
+5.98512953056300350037
+n:24
+0.100000014951746801213e3
+5.98757715320858086895
+n:25
+0.100000000895227729755e3
+5.98962614887996719755
+n:26
+0.100000000053619816097e3
+5.99134015140329529141
+n:27
+0.100000000003212496604e3
+5.99277302875661600204
+n:28
+0.100000000000192515177e3
+5.99397026117232788471
+n:29
+0.100000000000011539180e3
+5.99497016287623956976
+n:30
+0.100000000000000691764e3
+5.99580495232911448068
+</pre><p>
+Il semble que la suite <span style="font-style:italic">u</span> converge vers 6 alors que la suite <span style="font-style:italic">v</span> semble 
+converger vers 100 alors qu’au début ces 2 suites sont très proches.<br>
+Cela ne provient pas d’erreurs d’arrondis car si on ne fait que du calcul 
+formel et que l’on tape :
+</p><pre class="verbatim">Digits:=20;
+for(n:=0;n&lt;=30;n++){
+print(n);
+print(evalf(instable(n,5.5,554545454545454545454/100000000000000000000)));
+print(evalf(instable(n,11/2,61/11)));}
+</pre><p>
+On obtient le même genre de résultat.
+</p>
+<h2 id="sec390" class="section">22.4  Suites doubles et calcul de 1/<span style="font-style:italic">k</span> pour <span style="font-style:italic">k</span>∈]0;2[</h2>
+<h3 id="sec391" class="subsection">22.4.1  L’énoncé</h3>
+<p>
+Soient deux suites <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> définies par :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=1, <span style="font-style:italic">b</span><sub>0</sub>=1−<span style="font-style:italic">k</span> où <span style="font-style:italic">k</span> est un réel de ]0;2[ et<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>(1+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>) et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub><sup>2</sup>
+</p><ul class="itemize"><li class="li-itemize">
+Montrer que <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup><span style="font-style:italic">n</span></sup></sup> et que <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)/<span style="font-style:italic">k</span>.
+</li><li class="li-itemize">En utilisant le tableur afficher les valeurs de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> pour 
+<span style="font-style:italic">k</span>=0.25, 0.5, 0.75, 1.25, 1.5, 1.75. En déduire le comportement des 
+suites <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>
+</li><li class="li-itemize">En déduire un programme qui calcule 1/<span style="font-style:italic">k</span> avec une précision donnée
+en ne faisant que des additions et des multiplications.
+</li></ul>
+<h3 id="sec392" class="subsection">22.4.2  La correction avec <span style="font-family:monospace">Xcas</span></h3>
+<ul class="itemize"><li class="li-itemize">
+Il est facile de montrer par récurrence que <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup><span style="font-style:italic">n</span></sup></sup>, en 
+effet :<br>
+<span style="font-style:italic">b</span><sub>0</sub>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup>0</sup></sup>=<span style="font-style:italic">b</span><sub>0</sub><sup>1</sup><br>
+si =<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup><span style="font-style:italic">n</span>−1</sup></sup> alors <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub><sup>2</sup>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup><span style="font-style:italic">n</span>−1</sup>*2</sup>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup><span style="font-style:italic">n</span></sup></sup>.<br>
+Montrons par récurrence que <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)/<span style="font-style:italic">k</span>, on a :<br>
+<span style="font-style:italic">a</span><sub>0</sub>=(1−<span style="font-style:italic">b</span><sub>0</sub>)/<span style="font-style:italic">x</span>=1 et <br>
+si <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>)/<span style="font-style:italic">k</span> alors <br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>)/<span style="font-style:italic">k</span>*(1+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub>)=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span>−1</sub><sup>2</sup>)/<span style="font-style:italic">k</span>=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)/<span style="font-style:italic">k</span>. 
+</li><li class="li-itemize">On met dans la colonne <span style="font-style:italic">A</span> les valeurs de <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> :<br>
+1 dans <span style="font-style:italic">A</span>0 puis <br>
+=<span style="font-style:italic">A</span>0*(1+<span style="font-style:italic">B</span>0) dans <span style="font-style:italic">A</span>1 puis on remplit vers le bas,<br>
+1−<span style="font-style:italic">C</span>0 dans <span style="font-style:italic">B</span>0 puis <br>
+=<span style="font-style:italic">B</span>0<sup>2</sup> dans <span style="font-style:italic">B</span>1 puis on remplit vers le bas,<br>
+On met dans <span style="font-style:italic">C</span>0 la valeur de <span style="font-style:italic">k</span>.<br>
+On remarque la suite <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> converge vers 0 et que <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> converge vers 1/<span style="font-style:italic">k</span>.
+On a en effet :<br>
+|<span style="font-style:italic">b</span><sub>0</sub>|=|1−<span style="font-style:italic">k</span>|&lt;1 donc <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">b</span><sub>0</sub><sup>2<sup><span style="font-style:italic">n</span></sup></sup> tend vers 0 quand <span style="font-style:italic">n</span> tend vers l’infini,<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=(1−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)/<span style="font-style:italic">k</span> tend donc vers 1/<span style="font-style:italic">k</span> quand <span style="font-style:italic">n</span> tend vers l’infini et on a :<br>
+<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−1/<span style="font-style:italic">k</span>=−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>/<span style="font-style:italic">k</span>&lt;0 et |<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−1/<span style="font-style:italic">k</span>|=<span style="font-style:italic">abs</span>(<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>)/<span style="font-style:italic">k</span>&lt;<span style="font-style:italic">eps</span> équivaut à |<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>|&lt;<span style="font-style:italic">k</span>*<span style="font-style:italic">eps</span>
+</li><li class="li-itemize"><pre class="verbatim">Invers(k,eps):={
+local a,b;
+a:=1;
+b:=1-k;
+tantque k*eps&lt;=abs(b) faire
+a:=a*(1+b);
+b:=b^2;
+ftantque;
+retourne a;  
+}:;
+</pre>
+On tape : <span style="font-family:monospace">Invers(1.75,1e-20)</span><br>
+On obtient : <span style="font-family:monospace">0.571428571428571428570</span>
+</li></ul>
+<h2 id="sec393" class="section">22.5  Encore des suites !</h2>
+<h3 id="sec394" class="subsection">22.5.1  L’énoncé</h3>
+<p>
+Soient <span style="font-style:italic">a</span>∈[0;1[ et <span style="font-style:italic">b</span>∈[0;1[.
+On considère les suites <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> qui vérifient <span style="font-style:italic">a</span><sub>0</sub>=<span style="font-style:italic">a</span> et <span style="font-style:italic">b</span><sub>0</sub>=<span style="font-style:italic">b</span> et 
+la même relation de récurrence :<br>
+si 2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>&lt;1, <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub> et sinon <span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>=1−2<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span>−1</sub>.
+</p><ul class="itemize"><li class="li-itemize">
+Écrire un programme qui calcule <span style="font-style:italic">a</span><sub>0</sub>,<span style="font-style:italic">a</span><sub>1</sub>...<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>. 
+</li><li class="li-itemize">On considère la suite <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>−<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub>
+Écrire un programme qui trace le graphe (<span style="font-style:italic">n</span>,<span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>) pour <span style="font-style:italic">n</span>∈[0;100]. 
+</li><li class="li-itemize">On observe que pour <span style="font-style:italic">n</span>&gt;=50 <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=0. Qu’en pensez-vous?
+</li></ul>
+<h3 id="sec395" class="subsection">22.5.2  La correction avec <span style="font-family:monospace">Xcas</span></h3>
+<ul class="itemize"><li class="li-itemize">
+<pre class="verbatim">suite(a,n):={
+  local u,u1,j,L;
+  u:=a;
+  L:=a;
+  si a&gt;=1 alors retourne "erreur"; fsi
+  pour j de 1 jusque n faire
+  u1:=2*u;
+  si u1&lt;1 alors 
+     u:=u1;
+  sinon 
+     u:=u1-1;
+  fsi;
+  L:=L,u;
+  fpour;
+  retourne L;  
+}:;
+</pre>
+On tape : <span style="font-family:monospace">suite(0.4,6)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0.4,0.8,0.6,0.2,0.4,0.8,0.599999999999</span>
+</li><li class="li-itemize"><pre class="verbatim">diffsuite(a,b,n):={
+  local u,u1,v,v1,j,L;
+  u:=a;
+  v:=b;
+  L:=point((a-b)*i);
+  si a&gt;=1 ou b&gt;=1 alors retourne "erreur"; fsi
+  pour j de 1 jusque n faire
+  u1:=2*u;
+  v1:=2*v;
+  si u1&lt;1 alors 
+     u:=u1;
+  sinon 
+     u:=u1-1;
+  fsi;
+  si v1&lt;1 alors 
+     v:=v1;
+  sinon 
+     v:=v1-1;
+  fsi
+  L:=L,point(j+(u-v)*i);
+  fpour;
+  retourne L;  
+}:;
+</pre>
+On tape : <span style="font-family:monospace">diffsuite(0.4,0.82,100)</span><br>
+On obtient :<br>
+
+<img src="casexo108.png"></li><li class="li-itemize">On tape : <span style="font-family:monospace">diffsuite(4/10,82/100,100)</span><br>
+On obtient :<br>
+
+<img src="casexo109.png">
+La suite <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span><sub><span style="font-style:italic">n</span></sub>+<span style="font-style:italic">b</span><sub><span style="font-style:italic">n</span></sub> semble être périodique quand <span style="font-style:italic">a</span> et <span style="font-style:italic">b</span> sont des 
+nombres d’ecimaux et ce sont les erreurs 
+d’arrondis qui font que <span style="font-style:italic">u</span><sub><span style="font-style:italic">n</span></sub> semble nulle pour <span style="font-style:italic">n</span>&gt;50.<br>
+On tape : <span style="font-family:monospace">diffsuite(pi-3,e-2,100)</span><br>
+On obtient avec 20 chiffres significatifs :<br>
+
+<img src="casexo110.png"></li><li class="li-itemize">On tape : <span style="font-family:monospace">diffsuite(pi-3,e-2,100)</span><br>
+On obtient avec 35 chiffres significatifs :<br>
+
+<img src="casexo111.png"></li></ul>
+<h2 id="sec396" class="section">22.6  Le modèle de Volterra Lotka</h2>
+<p>
+L’objectif de l’exercice est de modéliser l’évolution de la population de 2
+espèces, avec des hypothèses simples.
+</p><ul class="itemize"><li class="li-itemize">
+La première espèce est une proie. Elle dispose de ressources en 
+quantité illimitées
+</li><li class="li-itemize">La seconde espèce est un prédateur. Sa seule ressource est la proie.
+</li><li class="li-itemize">Les espèces sont isolées et n’interagissent qu’entre elles.
+</li></ul><p>
+Le modèle de Volterra Lotka discret est un modèle d’évolution 
+correspondant à ces hypothèses. <br>
+Le temps est discrétisé. À chaque entier <span style="font-style:italic">n</span>, on associe le nombre 
+d’individus de la proie <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> (pour lapin) et du prédateur <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub> (pour renard)
+à la <span style="font-style:italic">n</span> ième étape. L’évolution suit les règles suivantes :<br>
+<span style="font-style:italic">l</span><sub>0</sub> et <span style="font-style:italic">r</span><sub>0</sub> sont les populations initiales et pour tout <span style="font-style:italic">n</span> ∈ ℕ on a :<br>
+<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span>+1</sub>− <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> = α <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> − β <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub><br>
+<span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span>+1</sub> − <span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span></sub> = γ <span style="font-style:italic">l</span><sub> <span style="font-style:italic">n</span></sub> <span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span></sub> − δ <span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span></sub><br>
+α, β, γ, δ sont des coefficients réels strictement 
+positifs.
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+Que se passe-t-il en l’absence de prédateur ?
+</li><li class="li-enumerate">Que se passe-t-il en l’absence de proie ?
+</li><li class="li-enumerate">Donner en fonction des paramètres une position d’équilibre du 
+système.
+</li><li class="li-enumerate">Ecrire une fonction volterra(N,l0,r0,alpha,beta,gamma,delta) qui affiche à l’écran les <span style="font-style:italic">N</span>+1 
+premières valeurs des deux suites (<span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>) et (<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>). L’affichage des valeurs doit se terminer si l’une des 
+espèces s’éteint.
+</li><li class="li-enumerate">Modifier la fonction précédente pour produire le dessin des <span style="font-style:italic">N</span>+1 premières 
+valeurs des deux suites. 
+le couple (<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>, <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>) sera considéré comme un point. Les points seront reliés entre 
+eux par des segments.
+</li><li class="li-enumerate">Utilisez la fonction précédente pour explorer le modèle, en jouant sur ses 
+paramètres.
+</li><li class="li-enumerate">Le modèle de Volterra Lotka est un modèle sans saturation (En l’absence de 
+prédateur, la population des proies croit exponentiellement, ce qui traduit l’hypothèse 
+de ressources illimitées). 
+Proposez un modèle avec saturation et simulez le.
+</li></ol><p>
+La solution avec <span style="font-family:monospace">Xcas</span>
+</p><ol class="enumerate" type=1><li class="li-enumerate">
+En l’absence de prédateur on a pour tout <span style="font-style:italic">n</span> ∈ ℕ <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>=0 donc :<br>
+<span style="font-style:italic">l</span><sub> <span style="font-style:italic">n</span>+1</sub> =(1+ α) <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> <br>
+<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> est une suite géométrique et <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">l</span><sub>0</sub>(1+ α)<sup><span style="font-style:italic">n</span></sup> avec 1+ α)&gt;1.<br>
+Donc en l’absence de prédateur, <span style="font-style:italic">l</span>(<span style="font-style:italic">n</span> tend vers +∞ quand <span style="font-style:italic">n</span> tend vers +∞
+</li><li class="li-enumerate">En l’absence de proie on a pour tout <span style="font-style:italic">n</span> ∈ ℕ <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>=0 donc :<br>
+<span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span>+1</sub> =(1− δ) <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub> <br>
+<span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub> est une suite géométrique et <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">r</span><sub>0</sub>(1− δ)<sup><span style="font-style:italic">n</span></sup> avec 1− δ)&lt;1.
+Donc en l’absence de proie, <span style="font-style:italic">r</span>(<span style="font-style:italic">n</span> tend vers +∞ quand <span style="font-style:italic">n</span> tend vers 0
+</li><li class="li-enumerate">La position d’équilibre du système se fait lorsque à partir d’un
+certain rang <span style="font-style:italic">n</span>, on a : <span style="font-style:italic">l</span><sub> <span style="font-style:italic">n</span>+1</sub> = <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> et <span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span>+1</sub> =<span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>.<br>
+c’est à dire :<br>
+α <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> − β <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub> <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub> =0 et<br>
+γ <span style="font-style:italic">l</span><sub> <span style="font-style:italic">n</span></sub> <span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span></sub> − δ <span style="font-style:italic">r</span><sub> <span style="font-style:italic">n</span></sub>=0
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">, </td></tr>
+</table>
+On tape :<br>
+<span style="font-family:monospace">assume(a&gt;0)</span><br>
+<span style="font-family:monospace">assume(b&gt;0)</span><br>
+<span style="font-family:monospace">assume(c&gt;0)</span><br>
+<span style="font-family:monospace">assume(d&gt;0)</span><br>
+<span style="font-family:monospace">normal(solve([x=(a+1)*x-b*x*y, y=c*x*y+(1-d)*y],[x,y]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[0,0],[d/c,a/b]]</span><br>
+Donc une position déquilibre du système est pour un rang <span style="font-style:italic">n</span> :<br>
+<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">d</span>/<span style="font-style:italic">c</span> et <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>/<span style="font-style:italic">b</span>.<br>
+On tape :<br>
+<span style="font-family:monospace">factor(solve([(a+1)*x-b*x*y=d/c,y*(1-d)+c*x*y=a/b],[x,y]))</span><br>
+On obtient :<br>
+<span style="font-family:monospace">[[d/c,a/b],[(d-1)/(c*(a+1)),(-a-1)/((d-1)*b)]]</span><br>
+ce qui veut dire que si <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">d</span>/<span style="font-style:italic">c</span> et <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>=<span style="font-style:italic">a</span>/<span style="font-style:italic">b</span> c’est que 
+<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">d</span>/<span style="font-style:italic">c</span> et <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span>−1</sub>=<span style="font-style:italic">a</span>/<span style="font-style:italic">b</span> ou que <br>
+<span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span>−1</sub>=(<span style="font-style:italic">d</span>−1)/(<span style="font-style:italic">c</span>*(<span style="font-style:italic">a</span>+1)) et <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span>−1</sub>=−(<span style="font-style:italic">a</span>+1)/((<span style="font-style:italic">d</span>−1)*<span style="font-style:italic">b</span>) 
+mais comme <span style="font-style:italic">l</span><sub><span style="font-style:italic">n</span></sub>&gt;=0 et <span style="font-style:italic">r</span><sub><span style="font-style:italic">n</span></sub>&gt;=0 cela entraine <span style="font-style:italic">d</span>=1 ce qui correspond à 
+l’absence de proie.
+</li><li class="li-enumerate">On tape :
+<pre class="verbatim">volterra(N,l0,r0,a,b,c,d):={
+local l,r,n,la,L,k ;
+l:=l0;r:=r0;L:=NULL;
+L:=L,[l,r];  
+pour k de 1 jusque N faire
+la:=l;
+l:=l*(a+1)-b*l*r;
+r:=r*(1-d)+c*la*r;
+L:=L,[l,r];  
+si l&lt;=0 ou r&lt;=0 alors return L; fsi;
+fpour;
+return L;
+}:;
+</pre></li></ol>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo021.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo023.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

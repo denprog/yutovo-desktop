@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Elementary row operations</title>
+</head>
+<body >
+<a href="cascmd_en505.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en507.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1174" class="subsection">14.3.11  Elementary row operations</h3>
+<h5 id="sec1175" class="paragraph">Adding a row to another row.</h5>
+<p>
+The <span style="font-family:monospace">rowAdd</span><a id="hevea_default856"></a> command adds one row of a matrix to another row.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">rowAdd</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">n</span><sub>1</sub> and <span style="font-style:italic">n</span><sub>2</sub>, two integers.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">rowAdd(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">n</span><sub>1</sub>,<span style="font-style:italic">n</span><sub>2</sub><span style="font-family:monospace">)</span> returns the matrix obtained
+by replacing in <span style="font-style:italic">A</span>, the row of index <span style="font-style:italic">n</span>2 by the sum of the rows of
+index <span style="font-style:italic">n</span>1 and <span style="font-style:italic">n</span>2.
+</li></ul><h4 id="sec1176" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rowAdd</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2],[3,4]],0,1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1177" class="paragraph">Multiplying a row by an expression.</h5>
+<p>
+The <span style="font-family:monospace">mRow</span><a id="hevea_default857"></a>,
+<span style="font-family:monospace">scale</span><a id="hevea_default858"></a> and
+<span style="font-family:monospace">SCALE</span><a id="hevea_default859"></a> commands multiply
+a row of a matrix by an expression.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">mRow</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">expr</span>, an expression.
+</li><li class="li-itemize"><span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">n</span>, an integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">mRow(</span><span style="font-style:italic">expr</span>,<span style="font-style:italic">A</span>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns the matrix
+obtained by replacing in <span style="font-style:italic">A</span>, the row of index <span style="font-style:italic">n</span> by the product of
+the row of index <span style="font-style:italic">n</span> by <span style="font-style:italic">expr</span>.
+</li></ul><p>The <span style="font-family:monospace">scale</span> or <span style="font-family:monospace">SCALE</span>
+command is similar to <span style="font-family:monospace">mRow</span> except for a different
+order of arguments.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">scale</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">expr</span>, an expression.
+</li><li class="li-itemize"><span style="font-style:italic">n</span>, an integer.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">scale(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">expr</span>,<span style="font-style:italic">n</span><span style="font-family:monospace">)</span> returns the matrix
+obtained by replacing in <span style="font-style:italic">A</span>, the row of index <span style="font-style:italic">n</span> by the product of
+the row of index <span style="font-style:italic">n</span> by <span style="font-style:italic">expr</span>.
+</li></ul><h4 id="sec1178" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">mRow</span></span><span style="font-weight:bold"><span style="color:#BF0000">(12,[[1,2],[3,4]],1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">36</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">48</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">scale</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2],[3,4]],12,1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">36</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">48</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1179" class="paragraph">Adding <span style="font-style:italic">k</span> times a row to another row.</h5>
+<p>
+The <span style="font-family:monospace">mRowAdd</span><a id="hevea_default860"></a>,
+<span style="font-family:monospace">scaleadd</span><a id="hevea_default861"></a> and
+<span style="font-family:monospace">SCALEADD</span><a id="hevea_default862"></a> commands
+add a multiple of one row of a matrix to another.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">mRowAdd</span> takes four arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">k</span>, a real number.
+</li><li class="li-itemize"><span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">n</span><sub>1</sub> and <span style="font-style:italic">n</span><sub>2</sub>, two integers.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">mRowAdd(</span><span style="font-style:italic">k</span>,<span style="font-style:italic">A</span>,<span style="font-style:italic">n</span><sub>1</sub>,<span style="font-style:italic">n</span><sub>2</sub><span style="font-family:monospace">)</span> returns the matrix
+obtained by replacing in <span style="font-style:italic">A</span>, the row with index <span style="font-style:italic">n</span><sub>2</sub> by the sum
+of the row with index <span style="font-style:italic">n</span><sub>2</sub> and <span style="font-style:italic">k</span> times the row with index <span style="font-style:italic">n</span><sub>1</sub>.
+</li></ul><p>The <span style="font-family:monospace">scaleadd</span> or <span style="font-family:monospace">SCALEADD</span>
+command is similar <span style="font-family:monospace">mRowAdd</span> except
+for a different order of arguments.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">scaleadd</span> takes four arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">k</span>, a real number.
+</li><li class="li-itemize"><span style="font-style:italic">n</span><sub>1</sub> and <span style="font-style:italic">n</span><sub>2</sub>, two integers.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">scaleadd(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">k</span>,<span style="font-style:italic">n</span><sub>1</sub>,<span style="font-style:italic">n</span><sub>2</sub><span style="font-family:monospace">)</span> returns the matrix
+obtained by replacing in <span style="font-style:italic">A</span>, the row with index <span style="font-style:italic">n</span><sub>2</sub> by the sum
+of the row with index <span style="font-style:italic">n</span><sub>2</sub> and <span style="font-style:italic">k</span> times the row with index <span style="font-style:italic">n</span><sub>1</sub>.
+</li></ul><h4 id="sec1180" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">mRowAdd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1.1,[[5,7],[3,4],[1,2]],1,2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">7</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4.3</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6.4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">scaleadd</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[5,7],[3,4],[1,2]],1.1,1,2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">5</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">7</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4.3</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">6.4</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1181" class="paragraph">Exchanging two rows.</h5>
+<p>
+The <span style="font-family:monospace">rowSwap</span><a id="hevea_default863"></a> or
+<span style="font-family:monospace">rowswap</span><a id="hevea_default864"></a> or
+<span style="font-family:monospace">swaprow</span><a id="hevea_default865"></a>
+command switches two rows in a matrix.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">rowSwap</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">n</span><sub>1</sub> and <span style="font-style:italic">n</span><sub>2</sub>, integers.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">rowSwap(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">n</span><sub>1</sub>,<span style="font-style:italic">n</span><sub>2</sub><span style="font-family:monospace">)</span> returns the matrix obtained
+by exchanging in <span style="font-style:italic">A</span>, the row with index <span style="font-style:italic">n</span><sub>1</sub> with the row with
+index <span style="font-style:italic">n</span><sub>2</sub>.
+</li></ul><h4 id="sec1182" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">rowSwap</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2],[3,4]],0,1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<h5 id="sec1183" class="paragraph">Exchanging two columns.</h5>
+<p>
+The <span style="font-family:monospace">colSwap</span><a id="hevea_default866"></a> or
+<span style="font-family:monospace">colswap</span><a id="hevea_default867"></a> or
+<span style="font-family:monospace">swapcol</span><a id="hevea_default868"></a>
+command switches two columns in a matrix.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">colSwap</span> takes three arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, a matrix.
+</li><li class="li-itemize"><span style="font-style:italic">n</span><sub>1</sub> and <span style="font-style:italic">n</span><sub>2</sub>, integers.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">colSwap(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">n</span><sub>1</sub>,<span style="font-style:italic">n</span><sub>2</sub><span style="font-family:monospace">)</span> returns the matrix obtained
+by exchanging in <span style="font-style:italic">A</span>, the column with index <span style="font-style:italic">n</span><sub>1</sub> with the column with
+index <span style="font-style:italic">n</span><sub>2</sub>.
+</li></ul><h4 id="sec1184" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">colSwap</span></span><span style="font-weight:bold"><span style="color:#BF0000">([[1,2],[3,4]],0,1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎣</span></td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">1</span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">4</span></td><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">3</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en505.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en507.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

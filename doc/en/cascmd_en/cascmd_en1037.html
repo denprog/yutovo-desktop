@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.29+5 of 2017-05-18">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Joining audio clips together</title>
+</head>
+<body >
+<a href="cascmd_en1036.html"><img src="previous_motif.gif" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.gif" alt="Up"></a>
+<a href="cascmd_en1038.html"><img src="next_motif.gif" alt="Next"></a>
+<hr>
+<h3 id="ssec:splice" class="subsection">27.2.17  Joining audio clips together</h3>
+<p>The <span style="font-family:monospace">splice</span><a id="hevea_default1961"></a>
+command joins two audio clips together with an overlap and optionally a crossfade.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">splice</span> takes two mandatory arguments and one or two optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">A</span>, an audio clip.
+</li><li class="li-itemize"><span style="font-style:italic">B</span>, an audio clip with the same number of channels,
+bit depth and sample rate as <span style="font-style:italic">A</span>.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">len</span>, a positive integer defining the overlap size
+(by default, <span style="font-style:italic">len</span> is the minimum of 0.5· <span style="font-style:italic">s</span>, <span style="font-style:italic">L</span><sub><span style="font-style:italic">A</span></sub>/2, and <span style="font-style:italic">L</span><sub><span style="font-style:italic">B</span></sub>/2, where
+<span style="font-style:italic">L</span><sub><span style="font-style:italic">A</span></sub> and <span style="font-style:italic">L</span><sub><span style="font-style:italic">B</span></sub> are the lengths of <span style="font-style:italic">A</span> and <span style="font-style:italic">B</span> in samples and <span style="font-style:italic">s</span> is the sample rate).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">p</span>, a real number defining the crossfade curve
+(by default, <span style="font-style:italic">p</span> is computed automatically, see below).
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">splice(</span><span style="font-style:italic">A</span>,<span style="font-style:italic">B</span> ⟨,<span style="font-style:italic">len</span>,<span style="font-style:italic">p</span> ⟩<span style="font-family:monospace">)</span>
+returns the audio clip obtained by splicing <span style="font-style:italic">A</span> and <span style="font-style:italic">B</span> with an overlap
+of <span style="font-style:italic">len</span> samples and a crossfade which is computed using the function
+<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=<span style="font-style:italic">x</span><sup><span style="font-style:italic">p</span></sup>, <span style="font-style:italic">x</span>∈[0,1], for <span style="font-style:italic">p</span>&gt;0.
+</li><li class="li-itemize">For positively correlated audio data on the overlap, it is best to set <span style="font-style:italic">p</span>=1.0
+(constant gain crossfade), while for zero-correlated data <span style="font-style:italic">p</span>=0.5 (constant power crossfade)
+works better. If <span style="font-style:italic">p</span> is not specified, it is computed automatically in [0.5,1.0]
+such that <span style="font-style:italic">p</span>−0.5 is proportional to the absolute value of the cosine distance between
+the overlapping data. Setting <span style="font-style:italic">p</span>=0 disables crossfading and thus the overlapped data is
+simply added together.
+</li></ul><h4 id="sec2574" class="subsubsection">Example</h4>
+<p>
+With the audio file <span style="font-family:monospace">gettysburg.wav</span> downloaded from
+<a href="https://www2.cs.uic.edu/~i101/SoundFiles/">here</a>:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">clip</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">normalize</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">readwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#006600"><span style="font-weight:bold"><span style="color:#BF0000">"/home/luka/Downloads/gettysburg.wav"</span></span></span></span><span style="font-weight:bold"><span style="color:#BF0000">),-1)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 387574 samples at 22050 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+To remove the portion of the speech between 5.6 and 10.5 seconds,
+splice the portions on the left and right by using an overlap of
+size 0.25 seconds.
+To visualize the audio and the selected portion, you can enter:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=5.6:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">t2</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=10.5:; </span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">duration</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip</span></span><span style="font-weight:bold"><span style="color:#BF0000">):; </span></span><span style="font-weight:bold"><span style="color:#BF0000">cfl</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=0.25:;</span></span><span style="font-weight:bold"><span style="color:#BF0000">
+ </span></span><span style="font-weight:bold"><span style="color:#BF0000">rectangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">t2</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,2/(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t2</span></span><span style="font-weight:bold"><span style="color:#BF0000">-</span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">display</span></span><span style="font-weight:bold"><span style="color:#BF0000">=</span></span><span style="font-weight:bold"><span style="color:#BF0000">pink</span></span><span style="font-weight:bold"><span style="color:#BF0000">+</span></span><span style="font-weight:bold"><span style="color:#BF0000">filled</span></span><span style="font-weight:bold"><span style="color:#BF0000">); </span></span><span style="font-weight:bold"><span style="color:#BF0000">plotwav</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip</span></span><span style="font-weight:bold"><span style="color:#BF0000">);</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en454.png">
+
+</div><p>
+
+Extract the portions from 0 to <span style="font-style:italic">t</span><sub>1</sub> and from <span style="font-style:italic">t</span><sub>2</sub> to the end
+and splice them with an automatic crossfade:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">snd</span></span><span style="font-weight:bold"><span style="color:#BF0000">:=</span></span><span style="font-weight:bold"><span style="color:#BF0000">splice</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip</span></span><span style="font-weight:bold"><span style="color:#BF0000">(0.0..</span></span><span style="font-weight:bold"><span style="color:#BF0000">t1</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">clip</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">t2</span></span><span style="font-weight:bold"><span style="color:#BF0000">..</span></span><span style="font-weight:bold"><span style="color:#BF0000">d</span></span><span style="font-weight:bold"><span style="color:#BF0000">),</span></span><span style="font-weight:bold"><span style="color:#BF0000">cfl</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+</span><span style="color:#0000CC">a sound clip with 274016 samples at 22050 Hz (16 bit, mono)</span><span style="color:#0000CC">
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Use <span style="font-family:monospace">playsnd</span> (see Section <a href="cascmd_en1034.html#ssec%3Aplaysnd">27.2.14</a>) to hear the result.</p>
+<hr>
+<a href="cascmd_en1036.html"><img src="previous_motif.gif" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.gif" alt="Up"></a>
+<a href="cascmd_en1038.html"><img src="next_motif.gif" alt="Next"></a>
+</body>
+</html>

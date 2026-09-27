@@ -1,0 +1,28 @@
+c:=circle(0,1); I:=point(0);
+P1:=point(-1):;
+assume(a=[0.8,-5,5,0.1]);
+P2:=point((1+i*a)/(1-i*a));
+assume(b=[-0.3,-5,5,0.1]);
+P3:=point((1+i*b)/(1-i*b)):;
+L1:=perpendicular(P1,line(0,P1)):;
+L2:=perpendicular(P2,line(0,P2)):;
+L3:=perpendicular(P3,line(0,P3)):;
+A:=single_inter(L1,L2);
+B:=single_inter(L1,L3);
+C:=single_inter(L2,L3);
+triangle(A,B,C);
+assume(d=[0.7,0,5,0.1]);
+D:=element(line(A,I),d);
+E:=single_inter(segment(A,C),rotation(D,angle(C,B,D),line(A,D)));
+F:=single_inter(segment(A,B),rotation(D,angle(B,C,D),line(A,D)));
+X:=single_inter(line(A,C),perpen_bisector(B,C));
+o1:=circumcircle(A,D,C);
+o2:=circumcircle(E,X,D);
+O1:=center(o1);
+O2:=center(o2);
+d1:=line(O1,O2,color=red);
+d2:=line(B,C,color=red);
+d3:=line(E,F,color=red);
+
+J:=single_inter(d2,d3):; K:=single_inter(d2,d1):;
+normal(K-J);

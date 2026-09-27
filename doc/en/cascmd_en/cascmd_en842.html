@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Isosceles triangles in the plane</title>
+</head>
+<body >
+<a href="cascmd_en841.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en843.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:2disotriangles" class="subsection">26.7.2  Isosceles triangles in the plane</h3>
+<p>See Section <a href="cascmd_en942.html#ssec%3A3disotriangles">27.6.2</a> for isosceles triangles in space.</p><p>The <span style="font-family:monospace">isosceles_triangle</span><a id="hevea_default1736"></a>
+command creates isosceles triangles.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">isosceles_triangle</span> takes three mandatory arguments
+and one optional argument:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>, two points.
+</li><li class="li-itemize">θ, an angle.
+</li><li class="li-itemize">Optionally, <span style="font-family:monospace">var</span>, a variable name.
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">isosceles_triangle(</span><span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>,θ ⟨,<span style="font-style:italic">var</span> ⟩<span style="font-family:monospace">)</span>
+returns and draws the isosceles triangle <span style="font-style:italic">abc</span>, where <span style="font-style:italic">ab</span> and
+<span style="font-style:italic">ac</span> are equal sides and θ is the angle between <span style="font-style:italic">ab</span> and
+<span style="font-style:italic">ac</span>.<p>With the argument <span style="font-style:italic">var</span>, <span style="font-style:italic">c</span> will be assigned to
+<span style="font-style:italic">var</span>.
+</p></li></ul><h4 id="sec2157" class="subsubsection">Examples</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">isosceles_triangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1,-3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/4)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en269.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">isosceles_triangle</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">i</span></span><span style="font-weight:bold"><span style="color:#BF0000">,1,-3*</span></span><span style="font-weight:bold"><span style="color:#BF0000">pi</span></span><span style="font-weight:bold"><span style="color:#BF0000">/4,</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><div class="center">
+
+<img src="cascmd_en270.png">
+
+</div><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">normal</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">affix</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">C</span></span><span style="font-weight:bold"><span style="color:#BF0000">))</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+−</span></td><td class="dcell"><span style="color:#0000CC"><span style="font-size:x-large">√</span></span></td><td class="dcell"><table style="border:0;border-spacing:1;border-collapse:separate;" class="cellpadding0"><tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td style="text-align:center;white-space:nowrap" ><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">+</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">
+</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en841.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en843.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

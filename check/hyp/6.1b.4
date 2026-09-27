@@ -1,0 +1,10 @@
+# Maple integration test file: "6 Hyperbolic functions\6.1b Hyperbolic cosine\6.1.4 (d+e x)^m cosh(a+b x+c x^2)^n.txt"
+
+lst:=[
+[x^2*cosh(a+b*x+c*x^2),x,12,-1/4*b*sinh(a+b*x+c*x^2)/c^2+1/2*x*sinh(a+b*x+c*x^2)/c+1/16*b^2*exp(-a+1/4*b^2/c)*erf(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(5/2)+1/8*exp(-a+1/4*b^2/c)*erf(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(3/2)+1/16*b^2*exp(a-1/4*b^2/c)*erfi(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(5/2)-1/8*exp(a-1/4*b^2/c)*erfi(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(3/2)],
+[cosh(a+b*x-c*x^2)/x,x,0,Integral(cosh(a+b*x-c*x^2)/x,x)],
+[x*cosh(a+b*x+c*x^2)^2,x,8,1/4*x^2+1/8*sinh(2*a+2*b*x+2*c*x^2)/c-1/16*b*exp(-2*a+1/2*b^2/c)*erf((b+2*c*x)/(sqrt(2)*sqrt(c)))*sqrt(1/2*Pi)/c^(3/2)-1/16*b*exp(2*a-1/2*b^2/c)*erfi((b+2*c*x)/(sqrt(2)*sqrt(c)))*sqrt(1/2*Pi)/c^(3/2)],
+[x*cosh(a+b*x-c*x^2)^2,x,8,1/4*x^2-1/8*sinh(2*a+2*b*x-2*c*x^2)/c-1/16*b*exp(2*a+1/2*b^2/c)*erf((b-2*c*x)/(sqrt(2)*sqrt(c)))*sqrt(1/2*Pi)/c^(3/2)-1/16*b*exp(-2*a-1/2*b^2/c)*erfi((b-2*c*x)/(sqrt(2)*sqrt(c)))*sqrt(1/2*Pi)/c^(3/2)],
+[x^2*cosh(1/4+x+x^2)^2,x,14,1/6*x^3-1/16*sinh(1/2+2*x+2*x^2)+1/8*x*sinh(1/2+2*x+2*x^2)+1/16*erf((1+2*x)/sqrt(2))*sqrt(1/2*Pi)],
+[(d+e*x)^2*cosh(a+b*x+c*x^2),x,12,1/4*e*(2*c*d-b*e)*sinh(a+b*x+c*x^2)/c^2+1/2*e*(d+e*x)*sinh(a+b*x+c*x^2)/c+1/8*e^2*exp(-a+1/4*b^2/c)*erf(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(3/2)+1/16*(2*c*d-b*e)^2*exp(-a+1/4*b^2/c)*erf(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(5/2)-1/8*e^2*exp(a-1/4*b^2/c)*erfi(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(3/2)+1/16*(2*c*d-b*e)^2*exp(a-1/4*b^2/c)*erfi(1/2*(b+2*c*x)/sqrt(c))*sqrt(Pi)/c^(5/2)],
+[cosh(a+b*x+c*x^2)^2/(d+e*x),x,2,1/2*Integral(cosh(2*a+2*b*x+2*c*x^2)/(d+e*x),x)+1/2*log(d+e*x)/e]]:

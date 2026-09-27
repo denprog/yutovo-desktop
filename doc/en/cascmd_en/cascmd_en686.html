@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Kolmogorov-Smirnov distribution</title>
+</head>
+<body >
+<a href="cascmd_en685.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en687.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="ssec:kolmogorovd" class="subsection">20.4.17  Kolmogorov-Smirnov distribution</h3>
+<p>The density function for the Kolmogorov-Smirnov distribution is given by
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell"><a id="eq:kolm"></a>
+<span style="font-family:monospace">kolmogorovd</span>(<span style="font-style:italic">x</span>)=1−2</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">∞</td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-size:xx-large">∑</span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">k</span>=1</td></tr>
+</table></td><td class="dcell"> (−1)<sup><span style="font-style:italic">k</span>−1</sup> <span style="font-style:italic">e</span><sup>−<span style="font-style:italic">k</span><sup>2</sup> <span style="font-style:italic">x</span><sup>2</sup></sup>
+    (12)</td></tr>
+</table><p>
+The <span style="font-family:monospace">kolmogorovd</span><a id="hevea_default1398"></a>
+command computes this density function.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">kolmogorovd</span> takes
+<span style="font-style:italic">x</span>, a real number.
+</li><li class="li-itemize"><span style="font-family:monospace">kolmogorovd(</span><span style="font-style:italic">x</span><span style="font-family:monospace">)</span> returns the density function of the
+Kolmogorov-Smirnov distribution at <span style="font-style:italic">x</span>, given by (<a href="#eq%3Akolm">12</a>).
+</li></ul><h4 id="sec1772" class="subsubsection">Example</h4>
+<table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">kolmogorovd</span></span><span style="font-weight:bold"><span style="color:#BF0000">(1.36)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+0.950514123245
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en685.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en687.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

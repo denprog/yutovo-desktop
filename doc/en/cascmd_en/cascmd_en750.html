@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Finding approximate solutions of equations involving one variable</title>
+</head>
+<body >
+<a href="cascmd_en749.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en751.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec:fsolve" class="subsection">23.3.2  Finding approximate solutions of equations involving one variable</h3>
+<p>The <span style="font-family:monospace">fsolve</span><a id="hevea_default1496"></a>
+or <span style="font-family:monospace">nSolve</span><a id="hevea_default1497"></a>
+command can solve equations or systems of
+equations. This section will discuss solving equations; systems will
+be discussed in the next section.</p><p>The <span style="font-family:monospace">cfsolve</span><a id="hevea_default1498"></a>
+command is the complex version of
+<span style="font-family:monospace">fsolve</span>, with the same arguments. The only difference is that
+<span style="font-family:monospace">cfsolve</span> gives numeric solutions over the complex numbers,
+even if <span style="font-variant:small-caps">Xcas</span> is not in complex mode (see
+Section <a href="cascmd_en028.html#ssec%3Acomplex">2.5.5</a>). <span style="font-family:monospace">fsolve</span> will return complex roots,
+but only in complex mode.</p><p><span style="font-family:monospace">fsolve</span> solves numeric equations of the form:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">f</span>(<span style="font-style:italic">x</span>)=0,    <span style="font-style:italic">x</span> ∈ (<span style="font-style:italic">a</span>,<span style="font-style:italic">b</span>).
+</td></tr>
+</table><p>
+Unlike <span style="font-family:monospace">solve</span> (Section <a href="cascmd_en277.html#ssec%3Asolve">9.3.6</a>) or <span style="font-family:monospace">proot</span>
+(Section <a href="cascmd_en752.html#sec%3Aproot">23.3.4</a>), it is not limited to polynomial equations.</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">fsolve</span> takes one mandatory argument and three
+optional arguments:
+<ul class="itemize"><li class="li-itemize">
+<span style="font-style:italic">eqn</span>, an equation involving one variable.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">var</span>, the variable (by default
+<span style="font-family:monospace">x</span>).
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">init</span>, an initial approximation or range.
+</li><li class="li-itemize">Optionally, <span style="font-style:italic">method</span>, the name of an iterative method to be
+used by the GSL solver. The possible values are:
+<dl class="description"><dt class="dt-description">
+<span style="font-family:monospace">bisection_solver</span>.</dt><dd class="dd-description">
+<a id="hevea_default1499"></a>
+<a id="hevea_default1500"></a>
+This algorithm of dichotomy is the simplest but also generally the
+slowest. It encloses the zero of a function on an interval. Each
+iteration cuts the interval into two parts, the middle
+point value is calculated. The function sign at this point gives you the
+half-interval on which the next iteration will be performed.
+</dd><dt class="dt-description"><span style="font-family:monospace">brent_solver</span>.</dt><dd class="dd-description">
+<a id="hevea_default1501"></a>
+<a id="hevea_default1502"></a>
+The Brent method interpolates of <span style="font-style:italic">f</span> at three points, finds the
+intersection of the interpolation with the <span style="font-style:italic">x</span> axis, computes the sign
+of <span style="font-style:italic">f</span> at this point and chooses the interval where the sign changes.
+It is generally faster than bisection.
+</dd><dt class="dt-description"><span style="font-family:monospace">falsepos_solver</span>.</dt><dd class="dd-description">
+<a id="hevea_default1503"></a>
+<a id="hevea_default1504"></a>
+The “false position” algorithm is an iterative algorithm based on
+linear interpolation: it computes the value of <span style="font-style:italic">f</span> at the intersection
+of the line (<span style="font-style:italic">a</span>,<span style="font-style:italic">f</span>(<span style="font-style:italic">a</span>)), (<span style="font-style:italic">b</span>,<span style="font-style:italic">f</span>(<span style="font-style:italic">b</span>)) with the <span style="font-style:italic">x</span> axis. This value gives
+us the part of the interval containing the root, and on which a new
+iteration is performed. The convergence is linear but generally
+faster than bisection.
+</dd><dt class="dt-description"><span style="font-family:monospace">newton_solver</span>.</dt><dd class="dd-description">
+<a id="hevea_default1505"></a>
+<a id="hevea_default1506"></a>
+This is the classic Newton method. The algorithm
+starts at an initial value <span style="font-style:italic">x</span><sub>0</sub>, then finds the intersection
+<span style="font-style:italic">x</span><sub>1</sub> of the tangent at <span style="font-style:italic">x</span><sub>0</sub> to the graph of <span style="font-style:italic">f</span>, with the <span style="font-style:italic">x</span> axis,
+the next iteration is done with <span style="font-style:italic">x</span><sub>1</sub> instead of <span style="font-style:italic">x</span><sub>0</sub>. The <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>
+sequence is defined by
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">        <span style="font-style:italic">x</span><sub>0</sub>=<span style="font-style:italic">x</span><sub>0</sub>,    <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span>+1</sub>=<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">f</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">f</span>′(<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>)</td></tr>
+</table></td><td class="dcell">.
+</td></tr>
+</table>
+If the Newton method converges, then the convergence is quadratic for
+roots of multiplicity 1.
+</dd><dt class="dt-description"><span style="font-family:monospace">secant_solver</span>.</dt><dd class="dd-description">
+<a id="hevea_default1507"></a>
+<a id="hevea_default1508"></a>
+The secant method is a simplified version of Newton’s method. The
+computation of <span style="font-style:italic">x</span><sub>1</sub> is done using Newton’s method, but then the
+computation of <span style="font-style:italic">f</span>′(<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>), <span style="font-style:italic">n</span>&gt;1 is done approximately. This method is
+used when the computation of the derivative is expensive:
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">        <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span>+1</sub>=<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">f</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">f</span>′<sub><span style="font-style:italic">est</span></sub></td></tr>
+</table></td><td class="dcell">,   <span style="font-style:italic">f</span>′<sub><span style="font-style:italic">est</span></sub>=</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="font-style:italic">f</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>)−<span style="font-style:italic">f</span>(<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span>−1</sub>)</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>−<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span>−1</sub></td></tr>
+</table></td><td class="dcell">.
+</td></tr>
+</table>
+The convergence for roots of multiplicity 1 is of order
+(1+√<span style="text-decoration:overline">5</span>)/2 ≈ 1.62… .
+</dd><dt class="dt-description"><span style="font-family:monospace">steffenson_solver</span>.</dt><dd class="dd-description">
+<a id="hevea_default1509"></a>
+<a id="hevea_default1510"></a>
+The Steffenson method is generally the fastest method. It combines
+Newton’s method with a “delta-two” Aitken acceleration: with
+Newton’s method, you get the sequence <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub> and the convergence
+acceleration gives the Steffenson sequence
+<table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">        <span style="font-style:italic">R</span><sub><span style="font-style:italic">i</span></sub>=<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>−</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">(<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span>+1</sub>−<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>)<sup>2</sup></td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center"> (<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span>+2</sub>−2 <span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span>+1</sub>+<span style="font-style:italic">x</span><sub><span style="font-style:italic">i</span></sub>)</td></tr>
+</table></td><td class="dcell">.
+</td></tr>
+</table>
+</dd></dl>
+</li></ul>
+</li><li class="li-itemize"><span style="font-family:monospace">fsolve(</span><span style="font-style:italic">eqn</span> ⟨,<span style="font-style:italic">var</span>,<span style="font-style:italic">init</span>,<span style="font-style:italic">method</span> ⟩<span style="font-family:monospace">)</span>
+returns an approximate solution to the equation <span style="font-style:italic">eqn</span>.
+</li></ul><h4 id="sec1943" class="subsubsection">Examples</h4>
+<p>
+Input in real mode:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><span style="color:#0000CC">
+1.0
+</span></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Input in complex mode:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−0.5−0.866025403784</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">,−0.5+0.866025403784</span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">,1.0</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Input in any mode:
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cfsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">^3-1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">−0.5−0.866025403784 </span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">,−0.5+0.866025403784 </span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">,1.0</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)=2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">cfsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">sin</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">)=2)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1.57079632679−1.31695789692 </span><span style="color:#0000CC"><span style="font-style:italic">i</span></span><span style="color:#0000CC">,1.57079632679+1.31695789692 </span><span style="color:#0000CC"><span style="font-style:italic">i</span></span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">fsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">((</span></span><span style="font-weight:bold"><span style="color:#BF0000">cos</span></span><span style="font-weight:bold"><span style="color:#BF0000">(</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">))=</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,</span></span><span style="font-weight:bold"><span style="color:#BF0000">x</span></span><span style="font-weight:bold"><span style="color:#BF0000">,-1..1,</span></span><span style="font-weight:bold"><span style="color:#BF0000">brent_solver</span></span><span style="font-weight:bold"><span style="color:#BF0000">)</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">0.739085133215</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table>
+<hr>
+<a href="cascmd_en749.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en751.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

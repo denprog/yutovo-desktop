@@ -1,0 +1,8 @@
+# Maple integration test file: "4 Trig functions\4.1a Sine\4.1.4.1 (a+b sin)^m (A+B sin+C sin^2).txt"
+
+lst:=[
+[sin(e+f*x)^m*(1+m-(2+m)*sin(e+f*x)^2),x,1,cos(e+f*x)*sin(e+f*x)^(1+m)/f],
+[sin(e+f*x)^3*(4-5*sin(e+f*x)^2),x,1,cos(e+f*x)*sin(e+f*x)^4/f],
+[sin(e+f*x)^2*(3-4*sin(e+f*x)^2),x,1,cos(e+f*x)*sin(e+f*x)^3/f],
+[csc(e+f*x)^4*(-3+2*sin(e+f*x)^2),x,1,cot(e+f*x)*csc(e+f*x)^2/f],
+[(a+b*sin(e+f*x))^m*(A+B*sin(e+f*x)+C*sin(e+f*x)^2),x,8,-C*cos(e+f*x)*(a+b*sin(e+f*x))^(1+m)/(b*f*(2+m))+(a+b)*(a*C-b*B*(2+m))*AppellF1(1/2,1/2,-1-m,3/2,1/2*(1-sin(e+f*x)),b*(1-sin(e+f*x))/(a+b))*cos(e+f*x)*(a+b*sin(e+f*x))^m*sqrt(2)/(b^2*f*(2+m)*((a+b*sin(e+f*x))/(a+b))^m*sqrt(1+sin(e+f*x)))-(a^2*C+b^2*C*(1+m)+A*b^2*(2+m)-a*b*B*(2+m))*AppellF1(1/2,1/2,-m,3/2,1/2*(1-sin(e+f*x)),b*(1-sin(e+f*x))/(a+b))*cos(e+f*x)*(a+b*sin(e+f*x))^m*sqrt(2)/(b^2*f*(2+m)*((a+b*sin(e+f*x))/(a+b))^m*sqrt(1+sin(e+f*x)))]]:

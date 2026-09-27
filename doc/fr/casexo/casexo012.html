@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="casexo.css">
+<title>Exercices sur les limites de fonctions</title>
+</head>
+<body >
+<a href="casexo011.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo013.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<h1 id="sec160" class="chapter">Chapitre 12  Exercices sur les limites de fonctions</h1>
+<h2 id="sec161" class="section">12.1  limite de <span style="font-style:italic">x</span>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>/<span style="font-style:italic">x</span><sup>2</sup>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span> en +∞</h2>
+<p>
+On tape :<br>
+<span style="font-family:monospace">limite((x-sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1))/(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2-sqrt(x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2+1)),x,inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">0</span><br>
+En effet :<br>
+<span style="font-style:italic">x</span>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>/<span style="font-style:italic">x</span><sup>2</sup>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup><span style="text-decoration:overline">+1</span>=1−√<span style="text-decoration:overline">1+1/</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>/<span style="font-style:italic">x</span>(1−√<span style="text-decoration:overline">1+1/</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>)<br>
+On a :<br>
+<span style="font-family:monospace">series(sqrt(1+1/x</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2),x,inf,2)</span> renvoie :<br>
+<span style="font-family:monospace">1+(1/x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">2/2+(1/x)</span><code><span style="font-family:monospace">^</span></code><span style="font-family:monospace">3*order_size(1/x)</span><br>
+Donc :<br>
+1−√<span style="text-decoration:overline">1+1/</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>/<span style="font-style:italic">x</span>(1−√<span style="text-decoration:overline">1+1/</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><sup><span style="text-decoration:overline">2</span></sup>)=2<span style="font-style:italic">x</span>/2<span style="font-style:italic">x</span><sup>2</sup>=1/<span style="font-style:italic">x</span>
+et 1/<span style="font-style:italic">x</span> tend vers 0 quand <span style="font-style:italic">x</span> tend vers +∞
+</p>
+<h2 id="sec162" class="section">12.2  limite de √<span style="text-decoration:overline"><span style="font-style:italic">x</span></span><span style="text-decoration:overline">+√</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><span style="text-decoration:overline">+√</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span><span style="text-decoration:overline">+√</span><span style="text-decoration:overline"><span style="font-style:italic">x</span></span>−√<span style="text-decoration:overline"><span style="font-style:italic">x</span></span> en +∞</h2>
+<p>
+On tape :<br>
+<span style="font-family:monospace">limite(sqrt(x+sqrt(x+sqrt(x+sqrt(x))))-sqrt(x),x,inf)</span><br>
+On obtient :<br>
+<span style="font-family:monospace">1/2</span><br>
+</p>
+Retour à la page personnelle de <a href="http://www-fourier.ujf-grenoble.fr/parisse">Bernard Parisse</a>.<hr>
+<a href="casexo011.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="casexo013.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>

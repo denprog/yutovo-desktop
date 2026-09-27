@@ -1,0 +1,59 @@
+A:=point(0);
+B:=point(1);
+equilateral_triangle(A,B,C);
+assume(a=[0.17,0,5,0.01]);
+assume(b=[0.08,0,5,0.01]);
+cc:=evalf((8*a*b+4*sqrt(3)*a+4*sqrt(3)*b-2)/(16*sqrt(3)*a*b-8*a-8*b-4*sqrt(3)));
+if cc<0 then cc:=evalf(((-8*sqrt(3))*a*b+4*a+4*b+2*sqrt(3))/(16*a*b+8*sqrt(3)*a+8*sqrt(3)*b-4)); fi;
+assume(c=[cc,0,5,0.01]);
+C1:=midpoint(A,B)+i*c*(B-A);
+A1:=midpoint(B,C)+i*a*(C-B);
+B1:=midpoint(C,A)+i*b*(A-C);
+evalf(angle(A1,B,C)+angle(B1,C,A)+angle(C1,A,B)-480*2*pi/360);
+A2:=single_inter(line(B,C1),
+line(C,B1));
+B2:=single_inter(line(C,A1),
+line(A,C1));
+C2:=single_inter(line(A,B1),
+line(B,A1));
+A12:=circumcircle(A,A1,A2);
+B12:=circumcircle(B,B1,B2);
+C12:=circumcircle(C,C1,C2);
+distance(evalf(A1),evalf(B1)),
+distance(evalf(A1),evalf(C1)),
+distance(evalf(B1),evalf(C1));
+
+eq:=texpand(tan(angle(A1,B,C)+angle(B1,C,A)+angle(C1,A,B)-480*2*pi/360));
+l:=coeffs(numer(eq),c);degree(l);
+delta:=factor(sqrt(discriminant(numer(eq),c)));
+factor(l[0]*l[2]);
+c1:=normal((-l[1]+delta)/2/l[0]); evalf(c1);
+aa1:=normal(coordinates(center(subst(A12,c=c1)))); ra2:=normal(radius2(subst(A12,c=c1))); evalf(aa1,ra2);
+bb1:=normal(coordinates(center(subst(B12,c=c1)))); rb2:=normal(radius2(subst(B12,c=c1)));
+cc1:=normal(coordinates(center(subst(C12,c=c1)))); rc2:=normal(radius2(subst(C12,c=c1)));
+eqab:=normal(distance2(aa1,[x,y])-ra2-distance2(bb1,[x,y])+rb2);
+eqac:=normal(distance2(aa1,[x,y])-ra2-distance2(cc1,[x,y])+rc2);
+normal(numer(eqab)/numer(eqac));
+z1:=(normal(subst(distance2(A1,B1)-distance2(A1,C1),c=c1))):; evalf(z1);ff1:=factors(z1);
+z2:=normal(subst(distance2(A1,B1)-distance2(B1,C1),c=c1)):; evalf(z2); ff2:=factors(z2); size(ff2);
+z3:=normal(subst(distance2(A1,C1)-distance2(B1,C1),c=c1)):; evalf(z3); ff3:=factors(z3); size(ff3);
+normal(ff3[4]/ff1[2]); normal(ff3[8]/ff2[8]); normal(ff1[2]/ff2[2]);
+aligna:=normal(im(subst((A2-A)/(A1-A),c=c1)));
+alignb:=normal(im(subst((B2-B)/(B1-B),c=c1)));
+alignc:=normal(im(subst((C2-C)/(C1-C),c=c1)));
+ normal(numer(aligna)/ff1[0]); normal(numer(alignb)/ff2[0]); normal(numer(alignc)/ff3[2]);
+evalf(distance2(aa1,bb1)-ra2-rb2-2*sqrt(ra2*rb2)); evalf(distance2(aa1,bb1)-ra2-rb2+2*sqrt(ra2*rb2));
+HA:=normal(((distance2(aa1,bb1)-ra2-rb2)^2-4*ra2*rb2)):; evalf(HA);
+ff:=factors(HA); evalf(ff[6]);
+[b1]:=solve(c1=0,b); f4:=ff[6]:;
+factor(normal(subst(f4,b=b1)));
+factor(normal(subst(f4,b=0)));
+factor(normal(subst(f4,a=0)));
+solve(diff(f4,[a,b]),[a,b]);
+[yy]:=solve(eqab=0,y);
+fd:=factors(discriminant(numer(subst(distance2(aa1,[x,y])-ra2,y=yy))));
+simplify(fd[6]/f4);
+fd2:=factors(discriminant(numer(subst(distance2(bb1,[x,y])-rb2,y=yy))));
+c2:=normal((-l[1]-delta)/2/l[0]); evalf(c2);
+evalf(angle(A1,B,C)+angle(B1,C,A)+angle(C1,A,B)-480*2*pi/360);
+

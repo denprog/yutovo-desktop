@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="hevea 2.34">
+<link rel="stylesheet" type="text/css" href="cascmd_en.css">
+<title>Finding linear recurrences</title>
+</head>
+<body >
+<a href="cascmd_en584.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en587.html"><img src="next_motif.svg" alt="Next"></a>
+<hr>
+<h3 id="sec1371" class="subsection">15.7.10  Finding linear recurrences</h3>
+<p>The <span style="font-family:monospace">reverse_rsolve</span><a id="hevea_default1003"></a>
+command finds a linear recurrence relation given the first few terms.
+</p><ul class="itemize"><li class="li-itemize">
+<span style="font-family:monospace">reverse_rsolve</span> takes
+<span style="font-style:italic">v</span>=[<span style="font-style:italic">v</span><sub>0</sub>,…,<span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span>−1</sub>], a vector made of the first 2<span style="font-style:italic">n</span> terms
+of a sequence (<span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub>) which is supposed to verify a linear
+recurrence relation <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub><span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+<span style="font-style:italic">k</span></sub>+⋯+<span style="font-style:italic">x</span><sub>0</sub><span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span></sub>=0 of degree smaller
+than <span style="font-style:italic">n</span>, where the <span style="font-style:italic">x</span><sub><span style="font-style:italic">j</span></sub> are <span style="font-style:italic">n</span>+1 unknowns.
+</li><li class="li-itemize"><span style="font-family:monospace">reverse_rsolve(</span><span style="font-style:italic">v</span><span style="font-family:monospace">)</span> returns the list
+<span style="font-style:italic">x</span>=[<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>,…,<span style="font-style:italic">x</span><sub>0</sub>] (if <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>≠ 0 then <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub> is reduced to 1).
+</li></ul><p>
+In other words, <span style="font-family:monospace">reverse_rsolve</span> solves the linear system of
+<span style="font-style:italic">n</span> equations of the form
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub><span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+<span style="font-style:italic">k</span></sub>+⋯+<span style="font-style:italic">x</span><sub>0</sub><span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span></sub>=0,   <span style="font-style:italic">k</span>=0,1,…,<span style="font-style:italic">n</span>−1.
+</td></tr>
+</table><p>
+The matrix <span style="font-style:italic">A</span> of the system has <span style="font-style:italic">n</span>
+rows and <span style="font-style:italic">n</span>+1 columns:
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">A</span>=</td><td class="dcell"><table class="display"><tr style="vertical-align:middle"><td class="dcell">⎡<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎢<br>
+⎣</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:center;white-space:nowrap" >    <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span></sub></td><td style="text-align:center;white-space:nowrap" >⋯</td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">v</span><sub>0</sub></td><td style="text-align:center;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    ⋮</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >⋮</td><td style="text-align:center;white-space:nowrap" >⋮ </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    <span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>+<span style="font-style:italic">k</span></sub></td><td style="text-align:center;white-space:nowrap" >⋯</td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span></sub></td><td style="text-align:center;white-space:nowrap" >0</td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    ⋮</td><td style="text-align:center;white-space:nowrap" >&nbsp;</td><td style="text-align:center;white-space:nowrap" >⋮</td><td style="text-align:center;white-space:nowrap" >⋮ </td></tr>
+<tr><td style="text-align:center;white-space:nowrap" >    <span style="font-style:italic">v</span><sub>2<span style="font-style:italic">n</span>−1</sub></td><td style="text-align:center;white-space:nowrap" >⋯</td><td style="text-align:center;white-space:nowrap" ><span style="font-style:italic">v</span><sub><span style="font-style:italic">n</span>−1</sub></td><td style="text-align:center;white-space:nowrap" >0
+</td></tr>
+</table></td><td class="dcell">⎤<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎥<br>
+⎦</td></tr>
+</table></td></tr>
+</table><p>
+<span style="font-family:monospace">reverse_rsolve</span> returns the solution <span style="font-style:italic">x</span>=[<span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>,…,<span style="font-style:italic">x</span><sub>1</sub>,<span style="font-style:italic">x</span><sub>0</sub>] of
+<span style="font-style:italic">Ax</span>=0 which satisfies <span style="font-style:italic">x</span><sub><span style="font-style:italic">n</span></sub>=1.</p><h4 id="sec1372" class="subsubsection">Examples</h4>
+<p>
+Find a sequence satisfying a linear recurrence of degree at
+most 2 whose first elements are 1, −1, 3, 3.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">reverse_rsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,-1,3,3])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1,−3,−6</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Hence <span style="font-style:italic">x</span><sub>0</sub>=−6, <span style="font-style:italic">x</span><sub>1</sub>=−3, <span style="font-style:italic">x</span><sub>2</sub>=1, and the recurrence relation is
+ <span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span>+2</sub> −3<span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span>+1</sub> −6 <span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span></sub>=0.</p><p>Find a sequence satisfying a linear recurrence of degree at
+most 3 whose first elements are 1, −1, 3, 3,−1, 1.
+
+</p><table class="lstframe" style="padding:1ex;border-style:none;"><tr><td class="lstlisting"><span style="font-weight:bold"><span style="color:#BF0000"> </span></span><span style="font-weight:bold"><span style="color:#BF0000">reverse_rsolve</span></span><span style="font-weight:bold"><span style="color:#BF0000">([1,-1,3,3,-1,1])</span></span></td></tr>
+</table><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">
+     
+
+</td><td class="dcell"><table style="border-spacing:6px;border-collapse:separate;" class="cellpading0"><tr><td style="text-align:right;white-space:nowrap" ><table class="display"><tr style="vertical-align:middle"><td class="dcell"><span style="color:#0000CC">
+</span></td><td class="dcell"><span style="color:#0000CC">⎡<br>
+⎢<br>
+⎢<br>
+⎣</span></td><td class="dcell"><span style="color:#0000CC">1,−</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,</span></td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">1</span></td></tr>
+<tr><td class="hbar"><span style="color:#0000CC"></span></td></tr>
+<tr><td class="dcell" style="text-align:center"><span style="color:#0000CC">2</span></td></tr>
+</table></td><td class="dcell"><span style="color:#0000CC">,−1</span></td><td class="dcell"><span style="color:#0000CC">⎤<br>
+⎥<br>
+⎥<br>
+⎦</span></td></tr>
+</table></td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td><td style="text-align:left;white-space:nowrap" >&nbsp;</td><td style="text-align:right;white-space:nowrap" >&nbsp;</td></tr>
+</table></td></tr>
+</table><p>
+Hence, <span style="font-style:italic">x</span><sub>0</sub>=−1, <span style="font-style:italic">x</span><sub>1</sub>=1/2, <span style="font-style:italic">x</span><sub>2</sub>=−1/2, <span style="font-style:italic">x</span><sub>3</sub>=1, and the recurrence
+relation is
+</p><table class="display dcenter"><tr style="vertical-align:middle"><td class="dcell">  <span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span>+3</sub> −</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span>+2</sub> +</td><td class="dcell"><table class="display"><tr><td class="dcell" style="text-align:center">1</td></tr>
+<tr><td class="hbar"></td></tr>
+<tr><td class="dcell" style="text-align:center">2</td></tr>
+</table></td><td class="dcell"> <span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span>+1</sub> −<span style="font-style:italic">v</span><sub><span style="font-style:italic">k</span></sub>=0.
+</td></tr>
+</table>
+<hr>
+<a href="cascmd_en584.html"><img src="previous_motif.svg" alt="Previous"></a>
+<a href="index.html"><img src="contents_motif.svg" alt="Up"></a>
+<a href="cascmd_en587.html"><img src="next_motif.svg" alt="Next"></a>
+</body>
+</html>
