@@ -1,0 +1,15 @@
+[Unit]
+Description=Yutovo solver
+
+[Service]
+User=denis
+Group=denis
+ExecStart=/opt/yutovo/yutovo-solver/yutovo-solverd
+WorkingDirectory=/opt/yutovo/yutovo-solver/
+Type=notify
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+RequiredBy=network.target
