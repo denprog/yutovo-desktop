@@ -1,0 +1,12 @@
+spec: setup/AltLinux/yutovo-desktop.spec
+tar.gz: . name=yutovo-desktop-@version@ exclude=.gear-rules exclude=modules/** exclude=third-party/**
+tar.gz: modules/yutovo-logger name=yutovo-logger-1.0.6
+tar.gz: modules/yutovo-calculator name=yutovo-calculator-1.6.1
+tar.gz: modules/yutovo-solver name=yutovo-solver-1.3.1
+tar.gz: modules/yutovo-editor name=yutovo-editor-@version@
+tar.gz: modules/yutovo-library name=yutovo-library-1.1.1
+tar.gz: third-party/libharu name=libharu-2.4.4
+tar.gz: third-party/giac name=giac-2.0.0
+tar.gz: third-party/mathgl name=mathgl-8.0.3
+tar.xz: third-party/gmp name=gmp-6.3.0
+zip: third-party/boost name=boost_1_83_0
