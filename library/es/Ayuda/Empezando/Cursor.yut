@@ -1,0 +1,864 @@
+{
+    "file_guid": "af233103-d7f5-4a0c-99be-c5866ff0c1f2",
+    "config": {
+        "language": 3,
+        "use_tabs": true,
+        "tab_spaces": 4,
+        "scale": 1.0,
+        "real_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false
+        },
+        "integer_result": {
+            "result_notation": 2,
+            "default_notation": 2,
+            "show_notation": true
+        },
+        "rational_result": {
+            "fraction_form": 0
+        },
+        "complex_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": false,
+            "form": 0,
+            "max_count": 10
+        },
+        "auto_result": {
+            "result_auto_advance": true,
+            "results_order": [
+                1,
+                2,
+                3,
+                4,
+                6
+            ],
+            "real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false
+            },
+            "integer_config": {
+                "result_notation": 2,
+                "default_notation": 2,
+                "show_notation": true
+            },
+            "rational_config": {
+                "fraction_form": 0
+            },
+            "complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": false,
+                "form": 0,
+                "max_count": 10
+            },
+            "array_real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            }
+        },
+        "include_documents": []
+    },
+    "string_formats": [
+        {
+            "id": "b8658702-b6a3-4034-92fc-17f2ca3777b3",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "00ae56ef-8ffd-4a6b-81d3-9601b9d7774a",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "fb6c1cab-773e-4d39-b627-7f5f34fdf012",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "074f22d1-99ee-45b5-904a-9aa89ac4d608",
+            "family": "Arial",
+            "size": 30,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "f66279a3-6041-4fa4-bb50-1dec741b7e06",
+            "family": "Arial",
+            "size": 26,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "c026761d-0258-4912-a128-aa71ccb94b67",
+            "family": "Arial",
+            "size": 22,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "2f35fa9c-0bcf-484c-9e0b-086e357fd180",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "fabf7caa-000a-41b6-ace1-498c195e5ce0",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "869da870-f7d8-499b-a452-72d44ec0eedc",
+            "family": "FreeMono",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "5ceb32d4-da80-416a-b625-306c4118ebde",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d909e353-a92d-4039-884d-7478b1e3754b",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d338b315-a9b4-4a00-8a75-7f4d6e02c9b0",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": true,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190335,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "d7dbc119-d4ee-4a78-8699-7002385c3e62",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        }
+    ],
+    "paragraph_formats": [
+        {
+            "name": "Cuerpo de texto",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "fb6c1cab-773e-4d39-b627-7f5f34fdf012"
+        },
+        {
+            "name": "Encabezado 1",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "074f22d1-99ee-45b5-904a-9aa89ac4d608"
+        },
+        {
+            "name": "Encabezado 2",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "f66279a3-6041-4fa4-bb50-1dec741b7e06"
+        },
+        {
+            "name": "Encabezado 3",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "c026761d-0258-4912-a128-aa71ccb94b67"
+        },
+        {
+            "name": "Encabezado 4",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "2f35fa9c-0bcf-484c-9e0b-086e357fd180"
+        },
+        {
+            "name": "Ejemplo",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "fabf7caa-000a-41b6-ace1-498c195e5ce0"
+        },
+        {
+            "name": "Monoespaciado",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "869da870-f7d8-499b-a452-72d44ec0eedc"
+        },
+        {
+            "name": "Código",
+            "alignment": 0,
+            "word_wrap": 0,
+            "line_spacing": 2,
+            "indent_before": 2,
+            "indent_after": 2,
+            "indent_first_line": 0,
+            "spacing_before": 2,
+            "spacing_after": 2,
+            "default_string_format": "5ceb32d4-da80-416a-b625-306c4118ebde"
+        }
+    ],
+    "text": {
+        "id": "0",
+        "type": 1,
+        "elements": [
+            {
+                "id": "0,0",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,0,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,0,0",
+                                "type": 4,
+                                "elements": "El cursor del editor muestra la posición donde el usuario introducirá texto en ese momento. Su posición determina qué puede hacer el usuario para editar el documento. El cursor puede estar en cuatro posiciones principales:",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,1",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,1,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,1,0,0",
+                                "type": 4,
+                                "elements": "• dentro de una línea, en cuyo caso no se diferencia del cursor de un editor de texto normal;",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,2",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,2,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,0,0",
+                                "type": 4,
+                                "elements": "• antes de una operación matemática, que puede consistir en un solo símbolo (\"+\", \"-\") o uno compuesto (división, raíz);",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,3",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,3,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,3,0,0",
+                                "type": 4,
+                                "elements": "• después de la última operación;",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,4",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,4,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,4,0,0",
+                                "type": 4,
+                                "elements": "• antes del símbolo de la operación compuesta (para la división, una línea horizontal; para la exponenciación, un rectángulo vacío).",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,5",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,5,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,5,0,0",
+                                "type": 4,
+                                "elements": "En la posición \"antes de la operación\", la inserción se realizará antes de la operación. El cursor se ve como una línea vertical situada antes de la operación y una línea que la subraya.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,6",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,6,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,6,0,0",
+                                "type": 4,
+                                "elements": "Ejemplo:",
+                                "format_id": "00ae56ef-8ffd-4a6b-81d3-9601b9d7774a"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,7",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,7,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,7,0,0",
+                                "type": 4,
+                                "elements": "En este caso, el cursor está antes de la operación de división.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,8",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,8,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,8,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "iVBORw0KGgoAAAANSUhEUgAAAFoAAABCCAIAAABYT1ajAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAE30lEQVR4nO2aX0hTbxjHn81MstSQvCgCcaPZH/+AVlYoXZTYhTC8SIKovNCIppZSaN0IYiDdRBcRFXSRdFUQgqWEhjWjzGRhN6XYIoJBuBZuLt08+3bx052eebad6XaMn++Hc7H3Oc953+d897yH877n0QEgwSL61Q7g30LIwRByMGQ5dDrdKsbxjyCygyHkYAg5GNrJcfcu5edTairl51NXV+hZgO7do6Ii2rSJDAZqayOfT7PQWBwL/P077nR0oLISNhu8XoyMoKQEnZ3MobMT9fWw2eDx4MsXnD4NiyVx4YRFIzkOH8b8vNx0OpGdjbm5sP6ShMJC+P2Ji0gZjSbL4CAlJcnNzEzauZNmZ8P66/Wk05EkaRAaH1frAYmIyO2mjAxKT1c+63BQfT0dPEgpKdqGRVo9O/5GkmCxYHxc4dTkJJKTQYTKylWYKdBssgQJBKilherqaMcOhbMGA3k8NDpKGRnU0qJxaESkbXb4fLhwAR8/qnI+cwavXiU4oCVolx2/f1NjI50/T3l5qvzNZrJaExzTEjSSY3qampro6lUymdRe0tNDRmMiY1IkmCeUsMkyNYXGRkxNMWNzM37+lB0KC3HjBsbH4fXi0yecPYvSUvaqog1ayHH7NogUDrtd9rHb0dCAnBwkJ2P7dly+jJmZBIUTCR0W90p1Ovn3mkWsaBlCDoaQgyHkYAg5GEIOhpCDIeRgCDkYQg6GkIOxLqS9Rr7UhludhcqxxldxYrIwhBwMIQdDyMEQcjCEHIzocsSrLuPNG6qqoi1bKDWVrl9fTqweD+l0Csf378xtbIyOHqX0dDKZ6OZNCgRiGSO4iUxKO+nxqsvo6IDRiIcP4XQuf5vb78e5c6HG8nL5AwUAux179uDpU3g8mJjAiRNob49hiChyxKUu48ED7N8Pl0tVQDU1NS6VrsD0NMrKmOXKFfT2ys35eRQVIRBQ2R9C30pDGBxkzWBdxvr1yv7Buox1ix1LErW308uXtHmzqmx1uVyzEQo/OL29dOwYszidtGGD3ExKIp+PfD61tRGxPUqXUZdhtdKRI7RtW0zjqKW7m8xmZqmupro6Ghggr5e+fqXaWtq9O5Y6kWCeULSvcMury7hzB/fv4/VrHDiAjRtRUoLh4UijmM1mh8OhJrH9fhQXK9i7uqDXL3zoq6iA262mswXUyiFJuHQJHz6EdZibw+goTp5EczOz37oFiwUmE549g9uN/n7k5mJykvm0trYq/lVZWVmSJIUbsb8fTU2hxl+/UF29MNbEBGpr8eRJhNsKRZUcK6nLePQIaWns/vv6cPFi2MvVZ0dDAwYHQ40WC0ZG5KYkobw8hgSJ/uxYYV3Gvn1UUUEGg2wpLia7XVVXkRkaotLSUOPwMO3dKzf1etq1i8bG1PYZRY6V12VkZ5PDQT9+yJZ37yg3V21v4bDZKC+PVSP+R2YmvX0rNyWJrFbaulV1v8E8oSWTJV51GX19OHQI799jZgbPn8NkwrdvYdNV5XtHWxseP1awv3iBnBz09MDtxufPOH4cp05F7UwmkhxxrMvo7kZBAVJSUFCAgYEY4gtHVVXYJ8LQEMrKkJYGoxHXrsVWgSjqOxhiRcsQcjCEHAwhB0PIwRByMIQcDCEHQ8jBEHIw2F7p/7uaQc0SRKxTGGKyMP4AHsE7DlQtrGwAAAAASUVORK5CYII="
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,9",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,9,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,9,0,0",
+                                "type": 4,
+                                "elements": "La posición \"antes del símbolo\" se caracteriza por limitar la representación gráfica de la operación. En este caso, no es posible pegar desde el portapapeles, pero sí eliminar el símbolo; en ese caso, la operación se eliminará y sus parámetros se conservarán.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,10",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,10,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,10,0,0",
+                                "type": 4,
+                                "elements": "Ejemplo:",
+                                "format_id": "00ae56ef-8ffd-4a6b-81d3-9601b9d7774a"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,11",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,11,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,11,0,0",
+                                "type": 4,
+                                "elements": "Aquí, el cursor se encuentra en la posición \"antes del símbolo\".",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,12",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,12,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,12,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "iVBORw0KGgoAAAANSUhEUgAAAEQAAAAqCAIAAACFj2rPAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEH0lEQVRogd1ZTWgTQRT+NptmE9PaREx/SJs0KYiF9iBevFjTg39Qq0KPLRT0UBSVVA9iUcihFC+lCF68GGkFbUEQD4JNSagHpT0o9mQrpYLQULprjcFqzOZ5iDZNu8luzE6UfOxh5+d9732ZebMzE46IUC4w/OsA9ISRKXsgEIhEIjoShsPhPK1FieE4Ls8sHRgYGB0d9Xg8jY2NxXjRDoYjE41GBUEIBAI9PT3svGwFw5xZXV3leb6uro6di21gKEYURSIqEzGSJMmyXEox+TJY3TjvAmC322OxmCzLf81fKBiOTDwer6qqYse/E6zEbGxsEJHD4WDErwhWYiRJMhqNpUwYMBVjMBgaGhoY8StCk5gPH3DmDGw2NDZieFgTryRJRNTU1FRMcIVCk5gLF3DuHD5+xOvXWFjAgwfqJqIochzndDqLDbAQaBLz4gVOnUJ1NZxOjIzg5Ut1E0mSAOTKmXv30NaGXbvQ1oaxsaymeBwcp/B8+qTutLCcWVvDrVs4dky9Z3qaKYoZGsKzZxgbgyji/n3cvYvbtzOtZjP6+0GU9Rw9CqtVQ3ykGS4XAXT5cqZmqzmArq6uzaLf7xcEYXFxcSfPkSOUTGaKokhuN/34kdNvLEaHD2uKsICRWVrC/DzW1vD48fYmjuMAhEKhzZpoNJpMJhVHJhIBz2eKe/Zg/358/57T7/PnOHFCU4QFiOF5tLbi4UM8epRVHwgEzGazy+VKpVKzs7PpypWVFY7jKisrVWm/fkV1NXbvztnh6VOcPq0tRE3jl42TJ3+/bJqHw+Hl5WWTyTQ4OJiuaWlpsdlsqlSyTBcv0sJCzg4/f9LBg1oDUxfz5AmdPUuvXlE8TktLdP48Xb/+xzj7t7DZbF6vN/1eW1vb3Nycn1mW6do1evs2X59QiPx+1Rj/xKOl0+QkHTpEFgt5vTQ8nEnfbWK6u7srKirSxxir1dre3p6HM5GgK1dofl7F9aVLFIloiZFIo5icxtligsGgxWIZHx8nIp7n+/r6chl++0b9/fT+vbqLAweylr780HNv5vP5iGhiYiK9ZfZ6vYrdYjH4/bhxA/v2qRC+eYPW1qylLz/0FON2u61W69TUlCRJPM/X19fv7COKuHkTQ0PYemNz9So+f1YgLGAdA6D7rrmjo4PjuJmZGYPBoPiRmZzEnTvYuzdrqzIygi9fFNjevcPx44W41zoflbDTPBgMCoLQ29srCMLc3Fwx5H8BnUfG5/MZDIbp6elUKlXikxlYXGg4HI719XVZlhOJhNHI9vp3G/Q/afp8PgA8z5dYCViI6ezsNJlMiksZazAZGSKqqanRnVkV+otxu91Go9Fut+vOrAomtzMejyd9wikxGF7Plh5l9TdgWYkp9lOQKzf+yfT7vyZ9kSiraVZWYn4BOo5MjEWWCv8AAAAASUVORK5CYII="
+                            }
+                        ],
+                        "format_name": "Encabezado 4"
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,13",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,13,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,13,0,0",
+                                "type": 4,
+                                "elements": "En la posición \"dentro de la línea\", se edita la cadena de caracteres; por ejemplo, se introduce un número o una variable, como en el texto. El cursor adopta la forma de una línea sólida vertical que marca el lugar donde se introducirá el nuevo carácter.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,14",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,14,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,14,0,0",
+                                "type": 4,
+                                "elements": "Ejemplo:",
+                                "format_id": "00ae56ef-8ffd-4a6b-81d3-9601b9d7774a"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,15",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,15,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,15,0,0",
+                                "type": 4,
+                                "elements": "El cursor se encuentra dentro de un número.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,16",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,16,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,16,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "iVBORw0KGgoAAAANSUhEUgAAAE0AAAAoCAIAAAA0UuAOAAAACXBIWXMAAA7EAAAOxAGVKw4bAAADNklEQVRoge2YTSh0URjH/3cw8j0pm4lkRJSvJoVSFmJjMZLYKAopoYw0KCQmsZCUFIVQkoXCwoJSNkoSUr5yKSUxCDPj+3kX3tdknCn3zmW8Y37dzTnP85zz/Lvn3PucwxERfgEyRyfwTbh0fiOHh8jKgo8PoqMxMSEsdn8f2dlQKBASgvZ2237kaO7uKDGRJifp9pbW1ykpiebmBIRnZND0NF1d0fExFRXR8DDbzfE65+dpYMDS5HkqKRE51MUFFRezTe72rTgJSE9/13RzQ3S0mHHOz9HSgsxMtvVH7M83Hh4wMoKKCsGBoaEICoJMhrw8tsMP0mkyoasLVVWQywXHHhxgcxPn57Y/YyK3gtScnVFrK5lM9o6Tnc3ud/z+BMDzGB9HXR3c7U7n/p7d7/h1u7aGuTk0NFhE5uZa+6yuQqFAaqp1/9QUcnKwvAyjETyP0lLEx9uYxt6FYjf5+QS8ezQaa5+VFfLzo5QURvjkJCUnk5cXqVTU3k5PT+xZOHLV8c6ES6dz4dLpXLh0OhcunULgOE6Scb6OX/k+t7eh10Otxukp27u/H7Gx8PZGbCxGR62tRBgYgFoNX1+oVGhuxsPD12QtHIvOggI0NSEuDkolmDWvXo+ZGYyOwmDA0BB6e9HR8c6hsxMbGxgcxOkpFhZweAit9ovT/zwfS3uNhk5OGCV/Wtq704DBQKGhdH9PryeBj/7PzxQfT4+P7APENyNgfy4uws3N0gwMRFQU7u5s+stk4Dg8P4t/BxIi/jt0c4OAAPj7s60nJ6ioQEoKPD1FzyAlInW+vKC+Hm1tDNPBAeRyKJU4OkJPj13JSYgYnS8v0OlQWoqICIZVpcLtLVZXERAAnc7e/KRCsM7HR2i1KCy0fRMDyOVQqzE2BoMBS0t25ScVwnSazaiqQnk5YmI+5a/R/Ic6r69RXY2GBkRGfjZkdhbh4WLSkpzP6jQY0NgIvR4hIZbOmhpcXlocEhLQ3Y29PZjN2NlBWRl2dxmXlI7h7U+almZ9v+jhQVtbf619fdbW14fnif7VCTxPlZUUFkYeHhQcTLW1ZDR+f0XARpp7TY776fejv/K84sT8Fp1/ANpWtCF/5hRWAAAAAElFTkSuQmCC"
+                            }
+                        ],
+                        "format_name": "Encabezado 4"
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,17",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,17,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,17,0,0",
+                                "type": 4,
+                                "elements": "En la posición \"después de la última operación\", la inserción se realizará después de la última operación. El cursor adopta la forma de una línea sólida vertical ubicada detrás de la operación.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Encabezado 4"
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,18",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,18,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,18,0,0",
+                                "type": 4,
+                                "elements": "Ejemplo:",
+                                "format_id": "00ae56ef-8ffd-4a6b-81d3-9601b9d7774a"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,19",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,19,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,19,0,0",
+                                "type": 4,
+                                "elements": "Aquí, el cursor se encuentra después del último elemento de la fórmula.",
+                                "format_id": "b8658702-b6a3-4034-92fc-17f2ca3777b3"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,20",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,20,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,20,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "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"
+                            }
+                        ],
+                        "format_name": "Encabezado 4"
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,21",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,21,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,21,0,0",
+                                "type": 4,
+                                "elements": "",
+                                "format_id": "d909e353-a92d-4039-884d-7478b1e3754b"
+                            }
+                        ],
+                        "format_name": "Encabezado 4"
+                    }
+                ],
+                "format_name": "Encabezado 4",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,22",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,22,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,22,0,0",
+                                "type": 39,
+                                "elements": "<- Bloque de calculadora",
+                                "format_id": "d338b315-a9b4-4a00-8a75-7f4d6e02c9b0",
+                                "url": "./Bloque de calculadora.yut"
+                            },
+                            {
+                                "id": "0,22,0,1",
+                                "type": 4,
+                                "elements": "  ",
+                                "format_id": "d7dbc119-d4ee-4a78-8699-7002385c3e62"
+                            },
+                            {
+                                "id": "0,22,0,2",
+                                "type": 39,
+                                "elements": "Propiedades del documento ->",
+                                "format_id": "d338b315-a9b4-4a00-8a75-7f4d6e02c9b0",
+                                "url": "./Propiedades del documento.yut"
+                            }
+                        ],
+                        "format_name": "Cuerpo de texto"
+                    }
+                ],
+                "format_name": "Cuerpo de texto",
+                "format_alignment": 0
+            }
+        ]
+    },
+    "caret": {
+        "id": "0,0,0,0"
+    },
+    "selection": []
+}

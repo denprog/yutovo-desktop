@@ -1,0 +1,881 @@
+{
+    "file_guid": "b8f70dae-e9d6-469d-a7ea-83e5d9eaeaea",
+    "config": {
+        "language": 1,
+        "use_tabs": true,
+        "tab_spaces": 4,
+        "scale": 1.0,
+        "real_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": true
+        },
+        "integer_result": {
+            "result_notation": 2,
+            "default_notation": 2,
+            "show_notation": true
+        },
+        "rational_result": {
+            "fraction_form": 0
+        },
+        "complex_result": {
+            "precision": 3,
+            "exp": 10,
+            "default_angle_measure": 0,
+            "result_angle_measure": 0,
+            "show_angle_measure": true,
+            "form": 0,
+            "max_count": 10
+        },
+        "auto_result": {
+            "result_auto_advance": true,
+            "results_order": [
+                1,
+                2,
+                3,
+                4,
+                6
+            ],
+            "real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            },
+            "integer_config": {
+                "result_notation": 2,
+                "default_notation": 2,
+                "show_notation": true
+            },
+            "rational_config": {
+                "fraction_form": 0
+            },
+            "complex_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true,
+                "form": 0,
+                "max_count": 10
+            },
+            "array_real_config": {
+                "precision": 3,
+                "exp": 10,
+                "default_angle_measure": 0,
+                "result_angle_measure": 0,
+                "show_angle_measure": true
+            }
+        },
+        "include_documents": []
+    },
+    "string_formats": [
+        {
+            "id": "312460e6-4d78-4a2c-910c-359794f76001",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "e5b8d000-f69b-46b1-9421-2660f0f50601",
+            "family": "Arial",
+            "size": 30,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "c2948762-d3ec-4434-84e0-1aaf23bd79a2",
+            "family": "Arial",
+            "size": 26,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "9e4ae7cd-689c-4807-8fa8-c24efa92baa7",
+            "family": "Arial",
+            "size": 22,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "77beee75-f1cf-4b2e-bb28-0bc5801da993",
+            "family": "Arial",
+            "size": 16,
+            "bold": true,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "465850bd-2df2-44b3-af2a-0c127cec4e2a",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": true,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "04e12991-4bfd-4e4c-8ef3-12f5466492e6",
+            "family": "FreeMono",
+            "size": 12,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "ff8faeca-a731-4d74-9203-c4bbb15ed78c",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "ecb35d6a-2743-4e37-acb1-2e76fee4fe1f",
+            "family": "Arial",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "5f9d3267-4805-483c-9ad2-fb71952fd76d",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        },
+        {
+            "id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+            "family": "FreeMono",
+            "size": 14,
+            "bold": false,
+            "italic": false,
+            "underline": false,
+            "strikethrough": false,
+            "subscript": false,
+            "superscript": false,
+            "text_color": 4278190080,
+            "text_bg_color": 4294967295,
+            "text_bg_selection_color": 4278190335
+        }
+    ],
+    "paragraph_formats": [
+        {
+            "name": "Text body",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "312460e6-4d78-4a2c-910c-359794f76001"
+        },
+        {
+            "name": "Header 1",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "e5b8d000-f69b-46b1-9421-2660f0f50601"
+        },
+        {
+            "name": "Header 2",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "c2948762-d3ec-4434-84e0-1aaf23bd79a2"
+        },
+        {
+            "name": "Header 3",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "9e4ae7cd-689c-4807-8fa8-c24efa92baa7"
+        },
+        {
+            "name": "Header 4",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "77beee75-f1cf-4b2e-bb28-0bc5801da993"
+        },
+        {
+            "name": "Example",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "465850bd-2df2-44b3-af2a-0c127cec4e2a"
+        },
+        {
+            "name": "Monospace",
+            "alignment": 0,
+            "word_wrap": 1,
+            "line_spacing": 5,
+            "indent_before": 10,
+            "indent_after": 10,
+            "indent_first_line": 0,
+            "spacing_before": 10,
+            "spacing_after": 10,
+            "default_string_format": "04e12991-4bfd-4e4c-8ef3-12f5466492e6"
+        },
+        {
+            "name": "Code",
+            "alignment": 0,
+            "word_wrap": 0,
+            "line_spacing": 2,
+            "indent_before": 2,
+            "indent_after": 2,
+            "indent_first_line": 0,
+            "spacing_before": 2,
+            "spacing_after": 2,
+            "default_string_format": "ff8faeca-a731-4d74-9203-c4bbb15ed78c"
+        }
+    ],
+    "text": {
+        "id": "0",
+        "type": 1,
+        "elements": [
+            {
+                "id": "0,0",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,0,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,0,0,0",
+                                "type": 34,
+                                "elements": [],
+                                "image_base64": "iVBORw0KGgoAAAANSUhEUgAAAKQAAACdCAIAAAC1okRzAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAgAElEQVR4nO19eZxlRXX/91TVXd7WyzTDMgwzwyaYGUTBBYkGEJEICoi4K5EYUdyNJkpCxCwmH40aUOMYASOLGLMgBhfctwGNS4RoQPm5BWWZpae3t9x7q+qc3x913+vXPT0wPT1LTw/fz/30573X9913b506p85W55CI4BHsH1B7+wYewZ7DfkHsiYkJAN778NZaG14wM4CtW7f23uZ5Hj5cktgviD04OJhlmdY6EDKKomazCSDLMgDVahWAiFhrlVJKLdkxWbIP1o9WqxXIPDo6evHFF9dqtaOPPjqO40suueTWW2+N4xgAESVJEkVRj++XIGQ/gPdeRNrt9hOe8IQkSTZs2CAiN9xwA4CTTz7ZOeecs9Yys4jkeb6Xb3e3gWQ/0MaZeXJycmBg4LjjjjPG3Hnnnc1mM03TWq1mjGm1Wt575xyAJEn29s3uRuwXxO5hamqq0WhkWXbllVd++tOf/q//+i8A/SNgrTXGENHeu8fdiP1izfbe91Szt7zlLSMjI/fcc8/69euVUlrrcE5RFACIaKlSGtg/1mwRCavy61//egBXX311+BBAFEUi0m63RWRycjIs20sV+4sYz7IsTVMiqlQq7Xa70+lUKpVgjBVFEUVROC3P8yW8bO8XYhxAmqYAVq9e3el0PvKRj1Qqlfe9732NRgOAtfY973lPUNBEZAk7VfYLMV4UBTM3m8077rhj1apVAC655JJNmzY94xnPqNfrp59++t133x3OfESMLwV477XWQXoDCJZY779Beod1PZywJLG/iHGttYhUKpV7770XwMDAQLvdzrKs0+lMTk6GdZqZK5XKli1b9vbN7i7sL5wdLOx2u93zhAcTK3C8c84Y471vNpuDg4N7+2Z3F3YJsRlgwABAuBj1PhSAALUdERLOmfXfoB/tSpETpHRPhgfSArDW9vRwdAnfbDbr9fou/PW+x0T5V3pDhLlGYHdhYb/hA3ULa1sA20ymSQwGMqAFZIAFAIG1OQBnwT584ADb+y8QvuUBhvQ+2QUIUrq3GAdKA+inNIDgYNnllPaceQmDwN6hfDQBwFPNrWEE2u1meXbXFgj+fHQdfFmWhRfOueD/6UVsdxwLILYAhMnxDDBRVIWoKKapqRnPOYtNw+A6C0XI89zavO+cfnovqZWFlBCVj0kECIoCIbTWqNcAz3C9aRfMAWzjy0vTNMyD4M0VkZ7vbx53svNiXDA+5oYGzaYtE8xWKa2UgSjnC20YVBAC/2pAQQwAIfaOknggjuNOvlUbJ7B5Zo0aBDTgQQXIAgpcATTITk+FfRKKSEA5S0GkSVJwDdDVStrJ2l4mo4TzvBOZiqJKUTityVqrtQ5qRHhRFMWWLVuOOeYYZiaiMC16Ose8sKA1WwSTE7jo5a+2uRsaqk82N0eJHRyqtFotiCIJ0rJHLcUQgkmioZ/+7K4jj1ppIs+SZ1lh1ACglhyxlTApzUpbFuedGF0jqecZb9y48fAjVrazzUpbECdxBZLkmdeGvLdaayIKCgSATqezevXqt7/97QcffHBRFMaYkF7RO2HHYRbwME6o2Dw2runQ5ctXPunJay940RMz/9vcjid6GFwhTgAo6oAcxDApFhidtlvy/ve/9+JX/UF9QCepUkqzSyAGZEEFVA5RgQOWALFBHMXsOS9yTuIBcHV8rH3FFVdc9hd/mlS85zbIOQtndSWtgdh7q5QSkUBLZp6amnrDG94QrhjHcWDOnrSfF3ae2AIwfK2epml62Oqj/vsH9yw/qHHGWY9O0uUEDZggxUG18gsEMEAYGsDmTVsPOeTQxkCkjQMURJUKKjGQAwqSlF/ZpyEQgMgC7LwYlYJhczU50Tr4oDoUGBVFAijntNGq/3mDoBaROI6XLVsWRREzK6WC9HbOhQSbeWEhnK1YIs95xve99k1P/d7tj/3c5z5nCzr3/GNJA6ogxBBQILmCELNXWkNrRFHFmEhrAMo5VtQjdhD2XX112j7ZF6EUwVmJYgKUs9YkcA7j45P1+gCAPGdSbCJSREYraxHF0zT23gfTP4TYmbnT6dRqtcDQO5cotyBia0qTxFnemDOfclpjfOypX/3ibUk0fPa5BwFxqYMTIIACkdIEWyDSiOO4OdWuN6pBhVHUpTQpQIFU+S3Cvu3jEygV3AysdalvW+udZQBJokCp85lAtEIgX2BcIgrrcdDRJiYmtNY9J0EURWEezHfNXthQMoocaS1DdF9UxbPPO/SC859/06du+8oXmu1JQFBYBwVoeM/Bngq3551EUemh3AkTYh9C+bxeoiiCwGhsHR2vVuvCEAYAo+NgUxEhrMLdtxS4nJnTNA2Zr+jzDewEcy+Ub5iFBJACipMaHvM4POf882649vM//C6LQ2SM82x9R4j3+QV4Aeg3k4rCxXEcPtjDruqdF+MEKIJWXvMwuQZzx+ja0Ao85XRF6vlXf/Rzm0d/79wLGl5UnCgAnTyrRGn3y8HJsC1P77sr9EOB1DRV261OrVpHYGVgTz7yQtZsEEETQ2JCLCJOJoxqNJapM8+CtWffcst/Vmunn3F2rZlF1VTFiZFpz3mgN0rPMC0xp9ksMPWJtXa73R9dFUiYCnsg9W0hxGYAwoWzLQXEuuqRA1bppDB49nNh5dSbb/4K1NOe9sxGXmCmpdD1iVJ/kGCpgRlKw7PXSouUBG+1Wv3udxFRSoH2xIRf4CizVuxdx7oOAAXDYMCaFFtbeM7zBk45/aQbPvHpb349Nwp5p6dgo5Rd/a+XIgQhksG90AeAZrNZq9VCvIMIIqwCUxN2N7kXZHoB0ForY0U6ALOHY4oi1c6awyN1CJ77ooNa+YlXXXV9Lf2jdccBvSATSZfGS1l8KzUtmkVEmBTQarWSJGHeC9JsQb9ocxbW2iTaxIBSOjI6FehqmmZF2wug8LI/WPuss8+8+qpb7vgh2EF8mOQUViqBljDhpoelG/Hd91Euw6IBLawCN+dFpo3aRg933QDgtscuw4IUNJMYUbH3iUhVoHILrQOtTCU2ANhDAc8577BqbK656sbJ8Rc//RlQKSQ2lXpaeBhtHMMEfwKwx8L4ewiCLPNpGrOHVgBBGBs3/eaA5adFMZhBgFax87nRisUqUgJRSgNegqkNNkaJ+LmoPm+NbudHVoBWq9POOwyQ1gxEEUDwLIV1AngP50CEag0nPuGQC55/9q23/uj22yGMsTH74OapkPowMwbPAEGofLZ9n7+Dha0I3oEZRKhWU2MUAGZ4D4hirwHNDECLKAGYyTsBlHfi3C5LZVmQNl6rKUfaxEVWbHWcKKUUEYi1AiBaa1KlTF51OFYcOrhx48p/+eQ3QKcONx41PNwwmnPXSaPajGQm6d4SMWTf5nLPXgVXAgGETgdxhM2bRwcHh4M3DQAERsUQGGUgUAAERFAaEGgVa5VAzFyZWzKXo+KhsCAxnheu0y6yjm9O2clKERx4RZEpBaUMoJwVZzUkikyiCBe8YPmDm4bWf/hfJ1tNm6FNvlGLczdZMT2702CGLb6Qu9vrYK1Ja2RZliYpM2o1QDAyMlKrNQAIl7YZeygCM5SCSOk3ZYHWYA/2GqC+ed9dyKmX37ejWJA2npjaxGi24Rs/W//Bm/LMFoWN45iIRFjgFRmlNMR4D+EIRA6FQmNy0t31v7/Y8JVN515wIABtpoAWEAsiBGOU9v0QCADAuiwykTEKhCguE5K2bNlS5G5sawLAe4gAhCgKIr0kPwARiWJyzk5MNCGmO/Gnc/x2YpFbgLtUwMDIyMjTnva0t771rQcfZAhQCt4jisvH0LrMugLAAhsmco4br73v9m/fNTjYeMzjKyPLB4A2UJSWGXUfZN9mawBgdoA2ZlrYjo52RkaG//pv/jKJK0oZZg6pKapkYmJmbRTAIBdF2nMxNr55VxX+WABnE4Mc1KiJR2v1ZpIOBaKaCAhLDpUqSaC3ADEBQFbgolcc+vGrkn+78esDA89ME1MbqAKZAk87kaVcuvZpJHEFQGELW+SK4koaHbKi8qdve0u1WveOo0gzh4BYyGCHMESggt4uHMXKuWJ8Yutll10KBAYIZC/TQuZ7PwtS0AiF57Z1Tc8d0JBzUApKwXMI7bFS3ovX0CBoEANbxyaXDS/zOc49/4CRkTOv/shnXv6Kc570VANd76YVR9MCfB/nb88MII7SOFLCAME7HLaqAcBZHRKavaf+GC97KA0RiCilwRyTGujGEXrQXWE+P5ZfoActIaSEVDgGQ4efFmjqTUOlqS8L39kDhocAJ8aMHIRTn6bz7JyPfODzgwPPWrEGA8vAaCnUgGSqWTQasdq3aa20mt79SwoQ6O54m26kQPfRSwTKlJpaUNOUBktOxEDXt97bbNDztu/4De3cc3RBEIKoaV3xIZUGIgFY4AQZNAZHcNLJ6gUveNZ7/u6mX90DW0QKDYEpvK834k62JKoW9e92oG0PLlfD8oVAAYoRpjkJCCBXnjAbe1SMg+AJnqggstRNJKJpq2m2ty8KLC8R2EEztFp1OA5cjnt+/phP3fjNc4qTnvS7CTS0Rtu2q2m8zwfEpO/FNGn6Ner+HUBda6pniZSWyUy/6QIcTQsZSg5KIyCAmz1hywXYAr67TUi6uyK01ol37AWIkA7gDW8+as2aNZ/6xFe+cxszwzOSqCrzNCL3EfQoPcv7PadLvBcF3jXYJaPJZViaQjJp2MHl+pz7pVRiL4HoCjDKKIBVBxEQ44UvWX30Ues+/W/f/MZXN4ZYUTtbyrlpXQ+o6R4REHVfq96IlXnW/WTqcdRO/eTCblcMoGffUP8JMAhp5DAKMXiahEpBwQMtB9SX4aJXrV61+qCbbrr19m+P2QyVeCn4xreDHsX0DDJLBETlX5iul3R7NJr36CyQ2AkkAaeQBAIIQXTfPI2ABIggqiuZwvwAIEIexECduWYMKEJUx0Wv+p11a4+/+d++85M70J5YqsTu4+mwO6In1IUgmP4wvC3Pn+Ub35no54LF+LQnb9ZlVR9pu+dyz+ntQGE5D/nS7DkD+VodF1742KOOPPz6f77lp3eDPcRDStnPAp5B/eldn4s+12X2CM2M2c9vTu/8wy6Y2MQgD/LbrCXdydinuJHpLUZEMAARmADvfKzSmDQcGhW87CWPPvX31qz/0Ad+eQ/Gt5a2Wu5zhndw5aSXnlHT3dK9CDHH+trHo3NYYnMds/lYzcXrO4SFK2iztMftzNL+x6Z+g4oBjk1EAhJoBVIYGsYJJx557jnPeOflNzz4IIoczDA6KqSjyjTH/kubrkfJLVKSPyymB6ffHsMuX8YWjW3TnzRPOPKo6tPPOPaJT1z3T+s/+6MfZJoAKE1oZ+1ZXwEDrAAJpQ32+H3vS9grxJ71o2xtWb+feks8oTGI173xsYccWv/UJ//zf+8ERDGn1bRSuPa0YJwWJfuyX3VPYa9ztgAwkQqhHiKQgmdwcPJHeP2bTz18zbFXffg/f7AhjyQGnMcYwzGVzgnRQXtVgmSBDsElj71F7H79QgjdpLOQdKjLCGnhOa7gla96zJo1az55wxfv/IEAlYo5YJur7bIsraWNRTJAAkBgvbccsqsBEOJI5bmkdbzxjx+zZvXRN177zf/7GfJ24GDLClze/iJ5isWOPTtMM7T1nlMwZDYIgbQmouAQhjArIE3JgVWC17zu0atWrf6H93xpy33BPo+28xuPYLtYDDxB3X1vYX9b6U9SSlkrCoh1LrCmhpe+/PCnnPyMv3jbl3/2P5jYAgC525rZohtbmHddsP0Ne5fYvYW2X71Gz3aPonItV8pDY/AAPO7xePY5Z7zv3Z9vjkE8FNXiKM6LHGC/p3c773vY65yt+uT5LG+TB0JVvIpwquCUwZFr8fSzsG7dY97/ntu+vwGRJAKIzqc6Ewp4xM5+aOxZYs9tDG/P/0fWW5ZuCYrgNjFojODVr105OFi78bov/fxugGFUo14Z9PKIGH8Y7HHO3q7zQ217RKqmKSawIiZEnhXQUprjAfzJnz/2qEcd/bGrN9z9P9BMgMozvwgE1aLGYhudfv5WhBDj8734mIIAHWhUBvCHrzz8wIOGPnb1p39yJ+BQTap777b3Dew9YsvMYwZmiHQR49kyJgkdQAMxwO3cJwO4+HXrDj5k+Pp/vuXeX6HoPLJkPwz2HrGng2DbPSWo10SkVUQh0w2KRdgX1Sppg2odr33dqasOW/EPf3/Lg/cB3Tz7uWfR9HvXlzW1H2Fvi/GHpDdNm99aISZEBNYkWhFBwFBArYYXv+TEJz959Tvf+YHJiTIe6gXtzDNQ+G0lSEiGzMsC4N6jW3osNN0NmNUDKDT+2vWPv2ext4m9o+jl5gHgoigUSBM6bXiP5QfiSSc9+vSnnXzZn//H6GgpD5JUNzsdo+H6y3lM59kLwCxlyb3x8fFQWy40fHLOTU1N/eY3v7n44ot7hemXQCe/fSFMVGZrhLFWANKkrKdWqZTu1sOPiEZGHn/fb4v1H/ryKy85Y8UqMBAngpD2FL5NOcCQCpCAADhFynuf5/myZcsAhHKhImKMGRwcPPTQQ/M8T9M0NJLYunVrOG3fxaLn7DlyehRAzjEzSAEEFpDC4DBe87qTK1XzkQ/f9OMftRWgVQqgKGSuC0ZAUhROa12tVnsVJAGErkDe+7GxMedcKG7Ubrf3dUpjsRO7JEwQxD0vmy4KZ4xRCsxwHkqDNCyjvgx/9KrTIjXyqRs2/PROp1l5Fqg2K8cESAJUBB2hjkCJmDhOm80mgFarBYCIJiYmarVamqZTU1NRFCmlkiQJTR332iDsOixuYs/OHC1z6OM4BbrB75DcQjAxmLBsOV59ySkHLj/06o/ccu8voIlikwA5kAOYzsztbmdn5izLQp/GTqczODg4OjoKoFarWWvjOM7zHAARhTYs+zQWM7G3zaqchrW+KFxIc/BceLZErIhBOPBQvPwP1x4w9Duf+Nj/To4iz0NOa87UKflbkiAjmq3mwMBAaNN5//33V6vVzZs3X3755QMDA6tWrdqwYUPQwNvtNoCdKOa+2LCYiR0gs98JipyjSMexca5wPjOGtIa1HQUWcNgf+sdvPUZE//Xln+EcQAWIAD+zrRTq9Xrg1yzLVqxYAeD444///Oc//53vfOe3v/3tzTffHNi6Wq2GF/s65iZ2aDTcew2g1Wr1HrjT6eyZm9se4ri8bWOM0WUecRwZhIVdoBSSQbzk5cce9+jTL33zl7Y8gKKoAImHzZxjBdeldzC9QkHvyy677IEHHrjyyivXrl2rtX7729+OrtaWJMmipXcQPACC3Ri0kDkxg9jh7LGxMaVUHMeTk5OhjKr3Pk3T/oaVRVFYu2f2T09bXHNhhusjL3JFigjNdi4aq4/CU0+pP/rY49//7s9PboF3ESSKI8VwitDOi8nmlNZ6bGwsz/Moij7zmc8YY84888wgvQ888EBjjDFm06ZN6HaCW1ToCR4RCW0IN27c+BBN6OYYxOHh4fC0oVJyURS9BlPNZjPUv+o1mNqdmCv0ud09jApQIuU/0jRSJEpjzbE494KDhupHrb/iR7/9FTSignNGkdk8TeJGvdHpdIaHh51zWZbdc889odFKv//EWnvggQfKouyrbYy5+OKLBwYGKpXKwMDAOeecMzo6+hCKpJr15cCv3vvJyUnnHBHFcTwxMQGAmcOsmZiY2P2U7t3eQ2gVvc3AOrxIk6rzjoWNAcF38hYrHHwYXnrho+Ko+snrv7X5AUSqkmeclE0rSildq9WC33RwcHDLli1hFQud1KIoyrIsdN7ZI488D6xbt+6qq6666667JiYmrrnmmltuueWlL33pQ5Bm9gMEST4xMXH55Zcfeuihg4ODWutLLrlkw4YNQWvtNQbcE2J87pgY9/1Fd0JEgCEg0gaS5fkUC1fSWqSR51hxBC78o2M8m6vWf3vLg6gmdWbkOcLyFIzsWq121llnTUxM3HjjjaGjUnCVBzfq4mxkMjIysnLlypUrV0ZRdP755wP49a9//VBu3f7O6dbaIK/WrVtHRHfddVer1bruuusAnHTSSdba4FrqnSkiGzdufMELXvDAAw+EL+7izvLcd5TwIlbE9x3TZ1obPsmsazq24XvNVseJtNvyf7+Qd73z239+6b/94hdinTg/fVXnHDN/73vfazQa1Wr1C1/4goi8613vGhoaQnddC7GQ3YowemGEe283bdr0whe+8MEHH9z25KmpKRHZvHnzBz/4wcc97nFhRuZ5vr3rzxbjYTrX6/XVq1cffPDB1Wr1xS9+cRzH//3f/01ESZIEaRa4YU9gBlvPqlGB2Xtf4VgsEBldUWSyvO3ZVqsxw6kIKw7HRRc/RTi66sOfHd2MIkOnBQChkRIRnXjiiTfeeOO6deue+cxnHn300eedd14cx29605u++MUvoq9J7+KB1vrSSy9duXLlhg0bbr75Zu/94ODgQ/kD+ilfFIWIOOfC7BgfH1+/fv2JJ54YCNybaz22lj3N2YGte4ff5hwv4p1jZmHxXgovOUvhJHNinYjzsul++as//9prL/6XyTFhK8zCItYxiwRh0GMsEfE+vPUzfnG3Yb6cfdFFFwG49tpre90aA7tu7/ozOLvXOGx8fPxtb3vbIYcc8v3vf/+aa67prfm93oA92273gmap39vmqc08QRREaUVEIIQdI57gNFSe5Tb3CjhgOc6/4OTj1q34q7+8Pusgy8AM61FwAYJlT0r1VAUqe6tZIOumui4i/Pu//zuACy+8sCdonXNJkgRlsyiKYEHkeR6MtBnEVkqNjY0BeMc73nHllVdec801H/7wh4877rhwaiDw2NhYmqbVanVP2dmzsP2t6LP1kmnhbp2tppU01u0WiLB2bXLaaU84Ys2qv3znLVkHIvBMWsUCaKUnW3tkHu8KxHGslPr4xz9er9ff/e53hwa8k5OT//iP/7hp06Y4jpnZe58kSZIkRVHMEOMTExMikmVZYPGePFFKVSqVftkiXYVl94rx+WK2wM/CkRdNES8sRSbiRKz4TH75U3nnpV//m8u/ed/9YkUm2rkVKdg7EeZSvPO03LYixWIT49/+9rePPPLIOI4vvPDCTZs2nX322QDOP//8H//4x+GcTqfT6XR6RJnBHwMDA1NTU0mSHHvssVEUfeITn2g2m1dccUXo+rl58+a//du/Da1AW63WIlRYgLnj33GUMEMEUQwQCgsB1hyBC19+qnWdaz56y9hmVNN4YrKtaJbGh/KtmBlFVRcHnvKUp/zgBz/I8/zaa68dHBz87Gc/KyIf+9jH1q1bB6DdbsdxnKZpmECYdfd5njcaja1bt15xxRX1ev01r3nNG9/4xhe84AUXXHDB4ODgS1/60osuusgYk+d5rVYbHx/fO4/4ENhO/BtQSinvYS1AiBPoCExYdRRe9vIzbevAqz70o/HNGGpUnUNhHSswlfHQXtEi2X4Nkb2IWq0GoNPpxHE8NTXVarUGBwfDEh6EPFC2cWXmGWlJQbIvW7bs9NNP37p1a3C35nl+4403oq/lZxzHRVEEG3SRYZYCVT4dMysFEwFSluoHoAwYWLkKF7/6Sdd89M4r/v6Lb/jjM0cOghfT3SzebfSMWSlsiwUiQkRhVQbQaDREBN0ZYIwB4L1n5pCIMVsuBS0siPtwdtRFL/kyEHuvx762wXbj396L9+VOYFLI8jaLA9izmAiHrMLLX3E854d89AM/y5vwDoAHOtP1HbisNbjYiB2S5gLXFkWRZRkRdToda22n0wmkDHENAHmezyC2iAwNDQV9PSzJIfIRPgnTJ2To1ev1RbpmzxX/jozWmkTEuQJwaRopJUXRjpSA4BVWHo4/futj2OtL/+RmA3SX53J+7HT5yN2NYBC1221jTC9+U6lUoiiqVCrVahVAlmXBBZ4kyQxil32J1DTHh8hHT/QD0FovwmDfjoCIjDFdB5xL4qiTtRSYXUeA4UNw7vOOGhk6+r3vuhMWnU4CkKBg4oLd4rKvuwj8FoiK7QRh0zTt+dQWl3q5K7Dj8W+upGmrPZXEiTYYbzfXnYBXvWatsPmbd3451QowLMzIjZbctqzYxaefzQ9LidjzjX8DcFrrMhc97SjtDliJZz57LbkV//SBXzXHoSklROOtsTgyukxf34exlIiNeca/TSe3Yb+BwFeTSmYnxpuTjzkRr3zV2vt+++ANH7/dZmAxA7VhXrTr9nywtIg9v/h3VIkGCEYw6dwEUE+jkcF6Q2kcuBpvftuTf/nzqavX/4/PQYgU4k7oGr0vY9++++1imt7bVmvu5o1Pt5IiY5LwLa0ptx1WPHwg/uyyM+++6/9df+1trUkUHVQSswidKvPCkiP2vOLfBADEDSU1AM4jy1wSV9rtjDRMDW9/x3N/+fONH/3Qd10B8YvRgzYvLDliz7GwzvxoJsGcBQHCyLLCGE5Tk+d2oFYdG5+oN7DiULzkRee3JvOrP/IDZ0sH3FxVBPaFmudLjdjzjn/DmNKtVkkNwRNsmgCwI0OD4pF3sO44vOglp0yM/frKKz7HjLHxsBEhVDkXD3jhXuH7UKhxO6rD3sfSIvYc2LH497RZxQCLCEQ0IYlAhGOOwctedr7NOn/3d5+t1+EcrIf1CNUChKh7/cXO3Eue2DuAbaKiipS1lhnaoNkECEcdrc444wwu0ive+w32MBpaIy88AEKP2B2gtQs7M+1y7N/Enhb40/2oQtAjjuOgq9fqmJgCFJ540uDznv/0sa3j//Dez3MO4tDZGqFSG+C6e8nyRUvv/ZvYJWaZ4KYoHACl4DxIYXAIzRag8Ki1eMXF541tbLz3XT+Z2IJqgjxnRczIGXnoaCXIBR0hyOLzweznxA6dRXool/Y4jjttC4AILAAhqcAxnGDNEXjDG596329G/+NffrHpPiRRKPYSehNKNxSKxbl+78/E7rfC+yDBu6IBaAPnXV7kUQwTIc8LIhy0Ev/h4OUAABDYSURBVH/2F6f88mfZp659cOsmdLeAWS5r9VSBGoCZ02hRYH8mNmZSetrf0moVcaycZxGJYxUnCnDCrlGLJ6YyneLgw3DB89dufHDrDf98hxQA6kClr9diD4uLv/dzYs+NWi0GYIwiIoAJALxSwsLDg6mwLxwedzJe+oe/s+kBfs9f3eEziNSBOoNyZztFzlBShlsWERbX3ewNbGcEZuQulq8VMcBaUZwyGxx7PF70khNaTX73X28gi4kxKMSRiZI4AZBbv9jcKvs5sbcJXD5M/NsXNvNeKVJZ9qDSdu3jcfa5J0RY85dvv2uwCm/LPOXM2lAJYlFhfyb29p1rwMzYSZmSLFBaa0EB2Golnmg+CI0n/x7OOW9lp20//IG78ha8Df2/F2MLk/2Z2JhJb5559KPUvMRFRiWRzrxMKDQG64c1pyZJ44i1ePUbjr/rJxuvu+Y3hqBVyd+LDfs5sWehG+DYNiU52GMKWSeUsFeeASBNY8c2qmLl4fizvzjtjjvuuO7a7+VtaIAWH7X3b2LPEZuSrvEtXR/q7Pi3cN3QMueKwrbjKI5MZC1MgkMOxytf97Qffv8nt372N5MTEF50ga+FKxGzlr2HdRL2JREsUoR7o21vsig4TTV7CCOJK14KAM67JDIMNJudE59Qq8Z/+E/rP2XtE5597hFpFao7HgTXt6/EzJpAfdiNpvnCBl3KLdFlM/eyy8N2Z3Q37jt9bHO1PRsPnqF4hymru0ffDO6q6HECUNk9kkQZSgmItAhaCp1KIrbA2nX4gz8478c//PF1H/ueCLICHsidF2TAlKApkouHOIiFODCDmT3De4gIwMwO4FBYAN1qCbPvPIz2PLEwYhPKCA/xjDLxc9/G4k/n2CbTYQa49KX3nq4kASsIwScRpSmIcMIJyfMuOPf+ezeu//BtWqE1BWN0Jy9yLghcFFk5eTRIQymnlFcKSpebMYxRABNR9+1c0nenoiwLFKcMKsoDDmRBtq8pw6yDtxnNxSzM58S20iYIA7LeMhhAlkNpPPYEnHLKKff+fPL6f/55NYa3qCTL2FWAOEnqIRzKIoymx5RH00vm2TpXiJC1XoS89957ZlcU2TaWQk+RnB8WMtzdQAL5HRO7+y6N+7HNXjIowEQ6ds4BHMVoZwDh9DMGXvTiZ37zG7d/7jOTmtEcRxoPNlsO0DBABGVEKdZg3e2FobUm0lpH4a/WkVKqrMpF/TT2gO9+Mg8sfNz78r7C4g3VFxLoP3b4txZr8H/G4E5Pb+U8Ayo2cas9pQ2qNXQKQOP4E3HZZRfeestPPnEN11PAo1YdLgpXTnhRQIJSdzGAgeiuGtT7GTWzrpn0cfa8lZqFE7tPm5qTSNuqXf1SYNYNE/cpAYuW5DMhMDoqbNgpGVtnoWBi5A7QOOJovPktJ3/tK1/7zKfbsGhNII7Svi8ngjowAESzB6f7WoSAwEU9zOn5eXgskNge5PommvRJm+6tzPI295N5W0qXWPyqXBflIxhmAMpoRcpbZ6MYSQWdokUGa47FO9719K9+8cefugG1FBPjmK7mwICvwCfMAJf9TsLfaQ5CBDHd5Y8WshouxM5WQALfANfANUg0t1zp/3CHqhgsfjIzoEDTj1YULk0qhc2NUUYr0QI4720tAaNj0mjlEeblr3jS9R//0eho/UUXHj26CVB5KbcZCGFUgmJoDee9MYqZBVYp2rJ5AtBdegfQNoyyQ6A5bLgdhEAcfvN/OOWUU84666x2O9NaRyZptdpJknR9T/3WalHwxMBg+sAD97/v/e9etWoIhKzjKtXehNu2bsKiUuV6CrAuNxD1UGYi91yt5fkMx3AaETDgC9z5fbz2lf+UpHrNMRZm88BQMjU1VUkHitzleZ5WYi2WlBRFFkoHaANj1OjWzb/+9a9u/OR1RxxxaOAQZgZC4dz5jc+CPGjMaDTwxCc+8bWvfe3ISD2OYAy872bqzJbScMD9D9x//fXXGhMDEIExRqb3XO2zCPXxSttyesoStPc+d1lkjI6rRz0aK1aODA+teeITj7zghcMWYEazmR98cFIUYIHyUBpFIcYQs1eatKYtWza98U2vr1bq5Q8BSikRtRPjtgBiE5iQ+a0Ub1q+gpcfAO9BBKVmdi2fyQHeHzI1NVXkDgARogg846a7U1W6uzcWF2jGy9kuzx69EV4QlIYxXY2sPoRlK8ZOPfmcH33//q9+afhpZ2FoGQ5EMtnE8AFotdBIQYBzZAyYNQhKwbmhwcHBOE4hcB6hdgSF+tnzLJW8IDs7im1SyZVpKtOEsh4tpgzKkQ4Hk2Yy4QBpFAWUIhEK1TtCFfRQomsGZFFJ7x761aJgMmzP4Vpam9Yao1KloBSyzBcOFI0ftTZ+4cvW3HLL17/+lSn2mJjAwACs97V6cM9Am65TtoykeyJmdizoH6qdKH++oGHtZK12p2ldbl0OOBOBlOOyzeU2B8EY1GrQWkeRQre9WhR152fPzb540bs37nMLztoPbLre9ShSWhhAx0s70jpSUEq17cbjnoQ/vfy0W79w2yevG69VwnKmHRfT4QUCVNiJBM8d5zOWggi9quc7p2gtaGQrab1WHUziGsQARsEoir0TAQkobHmcfi3wHlmGVqtVFJ4ZSbLoxPQOoDdiwTbq08im7SXVi2sJg2AFNtApqVTGJu/nCI9ai4sv+f3vfPe7X/7yFpsBAvFxefmukUVKSIEUk2KlhUIpNwpBJNmJNW5hppcoV0R5R9ncsI9AUITIxHN30xBEEaII1Wq1UtHB9Q8gy4o03aZE9qIsMteH/hxkXX7Q/08ABM9OGwEiTTp8YWCwWhSFVhif8o89Sb8yPfNv3/nRovPic5/T0BR0F0sqbDYIb0lpp7QDFb3oMJF0NyTMDwuVmd6DyFQqdaVAgPeAQNHch3PodOAdFUVZWZIZaRrP1tsXWcx/LtBs43CukdcRhDygnHcgkEatVuu0chHUa5oIxx1Pr3vtRd/82rf+9ZO/VQJhCMgzCYjDO0gIcnrvWSyLBSyRVzvFBwtLXiAo7ZX2zndADQBKP9SEMxG0gUJNfMnWSpeCHuj6+mXRJWVugx6HzNSG53hwIxDARVqsn9R64MDh5a4N5EgTALAOv3d6rM3vfuoT36imld9/zoiJjfUoHJIYgMsKa6IqIYIoRaqrJRiAphX/HcbCR7bfOfpwwrf0oPXGaGbpC+peYScdRHsSOzTMAohoIgaYlCggUnG7lSemfF5FXmn95JOHODv381/4qqPVZ5x9dJzARPCCVrM91Bi4//4HZ/902DM4f1m+mFXffR8hhIUIiBXFEEQmCX2zQMiyIorE+czEOOU0evzjH3/bN371za+MgqEA8RhoDLDwwEAd6IWFDCQphd+eVdB2Obh8Ktm5JWmRoRu8YlZKKYICUK3WJyYmrEWkAXKANtpPTLQGK7XnPm+oWj/91ltv0XrdqacfpUK5ttK5FCity+hnj6H3nAdtJyEPF7uc/1q0uCFl3ERD0GgMtlotz4iAODYeHQ1fH0htDh3h95+tHf/ulz77w/bE8DnnjwDwDuyD+8FMx7mDJ0fmrZDvFc6ea0EuF2wGdMncSwJKlW6vYBgPDjasy9MUzVZer2uAPApNBgbOwsR41nnLxZ9624bvER71+886uFaHVtUy9WOOiPD8/KV7kNil2tV/y9sy8eJLtt5pEII9rLovSDDQqJEwCbx1hAhQzFapwhhoDSa0OzjnuenAwEn/+onvVKKDzzoHUxNOJJqdTRpMs7nynR8Ce5azaQdTUBi0aD3k80TXshCACEkKUq6wGBoKG/Z1pCoEBTjrJTKo1aPWFE49PW5NnHLTf3zZ8+Of9LvD4BqgQKHdUgQE1zLNN+y1IGKLSCg9H5JerbVRFIW/2/uK1pLnLVLQBnmRxyZRqqd0zJyntCsX7yzL0jQNjTB21TUfDiwQIlJaeW87WateHRK4tKLK+t8CUEQovYeR0U6mFKUmSkTj2edDmeM3fOMnW0cPF1+LoshjspNNVpJlmhoQVbrR50PuBT15SHet1Wr33nsvgFDPvtlsbm9AnZctm6cOPuSge+/dqOIaozWej0FioxoAk5oCWYjpSSfZRcT23hPR2NhYtVqNomhycjI0P9/NhGcTSavVStMaEbVak7aQSnXouc87Z8toB1SUzKpaAIMzAIVv1xqDU5OTztKKgw448ckHbtq09bbbv9Zq5s6Shq6naSjLxF5lHVQb87uhBT1tGKyiKD70oQ9NTk4CSNO0KIrtDaIy5J3ZeJ/96c/+Z/gALtyEzX2tOpy1qUtsD9G9/LpdVXDIWjswMJDneeg/GZroMvPuJTY5gu10OpW0kaZpJ5uwhUqjFXFUzYrNIAEnIAfVAgQSCYxjNkZHicvzPO+ogcYIkd64eevKFcc8eH+zWq+ZhASt1FRIRZXqvJ0qC0hL6srG0dHRkZGR3ofbvyA7KYyq9HJ7smIMrCvpgHgAIOVBFqJ7HtNdRWznXOiebK01xoR2yaHh1a75gbnBIrlSuqsz5yLKZhVFMLEA3fodSkAOYiAEQqvj40phFOcFRCRNCIiLLIrjIOwcYLPcR6pOKCPfO44FEdt7399YOkjL7TcVdwxHiItMxTGgHJATYu+NLpsvhRwuPa2a7TrXSq/jEYDQky6O493c8p1Lc0OULYooCRZYBQKoEAUykBDNdOX8DqqcAkuhyALimDqdTqNW6eTW20qtkhDgPEwMwNI8y7YsSI4RUVj5AoGVUkGGz92vmzj4jKwNGop4OANDRCEkShIsiunZI9MlRRcE730URaHTvVKq2WwODAygzNzbnWANEHsYEwO5c7n4KIqNSAGoktgIqqiDqHbH1moJBEWOKCFNMCpp1GJBO0m0ShJvoQjGAGgV3ErU8Px02F3VQXIHunBaL5MsWeh0mbupyfYDIplIt+s5i4gt+2n6/gbpC8Xo6OhFF120fPlyAIcddtjznve822+/fZddffvwhbhcxIUenoX3LZuHhp5TIu2+py66vT4LEWuL6SbR7U7e6rStY8/CIq12kdvCSdvJhJMxEftwtzADCyJ2WAvD606nUz6h9zwnpGBpTra2MEur5cNbkYKZ2Qk7Ec/Crr/pPbPMfal54oQTTlBK3X333SKyfv16Ilq3bp3Irrn49iHiyz6vNpM8a4fWrc52RKZEWuV/PQsXwoVwLpI53xER9tIue8WK88Is7TazSOFylraXSZYpJ835EntBa/Y80V3DpnP2um93c17KiSeeeO+9927evBmAtTas1kVRAAhTNizeRVHEcfzQfoJ5Y8ajzco17k+Y74fa5ov9mKP+5g5iT3rQZt3ZzN3uuxPf/e53oyh64IEHbrrppptuugmAiASFnIiiKBIRa21QNnex1ja7vjXmotBcBNvumOw8yZaES/LhEEXRpZdeumLFim9961sf/OAHATjn0jRttVqlfCPqtRZvNpt7+353GxayZu8ruOCCCwB87nOfy7LMe99oNPofvNVqBc2jp38sVezJNXuvYXh42Fo7OjoaekYnSWKMGR8fF5GwXQFd4zs0rd2D/vM9iv1CjFcqlVarddNNN42OjgZt3DlXrVZvuOGG4NUXEaVUrVZLkqTfTbTUsJclyx7B7bfffuSRRxLRm9/85vvuu+85z3lOo9E47bTT7rrrrnBCnufWWuccMwf/+ZLEfiHG0XXje++VUiKilMqyTCkVx3Gn09Fah77D3A3XLknsL8R+BNhP1uxHEPAIsfcjPELs/Qj/H/VGzrd7gophAAAAAElFTkSuQmCC"
+                            }
+                        ],
+                        "format_name": "Text body"
+                    }
+                ],
+                "format_name": "Text body",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,1",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,1,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,1,0,0",
+                                "type": 4,
+                                "elements": "The side: ",
+                                "format_id": "ecb35d6a-2743-4e37-acb1-2e76fee4fe1f"
+                            },
+                            {
+                                "id": "0,1,0,1",
+                                "type": 5,
+                                "elements": [
+                                    {
+                                        "id": "0,1,0,1,0",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,1,0,1,0,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,1,0,1,0,0,0",
+                                                        "type": 27,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,1,0,1,0,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,1,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "a",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,1,0,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,1,0,1,0,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,1,0,1,0,0,0,2,0",
+                                                                        "type": 8,
+                                                                        "elements": "1",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,1,0,1,0,0,0,2,1",
+                                                                        "type": 8,
+                                                                        "elements": "cm",
+                                                                        "format_id": "5f9d3267-4805-483c-9ad2-fb71952fd76d",
+                                                                        "can_merge": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "auto_solve": true
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Code",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ],
+                        "format_name": "Text body"
+                    }
+                ],
+                "format_name": "Text body",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,2",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,2,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,2,0,0",
+                                "type": 4,
+                                "elements": "The diagonal: ",
+                                "format_id": "ecb35d6a-2743-4e37-acb1-2e76fee4fe1f"
+                            },
+                            {
+                                "id": "0,2,0,1",
+                                "type": 5,
+                                "elements": [
+                                    {
+                                        "id": "0,2,0,1,0",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,2,0,1,0,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,2,0,1,0,0,0",
+                                                        "type": 27,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,2,0,1,0,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,2,0,1,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "d",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,2,0,1,0,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,2,0,1,0,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,2,0,1,0,0,0,2,0",
+                                                                        "type": 8,
+                                                                        "elements": "a",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    },
+                                                                    {
+                                                                        "id": "0,2,0,1,0,0,0,2,1",
+                                                                        "type": 13,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,0",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,1",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,2",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,3",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,4",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,5",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,1,6",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            }
+                                                                        ],
+                                                                        "symbol": "·"
+                                                                    },
+                                                                    {
+                                                                        "id": "0,2,0,1,0,0,0,2,2",
+                                                                        "type": 16,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,2,0",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,2,0,1,0,0,0,2,2,1",
+                                                                                "type": 7,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,2,0,1,0,0,0,2,2,1,0",
+                                                                                        "type": 8,
+                                                                                        "elements": "2",
+                                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                                        "can_merge": true
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "auto_solve": true
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Code",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,2,0,1,1",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,2,0,1,1,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,2,0,1,1,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,2,0,1,1,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,2,0,1,1,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "d",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,2,0,1,1,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,2,0,1,1,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,2,0,1,1,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4,
+                                                                            6
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        },
+                                                                        "array_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Code",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ],
+                        "format_name": "Text body"
+                    }
+                ],
+                "format_name": "Text body",
+                "format_alignment": 0
+            },
+            {
+                "id": "0,3",
+                "type": 2,
+                "elements": [
+                    {
+                        "id": "0,3,0",
+                        "type": 3,
+                        "elements": [
+                            {
+                                "id": "0,3,0,0",
+                                "type": 4,
+                                "elements": "The square: ",
+                                "format_id": "ecb35d6a-2743-4e37-acb1-2e76fee4fe1f"
+                            },
+                            {
+                                "id": "0,3,0,1",
+                                "type": 5,
+                                "elements": [
+                                    {
+                                        "id": "0,3,0,1,0",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,1,0,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,1,0,0,0",
+                                                        "type": 27,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,1,0,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,1,0,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "S",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,1,0,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,1,0,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,1,0,0,0,2,0",
+                                                                        "type": 15,
+                                                                        "elements": [
+                                                                            {
+                                                                                "id": "0,3,0,1,0,0,0,2,0,0",
+                                                                                "type": 7,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,3,0,1,0,0,0,2,0,0,0",
+                                                                                        "type": 8,
+                                                                                        "elements": "a",
+                                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                                        "can_merge": true
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "id": "0,3,0,1,0,0,0,2,0,1",
+                                                                                "type": 10,
+                                                                                "elements": []
+                                                                            },
+                                                                            {
+                                                                                "id": "0,3,0,1,0,0,0,2,0,2",
+                                                                                "type": 7,
+                                                                                "elements": [
+                                                                                    {
+                                                                                        "id": "0,3,0,1,0,0,0,2,0,2,0",
+                                                                                        "type": 8,
+                                                                                        "elements": "2",
+                                                                                        "format_id": "04e12991-4bfd-4e4c-8ef3-12f5466492e6",
+                                                                                        "can_merge": true
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "auto_solve": true
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Code",
+                                        "format_alignment": 0
+                                    },
+                                    {
+                                        "id": "0,3,0,1,1",
+                                        "type": 6,
+                                        "elements": [
+                                            {
+                                                "id": "0,3,0,1,1,0",
+                                                "type": 7,
+                                                "elements": [
+                                                    {
+                                                        "id": "0,3,0,1,1,0,0",
+                                                        "type": 18,
+                                                        "elements": [
+                                                            {
+                                                                "id": "0,3,0,1,1,0,0,0",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,1,1,0,0,0,0",
+                                                                        "type": 8,
+                                                                        "elements": "S",
+                                                                        "format_id": "7cbb3593-caaa-4e82-8d1a-97a9f4e4a7ac",
+                                                                        "can_merge": true
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,1,1,0,0,1",
+                                                                "type": 10,
+                                                                "elements": []
+                                                            },
+                                                            {
+                                                                "id": "0,3,0,1,1,0,0,2",
+                                                                "type": 7,
+                                                                "elements": [
+                                                                    {
+                                                                        "id": "0,3,0,1,1,0,0,2,0",
+                                                                        "type": 25,
+                                                                        "elements": [],
+                                                                        "result_auto_advance": true,
+                                                                        "results_order": [
+                                                                            1,
+                                                                            2,
+                                                                            3,
+                                                                            4,
+                                                                            6
+                                                                        ],
+                                                                        "real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        },
+                                                                        "integer_config": {
+                                                                            "result_notation": 2,
+                                                                            "default_notation": 2,
+                                                                            "show_notation": true
+                                                                        },
+                                                                        "rational_config": {
+                                                                            "fraction_form": 0
+                                                                        },
+                                                                        "complex_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true,
+                                                                            "form": 0,
+                                                                            "max_count": 10
+                                                                        },
+                                                                        "array_real_config": {
+                                                                            "precision": 3,
+                                                                            "exp": 10,
+                                                                            "default_angle_measure": 0,
+                                                                            "result_angle_measure": 0,
+                                                                            "show_angle_measure": true
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ],
+                                                        "result_type": 5
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "format_name": "Code",
+                                        "format_alignment": 0
+                                    }
+                                ],
+                                "code_id": 1
+                            }
+                        ],
+                        "format_name": "Text body"
+                    }
+                ],
+                "format_name": "Text body",
+                "format_alignment": 0
+            }
+        ]
+    },
+    "caret": {
+        "id": "0,0,0"
+    },
+    "selection": []
+}
