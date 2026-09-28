@@ -3560,6 +3560,10 @@ void MainWindow::WriteSettings()
     for (auto r : config.auto_result.results_order)
         v.push_back((int)r);
     settings.setValue("results_order", v);
+    QList<QVariant> e;
+    for (auto r : config.auto_result.results_enabled)
+        e.push_back(r);
+    settings.setValue("results_enabled", e);
 
     settings.setValue("real_precision", config.real_result.precision);
     settings.setValue("real_exp", config.real_result.exp);
@@ -3696,32 +3700,35 @@ void MainWindow::ReadSettings()
     config.solve_delay = settings.value("solve_delay", config.solve_delay).toInt();
     config.auto_result.result_auto_advance = settings.value("result_auto_advance", true).toBool();
     QList<QVariant> v = settings.value("results_order").toList();
+    auto& results_order = config.auto_result.results_order;
+    auto s = sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]);
+    //fill unique known result types in the saved order, the remaining slots with the missing types in the default order
+    const ResultType default_order[] = {ResultType::REAL, ResultType::INTEGER, ResultType::RATIONAL, ResultType::COMPLEX,
+        ResultType::ARRAY_REAL, ResultType::SYMBOLIC_REAL, ResultType::SYMBOLIC_RATIONAL, ResultType::SYMBOLIC_COMPLEX};
     size_t i = 0;
     for (auto r : v)
     {
-        if (i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]))
-            config.auto_result.results_order[i++] = (ResultType)r.toInt();
+        ResultType t = (ResultType)r.toInt();
+        bool known = t == ResultType::REAL || t == ResultType::INTEGER || t == ResultType::RATIONAL || t == ResultType::COMPLEX ||
+            t == ResultType::ARRAY_REAL || t == ResultType::SYMBOLIC_REAL || t == ResultType::SYMBOLIC_RATIONAL ||
+            t == ResultType::SYMBOLIC_COMPLEX;
+        if (known && i < s && std::find(results_order, results_order + i, t) == results_order + i)
+            results_order[i++] = t;
     }
-    auto& results_order = config.auto_result.results_order;
-    auto s = sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]);
-    for (; i < s; ++i)
+    for (size_t j = 0; i < s && j < sizeof(default_order) / sizeof(default_order[0]); ++j)
     {
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::INTEGER) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::INTEGER;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::RATIONAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::RATIONAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::COMPLEX;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::ARRAY_REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_REAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::SYMBOLIC_REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_RATIONAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::SYMBOLIC_RATIONAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_COMPLEX) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::SYMBOLIC_COMPLEX;
+        if (std::find(results_order, results_order + i, default_order[j]) == results_order + i)
+            results_order[i++] = default_order[j];
+    }
+    QList<QVariant> e = settings.value("results_enabled").toList();
+    auto& results_enabled = config.auto_result.results_enabled;
+    for (int j = 0; j < e.size() && j < (int)s; ++j)
+        results_enabled[j] = e[j].toBool();
+    //at least one result type must stay enabled
+    if (std::find(std::begin(results_enabled), std::end(results_enabled), true) == std::end(results_enabled))
+    {
+        for (size_t j = 0; j < s; ++j)
+            results_enabled[j] = true;
     }
 
     config.real_result.precision = settings.value("real_precision", 3).toInt();
