@@ -1712,8 +1712,8 @@
         <translation>Подключение</translation>
     </message>
     <message>
-        <source>Result settings for new documents</source>
-        <translation>Настройки результата для нового документа</translation>
+        <source>Result settings for new results</source>
+        <translation>Настройки результата для новых результатов</translation>
     </message>
 </context>
 <context>

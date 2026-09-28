@@ -67,6 +67,7 @@ add_executable(${PROJECT_NAME}_test
     files.cpp
     toolbar.cpp
     result_settings.cpp
+    settings.cpp
     ${APP_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/resources.qrc
 )

@@ -1708,8 +1708,8 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Incluir</translation>
     </message>
     <message>
-        <source>Result settings for new documents</source>
-        <translation>Configurações de resultado para novos documentos</translation>
+        <source>Result settings for new results</source>
+        <translation>Configurações de resultado para novos resultados</translation>
     </message>
 </context>
 <context>

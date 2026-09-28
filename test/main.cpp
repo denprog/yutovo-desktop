@@ -6,6 +6,7 @@
 #include "files.h"
 #include "toolbar.h"
 #include "result_settings.h"
+#include "settings.h"
 
 int main(int argc, char** argv)
 {
@@ -41,6 +42,11 @@ int main(int argc, char** argv)
     {
         TestResultSettings test_result_settings;
         result |= QTest::qExec(&test_result_settings, argc, argv);
+    }
+
+    {
+        TestSettings test_settings;
+        result |= QTest::qExec(&test_settings, argc, argv);
     }
 
     return result;

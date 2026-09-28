@@ -1820,24 +1820,38 @@ void MainWindow::Settings()
 
     if (r == QDialog::Accepted)
     {
+        const Config::AutoResultConfig old_auto_result = config.auto_result;
+        const Config::RealResultConfig old_real_result = config.real_result;
+        const Config::IntegerResultConfig old_integer_result = config.integer_result;
+        const Config::RationalResultConfig old_rational_result = config.rational_result;
+        const Config::ComplexResultConfig old_complex_result = config.complex_result;
+
+        _config.auto_result.real_result = _config.real_result;
+        _config.auto_result.integer_result = _config.integer_result;
+        _config.auto_result.rational_result = _config.rational_result;
+        _config.auto_result.complex_result = _config.complex_result;
         config = _config;
-        config.auto_result.real_result = config.real_result;
-        config.auto_result.integer_result = config.integer_result;
-        config.auto_result.rational_result = config.rational_result;
-        config.auto_result.complex_result = config.complex_result;
-        
+
+        //update result settings of the open documents so that each new result picks them up
+        bool update_result_settings = !(_config.auto_result == old_auto_result) || !(_config.real_result == old_real_result) ||
+            !(_config.integer_result == old_integer_result) || !(_config.rational_result == old_rational_result) ||
+            !(_config.complex_result == old_complex_result);
+
         for (int i = 0; i < ui->editor_tabs->count(); ++i)
         {
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
             Config c;
             w->document->GetConfig(c);
-            //update all but language and result settings
+            //update all but language; keep the document result settings unless they were changed in the dialog
             _config.language = c.language;
-            _config.auto_result = c.auto_result;
-            _config.real_result = c.real_result;
-            _config.integer_result = c.integer_result;
-            _config.rational_result = c.rational_result;
-            _config.complex_result = c.complex_result;
+            if (!update_result_settings)
+            {
+                _config.auto_result = c.auto_result;
+                _config.real_result = c.real_result;
+                _config.integer_result = c.integer_result;
+                _config.rational_result = c.rational_result;
+                _config.complex_result = c.complex_result;
+            }
             w->document->SetConfig(_config, false);
         }
 
