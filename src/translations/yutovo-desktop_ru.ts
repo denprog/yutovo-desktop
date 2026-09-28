@@ -1603,6 +1603,18 @@
         <translation>Массив вещественных</translation>
     </message>
     <message>
+        <source>Symbolic real</source>
+        <translation>Символьные вещественные</translation>
+    </message>
+    <message>
+        <source>Symbolic rational</source>
+        <translation>Символьные дробные</translation>
+    </message>
+    <message>
+        <source>Symbolic complex</source>
+        <translation>Символьные комплексные</translation>
+    </message>
+    <message>
         <source>Arithmetical</source>
         <translation>Арифметическая</translation>
     </message>

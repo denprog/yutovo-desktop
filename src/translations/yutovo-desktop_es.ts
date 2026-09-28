@@ -1599,6 +1599,18 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Matriz de reales</translation>
     </message>
     <message>
+        <source>Symbolic real</source>
+        <translation>Reales simbólicos</translation>
+    </message>
+    <message>
+        <source>Symbolic rational</source>
+        <translation>Racionales simbólicos</translation>
+    </message>
+    <message>
+        <source>Symbolic complex</source>
+        <translation>Complejos simbólicos</translation>
+    </message>
+    <message>
         <source>Arithmetical</source>
         <translation>Aritmética</translation>
     </message>
