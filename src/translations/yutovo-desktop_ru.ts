@@ -1794,14 +1794,26 @@
         <translation>Высота</translation>
     </message>
     <message>
-        <source>Color</source>
-        <translation>Цвет</translation>
+        <source>Grid color</source>
+        <translation>Цвет сетки</translation>
     </message>
     <message>
         <source>Grid thickness</source>
         <translation>Толщина сетки</translation>
     </message>
-</context>
+    <message>
+        <source>Axis color</source>
+        <translation>Цвет осей</translation>
+    </message>
+    <message>
+        <source>Axis thickness</source>
+        <translation>Толщина осей</translation>
+    </message>
+    <message>
+        <source>Show ticks</source>
+        <translation>Показать деления</translation>
+    </message>
+    </context>
 <context>
     <name>PlotFormatDialog</name>
     <message>

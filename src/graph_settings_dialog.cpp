@@ -23,9 +23,15 @@ GraphSettingsDialog::GraphSettingsDialog(yutovo::GraphFormat& _settings) :
     form->height->setValue(settings.size.height);
     form->grid_width->setValue(settings.grid_width);
 
+    form->axis_width->setValue(settings.axis.width);
+    form->axis_ticks->setChecked(settings.axis.ticks);
+
     QColor c = QColor::fromRgb(settings.color.ToInt());
     form->color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     connect(form->color, SIGNAL(clicked()), this, SLOT(OnColorClicked()));
+    QColor axis_c = QColor::fromRgb(settings.axis.color.ToInt());
+    form->axis_color->setStyleSheet(QString("background-color: %1").arg(axis_c.name()));
+    connect(form->axis_color, SIGNAL(clicked()), this, SLOT(OnAxisColorClicked()));
     connect(this, &QDialog::accepted, this, &GraphSettingsDialog::OnAccepted);
 }
 
@@ -40,11 +46,24 @@ void GraphSettingsDialog::OnColorClicked()
     }
 }
 
+void GraphSettingsDialog::OnAxisColorClicked()
+{
+    QColorDialog d(QColor::fromRgba(settings.axis.color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        QColor c = d.selectedColor();
+        settings.axis.color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->axis_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    }
+}
+
 void GraphSettingsDialog::OnAccepted()
 {
     settings.size.width = form->width->value();
     settings.size.height = form->height->value();
     settings.grid_width = form->grid_width->value();
+    settings.axis.width = form->axis_width->value();
+    settings.axis.ticks = form->axis_ticks->isChecked();
 
     close();
 }

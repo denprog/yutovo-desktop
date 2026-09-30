@@ -24,6 +24,7 @@ private slots:
     void testFunctionAtPoint();
     void testGraphSurface();
     void testGraphHistogram();
+    void testGraphFormatAxes();
 
     void testTextBlock();
     void testTextBlockNoCodeBlock();

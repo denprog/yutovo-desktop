@@ -1797,14 +1797,26 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Altura</translation>
     </message>
     <message>
-        <source>Color</source>
-        <translation>Cor</translation>
+        <source>Grid color</source>
+        <translation>Cor da grade</translation>
     </message>
     <message>
         <source>Grid thickness</source>
         <translation>Espessura da grade</translation>
     </message>
-</context>
+    <message>
+        <source>Axis color</source>
+        <translation>Cor dos eixos</translation>
+    </message>
+    <message>
+        <source>Axis thickness</source>
+        <translation>Espessura dos eixos</translation>
+    </message>
+    <message>
+        <source>Show ticks</source>
+        <translation>Mostrar marcações</translation>
+    </message>
+    </context>
 <context>
     <name>PlotFormatDialog</name>
     <message>

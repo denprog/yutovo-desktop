@@ -2,8 +2,12 @@
 #include <QDebug>
 #include <QTest>
 #include <QMouseEvent>
+#include <QCheckBox>
+#include <QPushButton>
+#include <QSpinBox>
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
+#include "../src/graph_settings_dialog.h"
 
 void TestToolbar::initTestCase()
 {
@@ -224,6 +228,55 @@ void TestToolbar::testGraphHistogram()
     document->WaitTask(document->InsertCloseSquareBracket(true));
     QTest::qWait(3000);
     QCOMPARE(document->ToText(), U"graph_bar([1,5])");
+}
+
+void TestToolbar::testGraphFormatAxes()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("graph_histogram_action");
+    QVERIFY(action);
+    document->InsertCode(false, true);
+    action->trigger();
+    QTest::qWait(200);
+    document->InsertOpenSquareBracket(true);
+    document->InsertString("1", true);
+    document->InsertComma(true);
+    document->WaitTask(document->InsertString("5", true));
+    document->WaitTask(document->InsertCloseSquareBracket(true));
+    QTest::qWait(3000);
+
+    auto el = document->FindByType(yutovo::ElementId{0}, yutovo::ElementType::GRAPH_HISTOGRAM);
+    QVERIFY(el);
+
+    //fill the axis fields in the graph format dialog
+    yutovo::GraphFormat format;
+    QVERIFY(document->GetGraphFormat(el->id, format));
+    GraphSettingsDialog dialog(format);
+    auto axis_color = dialog.findChild<QPushButton*>("axis_color");
+    auto width = dialog.findChild<QSpinBox*>("axis_width");
+    auto ticks = dialog.findChild<QCheckBox*>("axis_ticks");
+    QVERIFY(axis_color && width && ticks);
+    //defaults: tick marks on, thickness 1; thickness 0 hides the axis lines
+    QVERIFY(ticks->isChecked());
+    QVERIFY(width->value() == 1 && width->minimum() == 0);
+    width->setValue(3);
+    ticks->setChecked(false);
+    dialog.accept();
+    QVERIFY(format.axis.width == 3 && !format.axis.ticks);
+
+    //push the format through the document and undo it
+    document->WaitTask(document->SetGraphFormat(el->id, format, true));
+    QTest::qWait(500);
+    yutovo::GraphFormat current;
+    QVERIFY(document->GetGraphFormat(el->id, current));
+    QVERIFY(current.axis.width == 3 && !current.axis.ticks);
+
+    document->Undo();
+    QTest::qWait(500);
+    QVERIFY(document->GetGraphFormat(el->id, current));
+    QVERIFY(current.axis.width == 1 && current.axis.ticks);
 }
 
 void TestToolbar::testTextBlock()

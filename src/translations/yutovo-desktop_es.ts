@@ -1797,14 +1797,26 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Altura</translation>
     </message>
     <message>
-        <source>Color</source>
-        <translation>Color</translation>
+        <source>Grid color</source>
+        <translation>Color de cuadrícula</translation>
     </message>
     <message>
         <source>Grid thickness</source>
         <translation>Grosor de cuadrícula</translation>
     </message>
-</context>
+    <message>
+        <source>Axis color</source>
+        <translation>Color de ejes</translation>
+    </message>
+    <message>
+        <source>Axis thickness</source>
+        <translation>Grosor de ejes</translation>
+    </message>
+    <message>
+        <source>Show ticks</source>
+        <translation>Mostrar marcas</translation>
+    </message>
+    </context>
 <context>
     <name>PlotFormatDialog</name>
     <message>
