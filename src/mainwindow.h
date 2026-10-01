@@ -333,6 +333,7 @@ private:
 
     std::u32string clipboard_json;
     std::u32string clipboard_text;
+    std::vector<unsigned char> clipboard_image;
 
     QMenu* recent_files_menu = nullptr;
     int recent_files_count = 10;

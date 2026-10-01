@@ -1896,7 +1896,7 @@ void MainWindow::Copy()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->Copy(clipboard_json, clipboard_text);
+        document->Copy(clipboard_json, clipboard_text, clipboard_image);
 }
 
 void MainWindow::Paste()
@@ -1998,7 +1998,7 @@ void MainWindow::Cut()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->Cut(clipboard_json, clipboard_text);
+        document->Cut(clipboard_json, clipboard_text, clipboard_image);
 }
 
 void MainWindow::Link()
@@ -3375,9 +3375,21 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
 
     mime_data->setText(yutovo::ToBasicString(clipboard_text).c_str()); //text clipboard type
 
+    //a single copied picture also goes to the clipboard as a PNG image
+    if (!clipboard_image.empty())
+    {
+        QImage image;
+        if (image.loadFromData(clipboard_image.data(), (int)clipboard_image.size(), "PNG"))
+        {
+            mime_data->setImageData(image);
+            mime_data->setData("image/png", QByteArray((const char*)clipboard_image.data(), (int)clipboard_image.size()));
+        }
+    }
+
     clipboard->setMimeData(mime_data);
     clipboard_json = U"";
     clipboard_text = U"";
+    clipboard_image.clear();
 }
 
 void MainWindow::OnClipboardPasteResult(PasteResult result)
