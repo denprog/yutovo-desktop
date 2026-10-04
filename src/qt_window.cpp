@@ -429,17 +429,14 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
 
     ElementId _id = GetParent(c.id);
     is_string = document->IsString(document->GetElement(_id));
-    is_row = document->IsRow(document->GetElement(_id));
 
     //find common string format
     if (c.id.empty() || c.id.size() == 1)
         return;
-    if (!is_string && !is_row)
+    if (!s.IsEmpty())
     {
+        //the merge below starts from an empty format
         string_format.Reset();
-    }
-    else if (!s.IsEmpty())
-    {
         bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true, set_strikethrough = true;
         for (auto& state : s.state)
         {
@@ -513,9 +510,9 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
             }
         }
     }
-    else
+    else if (!document->GetStringFormat(c.id, string_format))
     {
-        document->GetStringFormat(_id, string_format);
+        string_format.Reset(); //no single format under the caret
     }
 
     can_undo = document->CanUndo();

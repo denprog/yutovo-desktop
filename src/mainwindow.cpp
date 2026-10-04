@@ -2468,6 +2468,9 @@ void MainWindow::OnCurrentFontChanged(const QFont& font)
 {
     if (block_format_slots)
         return;
+    //QFontComboBox can emit the signal with the system default font - such emissions must not change the document font
+    if (font.family().isEmpty() || family_combo->currentText() != font.family())
+        return;
     auto document = GetCurrentDocument();
     if (!document)
         return;
@@ -3191,11 +3194,15 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     //update the interface elements
     block_format_slots = true;
     paragraph_format_combo->setCurrentText(paragraph_format.name.c_str());
-    family_combo->setCurrentText(window.string_format.family.c_str());
-    if (window.string_format.size == 0)
-        size_combo->setCurrentText("");
-    else
+    //do not clear the combos on an unknown format - an empty edit text makes QFontComboBox resolve the system default font and write it into the document
+    if (!window.string_format.family.empty())
+        family_combo->setCurrentText(window.string_format.family.c_str());
+    if (window.string_format.size != 0)
+    {
         size_combo->setCurrentText(std::to_string(window.string_format.size).c_str());
+        //keep the guard value in sync with the shown size so a later family change cannot apply a stale size
+        last_font_size = window.string_format.size;
+    }
     
     auto document = GetCurrentDocument();
     if (!document)
@@ -3507,6 +3514,8 @@ void MainWindow::FillSizes(const QFont& font)
     int i = size_combo->findText(current_size);
     if (i != -1)
         size_combo->setCurrentIndex(i);
+    else
+        size_combo->setCurrentText(current_size);
 }
 
 void MainWindow::WriteSettings()
@@ -3815,6 +3824,8 @@ void MainWindow::UpdateFontSize()
     {
         return;
     }
+    if (s <= 0)
+        return;
 
     if (s != last_font_size)
     {
