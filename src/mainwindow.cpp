@@ -909,6 +909,18 @@ void MainWindow::CreateAlgebraToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnFunctionAtPoint);
     algebra_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/algebra/function_x.png"), tr("Function f(x)"), this);
+    action->setObjectName("actionFunctionX");
+    action->setToolTip(tr("Function f(x)"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnFunctionX);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/function_xy.png"), tr("Function f(x,y)"), this);
+    action->setObjectName("actionFunctionXY");
+    action->setToolTip(tr("Function f(x,y)"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnFunctionXY);
+    algebra_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
     connect(action, &QAction::triggered, this, &MainWindow::OnRadian);
     algebra_toolbar->addAction(action);
@@ -3147,6 +3159,20 @@ void MainWindow::OnFunctionAtPoint()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertFunctionAtPoint(true);
+}
+
+void MainWindow::OnFunctionX()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunctionDefinition("f", {"x"}, true);
+}
+
+void MainWindow::OnFunctionXY()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunctionDefinition("f", {"x", "y"}, true);
 }
 
 void MainWindow::OnEvaluationBar()

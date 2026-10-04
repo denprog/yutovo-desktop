@@ -367,6 +367,14 @@ You assume all responsibility and risk in relation to your use of this applicati
         <translation>Function at point</translation>
     </message>
     <message>
+        <source>Function f(x)</source>
+        <translation>Function f(x)</translation>
+    </message>
+    <message>
+        <source>Function f(x,y)</source>
+        <translation>Function f(x,y)</translation>
+    </message>
+    <message>
         <source>Evaluate at point</source>
         <translation>Evaluate at point</translation>
     </message>

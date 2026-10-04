@@ -1421,6 +1421,14 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Função em um ponto</translation>
     </message>
     <message>
+        <source>Function f(x)</source>
+        <translation>Função f(x)</translation>
+    </message>
+    <message>
+        <source>Function f(x,y)</source>
+        <translation>Função f(x,y)</translation>
+    </message>
+    <message>
         <source>Evaluate at point</source>
         <translation>Avaliar no ponto</translation>
     </message>

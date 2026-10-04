@@ -22,6 +22,8 @@ private slots:
     void testPartialDerivative();
     void testEvaluationBar();
     void testFunctionAtPoint();
+    void testFunctionX();
+    void testFunctionXY();
     void testGraphSurface();
     void testGraphHistogram();
     void testGraphFormatAxes();

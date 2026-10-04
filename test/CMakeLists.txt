@@ -74,6 +74,8 @@ add_executable(${PROJECT_NAME}_test
 
 target_compile_definitions(${PROJECT_NAME}_test PRIVATE TEST_APP)
 
+target_compile_definitions(${PROJECT_NAME}_test PRIVATE TEST)
+
 if(BUILD_TESTS)
     target_compile_definitions(${PROJECT_NAME}_test PRIVATE BUILD_TESTS)
 endif()

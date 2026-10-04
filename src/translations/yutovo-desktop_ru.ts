@@ -1425,6 +1425,14 @@
         <translation>Функция в точке</translation>
     </message>
     <message>
+        <source>Function f(x)</source>
+        <translation>Функция f(x)</translation>
+    </message>
+    <message>
+        <source>Function f(x,y)</source>
+        <translation>Функция f(x,y)</translation>
+    </message>
+    <message>
         <source>Evaluate at point</source>
         <translation>Вычислить в точке</translation>
     </message>

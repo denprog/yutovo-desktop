@@ -167,6 +167,68 @@ void TestToolbar::testFunctionAtPoint()
         U"f(x)[x=3]");
 }
 
+void TestToolbar::testFunctionX()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionFunctionX");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+
+    //fresh document: the caret is in a plain text paragraph, the whole template must land in one code block
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"f(x)=");
+
+    //one undo removes the whole template
+    document->Undo();
+    document->WaitUndo();
+    QCOMPARE(document->ToText(), U"");
+
+    //redo restores the template with the caret after the assignment
+    document->Redo();
+    document->WaitRedo();
+    QCOMPARE(document->ToText(), U"f(x)=");
+
+    //typing continues with the function body
+    document->WaitTask(document->InsertString("x", true));
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"f(x)=x");
+}
+
+void TestToolbar::testFunctionXY()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionFunctionXY");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+
+    //fresh document: the caret is in a plain text paragraph, the whole template must land in one code block
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"f(x,y)=");
+
+    //one undo removes the whole template
+    document->Undo();
+    document->WaitUndo();
+    QCOMPARE(document->ToText(), U"");
+
+    //redo restores the template with the caret after the assignment
+    document->Redo();
+    document->WaitRedo();
+    QCOMPARE(document->ToText(), U"f(x,y)=");
+
+    //typing continues with the function body
+    document->InsertString("x", true);
+    document->InsertPlus(true);
+    document->WaitTask(document->InsertString("y", true));
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"f(x,y)=x+y");
+}
+
 void TestToolbar::testGraphSurface()
 {
     auto document = window->GetCurrentDocument();
