@@ -544,7 +544,7 @@ void QtWindow::OnLoadResult(const uint task_id, IOResult result, const int docum
     emit LoadResult(task_id, result);
 }
 
-void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id)
+uint QtWindow::OnLoadInclude(const std::string& file_name, const int document_id)
 {
     std::string f = file_name;
     if (file_name.rfind("/", 0) == 0)
@@ -565,7 +565,9 @@ void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
             break;
         }
     }
-    document->LoadInclude(f);
+    uint task_id = document->LoadInclude(f);
+    emit LoadInclude(task_id, QString::fromUtf8(f.c_str()));
+    return task_id;
 }
 
 void QtWindow::OnCopyResult(CopyResult result)

@@ -49,6 +49,7 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QSettings& _settings, QW
     connect(&document_widget->window, &QtWindow::DocumentChanged, this, &DocumentWindow::OnDocumentChanged);
     connect(&document_widget->window, &QtWindow::SaveResult, this, &DocumentWindow::OnSaveResult);
     connect(&document_widget->window, &QtWindow::LoadResult, this, &DocumentWindow::OnLoadResult);
+    connect(&document_widget->window, &QtWindow::LoadInclude, this, &DocumentWindow::OnLoadInclude);
     connect(&document_widget->window, &QtWindow::ClipboardCopyResult, this, &DocumentWindow::OnClipboardCopyResult);
     connect(&document_widget->window, &QtWindow::ClipboardPasteResult, this, &DocumentWindow::OnClipboardPasteResult);
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
@@ -680,6 +681,11 @@ void DocumentWindow::OnSaveResult(const uint task_id, IOResult result)
 void DocumentWindow::OnLoadResult(const uint task_id, IOResult result)
 {
     emit LoadResult(task_id, result);
+}
+
+void DocumentWindow::OnLoadInclude(const uint task_id, const QString& file_name)
+{
+    emit LoadInclude(task_id, file_name);
 }
 
 void DocumentWindow::OnClipboardCopyResult(CopyResult result)

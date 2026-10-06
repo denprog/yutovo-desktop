@@ -262,6 +262,7 @@ private slots:
     void OnDocumentChanged(const bool changed);
     void OnSaveResult(const uint task_id, IOResult result);
     void OnLoadResult(const uint task_id, IOResult result);
+    void OnLoadInclude(const uint task_id, const QString& file_name);
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
     void OnPdfExportResult(const std::vector<uint8_t>& pdf, const yutovo::PdfResult result);
@@ -332,6 +333,7 @@ private:
     bool startup_first_run = false;
     bool startup_initialized = false;
     std::map<uint, int> loading_files; //files being loaded by tabs
+    std::map<uint, QString> loading_includes; //include files being loaded, associated with the task id
 
     std::u32string clipboard_json;
     std::u32string clipboard_text;

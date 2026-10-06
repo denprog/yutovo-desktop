@@ -393,6 +393,7 @@ void MainWindow::AddEditorTab(const QString name, const QString tooltip)
     connect(wnd, &DocumentWindow::DocumentChanged, this, &MainWindow::OnDocumentChanged);
     connect(wnd, &DocumentWindow::SaveResult, this, &MainWindow::OnSaveResult);
     connect(wnd, &DocumentWindow::LoadResult, this, &MainWindow::OnLoadResult);
+    connect(wnd, &DocumentWindow::LoadInclude, this, &MainWindow::OnLoadInclude);
     connect(wnd, &DocumentWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
     connect(wnd, &DocumentWindow::ClipboardPasteResult, this, &MainWindow::OnClipboardPasteResult);
     connect(wnd, &DocumentWindow::LinkClicked, this, &MainWindow::OnLinkClicked);
@@ -3358,6 +3359,16 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
+    auto inc = loading_includes.find(task_id);
+    if (inc != loading_includes.end())
+    {
+        QString file_name = inc->second;
+        loading_includes.erase(inc);
+        if (result != IOResult::Success)
+            QMessageBox::critical(this, tr("Yutovo"), tr("Error loading include document") + QString(": ") + file_name);
+        return;
+    }
+
     auto it = loading_files.find(task_id);
     if (it == loading_files.end())
         return;
@@ -3391,6 +3402,11 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     UpdateCaption(tab, ui->editor_tabs->currentIndex() == tab);
     FillParagraphFormats();
     FillScales();
+}
+
+void MainWindow::OnLoadInclude(const uint task_id, const QString& file_name)
+{
+    loading_includes[task_id] = file_name;
 }
 
 void MainWindow::OnClipboardCopyResult(CopyResult result)

@@ -1153,6 +1153,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Erro ao carregar o documento</translation>
     </message>
     <message>
+        <source>Error loading include document</source>
+        <translation>Erro ao carregar o documento incluído</translation>
+    </message>
+    <message>
         <source>File not found</source>
         <translation>Arquivo não encontrado</translation>
     </message>
