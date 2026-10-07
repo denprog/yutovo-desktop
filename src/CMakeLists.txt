@@ -193,6 +193,8 @@ set(TS_FILES
     translations/yutovo-desktop_es.ts
     translations/yutovo-editor_pt_BR.ts
     translations/yutovo-desktop_pt_BR.ts
+    translations/yutovo-editor_de.ts
+    translations/yutovo-desktop_de.ts
 )
 
 find_program(LRELEASE_EXECUTABLE NAMES lrelease lrelease-qt5 lrelease-qt6)

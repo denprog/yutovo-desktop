@@ -68,7 +68,7 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 
 ## Key conventions
 - `REMOTE_SOLVER` define (commented out in root CMakeLists.txt) switches from local yutovo-solver to remote
-- Translations: 4 locales (en, ru, es, pt_BR); `.ts` → `.qm` via `lrelease` at build time — `lrelease` must be on PATH
+- Translations: 5 locales (en, ru, es, pt_BR, de); `.ts` → `.qm` via `lrelease` at build time — `lrelease` must be on PATH
 - Windows uses vcpkg; Linux uses `$YUTOVO_DEPLOY` for all deps
 - No CI, no pre-commit, no linting/formatting config in repo
 

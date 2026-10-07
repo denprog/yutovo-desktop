@@ -53,6 +53,8 @@ private slots:
     void testCopyPasteGraph();
     void testCopyWrongParagraph();
     void testUserInterfaceParagraphFormats();
+    void testGermanInterfaceTranslation();
+    void testGermanHelpMenu();
 
 private:
     MainWindow* window;

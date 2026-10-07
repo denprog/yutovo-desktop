@@ -18,6 +18,9 @@ ChangesAssociations=yes
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "ru"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "es"; MessagesFile: "compiler:Languages\Spanish.isl"
+Name: "pt_BR"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+Name: "de"; MessagesFile: "compiler:Languages\German.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}";

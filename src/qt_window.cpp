@@ -560,6 +560,9 @@ uint QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
         case yutovo_calculator::Language::BrazilianPortuguese:
             f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "pt_BR/" + file_name;
             break;
+        case yutovo_calculator::Language::German:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "de/" + file_name;
+            break;
         default:
             f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "en/" + file_name;
             break;

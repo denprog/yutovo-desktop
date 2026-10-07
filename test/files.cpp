@@ -17,6 +17,9 @@
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
 #include "../src/prompt_form.h"
+#include "../src/system_settings_form.h"
+#include <QDir>
+#include <QFile>
 
 //TestFiles
 
@@ -1478,4 +1481,92 @@ void TestFiles::testUserInterfaceParagraphFormats()
 
     QVERIFY2(paragraph_format_combo->findText("Основной текст") != -1, "Combo box does not contain 'Основной текст'");
     QVERIFY2(paragraph_format_combo->findText("Заголовок 1") != -1, "Combo box does not contain 'Заголовок 1'");
+}
+
+void TestFiles::testGermanInterfaceTranslation()
+{
+    //delete the previous window first so its destructor does not overwrite the language setting
+    delete window;
+    window = nullptr;
+
+    LanguageSettingGuard guard((int)yutovo_calculator::Language::German);
+
+    //recreate the main window so the interface is initialized in German
+    window = new MainWindow();
+    window->Start("");
+    window->show();
+    QVERIFY(QTest::qWaitForWindowExposed(window));
+
+    QVERIFY2(window->menuBar()->actions().size() > 0, "No menus");
+    QVERIFY2(window->menuBar()->actions().first()->text() == "&Datei",
+        QString("File menu is '%1' instead of '&Datei'").arg(window->menuBar()->actions().first()->text()).toUtf8());
+
+    auto integral_action = window->findChild<QAction*>("actionDefiniteIntegral");
+    QVERIFY(integral_action != nullptr);
+    QVERIFY2(integral_action->text() == "Bestimmtes Integral",
+        QString("Action text is '%1' instead of 'Bestimmtes Integral'").arg(integral_action->text()).toUtf8());
+
+    //the system settings language combo must offer German as the 5th language
+    yutovo::Config settings_config;
+    settings_config.language = yutovo_calculator::Language::German;
+    QHash<QString, QVariant> system_settings;
+    SystemSettingsForm settings_form(settings_config, system_settings);
+    auto language_combo = settings_form.findChild<QComboBox*>("language");
+    QVERIFY(language_combo != nullptr);
+    QVERIFY2(language_combo->findText("Deutsch") != -1, "Language combo does not contain 'Deutsch'");
+    QVERIFY2(language_combo->count() == 5, QString("Language combo has %1 items instead of 5").arg(language_combo->count()).toUtf8());
+    QVERIFY2(language_combo->currentIndex() == 4, "German is not at index 4");
+
+    //restore English so the window destructor does not leave German in the settings for the next tests
+    window->config.language = yutovo_calculator::Language::English;
+}
+
+void TestFiles::testGermanHelpMenu()
+{
+    //delete the previous window first so its destructor does not overwrite the language setting
+    delete window;
+    window = nullptr;
+
+    LanguageSettingGuard guard((int)yutovo_calculator::Language::German);
+
+    window = new MainWindow();
+    window->Start("");
+    window->show();
+    QVERIFY(QTest::qWaitForWindowExposed(window));
+
+    auto find_menu = [](QWidget* parent, const QString& title) -> QMenu*
+        {
+            for (QAction* a : parent->actions())
+            {
+                if (a->text() == title && a->menu())
+                    return a->menu();
+            }
+            return nullptr;
+        };
+
+    //the help menu must open the German help section (de/Hilfe), not the English tree
+    QMenu* help_menu = find_menu(window->menuBar(), "&Hilfe");
+    QVERIFY2(help_menu != nullptr, "Menu '&Hilfe' not found");
+    QMenu* help_system = find_menu(help_menu, "Hilfe");
+    QVERIFY2(help_system != nullptr, "Help system submenu 'Hilfe' not found");
+    QVERIFY2(!help_system->actions().empty(), "German help submenu is empty (English library fallback?)");
+
+    //the library menu must show the German tree (de), not the English one
+    QMenu* library_menu = find_menu(window->menuBar(), "&Bibliothek");
+    QVERIFY2(library_menu != nullptr, "Menu '&Bibliothek' not found");
+    QVERIFY2(library_menu->actions().size() > 0, "German library menu is empty");
+    bool has_mathematik = false;
+    bool has_mathematics = false;
+    for (QAction* a : library_menu->actions())
+    {
+        if (a->text() == "Mathematik")
+            has_mathematik = true;
+        if (a->text() == "Mathematics")
+            has_mathematics = true;
+    }
+    QVERIFY2(has_mathematik, "Library menu does not contain the German 'Mathematik' section");
+    QVERIFY2(!has_mathematics, "Library menu fell back to the English 'Mathematics' section");
+
+    //restore English so the window destructor does not leave German in the settings for the next tests
+    window->config.language = yutovo_calculator::Language::English;
 }

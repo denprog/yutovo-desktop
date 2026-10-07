@@ -193,6 +193,8 @@ void MainWindow::InitializeEditor()
             OpenFile(GetLibraryDir() + "es/Otros/Primera página.yut");
         else if (config.language == yutovo_calculator::Language::BrazilianPortuguese)
             OpenFile(GetLibraryDir() + "pt_BR/Outros/Primeira página.yut");
+        else if (config.language == yutovo_calculator::Language::German)
+            OpenFile(GetLibraryDir() + "de/Sonstiges/Erste Seite.yut");
         else
             OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
@@ -3672,7 +3674,7 @@ void MainWindow::ReadSettings()
 
     std::string lang = QLocale::system().name().toUtf8().data(); //get current system language, it will be default one
     lang = lang.substr(0, lang.find('_'));
-    if (lang != "en" && lang != "ru" && lang != "es" && lang != "pt")
+    if (lang != "en" && lang != "ru" && lang != "es" && lang != "pt" && lang != "de")
         lang = "en";
 
     if (lang == "ru")
@@ -3681,6 +3683,8 @@ void MainWindow::ReadSettings()
         config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::Spanish).toInt();
     else if (lang == "pt")
         config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::BrazilianPortuguese).toInt();
+    else if (lang == "de")
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::German).toInt();
     else
         config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::English).toInt();
 
@@ -4098,6 +4102,9 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu, const QString start_topi
     case yutovo_calculator::Language::BrazilianPortuguese:
         dir = "pt_BR";
         break;
+    case yutovo_calculator::Language::German:
+        dir = "de";
+        break;
     }
 
     auto p = std::string(GetLibraryDir().toUtf8().data()) + dir;
@@ -4122,6 +4129,8 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
         qt_locale = "es";
     else if (language == yutovo_calculator::Language::BrazilianPortuguese)
         qt_locale = "pt_BR";
+    else if (language == yutovo_calculator::Language::German)
+        qt_locale = "de";
     if (qt_translator.load(QLocale(qt_locale), "qtbase", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
         qApp->installTranslator(&qt_translator);
     else
@@ -4154,6 +4163,13 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
             logger->Error("Error loading translation: yutovo-desktop_en");
         if (!editor_translator.load("yutovo-editor_en", GetTranslationDir("yutovo-editor_en.qm")))
             logger->Error("Error loading translation: yutovo-editor_en");
+    }
+    else if (language == yutovo_calculator::Language::German)
+    {
+        if (!desktop_translator.load("yutovo-desktop_de", GetTranslationDir("yutovo-desktop_de.qm")))
+            logger->Error("Error loading translation: yutovo-desktop_de");
+        if (!editor_translator.load("yutovo-editor_de", GetTranslationDir("yutovo-editor_de.qm")))
+            logger->Error("Error loading translation: yutovo-editor_de");
     }
 
     if (!qApp->installTranslator(&desktop_translator))
@@ -4308,6 +4324,8 @@ QString MainWindow::LanguageToString(yutovo_calculator::Language lang)
         return "es";
     case yutovo_calculator::Language::BrazilianPortuguese:
         return "pt_BR";
+    case yutovo_calculator::Language::German:
+        return "de";
     default:
         return "en";
     }
