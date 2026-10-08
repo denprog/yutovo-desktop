@@ -35,6 +35,8 @@ WhatsNewDialog::WhatsNewDialog(const QString& language, QWidget* parent) :
         suffix = "pt_BR";
     else if (language == "de")
         suffix = "de";
+    else if (language == "fr")
+        suffix = "fr";
     else
         suffix = "en";
 

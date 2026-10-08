@@ -55,6 +55,8 @@ private slots:
     void testUserInterfaceParagraphFormats();
     void testGermanInterfaceTranslation();
     void testGermanHelpMenu();
+    void testFrenchInterfaceTranslation();
+    void testFrenchHelpMenu();
 
 private:
     MainWindow* window;

@@ -1514,7 +1514,7 @@ void TestFiles::testGermanInterfaceTranslation()
     auto language_combo = settings_form.findChild<QComboBox*>("language");
     QVERIFY(language_combo != nullptr);
     QVERIFY2(language_combo->findText("Deutsch") != -1, "Language combo does not contain 'Deutsch'");
-    QVERIFY2(language_combo->count() == 5, QString("Language combo has %1 items instead of 5").arg(language_combo->count()).toUtf8());
+    QVERIFY2(language_combo->count() == 6, QString("Language combo has %1 items instead of 6").arg(language_combo->count()).toUtf8());
     QVERIFY2(language_combo->currentIndex() == 4, "German is not at index 4");
 
     //restore English so the window destructor does not leave German in the settings for the next tests
@@ -1568,5 +1568,93 @@ void TestFiles::testGermanHelpMenu()
     QVERIFY2(!has_mathematics, "Library menu fell back to the English 'Mathematics' section");
 
     //restore English so the window destructor does not leave German in the settings for the next tests
+    window->config.language = yutovo_calculator::Language::English;
+}
+
+void TestFiles::testFrenchInterfaceTranslation()
+{
+    //delete the previous window first so its destructor does not overwrite the language setting
+    delete window;
+    window = nullptr;
+
+    LanguageSettingGuard guard((int)yutovo_calculator::Language::French);
+
+    //recreate the main window so the interface is initialized in French
+    window = new MainWindow();
+    window->Start("");
+    window->show();
+    QVERIFY(QTest::qWaitForWindowExposed(window));
+
+    QVERIFY2(window->menuBar()->actions().size() > 0, "No menus");
+    QVERIFY2(window->menuBar()->actions().first()->text() == "&Fichier",
+        QString("File menu is '%1' instead of '&Fichier'").arg(window->menuBar()->actions().first()->text()).toUtf8());
+
+    auto integral_action = window->findChild<QAction*>("actionDefiniteIntegral");
+    QVERIFY(integral_action != nullptr);
+    QVERIFY2(integral_action->text() == "Intégrale définie",
+        QString("Action text is '%1' instead of 'Intégrale définie'").arg(integral_action->text()).toUtf8());
+
+    //the system settings language combo must offer French as the 6th language
+    yutovo::Config settings_config;
+    settings_config.language = yutovo_calculator::Language::French;
+    QHash<QString, QVariant> system_settings;
+    SystemSettingsForm settings_form(settings_config, system_settings);
+    auto language_combo = settings_form.findChild<QComboBox*>("language");
+    QVERIFY(language_combo != nullptr);
+    QVERIFY2(language_combo->findText("Français") != -1, "Language combo does not contain 'Français'");
+    QVERIFY2(language_combo->count() == 6, QString("Language combo has %1 items instead of 6").arg(language_combo->count()).toUtf8());
+    QVERIFY2(language_combo->currentIndex() == 5, "French is not at index 5");
+
+    //restore English so the window destructor does not leave French in the settings for the next tests
+    window->config.language = yutovo_calculator::Language::English;
+}
+
+void TestFiles::testFrenchHelpMenu()
+{
+    //delete the previous window first so its destructor does not overwrite the language setting
+    delete window;
+    window = nullptr;
+
+    LanguageSettingGuard guard((int)yutovo_calculator::Language::French);
+
+    window = new MainWindow();
+    window->Start("");
+    window->show();
+    QVERIFY(QTest::qWaitForWindowExposed(window));
+
+    auto find_menu = [](QWidget* parent, const QString& title) -> QMenu*
+        {
+            for (QAction* a : parent->actions())
+            {
+                if (a->text() == title && a->menu())
+                    return a->menu();
+            }
+            return nullptr;
+        };
+
+    //the help menu must open the French help section (fr/Aide), not the English tree
+    QMenu* help_menu = find_menu(window->menuBar(), "&Aide");
+    QVERIFY2(help_menu != nullptr, "Menu '&Aide' not found");
+    QMenu* help_system = find_menu(help_menu, "Aide");
+    QVERIFY2(help_system != nullptr, "Help system submenu 'Aide' not found");
+    QVERIFY2(!help_system->actions().empty(), "French help submenu is empty (English library fallback?)");
+
+    //the library menu must show the French tree (fr), not the English one
+    QMenu* library_menu = find_menu(window->menuBar(), "&Bibliothèque");
+    QVERIFY2(library_menu != nullptr, "Menu '&Bibliothèque' not found");
+    QVERIFY2(library_menu->actions().size() > 0, "French library menu is empty");
+    bool has_mathematiques = false;
+    bool has_mathematics = false;
+    for (QAction* a : library_menu->actions())
+    {
+        if (a->text() == "Mathématiques")
+            has_mathematiques = true;
+        if (a->text() == "Mathematics")
+            has_mathematics = true;
+    }
+    QVERIFY2(has_mathematiques, "Library menu does not contain the French 'Mathématiques' section");
+    QVERIFY2(!has_mathematics, "Library menu fell back to the English 'Mathematics' section");
+
+    //restore English so the window destructor does not leave French in the settings for the next tests
     window->config.language = yutovo_calculator::Language::English;
 }
