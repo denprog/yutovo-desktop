@@ -660,6 +660,42 @@
         <source>Insert text block</source>
         <translation>Вставить текстовый блок</translation>
     </message>
+        <message>
+            <source>Unordered list</source>
+            <translation>Маркированный список</translation>
+        </message>
+        <message>
+            <source>Small circle</source>
+            <translation>Малый круг</translation>
+        </message>
+        <message>
+            <source>Large circle</source>
+            <translation>Большой круг</translation>
+        </message>
+        <message>
+            <source>Diamond</source>
+            <translation>Ромб</translation>
+        </message>
+        <message>
+            <source>Square</source>
+            <translation>Квадрат</translation>
+        </message>
+        <message>
+            <source>Small circle list marker</source>
+            <translation>Маркер списка: малый круг</translation>
+        </message>
+        <message>
+            <source>Large circle list marker</source>
+            <translation>Маркер списка: большой круг</translation>
+        </message>
+        <message>
+            <source>Diamond list marker</source>
+            <translation>Маркер списка: ромб</translation>
+        </message>
+        <message>
+            <source>Square list marker</source>
+            <translation>Маркер списка: квадрат</translation>
+        </message>
     <message>
         <source>Bold</source>
         <translation>Жирный</translation>

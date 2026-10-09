@@ -341,6 +341,91 @@ void TestToolbar::testGraphFormatAxes()
     QVERIFY(current.axis.width == 1 && current.axis.ticks);
 }
 
+void TestToolbar::testUnorderedList()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    //the dropdown button offers all the four list markers
+    auto button = window->findChild<QPushButton*>("unordered_list_button");
+    QVERIFY(button);
+    QVERIFY(!button->icon().isNull());
+    QVERIFY(button->menu());
+    QCOMPARE(button->menu()->actions().size(), 4);
+
+    auto small_circle = window->findChild<QAction*>("unordered_list_small_circle_action");
+    auto large_circle = window->findChild<QAction*>("unordered_list_large_circle_action");
+    auto diamond = window->findChild<QAction*>("unordered_list_diamond_action");
+    auto square = window->findChild<QAction*>("unordered_list_square_action");
+    QVERIFY(small_circle);
+    QVERIFY(large_circle);
+    QVERIFY(diamond);
+    QVERIFY(square);
+    QVERIFY(!small_circle->icon().isNull());
+    QVERIFY(!large_circle->icon().isNull());
+    QVERIFY(!diamond->icon().isNull());
+    QVERIFY(!square->icon().isNull());
+    QCOMPARE(small_circle->text(), "Small circle");
+    QCOMPARE(large_circle->text(), "Large circle");
+    QCOMPARE(diamond->text(), "Diamond");
+    QCOMPARE(square->text(), "Square");
+
+    //the button is disabled while the caret sits inside the code block of a new document - typing there moves the caret and syncs the toolbar
+    auto widget = window->findChild<DocumentWidget*>();
+    QVERIFY(widget);
+    QTest::keyClicks(widget, "1");
+    QTest::qWait(200);
+    QVERIFY(!button->isEnabled());
+
+    //click into the document text below the code block - the button enables and a list item can be typed
+    QTest::mouseClick(widget, Qt::LeftButton, Qt::NoModifier, QPoint(300, 350));
+    QTest::qWait(200);
+    QVERIFY(button->isEnabled());
+    document->WaitTask(document->InsertString("Item", true));
+
+    //count the list markers rendered into the document html
+    auto countMarkers =
+        [document](const char* marker) -> int
+        {
+            std::string token = std::string(marker) + "&nbsp;";
+            std::string html = document->ToHtml();
+            int count = 0;
+            for (size_t pos = html.find(token); pos != std::string::npos; pos = html.find(token, pos + token.size()))
+                ++count;
+            return count;
+        };
+
+    small_circle->trigger();
+    QTest::qWait(200);
+    QCOMPARE(countMarkers("•"), 1);
+
+    //Enter continues the list
+    document->WaitTask(document->InsertParagraph(true));
+    QCOMPARE(countMarkers("•"), 2);
+
+    //another marker replaces the current one - the caret sits in the new (second) item
+    square->trigger();
+    QTest::qWait(200);
+    QCOMPARE(countMarkers("•"), 1);
+    QCOMPARE(countMarkers("■"), 1);
+
+    //applying the same marker again toggles it off
+    square->trigger();
+    QTest::qWait(200);
+    QCOMPARE(countMarkers("•"), 1);
+    QCOMPARE(countMarkers("■"), 0);
+
+    //the remaining marker variants apply as well - the caret stays in the second item
+    large_circle->trigger();
+    QTest::qWait(200);
+    QCOMPARE(countMarkers("●"), 1);
+
+    diamond->trigger();
+    QTest::qWait(200);
+    QCOMPARE(countMarkers("♦"), 1);
+    QCOMPARE(countMarkers("●"), 0);
+}
+
 void TestToolbar::testTextBlock()
 {
     auto document = window->GetCurrentDocument();

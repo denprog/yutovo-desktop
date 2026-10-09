@@ -29,6 +29,7 @@
 #include <sstream>
 
 class QMenu;
+class QPushButton;
 class DocumentWindow;
 
 QT_BEGIN_NAMESPACE
@@ -155,6 +156,8 @@ private slots:
     void OnInsertCode();
 
     void OnInsertTextBlock();
+
+    void OnUnorderedList(QAction* marker_action);
 
     void OnCurrentScaleChanged(int index);
     void OnCurrentScaleEditingFinished();
@@ -287,7 +290,7 @@ private:
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
     void UpdateLibraryMenu(QMenu* library_menu, const QString start_topic, const QString except_topic);
-    
+
     static void ClearMenuActions(QMenu* menu);
 
     void InstallTranslation(const yutovo_calculator::Language language);
@@ -348,6 +351,7 @@ private:
 
     bool block_format_slots = false;
     QComboBox* paragraph_format_combo = nullptr;
+    QPushButton* unordered_list_button = nullptr;
     
     QFontComboBox* family_combo = nullptr;
     QComboBox* size_combo = nullptr;

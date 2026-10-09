@@ -660,6 +660,42 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Insert text block</source>
         <translation>Inserir bloco de texto</translation>
     </message>
+        <message>
+            <source>Unordered list</source>
+            <translation>Lista com marcadores</translation>
+        </message>
+        <message>
+            <source>Small circle</source>
+            <translation>Círculo pequeno</translation>
+        </message>
+        <message>
+            <source>Large circle</source>
+            <translation>Círculo grande</translation>
+        </message>
+        <message>
+            <source>Diamond</source>
+            <translation>Losango</translation>
+        </message>
+        <message>
+            <source>Square</source>
+            <translation>Quadrado</translation>
+        </message>
+        <message>
+            <source>Small circle list marker</source>
+            <translation>Marcador de lista: círculo pequeno</translation>
+        </message>
+        <message>
+            <source>Large circle list marker</source>
+            <translation>Marcador de lista: círculo grande</translation>
+        </message>
+        <message>
+            <source>Diamond list marker</source>
+            <translation>Marcador de lista: losango</translation>
+        </message>
+        <message>
+            <source>Square list marker</source>
+            <translation>Marcador de lista: quadrado</translation>
+        </message>
     <message>
         <source>Bold</source>
         <translation>Negrito</translation>

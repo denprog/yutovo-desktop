@@ -657,6 +657,42 @@ Voi assumete l'intera responsabilità e il rischio relativi all'utilizzo di ques
             <source>Insert text block</source>
             <translation>Inserisci blocco di testo</translation>
         </message>
+            <message>
+                <source>Unordered list</source>
+                <translation>Elenco puntato</translation>
+            </message>
+            <message>
+                <source>Small circle</source>
+                <translation>Cerchio piccolo</translation>
+            </message>
+            <message>
+                <source>Large circle</source>
+                <translation>Cerchio grande</translation>
+            </message>
+            <message>
+                <source>Diamond</source>
+                <translation>Rombo</translation>
+            </message>
+            <message>
+                <source>Square</source>
+                <translation>Quadrato</translation>
+            </message>
+            <message>
+                <source>Small circle list marker</source>
+                <translation>Punto elenco: cerchio piccolo</translation>
+            </message>
+            <message>
+                <source>Large circle list marker</source>
+                <translation>Punto elenco: cerchio grande</translation>
+            </message>
+            <message>
+                <source>Diamond list marker</source>
+                <translation>Punto elenco: rombo</translation>
+            </message>
+            <message>
+                <source>Square list marker</source>
+                <translation>Punto elenco: quadrato</translation>
+            </message>
         <message>
             <source>Bold</source>
             <translation>Grassetto</translation>

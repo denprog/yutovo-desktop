@@ -28,6 +28,8 @@ private slots:
     void testGraphHistogram();
     void testGraphFormatAxes();
 
+    void testUnorderedList();
+
     void testTextBlock();
     void testTextBlockNoCodeBlock();
     void testTextBlockInText();

@@ -658,6 +658,42 @@ Sie übernehmen die gesamte Verantwortung und das gesamte Risiko im Zusammenhang
         <source>Insert text block</source>
         <translation>Textblock einfügen</translation>
     </message>
+        <message>
+            <source>Unordered list</source>
+            <translation>Unsortierte Liste</translation>
+        </message>
+        <message>
+            <source>Small circle</source>
+            <translation>Kleiner Kreis</translation>
+        </message>
+        <message>
+            <source>Large circle</source>
+            <translation>Großer Kreis</translation>
+        </message>
+        <message>
+            <source>Diamond</source>
+            <translation>Raute</translation>
+        </message>
+        <message>
+            <source>Square</source>
+            <translation>Quadrat</translation>
+        </message>
+        <message>
+            <source>Small circle list marker</source>
+            <translation>Listenzeichen: kleiner Kreis</translation>
+        </message>
+        <message>
+            <source>Large circle list marker</source>
+            <translation>Listenzeichen: großer Kreis</translation>
+        </message>
+        <message>
+            <source>Diamond list marker</source>
+            <translation>Listenzeichen: Raute</translation>
+        </message>
+        <message>
+            <source>Square list marker</source>
+            <translation>Listenzeichen: Quadrat</translation>
+        </message>
     <message>
         <source>Bold</source>
         <translation>Fett</translation>

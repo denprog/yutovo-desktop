@@ -657,6 +657,42 @@ Vous assumez l'entière responsabilité et tous les risques liés à l'utilisati
             <source>Insert text block</source>
             <translation>Insérer un bloc de texte</translation>
         </message>
+            <message>
+                <source>Unordered list</source>
+                <translation>Liste à puces</translation>
+            </message>
+            <message>
+                <source>Small circle</source>
+                <translation>Petit cercle</translation>
+            </message>
+            <message>
+                <source>Large circle</source>
+                <translation>Grand cercle</translation>
+            </message>
+            <message>
+                <source>Diamond</source>
+                <translation>Losange</translation>
+            </message>
+            <message>
+                <source>Square</source>
+                <translation>Carré</translation>
+            </message>
+            <message>
+                <source>Small circle list marker</source>
+                <translation>Puce de liste : petit cercle</translation>
+            </message>
+            <message>
+                <source>Large circle list marker</source>
+                <translation>Puce de liste : grand cercle</translation>
+            </message>
+            <message>
+                <source>Diamond list marker</source>
+                <translation>Puce de liste : losange</translation>
+            </message>
+            <message>
+                <source>Square list marker</source>
+                <translation>Puce de liste : carré</translation>
+            </message>
         <message>
             <source>Bold</source>
             <translation>Gras</translation>

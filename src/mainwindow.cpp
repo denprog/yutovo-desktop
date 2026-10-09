@@ -9,6 +9,7 @@
 #include <QMenu>
 #include <QToolBar>
 #include <QToolButton>
+#include <QPushButton>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QBuffer>
@@ -34,6 +35,7 @@
 #include <codecvt>
 #endif
 #include <yutovo-editor/editor_utils.h>
+#include <yutovo-editor/style.h>
 #include <yutovo-calculator/math_helper.h>
 #include "document_window.h"
 #include "about_dialog.h"
@@ -722,6 +724,55 @@ void MainWindow::CreateActions()
     align_justify_action->setCheckable(true);
     align_justify_action->setStatusTip(tr("Align text justify"));
     format_toolbar->addAction(align_justify_action);
+
+    format_toolbar->addSeparator();
+
+    //a flat push button with a menu shows the style dropdown arrow - Breeze does not draw it for QToolButton
+    unordered_list_button = new QPushButton(this);
+    unordered_list_button->setObjectName("unordered_list_button");
+    unordered_list_button->setIcon(QIcon(":/icons/images/format/unordered_list.png"));
+    unordered_list_button->setToolTip(tr("Unordered list"));
+    unordered_list_button->setStatusTip(tr("Unordered list"));
+    unordered_list_button->setFlat(true);
+    QMenu* unordered_list_menu = new QMenu(unordered_list_button);
+    QAction* small_circle_action = new QAction(QIcon(":/icons/images/format/list_small_circle.png"), tr("Small circle"), this);
+    small_circle_action->setObjectName("unordered_list_small_circle_action");
+    small_circle_action->setData(1);
+    small_circle_action->setStatusTip(tr("Small circle list marker"));
+    unordered_list_menu->addAction(small_circle_action);
+    QAction* large_circle_action = new QAction(QIcon(":/icons/images/format/list_large_circle.png"), tr("Large circle"), this);
+    large_circle_action->setObjectName("unordered_list_large_circle_action");
+    large_circle_action->setData(2);
+    large_circle_action->setStatusTip(tr("Large circle list marker"));
+    unordered_list_menu->addAction(large_circle_action);
+    QAction* diamond_action = new QAction(QIcon(":/icons/images/format/list_diamond.png"), tr("Diamond"), this);
+    diamond_action->setObjectName("unordered_list_diamond_action");
+    diamond_action->setData(3);
+    diamond_action->setStatusTip(tr("Diamond list marker"));
+    unordered_list_menu->addAction(diamond_action);
+    QAction* square_action = new QAction(QIcon(":/icons/images/format/list_square.png"), tr("Square"), this);
+    square_action->setObjectName("unordered_list_square_action");
+    square_action->setData(4);
+    square_action->setStatusTip(tr("Square list marker"));
+    unordered_list_menu->addAction(square_action);
+    unordered_list_button->setMenu(unordered_list_menu);
+    //QMenu::triggered is not emitted for programmatic action->trigger() - connect the actions themselves
+    auto connect_marker_action =
+        [this](QAction* marker_action)
+        {
+            connect(marker_action, &QAction::triggered, this,
+                [this, marker_action]()
+                {
+                    OnUnorderedList(marker_action);
+                });
+        };
+    connect_marker_action(small_circle_action);
+    connect_marker_action(large_circle_action);
+    connect_marker_action(diamond_action);
+    connect_marker_action(square_action);
+    //the caret of a new document starts inside the calculator where list markers do not apply
+    unordered_list_button->setEnabled(false);
+    format_toolbar->addWidget(unordered_list_button);
 
     //view menu
     QMenu* view_menu = menuBar()->addMenu(tr("&View"));
@@ -2446,6 +2497,19 @@ void MainWindow::OnInsertTextBlock()
         document->InsertTextBlock(true);
 }
 
+void MainWindow::OnUnorderedList(QAction* marker_action)
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    static const std::u32string markers[4] = {yutovo::ParagraphFormat::small_circle_marker, yutovo::ParagraphFormat::large_circle_marker,
+        yutovo::ParagraphFormat::diamond_marker, yutovo::ParagraphFormat::square_marker};
+    int index = marker_action->data().toInt();
+    if (index < 1 || index > 4)
+        return;
+    document->SetCurrentParagraphMarker(markers[index - 1], true);
+}
+
 void MainWindow::OnCurrentScaleChanged(int index)
 {
     if (block_scale_slots)
@@ -3249,6 +3313,9 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     align_right_action->setEnabled(!code_block);
     align_center_action->setEnabled(!code_block);
     align_justify_action->setEnabled(!code_block);
+    //list markers live on plain text paragraphs only - not inside code or text blocks
+    auto list_paragraph = document->FindParentParagraph(c.id);
+    unordered_list_button->setEnabled(list_paragraph && list_paragraph->type == ElementType::PARAGRAPH);
     if (code_block)
     {
         align_left_action->setChecked(false);
@@ -4322,6 +4389,7 @@ void MainWindow::EnableButtons(bool enable)
     align_right_action->setEnabled(enable);
     align_center_action->setEnabled(enable);
     align_justify_action->setEnabled(enable);
+    unordered_list_button->setEnabled(enable);
     bold_action->setEnabled(enable);
     italic_action->setEnabled(enable);
     underline_action->setEnabled(enable);

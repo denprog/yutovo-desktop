@@ -660,6 +660,42 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <source>Insert text block</source>
         <translation>Insertar bloque de texto</translation>
     </message>
+        <message>
+            <source>Unordered list</source>
+            <translation>Lista con viñetas</translation>
+        </message>
+        <message>
+            <source>Small circle</source>
+            <translation>Círculo pequeño</translation>
+        </message>
+        <message>
+            <source>Large circle</source>
+            <translation>Círculo grande</translation>
+        </message>
+        <message>
+            <source>Diamond</source>
+            <translation>Rombo</translation>
+        </message>
+        <message>
+            <source>Square</source>
+            <translation>Cuadrado</translation>
+        </message>
+        <message>
+            <source>Small circle list marker</source>
+            <translation>Marcador de lista: círculo pequeño</translation>
+        </message>
+        <message>
+            <source>Large circle list marker</source>
+            <translation>Marcador de lista: círculo grande</translation>
+        </message>
+        <message>
+            <source>Diamond list marker</source>
+            <translation>Marcador de lista: rombo</translation>
+        </message>
+        <message>
+            <source>Square list marker</source>
+            <translation>Marcador de lista: cuadrado</translation>
+        </message>
     <message>
         <source>Bold</source>
         <translation>Negrita</translation>
