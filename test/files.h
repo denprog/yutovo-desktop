@@ -57,6 +57,8 @@ private slots:
     void testGermanHelpMenu();
     void testFrenchInterfaceTranslation();
     void testFrenchHelpMenu();
+    void testItalianInterfaceTranslation();
+    void testItalianHelpMenu();
 
 private:
     MainWindow* window;
