@@ -69,10 +69,16 @@ int main(int argc, char* argv[])
         [&]()
         {
             QLocalSocket* c = s.nextPendingConnection();
-            c->waitForReadyRead();
-            QString file = QString::fromUtf8(c->readAll());
-            w.OpenFile(file);
-            c->disconnectFromServer();
+            if (c == nullptr)
+                return;
+            QObject::connect(c, &QLocalSocket::disconnected,
+                [&w, c]()
+                {
+                    QString file = QString::fromUtf8(c->readAll());
+                    if (!file.isEmpty())
+                        w.OpenFile(file);
+                    c->deleteLater();
+                });
         });
 
     QString filename;
