@@ -68,8 +68,7 @@ using namespace yutovo_calculator;
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    settings(new QSettings("Yutovo", "Yutovo Desktop"))
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 

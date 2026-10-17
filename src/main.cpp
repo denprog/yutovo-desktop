@@ -63,6 +63,7 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     app.setOrganizationName("Yutovo");
+    app.setApplicationName("Yutovo Desktop");
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
 #endif
