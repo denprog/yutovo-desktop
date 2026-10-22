@@ -1,7 +1,7 @@
 name: yutovo
 title: Yutovo
 base: core24
-version: '1.7.1'
+version: '1.8.1'
 summary: Visual calculator inside a text editor
 description: |
   Yutovo is an application for solving various mathematical problems. 
@@ -55,7 +55,7 @@ parts:
   yutovo-logger:
     plugin: cmake
     source: https://github.com/denprog/yutovo-logger.git
-    source-tag: v1.0.6
+    source-tag: v1.0.8
     cmake-parameters:
       - -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -164,7 +164,7 @@ parts:
   yutovo-calculator:
     plugin: cmake
     source: https://github.com/denprog/yutovo-calculator.git
-    source-tag: v1.6.1
+    source-tag: v1.7.1
     override-pull: |
       craftctl default
       cd $CRAFT_PART_SRC
@@ -189,7 +189,7 @@ parts:
   yutovo-solver:
     plugin: cmake
     source: https://github.com/denprog/yutovo-solver.git
-    source-tag: v1.3.1
+    source-tag: v1.4.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -228,7 +228,7 @@ parts:
   yutovo-editor:
     plugin: cmake
     source: https://github.com/denprog/yutovo-editor.git
-    source-tag: v1.7.1
+    source-tag: v1.8.1
     override-build: |
       set -e
       mkdir -p $CRAFT_PART_INSTALL/app/lib
@@ -294,7 +294,7 @@ parts:
   yutovo-desktop:
     plugin: cmake
     source: https://github.com/denprog/yutovo-desktop.git
-    source-tag: v1.7.1
+    source-tag: v1.8.1
     build-packages:
       - rsync
       - qttools5-dev-tools

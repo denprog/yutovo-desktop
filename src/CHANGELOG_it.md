@@ -1,3 +1,37 @@
+# 1.8.1
+- Aggiunti i grafici di superficie.
+- Aggiunti gli istogrammi.
+- Aggiunti i parametri per i grafici.
+- Aggiunto il ridimensionamento di un grafico rispetto al cursore del mouse.
+- Aggiunti gli elenchi non ordinati.
+- Aggiunti i blocchi di testo di formule senza calcolo.
+- Aggiunto l'inserimento di una definizione di funzione con un solo comando.
+- Aggiunto il calcolo di una funzione in un punto.
+- Aggiunto l'accesso agli elementi di un array tramite indice.
+- Aggiunto il ricalcolo dopo la modifica di una variabile array.
+- Aggiunti i flag di attivazione per gli elementi di risultati automatici.
+- Aggiunte le traduzioni in italiano, francese e tedesco.
+- Aggiunta l'analisi di gradi, primi e secondi in una sola riga.
+- Aggiunta la funzione abs.
+- Aggiunta la copia di un'immagine negli appunti di sistema.
+- Il bordo di ridimensionamento è sempre visibile.
+- Corretta una perdita sul socket.
+- Corrette le impostazioni dell'applicazione.
+- Corretta la finestra di dialogo «Salva come» e il percorso predefinito per i PDF.
+- Corretto il caricamento dei documenti inclusi.
+- Corretti i valori esatti del seno e del coseno.
+- Corretto il calcolo di ln(0).
+- Corretta la precisione delle derivate, dell'operazione percentuale e dei calcoli in gradi centesimali.
+- Corretti i calcoli con i numeri complessi e la negazione logica.
+- Corretti i valori delle unità di misura (vedro, angstrom, costante gravitazionale).
+- Corretti gli integrali con limiti con unità di misura.
+- Corretto il ricalcolo delle equazioni dipendenti.
+- Corretta la continuazione dei calcoli dopo un errore di variabile.
+- Corretta l'analisi degli identificatori multilingue.
+- Corrette le condizioni di competizione nei calcoli paralleli.
+- Aggiunta la protezione dal trabocco dello stack in caso di ricorsione profonda.
+- Migliorati i controlli durante il caricamento dei documenti.
+
 # 1.7.1
 - Aggiunto il calcolo di integrali definiti e indefiniti.
 - Aggiunto il calcolo delle derivate.

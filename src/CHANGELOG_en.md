@@ -1,3 +1,37 @@
+# 1.8.1
+- Added surface graphs.
+- Added histograms.
+- Added parameters for graphs.
+- Added scaling of a graph relative to the mouse cursor.
+- Added unordered lists.
+- Added text blocks of formulas without solving.
+- Added inserting a function definition with one command.
+- Added solving a function at a point.
+- Added array element access by index.
+- Added recalculation after changing an array variable.
+- Added enable flags for auto result items.
+- Added Italian, French and German translations.
+- Added parsing of degrees, minutes and seconds in one row.
+- Added the abs function.
+- Added copying an image to the system clipboard.
+- The resize border is always shown.
+- Fixed a leak on the socket.
+- Fixed the application settings.
+- Fixed the Save as dialog and the default path for PDF.
+- Fixed loading of include documents.
+- Fixed exact values of sine and cosine.
+- Fixed calculation of ln(0).
+- Fixed precision of derivatives, percent operation and calculations in gradians.
+- Fixed calculations with complex numbers and logical negation.
+- Fixed unit values (vedro, angstrom, gravitational constant).
+- Fixed integrals with limits with units.
+- Fixed recalculation of dependent equations.
+- Fixed continuation of calculations after a variable error.
+- Fixed scanning of multilingual identifiers.
+- Fixed race conditions in parallel calculations.
+- Added protection against stack overflow on deep recursion.
+- Improved checks when loading documents.
+
 # 1.7.1
 - Added calculation of definite and indefinite integrals.
 - Added calculation of derivatives.

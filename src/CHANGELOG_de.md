@@ -1,3 +1,37 @@
+# 1.8.1
+- Oberflächendiagramme hinzugefügt.
+- Histogramme hinzugefügt.
+- Parameter für Diagramme hinzugefügt.
+- Skalierung eines Diagramms relativ zum Mauszeiger hinzugefügt.
+- Unsortierte Listen hinzugefügt.
+- Textblöcke mit Formeln ohne Berechnung hinzugefügt.
+- Einfügen einer Funktionsdefinition mit einem Befehl hinzugefügt.
+- Berechnung einer Funktion an einem Punkt hinzugefügt.
+- Zugriff auf Array-Elemente über den Index hinzugefügt.
+- Neuberechnung nach Änderung einer Array-Variable hinzugefügt.
+- Aktivierungsflags für automatische Ergebniselemente hinzugefügt.
+- Übersetzungen ins Italienische, Französische und Deutsche hinzugefügt.
+- Analyse von Grad, Minuten und Sekunden in einer Zeile hinzugefügt.
+- abs-Funktion hinzugefügt.
+- Kopieren eines Bildes in die System-Zwischenablage hinzugefügt.
+- Der Rahmen zur Größenänderung wird immer angezeigt.
+- Ein Leck im Socket korrigiert.
+- Anwendungseinstellungen korrigiert.
+- Dialog „Speichern unter“ und Standardpfad für PDF korrigiert.
+- Laden von eingebundenen Dokumenten korrigiert.
+- Exakte Werte von Sinus und Kosinus korrigiert.
+- Berechnung von ln(0) korrigiert.
+- Genauigkeit von Ableitungen, Prozentoperation und Berechnungen in Gon korrigiert.
+- Berechnungen mit komplexen Zahlen und logische Verneinung korrigiert.
+- Einheitenwerte (Wedro, Angström, Gravitationskonstante) korrigiert.
+- Integrale mit Grenzen mit Einheiten korrigiert.
+- Neuberechnung abhängiger Gleichungen korrigiert.
+- Fortsetzung der Berechnungen nach einem Variablenfehler korrigiert.
+- Analyse mehrsprachiger Bezeichner korrigiert.
+- Race Conditions bei parallelen Berechnungen korrigiert.
+- Schutz vor Stapelüberlauf bei tiefer Rekursion hinzugefügt.
+- Verbesserte Prüfungen beim Laden von Dokumenten.
+
 # 1.7.1
 - Berechnung bestimmter und unbestimmter Integrale hinzugefügt.
 - Berechnung von Ableitungen hinzugefügt.
