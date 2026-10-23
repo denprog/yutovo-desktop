@@ -213,7 +213,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-library.git
-        tag: v1.1.1
+        tag: v1.2.1
         commit: 370239adb54c3f81ebedf1136282f1158f359a23
     build-commands:
       - cd $FLATPAK_BUILDER_BUILDDIR
@@ -229,7 +229,7 @@ modules:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
         tag: v1.8.1
-        commit: 3539a2c5cce06c753c907b58b2a05eff2f78b815
+        commit: b5a2dbeb221444a83cfd5f371677bea932d8c6d3
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
