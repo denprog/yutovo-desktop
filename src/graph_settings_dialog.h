@@ -25,6 +25,7 @@ public:
 
 private slots:
     void OnColorClicked();
+    void OnAxisColorClicked();
     void OnAccepted();
 
 private:

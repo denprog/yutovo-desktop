@@ -116,6 +116,7 @@ install -m644 %{_builddir}/third_party/gmp-6.3.0/gmpxx.h ${YUTOVO_DEPLOY}/includ
 
 # Build giac (static, Release); the script honours FLATPAK_DEST as the install
 # prefix and FLATPAK_BUILDER_MAX_JOBS for the parallel build
+
 cd %{_builddir}/third_party/giac-2.0.0
 FLATPAK_DEST=${YUTOVO_DEPLOY} FLATPAK_BUILDER_MAX_JOBS=4 bash build_giac.sh
 # yutovo-calculator requires both release and debug library names at configure time

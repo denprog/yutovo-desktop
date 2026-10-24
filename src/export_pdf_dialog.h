@@ -22,7 +22,7 @@ class ExportPdfDialog : public QDialog
     Q_OBJECT
 
 public:
-    ExportPdfDialog(QMarginsF margins, QWidget *parent = nullptr);
+    ExportPdfDialog(QMarginsF margins, const QString &path = QString(), QWidget *parent = nullptr);
     ~ExportPdfDialog();
 
     QPrinter::PageSize PageSize() const;
@@ -49,6 +49,7 @@ private:
 
 private:
     Ui::ExportPdfDialog *ui;
+    QString default_path;
     QString file_path;
 };
 

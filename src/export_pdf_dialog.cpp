@@ -15,7 +15,7 @@
 
 //ExportPdfDialog
 
-ExportPdfDialog::ExportPdfDialog(QMarginsF margins, QWidget *parent) : 
+ExportPdfDialog::ExportPdfDialog(QMarginsF margins, const QString &path, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ExportPdfDialog)
 {
@@ -28,7 +28,8 @@ ExportPdfDialog::ExportPdfDialog(QMarginsF margins, QWidget *parent) :
     ui->marginRight->setValue(margins.right());
     ui->marginBottom->setValue(margins.bottom());
 
-    file_path = QDir::homePath() + "/document.pdf";
+    default_path = path.isEmpty() ? QDir::homePath() + "/document.pdf" : path;
+    file_path = default_path;
     ui->filePath->setText(file_path);
 }
 
@@ -143,7 +144,7 @@ void ExportPdfDialog::FilePathChanged(const QString &text)
 void ExportPdfDialog::NormalizeFilePath()
 {
     if (file_path.isEmpty())
-        file_path = QDir::homePath() + "/document.pdf";
+        file_path = default_path;
     else if (!file_path.endsWith(".pdf", Qt::CaseInsensitive))
         file_path += ".pdf";
     ui->filePath->setText(file_path);

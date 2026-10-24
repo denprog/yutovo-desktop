@@ -26,6 +26,21 @@ bool SendToRunningInstance(const QString& socket_name, const QString& path)
     return true;
 }
 
+QString FileNameFromArguments(const QStringList& args)
+{
+    for (int i = 1; i < args.size(); i++)
+    {
+        const QString& arg = args.at(i);
+        if (arg.isEmpty() || arg.startsWith("--"))
+            continue;
+        QFileInfo fi(arg);
+        if (fi.exists() && fi.isFile())
+            return arg;
+    }
+
+    return QString();
+}
+
 #ifdef _WIN32
 void RegisterApplicationFonts()
 {
@@ -48,12 +63,13 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     app.setOrganizationName("Yutovo");
+    app.setApplicationName("Yutovo Desktop");
 #ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
     QString socket_name = "yutovo_instance";
-    if (SendToRunningInstance(socket_name, app.arguments().value(1)))
+    if (SendToRunningInstance(socket_name, FileNameFromArguments(app.arguments())))
         return 0; //an instance of the app is already running
 
     MainWindow w;
@@ -69,20 +85,19 @@ int main(int argc, char* argv[])
         [&]()
         {
             QLocalSocket* c = s.nextPendingConnection();
-            c->waitForReadyRead();
-            QString file = QString::fromUtf8(c->readAll());
-            w.OpenFile(file);
-            c->disconnectFromServer();
+            if (c == nullptr)
+                return;
+            QObject::connect(c, &QLocalSocket::disconnected,
+                [&w, c]()
+                {
+                    QString file = QString::fromUtf8(c->readAll());
+                    if (!file.isEmpty() && !file.startsWith("--"))
+                        w.OpenFile(file);
+                    c->deleteLater();
+                });
         });
 
-    QString filename;
-    QStringList args = QCoreApplication::arguments();
-    if (args.size() > 1)
-    {
-        QFileInfo fi(args.at(1));
-        if (fi.exists() && fi.isFile())
-            filename = args.at(1);
-    }
+    QString filename = FileNameFromArguments(QCoreApplication::arguments());
 
     try
     {

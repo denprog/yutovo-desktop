@@ -29,6 +29,7 @@ modules:
       - type: git
         url: https://github.com/gabime/spdlog.git
         tag: v1.15.3
+        commit: 6fa36017cfd5731d617e1a934f0e5ea9c4445b13
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -42,6 +43,7 @@ modules:
       - type: git
         url: https://github.com/denprog/yutovo-logger.git
         tag: v1.0.6
+        commit: 879105f09f816b38971049fc7ae0178b0d9788c4
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -98,6 +100,7 @@ modules:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
         tag: v1.6.1
+        commit: 6b42f4d565f0c2725ee31ef707ebe1d24eed44c5
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -109,6 +112,7 @@ modules:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
         tag: v1.1.0
+        commit: f54b0e47a08782a6131cc3d60f94d038fa6e0a51
       - type: patch
         path: ./document.h.diff
     config-opts:
@@ -130,6 +134,7 @@ modules:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
         tag: v1.3.1
+        commit: 798b768226d11b4d26eb72e5f69b8776ef364dbd
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -159,6 +164,7 @@ modules:
       - type: git
         url: https://github.com/libharu/libharu.git
         tag: v2.4.4
+        commit: 0c598becaadaef8e3d12b883f9fc2864a118c12d
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -196,6 +202,7 @@ modules:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
         tag: v1.7.1
+        commit: 288b212a091c83e402169978e096e6cdc6b8b5f0
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -222,6 +229,7 @@ modules:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
         tag: v1.7.1
+        commit: 7095aa169f5ff75521efe3d9fcfd86af90e7cd84
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release

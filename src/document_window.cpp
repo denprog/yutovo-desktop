@@ -49,6 +49,7 @@ DocumentWindow::DocumentWindow(yutovo::Config& _config, QSettings& _settings, QW
     connect(&document_widget->window, &QtWindow::DocumentChanged, this, &DocumentWindow::OnDocumentChanged);
     connect(&document_widget->window, &QtWindow::SaveResult, this, &DocumentWindow::OnSaveResult);
     connect(&document_widget->window, &QtWindow::LoadResult, this, &DocumentWindow::OnLoadResult);
+    connect(&document_widget->window, &QtWindow::LoadInclude, this, &DocumentWindow::OnLoadInclude);
     connect(&document_widget->window, &QtWindow::ClipboardCopyResult, this, &DocumentWindow::OnClipboardCopyResult);
     connect(&document_widget->window, &QtWindow::ClipboardPasteResult, this, &DocumentWindow::OnClipboardPasteResult);
     connect(&document_widget->window, &QtWindow::DocumentUpdated, this, &DocumentWindow::OnDocumentUpdated);
@@ -308,13 +309,17 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (document->GetElementAtCoords(x, y, 0, id_at_coords))
             {
                 auto el = document->GetElement(id_at_coords);
-                while (el && el->type != ElementType::GRAPH_LINE)
+                while (el && el->type != ElementType::GRAPH_LINE && el->type != ElementType::GRAPH_SURFACE && el->type != ElementType::GRAPH_HISTOGRAM)
                     el = document->GetParent(el->id);
                 if (el)
                     context_menu_graph_id = el->id;
             }
             if (context_menu_graph_id.empty())
                 context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+            if (context_menu_graph_id.empty())
+                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
+            if (context_menu_graph_id.empty())
+                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
 
             if (context_menu_graph_id.empty())
                 return;
@@ -678,6 +683,11 @@ void DocumentWindow::OnLoadResult(const uint task_id, IOResult result)
     emit LoadResult(task_id, result);
 }
 
+void DocumentWindow::OnLoadInclude(const uint task_id, const QString& file_name)
+{
+    emit LoadInclude(task_id, file_name);
+}
+
 void DocumentWindow::OnClipboardCopyResult(CopyResult result)
 {
     emit ClipboardCopyResult(result);
@@ -993,6 +1003,10 @@ void DocumentWindow::OnCopyImage()
     ElementId id = context_menu_graph_id;
     if (id.empty())
         id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
     if (id.empty())
         return;
 

@@ -15,7 +15,7 @@ if(WIN32)
     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /bigobj /EHsc /MP")
     find_package(PkgConfig REQUIRED)
-    find_package(Boost REQUIRED COMPONENTS property_tree)
+    find_package(Boost REQUIRED COMPONENTS property_tree iostreams filesystem)
     find_package(BZip2 REQUIRED)
     find_package(RapidJSON CONFIG REQUIRED)
     find_package(unofficial-libharu CONFIG REQUIRED)
@@ -66,11 +66,15 @@ add_executable(${PROJECT_NAME}_test
     main.cpp
     files.cpp
     toolbar.cpp
+    result_settings.cpp
+    settings.cpp
     ${APP_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/resources.qrc
 )
 
 target_compile_definitions(${PROJECT_NAME}_test PRIVATE TEST_APP)
+
+target_compile_definitions(${PROJECT_NAME}_test PRIVATE TEST)
 
 if(BUILD_TESTS)
     target_compile_definitions(${PROJECT_NAME}_test PRIVATE BUILD_TESTS)

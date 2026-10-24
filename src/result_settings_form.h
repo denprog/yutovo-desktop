@@ -9,6 +9,7 @@
 #define RESULT_SETTINGS_FORM_H
 
 #include <QWidget>
+#include <QListWidgetItem>
 #include <yutovo-editor/config.h>
 
 namespace Ui
@@ -29,6 +30,7 @@ public:
 public slots:
     void OnUpResultOrderClicked();
     void OnDownResultOrderClicked();
+    void OnResultOrderItemChanged(QListWidgetItem *item);
 
 private:
     void FillResultsOrder();

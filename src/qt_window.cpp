@@ -429,17 +429,14 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
 
     ElementId _id = GetParent(c.id);
     is_string = document->IsString(document->GetElement(_id));
-    is_row = document->IsRow(document->GetElement(_id));
 
     //find common string format
     if (c.id.empty() || c.id.size() == 1)
         return;
-    if (!is_string && !is_row)
+    if (!s.IsEmpty())
     {
+        //the merge below starts from an empty format
         string_format.Reset();
-    }
-    else if (!s.IsEmpty())
-    {
         bool set_family = true, set_size = true, set_bold = true, set_italic = true, set_underline = true, set_strikethrough = true;
         for (auto& state : s.state)
         {
@@ -513,9 +510,9 @@ void QtWindow::OnCaretMoved(const EditorState _editor_state)
             }
         }
     }
-    else
+    else if (!document->GetStringFormat(c.id, string_format))
     {
-        document->GetStringFormat(_id, string_format);
+        string_format.Reset(); //no single format under the caret
     }
 
     can_undo = document->CanUndo();
@@ -547,7 +544,7 @@ void QtWindow::OnLoadResult(const uint task_id, IOResult result, const int docum
     emit LoadResult(task_id, result);
 }
 
-void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id)
+uint QtWindow::OnLoadInclude(const std::string& file_name, const int document_id)
 {
     std::string f = file_name;
     if (file_name.rfind("/", 0) == 0)
@@ -563,12 +560,23 @@ void QtWindow::OnLoadInclude(const std::string& file_name, const int document_id
         case yutovo_calculator::Language::BrazilianPortuguese:
             f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "pt_BR/" + file_name;
             break;
+        case yutovo_calculator::Language::German:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "de/" + file_name;
+            break;
+        case yutovo_calculator::Language::French:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "fr/" + file_name;
+            break;
+        case yutovo_calculator::Language::Italian:
+            f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "it/" + file_name;
+            break;
         default:
             f = std::string(MainWindow::GetLibraryDir().toUtf8().data()) + "en/" + file_name;
             break;
         }
     }
-    document->LoadInclude(f);
+    uint task_id = document->LoadInclude(f);
+    emit LoadInclude(task_id, QString::fromUtf8(f.c_str()));
+    return task_id;
 }
 
 void QtWindow::OnCopyResult(CopyResult result)

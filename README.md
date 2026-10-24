@@ -55,7 +55,7 @@ If you haven't yet, build [yutovo-logger](https://github.com/denprog/yutovo-logg
 Install the dependencies:
 
 ```
-sudo update && sudo apt install -y qttools5-dev-tools
+sudo apt update && sudo apt install -y qttools5-dev-tools
 ```
 
 This variable should be set to the yutovo directory:
@@ -92,7 +92,7 @@ Build and install giac: https://www-fourier.univ-grenoble-alpes.fr//~parisse/ins
 ### Download sources
 
 ```bash
-cd src/setup
+cd src/setup/rpm
 spectool -g -R yutovo-desktop.spec
 ```
 

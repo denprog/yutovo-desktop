@@ -27,7 +27,7 @@ else()
     set(GIAC_LIBRARY_DEBUG ${GIAC_LIBRARY_RELEASE})
 endif()
 if(NOT GIAC_LIBRARY_RELEASE OR NOT GIAC_LIBRARY_DEBUG)
-    message(FATAL_ERROR "giac library not found in ${INSTALL_PATH}/lib. Run ./build_giac.sh first.")
+    message(FATAL_ERROR "giac library not found in ${INSTALL_PATH}/lib. Run ./setup/build_giac.sh first.")
 endif()
 set(GIAC_INCLUDE_DIR ${INSTALL_PATH}/include)
 

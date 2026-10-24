@@ -20,6 +20,19 @@ private slots:
     void testDerivative();
     void testSecondDerivative();
     void testPartialDerivative();
+    void testEvaluationBar();
+    void testFunctionAtPoint();
+    void testFunctionX();
+    void testFunctionXY();
+    void testGraphSurface();
+    void testGraphHistogram();
+    void testGraphFormatAxes();
+
+    void testUnorderedList();
+
+    void testTextBlock();
+    void testTextBlockNoCodeBlock();
+    void testTextBlockInText();
 
 private:
     MainWindow* window;

@@ -29,6 +29,8 @@
 #include <sstream>
 
 class QMenu;
+class QPushButton;
+class DocumentWindow;
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -153,6 +155,10 @@ private slots:
 
     void OnInsertCode();
 
+    void OnInsertTextBlock();
+
+    void OnUnorderedList(QAction* marker_action);
+
     void OnCurrentScaleChanged(int index);
     void OnCurrentScaleEditingFinished();
     void OnCurrentParagraphFormatChanged(const QString& format);
@@ -236,6 +242,8 @@ private slots:
     void OnCurrency();
 
     void GraphLine();
+    void GraphSurface();
+    void GraphHistogram();
 
     void OnAnd();
     void OnOr();
@@ -248,12 +256,16 @@ private slots:
     void OnSecondDerivative();
     void OnPartialDerivative();
     void OnDerivativeAtPoint();
+    void OnFunctionAtPoint();
     void OnEvaluationBar();
+    void OnFunctionX();
+    void OnFunctionXY();
 
     void OnCaretMoved(const EditorState editor_state);
     void OnDocumentChanged(const bool changed);
     void OnSaveResult(const uint task_id, IOResult result);
     void OnLoadResult(const uint task_id, IOResult result);
+    void OnLoadInclude(const uint task_id, const QString& file_name);
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
     void OnPdfExportResult(const std::vector<uint8_t>& pdf, const yutovo::PdfResult result);
@@ -278,7 +290,7 @@ private:
     void UpdateCopyPaste();
     void UpdateRecentFiles(const QString add_file_name = "");
     void UpdateLibraryMenu(QMenu* library_menu, const QString start_topic, const QString except_topic);
-    
+
     static void ClearMenuActions(QMenu* menu);
 
     void InstallTranslation(const yutovo_calculator::Language language);
@@ -317,16 +329,18 @@ private:
 
     std::unique_ptr<QProcess> service;
 
-    QTranslator desktop_translator, editor_translator;
+    QTranslator desktop_translator, editor_translator, qt_translator;
 
     QString dialog_file_name; //file name to be loaded/saved
     QString startup_filename;
     bool startup_first_run = false;
     bool startup_initialized = false;
     std::map<uint, int> loading_files; //files being loaded by tabs
+    std::map<uint, QString> loading_includes; //include files being loaded, associated with the task id
 
     std::u32string clipboard_json;
     std::u32string clipboard_text;
+    std::vector<unsigned char> clipboard_image;
 
     QMenu* recent_files_menu = nullptr;
     int recent_files_count = 10;
@@ -337,6 +351,7 @@ private:
 
     bool block_format_slots = false;
     QComboBox* paragraph_format_combo = nullptr;
+    QPushButton* unordered_list_button = nullptr;
     
     QFontComboBox* family_combo = nullptr;
     QComboBox* size_combo = nullptr;
@@ -344,7 +359,7 @@ private:
     int last_font_size = 0;
 
     bool exit_after_save = false;
-    int close_tab_after_save = -1;
+    DocumentWindow* close_tab_after_save = nullptr; //tab to close after the pending save finishes; nullptr = no pending close
 
     std::map<uint, int> save_tasks;
 
@@ -371,6 +386,8 @@ private:
     QAction* properties_action = nullptr;
 
     QAction* calculator_action = nullptr;
+
+    QAction* text_block_action = nullptr;
 
     QAction* recalculate_action = nullptr;
 

@@ -70,6 +70,14 @@ ColorsSettingsForm::ColorsSettingsForm(yutovo::Config& _config, QWidget *parent)
     c = QColor::fromRgb(config.page_border_color.ToInt());
     form->page_border_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     connect(form->page_border_color, SIGNAL(clicked()), this, SLOT(OnPageBorderColorClicked()));
+
+    c = QColor::fromRgb(config.text_block.background_color.ToInt());
+    form->text_block_background_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    connect(form->text_block_background_color, SIGNAL(clicked()), this, SLOT(OnTextBlockBackgroundColorClicked()));
+
+    c = QColor::fromRgb(config.text_block.frame_color.ToInt());
+    form->text_block_frame_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    connect(form->text_block_frame_color, SIGNAL(clicked()), this, SLOT(OnTextBlockFrameColorClicked()));
 }
 
 ColorsSettingsForm::~ColorsSettingsForm()
@@ -217,5 +225,27 @@ void ColorsSettingsForm::OnPageBorderColorClicked()
         QColor c = d.selectedColor();
         config.page_border_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
         form->page_border_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    }
+}
+
+void ColorsSettingsForm::OnTextBlockBackgroundColorClicked()
+{
+    QColorDialog d(QColor::fromRgba(config.text_block.background_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        QColor c = d.selectedColor();
+        config.text_block.background_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->text_block_background_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
+    }
+}
+
+void ColorsSettingsForm::OnTextBlockFrameColorClicked()
+{
+    QColorDialog d(QColor::fromRgba(config.text_block.frame_color.ToInt()), this);
+    if (d.exec() == QDialog::Accepted)
+    {
+        QColor c = d.selectedColor();
+        config.text_block.frame_color = yutovo::Color{(uint8_t)c.alpha(), (uint8_t)c.red(), (uint8_t)c.green(), (uint8_t)c.blue()};
+        form->text_block_frame_color->setStyleSheet(QString("background-color: %1").arg(c.name()));
     }
 }

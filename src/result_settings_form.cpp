@@ -43,6 +43,7 @@ ResultSettingsForm::ResultSettingsForm(yutovo::Config& _config, QWidget *parent)
 
     connect(ui->up_result_order, &QAbstractButton::clicked, this, &ResultSettingsForm::OnUpResultOrderClicked);
     connect(ui->down_result_order, &QAbstractButton::clicked, this, &ResultSettingsForm::OnDownResultOrderClicked);
+    connect(ui->auto_result_order, &QListWidget::itemChanged, this, &ResultSettingsForm::OnResultOrderItemChanged);
 }
 
 ResultSettingsForm::~ResultSettingsForm()
@@ -86,6 +87,10 @@ void ResultSettingsForm::OnUpResultOrderClicked()
     auto r = results_order[p - 1];
     results_order[p - 1] = results_order[p];
     results_order[p] = r;
+    auto& results_enabled = config.auto_result.results_enabled;
+    auto e = results_enabled[p - 1];
+    results_enabled[p - 1] = results_enabled[p];
+    results_enabled[p] = e;
     FillResultsOrder();
     ui->auto_result_order->setCurrentRow(p - 1);
 }
@@ -93,50 +98,83 @@ void ResultSettingsForm::OnUpResultOrderClicked()
 void ResultSettingsForm::OnDownResultOrderClicked()
 {
     int p = ui->auto_result_order->currentRow();
-    if (p >= 5)
+    if (p < 0 || p >= (int)(sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0])) - 1)
         return;
     auto& results_order = config.auto_result.results_order;
     auto r = results_order[p + 1];
     results_order[p + 1] = results_order[p];
     results_order[p] = r;
+    auto& results_enabled = config.auto_result.results_enabled;
+    auto e = results_enabled[p + 1];
+    results_enabled[p + 1] = results_enabled[p];
+    results_enabled[p] = e;
     FillResultsOrder();
     ui->auto_result_order->setCurrentRow(p + 1);
 }
 
+void ResultSettingsForm::OnResultOrderItemChanged(QListWidgetItem *item)
+{
+    int p = ui->auto_result_order->row(item);
+    if (p < 0)
+        return;
+    if (item->checkState() == Qt::Checked)
+    {
+        config.auto_result.results_enabled[p] = true;
+        return;
+    }
+    //at least one result type must stay enabled
+    bool any_enabled = false;
+    for (size_t i = 0; i < sizeof(Config::AutoResultConfig::results_enabled) / sizeof(Config::AutoResultConfig::results_enabled[0]); ++i)
+        any_enabled = any_enabled || (i != (size_t)p && config.auto_result.results_enabled[i]);
+    if (any_enabled)
+        config.auto_result.results_enabled[p] = false;
+    else
+    {
+        QSignalBlocker blocker(ui->auto_result_order);
+        item->setCheckState(Qt::Checked);
+    }
+}
+
 void ResultSettingsForm::FillResultsOrder()
 {
+    QSignalBlocker blocker(ui->auto_result_order);
     ui->auto_result_order->clear();
 
     for (size_t i = 0; i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]); ++i)
     {
+        QString label;
         switch (config.auto_result.results_order[i])
         {
         case ResultType::REAL:
-            ui->auto_result_order->addItem(tr("Real"));
+            label = tr("Real");
             break;
         case ResultType::INTEGER:
-            ui->auto_result_order->addItem(tr("Integer"));
+            label = tr("Integer");
             break;
         case ResultType::RATIONAL:
-            ui->auto_result_order->addItem(tr("Rational"));
+            label = tr("Rational");
             break;
         case ResultType::COMPLEX:
-            ui->auto_result_order->addItem(tr("Complex"));
+            label = tr("Complex");
             break;
         case ResultType::ARRAY_REAL:
-            ui->auto_result_order->addItem(tr("Array of real"));
+            label = tr("Array of real");
             break;
         case ResultType::SYMBOLIC_REAL:
-            ui->auto_result_order->addItem(tr("Symbolic real"));
+            label = tr("Symbolic real");
             break;
         case ResultType::SYMBOLIC_RATIONAL:
-            ui->auto_result_order->addItem(tr("Symbolic rational"));
+            label = tr("Symbolic rational");
             break;
         case ResultType::SYMBOLIC_COMPLEX:
-            ui->auto_result_order->addItem(tr("Symbolic complex"));
+            label = tr("Symbolic complex");
             break;
         default:
-            break;
+            continue;
         }
+
+        QListWidgetItem *item = new QListWidgetItem(label, ui->auto_result_order);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(config.auto_result.results_enabled[i] ? Qt::Checked : Qt::Unchecked);
     }
 }

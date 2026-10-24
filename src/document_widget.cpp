@@ -25,10 +25,10 @@ DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettin
 {
     connect(&window, &QtWindow::DocumentUpdated, this, &DocumentWidget::OnDocumentUpdated);
     connect(&window, &QtWindow::CaretMoved, this, &DocumentWidget::OnCaretMoved);
-    connect(&window, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted);
-    connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished);
-    connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted);
-    connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished);
+    connect(&window, &QtWindow::FormatingStarted, this, &DocumentWidget::OnFormatingStarted, Qt::QueuedConnection);
+    connect(&window, &QtWindow::FormatingFinished, this, &DocumentWidget::OnFormatingFinished, Qt::QueuedConnection);
+    connect(&window, &QtWindow::ResizeStarted, this, &DocumentWidget::OnResizeStarted, Qt::QueuedConnection);
+    connect(&window, &QtWindow::ResizeFinished, this, &DocumentWidget::OnResizeFinished, Qt::QueuedConnection);
 #ifdef REMOTE_SOLVER
     connect(&window, &QtWindow::ServiceStatus, this, &DocumentWidget::OnServiceStatus);
 #endif
@@ -312,7 +312,8 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
                     yutovo::PlotFormat f;
                     if (!document->GetPlotFormat(hold_id, f))
                         return;
-                    PlotFormatDialog dialog(f);
+                    const ElementType type = document->GetElementType(hold_id);
+                    PlotFormatDialog dialog(f, type == ElementType::GRAPH_SURFACE, type == ElementType::GRAPH_HISTOGRAM);
                     if (!dialog.exec())
                         return;
                     document->SetPlotFormat(hold_id, f, true);
@@ -390,7 +391,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    if (document->MouseMove(x, y))
+    if (document->MouseMove(x, y, (event->modifiers() & Qt::ShiftModifier) != 0))
         return;
     
     if (document->IsString(id))

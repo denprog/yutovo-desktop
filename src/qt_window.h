@@ -80,7 +80,7 @@ public:
     virtual void OnSaveResult(const uint task_id, IOResult result, const int document_id);
     virtual void OnLoadResult(const uint task_id, IOResult result, const int document_id);
 
-    virtual void OnLoadInclude(const std::string& file_name, const int document_id);
+    virtual uint OnLoadInclude(const std::string& file_name, const int document_id);
 
     virtual void OnCopyResult(CopyResult result);
     virtual void OnPasteResult(PasteResult result);
@@ -111,7 +111,7 @@ signals:
     void DocumentChanged(const bool changed);
     void SaveResult(const uint task_id, IOResult result);
     void LoadResult(const uint task_id, IOResult result);
-    void LoadInclude(const std::string& file_name, const int document_id);
+    void LoadInclude(const uint task_id, const QString& file_name);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
     void FormatingStarted();

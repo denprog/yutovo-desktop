@@ -39,6 +39,7 @@ private slots:
     void OnCaretMoved(const EditorState editor_state);
     void OnSaveResult(const uint task_id, IOResult result);
     void OnLoadResult(const uint task_id, IOResult result);
+    void OnLoadInclude(const uint task_id, const QString& file_name);
     void OnClipboardCopyResult(CopyResult result);
     void OnClipboardPasteResult(PasteResult result);
     void OnDocumentUpdated(const Rect rect);
@@ -90,6 +91,7 @@ signals:
     void DocumentChanged(const bool changed);
     void SaveResult(const uint task_id, IOResult result);
     void LoadResult(const uint task_id, IOResult result);
+    void LoadInclude(const uint task_id, const QString& file_name);
     void ClipboardCopyResult(CopyResult result);
     void ClipboardPasteResult(PasteResult result);
     void LinkClicked(const std::u32string& url);

@@ -135,6 +135,14 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Formula frame</source>
         <translation>Borda da fórmula</translation>
     </message>
+    <message>
+        <source>Text block background</source>
+        <translation>Fundo do bloco de texto</translation>
+    </message>
+    <message>
+        <source>Text block frame</source>
+        <translation>Moldura do bloco de texto</translation>
+    </message>
 </context>
 <context>
     <name>ComputationSettingsForm</name>
@@ -473,6 +481,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>O documento %1 não está salvo. Salvar?</translation>
     </message>
     <message>
+        <source>File %1 already exists. Overwrite?</source>
+        <translation>O arquivo %1 já existe. Deseja sobrescrevê-lo?</translation>
+    </message>
+    <message>
         <source>&amp;File</source>
         <translation>&amp;Arquivo</translation>
     </message>
@@ -644,6 +656,46 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <source>Insert calculator</source>
         <translation>Inserir calculadora</translation>
     </message>
+    <message>
+        <source>Insert text block</source>
+        <translation>Inserir bloco de texto</translation>
+    </message>
+        <message>
+            <source>Unordered list</source>
+            <translation>Lista com marcadores</translation>
+        </message>
+        <message>
+            <source>Small circle</source>
+            <translation>Círculo pequeno</translation>
+        </message>
+        <message>
+            <source>Large circle</source>
+            <translation>Círculo grande</translation>
+        </message>
+        <message>
+            <source>Diamond</source>
+            <translation>Losango</translation>
+        </message>
+        <message>
+            <source>Square</source>
+            <translation>Quadrado</translation>
+        </message>
+        <message>
+            <source>Small circle list marker</source>
+            <translation>Marcador de lista: círculo pequeno</translation>
+        </message>
+        <message>
+            <source>Large circle list marker</source>
+            <translation>Marcador de lista: círculo grande</translation>
+        </message>
+        <message>
+            <source>Diamond list marker</source>
+            <translation>Marcador de lista: losango</translation>
+        </message>
+        <message>
+            <source>Square list marker</source>
+            <translation>Marcador de lista: quadrado</translation>
+        </message>
     <message>
         <source>Bold</source>
         <translation>Negrito</translation>
@@ -1137,6 +1189,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Erro ao carregar o documento</translation>
     </message>
     <message>
+        <source>Error loading include document</source>
+        <translation>Erro ao carregar o documento incluído</translation>
+    </message>
+    <message>
         <source>File not found</source>
         <translation>Arquivo não encontrado</translation>
     </message>
@@ -1361,6 +1417,14 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Gráfico linear</translation>
     </message>
     <message>
+        <source>Surface graph</source>
+        <translation>Gráfico de superfície</translation>
+    </message>
+    <message>
+        <source>Histogram</source>
+        <translation>Histograma</translation>
+    </message>
+    <message>
         <source>Infinity</source>
         <translation>Infinito</translation>
     </message>
@@ -1391,6 +1455,18 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Partial derivative</source>
         <translation>Derivada parcial</translation>
+    </message>
+    <message>
+        <source>Function at point</source>
+        <translation>Função em um ponto</translation>
+    </message>
+    <message>
+        <source>Function f(x)</source>
+        <translation>Função f(x)</translation>
+    </message>
+    <message>
+        <source>Function f(x,y)</source>
+        <translation>Função f(x,y)</translation>
     </message>
     <message>
         <source>Evaluate at point</source>
@@ -1571,6 +1647,18 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Matriz de reais</translation>
     </message>
     <message>
+        <source>Symbolic real</source>
+        <translation>Reais simbólicos</translation>
+    </message>
+    <message>
+        <source>Symbolic rational</source>
+        <translation>Racionais simbólicos</translation>
+    </message>
+    <message>
+        <source>Symbolic complex</source>
+        <translation>Complexos simbólicos</translation>
+    </message>
+    <message>
         <source>Arithmetical</source>
         <translation>Aritmética</translation>
     </message>
@@ -1668,8 +1756,8 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Incluir</translation>
     </message>
     <message>
-        <source>Result settings for new documents</source>
-        <translation>Configurações de resultado para novos documentos</translation>
+        <source>Result settings for new results</source>
+        <translation>Configurações de resultado para novos resultados</translation>
     </message>
 </context>
 <context>
@@ -1757,14 +1845,26 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Altura</translation>
     </message>
     <message>
-        <source>Color</source>
-        <translation>Cor</translation>
+        <source>Grid color</source>
+        <translation>Cor da grade</translation>
     </message>
     <message>
         <source>Grid thickness</source>
         <translation>Espessura da grade</translation>
     </message>
-</context>
+    <message>
+        <source>Axis color</source>
+        <translation>Cor dos eixos</translation>
+    </message>
+    <message>
+        <source>Axis thickness</source>
+        <translation>Espessura dos eixos</translation>
+    </message>
+    <message>
+        <source>Show ticks</source>
+        <translation>Mostrar marcações</translation>
+    </message>
+    </context>
 <context>
     <name>PlotFormatDialog</name>
     <message>
@@ -1778,6 +1878,58 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Thickness</source>
         <translation>Espessura</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>Estilo</translation>
+    </message>
+    <message>
+        <source>Color by height</source>
+        <translation>Preenchimento por altura</translation>
+    </message>
+    <message>
+        <source>Solid color</source>
+        <translation>Cor sólida</translation>
+    </message>
+    <message>
+        <source>Color by height with mesh</source>
+        <translation>Preenchimento por altura com malha</translation>
+    </message>
+    <message>
+        <source>Wireframe</source>
+        <translation>Wireframe</translation>
+    </message>
+    <message>
+        <source>Points</source>
+        <translation>Pontos</translation>
+    </message>
+    <message>
+        <source>Bars</source>
+        <translation>Barras</translation>
+    </message>
+    <message>
+        <source>Bars with line</source>
+        <translation>Barras com linha</translation>
+    </message>
+    <message>
+        <source>Bars without gaps</source>
+        <translation>Barras sem espaços</translation>
+    </message>
+    <message>
+        <source>Stems</source>
+        <translation>Linhas de espectrograma</translation>
+    </message>
+    <message>
+        <source>Area</source>
+        <translation>Área sob a linha</translation>
+    </message>
+    <message>
+        <source>Step</source>
+        <translation>Degraus</translation>
+    </message>
+    <message>
+        <source>Marks</source>
+        <translation>Marcas</translation>
     </message>
 </context>
 <context>

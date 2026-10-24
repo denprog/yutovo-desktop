@@ -135,6 +135,14 @@
         <source>Formula frame</source>
         <translation>Рамка формулы</translation>
     </message>
+    <message>
+        <source>Text block background</source>
+        <translation>Фон текстового блока</translation>
+    </message>
+    <message>
+        <source>Text block frame</source>
+        <translation>Рамка текстового блока</translation>
+    </message>
 </context>
 <context>
     <name>ComputationSettingsForm</name>
@@ -473,6 +481,10 @@
         <translation>Документ %1 не сохранен. Сохранить?</translation>
     </message>
     <message>
+        <source>File %1 already exists. Overwrite?</source>
+        <translation>Файл %1 уже существует. Перезаписать?</translation>
+    </message>
+    <message>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
@@ -644,6 +656,46 @@
         <source>Insert calculator</source>
         <translation>Вставить калькулятор</translation>
     </message>
+    <message>
+        <source>Insert text block</source>
+        <translation>Вставить текстовый блок</translation>
+    </message>
+        <message>
+            <source>Unordered list</source>
+            <translation>Маркированный список</translation>
+        </message>
+        <message>
+            <source>Small circle</source>
+            <translation>Малый круг</translation>
+        </message>
+        <message>
+            <source>Large circle</source>
+            <translation>Большой круг</translation>
+        </message>
+        <message>
+            <source>Diamond</source>
+            <translation>Ромб</translation>
+        </message>
+        <message>
+            <source>Square</source>
+            <translation>Квадрат</translation>
+        </message>
+        <message>
+            <source>Small circle list marker</source>
+            <translation>Маркер списка: малый круг</translation>
+        </message>
+        <message>
+            <source>Large circle list marker</source>
+            <translation>Маркер списка: большой круг</translation>
+        </message>
+        <message>
+            <source>Diamond list marker</source>
+            <translation>Маркер списка: ромб</translation>
+        </message>
+        <message>
+            <source>Square list marker</source>
+            <translation>Маркер списка: квадрат</translation>
+        </message>
     <message>
         <source>Bold</source>
         <translation>Жирный</translation>
@@ -1141,6 +1193,10 @@
         <translation>Ошибка загрузки документа</translation>
     </message>
     <message>
+        <source>Error loading include document</source>
+        <translation>Ошибка загрузки подключенного документа</translation>
+    </message>
+    <message>
         <source>File not found</source>
         <translation>Файл не найден</translation>
     </message>
@@ -1365,6 +1421,14 @@
         <translation>Линейный график</translation>
     </message>
     <message>
+        <source>Surface graph</source>
+        <translation>График поверхности</translation>
+    </message>
+    <message>
+        <source>Histogram</source>
+        <translation>Гистограмма</translation>
+    </message>
+    <message>
         <source>Infinity</source>
         <translation>Бесконечность</translation>
     </message>
@@ -1395,6 +1459,18 @@
     <message>
         <source>Partial derivative</source>
         <translation>Частная производная</translation>
+    </message>
+    <message>
+        <source>Function at point</source>
+        <translation>Функция в точке</translation>
+    </message>
+    <message>
+        <source>Function f(x)</source>
+        <translation>Функция f(x)</translation>
+    </message>
+    <message>
+        <source>Function f(x,y)</source>
+        <translation>Функция f(x,y)</translation>
     </message>
     <message>
         <source>Evaluate at point</source>
@@ -1575,6 +1651,18 @@
         <translation>Массив вещественных</translation>
     </message>
     <message>
+        <source>Symbolic real</source>
+        <translation>Символьные вещественные</translation>
+    </message>
+    <message>
+        <source>Symbolic rational</source>
+        <translation>Символьные дробные</translation>
+    </message>
+    <message>
+        <source>Symbolic complex</source>
+        <translation>Символьные комплексные</translation>
+    </message>
+    <message>
         <source>Arithmetical</source>
         <translation>Арифметическая</translation>
     </message>
@@ -1672,8 +1760,8 @@
         <translation>Подключение</translation>
     </message>
     <message>
-        <source>Result settings for new documents</source>
-        <translation>Настройки результата для нового документа</translation>
+        <source>Result settings for new results</source>
+        <translation>Настройки результата для новых результатов</translation>
     </message>
 </context>
 <context>
@@ -1754,14 +1842,26 @@
         <translation>Высота</translation>
     </message>
     <message>
-        <source>Color</source>
-        <translation>Цвет</translation>
+        <source>Grid color</source>
+        <translation>Цвет сетки</translation>
     </message>
     <message>
         <source>Grid thickness</source>
         <translation>Толщина сетки</translation>
     </message>
-</context>
+    <message>
+        <source>Axis color</source>
+        <translation>Цвет осей</translation>
+    </message>
+    <message>
+        <source>Axis thickness</source>
+        <translation>Толщина осей</translation>
+    </message>
+    <message>
+        <source>Show ticks</source>
+        <translation>Показать деления</translation>
+    </message>
+    </context>
 <context>
     <name>PlotFormatDialog</name>
     <message>
@@ -1775,6 +1875,58 @@
     <message>
         <source>Thickness</source>
         <translation>Толщина</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>Стиль</translation>
+    </message>
+    <message>
+        <source>Color by height</source>
+        <translation>Заливка по высоте</translation>
+    </message>
+    <message>
+        <source>Solid color</source>
+        <translation>Однотонная заливка</translation>
+    </message>
+    <message>
+        <source>Color by height with mesh</source>
+        <translation>Заливка по высоте с сеткой</translation>
+    </message>
+    <message>
+        <source>Wireframe</source>
+        <translation>Каркас</translation>
+    </message>
+    <message>
+        <source>Points</source>
+        <translation>Точки</translation>
+    </message>
+    <message>
+        <source>Bars</source>
+        <translation>Столбики</translation>
+    </message>
+    <message>
+        <source>Bars with line</source>
+        <translation>Столбики с линией</translation>
+    </message>
+    <message>
+        <source>Bars without gaps</source>
+        <translation>Столбики без промежутков</translation>
+    </message>
+    <message>
+        <source>Stems</source>
+        <translation>Линии спектрограммы</translation>
+    </message>
+    <message>
+        <source>Area</source>
+        <translation>Область под линией</translation>
+    </message>
+    <message>
+        <source>Step</source>
+        <translation>Ступени</translation>
+    </message>
+    <message>
+        <source>Marks</source>
+        <translation>Метки</translation>
     </message>
 </context>
 <context>

@@ -9,7 +9,7 @@ License: GPL-3.0-only. Minimum Qt version: 5.14.
 export YUTOVO_DEPLOY=~/yutovo/deploy   # required; points to internal libs install
 mkdir -p build/debug && cd build/debug
 cmake -DCMAKE_BUILD_TYPE=Debug ../..
-make -sj16 && make install   # installs to $YUTOVO_DEPLOY/bin
+make -sj$(lscpu -p=Core,Socket | grep -v '^#' | sort -u | wc -l) && make install   # installs to $YUTOVO_DEPLOY/bin; -j uses physical cores, nproc counts hyperthreads
 ```
 - Debug binary: `build/debug/src/yutovo-desktopd` (note the `d` suffix)
 - C++17, CMake ≥ 3.17
@@ -68,7 +68,7 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 
 ## Key conventions
 - `REMOTE_SOLVER` define (commented out in root CMakeLists.txt) switches from local yutovo-solver to remote
-- Translations: 4 locales (en, ru, es, pt_BR); `.ts` → `.qm` via `lrelease` at build time — `lrelease` must be on PATH
+- Translations: 7 locales (en, ru, es, pt_BR, de, fr, it); `.ts` → `.qm` via `lrelease` at build time — `lrelease` must be on PATH
 - Windows uses vcpkg; Linux uses `$YUTOVO_DEPLOY` for all deps
 - No CI, no pre-commit, no linting/formatting config in repo
 

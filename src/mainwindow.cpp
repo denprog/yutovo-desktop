@@ -9,6 +9,7 @@
 #include <QMenu>
 #include <QToolBar>
 #include <QToolButton>
+#include <QPushButton>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QBuffer>
@@ -34,6 +35,7 @@
 #include <codecvt>
 #endif
 #include <yutovo-editor/editor_utils.h>
+#include <yutovo-editor/style.h>
 #include <yutovo-calculator/math_helper.h>
 #include "document_window.h"
 #include "about_dialog.h"
@@ -52,8 +54,9 @@
 #include <QNetworkRequest>
 #include <QSysInfo>
 #include <QRegularExpression>
+#include <QLibraryInfo>
 
-#ifdef BUILD_TESTS
+#ifdef DEBUG
 #define UPDATES_SERVER_URL "http://localhost:9001/service/get-updates"
 #else
 #define UPDATES_SERVER_URL "https://yutovo.ru/service/get-updates"
@@ -65,8 +68,7 @@ using namespace yutovo_calculator;
 
 MainWindow::MainWindow(QWidget* parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    settings(new QSettings("Yutovo", "Yutovo Desktop"))
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -192,6 +194,12 @@ void MainWindow::InitializeEditor()
             OpenFile(GetLibraryDir() + "es/Otros/Primera página.yut");
         else if (config.language == yutovo_calculator::Language::BrazilianPortuguese)
             OpenFile(GetLibraryDir() + "pt_BR/Outros/Primeira página.yut");
+        else if (config.language == yutovo_calculator::Language::German)
+            OpenFile(GetLibraryDir() + "de/Sonstiges/Erste Seite.yut");
+        else if (config.language == yutovo_calculator::Language::French)
+            OpenFile(GetLibraryDir() + "fr/Divers/Première page.yut");
+        else if (config.language == yutovo_calculator::Language::Italian)
+            OpenFile(GetLibraryDir() + "it/Altro/Prima pagina.yut");
         else
             OpenFile(GetLibraryDir() + "en/Others/First page.yut");
     }
@@ -236,12 +244,13 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
             QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name),
                 QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+            m.setDefaultButton(QMessageBox::Yes);
             int r = m.exec();
             switch (r)
             {
             case QMessageBox::Yes:
             {
-                close_tab_after_save = i;
+                close_tab_after_save = w;
                 exit_after_save = true;
                 SaveFile(i);
                 event->ignore();
@@ -391,6 +400,7 @@ void MainWindow::AddEditorTab(const QString name, const QString tooltip)
     connect(wnd, &DocumentWindow::DocumentChanged, this, &MainWindow::OnDocumentChanged);
     connect(wnd, &DocumentWindow::SaveResult, this, &MainWindow::OnSaveResult);
     connect(wnd, &DocumentWindow::LoadResult, this, &MainWindow::OnLoadResult);
+    connect(wnd, &DocumentWindow::LoadInclude, this, &MainWindow::OnLoadInclude);
     connect(wnd, &DocumentWindow::ClipboardCopyResult, this, &MainWindow::OnClipboardCopyResult);
     connect(wnd, &DocumentWindow::ClipboardPasteResult, this, &MainWindow::OnClipboardPasteResult);
     connect(wnd, &DocumentWindow::LinkClicked, this, &MainWindow::OnLinkClicked);
@@ -598,6 +608,12 @@ void MainWindow::CreateActions()
     connect(calculator_action, &QAction::triggered, this, &MainWindow::OnInsertCode);
     format_toolbar->addAction(calculator_action);
 
+    text_block_action = new QAction(QIcon(":/icons/images/format/text_block.png"), tr("Insert text block"), this);
+    text_block_action->setObjectName("text_block_action");
+    text_block_action->setStatusTip(tr("Insert text block"));
+    connect(text_block_action, &QAction::triggered, this, &MainWindow::OnInsertTextBlock);
+    format_toolbar->addAction(text_block_action);
+
     format_toolbar->addSeparator();
 
     scale_combo = new QComboBox;
@@ -707,6 +723,55 @@ void MainWindow::CreateActions()
     align_justify_action->setCheckable(true);
     align_justify_action->setStatusTip(tr("Align text justify"));
     format_toolbar->addAction(align_justify_action);
+
+    format_toolbar->addSeparator();
+
+    //a flat push button with a menu shows the style dropdown arrow - Breeze does not draw it for QToolButton
+    unordered_list_button = new QPushButton(this);
+    unordered_list_button->setObjectName("unordered_list_button");
+    unordered_list_button->setIcon(QIcon(":/icons/images/format/unordered_list.png"));
+    unordered_list_button->setToolTip(tr("Unordered list"));
+    unordered_list_button->setStatusTip(tr("Unordered list"));
+    unordered_list_button->setFlat(true);
+    QMenu* unordered_list_menu = new QMenu(unordered_list_button);
+    QAction* small_circle_action = new QAction(QIcon(":/icons/images/format/list_small_circle.png"), tr("Small circle"), this);
+    small_circle_action->setObjectName("unordered_list_small_circle_action");
+    small_circle_action->setData(1);
+    small_circle_action->setStatusTip(tr("Small circle list marker"));
+    unordered_list_menu->addAction(small_circle_action);
+    QAction* large_circle_action = new QAction(QIcon(":/icons/images/format/list_large_circle.png"), tr("Large circle"), this);
+    large_circle_action->setObjectName("unordered_list_large_circle_action");
+    large_circle_action->setData(2);
+    large_circle_action->setStatusTip(tr("Large circle list marker"));
+    unordered_list_menu->addAction(large_circle_action);
+    QAction* diamond_action = new QAction(QIcon(":/icons/images/format/list_diamond.png"), tr("Diamond"), this);
+    diamond_action->setObjectName("unordered_list_diamond_action");
+    diamond_action->setData(3);
+    diamond_action->setStatusTip(tr("Diamond list marker"));
+    unordered_list_menu->addAction(diamond_action);
+    QAction* square_action = new QAction(QIcon(":/icons/images/format/list_square.png"), tr("Square"), this);
+    square_action->setObjectName("unordered_list_square_action");
+    square_action->setData(4);
+    square_action->setStatusTip(tr("Square list marker"));
+    unordered_list_menu->addAction(square_action);
+    unordered_list_button->setMenu(unordered_list_menu);
+    //QMenu::triggered is not emitted for programmatic action->trigger() - connect the actions themselves
+    auto connect_marker_action =
+        [this](QAction* marker_action)
+        {
+            connect(marker_action, &QAction::triggered, this,
+                [this, marker_action]()
+                {
+                    OnUnorderedList(marker_action);
+                });
+        };
+    connect_marker_action(small_circle_action);
+    connect_marker_action(large_circle_action);
+    connect_marker_action(diamond_action);
+    connect_marker_action(square_action);
+    //the caret of a new document starts inside the calculator where list markers do not apply
+    unordered_list_button->setEnabled(false);
+    format_toolbar->addWidget(unordered_list_button);
 
     //view menu
     QMenu* view_menu = menuBar()->addMenu(tr("&View"));
@@ -893,6 +958,24 @@ void MainWindow::CreateAlgebraToolbar()
     action->setObjectName("actionEvaluationBar");
     action->setToolTip(tr("Evaluate at point"));
     connect(action, &QAction::triggered, this, &MainWindow::OnEvaluationBar);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/function_at_point.png"), tr("Function at point"), this);
+    action->setObjectName("actionFunctionAtPoint");
+    action->setToolTip(tr("Function at point"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnFunctionAtPoint);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/function_x.png"), tr("Function f(x)"), this);
+    action->setObjectName("actionFunctionX");
+    action->setToolTip(tr("Function f(x)"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnFunctionX);
+    algebra_toolbar->addAction(action);
+
+    action = new QAction(QIcon(":/icons/images/algebra/function_xy.png"), tr("Function f(x,y)"), this);
+    action->setObjectName("actionFunctionXY");
+    action->setToolTip(tr("Function f(x,y)"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnFunctionXY);
     algebra_toolbar->addAction(action);
 
     action = new QAction(QIcon(":/icons/images/algebra/radian.png"), tr("Radian"), this);
@@ -1182,6 +1265,16 @@ void MainWindow::CreateGraphsToolbar()
     QAction* action = new QAction(QIcon(":/icons/images/graphs/graph_line.png"), tr("Line graph"), this);
     connect(action, &QAction::triggered, this, &MainWindow::GraphLine);
     graph_toolbar->addAction(action);
+
+    QAction* surface_action = new QAction(QIcon(":/icons/images/graphs/graph_surface.png"), tr("Surface graph"), this);
+    surface_action->setObjectName("graph_surface_action");
+    connect(surface_action, &QAction::triggered, this, &MainWindow::GraphSurface);
+    graph_toolbar->addAction(surface_action);
+
+    QAction* histogram_action = new QAction(QIcon(":/icons/images/graphs/graph_histogram.png"), tr("Histogram"), this);
+    histogram_action->setObjectName("graph_histogram_action");
+    connect(histogram_action, &QAction::triggered, this, &MainWindow::GraphHistogram);
+    graph_toolbar->addAction(histogram_action);
 }
 
 void MainWindow::CreateLogicalToolbar()
@@ -1437,16 +1530,43 @@ void MainWindow::SaveFileAs(int index)
         w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (!w || !w->document)
         return;
-    QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
-    save_dialog.setDefaultSuffix("yut");
-    save_dialog.setAcceptMode(QFileDialog::AcceptSave);
-    if (!save_dialog.exec())
-        return;
-    QStringList file_names = save_dialog.selectedFiles();
-    if (file_names.empty())
-        return;
-    dialog_file_name = file_names[0];
-    w->document->Save(file_names[0].toUtf8().data());
+    QString selected_file;
+    while (true)
+    {
+        QFileDialog save_dialog(this, tr("Save file as"), "", tr("Yutovo files (*.yut);;Text files (*.txt)"));
+        save_dialog.setDefaultSuffix("yut");
+        save_dialog.setAcceptMode(QFileDialog::AcceptSave);
+        save_dialog.setOption(QFileDialog::DontConfirmOverwrite, true); //the overwrite is confirmed by the dialog below
+        if (!selected_file.isEmpty())
+        {
+            save_dialog.setDirectory(QFileInfo(selected_file).dir());
+            save_dialog.selectFile(QFileInfo(selected_file).fileName());
+        }
+        if (!save_dialog.exec())
+        {
+            close_tab_after_save = nullptr; //the save is cancelled: drop the pending close/exit intent
+            exit_after_save = false;
+            return;
+        }
+        QStringList file_names = save_dialog.selectedFiles();
+        if (file_names.empty())
+        {
+            close_tab_after_save = nullptr;
+            exit_after_save = false;
+            return;
+        }
+        selected_file = file_names[0];
+        if (!QFile::exists(selected_file))
+            break;
+        QMessageBox confirm(QMessageBox::Question, tr("Yutovo"), tr("File %1 already exists. Overwrite?").arg(QFileInfo(selected_file).fileName()),
+            QMessageBox::Yes | QMessageBox::No, this);
+        confirm.setDefaultButton(QMessageBox::No);
+        if (confirm.exec() == QMessageBox::Yes)
+            break;
+        //No: reopen the save dialog so that another name can be picked instead of silently dropping the save
+    }
+    dialog_file_name = selected_file;
+    w->document->Save(selected_file.toUtf8().data());
 
     UpdateCaption();
 }
@@ -1530,9 +1650,16 @@ void MainWindow::ExportToPdf()
     if (!w)
         return;
 
+    QString path;
+    if (!w->path.isEmpty())
+    {
+        QFileInfo file_info(w->path);
+        path = file_info.dir().filePath(file_info.completeBaseName() + ".pdf");
+    }
+
     TextFormat f;
     w->document->GetTextFormat(f);
-    ExportPdfDialog export_pdf_dialog({(qreal)f.left_indent, (qreal)f.top_indent, (qreal)f.right_indent, (qreal)f.bottom_indent});
+    ExportPdfDialog export_pdf_dialog({(qreal)f.left_indent, (qreal)f.top_indent, (qreal)f.right_indent, (qreal)f.bottom_indent}, path);
     if (export_pdf_dialog.exec() == QDialog::Accepted)
     {
         dialog_file_name = export_pdf_dialog.FilePath();
@@ -1762,24 +1889,38 @@ void MainWindow::Settings()
 
     if (r == QDialog::Accepted)
     {
+        const Config::AutoResultConfig old_auto_result = config.auto_result;
+        const Config::RealResultConfig old_real_result = config.real_result;
+        const Config::IntegerResultConfig old_integer_result = config.integer_result;
+        const Config::RationalResultConfig old_rational_result = config.rational_result;
+        const Config::ComplexResultConfig old_complex_result = config.complex_result;
+
+        _config.auto_result.real_result = _config.real_result;
+        _config.auto_result.integer_result = _config.integer_result;
+        _config.auto_result.rational_result = _config.rational_result;
+        _config.auto_result.complex_result = _config.complex_result;
         config = _config;
-        config.auto_result.real_result = config.real_result;
-        config.auto_result.integer_result = config.integer_result;
-        config.auto_result.rational_result = config.rational_result;
-        config.auto_result.complex_result = config.complex_result;
-        
+
+        //update result settings of the open documents so that each new result picks them up
+        bool update_result_settings = !(_config.auto_result == old_auto_result) || !(_config.real_result == old_real_result) ||
+            !(_config.integer_result == old_integer_result) || !(_config.rational_result == old_rational_result) ||
+            !(_config.complex_result == old_complex_result);
+
         for (int i = 0; i < ui->editor_tabs->count(); ++i)
         {
             DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->widget(i);
             Config c;
             w->document->GetConfig(c);
-            //update all but language and result settings
+            //update all but language; keep the document result settings unless they were changed in the dialog
             _config.language = c.language;
-            _config.auto_result = c.auto_result;
-            _config.real_result = c.real_result;
-            _config.integer_result = c.integer_result;
-            _config.rational_result = c.rational_result;
-            _config.complex_result = c.complex_result;
+            if (!update_result_settings)
+            {
+                _config.auto_result = c.auto_result;
+                _config.real_result = c.real_result;
+                _config.integer_result = c.integer_result;
+                _config.rational_result = c.rational_result;
+                _config.complex_result = c.complex_result;
+            }
             w->document->SetConfig(_config, false);
         }
 
@@ -1824,7 +1965,7 @@ void MainWindow::Copy()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->Copy(clipboard_json, clipboard_text);
+        document->Copy(clipboard_json, clipboard_text, clipboard_image);
 }
 
 void MainWindow::Paste()
@@ -1926,7 +2067,7 @@ void MainWindow::Cut()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->Cut(clipboard_json, clipboard_text);
+        document->Cut(clipboard_json, clipboard_text, clipboard_image);
 }
 
 void MainWindow::Link()
@@ -1959,6 +2100,10 @@ void MainWindow::OnGraphFormat()
         graph_id = document_window->context_menu_graph_id;
     if (graph_id.empty())
         graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
+    if (graph_id.empty())
+        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
+    if (graph_id.empty())
+        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
     if (graph_id.empty())
         return;
 
@@ -2264,13 +2409,14 @@ bool MainWindow::OnCloseEditorTab(int index)
         else
             file_name = file_info.fileName();
 
-        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name), 
+        QMessageBox m(QMessageBox::Question, tr("Yutovo"), tr("Document %1 is unsaved. Save?").arg(file_name),
             QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+        m.setDefaultButton(QMessageBox::No);
         int r = m.exec();
         switch (r)
         {
         case QMessageBox::Yes:
-            close_tab_after_save = index;
+            close_tab_after_save = w;
             SaveFile(index);
             return true;
         case QMessageBox::No:
@@ -2286,6 +2432,8 @@ bool MainWindow::OnCloseEditorTab(int index)
     QWidget* tab_item = ui->editor_tabs->widget(index);
     if (tab_item)
     {
+        if (tab_item == close_tab_after_save)
+            close_tab_after_save = nullptr;
         ui->editor_tabs->removeTab(index);
         tab_item->setParent(nullptr);
         delete(tab_item);
@@ -2341,6 +2489,26 @@ void MainWindow::OnInsertCode()
         document->InsertCode(false, true);
 }
 
+void MainWindow::OnInsertTextBlock()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertTextBlock(true);
+}
+
+void MainWindow::OnUnorderedList(QAction* marker_action)
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    static const std::u32string markers[4] = {yutovo::ParagraphFormat::small_circle_marker, yutovo::ParagraphFormat::large_circle_marker,
+        yutovo::ParagraphFormat::diamond_marker, yutovo::ParagraphFormat::square_marker};
+    int index = marker_action->data().toInt();
+    if (index < 1 || index > 4)
+        return;
+    document->SetCurrentParagraphMarker(markers[index - 1], true);
+}
+
 void MainWindow::OnCurrentScaleChanged(int index)
 {
     if (block_scale_slots)
@@ -2381,6 +2549,9 @@ void MainWindow::OnCurrentParagraphFormatChanged(const QString& format)
 void MainWindow::OnCurrentFontChanged(const QFont& font)
 {
     if (block_format_slots)
+        return;
+    //QFontComboBox can emit the signal with the system default font - such emissions must not change the document font
+    if (font.family().isEmpty() || family_combo->currentText() != font.family())
         return;
     auto document = GetCurrentDocument();
     if (!document)
@@ -2966,7 +3137,21 @@ void MainWindow::GraphLine()
 {
     auto document = GetCurrentDocument();
     if (document)
-        document->InsertGraph(true);
+        document->InsertGraphLine(true);
+}
+
+void MainWindow::GraphSurface()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertGraphSurface(true);
+}
+
+void MainWindow::GraphHistogram()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertGraphHistogram(true);
 }
 
 void MainWindow::OnAnd()
@@ -3039,6 +3224,27 @@ void MainWindow::OnDerivativeAtPoint()
         document->InsertDerivativeAtPoint(true);
 }
 
+void MainWindow::OnFunctionAtPoint()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunctionAtPoint(true);
+}
+
+void MainWindow::OnFunctionX()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunctionDefinition("f", {"x"}, true);
+}
+
+void MainWindow::OnFunctionXY()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertFunctionDefinition("f", {"x", "y"}, true);
+}
+
 void MainWindow::OnEvaluationBar()
 {
     auto document = GetCurrentDocument();
@@ -3084,11 +3290,15 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     //update the interface elements
     block_format_slots = true;
     paragraph_format_combo->setCurrentText(paragraph_format.name.c_str());
-    family_combo->setCurrentText(window.string_format.family.c_str());
-    if (window.string_format.size == 0)
-        size_combo->setCurrentText("");
-    else
+    //do not clear the combos on an unknown format - an empty edit text makes QFontComboBox resolve the system default font and write it into the document
+    if (!window.string_format.family.empty())
+        family_combo->setCurrentText(window.string_format.family.c_str());
+    if (window.string_format.size != 0)
+    {
         size_combo->setCurrentText(std::to_string(window.string_format.size).c_str());
+        //keep the guard value in sync with the shown size so a later family change cannot apply a stale size
+        last_font_size = window.string_format.size;
+    }
     
     auto document = GetCurrentDocument();
     if (!document)
@@ -3102,6 +3312,9 @@ void MainWindow::OnCaretMoved(const EditorState editor_state)
     align_right_action->setEnabled(!code_block);
     align_center_action->setEnabled(!code_block);
     align_justify_action->setEnabled(!code_block);
+    //list markers live on plain text paragraphs only - not inside code or text blocks
+    auto list_paragraph = document->FindParentParagraph(c.id);
+    unordered_list_button->setEnabled(list_paragraph && list_paragraph->type == ElementType::PARAGRAPH);
     if (code_block)
     {
         align_left_action->setChecked(false);
@@ -3163,12 +3376,12 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
     {
         if (result == IOResult::PermissionDenied) //for read-only files call the SaveAs dialog
         {
-            SaveFileAsName();
+            SaveFileAs(close_tab_after_save ? ui->editor_tabs->indexOf(close_tab_after_save) : index);
             return;
         }
 
         exit_after_save = false;
-        close_tab_after_save = -1;
+        close_tab_after_save = nullptr;
         recent_files.removeAll(dialog_file_name);
         UpdateRecentFiles();
         UpdateCaption();
@@ -3178,17 +3391,28 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
     UpdateRecentFiles(dialog_file_name);
 
-    DocumentWindow* w = (close_tab_after_save != -1 ? (DocumentWindow*)ui->editor_tabs->widget(close_tab_after_save) : 
-        (DocumentWindow*)ui->editor_tabs->currentWidget());
+    //when a pending exit waits for a tab that is already closed, no tab path must be touched
+    DocumentWindow* w = nullptr;
+    if (close_tab_after_save)
+        w = close_tab_after_save;
+    else if (!exit_after_save)
+        w = (DocumentWindow*)ui->editor_tabs->currentWidget();
     if (w)
         w->path = dialog_file_name;
 
-    if (close_tab_after_save != -1)
+    if (close_tab_after_save)
     {
+        //take the intent before acting: OnCloseEditorTab and close() below may re-enter these handlers and must not see the already consumed intent
         auto p = w->path;
-        OnCloseEditorTab(close_tab_after_save);
-        close_tab_after_save = -1;
-        if (exit_after_save)
+        DocumentWindow* tab_to_close = close_tab_after_save;
+        close_tab_after_save = nullptr;
+        const bool exit_after = exit_after_save;
+        exit_after_save = false;
+
+        int close_index = ui->editor_tabs->indexOf(tab_to_close);
+        if (close_index != -1)
+            OnCloseEditorTab(close_index);
+        if (exit_after)
         {
             if (!p.isEmpty() && last_documents.indexOf(p) == -1)
                 last_documents.push_back(p);
@@ -3197,9 +3421,8 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
     }
     else if (exit_after_save)
     {
-        if (!w->path.isEmpty() && last_documents.indexOf(w->path) == -1)
-            last_documents.push_back(w->path);
-        Close();
+        //the exit was waiting for is already closed; continue the exit
+        exit_after_save = false;
         close();
     }
 
@@ -3208,6 +3431,16 @@ void MainWindow::OnSaveResult(const uint task_id, IOResult result)
 
 void MainWindow::OnLoadResult(const uint task_id, IOResult result)
 {
+    auto inc = loading_includes.find(task_id);
+    if (inc != loading_includes.end())
+    {
+        QString file_name = inc->second;
+        loading_includes.erase(inc);
+        if (result != IOResult::Success)
+            QMessageBox::critical(this, tr("Yutovo"), tr("Error loading include document") + QString(": ") + file_name);
+        return;
+    }
+
     auto it = loading_files.find(task_id);
     if (it == loading_files.end())
         return;
@@ -3243,6 +3476,11 @@ void MainWindow::OnLoadResult(const uint task_id, IOResult result)
     FillScales();
 }
 
+void MainWindow::OnLoadInclude(const uint task_id, const QString& file_name)
+{
+    loading_includes[task_id] = file_name;
+}
+
 void MainWindow::OnClipboardCopyResult(CopyResult result)
 {
     if (result != CopyResult::Success)
@@ -3258,9 +3496,21 @@ void MainWindow::OnClipboardCopyResult(CopyResult result)
 
     mime_data->setText(yutovo::ToBasicString(clipboard_text).c_str()); //text clipboard type
 
+    //a single copied picture also goes to the clipboard as a PNG image
+    if (!clipboard_image.empty())
+    {
+        QImage image;
+        if (image.loadFromData(clipboard_image.data(), (int)clipboard_image.size(), "PNG"))
+        {
+            mime_data->setImageData(image);
+            mime_data->setData("image/png", QByteArray((const char*)clipboard_image.data(), (int)clipboard_image.size()));
+        }
+    }
+
     clipboard->setMimeData(mime_data);
     clipboard_json = U"";
     clipboard_text = U"";
+    clipboard_image.clear();
 }
 
 void MainWindow::OnClipboardPasteResult(PasteResult result)
@@ -3378,6 +3628,8 @@ void MainWindow::FillSizes(const QFont& font)
     int i = size_combo->findText(current_size);
     if (i != -1)
         size_combo->setCurrentIndex(i);
+    else
+        size_combo->setCurrentText(current_size);
 }
 
 void MainWindow::WriteSettings()
@@ -3433,6 +3685,8 @@ void MainWindow::WriteSettings()
     settings.setValue("formula_frame_color", config.formula_frame_color.ToInt());
     settings.setValue("page_color", config.page_color.ToInt());
     settings.setValue("page_border_color", config.page_border_color.ToInt());
+    settings.setValue("text_block_background_color", config.text_block.background_color.ToInt());
+    settings.setValue("text_block_frame_color", config.text_block.frame_color.ToInt());
     settings.endGroup();
 
     settings.beginGroup("Fonts");
@@ -3455,6 +3709,10 @@ void MainWindow::WriteSettings()
     for (auto r : config.auto_result.results_order)
         v.push_back((int)r);
     settings.setValue("results_order", v);
+    QList<QVariant> e;
+    for (auto r : config.auto_result.results_enabled)
+        e.push_back(r);
+    settings.setValue("results_enabled", e);
 
     settings.setValue("real_precision", config.real_result.precision);
     settings.setValue("real_exp", config.real_result.exp);
@@ -3486,7 +3744,7 @@ void MainWindow::ReadSettings()
 
     std::string lang = QLocale::system().name().toUtf8().data(); //get current system language, it will be default one
     lang = lang.substr(0, lang.find('_'));
-    if (lang != "en" && lang != "ru" && lang != "es" && lang != "pt")
+    if (lang != "en" && lang != "ru" && lang != "es" && lang != "pt" && lang != "de" && lang != "fr" && lang != "it")
         lang = "en";
 
     if (lang == "ru")
@@ -3495,6 +3753,12 @@ void MainWindow::ReadSettings()
         config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::Spanish).toInt();
     else if (lang == "pt")
         config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::BrazilianPortuguese).toInt();
+    else if (lang == "de")
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::German).toInt();
+    else if (lang == "fr")
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::French).toInt();
+    else if (lang == "it")
+        config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::Italian).toInt();
     else
         config.language = (yutovo_calculator::Language)settings.value("MainWindow/language", (int)yutovo_calculator::Language::English).toInt();
 
@@ -3582,38 +3846,44 @@ void MainWindow::ReadSettings()
     config.formula_frame_color = Color::FromInt(settings.value("formula_frame_color", Color::FromHex("#b8d3ff").ToInt()).toInt());
     config.page_color = Color::FromInt(settings.value("page_color", Color::White().ToInt()).toInt());
     config.page_border_color = Color::FromInt(settings.value("page_border_color", Color::Blue().ToInt()).toInt());
+    config.text_block.background_color = Color::FromInt(settings.value("text_block_background_color",
+        Color::FromHex("#f0f0c2").ToInt()).toInt());
+    config.text_block.frame_color = Color::FromInt(settings.value("text_block_frame_color", Color::White().ToInt()).toInt());
     settings.endGroup();
 
     settings.beginGroup("Calculator");
     config.solve_delay = settings.value("solve_delay", config.solve_delay).toInt();
     config.auto_result.result_auto_advance = settings.value("result_auto_advance", true).toBool();
     QList<QVariant> v = settings.value("results_order").toList();
+    auto& results_order = config.auto_result.results_order;
+    auto s = sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]);
+    //fill unique known result types in the saved order, the remaining slots with the missing types in the default order
+    const ResultType default_order[] = {ResultType::REAL, ResultType::INTEGER, ResultType::RATIONAL, ResultType::COMPLEX,
+        ResultType::ARRAY_REAL, ResultType::SYMBOLIC_REAL, ResultType::SYMBOLIC_RATIONAL, ResultType::SYMBOLIC_COMPLEX};
     size_t i = 0;
     for (auto r : v)
     {
-        if (i < sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]))
-            config.auto_result.results_order[i++] = (ResultType)r.toInt();
+        ResultType t = (ResultType)r.toInt();
+        bool known = t == ResultType::REAL || t == ResultType::INTEGER || t == ResultType::RATIONAL || t == ResultType::COMPLEX ||
+            t == ResultType::ARRAY_REAL || t == ResultType::SYMBOLIC_REAL || t == ResultType::SYMBOLIC_RATIONAL ||
+            t == ResultType::SYMBOLIC_COMPLEX;
+        if (known && i < s && std::find(results_order, results_order + i, t) == results_order + i)
+            results_order[i++] = t;
     }
-    auto& results_order = config.auto_result.results_order;
-    auto s = sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]);
-    for (; i < s; ++i)
+    for (size_t j = 0; i < s && j < sizeof(default_order) / sizeof(default_order[0]); ++j)
     {
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::REAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::INTEGER) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::INTEGER;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::RATIONAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::RATIONAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::COMPLEX) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::COMPLEX;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::ARRAY_REAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::ARRAY_REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_REAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::SYMBOLIC_REAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_RATIONAL) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::SYMBOLIC_RATIONAL;
-        if (std::find(std::begin(results_order), std::end(results_order), ResultType::SYMBOLIC_COMPLEX) == std::end(results_order) && i < s)
-            results_order[i++] = ResultType::SYMBOLIC_COMPLEX;
+        if (std::find(results_order, results_order + i, default_order[j]) == results_order + i)
+            results_order[i++] = default_order[j];
+    }
+    QList<QVariant> e = settings.value("results_enabled").toList();
+    auto& results_enabled = config.auto_result.results_enabled;
+    for (int j = 0; j < e.size() && j < (int)s; ++j)
+        results_enabled[j] = e[j].toBool();
+    //at least one result type must stay enabled
+    if (std::find(std::begin(results_enabled), std::end(results_enabled), true) == std::end(results_enabled))
+    {
+        for (size_t j = 0; j < s; ++j)
+            results_enabled[j] = true;
     }
 
     config.real_result.precision = settings.value("real_precision", 3).toInt();
@@ -3674,6 +3944,8 @@ void MainWindow::UpdateFontSize()
     {
         return;
     }
+    if (s <= 0)
+        return;
 
     if (s != last_font_size)
     {
@@ -3904,6 +4176,15 @@ void MainWindow::UpdateLibraryMenu(QMenu* library_menu, const QString start_topi
     case yutovo_calculator::Language::BrazilianPortuguese:
         dir = "pt_BR";
         break;
+    case yutovo_calculator::Language::German:
+        dir = "de";
+        break;
+    case yutovo_calculator::Language::French:
+        dir = "fr";
+        break;
+    case yutovo_calculator::Language::Italian:
+        dir = "it";
+        break;
     }
 
     auto p = std::string(GetLibraryDir().toUtf8().data()) + dir;
@@ -3918,7 +4199,27 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
 {
     qApp->removeTranslator(&desktop_translator);
     qApp->removeTranslator(&editor_translator);
-    
+    qApp->removeTranslator(&qt_translator);
+
+    //load the standard Qt translations, otherwise they are translated according to the system locale
+    QString qt_locale = "en";
+    if (language == yutovo_calculator::Language::Russian)
+        qt_locale = "ru";
+    else if (language == yutovo_calculator::Language::Spanish)
+        qt_locale = "es";
+    else if (language == yutovo_calculator::Language::BrazilianPortuguese)
+        qt_locale = "pt_BR";
+    else if (language == yutovo_calculator::Language::German)
+        qt_locale = "de";
+    else if (language == yutovo_calculator::Language::French)
+        qt_locale = "fr";
+    else if (language == yutovo_calculator::Language::Italian)
+        qt_locale = "it";
+    if (qt_translator.load(QLocale(qt_locale), "qtbase", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+        qApp->installTranslator(&qt_translator);
+    else
+        logger->Error("Error loading translation: qtbase_" + qt_locale.toStdString());
+
     if (language == yutovo_calculator::Language::Russian)
     {
         if (!desktop_translator.load("yutovo-desktop_ru", GetTranslationDir("yutovo-desktop_ru.qm")))
@@ -3946,6 +4247,27 @@ void MainWindow::InstallTranslation(const yutovo_calculator::Language language)
             logger->Error("Error loading translation: yutovo-desktop_en");
         if (!editor_translator.load("yutovo-editor_en", GetTranslationDir("yutovo-editor_en.qm")))
             logger->Error("Error loading translation: yutovo-editor_en");
+    }
+    else if (language == yutovo_calculator::Language::German)
+    {
+        if (!desktop_translator.load("yutovo-desktop_de", GetTranslationDir("yutovo-desktop_de.qm")))
+            logger->Error("Error loading translation: yutovo-desktop_de");
+        if (!editor_translator.load("yutovo-editor_de", GetTranslationDir("yutovo-editor_de.qm")))
+            logger->Error("Error loading translation: yutovo-editor_de");
+    }
+    else if (language == yutovo_calculator::Language::French)
+    {
+        if (!desktop_translator.load("yutovo-desktop_fr", GetTranslationDir("yutovo-desktop_fr.qm")))
+            logger->Error("Error loading translation: yutovo-desktop_fr");
+        if (!editor_translator.load("yutovo-editor_fr", GetTranslationDir("yutovo-editor_fr.qm")))
+            logger->Error("Error loading translation: yutovo-editor_fr");
+    }
+    else if (language == yutovo_calculator::Language::Italian)
+    {
+        if (!desktop_translator.load("yutovo-desktop_it", GetTranslationDir("yutovo-desktop_it.qm")))
+            logger->Error("Error loading translation: yutovo-desktop_it");
+        if (!editor_translator.load("yutovo-editor_it", GetTranslationDir("yutovo-editor_it.qm")))
+            logger->Error("Error loading translation: yutovo-editor_it");
     }
 
     if (!qApp->installTranslator(&desktop_translator))
@@ -4061,10 +4383,12 @@ void MainWindow::EnableButtons(bool enable)
     properties_action->setEnabled(enable);
     recalculate_action->setEnabled(enable);
     calculator_action->setEnabled(enable);
+    text_block_action->setEnabled(enable);
     align_left_action->setEnabled(enable);
     align_right_action->setEnabled(enable);
     align_center_action->setEnabled(enable);
     align_justify_action->setEnabled(enable);
+    unordered_list_button->setEnabled(enable);
     bold_action->setEnabled(enable);
     italic_action->setEnabled(enable);
     underline_action->setEnabled(enable);
@@ -4099,6 +4423,12 @@ QString MainWindow::LanguageToString(yutovo_calculator::Language lang)
         return "es";
     case yutovo_calculator::Language::BrazilianPortuguese:
         return "pt_BR";
+    case yutovo_calculator::Language::German:
+        return "de";
+    case yutovo_calculator::Language::French:
+        return "fr";
+    case yutovo_calculator::Language::Italian:
+        return "it";
     default:
         return "en";
     }
