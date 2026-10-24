@@ -98,7 +98,7 @@ build() {
     echo "Building yutovo-solver"
     cd yutovo-solver
     mkdir -p build && cd build
-    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_PREFIX_PATH=$YUTOVO_DEPLOY/lib/cmake -DCMAKE_INSTALL_PREFIX=$YUTOVO_DEPLOY ..
+    cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_POLICY_DEFAULT_CMP0167=NEW -DCMAKE_PREFIX_PATH=$YUTOVO_DEPLOY/lib/cmake -DCMAKE_INSTALL_PREFIX=$YUTOVO_DEPLOY ..
     make -sj4 && make install
     cd ../..
 
