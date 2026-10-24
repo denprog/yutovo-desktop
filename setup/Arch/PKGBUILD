@@ -14,7 +14,7 @@ makedepends=('git' 'cmake' 'base-devel' 'qt5-base' 'qt5-tools')
 source=(
     "spdlog::git+https://github.com/gabime/spdlog.git#tag=v1.15.3"
     "yutovo-logger::git+https://github.com/denprog/yutovo-logger.git#tag=v1.0.8"
-    "boost_1_83_0::https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip"
+    "boost_1_92_0::https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip"
     "giac_stable.tgz::https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac_stable.tgz"
     "yutovo-calculator::git+https://github.com/denprog/yutovo-calculator.git#tag=v1.7.1"
     "rapidjson::git+https://github.com/Tencent/rapidjson.git#tag=v1.1.0"
@@ -24,7 +24,7 @@ source=(
     "stb_image.h::https://raw.githubusercontent.com/nothings/stb/master/stb_image.h"
     "stb_image_write.h::https://raw.githubusercontent.com/nothings/stb/master/stb_image_write.h"
     "yutovo-editor::git+https://github.com/denprog/yutovo-editor.git#tag=v1.8.1"
-    "yutovo-library::git+https://github.com/denprog/yutovo-library.git#tag=v1.1.1"
+    "yutovo-library::git+https://github.com/denprog/yutovo-library.git#tag=v1.2.1"
     "yutovo-desktop::git+https://github.com/denprog/yutovo-desktop.git#tag=v1.8.1"
 )
 
@@ -66,10 +66,12 @@ build() {
     cd ../..
 
     echo "Building boost"
-    cd boost_1_83_0
+    cd boost_1_92_0
     unset CFLAGS CXXFLAGS LDFLAGS
     ./bootstrap.sh --prefix=$YUTOVO_DEPLOY
     ./b2 headers
+    ./b2 -q -j4 --with-process link=static threading=multi cxxstd=17
+    ./b2 -j4 --with-process link=static threading=multi cxxstd=17 install
     cp -r boost $YUTOVO_DEPLOY/include/
     cd ..
 
