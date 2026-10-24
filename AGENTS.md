@@ -65,6 +65,7 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 - **Never commit without explicit user permission.** Do not run `git commit`, `git push`, `git reset`, `git rebase`, or any other git mutations unless explicitly asked to do so. Ask for confirmation each time when git mutations are needed.
 - **Never delete existing tests.** When fixing regressions or refactoring, update test expectations to match the new correct behavior, but do not remove tests. If `git checkout` or similar commands are used to revert a file, verify that no user-added tests were lost.
 - **Never change test logic without explicit user permission.** Do not modify test sequences, assertions, fixtures, helpers, or expected values. When making tests pass, fix application code or test environment setup only. If a test itself must be changed, ask the user first.
+- **On "Network connection failed for the provider request." errors, reconnect automatically.** Retry the connection/request on your own (with reasonable backoff between attempts) instead of stopping or asking the user. Only report the failure if repeated retries over a meaningful period do not restore the connection.
 
 ## Key conventions
 - `REMOTE_SOLVER` define (commented out in root CMakeLists.txt) switches from local yutovo-solver to remote

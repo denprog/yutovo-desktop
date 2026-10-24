@@ -73,8 +73,8 @@ parts:
 
   boost:
     plugin: dump
-    source: https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
-    source-checksum: sha256/c86bd9d9eef795b4b0d3802279419fde5221922805b073b9bd822edecb1ca28e
+    source: https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip
+    source-checksum: sha256/c46baee75ed4b558cf6553630d0615a147ed582812917b57e6f0839d1954549f
     source-type: zip
     build-packages:
       - g++
@@ -83,16 +83,18 @@ parts:
       - unzip
       - yacc
     override-build: |
-      cd $SNAPCRAFT_PART_SRC/boost_1_83_0
+      cd $SNAPCRAFT_PART_SRC/boost_1_92_0
       ./bootstrap.sh --prefix=$SNAPCRAFT_PART_INSTALL/app
       ./b2 headers
+      ./b2 -j8 --with-process --layout=system variant=release link=static threading=multi
     override-stage: |
       set -e
-      mkdir -p $CRAFT_STAGE/app/include
-      cp -r $CRAFT_PART_SRC/boost_1_83_0/boost $CRAFT_STAGE/app/include/
+      mkdir -p $CRAFT_STAGE/app/include $CRAFT_STAGE/app/lib
+      cp -r $CRAFT_PART_SRC/boost_1_92_0/boost $CRAFT_STAGE/app/include/
+      cp -a $CRAFT_PART_SRC/boost_1_92_0/stage/lib/. $CRAFT_STAGE/app/lib/
     prime:
       - app/include/*
-      - -app/lib      
+      - -app/lib
 
   giac:
     plugin: nil
@@ -196,7 +198,7 @@ parts:
       export YUTOVO_DEPLOY=$CRAFT_STAGE/app
       export LIBRARY_PATH=$CRAFT_STAGE/app/lib
       cmake $CRAFT_PART_SRC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$CRAFT_PART_INSTALL/app -DCMAKE_PREFIX_PATH=$CRAFT_STAGE/app/lib/cmake \
-        -DBUILD_TESTS=OFF
+        -DBoost_INCLUDE_DIR=$CRAFT_STAGE/app/include -DBoost_NO_SYSTEM_PATHS=ON -DBUILD_TESTS=OFF
       make -j8 && make install
     build-packages:
       - pkg-config
@@ -206,7 +208,7 @@ parts:
     override-stage: |
       set -e
       cp -r $CRAFT_PART_INSTALL/app $CRAFT_STAGE
-    after: [yutovo-calculator, rapidjson]
+    after: [yutovo-calculator, boost, rapidjson]
 
   mathgl:
     plugin: cmake
