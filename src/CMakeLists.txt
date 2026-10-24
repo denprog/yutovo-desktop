@@ -244,18 +244,23 @@ endif()
 if(WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${INSTALL_PATH}/$<$<CONFIG:Debug>:debug/>plugins/platforms"
+            "${INSTALL_PATH}/plugins/platforms"
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>/platforms"
     )
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${INSTALL_PATH}/$<$<CONFIG:Debug>:debug/>bin"
+            "${INSTALL_PATH}/bin"
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     )
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             ${QM_FILES}
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    )
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${INSTALL_PATH}/bin/$<IF:$<CONFIG:Debug>,yutovo-solver-calculator-workerd.exe,yutovo-solver-calculator-worker.exe>"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>/yutovo-solver-calculator-worker.exe"
     )
 else()
     # Keep the calculator worker binary next to the application executable
