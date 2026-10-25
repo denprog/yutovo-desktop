@@ -10,6 +10,8 @@
 
 #include <QWidget>
 #include <QSettings>
+#include <cstdio>
+#include <memory>
 #include <yutovo-editor/document.h>
 #include "qt_window.h"
 #include "command_map.h"
@@ -23,6 +25,7 @@ class DocumentWidget : public QWidget
 
 public:
     DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettings& _settings);
+    virtual ~DocumentWidget();
 
     DocumentPtr CreateDocument(Config& config);
 

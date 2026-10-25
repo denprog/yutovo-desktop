@@ -98,14 +98,41 @@ target_link_libraries(${PROJECT_NAME}_test PRIVATE
 )
 
 if(WIN32)
-    find_library(MGL_LIB NAMES mgld mgl PATHS ${INSTALL_PATH}/debug/lib ${INSTALL_PATH}/lib)
-    find_library(ZLIB_LIB NAMES zlibd zlib PATHS ${INSTALL_PATH}/debug/lib ${INSTALL_PATH}/lib)
+    find_package(MathGL2 REQUIRED PATHS ${INSTALL_PATH}/lib/cmake)
+    find_package(ZLIB REQUIRED)
     target_link_libraries(${PROJECT_NAME}_test PRIVATE
-        ${MGL_LIB}
+        mgl
         Boost::property_tree
         BZip2::BZip2
         unofficial::libharu::hpdf
-        ${ZLIB_LIB}
+        ZLIB::ZLIB
+    )
+    add_custom_command(TARGET ${PROJECT_NAME}_test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${INSTALL_PATH}/plugins/platforms"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}_test>/platforms"
+    )
+    add_custom_command(TARGET ${PROJECT_NAME}_test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${INSTALL_PATH}/bin"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}_test>"
+    )
+    add_custom_command(TARGET ${PROJECT_NAME}_test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${INSTALL_PATH}/bin/$<IF:$<CONFIG:Debug>,yutovo-solver-calculator-workerd.exe,yutovo-solver-calculator-worker.exe>"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}_test>/yutovo-solver-calculator-worker.exe"
+    )
+    add_custom_command(TARGET ${PROJECT_NAME}_test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/../setup/Windows/fonts"
+            "${CMAKE_BINARY_DIR}/fonts"
+    )
+    #the library pack and the builtin help are resolved from ./library/ relative to the
+    #working directory (MainWindow::GetLibraryDir)
+    add_custom_command(TARGET ${PROJECT_NAME}_test POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_CURRENT_SOURCE_DIR}/../../library"
+            "${CMAKE_BINARY_DIR}/library"
     )
 else()
     target_link_libraries(${PROJECT_NAME}_test PRIVATE
@@ -125,4 +152,12 @@ if(QM_FILES)
 endif()
 
 enable_testing()
-add_test(NAME files COMMAND ${PROJECT_NAME}_test)
+
+#the PDF export loads ./fonts/ relative to the working directory
+add_test(NAME files COMMAND ${PROJECT_NAME}_test WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+if(WIN32)
+    #the recursive-descent grammar of yutovo-calculator allows 512 nested levels
+    target_link_options(${PROJECT_NAME}_test PRIVATE "LINKER:/STACK:16777216")
+endif()
+
+
