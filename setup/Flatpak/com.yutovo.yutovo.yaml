@@ -42,8 +42,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-logger.git
-        tag: v1.0.6
-        commit: 879105f09f816b38971049fc7ae0178b0d9788c4
+        tag: v1.0.8
+        commit: af0b9e7360a37b77b65283c0159cce3cb8ec1312
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -53,13 +53,15 @@ modules:
     build-commands:
       - ./bootstrap.sh --prefix=/app
       - ./b2 headers
+      - ./b2 -j $FLATPAK_BUILDER_N_JOBS --with-process --layout=system variant=release link=static threading=multi
     sources:
       - type: archive
-        url: https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
-        sha256: c86bd9d9eef795b4b0d3802279419fde5221922805b073b9bd822edecb1ca28e
+        url: https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip
+        sha256: c46baee75ed4b558cf6553630d0615a147ed582812917b57e6f0839d1954549f
     post-install:
-      - install -d /app/include
+      - install -d /app/include /app/lib
       - cp -r boost /app/include/
+      - cp -a stage/lib/. /app/lib/
 
   - name: mpfr
     buildsystem: simple
@@ -99,8 +101,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-calculator.git
-        tag: v1.6.1
-        commit: 6b42f4d565f0c2725ee31ef707ebe1d24eed44c5
+        tag: v1.7.1
+        commit: 2778c0193621c35b8b0ed1547225d25a5749ee7a
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -130,11 +132,14 @@ modules:
       env:
         YUTOVO_DEPLOY: /app
         LIBRARY_PATH: /app/lib
+      cxxflags: -g0
+      make-args:
+        - -j1
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-solver.git
-        tag: v1.3.1
-        commit: 798b768226d11b4d26eb72e5f69b8776ef364dbd
+        tag: v1.4.1
+        commit: e43a4ef7c1738c9563c05321cac918fb5fcf8bd4
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -201,8 +206,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-editor.git
-        tag: v1.7.1
-        commit: 288b212a091c83e402169978e096e6cdc6b8b5f0
+        tag: v1.8.1
+        commit: f567e7cdef92be67d34315ea22913a08afc9486c
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release
@@ -213,8 +218,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-library.git
-        tag: v1.1.1
-        commit: 370239adb54c3f81ebedf1136282f1158f359a23
+        tag: v1.2.1
+        commit: 388d79f15bcc7dd060c7e949af583e3fed95a726
     build-commands:
       - cd $FLATPAK_BUILDER_BUILDDIR
       - ./make_library.sh /app/bin ZIP
@@ -228,8 +233,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/denprog/yutovo-desktop.git
-        tag: v1.7.1
-        commit: 7095aa169f5ff75521efe3d9fcfd86af90e7cd84
+        tag: v1.8.1
+        commit: b8241d7072884f96e812f3f47906c681c1ad0b3e
     config-opts:
       - -DCMAKE_INSTALL_PREFIX=/app
       - -DCMAKE_BUILD_TYPE=Release

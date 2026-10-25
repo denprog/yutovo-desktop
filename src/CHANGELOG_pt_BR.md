@@ -1,3 +1,37 @@
+# 1.8.1
+- Adicionados gráficos de superfície.
+- Adicionados histogramas.
+- Adicionados parâmetros para os gráficos.
+- Adicionado o escalonamento de um gráfico em relação ao cursor do mouse.
+- Adicionadas listas não ordenadas.
+- Adicionados blocos de texto de fórmulas sem resolução.
+- Adicionada a inserção de uma definição de função com um único comando.
+- Adicionada a resolução de uma função em um ponto.
+- Adicionado o acesso a elementos de matriz por índice.
+- Adicionado o recálculo ao alterar uma variável de matriz.
+- Adicionados sinalizadores de ativação para os itens de resultados automáticos.
+- Adicionadas traduções para italiano, francês e alemão.
+- Adicionada a análise de graus, minutos e segundos em uma só linha.
+- Adicionada a função abs.
+- Adicionada a cópia de uma imagem para a área de transferência do sistema.
+- A borda de redimensionamento é sempre exibida.
+- Corrigido um vazamento no socket.
+- Corrigidas as configurações do aplicativo.
+- Corrigido o diálogo «Salvar como» e o caminho padrão para PDF.
+- Corrigido o carregamento de documentos incluídos.
+- Corrigidos os valores exatos do seno e do cosseno.
+- Corrigido o cálculo de ln(0).
+- Corrigida a precisão das derivadas, da operação de porcentagem e dos cálculos em grados.
+- Corrigidos os cálculos com números complexos e a negação lógica.
+- Corrigidos os valores das unidades (vedro, angstrom, constante gravitacional).
+- Corrigidas as integrais com limites com unidades.
+- Corrigido o recálculo de equações dependentes.
+- Corrigida a continuação dos cálculos após um erro de variável.
+- Corrigida a análise de identificadores multilíngues.
+- Corrigidas as condições de corrida em cálculos paralelos.
+- Adicionada proteção contra estouro de pilha em recursão profunda.
+- Melhoradas as verificações ao carregar documentos.
+
 # 1.7.1
 - Adicionado cálculo de integrais definidas e indefinidas.
 - Adicionado cálculo de derivadas.

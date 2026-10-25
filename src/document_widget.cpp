@@ -41,6 +41,17 @@ DocumentWidget::DocumentWidget(QWidget *parent, yutovo::Config& _config, QSettin
     setMouseTracking(true);
 }
 
+DocumentWidget::~DocumentWidget()
+{
+    //the document can be kept alive by external references past this widget, its threads must not touch this widget's window after it is destroyed, stop them before that
+    if (document)
+    {
+        document->Stop();
+        document->StopSolver();
+        document.reset();
+    }
+}
+
 DocumentPtr DocumentWidget::CreateDocument(Config& config)
 {
     document.reset(new Document(&window, config));

@@ -1,3 +1,37 @@
+# 1.8.1
+- Ajout des graphiques de surface.
+- Ajout des histogrammes.
+- Ajout de paramètres pour les graphiques.
+- Ajout du zoom d'un graphique par rapport au curseur de la souris.
+- Ajout des listes non ordonnées.
+- Ajout de blocs de texte de formules sans calcul.
+- Ajout de l'insertion d'une définition de fonction en une seule commande.
+- Ajout du calcul d'une fonction en un point.
+- Ajout de l'accès aux éléments d'un tableau par indice.
+- Ajout du recalcul après modification d'une variable tableau.
+- Ajout des indicateurs d'activation pour les éléments de résultats automatiques.
+- Ajout des traductions en italien, en français et en allemand.
+- Ajout de l'analyse des degrés, minutes et secondes sur une seule ligne.
+- Ajout de la fonction abs.
+- Ajout de la copie d'une image dans le presse-papiers du système.
+- La bordure de redimensionnement est toujours affichée.
+- Correction d'une fuite sur le socket.
+- Correction des paramètres de l'application.
+- Correction de la boîte de dialogue « Enregistrer sous » et du chemin par défaut pour les PDF.
+- Correction du chargement des documents inclus.
+- Correction des valeurs exactes du sinus et du cosinus.
+- Correction du calcul de ln(0).
+- Correction de la précision des dérivées, de l'opération de pourcentage et des calculs en grades.
+- Correction des calculs avec les nombres complexes et de la négation logique.
+- Correction des valeurs des unités (vedro, angström, constante gravitationnelle).
+- Correction des intégrales avec limites avec unités.
+- Correction du recalcul des équations dépendantes.
+- Correction de la poursuite des calculs après une erreur de variable.
+- Correction de l'analyse des identifiants multilingues.
+- Correction des conditions de course dans les calculs parallèles.
+- Ajout d'une protection contre le débordement de pile en cas de récursion profonde.
+- Amélioration des vérifications lors du chargement des documents.
+
 # 1.7.1
 - Ajout du calcul d'intégrales définies et indéfinies.
 - Ajout du calcul de dérivées.

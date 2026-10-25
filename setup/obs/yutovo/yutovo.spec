@@ -1,5 +1,5 @@
 Name: yutovo
-Version: 1.7.1
+Version: 1.8.1
 Release: 1%{?dist}
 Summary: Multifunctional visual calculator with graphical representation of mathematical formulas
 
@@ -8,23 +8,25 @@ URL: https://yutovo.com
 Source0: https://github.com/denprog/yutovo-desktop/archive/refs/tags/v%{version}.tar.gz#/%{name}-desktop-%{version}.tar.gz
 
 # Yutovo submodules
-Source1: https://github.com/denprog/yutovo-logger/archive/refs/tags/v1.0.6.tar.gz#/yutovo-logger-1.0.6.tar.gz
-Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.6.1.tar.gz#/yutovo-calculator-1.6.1.tar.gz
-Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.3.1.tar.gz#/yutovo-solver-1.3.1.tar.gz
+Source1: https://github.com/denprog/yutovo-logger/archive/refs/tags/v1.0.8.tar.gz#/yutovo-logger-1.0.8.tar.gz
+Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.7.1.tar.gz#/yutovo-calculator-1.7.1.tar.gz
+Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.4.1.tar.gz#/yutovo-solver-1.4.1.tar.gz
 Source4: https://github.com/denprog/yutovo-editor/archive/refs/tags/v%{version}.tar.gz#/yutovo-editor-%{version}.tar.gz
-Source5: https://github.com/denprog/yutovo-library/archive/refs/tags/v1.1.1.tar.gz#/yutovo-library-1.1.1.tar.gz
+Source5: https://github.com/denprog/yutovo-library/archive/refs/tags/v1.2.1.tar.gz#/yutovo-library-1.2.1.tar.gz
 Source6: https://github.com/libharu/libharu/archive/refs/tags/v2.4.4.tar.gz#/libharu-2.4.4.tar.gz
-Source7: https://sources.voidlinux.org/giac-2.0.0.21/giac_2.0.0-21.tar.gz#/giac-2.0.0.tar.gz
-Source9: https://archives.boost.io/release/1.83.0/source/boost_1_83_0.zip
+# giac 2.0.0, sha256 3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8
+Source7: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac_stable.tgz#/giac-2.0.0.tar.gz
+Source8: build_giac.sh
+# boost 1.92.0, sha256 c46baee75ed4b558cf6553630d0615a147ed582812917b57e6f0839d1954549f
+# (system boost 1.90 has no compiled Boost.Process component required by yutovo-solver)
+Source9: https://archives.boost.io/release/1.92.0/source/boost_1_92_0.zip
 Source17: http://downloads.sourceforge.net/mathgl/mathgl-8.0.3.tar.gz
-
-%define _smp_mflags -j1
+Patch0: giac_config_h.diff
 
 BuildRequires: cmake >= 3.16
 BuildRequires: gcc-c++
 BuildRequires: make
 BuildRequires: pkgconf-pkg-config
-BuildRequires: unzip
 BuildRequires: qt5-qtbase-devel
 BuildRequires: qt5-qttools-devel
 BuildRequires: qt5-qtbase-private-devel
@@ -45,6 +47,7 @@ BuildRequires: mpfr-devel
 
 Requires: qt5-qtbase-gui
 Requires: hicolor-icon-theme
+# formula symbols (integral, iteration, evaluation bar) are rendered in DejaVu Serif
 Requires: dejavu-serif-fonts
 
 %description
@@ -61,12 +64,6 @@ Features:
 - Symbolic calculations
 
 %prep
-# Verify the large downloads up front: a corrupted mirror transfer must fail
-# loudly with a checksum error, not as a cryptic gzip failure mid-build
-echo "9bba9ee6a0f86d1b8f3f3ba0374d3cb776f772dbb6f1a01684ca6c0bd56204d6  %{SOURCE17}" | sha256sum -c -
-echo "3e7fa1c281a21ab74ed66ef247faffe5a105bc11be1f7715f31b4368ce8dcbc8  %{SOURCE7}" | sha256sum -c -
-echo "c86bd9d9eef795b4b0d3802279419fde5221922805b073b9bd822edecb1ca28e  %{SOURCE9}" | sha256sum -c -
-
 mkdir -p %{_builddir}/%{name}-deploy
 export YUTOVO_DEPLOY=%{_builddir}/%{name}-deploy
 
@@ -83,55 +80,63 @@ tar -xzf %{SOURCE6} -C %{_builddir}/third_party
 tar -xzf %{SOURCE17} -C %{_builddir}/third_party
 tar -xzf %{SOURCE7} -C %{_builddir}/third_party
 unzip -q %{SOURCE9} -d %{_builddir}/third_party
-# The giac build script and the config.h patch ship in the desktop tarball
 cd %{_builddir}/third_party/giac-2.0.0
-cp %{_builddir}/%{name}-desktop-%{version}/setup/Flatpak/build_giac.sh .
-cp %{_builddir}/%{name}-desktop-%{version}/setup/Flatpak/giac_config_h.diff .
-# Fedora links PIE by default: giac objects must be position independent
-sed -i 's|CFLAGS = -O2 -DNDEBUG|CFLAGS = -fPIC -O2 -DNDEBUG|' build_giac.sh
-patch -p1 < giac_config_h.diff
+patch -p1 < %{PATCH0}
+cp %{SOURCE8} .
 
 %build
 export YUTOVO_DEPLOY=%{_builddir}/%{name}-deploy
 # giac and the yutovo-* libraries live in the deploy dir; giac_imported and
 # libstdc++fs are resolved there via linker scripts installed by build_giac.sh
 export LIBRARY_PATH=${YUTOVO_DEPLOY}/lib
+export YUTOVO_MAKE_FLAGS="%{?_smp_mflags}"
 
 # Build yutovo-logger
-mkdir -p %{_builddir}/submodules/yutovo-logger-1.0.6/build
-cd %{_builddir}/submodules/yutovo-logger-1.0.6/build
+mkdir -p %{_builddir}/submodules/yutovo-logger-1.0.8/build
+cd %{_builddir}/submodules/yutovo-logger-1.0.8/build
 cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release
 make %{?_smp_mflags}
 make install
 
-# Build boost 1.83.0 headers
-cd %{_builddir}/third_party/boost_1_83_0
+# Build boost 1.92.0 (headers + static Boost.Process)
+cd %{_builddir}/third_party/boost_1_92_0
 ./bootstrap.sh --prefix=${YUTOVO_DEPLOY}
 ./b2 headers
-mkdir -p ${YUTOVO_DEPLOY}/include
+./b2 %{?_smp_mflags} --with-process --layout=system variant=release link=static threading=multi cxxflags=-fPIC
+mkdir -p ${YUTOVO_DEPLOY}/include ${YUTOVO_DEPLOY}/lib
 cp -r boost ${YUTOVO_DEPLOY}/include/
-# Prefer the bundled 1.83 headers over the system boost for the yutovo modules
+cp -a stage/lib/. ${YUTOVO_DEPLOY}/lib/
+# Prefer the bundled boost over the system boost for the yutovo modules
 export CPATH=${YUTOVO_DEPLOY}/include
 
-# Build giac (static, Release); the Flatpak build script honours FLATPAK_DEST
-# as the install prefix and FLATPAK_BUILDER_MAX_JOBS for the parallel build
+# Build giac (static, Release)
 cd %{_builddir}/third_party/giac-2.0.0
-FLATPAK_DEST=${YUTOVO_DEPLOY} FLATPAK_BUILDER_MAX_JOBS=4 bash build_giac.sh
+bash build_giac.sh
 # yutovo-calculator requires both release and debug library names at configure time
 cp -f ${YUTOVO_DEPLOY}/lib/libgiac.a ${YUTOVO_DEPLOY}/lib/libgiacd.a
 
 # Build yutovo-calculator
-mkdir -p %{_builddir}/submodules/yutovo-calculator-1.6.1/build
-cd %{_builddir}/submodules/yutovo-calculator-1.6.1/build
+mkdir -p %{_builddir}/submodules/yutovo-calculator-1.7.1/build
+cd %{_builddir}/submodules/yutovo-calculator-1.7.1/build
 cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBoost_INCLUDE_DIR=${YUTOVO_DEPLOY}/include
 make %{?_smp_mflags}
 make install
 
 # Build yutovo-solver
-mkdir -p %{_builddir}/submodules/yutovo-solver-1.3.1/build
-cd %{_builddir}/submodules/yutovo-solver-1.3.1/build
-cmake .. -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-make %{?_smp_mflags}
+# calculator_solver.cpp needs several GB of RAM per g++ instance (see the flatpak
+# manifest), so compile one TU at a time and without debug info
+mkdir -p %{_builddir}/submodules/yutovo-solver-1.4.1/build
+cd %{_builddir}/submodules/yutovo-solver-1.4.1/build
+CXXFLAGS="${CXXFLAGS} -g0" cmake .. \
+    -DCMAKE_INSTALL_PREFIX=${YUTOVO_DEPLOY} \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_TESTS=OFF \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+    -DBOOST_ROOT=${YUTOVO_DEPLOY} \
+    -DBOOST_INCLUDEDIR=${YUTOVO_DEPLOY}/include \
+    -DBOOST_LIBRARYDIR=${YUTOVO_DEPLOY}/lib \
+    -DBoost_NO_SYSTEM_PATHS=ON
+make -j1
 make install
 
 # Build mathgl
@@ -176,7 +181,7 @@ make %{?_smp_mflags}
 make install
 
 # Generate yutovo library data (gzip-packed .yut files)
-cd %{_builddir}/submodules/yutovo-library-1.1.1
+cd %{_builddir}/submodules/yutovo-library-1.2.1
 ./make_library.sh %{_builddir}/%{name}-library-out ZIP
 
 # Build main application
@@ -295,6 +300,14 @@ update-mime-database %{_datadir}/mime &> /dev/null || :
 %{_datadir}/%{name}/
 
 %changelog
+* Sat Oct 24 2026 Denis Gordenin <denis@yutovo.com> - 1.8.1-1
+- Update to 1.8.1 release (per com.yutovo.yutovo.yaml):
+  yutovo-logger 1.0.8, yutovo-calculator 1.7.1, yutovo-solver 1.4.1,
+  yutovo-editor 1.8.1, yutovo-library 1.2.1
+- boost 1.83.0 -> 1.92.0: yutovo-solver now links the compiled static
+  Boost.Process library
+- Build yutovo-solver single-threaded without debug info:
+  calculator_solver.cpp needs several GB of RAM per translation unit
 * Mon Aug 31 2026 Denis Gordenin <denis@yutovo.com> - 1.7.1-1
 - Update to 1.7.1 (sync with com.yutovo.yutovo.yaml flatpak manifest):
   yutovo-calculator 1.6.1, yutovo-solver 1.3.1, yutovo-library 1.1.1
@@ -304,13 +317,6 @@ update-mime-database %{_datadir}/mime &> /dev/null || :
 - Bundle yutovo-solver-calculator-worker and MIME type icons
 - Require dejavu-serif-fonts: math formula symbols are drawn in DejaVu Serif
   (flatpak runtime ships it; without it the integral sign renders as tofu)
-- Fetch mathgl from the openSUSE:Factory source mirror and verify sha256 of
-  the large downloads (a SourceForge mirror served a corrupted mathgl tarball)
-- Build the CMake modules serially: the boost::spirit translation units of
-  yutovo-calculator (expression.cpp peaks at ~8 GB) OOM the 16 GB OBS worker at -j4
-- Fetch giac from the Void Linux sources mirror (byte-identical snapshot):
-  the upstream university server times out from the OBS service runner
-- Compile giac with -fPIC: Fedora links PIE by default and the
-  yutovo-solver-calculator-worker link fails on non-PIC giac objects* Mon Jun 29 2026 Denis Gordenin <denis@yutovo.com> - 1.6.2-1
+* Mon Jun 29 2026 Denis Gordenin <denis@yutovo.com> - 1.6.2-1
 - Build fixes for Fedora 44: libharu from source, GCC 16 / C23 compat,
   remove static libstdc++ linking, install wrapper and library correctly

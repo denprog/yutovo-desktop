@@ -1,5 +1,5 @@
 Name: yutovo
-Version: 1.7.1
+Version: 1.8.1
 Release: 1%{?dist}
 Summary: Multifunctional visual calculator with graphical representation of mathematical formulas
 
@@ -8,9 +8,9 @@ URL: https://yutovo.com
 Source0: https://github.com/denprog/yutovo-desktop/archive/refs/tags/v%{version}.tar.gz#/%{name}-desktop-%{version}.tar.gz
 
 # Yutovo submodules
-Source1: https://github.com/denprog/yutovo-logger/archive/refs/tags/v1.0.6.tar.gz#/yutovo-logger-1.0.6.tar.gz
-Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.6.1.tar.gz#/yutovo-calculator-1.6.1.tar.gz
-Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.3.1.tar.gz#/yutovo-solver-1.3.1.tar.gz
+Source1: https://github.com/denprog/yutovo-logger/archive/refs/tags/v1.0.8.tar.gz#/yutovo-logger-1.0.8.tar.gz
+Source2: https://github.com/denprog/yutovo-calculator/archive/refs/tags/v1.7.1.tar.gz#/yutovo-calculator-1.7.1.tar.gz
+Source3: https://github.com/denprog/yutovo-solver/archive/refs/tags/v1.4.1.tar.gz#/yutovo-solver-1.4.1.tar.gz
 Source4: https://github.com/denprog/yutovo-editor/archive/refs/tags/v%{version}.tar.gz#/yutovo-editor-%{version}.tar.gz
 Source5: https://github.com/denprog/yutovo-library/archive/refs/tags/v1.1.1.tar.gz#/yutovo-library-1.1.1.tar.gz
 Source6: https://github.com/libharu/libharu/archive/refs/tags/v2.4.4.tar.gz#/libharu-2.4.4.tar.gz
@@ -288,6 +288,14 @@ update-mime-database %{_datadir}/mime &> /dev/null || :
 %{_datadir}/%{name}/
 
 %changelog
+* Sun Oct 19 2026 Denis Gordenin <denis@yutovo.com> - 1.8.1-1
+- Update to 1.8.1 (sync with com.yutovo.yutovo.yaml flatpak manifest):
+  yutovo-calculator 1.7.1, yutovo-solver 1.4.1, yutovo-logger 1.0.8
+- Surface graphs and histograms, graph parameters, unordered lists,
+  text blocks of formulas without solving, array element access by index
+- Italian, French and German translations
+- Fixed settings, socket leak, precision of sin/cos, ln(0), derivatives,
+  complex numbers, units (vedro, angstrom, gravitational constant)
 * Mon Aug 31 2026 Denis Gordenin <denis@yutovo.com> - 1.7.1-1
 - Update to 1.7.1 (sync with com.yutovo.yutovo.yaml flatpak manifest):
   yutovo-calculator 1.6.1, yutovo-solver 1.3.1, yutovo-library 1.1.1
