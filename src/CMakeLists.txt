@@ -83,6 +83,7 @@ add_executable(${PROJECT_NAME} WIN32
     result_settings_form.cpp
     set_uint_dialog.ui
     set_uint_dialog.cpp
+    matrix_dialog.cpp
     set_unit_dialog.ui
     set_unit_dialog.cpp
     colors_settings_form.ui

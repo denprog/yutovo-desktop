@@ -28,6 +28,11 @@ private slots:
     void testGraphHistogram();
     void testGraphFormatAxes();
 
+    void testMatrix();
+    void testDeterminant();
+    void testMatrixResize();
+    void testMatrixToolbar();
+
     void testUnorderedList();
 
     void testTextBlock();

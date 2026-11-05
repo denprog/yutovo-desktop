@@ -14,6 +14,7 @@
 #include <QContextMenuEvent>
 #include "set_uint_dialog.h"
 #include "set_unit_dialog.h"
+#include "matrix_dialog.h"
 #include "mainwindow.h"
 
 //DocumentWindow
@@ -330,9 +331,41 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             menu.addAction(copy_image);
         };
 
+    auto add_matrix_menu =
+        [&]()
+        {
+            context_menu_matrix_id = ElementId{};
+            QPoint doc_widget_pos = document_widget->mapFromParent(event->pos());
+            int x = doc_widget_pos.x() + document_widget->window.document_point.x;
+            int y = doc_widget_pos.y() + document_widget->window.document_point.y;
+            ElementId id_at_coords;
+            if (document->GetElementAtCoords(x, y, 0, id_at_coords))
+            {
+                auto el = document->GetElement(id_at_coords);
+                while (el && el->type != ElementType::MATRIX && el->type != ElementType::DETERMINANT)
+                    el = document->GetParent(el->id);
+                if (el)
+                    context_menu_matrix_id = el->id;
+            }
+            if (context_menu_matrix_id.empty())
+                context_menu_matrix_id = document->FindCurrentParentByType(ElementType::MATRIX);
+            if (context_menu_matrix_id.empty())
+                context_menu_matrix_id = document->FindCurrentParentByType(ElementType::DETERMINANT);
+
+            if (context_menu_matrix_id.empty())
+                return;
+
+            matrix_size->setText(document->GetElementType(context_menu_matrix_id) == ElementType::DETERMINANT ?
+                tr("Determinant size") : tr("Matrix size"));
+            if (!menu.isEmpty())
+                menu.addSeparator();
+            menu.addAction(matrix_size);
+        };
+
     add_copy_paste_menu();
     add_link_menu();
     add_graph_menu();
+    add_matrix_menu();
 
     ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
     if (!id.empty())
@@ -644,6 +677,11 @@ void DocumentWindow::CreateMenus()
         copy_image->deleteLater();
     copy_image = new QAction(tr("Copy image"), this);
     connect(copy_image, &QAction::triggered, this, &DocumentWindow::OnCopyImage);
+
+    if (matrix_size)
+        matrix_size->deleteLater();
+    matrix_size = new QAction(tr("Matrix size"), this);
+    connect(matrix_size, &QAction::triggered, this, &DocumentWindow::OnMatrixSize);
 }
 
 void DocumentWindow::OnVerticalValueChanged(int value)
@@ -1024,6 +1062,30 @@ void DocumentWindow::OnCopyImage()
     mime_data->setData("image/png", arr);
     QClipboard* clipboard = QGuiApplication::clipboard();
     clipboard->setMimeData(mime_data);
+}
+
+void DocumentWindow::OnMatrixSize()
+{
+    if (QMenu* menu = qobject_cast<QMenu*>(QApplication::activePopupWidget()))
+        menu->close();
+
+    ElementId id = context_menu_matrix_id;
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::MATRIX);
+    if (id.empty())
+        id = document->FindCurrentParentByType(ElementType::DETERMINANT);
+    if (id.empty())
+        return;
+
+    uint rows = 2, columns = 2;
+    if (!document->GetMatrixSize(id, rows, columns))
+        return;
+
+    bool determinant = document->GetElementType(id) == ElementType::DETERMINANT;
+    MatrixDialog dialog(determinant ? tr("Determinant size") : tr("Matrix size"), rows, columns);
+    if (!dialog.exec())
+        return;
+    document->SetMatrixSize(id, dialog.rows, dialog.columns, true);
 }
 
 #ifdef TEST_APP

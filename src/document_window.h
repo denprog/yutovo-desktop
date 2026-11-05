@@ -85,6 +85,7 @@ private slots:
     void OnComplexFormExponential();
 
     void OnCopyImage();
+    void OnMatrixSize();
 
 signals:
     void CaretMoved(const EditorState editor_state);
@@ -170,7 +171,10 @@ private:
     QAction* graph = nullptr;
     QAction* copy_image = nullptr;
 
+    QAction* matrix_size = nullptr;
+
     ElementId context_menu_graph_id;
+    ElementId context_menu_matrix_id;
 };
 
 #endif

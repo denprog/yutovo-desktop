@@ -25,6 +25,8 @@ int main(int argc, char** argv)
     settings.setValue("MainWindow/language", (int)yutovo_calculator::Language::English);
     //calculus toolbar must be visible for TestToolbar::testCalculusToolbar
     settings.setValue("MainWindow/calculus_toolbar", true);
+    //matrices toolbar must be visible for TestToolbar::testMatrixToolbar
+    settings.setValue("MainWindow/matrix_toolbar", true);
     settings.sync();
 
     int result = 0;

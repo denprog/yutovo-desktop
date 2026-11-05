@@ -8,6 +8,7 @@
 #include "../src/document_widget.h"
 #include "../src/document_window.h"
 #include "../src/graph_settings_dialog.h"
+#include "../src/matrix_dialog.h"
 
 void TestToolbar::initTestCase()
 {
@@ -509,3 +510,141 @@ void TestToolbar::testTextBlockInText()
     QVERIFY(pluses.size() == 1);
 }
 
+
+//The matrix toolbar button: the action exists, the dialog prefills the sizes, the insert fills the grid
+void TestToolbar::testMatrix()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionMatrix");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+
+    //the dialog is checked directly - triggering the action opens a modal dialog
+    MatrixDialog dialog("Insert matrix", 3, 2);
+    auto rows = dialog.findChild<QSpinBox*>("rows");
+    auto columns = dialog.findChild<QSpinBox*>("columns");
+    QVERIFY(rows && columns);
+    QVERIFY(rows->value() == 3 && columns->value() == 2);
+    QVERIFY(rows->minimum() == 1 && rows->maximum() == 100 && columns->maximum() == 100);
+    rows->setValue(2);
+    columns->setValue(2);
+    dialog.accept();
+    QVERIFY(dialog.rows == 2 && dialog.columns == 2);
+
+    //insert a 2x2 matrix through the document api and fill it
+    document->InsertCode(false, true);
+    document->WaitTask(document->InsertMatrix(true, 2, 2));
+    document->InsertString("1", true);
+    document->MoveCaretRight(false);
+    document->InsertString("2", true);
+    document->MoveCaretRight(false);
+    document->InsertString("3", true);
+    document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("4", true));
+    QTest::qWait(500);
+    QCOMPARE(document->ToText(), U"[[1,2],[3,4]]");
+}
+
+//The determinant toolbar button
+void TestToolbar::testDeterminant()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionDeterminant");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+
+    document->InsertCode(false, true);
+    document->WaitTask(document->InsertDeterminant(true, 2, 2));
+    document->InsertString("1", true);
+    document->MoveCaretRight(false);
+    document->InsertString("2", true);
+    document->MoveCaretRight(false);
+    document->InsertString("3", true);
+    document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("4", true));
+    QTest::qWait(500);
+    QCOMPARE(document->ToText(), U"det([[1,2],[3,4]])");
+}
+
+//The matrix size dialog of the context menu grows and shrinks the grid
+void TestToolbar::testMatrixResize()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    document->InsertCode(false, true);
+    document->WaitTask(document->InsertMatrix(true, 2, 2));
+
+    auto el = document->FindByType(yutovo::ElementId{0}, yutovo::ElementType::MATRIX);
+    QVERIFY(el);
+
+    //the context menu dialog prefills the current size
+    uint rows = 0, columns = 0;
+    QVERIFY(document->GetMatrixSize(el->id, rows, columns));
+    QVERIFY(rows == 2 && columns == 2);
+    MatrixDialog dialog("Matrix size", rows, columns);
+    dialog.findChild<QSpinBox*>("rows")->setValue(3);
+    dialog.findChild<QSpinBox*>("columns")->setValue(3);
+    dialog.accept();
+    QVERIFY(dialog.rows == 3 && dialog.columns == 3);
+
+    document->WaitTask(document->SetMatrixSize(el->id, dialog.rows, dialog.columns, true));
+    QTest::qWait(500);
+    QVERIFY(document->GetMatrixSize(el->id, rows, columns));
+    QVERIFY(rows == 3 && columns == 3);
+    QCOMPARE(document->ToText(), U"[[,,],[,,],[,,]]");
+
+    //shrinking removes the cells from the right and bottom
+    document->WaitTask(document->SetMatrixSize(el->id, 2, 2, true));
+    QTest::qWait(500);
+    QVERIFY(document->GetMatrixSize(el->id, rows, columns));
+    QVERIFY(rows == 2 && columns == 2);
+    QCOMPARE(document->ToText(), U"[[,],[,]]");
+}
+
+
+//The matrices toolbar holds the matrix and determinant buttons, the View menu toggles it
+void TestToolbar::testMatrixToolbar()
+{
+    auto toolbar = window->findChild<QToolBar*>("matrix_toolbar");
+    QVERIFY(toolbar);
+    QVERIFY(toolbar->isVisible());
+
+    //both buttons live in the matrices toolbar, not in the algebra toolbar;
+    //the lookup goes through the toolbar actions - window-wide findChild can return an action
+    //of a previous toolbar generation recreated by a language change
+    QAction* matrix = nullptr;
+    QAction* determinant = nullptr;
+    for (QAction* a : toolbar->actions())
+    {
+        if (a->objectName() == "actionMatrix")
+            matrix = a;
+        else if (a->objectName() == "actionDeterminant")
+            determinant = a;
+    }
+    QVERIFY(matrix && determinant);
+
+    auto algebra_toolbar = window->findChild<QToolBar*>("algebra_toolbar");
+    QVERIFY(algebra_toolbar);
+    for (QAction* a : algebra_toolbar->actions())
+        QVERIFY(a->objectName() != "actionMatrix" && a->objectName() != "actionDeterminant");
+
+    //the View menu entry hides and shows the toolbar
+    QVERIFY(window->matrix_toolbar_action);
+    QVERIFY(window->matrix_toolbar_action->isChecked());
+    window->matrix_toolbar_action->toggle();
+    QVERIFY(!toolbar->isVisible());
+    window->matrix_toolbar_action->toggle();
+    QVERIFY(toolbar->isVisible());
+
+    //the buttons are enabled with a document open - triggering them opens the modal MatrixDialog,
+    //the insertion itself is covered by testMatrix/testDeterminant through the dialog and the document api
+    QVERIFY(matrix->isEnabled());
+    QVERIFY(determinant->isEnabled());
+}

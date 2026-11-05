@@ -45,6 +45,7 @@ set(APP_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/interface_settings_form.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/result_settings_form.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/set_uint_dialog.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/matrix_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/set_unit_dialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/colors_settings_form.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/documents_settings_form.cpp

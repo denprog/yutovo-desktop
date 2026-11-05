@@ -45,6 +45,7 @@
 #include "terms_of_use_dialog.h"
 #include "privacy_policy_dialog.h"
 #include "graph_settings_dialog.h"
+#include "matrix_dialog.h"
 #include "export_pdf_dialog.h"
 #include "whats_new_dialog.h"
 #include "feedback_dialog.h"
@@ -135,6 +136,7 @@ void MainWindow::Start(QString filename)
     CreateGreekToolbar();
     CreateCurrenciesToolbar();
     CreateGraphsToolbar();
+    CreateMatrixToolbar();
     CreateLogicalToolbar();
     CreateCalculusToolbar();
     CreateStatusBar();
@@ -334,6 +336,7 @@ void MainWindow::SetupGuiActions()
     greek_toolbar = nullptr;
     currency_toolbar = nullptr;
     graph_toolbar = nullptr;
+    matrix_toolbar = nullptr;
     logical_toolbar = nullptr;
     calculus_toolbar = nullptr;
 
@@ -367,6 +370,7 @@ void MainWindow::SetupGuiActions()
     CreateGreekToolbar();
     CreateCurrenciesToolbar();
     CreateGraphsToolbar();
+    CreateMatrixToolbar();
     CreateLogicalToolbar();
     CreateCalculusToolbar();
     
@@ -381,6 +385,7 @@ void MainWindow::SetupGuiActions()
     hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
     functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
     graph_toolbar_action->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
+    matrix_toolbar_action->setChecked(settings.value("MainWindow/matrix_toolbar", true).toBool());
     greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
     currency_toolbar_action->setChecked(settings.value("MainWindow/currency_toolbar", false).toBool());
     logical_toolbar_action->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
@@ -833,6 +838,12 @@ void MainWindow::CreateActions()
     connect(graph_toolbar_action, &QAction::toggled, this, &MainWindow::GraphToolbar);
     toolbars_menu->addAction(graph_toolbar_action);
 
+    matrix_toolbar_action = new QAction(tr("Matrices"), this);
+    matrix_toolbar_action->setCheckable(true);
+    matrix_toolbar_action->setChecked(true);
+    connect(matrix_toolbar_action, &QAction::toggled, this, &MainWindow::MatrixToolbar);
+    toolbars_menu->addAction(matrix_toolbar_action);
+
     logical_toolbar_action = new QAction(tr("Logical operations"), this);
     logical_toolbar_action->setCheckable(true);
     logical_toolbar_action->setChecked(true);
@@ -1275,6 +1286,26 @@ void MainWindow::CreateGraphsToolbar()
     histogram_action->setObjectName("graph_histogram_action");
     connect(histogram_action, &QAction::triggered, this, &MainWindow::GraphHistogram);
     graph_toolbar->addAction(histogram_action);
+}
+
+void MainWindow::CreateMatrixToolbar()
+{
+    //matrices toolbar
+    matrix_toolbar = addToolBar(tr("Matrices"));
+    matrix_toolbar->setObjectName("matrix_toolbar");
+    matrix_toolbar->setStyleSheet("QToolBar{spacing:4px;}");
+
+    QAction* matrix_action = new QAction(QIcon(":/icons/images/algebra/matrix.png"), tr("Matrix"), this);
+    matrix_action->setObjectName("actionMatrix");
+    matrix_action->setToolTip(tr("Insert matrix"));
+    connect(matrix_action, &QAction::triggered, this, &MainWindow::OnMatrix);
+    matrix_toolbar->addAction(matrix_action);
+
+    QAction* determinant_action = new QAction(QIcon(":/icons/images/algebra/determinant.png"), tr("Determinant"), this);
+    determinant_action->setObjectName("actionDeterminant");
+    determinant_action->setToolTip(tr("Insert determinant"));
+    connect(determinant_action, &QAction::triggered, this, &MainWindow::OnDeterminant);
+    matrix_toolbar->addAction(determinant_action);
 }
 
 void MainWindow::CreateLogicalToolbar()
@@ -1937,6 +1968,7 @@ void MainWindow::Settings()
         hyperbolic_toolbar_action->setChecked(settings.value("MainWindow/hyperbolic_toolbar", false).toBool());
         functions_toolbar_action->setChecked(settings.value("MainWindow/functions_toolbar", false).toBool());
         graph_toolbar_action->setChecked(settings.value("MainWindow/graphs_toolbar", false).toBool());
+        matrix_toolbar_action->setChecked(settings.value("MainWindow/matrix_toolbar", true).toBool());
         greek_toolbar_action->setChecked(settings.value("MainWindow/greek_toolbar", false).toBool());
         logical_toolbar_action->setChecked(settings.value("MainWindow/logical_toolbar", false).toBool());
         calculus_toolbar_action->setChecked(settings.value("MainWindow/calculus_toolbar", false).toBool());
@@ -2351,6 +2383,12 @@ void MainWindow::GraphToolbar()
 {
     graph_toolbar_action->isChecked() ? graph_toolbar->show() : graph_toolbar->hide();
     settings.setValue("MainWindow/graphs_toolbar", graph_toolbar_action->isChecked());
+}
+
+void MainWindow::MatrixToolbar()
+{
+    matrix_toolbar_action->isChecked() ? matrix_toolbar->show() : matrix_toolbar->hide();
+    settings.setValue("MainWindow/matrix_toolbar", matrix_toolbar_action->isChecked());
 }
 
 void MainWindow::LogicalToolbar()
@@ -3250,6 +3288,30 @@ void MainWindow::OnEvaluationBar()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertEvaluationBarSubscript(true);
+}
+
+void MainWindow::OnMatrix()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    MatrixDialog dialog(tr("Insert matrix"));
+    if (!dialog.exec())
+        return;
+    document->InsertMatrix(true, dialog.rows, dialog.columns);
+}
+
+void MainWindow::OnDeterminant()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    MatrixDialog dialog(tr("Insert determinant"));
+    if (!dialog.exec())
+        return;
+    document->InsertDeterminant(true, dialog.rows, dialog.columns);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)
@@ -4409,6 +4471,7 @@ void MainWindow::EnableButtons(bool enable)
     greek_toolbar->setEnabled(enable);
     currency_toolbar->setEnabled(enable);
     graph_toolbar->setEnabled(enable);
+    matrix_toolbar->setEnabled(enable);
     logical_toolbar->setEnabled(enable);
     calculus_toolbar->setEnabled(enable);
 }

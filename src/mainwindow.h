@@ -81,6 +81,7 @@ private:
     void CreateGreekToolbar();
     void CreateCurrenciesToolbar();
     void CreateGraphsToolbar();
+    void CreateMatrixToolbar();
     void CreateLogicalToolbar();
     void CreateCalculusToolbar();
     void CreateStatusBar();
@@ -135,6 +136,7 @@ private:
     void GreekToolbar();
     void CurrencyToolbar();
     void GraphToolbar();
+    void MatrixToolbar();
     void LogicalToolbar();
     void CalculusToolbar();
 
@@ -258,6 +260,8 @@ private slots:
     void OnDerivativeAtPoint();
     void OnFunctionAtPoint();
     void OnEvaluationBar();
+    void OnMatrix();
+    void OnDeterminant();
     void OnFunctionX();
     void OnFunctionXY();
 
@@ -417,6 +421,7 @@ private:
     QAction* currency_toolbar_action = nullptr;
     QAction* status_bar_action = nullptr;
     QAction* graph_toolbar_action = nullptr;
+    QAction* matrix_toolbar_action = nullptr;
     QAction* logical_toolbar_action = nullptr;
     QAction* calculus_toolbar_action = nullptr;
 
@@ -429,6 +434,7 @@ private:
     QToolBar* greek_toolbar = nullptr;
     QToolBar* currency_toolbar = nullptr;
     QToolBar* graph_toolbar = nullptr;
+    QToolBar* matrix_toolbar = nullptr;
     QToolBar* logical_toolbar = nullptr;
     QToolBar* calculus_toolbar = nullptr;
 
