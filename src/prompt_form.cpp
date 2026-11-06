@@ -25,6 +25,7 @@ const std::map<std::string, QString> PromptForm::icons =
     {"prod", ":/icons/images/algebra/product.png"},
     {"definite_integral", ":/icons/images/calculus/definite_integral.png"},
     {"indefinite_integral", ":/icons/images/calculus/indefinite_integral.png"},
+    {"limit", ":/icons/images/calculus/limit.png"},
     {"derivative", ":/icons/images/calculus/derivative.png"},
     {"derivative_at_point", ":/icons/images/calculus/derivative_at_point.png"},
     {"evaluation_bar", ":/icons/images/algebra/evaluation_bar.png"}

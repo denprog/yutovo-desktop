@@ -17,6 +17,7 @@ private slots:
 
     void testCalculusToolbar();
     void testIndefiniteIntegral();
+    void testLimit();
     void testDerivative();
     void testSecondDerivative();
     void testPartialDerivative();

@@ -176,6 +176,7 @@ void DocumentWidget::OnPromptActivated(const IdentifierType id_type, const std::
             { "prod", &Document::InsertProduct },
             { "definite_integral", &Document::InsertDefiniteIntegral },
             { "indefinite_integral", &Document::InsertIndefiniteIntegral },
+            { "limit", &Document::InsertLimit },
             { "derivative", &Document::InsertDerivative },
             { "evaluation_bar", &Document::InsertEvaluationBarSubscript },
             { "derivative_at_point", &Document::InsertDerivativeAtPoint }
@@ -405,10 +406,10 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     if (document->MouseMove(x, y, (event->modifiers() & Qt::ShiftModifier) != 0))
         return;
     
-    if (document->IsString(id))
+    if (document->IsString(id) && document->IsEditable(id))
     {
         int c = settings.value("Documents/click_link", 0).toInt();
-        if (document->GetElementType(id) == ElementType::LINK && ((event->modifiers() == Qt::ControlModifier && c == 1) || 
+        if (document->GetElementType(id) == ElementType::LINK && ((event->modifiers() == Qt::ControlModifier && c == 1) ||
             (event->modifiers() == 0 && c == 0)))
         {
             setCursor(Qt::PointingHandCursor);

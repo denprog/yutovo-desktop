@@ -1356,6 +1356,12 @@ void MainWindow::CreateCalculusToolbar()
     connect(action, &QAction::triggered, this, &MainWindow::OnIndefiniteIntegral);
     calculus_toolbar->addAction(action);
 
+    action = new QAction(QIcon(":/icons/images/calculus/limit.png"), tr("Limit"), this);
+    action->setObjectName("actionLimit");
+    action->setToolTip(tr("Limit"));
+    connect(action, &QAction::triggered, this, &MainWindow::OnLimit);
+    calculus_toolbar->addAction(action);
+
     action = new QAction(QIcon(":/icons/images/calculus/derivative.png"), tr("Derivative"), this);
     action->setObjectName("actionDerivative");
     action->setToolTip(tr("Derivative"));
@@ -3232,6 +3238,13 @@ void MainWindow::OnIndefiniteIntegral()
     auto document = GetCurrentDocument();
     if (document)
         document->InsertIndefiniteIntegral(true);
+}
+
+void MainWindow::OnLimit()
+{
+    auto document = GetCurrentDocument();
+    if (document)
+        document->InsertLimit(true);
 }
 
 void MainWindow::OnDerivative()

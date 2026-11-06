@@ -254,6 +254,7 @@ private slots:
     
     void OnDefiniteIntegral();
     void OnIndefiniteIntegral();
+    void OnLimit();
     void OnDerivative();
     void OnSecondDerivative();
     void OnPartialDerivative();

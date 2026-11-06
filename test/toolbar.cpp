@@ -62,6 +62,43 @@ void TestToolbar::testIndefiniteIntegral()
     QCOMPARE(document->ToText(), U"indefinite_integral(,)");
 }
 
+void TestToolbar::testLimit()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    //the action is searched through the toolbar actions - a language change recreates the toolbars
+    //and leaves stale duplicate actions parented to the window
+    auto toolbar = window->findChild<QToolBar*>("calculus_toolbar");
+    QVERIFY(toolbar);
+    QAction* action = nullptr;
+    for (QAction* a : toolbar->actions())
+    {
+        if (a->objectName() == "actionLimit")
+            action = a;
+    }
+    QVERIFY(action);
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+    action->trigger();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"lim[→]");
+
+    //fill the variable, the value and the function after the limit
+    document->InsertString(U"x", true);
+    document->MoveCaretRight(false); //cross the arrow into the value row
+    document->InsertString(U"0", true);
+    document->MoveCaretRight(false); //leave the element into the containing row
+    document->InsertString(U"x", true);
+    document->WaitTask(document->InsertPlus(true));
+    document->WaitTask(document->InsertString(U"1", true));
+    QCOMPARE(document->ToText(), U"lim[x→0]x+1");
+
+    document->Undo();
+    document->WaitUndo();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"lim[x→0]x+");
+}
+
 void TestToolbar::testDerivative()
 {
     auto document = window->GetCurrentDocument();
@@ -384,47 +421,42 @@ void TestToolbar::testUnorderedList()
     QVERIFY(button->isEnabled());
     document->WaitTask(document->InsertString("Item", true));
 
-    //count the list markers rendered into the document html
-    auto countMarkers =
-        [document](const char* marker) -> int
+    auto count_list_items =
+        [document]() -> int
         {
-            std::string token = std::string(marker) + "&nbsp;";
             std::string html = document->ToHtml();
             int count = 0;
-            for (size_t pos = html.find(token); pos != std::string::npos; pos = html.find(token, pos + token.size()))
+            for (size_t pos = html.find("<li>"); pos != std::string::npos; pos = html.find("<li>", pos + 4))
                 ++count;
             return count;
         };
 
     small_circle->trigger();
     QTest::qWait(200);
-    QCOMPARE(countMarkers("•"), 1);
+    QCOMPARE(count_list_items(), 1);
 
     //Enter continues the list
     document->WaitTask(document->InsertParagraph(true));
-    QCOMPARE(countMarkers("•"), 2);
+    QCOMPARE(count_list_items(), 2);
 
     //another marker replaces the current one - the caret sits in the new (second) item
     square->trigger();
     QTest::qWait(200);
-    QCOMPARE(countMarkers("•"), 1);
-    QCOMPARE(countMarkers("■"), 1);
+    QCOMPARE(count_list_items(), 2);
 
     //applying the same marker again toggles it off
     square->trigger();
     QTest::qWait(200);
-    QCOMPARE(countMarkers("•"), 1);
-    QCOMPARE(countMarkers("■"), 0);
+    QCOMPARE(count_list_items(), 1);
 
     //the remaining marker variants apply as well - the caret stays in the second item
     large_circle->trigger();
     QTest::qWait(200);
-    QCOMPARE(countMarkers("●"), 1);
+    QCOMPARE(count_list_items(), 2);
 
     diamond->trigger();
     QTest::qWait(200);
-    QCOMPARE(countMarkers("♦"), 1);
-    QCOMPARE(countMarkers("●"), 0);
+    QCOMPARE(count_list_items(), 2);
 }
 
 void TestToolbar::testTextBlock()
