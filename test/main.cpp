@@ -7,6 +7,7 @@
 #include "toolbar.h"
 #include "result_settings.h"
 #include "settings.h"
+#include "icons.h"
 
 int main(int argc, char** argv)
 {
@@ -49,6 +50,11 @@ int main(int argc, char** argv)
     {
         TestSettings test_settings;
         result |= QTest::qExec(&test_settings, argc, argv);
+    }
+
+    {
+        TestIcons test_icons;
+        result |= QTest::qExec(&test_icons, argc, argv);
     }
 
     return result;

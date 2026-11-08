@@ -21,6 +21,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTimer>
+#include <QColor>
 #include <yutovo-editor/document.h>
 #include <yutovo-logger/logger.h>
 #include "ui_mainwindow.h"
@@ -310,6 +311,8 @@ private:
     QString LanguageToString(yutovo_calculator::Language lang);
     QString GetUpdateSystemString();
 
+    static QIcon LoadIcon(const QString& path);
+
 #ifdef REMOTE_SOLVER
     void RestartService();
 #endif
@@ -324,6 +327,7 @@ public:
 private:
 #endif
     friend class DocumentWindow;
+    friend class PromptForm;
 
     Ui::MainWindow *ui;
 
@@ -350,6 +354,9 @@ private:
     QMenu* recent_files_menu = nullptr;
     int recent_files_count = 10;
     QList<QString> recent_files;
+
+    QColor last_icon_color; //window text color the toolbar icons were tinted with
+    bool icon_refresh_pending = false; //a deferred gui rebuild for new icon colors was queued
 
     bool block_scale_slots = false;
     QComboBox* scale_combo = nullptr;

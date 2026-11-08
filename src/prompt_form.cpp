@@ -8,6 +8,7 @@
 #include <QApplication>
 #include <QMouseEvent>
 #include "prompt_form.h"
+#include "mainwindow.h"
 
 //PromptForm
 
@@ -60,7 +61,7 @@ void PromptForm::Fill(std::vector<std::pair<IdentifierType, std::string>>&& _pro
         QListWidgetItem* item;
         auto it = icons.find(p.second);
         if (it != icons.end())
-            item = new QListWidgetItem(QIcon(it->second), "");
+            item = new QListWidgetItem(MainWindow::LoadIcon(it->second), "");
         else
         {
             //make subscript if it exists
