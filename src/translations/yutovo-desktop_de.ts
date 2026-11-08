@@ -1443,6 +1443,10 @@ Sie übernehmen die gesamte Verantwortung und das gesamte Risiko im Zusammenhang
         <translation>Unbestimmtes Integral</translation>
     </message>
     <message>
+        <source>Limit</source>
+        <translation>Grenzwert</translation>
+    </message>
+    <message>
         <source>Derivative</source>
         <translation>Ableitung</translation>
     </message>

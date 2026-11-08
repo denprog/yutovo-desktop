@@ -1442,6 +1442,10 @@ Voi assumete l'intera responsabilità e il rischio relativi all'utilizzo di ques
             <translation>Integrale indefinito</translation>
         </message>
         <message>
+            <source>Limit</source>
+            <translation>Limite</translation>
+        </message>
+        <message>
             <source>Derivative</source>
             <translation>Derivata</translation>
         </message>

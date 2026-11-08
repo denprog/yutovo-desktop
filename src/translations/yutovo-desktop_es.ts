@@ -1441,6 +1441,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
         <translation>Integral indefinida</translation>
     </message>
     <message>
+        <source>Limit</source>
+        <translation>Límite</translation>
+    </message>
+    <message>
         <source>Derivative</source>
         <translation>Derivada</translation>
     </message>

@@ -1445,6 +1445,10 @@
         <translation>Неопределённый интеграл</translation>
     </message>
     <message>
+        <source>Limit</source>
+        <translation>Предел</translation>
+    </message>
+    <message>
         <source>Derivative</source>
         <translation>Производная</translation>
     </message>

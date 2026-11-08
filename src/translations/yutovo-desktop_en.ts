@@ -355,6 +355,10 @@ You assume all responsibility and risk in relation to your use of this applicati
         <translation>Indefinite integral</translation>
     </message>
     <message>
+        <source>Limit</source>
+        <translation>Limit</translation>
+    </message>
+    <message>
         <source>Derivative</source>
         <translation>Derivative</translation>
     </message>

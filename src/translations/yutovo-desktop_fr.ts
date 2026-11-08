@@ -1442,6 +1442,10 @@ Vous assumez l'entière responsabilité et tous les risques liés à l'utilisati
             <translation>Intégrale indéfinie</translation>
         </message>
         <message>
+            <source>Limit</source>
+            <translation>Limite</translation>
+        </message>
+        <message>
             <source>Derivative</source>
             <translation>Dérivée</translation>
         </message>
