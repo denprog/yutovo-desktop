@@ -194,6 +194,10 @@
         <translation>Комплексные</translation>
     </message>
     <message>
+        <source>Vector</source>
+        <translation>Вектор</translation>
+    </message>
+    <message>
         <source>Symbolic</source>
         <translation>Символьные</translation>
     </message>
@@ -1559,6 +1563,10 @@
         <translation>Вещественные</translation>
     </message>
     <message>
+        <source>Vector</source>
+        <translation>Вектор</translation>
+    </message>
+    <message>
         <source>Symbolic</source>
         <translation>Символьные</translation>
     </message>
@@ -1661,6 +1669,18 @@
     <message>
         <source>Symbolic rational</source>
         <translation>Символьные дробные</translation>
+    </message>
+    <message>
+        <source>Vector of real</source>
+        <translation>Вектор вещественных</translation>
+    </message>
+    <message>
+        <source>Vector of rational</source>
+        <translation>Вектор дробных</translation>
+    </message>
+    <message>
+        <source>Vector of complex</source>
+        <translation>Вектор комплексных</translation>
     </message>
     <message>
         <source>Symbolic complex</source>

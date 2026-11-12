@@ -99,6 +99,12 @@ void ShortcutsMap::Init(DocumentPtr _document, QWidget* document_widget)
         CommandContext::Formula);
     Add(QKeySequence(""), "\\eq_sym_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::SYMBOLIC_COMPLEX, true)),
         CommandContext::Formula);
+    Add(QKeySequence(""), "\\eq_vec_real", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::VECTOR_REAL, true)),
+        CommandContext::Formula);
+    Add(QKeySequence(""), "\\eq_vec_rat", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::VECTOR_RATIONAL, true)),
+        CommandContext::Formula);
+    Add(QKeySequence(""), "\\eq_vec_comp", std::function<void ()>(std::bind(&Document::InsertEquation, document.get(), ResultType::VECTOR_COMPLEX, true)),
+        CommandContext::Formula);
     Add(QKeySequence(""), '(', "\\open_round_bracket", std::function<void ()>(std::bind(&Document::InsertOpenRoundBracket, document.get(), true)), 
         CommandContext::Formula);
     Add(QKeySequence(""), ')', "\\close_round_bracket", std::function<void ()>(std::bind(&Document::InsertCloseRoundBracket, document.get(), true)), 

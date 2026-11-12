@@ -249,6 +249,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Complexos</translation>
     </message>
     <message>
+        <source>Vector</source>
+        <translation>Vetor</translation>
+    </message>
+    <message>
         <source>Symbolic</source>
         <translation>Simbólicos</translation>
     </message>
@@ -1555,6 +1559,10 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
         <translation>Reais</translation>
     </message>
     <message>
+        <source>Vector</source>
+        <translation>Vetor</translation>
+    </message>
+    <message>
         <source>Symbolic</source>
         <translation>Simbólicos</translation>
     </message>
@@ -1657,6 +1665,18 @@ Você assume toda a responsabilidade e risco relacionados ao uso deste aplicativ
     <message>
         <source>Symbolic rational</source>
         <translation>Racionais simbólicos</translation>
+    </message>
+    <message>
+        <source>Vector of real</source>
+        <translation>Vetor de reais</translation>
+    </message>
+    <message>
+        <source>Vector of rational</source>
+        <translation>Vetor de racionais</translation>
+    </message>
+    <message>
+        <source>Vector of complex</source>
+        <translation>Vetor de complexos</translation>
     </message>
     <message>
         <source>Symbolic complex</source>

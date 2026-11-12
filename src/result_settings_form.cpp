@@ -169,6 +169,15 @@ void ResultSettingsForm::FillResultsOrder()
         case ResultType::SYMBOLIC_COMPLEX:
             label = tr("Symbolic complex");
             break;
+        case ResultType::VECTOR_REAL:
+            label = tr("Vector of real");
+            break;
+        case ResultType::VECTOR_RATIONAL:
+            label = tr("Vector of rational");
+            break;
+        case ResultType::VECTOR_COMPLEX:
+            label = tr("Vector of complex");
+            break;
         default:
             continue;
         }

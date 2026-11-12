@@ -191,6 +191,10 @@ Voi assumete l'intera responsabilità e il rischio relativi all'utilizzo di ques
             <translation>Complesso</translation>
         </message>
         <message>
+            <source>Vector</source>
+            <translation>Vettore</translation>
+        </message>
+        <message>
             <source>Symbolic</source>
             <translation>Simbolico</translation>
         </message>
@@ -1556,6 +1560,10 @@ Voi assumete l'intera responsabilità e il rischio relativi all'utilizzo di ques
             <translation>Reale</translation>
         </message>
         <message>
+            <source>Vector</source>
+            <translation>Vettore</translation>
+        </message>
+        <message>
             <source>Symbolic</source>
             <translation>Simbolico</translation>
         </message>
@@ -1658,6 +1666,18 @@ Voi assumete l'intera responsabilità e il rischio relativi all'utilizzo di ques
         <message>
             <source>Symbolic rational</source>
             <translation>Razionale simbolico</translation>
+        </message>
+        <message>
+            <source>Vector of real</source>
+            <translation>Vettore di reali</translation>
+        </message>
+        <message>
+            <source>Vector of rational</source>
+            <translation>Vettore di razionali</translation>
+        </message>
+        <message>
+            <source>Vector of complex</source>
+            <translation>Vettore di complessi</translation>
         </message>
         <message>
             <source>Symbolic complex</source>

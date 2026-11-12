@@ -192,6 +192,10 @@ Sie übernehmen die gesamte Verantwortung und das gesamte Risiko im Zusammenhang
         <translation>Komplex</translation>
     </message>
     <message>
+        <source>Vector</source>
+        <translation>Vektor</translation>
+    </message>
+    <message>
         <source>Symbolic</source>
         <translation>Symbolisch</translation>
     </message>
@@ -1557,6 +1561,10 @@ Sie übernehmen die gesamte Verantwortung und das gesamte Risiko im Zusammenhang
         <translation>Reell</translation>
     </message>
     <message>
+        <source>Vector</source>
+        <translation>Vektor</translation>
+    </message>
+    <message>
         <source>Symbolic</source>
         <translation>Symbolisch</translation>
     </message>
@@ -1659,6 +1667,18 @@ Sie übernehmen die gesamte Verantwortung und das gesamte Risiko im Zusammenhang
     <message>
         <source>Symbolic rational</source>
         <translation>Symbolisch rational</translation>
+    </message>
+    <message>
+        <source>Vector of real</source>
+        <translation>Vektor reeller</translation>
+    </message>
+    <message>
+        <source>Vector of rational</source>
+        <translation>Vektor rationaler</translation>
+    </message>
+    <message>
+        <source>Vector of complex</source>
+        <translation>Vektor komplexer</translation>
     </message>
     <message>
         <source>Symbolic complex</source>

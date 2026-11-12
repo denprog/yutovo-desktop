@@ -20,7 +20,7 @@ class MatrixDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit MatrixDialog(QString caption, uint _rows = 2, uint _columns = 2, QWidget *parent = nullptr);
+    explicit MatrixDialog(QString caption, uint _rows = 2, uint _columns = 2, bool vector_mode = false, QWidget *parent = nullptr);
     ~MatrixDialog();
 
     virtual void accept();

@@ -191,6 +191,10 @@ Vous assumez l'entière responsabilité et tous les risques liés à l'utilisati
             <translation>Complexe</translation>
         </message>
         <message>
+            <source>Vector</source>
+            <translation>Vecteur</translation>
+        </message>
+        <message>
             <source>Symbolic</source>
             <translation>Symbolique</translation>
         </message>
@@ -1556,6 +1560,10 @@ Vous assumez l'entière responsabilité et tous les risques liés à l'utilisati
             <translation>Réel</translation>
         </message>
         <message>
+            <source>Vector</source>
+            <translation>Vecteur</translation>
+        </message>
+        <message>
             <source>Symbolic</source>
             <translation>Symbolique</translation>
         </message>
@@ -1658,6 +1666,18 @@ Vous assumez l'entière responsabilité et tous les risques liés à l'utilisati
         <message>
             <source>Symbolic rational</source>
             <translation>Rationnel symbolique</translation>
+        </message>
+        <message>
+            <source>Vector of real</source>
+            <translation>Vecteur de réels</translation>
+        </message>
+        <message>
+            <source>Vector of rational</source>
+            <translation>Vecteur de rationnels</translation>
+        </message>
+        <message>
+            <source>Vector of complex</source>
+            <translation>Vecteur de complexes</translation>
         </message>
         <message>
             <source>Symbolic complex</source>

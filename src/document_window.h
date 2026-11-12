@@ -54,6 +54,9 @@ private slots:
     void OnPresentAsSymbolicReal();
     void OnPresentAsSymbolicRational();
     void OnPresentAsSymbolicComplex();
+    void OnPresentAsVectorReal();
+    void OnPresentAsVectorRational();
+    void OnPresentAsVectorComplex();
 
     void OnSetPrecision();
     void OnSetExp();
@@ -135,9 +138,13 @@ private:
     QAction* present_as_rational = nullptr;
     QAction* present_as_complex = nullptr;
     QMenu* present_as_symbolic_menu = nullptr;
+    QMenu* present_as_vector_menu = nullptr;
     QAction* present_as_symbolic_real = nullptr;
     QAction* present_as_symbolic_rational = nullptr;
     QAction* present_as_symbolic_complex = nullptr;
+    QAction* present_as_vector_real = nullptr;
+    QAction* present_as_vector_rational = nullptr;
+    QAction* present_as_vector_complex = nullptr;
 
     QAction* set_precision = nullptr;
     QAction* set_exp = nullptr;

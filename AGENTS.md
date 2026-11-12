@@ -91,7 +91,11 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 Always place braces on their own line for control structures.
 
 ### Parenthesized expressions
-Keep the contents of parentheses (function argument lists, conditions, initializers, etc.) on a single line when it fits. Only wrap to a new line if the expression would exceed **140 columns**.
+Never leave two blank lines in a row — use at most one blank line between definitions or statements.
+
+Comments that precede a function, method, or class (header/descriptive comments above the definition) start with a capital letter; comments inside a function body start with a lowercase letter.
+
+Keep the contents of parentheses (function argument lists, conditions, initializers, etc.) on a single line when it fits. Only wrap to a new line if the expression would exceed **150 columns**.
 When a parenthesized expression is wrapped, each continuation line uses the normal **4-space indent**; do not align arguments with the opening parenthesis.
 ```cpp
 // CORRECT

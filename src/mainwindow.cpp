@@ -1325,6 +1325,12 @@ void MainWindow::CreateMatrixToolbar()
     determinant_action->setToolTip(tr("Insert determinant"));
     connect(determinant_action, &QAction::triggered, this, &MainWindow::OnDeterminant);
     matrix_toolbar->addAction(determinant_action);
+
+    QAction* vector_action = new QAction(LoadIcon(":/icons/images/algebra/vector.png"), tr("Vector"), this);
+    vector_action->setObjectName("actionVector");
+    vector_action->setToolTip(tr("Insert vector"));
+    connect(vector_action, &QAction::triggered, this, &MainWindow::OnVector);
+    matrix_toolbar->addAction(vector_action);
 }
 
 void MainWindow::CreateLogicalToolbar()
@@ -3375,6 +3381,18 @@ void MainWindow::OnDeterminant()
     document->InsertDeterminant(true, dialog.rows, dialog.columns);
 }
 
+void MainWindow::OnVector()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+
+    MatrixDialog dialog(tr("Insert vector"), 3, 1, true);
+    if (!dialog.exec())
+        return;
+    document->InsertVector(true, dialog.rows);
+}
+
 void MainWindow::OnCaretMoved(const EditorState editor_state)
 {
     DocumentWindow* w = (DocumentWindow*)ui->editor_tabs->currentWidget();
@@ -3982,14 +4000,16 @@ void MainWindow::ReadSettings()
     auto s = sizeof(Config::AutoResultConfig::results_order) / sizeof(Config::AutoResultConfig::results_order[0]);
     //fill unique known result types in the saved order, the remaining slots with the missing types in the default order
     const ResultType default_order[] = {ResultType::REAL, ResultType::INTEGER, ResultType::RATIONAL, ResultType::COMPLEX,
-        ResultType::ARRAY_REAL, ResultType::SYMBOLIC_REAL, ResultType::SYMBOLIC_RATIONAL, ResultType::SYMBOLIC_COMPLEX};
+        ResultType::ARRAY_REAL, ResultType::VECTOR_REAL, ResultType::VECTOR_RATIONAL, ResultType::VECTOR_COMPLEX,
+        ResultType::SYMBOLIC_REAL, ResultType::SYMBOLIC_RATIONAL, ResultType::SYMBOLIC_COMPLEX};
     size_t i = 0;
     for (auto r : v)
     {
         ResultType t = (ResultType)r.toInt();
         bool known = t == ResultType::REAL || t == ResultType::INTEGER || t == ResultType::RATIONAL || t == ResultType::COMPLEX ||
             t == ResultType::ARRAY_REAL || t == ResultType::SYMBOLIC_REAL || t == ResultType::SYMBOLIC_RATIONAL ||
-            t == ResultType::SYMBOLIC_COMPLEX;
+            t == ResultType::SYMBOLIC_COMPLEX || t == ResultType::VECTOR_REAL || t == ResultType::VECTOR_RATIONAL ||
+            t == ResultType::VECTOR_COMPLEX;
         if (known && i < s && std::find(results_order, results_order + i, t) == results_order + i)
             results_order[i++] = t;
     }

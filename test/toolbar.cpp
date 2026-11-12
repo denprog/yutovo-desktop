@@ -580,6 +580,40 @@ void TestToolbar::testMatrix()
     QCOMPARE(document->ToText(), U"[[1,2],[3,4]]");
 }
 
+//The vector toolbar button
+void TestToolbar::testVector()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    auto action = window->findChild<QAction*>("actionVector");
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+
+    //the vector mode of the dialog hides the columns field and fixes it at 1
+    MatrixDialog dialog("Insert vector", 3, 1, true);
+    auto rows = dialog.findChild<QSpinBox*>("rows");
+    auto columns = dialog.findChild<QSpinBox*>("columns");
+    QVERIFY(rows && columns);
+    QVERIFY(rows->value() == 3 && columns->value() == 1);
+    QVERIFY(columns->isHidden());
+    auto columns_label = dialog.findChild<QLabel*>("columns_label");
+    QVERIFY(columns_label && columns_label->isHidden());
+    rows->setValue(2);
+    dialog.accept();
+    QVERIFY(dialog.rows == 2 && dialog.columns == 1);
+
+    //insert a 2-element vector through the document api and fill it
+    document->InsertCode(false, true);
+    document->WaitTask(document->InsertVector(true, 2));
+    document->InsertString("1", true);
+    document->MoveCaretRight(false);
+    document->WaitTask(document->InsertString("2", true));
+    QTest::qWait(500);
+    QCOMPARE(document->ToText(), U"[[1],[2]]");
+}
+
 //The determinant toolbar button
 void TestToolbar::testDeterminant()
 {
@@ -640,7 +674,6 @@ void TestToolbar::testMatrixResize()
     QCOMPARE(document->ToText(), U"[[,],[,]]");
 }
 
-
 //The matrices toolbar holds the matrix and determinant buttons, the View menu toggles it
 void TestToolbar::testMatrixToolbar()
 {
@@ -653,14 +686,17 @@ void TestToolbar::testMatrixToolbar()
     //of a previous toolbar generation recreated by a language change
     QAction* matrix = nullptr;
     QAction* determinant = nullptr;
+    QAction* vector = nullptr;
     for (QAction* a : toolbar->actions())
     {
         if (a->objectName() == "actionMatrix")
             matrix = a;
         else if (a->objectName() == "actionDeterminant")
             determinant = a;
+        else if (a->objectName() == "actionVector")
+            vector = a;
     }
-    QVERIFY(matrix && determinant);
+    QVERIFY(matrix && determinant && vector);
 
     auto algebra_toolbar = window->findChild<QToolBar*>("algebra_toolbar");
     QVERIFY(algebra_toolbar);
@@ -679,4 +715,5 @@ void TestToolbar::testMatrixToolbar()
     //the insertion itself is covered by testMatrix/testDeterminant through the dialog and the document api
     QVERIFY(matrix->isEnabled());
     QVERIFY(determinant->isEnabled());
+    QVERIFY(vector->isEnabled());
 }

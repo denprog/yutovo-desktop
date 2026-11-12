@@ -30,6 +30,7 @@ private slots:
     void testGraphFormatAxes();
 
     void testMatrix();
+    void testVector();
     void testDeterminant();
     void testMatrixResize();
     void testMatrixToolbar();

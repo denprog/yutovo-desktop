@@ -127,6 +127,10 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             present_as_symbolic_menu->addAction(present_as_symbolic_rational);
             present_as_symbolic_menu->addAction(present_as_symbolic_complex);
             present_as_menu->addMenu(present_as_symbolic_menu);
+            present_as_vector_menu->addAction(present_as_vector_real);
+            present_as_vector_menu->addAction(present_as_vector_rational);
+            present_as_vector_menu->addAction(present_as_vector_complex);
+            present_as_menu->addMenu(present_as_vector_menu);
             present_as_auto->setChecked(false);
             present_as_real->setChecked(false);
             present_as_integer->setChecked(false);
@@ -135,6 +139,9 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             present_as_symbolic_real->setChecked(false);
             present_as_symbolic_rational->setChecked(false);
             present_as_symbolic_complex->setChecked(false);
+            present_as_vector_real->setChecked(false);
+            present_as_vector_rational->setChecked(false);
+            present_as_vector_complex->setChecked(false);
         };
 
     auto add_real_menu = 
@@ -263,6 +270,16 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             if (rt != ResultType::SYMBOLIC_RATIONAL)
                 menu.addAction(set_precision);
             if (rt == ResultType::SYMBOLIC_REAL || rt == ResultType::SYMBOLIC_COMPLEX)
+                menu.addAction(set_exp);
+        };
+
+    auto add_vector_menu =
+        [&](ElementId id, ResultType rt)
+        {
+            menu.addSeparator();
+            if (rt != ResultType::VECTOR_RATIONAL)
+                menu.addAction(set_precision);
+            if (rt == ResultType::VECTOR_REAL || rt == ResultType::VECTOR_COMPLEX)
                 menu.addAction(set_exp);
         };
 
@@ -466,10 +483,40 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                                 }
                                 else
                                 {
-                                    id = document->FindCurrentParentByType(ElementType::ARRAY_REAL_RESULT);
+                                    id = document->FindCurrentParentByType(ElementType::VECTOR_REAL_RESULT);
                                     if (!id.empty())
                                     {
-                                        add_array_real_menu(id);
+                                        add_present_as_menu();
+                                        present_as_vector_real->setChecked(true);
+                                        add_vector_menu(id, ResultType::VECTOR_REAL);
+                                    }
+                                    else
+                                    {
+                                        id = document->FindCurrentParentByType(ElementType::VECTOR_RATIONAL_RESULT);
+                                        if (!id.empty())
+                                        {
+                                            add_present_as_menu();
+                                            present_as_vector_rational->setChecked(true);
+                                            add_vector_menu(id, ResultType::VECTOR_RATIONAL);
+                                        }
+                                        else
+                                        {
+                                            id = document->FindCurrentParentByType(ElementType::VECTOR_COMPLEX_RESULT);
+                                            if (!id.empty())
+                                            {
+                                                add_present_as_menu();
+                                                present_as_vector_complex->setChecked(true);
+                                                add_vector_menu(id, ResultType::VECTOR_COMPLEX);
+                                            }
+                                            else
+                                            {
+                                                id = document->FindCurrentParentByType(ElementType::ARRAY_REAL_RESULT);
+                                                if (!id.empty())
+                                                {
+                                                    add_array_real_menu(id);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -553,6 +600,24 @@ void DocumentWindow::CreateMenus()
     present_as_symbolic_complex = new QAction(tr("Complex"), this);
     present_as_symbolic_complex->setCheckable(true);
     connect(present_as_symbolic_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsSymbolicComplex);
+    if (present_as_vector_menu)
+        present_as_vector_menu->deleteLater();
+    present_as_vector_menu = new QMenu(tr("Vector"), this);
+    if (present_as_vector_real)
+        present_as_vector_real->deleteLater();
+    present_as_vector_real = new QAction(tr("Real"), this);
+    present_as_vector_real->setCheckable(true);
+    connect(present_as_vector_real, &QAction::triggered, this, &DocumentWindow::OnPresentAsVectorReal);
+    if (present_as_vector_rational)
+        present_as_vector_rational->deleteLater();
+    present_as_vector_rational = new QAction(tr("Rational"), this);
+    present_as_vector_rational->setCheckable(true);
+    connect(present_as_vector_rational, &QAction::triggered, this, &DocumentWindow::OnPresentAsVectorRational);
+    if (present_as_vector_complex)
+        present_as_vector_complex->deleteLater();
+    present_as_vector_complex = new QAction(tr("Complex"), this);
+    present_as_vector_complex->setCheckable(true);
+    connect(present_as_vector_complex, &QAction::triggered, this, &DocumentWindow::OnPresentAsVectorComplex);
 
     if (set_precision)
         set_precision->deleteLater();
@@ -806,6 +871,21 @@ void DocumentWindow::OnPresentAsSymbolicRational()
 void DocumentWindow::OnPresentAsSymbolicComplex()
 {
     document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::SYMBOLIC_COMPLEX, true);
+}
+
+void DocumentWindow::OnPresentAsVectorReal()
+{
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::VECTOR_REAL, true);
+}
+
+void DocumentWindow::OnPresentAsVectorRational()
+{
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::VECTOR_RATIONAL, true);
+}
+
+void DocumentWindow::OnPresentAsVectorComplex()
+{
+    document->SetResultType(document_widget->current_editor_state.caret_state.id, ResultType::VECTOR_COMPLEX, true);
 }
 
 void DocumentWindow::OnSetPrecision()

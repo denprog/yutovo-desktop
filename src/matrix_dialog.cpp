@@ -10,7 +10,7 @@
 
 //MatrixDialog
 
-MatrixDialog::MatrixDialog(QString caption, uint _rows, uint _columns, QWidget *parent) :
+MatrixDialog::MatrixDialog(QString caption, uint _rows, uint _columns, bool vector_mode, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MatrixDialog)
 {
@@ -19,6 +19,12 @@ MatrixDialog::MatrixDialog(QString caption, uint _rows, uint _columns, QWidget *
     setWindowTitle(caption);
     ui->rows->setValue(_rows);
     ui->columns->setValue(_columns);
+    if (vector_mode)
+    {
+        ui->columns_label->hide();
+        ui->columns->hide();
+        ui->columns->setValue(1);
+    }
 }
 
 MatrixDialog::~MatrixDialog()

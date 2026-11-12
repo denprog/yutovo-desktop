@@ -264,6 +264,7 @@ private slots:
     void OnEvaluationBar();
     void OnMatrix();
     void OnDeterminant();
+    void OnVector();
     void OnFunctionX();
     void OnFunctionXY();
 
