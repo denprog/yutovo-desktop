@@ -606,12 +606,52 @@ void TestToolbar::testVector()
 
     //insert a 2-element vector through the document api and fill it
     document->InsertCode(false, true);
-    document->WaitTask(document->InsertVector(true, 2));
+    document->WaitTask(document->InsertVectorColumn(true, 2));
     document->InsertString("1", true);
     document->MoveCaretRight(false);
     document->WaitTask(document->InsertString("2", true));
     QTest::qWait(500);
     QCOMPARE(document->ToText(), U"[[1],[2]]");
+}
+
+//The vector with arrow toolbar button
+void TestToolbar::testVectorElement()
+{
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+
+    //the action is searched through the toolbar actions - a language change recreates the toolbars
+    //and leaves stale duplicate actions parented to the window
+    auto toolbar = window->findChild<QToolBar*>("matrix_toolbar");
+    QVERIFY(toolbar);
+    QAction* action = nullptr;
+    for (QAction* a : toolbar->actions())
+    {
+        if (a->objectName() == "actionVectorElement")
+            action = a;
+    }
+    QVERIFY(action);
+    QVERIFY(!action->icon().isNull());
+    QVERIFY(!action->icon().pixmap(QSize(32, 32)).isNull());
+
+    document->InsertCode(false, true);
+    action->trigger();
+    QTest::qWait(200);
+    document->InsertString("a", true);
+    document->WaitTask(document->InsertPlus(true));
+    document->WaitTask(document->InsertString("b", true));
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"a+b");
+
+    document->Undo();
+    document->WaitUndo();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"a+");
+
+    document->Redo();
+    document->WaitRedo();
+    QTest::qWait(200);
+    QCOMPARE(document->ToText(), U"a+b");
 }
 
 //The determinant toolbar button

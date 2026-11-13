@@ -1331,6 +1331,12 @@ void MainWindow::CreateMatrixToolbar()
     vector_action->setToolTip(tr("Insert vector"));
     connect(vector_action, &QAction::triggered, this, &MainWindow::OnVector);
     matrix_toolbar->addAction(vector_action);
+
+    QAction* vector_element_action = new QAction(LoadIcon(":/icons/images/algebra/vector_element.png"), tr("Vector with arrow"), this);
+    vector_element_action->setObjectName("actionVectorElement");
+    vector_element_action->setToolTip(tr("Insert vector with arrow"));
+    connect(vector_element_action, &QAction::triggered, this, &MainWindow::OnVectorElement);
+    matrix_toolbar->addAction(vector_element_action);
 }
 
 void MainWindow::CreateLogicalToolbar()
@@ -3390,7 +3396,15 @@ void MainWindow::OnVector()
     MatrixDialog dialog(tr("Insert vector"), 3, 1, true);
     if (!dialog.exec())
         return;
-    document->InsertVector(true, dialog.rows);
+    document->InsertVectorColumn(true, dialog.rows);
+}
+
+void MainWindow::OnVectorElement()
+{
+    auto document = GetCurrentDocument();
+    if (!document)
+        return;
+    document->InsertVectorElement(true);
 }
 
 void MainWindow::OnCaretMoved(const EditorState editor_state)

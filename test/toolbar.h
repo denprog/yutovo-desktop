@@ -31,6 +31,7 @@ private slots:
 
     void testMatrix();
     void testVector();
+    void testVectorElement();
     void testDeterminant();
     void testMatrixResize();
     void testMatrixToolbar();
