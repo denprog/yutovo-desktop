@@ -333,11 +333,8 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                     context_menu_graph_id = el->id;
             }
             if (context_menu_graph_id.empty())
-                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
-            if (context_menu_graph_id.empty())
-                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
-            if (context_menu_graph_id.empty())
-                context_menu_graph_id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
+                context_menu_graph_id = document->FindCurrentParentByTypes({ElementType::GRAPH_LINE, ElementType::GRAPH_SURFACE,
+                    ElementType::GRAPH_HISTOGRAM});
 
             if (context_menu_graph_id.empty())
                 return;
@@ -365,9 +362,7 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
                     context_menu_matrix_id = el->id;
             }
             if (context_menu_matrix_id.empty())
-                context_menu_matrix_id = document->FindCurrentParentByType(ElementType::MATRIX);
-            if (context_menu_matrix_id.empty())
-                context_menu_matrix_id = document->FindCurrentParentByType(ElementType::DETERMINANT);
+                context_menu_matrix_id = document->FindCurrentParentByTypes({ElementType::MATRIX, ElementType::DETERMINANT});
 
             if (context_menu_matrix_id.empty())
                 return;
@@ -384,146 +379,100 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
     add_graph_menu();
     add_matrix_menu();
 
-    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
+    ElementId id = document->FindCurrentParentByTypes({ElementType::AUTO_RESULT, ElementType::REAL_RESULT, ElementType::INTEGER_RESULT,
+        ElementType::RATIONAL_RESULT, ElementType::COMPLEX_RESULT, ElementType::SYMBOLIC_REAL_RESULT,
+        ElementType::SYMBOLIC_RATIONAL_RESULT, ElementType::SYMBOLIC_COMPLEX_RESULT, ElementType::VECTOR_REAL_RESULT,
+        ElementType::VECTOR_RATIONAL_RESULT, ElementType::VECTOR_COMPLEX_RESULT, ElementType::ARRAY_REAL_RESULT});
     if (!id.empty())
     {
-        add_present_as_menu();
-        present_as_auto->setChecked(true);
-
-        switch (document->GetResultType(id))
+        switch (document->GetElementType(id))
         {
-        case ResultType::REAL:
-            add_real_menu(id);
+        case ElementType::AUTO_RESULT:
+            add_present_as_menu();
+            present_as_auto->setChecked(true);
+            switch (document->GetResultType(id))
+            {
+            case ResultType::REAL:
+                add_real_menu(id);
+                break;
+            case ResultType::INTEGER:
+                add_integer_menu(id);
+                break;
+            case ResultType::RATIONAL:
+                add_rational_menu(id);
+                break;
+            case ResultType::COMPLEX:
+                add_complex_menu(id);
+                break;
+            case ResultType::ARRAY_REAL:
+                add_array_real_menu(id);
+                break;
+            case ResultType::SYMBOLIC_REAL:
+                add_symbolic_menu(id, ResultType::SYMBOLIC_REAL);
+                break;
+            case ResultType::SYMBOLIC_RATIONAL:
+                add_symbolic_menu(id, ResultType::SYMBOLIC_RATIONAL);
+                break;
+            case ResultType::SYMBOLIC_COMPLEX:
+                add_symbolic_menu(id, ResultType::SYMBOLIC_COMPLEX);
+                break;
+            }
             break;
-        case ResultType::INTEGER:
-            add_integer_menu(id);
-            break;
-        case ResultType::RATIONAL:
-            add_rational_menu(id);
-            break;
-        case ResultType::COMPLEX:
-            add_complex_menu(id);
-            break;
-        case ResultType::ARRAY_REAL:
-            add_array_real_menu(id);
-            break;
-        case ResultType::SYMBOLIC_REAL:
-            add_symbolic_menu(id, ResultType::SYMBOLIC_REAL);
-            break;
-        case ResultType::SYMBOLIC_RATIONAL:
-            add_symbolic_menu(id, ResultType::SYMBOLIC_RATIONAL);
-            break;
-        case ResultType::SYMBOLIC_COMPLEX:
-            add_symbolic_menu(id, ResultType::SYMBOLIC_COMPLEX);
-            break;
-        }
-    }
-    else
-    {
-        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
-        if (!id.empty())
-        {
+        case ElementType::REAL_RESULT:
             add_present_as_menu();
             present_as_real->setChecked(true);
             add_real_menu(id);
-        }
-        else
-        {
-            id = document->FindCurrentParentByType(ElementType::INTEGER_RESULT);
-            if (!id.empty())
-            {
-                add_present_as_menu();
-                present_as_integer->setChecked(true);
-                add_integer_menu(id);
-            }
-            else
-            {
-                id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
-                if (!id.empty())
-                {
-                    add_present_as_menu();
-                    present_as_rational->setChecked(true);
-                    add_rational_menu(id);
-                }
-                else
-                {
-                    id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
-                    if (!id.empty())
-                    {
-                        add_present_as_menu();
-                        present_as_complex->setChecked(true);
-                        add_complex_menu(id);
-                    }
-                    else
-                    {
-                        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
-                        if (!id.empty())
-                        {
-                            add_present_as_menu();
-                            present_as_symbolic_real->setChecked(true);
-                            add_symbolic_menu(id, ResultType::SYMBOLIC_REAL);
-                        }
-                        else
-                        {
-                            id = document->FindCurrentParentByType(ElementType::SYMBOLIC_RATIONAL_RESULT);
-                            if (!id.empty())
-                            {
-                                add_present_as_menu();
-                                present_as_symbolic_rational->setChecked(true);
-                                add_symbolic_menu(id, ResultType::SYMBOLIC_RATIONAL);
-                            }
-                            else
-                            {
-                                id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
-                                if (!id.empty())
-                                {
-                                    add_present_as_menu();
-                                    present_as_symbolic_complex->setChecked(true);
-                                    add_symbolic_menu(id, ResultType::SYMBOLIC_COMPLEX);
-                                }
-                                else
-                                {
-                                    id = document->FindCurrentParentByType(ElementType::VECTOR_REAL_RESULT);
-                                    if (!id.empty())
-                                    {
-                                        add_present_as_menu();
-                                        present_as_vector_real->setChecked(true);
-                                        add_vector_menu(id, ResultType::VECTOR_REAL);
-                                    }
-                                    else
-                                    {
-                                        id = document->FindCurrentParentByType(ElementType::VECTOR_RATIONAL_RESULT);
-                                        if (!id.empty())
-                                        {
-                                            add_present_as_menu();
-                                            present_as_vector_rational->setChecked(true);
-                                            add_vector_menu(id, ResultType::VECTOR_RATIONAL);
-                                        }
-                                        else
-                                        {
-                                            id = document->FindCurrentParentByType(ElementType::VECTOR_COMPLEX_RESULT);
-                                            if (!id.empty())
-                                            {
-                                                add_present_as_menu();
-                                                present_as_vector_complex->setChecked(true);
-                                                add_vector_menu(id, ResultType::VECTOR_COMPLEX);
-                                            }
-                                            else
-                                            {
-                                                id = document->FindCurrentParentByType(ElementType::ARRAY_REAL_RESULT);
-                                                if (!id.empty())
-                                                {
-                                                    add_array_real_menu(id);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            break;
+        case ElementType::INTEGER_RESULT:
+            add_present_as_menu();
+            present_as_integer->setChecked(true);
+            add_integer_menu(id);
+            break;
+        case ElementType::RATIONAL_RESULT:
+            add_present_as_menu();
+            present_as_rational->setChecked(true);
+            add_rational_menu(id);
+            break;
+        case ElementType::COMPLEX_RESULT:
+            add_present_as_menu();
+            present_as_complex->setChecked(true);
+            add_complex_menu(id);
+            break;
+        case ElementType::SYMBOLIC_REAL_RESULT:
+            add_present_as_menu();
+            present_as_symbolic_real->setChecked(true);
+            add_symbolic_menu(id, ResultType::SYMBOLIC_REAL);
+            break;
+        case ElementType::SYMBOLIC_RATIONAL_RESULT:
+            add_present_as_menu();
+            present_as_symbolic_rational->setChecked(true);
+            add_symbolic_menu(id, ResultType::SYMBOLIC_RATIONAL);
+            break;
+        case ElementType::SYMBOLIC_COMPLEX_RESULT:
+            add_present_as_menu();
+            present_as_symbolic_complex->setChecked(true);
+            add_symbolic_menu(id, ResultType::SYMBOLIC_COMPLEX);
+            break;
+        case ElementType::VECTOR_REAL_RESULT:
+            add_present_as_menu();
+            present_as_vector_real->setChecked(true);
+            add_vector_menu(id, ResultType::VECTOR_REAL);
+            break;
+        case ElementType::VECTOR_RATIONAL_RESULT:
+            add_present_as_menu();
+            present_as_vector_rational->setChecked(true);
+            add_vector_menu(id, ResultType::VECTOR_RATIONAL);
+            break;
+        case ElementType::VECTOR_COMPLEX_RESULT:
+            add_present_as_menu();
+            present_as_vector_complex->setChecked(true);
+            add_vector_menu(id, ResultType::VECTOR_COMPLEX);
+            break;
+        case ElementType::ARRAY_REAL_RESULT:
+            add_array_real_menu(id);
+            break;
+        default:
+            break;
         }
     }
 
@@ -902,15 +851,8 @@ void DocumentWindow::OnPresentAsVectorComplex()
 
 void DocumentWindow::OnSetPrecision()
 {
-    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
+    ElementId id = document->FindCurrentParentByTypes({ElementType::AUTO_RESULT, ElementType::REAL_RESULT,
+        ElementType::COMPLEX_RESULT, ElementType::SYMBOLIC_REAL_RESULT, ElementType::SYMBOLIC_COMPLEX_RESULT});
     if (id.empty())
         return;
     
@@ -923,15 +865,8 @@ void DocumentWindow::OnSetPrecision()
 
 void DocumentWindow::OnSetExp()
 {
-    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_REAL_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::SYMBOLIC_COMPLEX_RESULT);
+    ElementId id = document->FindCurrentParentByTypes({ElementType::AUTO_RESULT, ElementType::REAL_RESULT,
+        ElementType::COMPLEX_RESULT, ElementType::SYMBOLIC_REAL_RESULT, ElementType::SYMBOLIC_COMPLEX_RESULT});
     if (id.empty())
         return;
     
@@ -944,11 +879,8 @@ void DocumentWindow::OnSetExp()
 
 void DocumentWindow::OnSetUnit()
 {
-    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::RATIONAL_RESULT);
+    ElementId id = document->FindCurrentParentByTypes({ElementType::AUTO_RESULT, ElementType::REAL_RESULT,
+        ElementType::RATIONAL_RESULT});
     if (id.empty())
         return;
     if (!document->HasUnit(id))
@@ -1117,12 +1049,7 @@ void DocumentWindow::OnComplexFormExponential()
 
 ElementId DocumentWindow::GetResultId()
 {
-    ElementId id = document->FindCurrentParentByType(ElementType::AUTO_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::REAL_RESULT);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::COMPLEX_RESULT);
-    return id;
+    return document->FindCurrentParentByTypes({ElementType::AUTO_RESULT, ElementType::REAL_RESULT, ElementType::COMPLEX_RESULT});
 }
 
 void DocumentWindow::OnCopyImage()
@@ -1132,11 +1059,7 @@ void DocumentWindow::OnCopyImage()
 
     ElementId id = context_menu_graph_id;
     if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
+        id = document->FindCurrentParentByTypes({ElementType::GRAPH_LINE, ElementType::GRAPH_SURFACE, ElementType::GRAPH_HISTOGRAM});
     if (id.empty())
         return;
 
@@ -1163,9 +1086,7 @@ void DocumentWindow::OnMatrixSize()
 
     ElementId id = context_menu_matrix_id;
     if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::MATRIX);
-    if (id.empty())
-        id = document->FindCurrentParentByType(ElementType::DETERMINANT);
+        id = document->FindCurrentParentByTypes({ElementType::MATRIX, ElementType::DETERMINANT});
     if (id.empty())
         return;
 

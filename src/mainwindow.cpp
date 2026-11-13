@@ -2168,11 +2168,7 @@ void MainWindow::OnGraphFormat()
     if (document_window)
         graph_id = document_window->context_menu_graph_id;
     if (graph_id.empty())
-        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_LINE);
-    if (graph_id.empty())
-        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_SURFACE);
-    if (graph_id.empty())
-        graph_id = document->FindCurrentParentByType(ElementType::GRAPH_HISTOGRAM);
+        graph_id = document->FindCurrentParentByTypes({ElementType::GRAPH_LINE, ElementType::GRAPH_SURFACE, ElementType::GRAPH_HISTOGRAM});
     if (graph_id.empty())
         return;
 
