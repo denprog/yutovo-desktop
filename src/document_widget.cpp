@@ -331,6 +331,9 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
                     document->SetPlotFormat(hold_id, f, true);
                 }
                 return;
+            case MouseHoldType::SHOW_HIDDEN_RESULT:
+                document->ShowHiddenResult(hold_id, true);
+                return;
             default:
                 return;
             }

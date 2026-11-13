@@ -2,6 +2,10 @@
 <TS version="2.1" language="it" sourcelanguage="en">
     <context>
         <name>Solver</name>
+    <message>
+        <source>Show result</source>
+        <translation>Mostra risultato</translation>
+    </message>
         <message>
             <source>Ok</source>
             <translation>OK</translation>

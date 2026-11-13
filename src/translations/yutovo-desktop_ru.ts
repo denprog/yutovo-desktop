@@ -162,6 +162,10 @@
 <context>
     <name>DocumentWindow</name>
     <message>
+        <source>Hide result</source>
+        <translation>Спрятать результат</translation>
+    </message>
+    <message>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>

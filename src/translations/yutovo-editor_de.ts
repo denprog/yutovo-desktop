@@ -4,6 +4,10 @@
 <context>
     <name>Solver</name>
     <message>
+        <source>Show result</source>
+        <translation>Ergebnis anzeigen</translation>
+    </message>
+    <message>
         <source>Ok</source>
         <translation>OK</translation>
     </message>

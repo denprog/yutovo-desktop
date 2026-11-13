@@ -217,6 +217,10 @@ Usted acepta toda la responsabilidad y el riesgo relacionados con el uso de esta
 <context>
     <name>DocumentWindow</name>
     <message>
+        <source>Hide result</source>
+        <translation>Ocultar resultado</translation>
+    </message>
+    <message>
         <source>Copy</source>
         <translation>Copiar</translation>
     </message>

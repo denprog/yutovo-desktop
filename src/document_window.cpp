@@ -526,7 +526,14 @@ void DocumentWindow::MakeContextMenu(QContextMenuEvent* event)
             }
         }
     }
-    
+
+    if (!id.empty())
+    {
+        menu.addSeparator();
+        menu.addAction(hide_result);
+        context_menu_hide_id = id;
+    }
+
     if (!menu.isEmpty())
         menu.exec(event->globalPos());
 }
@@ -747,6 +754,11 @@ void DocumentWindow::CreateMenus()
         matrix_size->deleteLater();
     matrix_size = new QAction(tr("Matrix size"), this);
     connect(matrix_size, &QAction::triggered, this, &DocumentWindow::OnMatrixSize);
+
+    if (hide_result)
+        hide_result->deleteLater();
+    hide_result = new QAction(tr("Hide result"), this);
+    connect(hide_result, &QAction::triggered, this, &DocumentWindow::OnHideResult);
 }
 
 void DocumentWindow::OnVerticalValueChanged(int value)
@@ -1166,6 +1178,11 @@ void DocumentWindow::OnMatrixSize()
     if (!dialog.exec())
         return;
     document->SetMatrixSize(id, dialog.rows, dialog.columns, true);
+}
+
+void DocumentWindow::OnHideResult()
+{
+    document->HideResult(context_menu_hide_id, true);
 }
 
 #ifdef TEST_APP

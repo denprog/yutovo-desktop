@@ -158,6 +158,10 @@ Vous assumez l'entière responsabilité et tous les risques liés à l'utilisati
     </context>
     <context>
         <name>DocumentWindow</name>
+    <message>
+        <source>Hide result</source>
+        <translation>Masquer le résultat</translation>
+    </message>
         <message>
             <source>Copy</source>
             <translation>Copier</translation>

@@ -160,6 +160,10 @@ Sie übernehmen die gesamte Verantwortung und das gesamte Risiko im Zusammenhang
 <context>
     <name>DocumentWindow</name>
     <message>
+        <source>Hide result</source>
+        <translation>Ergebnis verbergen</translation>
+    </message>
+    <message>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>

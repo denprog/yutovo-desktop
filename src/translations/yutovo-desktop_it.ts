@@ -158,6 +158,10 @@ Voi assumete l'intera responsabilità e il rischio relativi all'utilizzo di ques
     </context>
     <context>
         <name>DocumentWindow</name>
+    <message>
+        <source>Hide result</source>
+        <translation>Nascondi risultato</translation>
+    </message>
         <message>
             <source>Copy</source>
             <translation>Copia</translation>

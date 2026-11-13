@@ -89,6 +89,7 @@ private slots:
 
     void OnCopyImage();
     void OnMatrixSize();
+    void OnHideResult();
 
 signals:
     void CaretMoved(const EditorState editor_state);
@@ -180,8 +181,11 @@ private:
 
     QAction* matrix_size = nullptr;
 
+    QAction* hide_result = nullptr;
+
     ElementId context_menu_graph_id;
     ElementId context_menu_matrix_id;
+    ElementId context_menu_hide_id;
 };
 
 #endif
