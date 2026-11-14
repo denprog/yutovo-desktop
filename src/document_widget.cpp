@@ -409,7 +409,7 @@ void DocumentWidget::mouseMoveEvent(QMouseEvent *event)
     if (document->MouseMove(x, y, (event->modifiers() & Qt::ShiftModifier) != 0))
         return;
     
-    if (document->IsString(id) && document->IsEditable(id))
+    if (document->IsString(id) && (document->IsEditable(id) || document->IsInsideResult(id)))
     {
         int c = settings.value("Documents/click_link", 0).toInt();
         if (document->GetElementType(id) == ElementType::LINK && ((event->modifiers() == Qt::ControlModifier && c == 1) ||
