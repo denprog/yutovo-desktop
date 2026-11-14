@@ -51,6 +51,7 @@ private slots:
     void testExportToPdfDefaultPath();
     void testMenuRebuildDoesNotLeak();
     void testCopyPasteGraph();
+    void testRightClickMovesCaretToResult();
     void testCopyWrongParagraph();
     void testUserInterfaceParagraphFormats();
     void testGermanInterfaceTranslation();

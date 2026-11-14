@@ -1411,6 +1411,76 @@ void TestFiles::testCopyPasteGraph()
     QVERIFY(image.height() > 0);
 }
 
+//A right click moves the caret to the clicked place: the result context menu works without a preceding left click
+void TestFiles::testRightClickMovesCaretToResult()
+{
+    auto editor = window->findChild<DocumentWidget*>();
+    QVERIFY(editor);
+    auto document = window->GetCurrentDocument();
+    QVERIFY(document);
+    auto document_window = window->findChild<DocumentWindow*>();
+    QVERIFY(document_window);
+
+    //type an equation in the code block of a new document - the result element stays hidden behind the ~ placeholder
+    document->WaitTask(document->InsertString(U"2", true));
+    document->WaitTask(document->InsertPlus(true));
+    document->WaitTask(document->InsertString(U"2", true));
+    document->WaitTask(document->InsertEquation(yutovo_solver::ResultType::AUTO, true));
+    QTest::qWait(200);
+
+    //find the result element and click it - a left click reveals the hidden result, the solve then fills it in
+    auto find_result_id =
+        [document]() -> ElementId
+        {
+            for (auto type : {ElementType::AUTO_RESULT, ElementType::REAL_RESULT, ElementType::INTEGER_RESULT,
+                ElementType::RATIONAL_RESULT, ElementType::COMPLEX_RESULT, ElementType::SYMBOLIC_REAL_RESULT,
+                ElementType::SYMBOLIC_RATIONAL_RESULT, ElementType::SYMBOLIC_COMPLEX_RESULT, ElementType::VECTOR_REAL_RESULT,
+                ElementType::VECTOR_RATIONAL_RESULT, ElementType::VECTOR_COMPLEX_RESULT, ElementType::ARRAY_REAL_RESULT})
+            {
+                auto el = document->FindByType(ElementId{0}, type);
+                if (el)
+                    return el->id;
+            }
+            return ElementId{};
+        };
+    ElementId result_id = find_result_id();
+    QVERIFY(!result_id.empty());
+
+    Rect r;
+    QVERIFY(document->GetElementRect(result_id, r));
+    QPoint doc_point = document_window->GetDocumentPoint();
+    QTest::mouseClick(editor, Qt::LeftButton, Qt::NoModifier,
+        QPoint(r.left + r.width / 2 - doc_point.x(), r.top + r.height / 2 - doc_point.y()));
+    //the revealed result shows the solved value - the auto result of 2+2 is a real number with a trailing dot
+    QTRY_COMPARE(document->ToText(), U"2+2=4.");
+
+    //the current result is looked up from the caret position - the same lookup the context menu uses
+    auto current_result_id =
+        [document]() -> ElementId
+        {
+            for (auto type : { ElementType::AUTO_RESULT, ElementType::REAL_RESULT, ElementType::INTEGER_RESULT,
+                ElementType::RATIONAL_RESULT, ElementType::COMPLEX_RESULT, ElementType::SYMBOLIC_REAL_RESULT,
+                ElementType::SYMBOLIC_RATIONAL_RESULT, ElementType::SYMBOLIC_COMPLEX_RESULT, ElementType::VECTOR_REAL_RESULT,
+                ElementType::VECTOR_RATIONAL_RESULT, ElementType::VECTOR_COMPLEX_RESULT, ElementType::ARRAY_REAL_RESULT })
+            {
+                ElementId id = document->FindCurrentParentByType(type);
+                if (!id.empty())
+                    return id;
+            }
+            return ElementId{};
+        };
+
+    //the caret is moved away from the equation - no result is current
+    document->WaitTask(document->MoveCaretToDocumentBegin(false));
+    QVERIFY(current_result_id().empty());
+
+    //a right click on the result must move the caret there
+    QVERIFY(document->GetElementRect(result_id, r));
+    QTest::mouseClick(editor, Qt::RightButton, Qt::NoModifier,
+        QPoint(r.left + r.width / 2 - doc_point.x(), r.top + r.height / 2 - doc_point.y()));
+    QTRY_VERIFY(current_result_id() == result_id);
+}
+
 void TestFiles::testCopyWrongParagraph()
 {
     auto editor = window->findChild<DocumentWidget*>();

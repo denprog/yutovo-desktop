@@ -74,6 +74,10 @@ External (Windows): via vcpkg — Boost, BZip2, RapidJSON, libharu, mpfr.
 - No CI, no pre-commit, no linting/formatting config in repo
 
 ## Code style
+
+### Naming
+Follow the naming rules of the yutovo-editor sources. Local variables, class data members, and lambdas use `snake_case` (`caret_moving_task_id`, `is_ident_start`, `count_list_items`); methods and free functions use `PascalCase` (`MoveCaret`, `FindCurrentParentByType`). Test slots in `test/` keep the existing `testCamelCase` form (`testCopyPasteGraph`).
+
 - Opening braces always on a new line (`K&R/Allman` style):
   ```cpp
   if (condition)

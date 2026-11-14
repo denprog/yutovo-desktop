@@ -344,6 +344,10 @@ void DocumentWidget::mousePressEvent(QMouseEvent *event)
             (event->modifiers() == 0 && c == 0)));
         left_click_pos = QPoint{x, y};
     }
+    else if (event->buttons() == Qt::RightButton)
+    {
+        caret_moving_task_id = document->MoveCaret(x, y, false);
+    }
 }
 
 void DocumentWidget::mouseReleaseEvent(QMouseEvent *event)
